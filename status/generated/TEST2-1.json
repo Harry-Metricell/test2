@@ -1,0 +1,38 @@
+{
+  "key": "TEST2-1",
+  "id": "103325",
+  "summary": "test",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-1",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-02T15:49:53.027+0100",
+    "updated": "2026-09-02T16:09:45.306+0100"
+  },
+  "description": "",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-1/ticket.json",
+    "criteria": "tickets/TEST2-1/criteria.md",
+    "status": "tickets/TEST2-1/status.json",
+    "screenshots": "tickets/TEST2-1/screenshots/",
+    "reports": "tickets/TEST2-1/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103325",
+    "importedAt": "2026-09-02T16:09:45.306+0100"
+  },
+  "status": {
+    "workflowState": "Ready",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "updatedAt": "2026-09-02T16:09:45.306+0100"
+  }
+}
