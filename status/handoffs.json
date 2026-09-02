@@ -1,20 +1,5 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-09-02T16:45:52.490+0100",
-  "handoffs": [
-    {
-      "handoffId": "handoff-TEST2-3-criteria",
-      "action": "criteria_conversion",
-      "owner": "criteria-converter",
-      "ticket": "TEST2-3",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-3/ticket.json",
-        "generated": "status/generated/TEST2-3.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-3/criteria-review.md",
-        "schema": "v4-qa-criteria-review.v1"
-      }
-    }
-  ]
+  "generatedAt": null,
+  "handoffs": []
 }
