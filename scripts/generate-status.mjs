@@ -221,7 +221,7 @@ function handoffFor(ticket) {
       owner: 'criteria-converter',
       ticket: ticket.key,
       inputs: { ticketJson: `tickets/${ticket.key}/ticket.json`, generated: `status/generated/${ticket.key}.json` },
-      expectedOutput: { path: `tickets/${ticket.key}/criteria-review.md`, schema: 'v4-qa-criteria-review.v1' }
+      expectedOutput: { path: `tickets/${ticket.key}/criteria.md`, schema: 'v4-qa-criteria-review.v1' }
     };
   }
   if (ticket.status.workflowState === 'Retry Queued') {
@@ -288,7 +288,10 @@ writeJson(path.join(outDir, 'tickets.json'), summary);
 writeJson(path.join(outDir, 'handoffs.json'), { schema: 'v4-qa-handoffs.v1', generatedAt: summary.generatedAt, handoffs });
 for (const ticket of tickets) {
   writeJson(path.join(generatedDir, `${ticket.key}.json`), ticket);
-  writeText(path.join('tickets', ticket.key, 'criteria.md'), criteriaMarkdown(ticket));
+  const criteriaFile = path.join('tickets', ticket.key, 'criteria.md');
+  if (ticket.acceptanceCriteria.length > 0 || !fs.existsSync(criteriaFile)) {
+    writeText(criteriaFile, criteriaMarkdown(ticket));
+  }
   writeText(path.join('tickets', ticket.key, 'ticket.md'), markdown(ticket));
 }
 
