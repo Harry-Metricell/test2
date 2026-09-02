@@ -8,8 +8,7 @@ const confirmedIssues = confirmation.issues || [];
 const signature = (items) => JSON.stringify(items.map((issue) => [issue.key, issue.fields?.status?.name]).sort());
 if (signature(issues) !== signature(confirmedIssues)) throw new Error('Jira project reads differ; refusing deletion');
 const projectKey = process.env.JIRA_PROJECT_KEY || 'TEST2';
-const total = result.total;
-if (!Number.isFinite(total) || total !== issues.length) throw new Error(`Jira response is incomplete: received ${issues.length} of ${total}`);
+if (result.isLast !== true || confirmation.isLast !== true) throw new Error('Jira response is not confirmed complete; refusing deletion');
 
 const active = new Set();
 for (const issue of issues) {
