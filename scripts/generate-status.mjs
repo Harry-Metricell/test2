@@ -129,7 +129,9 @@ function mergeStatus(ticket, localStatus) {
   const localState = canonicalState(localStatus.workflowState || localStatus.status, 'Imported');
   const workflowState = statusRank(localState) <= statusRank(jiraState) ? localState : jiraState;
   return {
+    jiraStatus: ticket.jira.status || 'Unknown',
     workflowState,
+    qaStatus: localStatus.qaStatus || 'Not Tested',
     qaOutcome: localStatus.qaOutcome || localStatus.outcome || 'Not Tested',
     automationSuitability: localStatus.automationSuitability || 'Unclassified',
     actionOwner: localStatus.actionOwner || 'Coordinator',
@@ -277,12 +279,16 @@ const summary = {
     summary: t.summary,
     jiraStatus: t.jira.status,
     workflowState: t.status.workflowState,
+    qaStatus: t.status.qaStatus,
     qaOutcome: t.status.qaOutcome,
     actionOwner: t.status.actionOwner,
     nextAction: t.status.nextAction,
     updatedAt: t.status.updatedAt
   }))
 };
+
+const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Summary |', '| --- | --- | --- | --- |', ...tickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\\n');
+writeText(path.join(outDir, 'ticket-status.md'), report);
 
 writeJson(path.join(outDir, 'tickets.json'), summary);
 writeJson(path.join(outDir, 'handoffs.json'), { schema: 'v4-qa-handoffs.v1', generatedAt: summary.generatedAt, handoffs });
