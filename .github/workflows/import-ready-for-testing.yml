@@ -93,7 +93,9 @@ jobs:
             return null;
           }
 
-          if (!fs.existsSync('tickets')) process.exit(0);\n\n          if (!fs.existsSync('tickets')) process.exit(0);\n\n          for (const entry of fs.readdirSync('tickets', { withFileTypes: true })) {
+          if (!fs.existsSync('tickets')) process.exit(0);\n\n          if (!fs.existsSync('tickets')) process.exit(0);
+
+          for (const entry of fs.readdirSync('tickets', { withFileTypes: true })) {
             if (!entry.isDirectory()) continue;
             const file = path.join('tickets', entry.name, 'ticket.json');
             if (!fs.existsSync(file)) continue;
