@@ -2,7 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const result = JSON.parse(fs.readFileSync('results.json', 'utf8'));
+const confirmation = JSON.parse(fs.readFileSync('results-confirm.json', 'utf8'));
 const issues = result.issues || [];
+const confirmedIssues = confirmation.issues || [];
+const signature = (items) => JSON.stringify(items.map((issue) => [issue.key, issue.fields?.status?.name]).sort());
+if (signature(issues) !== signature(confirmedIssues)) throw new Error('Jira project reads differ; refusing deletion');
 const projectKey = process.env.JIRA_PROJECT_KEY || 'TEST2';
 const total = Number.isFinite(result.total) ? result.total : issues.length;
 if (total > issues.length) throw new Error(`Jira response is incomplete: received ${issues.length} of ${total}`);
