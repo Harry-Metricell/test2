@@ -1,0 +1,41 @@
+name: Static QA Plan
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tickets/**'
+      - 'scripts/generate-status.mjs'
+      - 'package.json'
+      - '.github/workflows/static-qa-plan.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate deterministic status and handoffs
+        run: npm run generate
+
+      - name: Commit generated outputs
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add status tickets
+          git commit -m "Generate QA status plan" || echo "No generated changes"
+          git push
+
+      - name: Show Codex handoff summary
+        run: |
+          node -e "const fs=require('fs'); const h=JSON.parse(fs.readFileSync('status/handoffs.json','utf8')); console.log(JSON.stringify(h,null,2));"
+
+      # Later step: call the Codex task trigger only when status/handoffs.json is non-empty.
+      # Keep that trigger outside this first scaffold until the exact Codex endpoint/token is configured.
