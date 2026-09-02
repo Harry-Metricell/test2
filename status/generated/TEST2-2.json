@@ -34,7 +34,9 @@
     "importedAt": "2026-09-02T16:54:10.381+0100"
   },
   "status": {
+    "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
+    "qaStatus": "Not Tested",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
