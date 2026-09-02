@@ -1,4 +1,4 @@
-# TEST2-1: test
+# TEST2-3: test 3 confusion
 
 ## Current State
 
@@ -7,7 +7,7 @@
 - Workflow state: Ready
 - Action owner: Coordinator
 - Next action: Create criteria conversion handoff
-- Jira: https://metricell.atlassian.net/browse/TEST2-1
+- Jira: https://metricell.atlassian.net/browse/TEST2-3
 
 ## Acceptance Criteria
 
@@ -19,4 +19,4 @@ No subtasks imported.
 
 ## Description
 
-No description imported.
+the beacons favourite should work. you should be able to favourite a beacon it comes up in favourites. then un fav it and it goes out of favourite beacon
