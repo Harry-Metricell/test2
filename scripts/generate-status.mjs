@@ -110,7 +110,7 @@ function acceptanceCriteria(descriptionText) {
   return descriptionText
     .slice(marker.index + marker[0].length)
     .split(/\n+/)
-    .map((line) => line.replace(/^[-*]\s*/, '').trim())
+    .map((line) => line.replace(/\\n/g, '\n').replace(/^[-*]\s*/, '').trim())
     .filter((line) => line && !/^Object Change List:/i.test(line));
 }
 
