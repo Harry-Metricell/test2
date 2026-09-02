@@ -287,7 +287,7 @@ const summary = {
   }))
 };
 
-const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Summary |', '| --- | --- | --- | --- |', ...tickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\\n');
+const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Summary |', '| --- | --- | --- | --- |', ...tickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\n');
 writeText(path.join(outDir, 'ticket-status.md'), report);
 
 writeJson(path.join(outDir, 'tickets.json'), summary);
