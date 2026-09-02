@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       ticket_id:
-        description: "Jira ticket key, for example VM2ST-71"
+        description: "Jira ticket key, for example TEST2-2"
         required: true
 
 permissions:
