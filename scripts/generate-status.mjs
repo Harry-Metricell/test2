@@ -214,7 +214,7 @@ function markdown(ticket) {
 }
 
 function handoffFor(ticket) {
-  if (ticket.status.workflowState === 'Ready' || ticket.status.workflowState === 'Imported') {
+  if ((ticket.status.workflowState === 'Ready' || ticket.status.workflowState === 'Imported') && ticket.acceptanceCriteria.length === 0) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
       action: 'criteria_conversion',
