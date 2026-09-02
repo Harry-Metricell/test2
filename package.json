@@ -1,0 +1,10 @@
+{
+  "name": "v4-qa-v2",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-status.mjs",
+    "check": "node scripts/generate-status.mjs --check"
+  }
+}
