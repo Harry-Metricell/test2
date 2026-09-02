@@ -37,7 +37,7 @@ jobs:
             -H "Accept: application/json" \
             -H "Content-Type: application/json" \
             --get \
-            --data-urlencode "jql=project = ${JIRA_PROJECT_KEY:-TEST2} AND status = \"${JIRA_READY_STATUS:-Ready for Testing}\" ORDER BY updated DESC" \
+            --data-urlencode "jql=project = ${JIRA_PROJECT_KEY:-TEST2} ORDER BY updated DESC" \
             --data-urlencode "maxResults=100" \
             --data-urlencode "fields=summary,status,priority,assignee,parent,created,updated,description,subtasks,project" \
             "$JIRA_URL/rest/api/3/search/jql" \
@@ -48,7 +48,12 @@ jobs:
           node <<'NODE'
           const fs = require('node:fs');
           const result = JSON.parse(fs.readFileSync('results.json', 'utf8'));
-          for (const issue of result.issues || []) {
+          const issues = result.issues || [];
+          const active = new Set();
+          for (const issue of issues) {
+            const jiraStatus = String(issue.fields?.status?.name || 'Unknown');
+            if (jiraStatus.toLowerCase() === 'done') continue;
+            active.add(issue.key);
             const dir = `tickets/${issue.key}`;
             fs.mkdirSync(`${dir}/screenshots`, { recursive: true });
             fs.mkdirSync(`${dir}/reports`, { recursive: true });
