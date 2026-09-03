@@ -36,6 +36,3 @@ jobs:
       - name: Show Codex handoff summary
         run: |
           node -e "const fs=require('fs'); const h=JSON.parse(fs.readFileSync('status/handoffs.json','utf8')); console.log(JSON.stringify(h,null,2));"
-
-      # Later step: call the Codex task trigger only when status/handoffs.json is non-empty.
-      # Keep that trigger outside this first scaffold until the exact Codex endpoint/token is configured.
