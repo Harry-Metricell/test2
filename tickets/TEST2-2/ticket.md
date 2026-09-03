@@ -2,11 +2,11 @@
 
 ## Current State
 
-- Jira status: To Do
+- Jira status: READY FOR TESTING
 - QA outcome: Not Tested
-- Workflow state: To Do
+- Workflow state: Ready
 - Action owner: Coordinator
-- Next action: No deterministic action available
+- Next action: Create criteria conversion handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-2
 
 ## Acceptance Criteria

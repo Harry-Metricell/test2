@@ -1,14 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-03T09:31:28.485+0100",
+  "generatedAt": "2026-09-03T10:36:13.373+0100",
   "counts": {
-    "tickets": 2,
-    "handoffs": 0,
+    "tickets": 3,
+    "handoffs": 2,
     "byWorkflowState": {
-      "To Do": 2
+      "Ready": 3
     },
     "byQaOutcome": {
-      "Not Tested": 2
+      "Not Tested": 3
     }
   },
   "policy": {
@@ -21,24 +21,35 @@
     {
       "key": "TEST2-2",
       "summary": "test",
-      "jiraStatus": "To Do",
-      "workflowState": "To Do",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
       "qaStatus": "Not Tested",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "No deterministic action available",
-      "updatedAt": "2026-09-03T09:31:26.934+0100"
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-03T09:32:27.181+0100"
     },
     {
       "key": "TEST2-3",
       "summary": "test 3 confusion",
-      "jiraStatus": "To Do",
-      "workflowState": "To Do",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
       "qaStatus": "Not Tested",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "No deterministic action available",
-      "updatedAt": "2026-09-03T09:31:28.485+0100"
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-03T09:32:28.749+0100"
+    },
+    {
+      "key": "TEST2-4",
+      "summary": "test 4",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Not Tested",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-03T10:36:13.373+0100"
     }
   ]
 }

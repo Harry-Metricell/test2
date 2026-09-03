@@ -1,12 +1,12 @@
 {
   "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
-  "id": "103333",
-  "self": "https://metricell.atlassian.net/rest/api/3/issue/103333",
-  "key": "TEST2-3",
+  "id": "103437",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/103437",
+  "key": "TEST2-4",
   "fields": {
-    "summary": "test 3 confusion",
+    "summary": "test 4",
     "subtasks": [],
-    "created": "2026-09-02T16:30:31.877+0100",
+    "created": "2026-09-03T10:35:48.714+0100",
     "project": {
       "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
       "id": "10551",
@@ -30,11 +30,23 @@
           "content": [
             {
               "type": "text",
-              "text": "the beacons favourite should work. you should be able to favourite a beacon it comes up in favourites. then un fav it and it goes out of favourite beacon"
+              "text": "criteria:"
             }
           ],
           "attrs": {
-            "localId": "1149f6f5c836"
+            "localId": "dbd2930f57c9"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "GIS screen can be opened"
+            }
+          ],
+          "attrs": {
+            "localId": "c347359d7882"
           }
         }
       ]
@@ -46,7 +58,7 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-09-03T09:32:28.749+0100",
+    "updated": "2026-09-03T10:36:13.373+0100",
     "status": {
       "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
       "description": "",
