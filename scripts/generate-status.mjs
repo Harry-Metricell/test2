@@ -194,17 +194,13 @@ function normalizeTicket(dirName) {
 
 function criteriaMarkdown(ticket) {
   const lines = ticket.acceptanceCriteria.length
-    ? ticket.acceptanceCriteria.map((line, i) => `- [ ] ${line}`).join('\n')
+    ? ticket.acceptanceCriteria.map((line) => `- [ ] ${line}`).join('\n')
     : '- No acceptance criteria extracted from the Jira description.';
-  return `# ${ticket.key} acceptance criteria
-
-Source: Jira description (automatically extracted)
-Jira: ${ticket.jira.url}
+  return `<!-- Generated from Jira acceptance criteria. -->
 
 ${lines}
 `;
 }
-
 function markdown(ticket) {
   const criteria = ticket.acceptanceCriteria.length
     ? ticket.acceptanceCriteria.map((line, i) => `${i + 1}. ${line}`).join('\n')
