@@ -4,7 +4,7 @@ Act as the criteria bridge agent for the `Harry-Metricell/test2` repository.
 
 ## Objective
 
-Convert one unresolved `criteria_conversion` handoff into the canonical ticket criteria file. Process at most one handoff per run.
+Convert every currently unresolved `criteria_conversion` handoff into its canonical ticket criteria file during each run. Process all qualifying handoffs, one at a time.
 
 ## Inputs
 
@@ -12,7 +12,7 @@ Start by reading only:
 
 - `status/handoffs.json`
 
-Select the first unresolved handoff where:
+Select every unresolved handoff where:
 
 - `action` is `criteria_conversion`
 - `expectedOutput.path` points to `tickets/<KEY>/criteria.md`
@@ -23,7 +23,7 @@ Then read only:
 - The referenced generated ticket JSON, if present
 - The current target `criteria.md`, if present
 
-If no qualifying handoff exists, make no changes.
+If no qualifying handoff exists, make no changes. Do not stop after the first qualifying handoff.
 
 ## Output
 
