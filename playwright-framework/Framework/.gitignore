@@ -1,0 +1,11 @@
+playwright/.auth/
+test-results/
+reports/
+visual-baselines/
+playwright-recordings/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.log
+*.zip
+
