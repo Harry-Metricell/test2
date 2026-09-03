@@ -40,6 +40,16 @@ After testing and committing the text report/results, update only the QA status 
 
 Write `tickets/<KEY>/results.json`, the original concise text report under `tickets/<KEY>/reports/`, and `tickets/<KEY>/status.json` with the QA status above. Save local screenshots under the dedicated evidence folder.
 
+For every criterion, results.json must include:
+- `criterion_id`
+- `outcome`
+- `steps_taken`: an ordered list of the actual UI actions performed, using the agent's real labels/targets and state observed after each action
+- `evidence`: the screenshot filenames and other direct evidence tied to those steps
+- `actual_result`
+- `blockers` when applicable
+
+Do not copy the planned criteria steps into `steps_taken`; record only actions actually performed. If a step was not performed, say so explicitly.
+
 Each criterion result must be Passed, Failed, or Unverified.
 
 ## Restrictions
