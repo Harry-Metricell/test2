@@ -1,0 +1,314 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "103326",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/103326",
+  "key": "TEST2-2",
+  "fields": {
+    "summary": "test",
+    "subtasks": [],
+    "created": "2026-09-02T15:50:09.010+0100",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "As a SmartTools user",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "30384e94f9a0"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "I want to export the selected Beacon report view to Excel",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "85806ba10901"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "So that I can analyse and share the report data outside SmartTools.",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "ebc5aea6389a"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue/Change Description:",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "1d73208f72a0"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Provide an Export action for detailed Beacon report views. The export must use the currently selected Beacon, date range and report view, and produce the corresponding Excel extract."
+            }
+          ],
+          "attrs": {
+            "localId": "0342d8efe007"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "In scope: Voice Call, MS Teams Call, Data Speed, Service, Video Streaming, Browsing, FTP, SMS and Email views. The downloaded filename should identify the report type and export date."
+            }
+          ],
+          "attrs": {
+            "localId": "f1e3b283e0d6"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "The Export action is not shown for Overview. Chart/PDF export and changes to the report data are out of scope."
+            }
+          ],
+          "attrs": {
+            "localId": "490d2a7a3716"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "QA: test each supported view, selected Beacon/date propagation, generated file type/name, unavailable data, error handling and user/tenant data access controls."
+            }
+          ],
+          "attrs": {
+            "localId": "4f66257c2309"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance Criteria:",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "f6a912b5221e"
+          }
+        },
+        {
+          "type": "bulletList",
+          "content": [
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "c33f3f131d11"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given a user is viewing Voice Call, MS Teams Call, Data Speed, Service, Video Streaming, Browsing, FTP, SMS or Email, when the report loads, then an Export action is available."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "f3c90a97cc8e"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "75feb80bb3d2"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given a user is viewing Overview, when the report loads, then an Export action is not available."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "e9b0f39d5a58"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "52c454898a5a"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given a user selects Export from a supported view, when the export completes, then an Excel file containing that view’s export data is downloaded."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "794da166699c"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "9da3fd3b6fe8"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given a user changes the Beacon or date range, when they export a supported view, then the generated file reflects the current Beacon and selected range."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "8bfa2605e595"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "a82149f926e4"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given the file is downloaded, when its filename is generated, then it identifies the report type and export date."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "5450dae2871f"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "ba30cc12362a"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given export data is unavailable or the request fails, when the user attempts an export, then the standard error or empty response is shown without exposing data outside their existing access."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "b888f4288b81"
+                  }
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "86abbacd3cc8"
+          }
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-09-03T09:28:21.250+0100",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  }
+}\n
