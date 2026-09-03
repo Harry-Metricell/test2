@@ -33,7 +33,7 @@ for (const key of tickets) {
     if (criteria.includes('\\\\n')) {
       errors.push(`${key}: criteria.md contains literal \\n escapes instead of line breaks`);
     }
-    const checklistLines = criteria.split(/\\r?\\n/).filter((line) => /^- \\[ \] /.test(line));
+    const checklistLines = criteria.split(/\r?\n/).filter((line) => /^- \[ \] /.test(line));
     if (checklistLines.length === 0 && !criteria.includes('No acceptance criteria extracted')) {
       errors.push(`${key}: criteria.md has no valid checklist bullets`);
     }
