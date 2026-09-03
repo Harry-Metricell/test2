@@ -25,7 +25,7 @@ for (const issue of issues) {
   fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify(issue, null, 2) + '\\n');
   const statusFile = path.join(dir, 'status.json');
   const existing = fs.existsSync(statusFile) ? JSON.parse(fs.readFileSync(statusFile, 'utf8')) : {};
-  fs.writeFileSync(statusFile, JSON.stringify({ ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus }, null, 2) + '\\\\n');
+  fs.writeFileSync(statusFile, JSON.stringify({ ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus }, null, 2) + '\n');
 }
 
 if (fs.existsSync('tickets')) {
