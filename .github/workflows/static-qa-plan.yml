@@ -31,6 +31,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git add status tickets
           git commit -m "Generate QA status plan" || echo "No generated changes"
+          git pull --rebase origin main
           git push
 
       - name: Show Codex handoff summary
