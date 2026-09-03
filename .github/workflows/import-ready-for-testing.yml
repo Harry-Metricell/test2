@@ -73,6 +73,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git add tickets status
           git commit -m "Import Jira tickets and refresh QA plan" || echo "No changes"
+          git pull --rebase origin main
           git push
 
       - name: Show Codex handoffs
