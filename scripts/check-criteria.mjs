@@ -27,8 +27,8 @@ for (const key of tickets) {
   const criteriaFile = path.join(dir, 'criteria.md');
   if (fs.existsSync(criteriaFile)) {
     const criteria = fs.readFileSync(criteriaFile, 'utf8');
-    if (!criteria.includes('Source: Jira description')) {
-      errors.push(`${key}: criteria.md is missing its Jira source marker`);
+    if (!criteria.includes('Generated from Jira acceptance criteria')) {
+      errors.push(`${key}: criteria.md is missing its generated marker`);
     }
     if (criteria.includes('\\\\n')) {
       errors.push(`${key}: criteria.md contains literal \\n escapes instead of line breaks`);
