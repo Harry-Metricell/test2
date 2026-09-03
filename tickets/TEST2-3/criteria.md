@@ -1,3 +1,4 @@
-<!-- Generated from Jira acceptance criteria. -->
+Generated criteria
 
-- No acceptance criteria extracted from the Jira description.
+- [ ] Given a user favourites a Beacon, then the Beacon appears in favourite Beacons.
+- [ ] Given a user unfavourites a Beacon, then the Beacon no longer appears in favourite Beacons.
