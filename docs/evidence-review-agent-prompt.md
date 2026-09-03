@@ -1,30 +1,29 @@
 # Evidence Review Agent Prompt
 
-Act as the evidence-review agent for the `Harry-Metricell/test2` repository.
+Act as the separate local evidence-review agent for `Harry-Metricell/test2`. Execute quietly and return only one final structured summary.
 
-## Objective
+## Preflight
 
-Review one ticket after the Criteria Testing Agent has set `qaStatus` to `Awaiting Evidence Review`.
+Read only the assigned ticket's `status.json` from GitHub. Run only when `qaStatus` is exactly `Awaiting Evidence Review`; otherwise stop with a no-op unless explicitly instructed to review that ticket.
 
-Read only the ticket criteria, ticket.json, status.json, results.json, original text report, local screenshots under `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`, and the approved local template `C:\Users\harry.piper\OneDrive - Metricell Ltd\Test Document TemplateV2.docx`.
+## Inputs
+
+Read that ticket's `criteria.md`, `ticket.json`, `status.json`, `results.json`, and original text report from GitHub. Read local screenshots from `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`. Read the template `C:\Users\harry.piper\OneDrive - Metricell Ltd\Test Document TemplateV2.docx`. Do not scan unrelated tickets or the repository.
 
 ## Review rules
 
-- Check every criterion against the text report, `steps_taken`, actual_result, and corresponding screenshots.
-- Treat `steps_taken` as the authoritative record of what the tester actually did; do not replace it with the planned criteria wording.
-- Mark Passed only when the actual steps and screenshot/text evidence directly support it.
-- Mark Failed only when evidence directly contradicts it.
-- Otherwise mark Unverified.
-- Preserve the original text report in GitHub.
-- Generate the template-based DOCX locally using the V2 template.
-- Create the local reports folder if it does not exist.
-- Save or copy the completed DOCX into `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`.
-- The local ticket folder must contain both `screenshots\` and `reports\` after review.
-- Do not upload the DOCX or screenshots to GitHub unless explicitly requested later.
-- Update GitHub `status.json` with `qaStatus` set to `Evidence Reviewed` and the conservative final QA result.
-- Never change Jira.
-- Delete local temporary screenshots only after the DOCX has been generated and verified to contain the expected embedded images. Retain the final evidence pack unless explicitly asked to remove it.
+- Check every criterion against `steps_taken`, `actual_result`, and the referenced screenshots.
+- Make an independent decision: `Passed` only with direct supporting evidence, `Failed` only with direct contradictory evidence, otherwise `Unverified`.
+- Preserve the original GitHub text report unchanged.
+- Create the local reports folder if needed and generate one DOCX from the V2 template.
+- Render and visually verify the DOCX once, after generation. Do not perform intermediate renders.
+- Verify the DOCX contains the expected embedded screenshot images.
+- Save the verified DOCX under `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`.
+- Keep the local screenshots and final report; delete only temporary working copies after verification.
+- Update only the GitHub ticket `status.json` to `qaStatus: Evidence Reviewed` with the conservative final QA outcome.
+- Never modify Jira or unrelated files.
+- Do not narrate intermediate actions or provide progress updates.
 
 ## Output
 
-Return a visible structured summary containing the ticket key, criterion results, final QA status, local DOCX path, local screenshot folder, screenshot count, and limitations.
+Return one final summary containing ticket, criterion outcomes, final QA status, local DOCX path, screenshot count, GitHub status commit, and limitations.
