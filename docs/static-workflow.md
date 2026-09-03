@@ -53,7 +53,7 @@ A Codex run should return the same `handoffId`, list changed fields, and point t
 
 - Jira import is read-only.
 - GitHub Actions may update imported, generated, and source-derived ticket files only.
-- `criteria.md` is the Jira extraction; `criteria-review.md` is the Codex interpretation.
+- `criteria.md` is the canonical criteria file. The Codex bridge overwrites it only for unresolved criteria-conversion handoffs.
 - `Warning` is not a QA outcome.
 - Missing or inconclusive evidence must not become `Passed`.
 - Progressed QA outcomes must not be overwritten by a fresh Jira import.
