@@ -20,14 +20,19 @@ Do not scan the repository or read unrelated ticket folders.
 
 - Test every criterion individually.
 - Use the VPN-connected V4 browser if available.
-- Capture evidence for every interaction and persist the binary files in GitHub:
+- Capture evidence for every interaction:
   - before each button click
   - immediately after each button click
   - between sequential clicks whenever the UI state changes
+- Save screenshots as temporary local PNG files outside the repository.
+- Upload each verified PNG to `tickets/<KEY>/screenshots/` in GitHub.
+- Verify the GitHub upload succeeded before deleting the temporary local PNG.
+- Delete only temporary screenshots created for this ticket; never delete existing user files.
 - Retain evidence for Passed, Failed, and Unverified checks.
 - Use descriptive evidence names containing the ticket, criterion, step, and state.
 - Do not claim a pass from a missing control, unavailable data, existing Playwright coverage, or Jira status.
 - If VPN access, browser access, login, UI controls, seeded data, or expected behavior is unavailable, record Unverified.
+- If the environment cannot save or upload a binary screenshot, record that exact limitation and do not claim the screenshot was uploaded.
 
 ## Results
 
@@ -36,6 +41,8 @@ Write only:
 - `tickets/<KEY>/results.json`
 - Evidence under `tickets/<KEY>/screenshots/`
 - Reports under `tickets/<KEY>/reports/`
+
+The GitHub report must remain the original concise text evidence report. Do not replace it with the Word template report.
 
 Each criterion result must be one of:
 
@@ -58,7 +65,8 @@ The result must include the ticket key, test timestamp, overall outcome, criteri
 - Never modify `status/handoffs.json`, generated status files, or unrelated tickets.
 - Never create `criteria-review.md`.
 - Never invent criteria, expected behavior, test data, or evidence.
-- Commit only the current ticket's `results.json` and evidence/report files.
+- Never upload credentials, authentication state, tokens, or unrelated local files.
+- Commit only the current ticket's `results.json`, screenshots, and original text report.
 
 ## Prompt maintenance
 
