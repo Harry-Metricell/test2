@@ -4,13 +4,13 @@
   "summary": "test",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-2",
-    "status": "To Do",
+    "status": "READY FOR TESTING",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-02T15:50:09.010+0100",
-    "updated": "2026-09-03T09:15:29.437+0100"
+    "updated": "2026-09-03T09:19:47.462+0100"
   },
   "description": "As a SmartTools user\nI want to export the selected Beacon report view to Excel\nSo that I can analyse and share the report data outside SmartTools.\nIssue/Change Description:\nProvide an Export action for detailed Beacon report views. The export must use the currently selected Beacon, date range and report view, and produce the corresponding Excel extract.\nIn scope: Voice Call, MS Teams Call, Data Speed, Service, Video Streaming, Browsing, FTP, SMS and Email views. The downloaded filename should identify the report type and export date.\nThe Export action is not shown for Overview. Chart/PDF export and changes to the report data are out of scope.\nQA: test each supported view, selected Beacon/date propagation, generated file type/name, unavailable data, error handling and user/tenant data access controls.\nAcceptance Criteria:\nGiven a user is viewing Voice Call, MS Teams Call, Data Speed, Service, Video Streaming, Browsing, FTP, SMS or Email, when the report loads, then an Export action is available.\nGiven a user is viewing Overview, when the report loads, then an Export action is not available.\nGiven a user selects Export from a supported view, when the export completes, then an Excel file containing that view’s export data is downloaded.\nGiven a user changes the Beacon or date range, when they export a supported view, then the generated file reflects the current Beacon and selected range.\nGiven the file is downloaded, when its filename is generated, then it identifies the report type and export date.\nGiven export data is unavailable or the request fails, when the user attempts an export, then the standard error or empty response is shown without exposing data outside their existing access.",
   "acceptanceCriteria": [
@@ -31,17 +31,17 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103326",
-    "importedAt": "2026-09-03T09:15:29.437+0100"
+    "importedAt": "2026-09-03T09:19:47.462+0100"
   },
   "status": {
-    "jiraStatus": "To Do",
-    "workflowState": "To Do",
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
     "qaStatus": "Not Tested",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "No deterministic action available",
+    "nextAction": "Create criteria conversion handoff",
     "reviewState": "Not Reviewed",
-    "updatedAt": "2026-09-03T09:15:29.437+0100"
+    "updatedAt": "2026-09-03T09:19:47.462+0100"
   }
 }
