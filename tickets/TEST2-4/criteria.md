@@ -1,3 +1,3 @@
 <!-- Generated from Jira acceptance criteria. -->
 
-- No acceptance criteria extracted from the Jira description.
+- [ ] GIS screen can be opened.
