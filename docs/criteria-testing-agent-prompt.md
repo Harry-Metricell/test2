@@ -27,14 +27,14 @@ Do not scan the repository or read unrelated ticket folders.
 - Retain evidence for Passed, Failed, and Unverified checks.
 - Do not claim a pass from a missing control, unavailable data, existing Playwright coverage, or Jira status.
 - If access, data, or expected behavior is unavailable, record Unverified.
-- Never delete the local evidence folder; the evidence-review agent owns cleanup after the Word report is verified.
+- Leave the local screenshots in place after testing.
 
 ## Status
 
 After testing and committing the text report/results, update only the QA status in `tickets/<KEY>/status.json`:
 - Preserve Jira `status` and `jiraStatus` exactly.
 - Set `qaStatus` to `Awaiting Evidence Review`.
-- Do not set a final Passed or Failed status; the evidence-review agent does that after checking the text report and screenshots.
+- Do not set a final Passed or Failed status.
 
 ## Results
 
