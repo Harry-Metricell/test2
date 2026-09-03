@@ -8,7 +8,8 @@
       "Ready": 3
     },
     "byQaOutcome": {
-      "Not Tested": 3
+      "Not Tested": 2,
+      "Passed": 1
     }
   },
   "policy": {
@@ -45,8 +46,8 @@
       "summary": "test 4",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "Create criteria conversion handoff",
       "updatedAt": "2026-09-03T10:36:13.373+0100"

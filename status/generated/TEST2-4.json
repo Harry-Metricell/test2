@@ -29,8 +29,8 @@
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Awaiting Evidence Review",
-    "qaOutcome": "Not Tested",
+    "qaStatus": "Evidence Reviewed",
+    "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "Create criteria conversion handoff",
