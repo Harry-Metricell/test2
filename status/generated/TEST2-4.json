@@ -10,10 +10,12 @@
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-03T10:35:48.714+0100",
-    "updated": "2026-09-03T10:36:13.373+0100"
+    "updated": "2026-09-03T12:54:38.060+0100"
   },
-  "description": "criteria:\nGIS screen can be opened",
-  "acceptanceCriteria": [],
+  "description": "Acceptance Criteria:\nGIS screen can be opened from launcher",
+  "acceptanceCriteria": [
+    "GIS screen can be opened from launcher"
+  ],
   "files": {
     "ticket": "tickets/TEST2-4/ticket.json",
     "criteria": "tickets/TEST2-4/criteria.md",
@@ -24,17 +26,17 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103437",
-    "importedAt": "2026-09-03T10:36:13.373+0100"
+    "importedAt": "2026-09-03T12:54:38.060+0100"
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Evidence Reviewed",
+    "qaStatus": "Not Tested",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "Create criteria conversion handoff",
     "reviewState": "Not Reviewed",
-    "updatedAt": "2026-09-03T10:36:13.373+0100"
+    "updatedAt": "2026-09-03T12:54:38.060+0100"
   }
 }
