@@ -2,13 +2,13 @@
   "schema": "v4-qa-status.v1",
   "generatedAt": "2026-09-03T11:27:25.337+0100",
   "counts": {
-    "tickets": 3,
-    "handoffs": 2,
+    "tickets": 2,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Ready": 3
+      "Ready": 2
     },
     "byQaOutcome": {
-      "Not Tested": 3
+      "Not Tested": 2
     }
   },
   "policy": {
@@ -39,17 +39,6 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create criteria conversion handoff",
       "updatedAt": "2026-09-03T09:32:28.749+0100"
-    },
-    {
-      "key": "TEST2-4",
-      "summary": "test 4",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
-      "updatedAt": "2026-09-03T10:36:13.373+0100"
     }
   ]
 }
