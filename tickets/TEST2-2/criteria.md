@@ -1,7 +1,4 @@
-# TEST2-2 acceptance criteria
-
-Source: Jira description (automatically extracted)
-Jira: https://metricell.atlassian.net/browse/TEST2-2
+<!-- Generated from Jira acceptance criteria. -->
 
 - [ ] Given a user is viewing Voice Call, MS Teams Call, Data Speed, Service, Video Streaming, Browsing, FTP, SMS or Email, when the report loads, then an Export action is available.
 - [ ] Given a user is viewing Overview, when the report loads, then an Export action is not available.
