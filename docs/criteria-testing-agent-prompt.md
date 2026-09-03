@@ -4,7 +4,7 @@ Act as the QA testing agent for the `Harry-Metricell/test2` repository.
 
 ## Objective
 
-Test every eligible `TEST2` ticket against its canonical `tickets/<KEY>/criteria.md`, using the VPN-connected V4 browser when available. Process one ticket at a time. Start with the lowest-numbered eligible ticket and finish its result commit before moving to the next.
+Test one explicitly assigned eligible `TEST2` ticket against its canonical `tickets/<KEY>/criteria.md`. Multiple invocations may run on the same day, but each invocation must process exactly one ticket and finish its result commit before another ticket is assigned.
 
 ## Inputs
 
@@ -20,7 +20,7 @@ Do not scan the repository or read unrelated ticket folders.
 
 - Test every criterion individually.
 - Use the VPN-connected V4 browser if available.
-- Capture evidence for every interaction:
+- Capture evidence for every interaction and persist the binary files in GitHub:
   - before each button click
   - immediately after each button click
   - between sequential clicks whenever the UI state changes
@@ -59,3 +59,7 @@ The result must include the ticket key, test timestamp, overall outcome, criteri
 - Never create `criteria-review.md`.
 - Never invent criteria, expected behavior, test data, or evidence.
 - Commit only the current ticket's `results.json` and evidence/report files.
+
+## Prompt maintenance
+
+This file is the source of truth for the agent. Before every run, read this file from the repository and follow its current rules. Do not rely on an older task prompt or conversation history.
