@@ -4,13 +4,13 @@
   "summary": "test 3 confusion",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-3",
-    "status": "READY FOR TESTING",
+    "status": "To Do",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-02T16:30:31.877+0100",
-    "updated": "2026-09-02T16:54:07.920+0100"
+    "updated": "2026-09-03T09:15:30.953+0100"
   },
   "description": "the beacons favourite should work. you should be able to favourite a beacon it comes up in favourites. then un fav it and it goes out of favourite beacon",
   "acceptanceCriteria": [],
@@ -24,17 +24,17 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103333",
-    "importedAt": "2026-09-02T16:54:07.920+0100"
+    "importedAt": "2026-09-03T09:15:30.953+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Ready",
+    "jiraStatus": "To Do",
+    "workflowState": "To Do",
     "qaStatus": "Not Tested",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create criteria conversion handoff",
+    "nextAction": "No deterministic action available",
     "reviewState": "Not Reviewed",
-    "updatedAt": "2026-09-02T16:54:07.920+0100"
+    "updatedAt": "2026-09-03T09:15:30.953+0100"
   }
 }
