@@ -10,8 +10,9 @@ Read only the ticket criteria, ticket.json, status.json, results.json, original 
 
 ## Review rules
 
-- Check every criterion against the text report and corresponding screenshots.
-- Mark Passed only when screenshot and text evidence directly support it.
+- Check every criterion against the text report, `steps_taken`, actual_result, and corresponding screenshots.
+- Treat `steps_taken` as the authoritative record of what the tester actually did; do not replace it with the planned criteria wording.
+- Mark Passed only when the actual steps and screenshot/text evidence directly support it.
 - Mark Failed only when evidence directly contradicts it.
 - Otherwise mark Unverified.
 - Preserve the original text report in GitHub.
