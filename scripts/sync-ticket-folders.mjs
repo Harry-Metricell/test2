@@ -24,7 +24,14 @@ for (const issue of issues) {
   fs.writeFileSync(path.join(dir, 'reports', '.gitkeep'), '');
   fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify(issue, null, 2) + '\\n');
   const statusFile = path.join(dir, 'status.json');
-  const existing = fs.existsSync(statusFile) ? JSON.parse(fs.readFileSync(statusFile, 'utf8')) : {};
+  let existing = {};
+  if (fs.existsSync(statusFile)) {
+    try {
+      existing = JSON.parse(fs.readFileSync(statusFile, 'utf8'));
+    } catch (error) {
+      console.warn(`Ignoring malformed ${statusFile}; Jira status will be preserved and QA status reset`);
+    }
+  }
   fs.writeFileSync(statusFile, JSON.stringify({ ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus }, null, 2) + '\n');
 }
 
