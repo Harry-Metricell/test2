@@ -1,0 +1,49 @@
+{
+  "schema": "v4-ticket-test-result.v1",
+  "ticket": "TEST2-4",
+  "generatedAt": "2026-09-03T10:46:06+01:00",
+  "tester": "Codex interactive testing agent",
+  "overallOutcome": "Unverified",
+  "sourceInputs": [
+    "tickets/TEST2-4/criteria.md",
+    "tickets/TEST2-4/ticket.json",
+    "tickets/TEST2-4/status.json"
+  ],
+  "environment": {
+    "browser": "Chrome",
+    "application": "Metricell V4 GIS",
+    "access": "Existing authenticated browser session"
+  },
+  "criteria": [
+    {
+      "id": "TEST2-4-C1",
+      "criterion": "GIS screen can be opened.",
+      "result": "Unverified",
+      "evidence": [
+        "tickets/TEST2-4/reports/TEST2-4-evidence.md"
+      ],
+      "observations": [
+        "The V4 GIS screen was visible in the authenticated browser session.",
+        "The visible screen included the Metricell GIS header, map canvas, layer search/sidebar, selected map layer area, map controls, and user profile control.",
+        "A temporary local PNG screenshot was saved successfully and verified locally by byte size and SHA-256 hash."
+      ],
+      "blocker": "Required binary screenshot upload to GitHub could not be completed or verified in this environment. The browser file chooser blocked attaching the PNG, and no local GitHub token, gh client, or binary-capable GitHub upload path was available."
+    }
+  ],
+  "screenshotEvidence": {
+    "uploaded": [],
+    "notUploaded": [
+      {
+        "filename": "TEST2-4-C1-01-gis-screen-opened.png",
+        "localBytes": 344085,
+        "localSha256": "86625F7963633B221B5F4131E7D07DA4056097C62CA193D7E840196A12559768",
+        "reason": "Local PNG capture succeeded, but GitHub binary upload failed before commit and could not be verified."
+      }
+    ]
+  },
+  "repositoryWrites": [
+    "tickets/TEST2-4/results.json",
+    "tickets/TEST2-4/reports/TEST2-4-evidence.md"
+  ],
+  "jiraUpdated": false
+}
