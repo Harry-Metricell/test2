@@ -3,7 +3,7 @@
 ## Current State
 
 - Jira status: READY FOR TESTING
-- QA outcome: Passed
+- QA outcome: Not Tested
 - Workflow state: Ready
 - Action owner: Coordinator
 - Next action: Create criteria conversion handoff

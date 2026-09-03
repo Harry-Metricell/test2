@@ -2,14 +2,13 @@
   "schema": "v4-qa-status.v1",
   "generatedAt": "2026-09-03T10:36:13.373+0100",
   "counts": {
-    "tickets": 3,
+    "tickets": 2,
     "handoffs": 2,
     "byWorkflowState": {
-      "Ready": 3
+      "Ready": 2
     },
     "byQaOutcome": {
-      "Not Tested": 2,
-      "Passed": 1
+      "Not Tested": 2
     }
   },
   "policy": {
@@ -19,17 +18,6 @@
     "missingEvidence": "warning_not_pass"
   },
   "tickets": [
-    {
-      "key": "TEST2-2",
-      "summary": "test",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Not Tested",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
-      "updatedAt": "2026-09-03T09:32:27.181+0100"
-    },
     {
       "key": "TEST2-3",
       "summary": "test 3 confusion",
@@ -47,7 +35,7 @@
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
+      "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Create criteria conversion handoff",
       "updatedAt": "2026-09-03T10:36:13.373+0100"
