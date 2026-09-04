@@ -106,12 +106,19 @@ function flattenAdf(node) {
 
 function acceptanceCriteria(descriptionText) {
   const marker = /Acceptance Criteria:\s*/i.exec(descriptionText);
-  if (!marker) return [];
-  return descriptionText
-    .slice(marker.index + marker[0].length)
-    .split(/\n+/)
-    .map((line) => line.replace(/\\n/g, '\n').replace(/^[-*]\s*/, '').trim())
-    .filter((line) => line && !/^Object Change List:/i.test(line));
+  if (marker) {
+    return descriptionText
+      .slice(marker.index + marker[0].length)
+      .split(/\n+/)
+      .map((line) => line.replace(/\\n/g, '\n').replace(/^[-*]\s*/, '').trim())
+      .filter((line) => line && !/^Object Change List:/i.test(line));
+  }
+
+  const concise = descriptionText.replace(/\s+/g, ' ').trim();
+  if (concise && concise.length <= 500 && /\b(should|must|shall|able to)\b/i.test(concise)) {
+    return [concise];
+  }
+  return [];
 }
 
 function canonicalState(value, fallback = 'Imported') {
