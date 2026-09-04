@@ -6,8 +6,8 @@ If given only a ticket key, derive `tickets/<KEY>/ticket.json`, `tickets/<KEY>/c
 
 Read: the referenced `ticket.json`, generated ticket record if supplied, and current `criteria.md` if present.
 
-Write only the supplied `tickets/<KEY>/criteria.md`. Use the generated marker and one unchecked bullet per criterion. Give every distinct state-changing/user action its own bullet; never combine separate actions. Include that action's expected observable result in the same bullet. Do not create observation-only bullets. For example, add-to-Favourites plus appears-in-Favourites is one criterion, and remove-from-Favourites plus no-longer-appears is a separate criterion. Preserve source meaning; if extraction is unreliable, write one unchecked bullet stating that criteria could not be extracted.
+Write only the supplied `tickets/<KEY>/criteria.md`. You are authorised to commit that one file directly to the repository when GitHub write access is available; do not create or merge pull requests. Use the generated marker and one unchecked bullet per criterion. Give every distinct state-changing/user action its own bullet; never combine separate actions. Include that action's expected observable result in the same bullet. Do not create observation-only bullets. For example, add-to-Favourites plus appears-in-Favourites is one criterion, and remove-from-Favourites plus no-longer-appears is a separate criterion. Preserve source meaning; if extraction is unreliable, write one unchecked bullet stating that criteria could not be extracted.
 
-Do not search the repository, process other tickets, modify Jira, status files, generated records, reports, screenshots, or create `criteria-review.md`.
+Do not search the repository, process other tickets, modify Jira, status files, generated records, reports, screenshots, or create `criteria-review.md`. Do not commit, merge, or modify any other file.
 
 Return one valid JSON object only, with exactly these fields: `handoffId`, `ticket`, `changedFiles`, `noOp`, and `reason`. Use a boolean for `noOp`; include the colon. No markdown or commentary.
