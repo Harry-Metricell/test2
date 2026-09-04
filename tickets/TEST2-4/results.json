@@ -7,11 +7,22 @@
       "result": "Passed",
       "steps_taken": [
         "Opened the authenticated V4 launcher at /launcher.",
+        "Captured the initial launcher state.",
         "Selected the GIS module's Open module control.",
-        "Verified navigation to /gis and waited for the GIS workspace to load."
+        "Captured the immediate GIS loading state.",
+        "Waited for the GIS workspace to finish loading.",
+        "Verified the GIS heading, layer groups, map canvas, map controls, and profile control were visible.",
+        "Captured the loaded GIS state."
       ],
-      "actual_result": "The GIS screen opened successfully and displayed the GIS workspace with layer groups and a Mapbox map.",
-      "evidence": ["screenshots/gis-loaded.png"]
+      "actual_result": "The GIS workspace opened from the launcher and loaded successfully, with the GIS heading, layer groups, map canvas, map controls, and profile control visible.",
+      "evidence": [
+        "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-4\\screenshots\\TEST2-4-C1-01-launcher.png",
+        "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-4\\screenshots\\TEST2-4-C1-02-gis-loading.png",
+        "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-4\\screenshots\\TEST2-4-C1-03-gis-loaded.png"
+      ]
     }
-  ]
+  ],
+  "overallOutcome": "Passed",
+  "qaStatus": "Awaiting Evidence Review",
+  "jiraUpdated": false
 }
