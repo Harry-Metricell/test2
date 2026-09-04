@@ -37,7 +37,7 @@ if (fs.existsSync('tickets')) {
   for (const entry of fs.readdirSync('tickets', { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
     const key = entry.name;
-    if (key.startsWith(`${projectKey}-`) && /^\\w+-\\d+$/.test(key) && !active.has(key)) {
+    if (key.startsWith(`${projectKey}-`) && /^\w+-\d+$/.test(key) && !active.has(key)) {
       fs.rmSync(path.join('tickets', key), { recursive: true, force: true });
       console.log(`Removed ${key}: done or deleted from Jira`);
     }
