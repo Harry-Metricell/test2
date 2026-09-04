@@ -13,8 +13,10 @@
       },
       "expectedOutput": {
         "path": "tickets/TEST2-3/criteria.md",
-        "schema": "v4-qa-criteria-review.v1"
-      }
+        "schema": "v4-qa-criteria.v1"
+      },
+      "source": "generated",
+      "state": "open"
     }
   ]
 }
