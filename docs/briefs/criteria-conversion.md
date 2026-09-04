@@ -12,4 +12,6 @@ Write only the supplied `tickets/<KEY>/criteria.md`. You are authorised to commi
 
 Do not search the repository, process other tickets, modify Jira, status files, generated records, reports, screenshots, or create `criteria-review.md`. Do not commit, merge, or modify any other file.
 
-Return one valid JSON object only, with exactly these fields: `handoffId`, `ticket`, `changedFiles`, `noOp`, and `reason`. Use a boolean for `noOp`; include the colon. No markdown or commentary.
+Return one valid JSON object only, with exactly these fields: `handoffId`, `ticket`, `changedFiles`, `noOp`, and `reason`. Use a boolean for `noOp`; include the colon. Validate the JSON before returning. Required shape:
+`{"handoffId":"<id>","ticket":"<key>","changedFiles":["tickets/<KEY>/criteria.md"],"noOp":false,"reason":"<short reason>"}`
+No markdown or commentary.
