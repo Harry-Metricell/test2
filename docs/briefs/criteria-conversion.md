@@ -1,5 +1,7 @@
 # TEST2 Criteria Conversion Brief
 
+Use the connected GitHub app for all repository reads and the single permitted file write.
+
 Read the supplied handoff and exact paths only. Process one unresolved `criteria_conversion` handoff for one assigned ticket.
 
 If no ticket key is supplied, read `status/handoffs.json` and process exactly one open `criteria_conversion` handoff; if there are zero or multiple, make no changes and return no-op. If a ticket key is supplied, derive `tickets/<KEY>/ticket.json`, `tickets/<KEY>/criteria.md`, and `status/handoffs.json`; act only on exactly one open matching handoff.
