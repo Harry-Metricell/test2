@@ -224,7 +224,7 @@ function criteriaReady(ticket) {
   if (!fs.existsSync(file)) return false;
   const text = fs.readFileSync(file, 'utf8');
   if (/No acceptance criteria extracted/i.test(text)) return false;
-  return /^-\\s+\\[ \\]\\s+\\S/m.test(text);
+  return /^-\s+\[ \]\s+\S/m.test(text);
 }
 
 function handoffFor(ticket) {
