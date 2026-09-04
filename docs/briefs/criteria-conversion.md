@@ -14,4 +14,7 @@ Do not search the repository, process other tickets, modify Jira, status files, 
 
 Return one valid JSON object only, with exactly these fields: `handoffId`, `ticket`, `changedFiles`, `noOp`, and `reason`. Use a boolean for `noOp`; include the colon. Validate the JSON before returning. Required shape:
 `{"handoffId":"<id>","ticket":"<key>","changedFiles":["tickets/<KEY>/criteria.md"],"noOp":false,"reason":"<short reason>"}`
+For a no-op, use:
+`{"handoffId":"<id>","ticket":"<key>","changedFiles":[],"noOp":true,"reason":"<short reason>"}`
+The exact text `"noOp",` is invalid and must never be returned; `noOp` must always be followed by `:true` or `:false`. Before sending, check that the output can be parsed as JSON and contains all five fields.
 No markdown or commentary.
