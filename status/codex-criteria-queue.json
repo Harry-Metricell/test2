@@ -5,6 +5,7 @@
     {
       "ticket": "TEST2-3",
       "handoffId": "handoff-TEST2-3-criteria",
+      "brief": "docs/briefs/criteria-conversion.md",
       "inputs": {
         "ticketJson": "tickets/TEST2-3/ticket.json",
         "generated": "status/generated/TEST2-3.json"
