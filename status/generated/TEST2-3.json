@@ -13,7 +13,9 @@
     "updated": "2026-09-04T12:05:39.136+0100"
   },
   "description": "the beacons favourite should work. you should be able to favourite a beacon it comes up in favourites. then un fav it and it goes out of favourite beacon",
-  "acceptanceCriteria": [],
+  "acceptanceCriteria": [
+    "the beacons favourite should work. you should be able to favourite a beacon it comes up in favourites. then un fav it and it goes out of favourite beacon"
+  ],
   "files": {
     "ticket": "tickets/TEST2-3/ticket.json",
     "criteria": "tickets/TEST2-3/criteria.md",
