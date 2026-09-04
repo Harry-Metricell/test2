@@ -6,23 +6,29 @@
       "criterion": "GIS screen can be opened from launcher",
       "result": "Passed",
       "steps_taken": [
-        "Opened the authenticated V4 launcher at /launcher.",
-        "Captured the initial launcher state.",
-        "Selected the GIS module's Open module control.",
-        "Captured the immediate GIS loading state.",
-        "Waited for the GIS workspace to finish loading.",
-        "Verified the GIS heading, layer groups, map canvas, map controls, and profile control were visible.",
-        "Captured the loaded GIS state."
+        "Read the current canonical QA testing brief from docs/briefs/qa-testing.md.",
+        "Read only the assigned TEST2-4 criteria.md, ticket.json, and status.json before testing.",
+        "Used the existing authenticated V4 browser session at https://smartnetworkv4-o2-uk-dev.metricell.com/launcher; no sign-in prompt appeared and no credentials were entered.",
+        "Captured the initial launcher state locally.",
+        "Selected the GIS module Open module control from the launcher.",
+        "Observed navigation to https://smartnetworkv4-o2-uk-dev.metricell.com/gis and captured the GIS loading state locally.",
+        "Waited for the GIS workspace to load.",
+        "Verified the loaded GIS workspace displayed the GIS heading, layer group controls, Mapbox map area and attribution, map location search field, map style control, zoom controls, and user profile control.",
+        "Captured the loaded GIS workspace state locally."
       ],
-      "actual_result": "The GIS workspace opened from the launcher and loaded successfully, with the GIS heading, layer groups, map canvas, map controls, and profile control visible.",
+      "actual_result": "The GIS screen opened from the launcher and loaded to a usable GIS workspace at /gis with layer controls and map controls visible.",
       "evidence": [
         "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-4\\screenshots\\TEST2-4-C1-01-launcher.png",
         "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-4\\screenshots\\TEST2-4-C1-02-gis-loading.png",
         "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-4\\screenshots\\TEST2-4-C1-03-gis-loaded.png"
-      ]
+      ],
+      "blockers": []
     }
   ],
   "overallOutcome": "Passed",
   "qaStatus": "Awaiting Evidence Review",
-  "jiraUpdated": false
+  "jiraUpdated": false,
+  "testedAt": "2026-09-04T16:51:52+01:00",
+  "testEnvironment": "https://smartnetworkv4-o2-uk-dev.metricell.com",
+  "loginSessionStatus": "Existing authenticated browser session used; no V4 sign-in prompt appeared."
 }
