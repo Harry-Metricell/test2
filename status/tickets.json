@@ -1,15 +1,11 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-04T12:05:48.101+0100",
+  "generatedAt": null,
   "counts": {
-    "tickets": 3,
+    "tickets": 0,
     "handoffs": 0,
-    "byWorkflowState": {
-      "Ready": 3
-    },
-    "byQaOutcome": {
-      "Not Tested": 3
-    }
+    "byWorkflowState": {},
+    "byQaOutcome": {}
   },
   "policy": {
     "jira": "read_only_import",
@@ -17,39 +13,5 @@
     "tracker": "publish_only_approved_status",
     "missingEvidence": "warning_not_pass"
   },
-  "tickets": [
-    {
-      "key": "TEST2-2",
-      "summary": "test",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Not Tested",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
-      "updatedAt": "2026-09-04T12:05:33.482+0100"
-    },
-    {
-      "key": "TEST2-3",
-      "summary": "test 3 confusion",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Not Tested",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
-      "updatedAt": "2026-09-04T12:05:39.136+0100"
-    },
-    {
-      "key": "TEST2-4",
-      "summary": "test 4",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Not Tested",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
-      "updatedAt": "2026-09-04T12:05:48.101+0100"
-    }
-  ]
+  "tickets": []
 }
