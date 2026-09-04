@@ -6,8 +6,8 @@ If given only a ticket key, derive `tickets/<KEY>/ticket.json`, `tickets/<KEY>/c
 
 Read: the referenced `ticket.json`, generated ticket record if supplied, and current `criteria.md` if present.
 
-Write only the supplied `tickets/<KEY>/criteria.md`. Use the generated marker and one unchecked bullet per criterion. Preserve source meaning; if extraction is unreliable, write one unchecked bullet stating that criteria could not be extracted.
+Write only the supplied `tickets/<KEY>/criteria.md`. Use the generated marker and one unchecked bullet per criterion. Give every distinct state-changing/user action its own bullet; never combine separate actions. Treat observations or verification such as appears, listed, visible, or disappears as evidence, not criteria. Preserve source meaning; if extraction is unreliable, write one unchecked bullet stating that criteria could not be extracted.
 
 Do not search the repository, process other tickets, modify Jira, status files, generated records, reports, screenshots, or create `criteria-review.md`.
 
-Return one final JSON summary only: `handoffId`, `ticket`, `changedFiles`, `noOp`, and `reason`.
+Return one valid JSON object only, with exactly these fields: `handoffId`, `ticket`, `changedFiles`, `noOp`, and `reason`. Use a boolean for `noOp`; include the colon. No markdown or commentary.
