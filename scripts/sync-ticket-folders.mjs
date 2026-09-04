@@ -2,13 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const result = JSON.parse(fs.readFileSync('results.json', 'utf8'));
-const confirmation = JSON.parse(fs.readFileSync('results-confirm.json', 'utf8'));
-const issues = result.issues || [];
-const confirmedIssues = confirmation.issues || [];
-const signature = (items) => JSON.stringify(items.map((issue) => [issue.key, issue.fields?.status?.name]).sort());
-if (signature(issues) !== signature(confirmedIssues)) throw new Error('Jira project reads differ; refusing deletion');
+if (!result || !Array.isArray(result.issues) || result.isLast !== true) {
+  throw new Error('Jira response is missing a complete issues list; refusing to sync');
+}
+const issues = result.issues;
 const projectKey = process.env.JIRA_PROJECT_KEY || 'TEST2';
-if (result.isLast !== true || confirmation.isLast !== true) throw new Error('Jira response is not confirmed complete; refusing deletion');
 
 const active = new Set();
 for (const issue of issues) {
@@ -35,14 +33,6 @@ for (const issue of issues) {
   fs.writeFileSync(statusFile, JSON.stringify({ ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus }, null, 2) + '\n');
 }
 
-if (fs.existsSync('tickets')) {
-  for (const entry of fs.readdirSync('tickets', { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const key = entry.name;
-    if (key.startsWith(`${projectKey}-`) && /^\w+-\d+$/.test(key) && !active.has(key)) {
-      fs.rmSync(path.join('tickets', key), { recursive: true, force: true });
-      console.log(`Removed ${key}: deleted from Jira or Done`);
-    }
-  }
-}
+// This import is status-filtered; never delete folders absent from the filtered response.
+
 console.log(`Synced ${issues.length} Jira issues; active tickets: ${active.size}`);
