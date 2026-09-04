@@ -115,7 +115,7 @@ function acceptanceCriteria(descriptionText) {
   }
 
   const concise = descriptionText.replace(/\s+/g, ' ').trim();
-  if (!concise || concise.length > 500 || !/\b(should|must|shall|able to|then)\b/i.test(concise)) return [];
+  if (!concise || concise.length > 500 || !/\b(should|must|shall|able to)\b/i.test(concise)) return [];
 
   const sentences = concise.split(/(?<=[.!?])\s+/).map((line) => line.trim()).filter(Boolean);
   const actions = sentences.filter((line) => !/\b(?:should|must|shall) work\.?$/i.test(line));
