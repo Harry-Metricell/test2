@@ -56,7 +56,7 @@
       "summary": "test 5 confusion v2",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
