@@ -25,6 +25,7 @@ npm run check
 - `tickets/`: raw Jira snapshots plus local per-ticket workflow files.
 - `status/`: generated dashboard-ready summaries and Codex handoffs.
 - `docs/`: workflow briefs, contracts, and operating notes.
+- `docs/briefs/qa-publishing.md`: scoped publisher contract for tester evidence.
 
 ## Boundary
 
