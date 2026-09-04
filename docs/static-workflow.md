@@ -4,7 +4,7 @@ V4-QA-V2 uses GitHub Actions as the workflow controller and reserves Codex for w
 
 ## Principle
 
-Store stable facts in repository files and pass compact per-ticket manifests. Do not pass full chat history or make agents search for work.
+Store stable facts in repository files and pass compact per-ticket manifests. Each role has one canonical action brief under `docs/briefs/`; handoffs link to it. Do not pass full chat history, duplicate prompts, or make agents search for work.
 
 ## Static code owns
 
