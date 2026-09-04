@@ -12,9 +12,7 @@ Write only the supplied `tickets/<KEY>/criteria.md`. You are authorised to commi
 
 Do not search the repository, process other tickets, modify Jira, status files, generated records, reports, screenshots, or create `criteria-review.md`. Do not commit, merge, or modify any other file.
 
-Return one valid JSON object only, with exactly these fields: `handoffId`, `ticket`, `changedFiles`, `noOp`, and `reason`. Use a boolean for `noOp`; include the colon. Validate the JSON before returning. Required shape:
-`{"handoffId":"<id>","ticket":"<key>","changedFiles":["tickets/<KEY>/criteria.md"],"noOp":false,"reason":"<short reason>"}`
-For a no-op, use:
-`{"handoffId":"<id>","ticket":"<key>","changedFiles":[],"noOp":true,"reason":"<short reason>"}`
-The exact text `"noOp",` is invalid and must never be returned; `noOp` must always be followed by `:true` or `:false`. Before sending, check that the output can be parsed as JSON and contains all five fields.
-No markdown or commentary.
+Return one valid JSON object only, with exactly these five fields in this order: `handoffId`, `ticket`, `changedFiles`, `reason`, `noOp`. Put `noOp` last. Use a JSON boolean, never a quoted boolean. If criteria.md is already valid, do not ask for confirmation and make no write; return a no-op. Before sending, validate that the object can be parsed as JSON and contains all five fields. Use exactly one of these shapes:
+`{"handoffId":"<id>","ticket":"<key>","changedFiles":["tickets/<KEY>/criteria.md"],"reason":"<short reason>","noOp":false}`
+`{"handoffId":"<id>","ticket":"<key>","changedFiles":[],"reason":"<short reason>","noOp":true}`
+The text `"noOp",` is forbidden and invalid. Do not omit `noOp`, its colon, or its boolean value. No markdown or commentary.
