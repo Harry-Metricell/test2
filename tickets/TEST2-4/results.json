@@ -1,0 +1,17 @@
+{
+  "ticket": "TEST2-4",
+  "result": "Passed",
+  "criteria": [
+    {
+      "criterion": "GIS screen can be opened from launcher",
+      "result": "Passed",
+      "steps_taken": [
+        "Opened the authenticated V4 launcher at /launcher.",
+        "Selected the GIS module's Open module control.",
+        "Verified navigation to /gis and waited for the GIS workspace to load."
+      ],
+      "actual_result": "The GIS screen opened successfully and displayed the GIS workspace with layer groups and a Mapbox map.",
+      "evidence": ["screenshots/gis-loaded.png"]
+    }
+  ]
+}
