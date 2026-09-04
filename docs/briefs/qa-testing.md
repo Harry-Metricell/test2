@@ -8,6 +8,8 @@ Use the authenticated V4 browser. Test every criterion independently. Capture an
 
 Record actual `steps_taken`. Use `Passed` only with direct supporting evidence, `Failed` only with direct contradictory evidence, `Blocked` when testing cannot proceed because of an external or missing dependency, and `Unverified` when testing occurred but evidence is inconclusive.
 
+Direct-push authorization: for this TEST2 QA workflow, the user authorizes pushing the tester's assigned evidence, concise report, results.json, and status.json directly to the repository's main branch. Do not ask for confirmation for that scoped push. Never push unrelated files, credentials, authentication state, or changes to criteria.md.
+
 Always finalise, including after testing or evidence errors:
 1. write `results.json` with every attempted criterion and blockers;
 2. write the original concise report;
