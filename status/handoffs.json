@@ -5,6 +5,7 @@
     {
       "handoffId": "handoff-TEST2-3-criteria",
       "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
       "owner": "criteria-converter",
       "ticket": "TEST2-3",
       "inputs": {
