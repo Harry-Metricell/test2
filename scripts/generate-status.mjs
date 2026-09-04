@@ -219,8 +219,16 @@ function markdown(ticket) {
   return `# ${ticket.key}: ${ticket.summary}\n\n## Current State\n\n- Jira status: ${ticket.jira.status || 'Unknown'}\n- QA outcome: ${ticket.status.qaOutcome}\n- Workflow state: ${ticket.status.workflowState}\n- Action owner: ${ticket.status.actionOwner}\n- Next action: ${ticket.status.nextAction}\n- Jira: ${ticket.jira.url}\n\n## Acceptance Criteria\n\n${criteria}\n\n## Subtasks\n\n${subtasks}\n\n## Description\n\n${ticket.description || 'No description imported.'}\n`;
 }
 
+function criteriaReady(ticket) {
+  const file = path.join(root, 'tickets', ticket.key, 'criteria.md');
+  if (!fs.existsSync(file)) return false;
+  const text = fs.readFileSync(file, 'utf8');
+  if (/No acceptance criteria extracted/i.test(text)) return false;
+  return /^-\\s+\\[ \\]\\s+\\S/m.test(text);
+}
+
 function handoffFor(ticket) {
-  if ((ticket.status.workflowState === 'Ready' || ticket.status.workflowState === 'Imported') && ticket.acceptanceCriteria.length === 0) {
+  if ((ticket.status.workflowState === 'Ready' || ticket.status.workflowState === 'Imported') && ticket.acceptanceCriteria.length === 0 && !criteriaReady(ticket)) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
       action: 'criteria_conversion',
