@@ -2,7 +2,7 @@
 
 Read the supplied handoff and exact paths only. Process one unresolved `criteria_conversion` handoff for one assigned ticket.
 
-If given only a ticket key, derive `tickets/<KEY>/ticket.json`, `tickets/<KEY>/criteria.md`, and `status/handoffs.json`; act only on exactly one open matching handoff, otherwise return no-op.
+If no ticket key is supplied, read `status/handoffs.json` and process exactly one open `criteria_conversion` handoff; if there are zero or multiple, make no changes and return no-op. If a ticket key is supplied, derive `tickets/<KEY>/ticket.json`, `tickets/<KEY>/criteria.md`, and `status/handoffs.json`; act only on exactly one open matching handoff.
 
 Read: the referenced `ticket.json`, generated ticket record if supplied, and current `criteria.md` if present.
 
