@@ -1,14 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-04T12:23:58.423+0100",
+  "generatedAt": "2026-09-04T12:14:38.947+0100",
   "counts": {
-    "tickets": 4,
-    "handoffs": 1,
+    "tickets": 3,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Ready": 4
+      "Ready": 3
     },
     "byQaOutcome": {
-      "Not Tested": 4
+      "Not Tested": 3
     }
   },
   "policy": {
@@ -50,17 +50,6 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create criteria conversion handoff",
       "updatedAt": "2026-09-04T12:14:35.801+0100"
-    },
-    {
-      "key": "TEST2-5",
-      "summary": "test 5 confusion v2",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Not Tested",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
-      "updatedAt": "2026-09-04T12:23:58.423+0100"
     }
   ]
 }
