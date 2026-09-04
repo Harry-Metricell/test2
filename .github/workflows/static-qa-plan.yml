@@ -26,6 +26,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Validate generated outputs
+        run: npm run check
+
       - name: Commit generated outputs safely
         run: |
           git config user.name "github-actions"
