@@ -143,16 +143,16 @@ function mergeStatus(ticket, localStatus) {
     qaOutcome: localStatus.qaOutcome || localStatus.outcome || 'Not Tested',
     automationSuitability: localStatus.automationSuitability || 'Unclassified',
     actionOwner: localStatus.actionOwner || 'Coordinator',
-    nextAction: localStatus.nextAction || defaultNextAction(workflowState),
+    nextAction: localStatus.nextAction || defaultNextAction(workflowState, criteriaReady(ticket)),
     reviewState: localStatus.reviewState || 'Not Reviewed',
     updatedAt: localStatus.updatedAt || ticket.jira.updated || ticket.source.importedAt || null
   };
 }
 
-function defaultNextAction(workflowState) {
+function defaultNextAction(workflowState, hasCriteria = false) {
   if (workflowState === 'Blocked') return 'Hold until dependency changes';
   if (workflowState === 'Retry Queued') return 'Create retry handoff';
-  if (workflowState === 'Ready') return 'Create criteria conversion handoff';
+  if (workflowState === 'Ready') return hasCriteria ? 'Create testing handoff' : 'Create criteria conversion handoff';
   if (workflowState === 'Imported') return 'Classify ticket for workflow routing';
   return 'No deterministic action available';
 }
@@ -237,6 +237,21 @@ function handoffFor(ticket) {
       ticket: ticket.key,
       inputs: { ticketJson: `tickets/${ticket.key}/ticket.json`, generated: `status/generated/${ticket.key}.json` },
       expectedOutput: { path: `tickets/${ticket.key}/criteria.md`, schema: 'v4-qa-criteria.v1' }
+    };
+  }
+  if ((ticket.status.workflowState === 'Ready' || ticket.status.workflowState === 'Imported') && criteriaReady(ticket)) {
+    return {
+      handoffId: `handoff-${ticket.key}-test`,
+      action: 'test_ticket',
+      brief: 'docs/briefs/qa-testing.md',
+      owner: 'ticket-tester',
+      ticket: ticket.key,
+      inputs: {
+        criteria: `tickets/${ticket.key}/criteria.md`,
+        ticketJson: `tickets/${ticket.key}/ticket.json`,
+        status: `tickets/${ticket.key}/status.json`
+      },
+      expectedOutput: { path: `tickets/${ticket.key}/results.json`, schema: 'v4-qa-test-result.v1' }
     };
   }
   if (ticket.status.workflowState === 'Retry Queued') {
