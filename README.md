@@ -10,7 +10,7 @@ The aim is to reduce chat/token usage by moving repeatable work into GitHub Acti
 2. `npm run generate` normalizes those snapshots into compact generated records.
 3. Generated status is written to `status/tickets.json` and `status/generated/<KEY>.json`.
 4. Required Codex work is written to `status/handoffs.json`.
-5. GitHub Actions can later trigger Codex once per handoff item.
+5. Separate Codex tasks consume the exact handoffs; GitHub Actions only generates and validates them.
 
 ## Useful commands
 
@@ -24,7 +24,7 @@ npm run check
 - `.github/workflows/`: import and static planning workflows.
 - `tickets/`: raw Jira snapshots plus local per-ticket workflow files.
 - `status/`: generated dashboard-ready summaries and Codex handoffs.
-- `playwright/`: manual and generated static Playwright coverage areas.
+- `docs/`: workflow briefs and operating contracts.
 - `docs/`: workflow contracts and operating notes.
 
 ## Boundary
