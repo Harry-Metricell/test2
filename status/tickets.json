@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-04T12:59:39.586+0100",
   "counts": {
     "tickets": 4,
-    "handoffs": 0,
+    "handoffs": 4,
     "byWorkflowState": {
       "Ready": 4
     },
@@ -26,7 +26,7 @@
       "qaStatus": "Not Tested",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-04T12:14:37.421+0100"
     },
     {
@@ -37,7 +37,7 @@
       "qaStatus": "Not Tested",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-04T12:14:38.947+0100"
     },
     {
@@ -48,7 +48,7 @@
       "qaStatus": "Not Tested",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-04T12:14:35.801+0100"
     },
     {
@@ -59,7 +59,7 @@
       "qaStatus": "Not Tested",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-04T12:59:39.586+0100"
     }
   ]
