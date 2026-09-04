@@ -10,7 +10,7 @@
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-02T16:30:31.877+0100",
-    "updated": "2026-09-04T12:14:38.947+0100"
+    "updated": "2026-09-04T14:25:52.681+0100"
   },
   "description": "the beacons favourite should work. you should be able to favourite a beacon it comes up in favourites. then un fav it and it goes out of favourite beacon",
   "acceptanceCriteria": [
@@ -27,7 +27,7 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103333",
-    "importedAt": "2026-09-04T12:14:38.947+0100"
+    "importedAt": "2026-09-04T14:25:52.681+0100"
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
@@ -36,8 +36,8 @@
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create testing handoff",
+    "nextAction": "Create criteria conversion handoff",
     "reviewState": "Not Reviewed",
-    "updatedAt": "2026-09-04T12:14:38.947+0100"
+    "updatedAt": "2026-09-04T14:25:52.681+0100"
   }
 }
