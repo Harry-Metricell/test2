@@ -1,60 +1,48 @@
 # Static QA workflow
 
-V4-QA-V2 should make GitHub Actions the workflow controller and keep Codex for the work that actually needs judgement or browser interaction.
+V4-QA-V2 uses GitHub Actions as the workflow controller and reserves Codex for work requiring authenticated browser interaction, interpretation, or independent judgement.
 
 ## Principle
 
-Do not pass full chat history between workers. Store stable facts in the repository and pass compact handoff records.
+Store stable facts in repository files and pass compact per-ticket manifests. Do not pass full chat history or make agents search for work.
 
-## Static code should handle
+## Static code owns
 
-- Importing Jira issue JSON into `tickets/<KEY>/ticket.json`.
-- Extracting summary, status, priority, assignee, parent, description, acceptance criteria and subtasks.
-- Keeping each ticket's working files together under `tickets/<KEY>/`.
-- Preserving local QA status from `tickets/<KEY>/status.json`.
-- Writing generated normalized records to `status/generated/<KEY>.json`.
-- Writing source-derived criteria to `tickets/<KEY>/criteria.md` and a readable ticket page to `tickets/<KEY>/ticket.md`.
-- Reserving `tickets/<KEY>/screenshots/` and `tickets/<KEY>/reports/` for evidence produced by testing.
-- Writing a global status summary to `status/tickets.json`.
-- Writing only required Codex work to `status/handoffs.json`.
+- Jira import into `tickets/<KEY>/ticket.json`.
+- Normalized ticket records and `tickets/<KEY>/criteria.md` when criteria are obvious.
+- A generated human-readable `status/ticket-status.md` view.
+- Eligibility and no-op checks.
+- A separate generated queue containing only tickets whose criteria need Codex interpretation.
+- Exact-path handoff manifests and stale-handoff completion.
+- Schema, criterion-count, screenshot-reference, prohibited-file, status-transition, and DOCX package validation.
 
-## Codex should handle
+## Codex owns
 
-- Criteria conversion where wording needs interpretation.
-- Authenticated V4 browser testing and screenshot evidence.
-- Evidence review and QA outcome judgement.
-- Static Playwright maintenance where coverage needs a human-readable handoff.
+- Ambiguous criteria conversion.
+- Authenticated V4 browser testing and local screenshot evidence.
+- Independent evidence review and final QA judgement.
+- Static Playwright maintenance where human judgement is required.
 - Site publication only after approved tracker data exists.
 
 ## Handoff contract
 
-Each item in `status/handoffs.json` is a small `v4-qa-handoff.v1` style record:
+Each handoff is a compact `v4-qa-handoff.v1` record containing `handoffId`, `action`, `owner`, `ticket`, exact input paths, expected output paths, and a source revision. Criteria conversion uses:
 
 ```json
-{
-  "handoffId": "handoff-VM2ST-71-criteria",
-  "action": "criteria_conversion",
-  "owner": "criteria-converter",
-  "ticket": "VM2ST-71",
-  "inputs": {
-    "ticketJson": "tickets/VM2ST-71/ticket.json",
-    "generated": "status/generated/VM2ST-71.json"
-  },
-  "expectedOutput": {
-    "path": "tickets/VM2ST-71/criteria-review.md",
-    "schema": "v4-qa-criteria-review.v1"
-  }
-}
+{"handoffId":"handoff-TEST2-123-criteria","action":"criteria_conversion","owner":"criteria-converter","ticket":"TEST2-123","inputs":{"ticketJson":"tickets/TEST2-123/ticket.json","generated":"status/generated/TEST2-123.json"},"expectedOutput":{"path":"tickets/TEST2-123/criteria.md","schema":"v4-qa-criteria.v1"}}
 ```
 
-A Codex run should return the same `handoffId`, list changed fields, and point to output files. If nothing changed, it should return `changedFields: []` and a short reason.
+If nothing needs work, return a visible no-op with `changedFiles: []`.
 
-## Safety rules
+## Safety and outcomes
 
-- Jira import is read-only.
-- GitHub Actions may update imported, generated, and source-derived ticket files only.
-- `criteria.md` is the canonical criteria file. The Codex bridge overwrites it only for unresolved criteria-conversion handoffs.
-- `Warning` is not a QA outcome.
-- Missing or inconclusive evidence must not become `Passed`.
-- Progressed QA outcomes must not be overwritten by a fresh Jira import.
-- Jira writes, production V4 changes, and unrelated tracker publication require explicit approval.
+Jira import is read-only. Progressed QA outcomes must not be overwritten by fresh Jira import. `criteria.md` is canonical and is not changed during testing. `Warning` is not a QA outcome.
+
+Allowed evidence outcomes are:
+
+- `Passed`: direct supporting evidence.
+- `Failed`: direct contradictory evidence.
+- `Blocked`: required testing or review could not proceed because of an external or missing dependency.
+- `Unverified`: testing occurred but evidence is insufficient or inconclusive.
+
+Missing or inconclusive evidence must never become `Passed`.
