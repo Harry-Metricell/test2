@@ -15,4 +15,4 @@ Do not search the repository, process other tickets, modify Jira, status files, 
 Return one valid JSON object only, with exactly these five fields in this order: `handoffId`, `ticket`, `changedFiles`, `reason`, `noOp`. Put `noOp` last. Use a JSON boolean, never a quoted boolean. If criteria.md is already valid, do not ask for confirmation and make no write; return a no-op. Before sending, validate that the object can be parsed as JSON and contains all five fields. Use exactly one of these shapes:
 `{"handoffId":"<id>","ticket":"<key>","changedFiles":["tickets/<KEY>/criteria.md"],"reason":"<short reason>","noOp":false}`
 `{"handoffId":"<id>","ticket":"<key>","changedFiles":[],"reason":"<short reason>","noOp":true}`
-The text `"noOp",` is forbidden and invalid. Do not omit `noOp`, its colon, or its boolean value. No markdown or commentary.
+The text `"noOp",` is forbidden and invalid. Do not omit `noOp`, its colon, or its boolean value. For a no-op with no matching handoff, the complete valid response is exactly `{"handoffId":"","ticket":"","changedFiles":[],"reason":"No open criteria_conversion handoff found","noOp":true}`. No markdown or commentary.
