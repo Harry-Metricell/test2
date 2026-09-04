@@ -33,6 +33,15 @@ for (const issue of issues) {
   fs.writeFileSync(statusFile, JSON.stringify({ ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus }, null, 2) + '\n');
 }
 
-// This import is status-filtered; never delete folders absent from the filtered response.
+if (fs.existsSync('tickets')) {
+  for (const entry of fs.readdirSync('tickets', { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const key = entry.name;
+    if (key.startsWith(`${projectKey}-`) && /^\\w+-\\d+$/.test(key) && !active.has(key)) {
+      fs.rmSync(path.join('tickets', key), { recursive: true, force: true });
+      console.log(`Removed ${key}: done or deleted from Jira`);
+    }
+  }
+}
 
 console.log(`Synced ${issues.length} Jira issues; active tickets: ${active.size}`);
