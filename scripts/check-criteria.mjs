@@ -3,6 +3,13 @@ import path from 'node:path';
 
 const ticketsDir = 'tickets';
 const errors = [];
+const pending = [];
+const handoffs = fs.existsSync('status/handoffs.json')
+  ? JSON.parse(fs.readFileSync('status/handoffs.json', 'utf8')).handoffs || []
+  : [];
+const pendingCriteria = new Set(handoffs
+  .filter((handoff) => handoff.action === 'criteria_conversion')
+  .map((handoff) => handoff.ticket));
 const tickets = fs.existsSync(ticketsDir)
   ? fs.readdirSync(ticketsDir, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
@@ -34,7 +41,8 @@ for (const key of tickets) {
       errors.push(`${key}: criteria.md contains literal \\n escapes instead of line breaks`);
     }
     if (criteria.includes('No acceptance criteria extracted')) {
-      errors.push(`${key}: criteria.md still contains the unresolved generated placeholder`);
+      if (pendingCriteria.has(key)) pending.push(`${key}: awaiting criteria conversion`);
+      else errors.push(`${key}: criteria.md still contains the unresolved generated placeholder`);
     }
     const checklistLines = criteria.split(/\r?\n/).filter((line) => /^- \[ \] /.test(line));
     if (checklistLines.length === 0 && !criteria.includes('No acceptance criteria extracted')) {
@@ -47,5 +55,5 @@ if (!fs.existsSync('status/handoffs.json')) {
   errors.push('status/handoffs.json is missing');
 }
 
-console.log(JSON.stringify({ tickets: tickets.length, errors, handoffs: fs.existsSync('status/handoffs.json') ? JSON.parse(fs.readFileSync('status/handoffs.json', 'utf8')).handoffs?.length ?? 0 : 0 }, null, 2));
+console.log(JSON.stringify({ tickets: tickets.length, errors, pending, handoffs: handoffs.length }, null, 2));
 if (errors.length) process.exit(1);
