@@ -37,7 +37,7 @@ jobs:
             -H "Accept: application/json" \
             -H "Content-Type: application/json" \
             --get \
-            --data-urlencode "jql=project = ${JIRA_PROJECT_KEY:-TEST2} ORDER BY updated DESC" \
+            --data-urlencode "jql=project = ${JIRA_PROJECT_KEY:-TEST2} AND status = \"${JIRA_READY_STATUS:-Ready for Testing}\" ORDER BY updated DESC" \
             --data-urlencode "maxResults=100" \
             --data-urlencode "fields=summary,status,priority,assignee,parent,created,updated,description,subtasks,project" \
             "$JIRA_URL/rest/api/3/search/jql" \
