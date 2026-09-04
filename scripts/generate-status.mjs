@@ -253,7 +253,8 @@ const ticketDirs = fs.existsSync(ticketsDir)
   : [];
 
 const tickets = ticketDirs.map(normalizeTicket);
-const handoffs = tickets.map(handoffFor).filter(Boolean);\nconst criteriaQueue = handoffs.filter((handoff) => handoff.action === 'criteria_conversion');
+const handoffs = tickets.map(handoffFor).filter(Boolean);
+const criteriaQueue = handoffs.filter((handoff) => handoff.action === 'criteria_conversion');
 const generatedAt = tickets.map((t) => t.status.updatedAt || t.jira.updated || t.jira.created).filter(Boolean).sort().at(-1) || null;
 const summary = {
   schema: 'v4-qa-status.v1',
@@ -287,7 +288,8 @@ const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unkno
 writeText(path.join(outDir, 'ticket-status.md'), report);
 
 writeJson(path.join(outDir, 'tickets.json'), summary);
-writeJson(path.join(outDir, 'handoffs.json'), { schema: 'v4-qa-handoffs.v1', generatedAt: summary.generatedAt, handoffs });\nwriteJson(path.join(outDir, 'codex-criteria-queue.json'), { schema: 'v4-qa-criteria-queue.v1', generatedAt: summary.generatedAt, tickets: criteriaQueue.map((handoff) => ({ ticket: handoff.ticket, handoffId: handoff.handoffId, inputs: handoff.inputs, output: handoff.expectedOutput })) });
+writeJson(path.join(outDir, 'handoffs.json'), { schema: 'v4-qa-handoffs.v1', generatedAt: summary.generatedAt, handoffs });
+writeJson(path.join(outDir, 'codex-criteria-queue.json'), { schema: 'v4-qa-criteria-queue.v1', generatedAt: summary.generatedAt, tickets: criteriaQueue.map((handoff) => ({ ticket: handoff.ticket, handoffId: handoff.handoffId, inputs: handoff.inputs, output: handoff.expectedOutput })) });
 for (const ticket of tickets) {
   writeJson(path.join(generatedDir, `${ticket.key}.json`), ticket);
   const criteriaFile = path.join('tickets', ticket.key, 'criteria.md');
