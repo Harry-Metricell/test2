@@ -1,18 +1,11 @@
 # TEST2 Criteria Conversion Brief
 
-Use the connected GitHub app for all repository reads and the single permitted file write.
+Use the connected GitHub app. Read only the selected handoff and its exact input paths.
 
-Read the supplied handoff and exact paths only. Process one unresolved `criteria_conversion` handoff for one assigned ticket.
+Process exactly one open `criteria_conversion` handoff. With no ticket supplied, select the sole eligible handoff from `status/handoffs.json`; with a ticket supplied, select only its matching handoff. If zero or multiple eligible handoffs exist, make no changes and return a no-op.
 
-If no ticket key is supplied, read `status/handoffs.json` and process exactly one open `criteria_conversion` handoff; if there are zero or multiple, make no changes and return no-op. If a ticket key is supplied, derive `tickets/<KEY>/ticket.json`, `tickets/<KEY>/criteria.md`, and `status/handoffs.json`; act only on exactly one open matching handoff.
+Read the handoff's `ticket.json`, generated record, and current `criteria.md`. Write and commit only `tickets/<KEY>/criteria.md`; never create or merge pull requests. Do not modify Jira, status files, generated records, reports, screenshots, or other tickets.
 
-Read: the referenced `ticket.json`, generated ticket record if supplied, and current `criteria.md` if present.
+Create one unchecked bullet per distinct state-changing/user action. Never combine separate actions. Put that action's expected observable result in the same bullet. Opening, checking, confirming, appearing, being listed, visibility, and disappearance are observations attached to the relevant action, not separate criteria. Preserve source meaning; if extraction is unreliable, write one unchecked bullet saying criteria could not be extracted. If `criteria.md` is already valid, make no write and do not ask for confirmation.
 
-Write only the supplied `tickets/<KEY>/criteria.md`. You are authorised to commit that one file directly to the repository when GitHub write access is available; do not create or merge pull requests. Use the generated marker and one unchecked bullet per criterion. First list the distinct state-changing/user actions internally, then create exactly one unchecked bullet for each action. Never combine separate actions. Attach that action's expected observable result to the same bullet. Do not create separate bullets for opening a view, checking, confirming, appearing, being listed, being visible, or disappearing; these are observations and belong in the preceding action's criterion. Generic pattern: `perform action A; expected result A` and `perform action B; expected result B` are two separate criteria. Preserve source meaning; if extraction is unreliable, write one unchecked bullet stating that criteria could not be extracted.
-
-Do not search the repository, process other tickets, modify Jira, status files, generated records, reports, screenshots, or create `criteria-review.md`. Do not commit, merge, or modify any other file.
-
-Return one valid JSON object only, with exactly these five fields in this order: `handoffId`, `ticket`, `changedFiles`, `reason`, `noOp`. Put `noOp` last. Use a JSON boolean, never a quoted boolean. If criteria.md is already valid, do not ask for confirmation and make no write; return a no-op. Before sending, validate that the object can be parsed as JSON and contains all five fields. Use exactly one of these shapes:
-`{"handoffId":"<id>","ticket":"<key>","changedFiles":["tickets/<KEY>/criteria.md"],"reason":"<short reason>","noOp":false}`
-`{"handoffId":"<id>","ticket":"<key>","changedFiles":[],"reason":"<short reason>","noOp":true}`
-The text `"noOp",` is forbidden and invalid. Do not omit `noOp`, its colon, or its boolean value. For a no-op with no matching handoff, the complete valid response is exactly `{"handoffId":"","ticket":"","changedFiles":[],"reason":"No open criteria_conversion handoff found","noOp":true}`. No markdown or commentary.
+Return one JSON object only with exactly these fields: `handoffId`, `ticket`, `changedFiles`, `reason`, `noOp`. `noOp` must be a JSON boolean with a value. Use `changedFiles: []` for no-op. No markdown or commentary.
