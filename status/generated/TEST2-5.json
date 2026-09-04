@@ -13,10 +13,7 @@
     "updated": "2026-09-04T12:18:59.310+0100"
   },
   "description": "Beacon favourites need checking. Start on a visible beacon, use the star control to add it, open Favourites and confirm it appears, use the star control again to remove it, then confirm it no longer appears.",
-  "acceptanceCriteria": [
-    "Beacon favourites need checking.",
-    "Start on a visible beacon, use the star control to add it, open Favourites and confirm it appears, use the star control again to remove it, then confirm it no longer appears."
-  ],
+  "acceptanceCriteria": [],
   "files": {
     "ticket": "tickets/TEST2-5/ticket.json",
     "criteria": "tickets/TEST2-5/criteria.md",

@@ -11,8 +11,7 @@
 
 ## Acceptance Criteria
 
-1. Beacon favourites need checking.
-2. Start on a visible beacon, use the star control to add it, open Favourites and confirm it appears, use the star control again to remove it, then confirm it no longer appears.
+No acceptance criteria extracted.
 
 ## Subtasks
 

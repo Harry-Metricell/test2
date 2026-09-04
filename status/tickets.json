@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-04T12:18:59.310+0100",
   "counts": {
     "tickets": 4,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
       "Ready": 4
     },
