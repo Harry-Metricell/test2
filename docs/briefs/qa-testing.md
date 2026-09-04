@@ -1,17 +1,17 @@
 # TEST2 QA Testing Brief
 
-Task: test exactly the supplied TEST2 ticket and no other ticket.
+Test exactly the supplied TEST2 ticket and no other ticket.
 
-Read only the supplied criteria.md, ticket.json, and status.json. If qaStatus is Awaiting Evidence Review or Evidence Reviewed, return no-op unless retest is explicit.
+Read only the supplied `criteria.md`, `ticket.json`, and `status.json`. If `qaStatus` is `Awaiting Evidence Review` or `Evidence Reviewed`, return no-op unless retest is explicit.
 
-Test every criterion independently in the authenticated V4 browser. Capture an initial screenshot and screenshots after meaningful state changes. Save evidence only under the assigned local V4-QA-evidence ticket folder.
+Use the authenticated V4 browser. Test every criterion independently. Capture an initial screenshot and screenshots after meaningful state changes. Save PNGs only under `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`.
 
-Record actual steps_taken. Use Passed only with direct supporting evidence, Failed only with direct contradictory evidence, Blocked when testing cannot proceed because of an external or missing dependency, and Unverified when testing occurred but evidence is inconclusive.
+Record actual `steps_taken`. Use `Passed` only with direct supporting evidence, `Failed` only with direct contradictory evidence, `Blocked` when testing cannot proceed because of an external or missing dependency, and `Unverified` when testing occurred but evidence is inconclusive.
 
-Always finalise the assigned ticket, even after a testing or evidence error:
-1. write results.json with every attempted criterion and blockers;
-2. write the concise report;
-3. update status.json to qaStatus Awaiting Evidence Review;
+Always finalise, including after testing or evidence errors:
+1. write `results.json` with every attempted criterion and blockers;
+2. write the original concise report;
+3. update `status.json` to `qaStatus: Awaiting Evidence Review`;
 4. commit only those assigned-ticket files.
 
-Do not modify criteria.md, Jira, unrelated tickets, credentials, cookies, tokens, or authentication state. Return one final JSON summary only.
+Do not modify `criteria.md`, Jira, unrelated tickets, credentials, cookies, tokens, or authentication state. In a fresh chat read this brief once, then return one final JSON summary only.
