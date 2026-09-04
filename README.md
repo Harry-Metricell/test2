@@ -24,8 +24,7 @@ npm run check
 - `.github/workflows/`: import and static planning workflows.
 - `tickets/`: raw Jira snapshots plus local per-ticket workflow files.
 - `status/`: generated dashboard-ready summaries and Codex handoffs.
-- `docs/`: workflow briefs and operating contracts.
-- `docs/`: workflow contracts and operating notes.
+- `docs/`: workflow briefs, contracts, and operating notes.
 
 ## Boundary
 
