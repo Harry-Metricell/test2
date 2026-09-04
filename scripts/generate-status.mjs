@@ -216,6 +216,7 @@ function handoffFor(ticket) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
       action: 'criteria_conversion',
+      brief: 'docs/briefs/criteria-conversion.md',
       owner: 'criteria-converter',
       ticket: ticket.key,
       inputs: { ticketJson: `tickets/${ticket.key}/ticket.json`, generated: `status/generated/${ticket.key}.json` },
@@ -226,6 +227,7 @@ function handoffFor(ticket) {
     return {
       handoffId: `handoff-${ticket.key}-retry`,
       action: 'retry_test',
+      brief: 'docs/briefs/qa-testing.md',
       owner: 'ticket-tester',
       ticket: ticket.key,
       inputs: { generated: `status/generated/${ticket.key}.json` },
@@ -236,6 +238,7 @@ function handoffFor(ticket) {
     return {
       handoffId: `handoff-${ticket.key}-review`,
       action: 'evidence_review',
+      brief: 'docs/briefs/evidence-review.md',
       owner: 'evidence-reviewer',
       ticket: ticket.key,
       inputs: { results: `tickets/${ticket.key}/results.json`, generated: `status/generated/${ticket.key}.json` },
