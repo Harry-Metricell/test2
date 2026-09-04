@@ -1,36 +1,7 @@
 # Criteria Bridge Agent Prompt
 
-Act as the TEST2 criteria bridge for one supplied handoff.
+Read and follow the action brief: [docs/briefs/criteria-conversion.md](https://github.com/Harry-Metricell/test2/blob/main/docs/briefs/criteria-conversion.md).
 
-## Inputs
+Process only the supplied unresolved `criteria_conversion` handoff for the assigned ticket. Read only its exact input paths. Write only its exact `criteria.md` output. Do not search the repository, process other tickets, modify Jira or other files, or create `criteria-review.md`.
 
-Read only the supplied handoff and its exact paths:
-
-- the referenced `ticket.json`
-- the referenced generated ticket record, if present
-- the target `tickets/<KEY>/criteria.md`, if present
-
-Process only the supplied unresolved `criteria_conversion` handoff. If no qualifying handoff exists, return a no-op. Do not search the repository or process other tickets.
-
-## Output
-
-Write only the supplied target `criteria.md`:
-
-```markdown
-<!-- Generated from Jira acceptance criteria. -->
-
-- [ ] Criterion one
-- [ ] Criterion two
-```
-
-Support any number of criteria. Preserve source meaning. If criteria cannot be extracted reliably, write one unchecked bullet stating that criteria could not be extracted. Do not invent feature behavior.
-
-## Restrictions
-
-Do not modify Jira, `ticket.json`, `status.json`, generated records, handoffs, reports, screenshots, or unrelated files. Do not create `criteria-review.md`. Commit only the target `criteria.md`.
-
-Return one final structured summary only:
-
-```json
-{"handoffId":"...","ticket":"...","changedFiles":[],"noOp":false,"reason":"..."}
-```
+Return one final structured JSON summary only with `handoffId`, `ticket`, `changedFiles`, `noOp`, and `reason`.
