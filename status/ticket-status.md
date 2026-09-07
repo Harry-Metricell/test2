@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-07T00:00:00+01:00
+Updated: 2026-09-07T15:17:31.020+0100
 
 | Ticket | Jira Status | QA Status | Summary |
 | --- | --- | --- | --- |
@@ -8,5 +8,6 @@ Updated: 2026-09-07T00:00:00+01:00
 | TEST2-3 | READY FOR TESTING | Not Tested | test 3 confusion |
 | TEST2-4 | READY FOR TESTING | Evidence Reviewed | test 4 |
 | TEST2-5 | READY FOR TESTING | Evidence Reviewed | test 5 confusion v2 |
-| TEST2-6 | Unknown | Evidence Reviewed | TEST2-6 |
-| TEST2-7 | Unknown | Awaiting Evidence Review | TEST2-7 |
+| TEST2-6 | READY FOR TESTING | Evidence Reviewed | Verify GIS map search and marker interaction |
+| TEST2-7 | READY FOR TESTING | Awaiting Evidence Review | Verify GIS layer and map view controls |
+| TEST2-8 | READY FOR TESTING | Not Tested | Preserve map context when switching GIS panels |

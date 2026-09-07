@@ -1,5 +1,6 @@
 {
-  "key": "TEST2-7",
+  "ticket": "TEST2-7",
+  "jiraStatus": "READY FOR TESTING",
   "qaStatus": "Awaiting Evidence Review",
-  "blockers": []
+  "status": "READY FOR TESTING"
 }

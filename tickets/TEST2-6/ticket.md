@@ -1,12 +1,12 @@
-# TEST2-6: TEST2-6
+# TEST2-6: Verify GIS map search and marker interaction
 
 ## Current State
 
-- Jira status: Unknown
+- Jira status: READY FOR TESTING
 - QA outcome: Not Tested
-- Workflow state: Imported
+- Workflow state: Ready
 - Action owner: Coordinator
-- Next action: Classify ticket for workflow routing
+- Next action: Create testing handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-6
 
 ## Acceptance Criteria
@@ -19,4 +19,8 @@ No subtasks imported.
 
 ## Description
 
-No description imported.
+As a user, I need to open the GIS module from the V4 launcher and locate a site on the map.
+From the launcher, open GIS. The GIS workspace should load with the map and its available controls visible.
+Use the map search to find a known site or location. The map should move to the selected result and show the result as the active location.
+Select the visible map marker itself, rather than only selecting an item from a side panel or list. A details panel should open for the same location, showing its identifying information.
+Close the details panel and return to the map. The map should remain at the selected location and the GIS controls should still be usable.
