@@ -1,0 +1,40 @@
+{
+  "key": "TEST2-6",
+  "id": null,
+  "summary": "TEST2-6",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-6",
+    "status": null,
+    "priority": null,
+    "assignee": null,
+    "project": null,
+    "parent": null,
+    "created": null,
+    "updated": null
+  },
+  "description": "",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-6/ticket.json",
+    "criteria": "tickets/TEST2-6/criteria.md",
+    "status": "tickets/TEST2-6/status.json",
+    "screenshots": "tickets/TEST2-6/screenshots/",
+    "reports": "tickets/TEST2-6/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": null,
+    "importedAt": null
+  },
+  "status": {
+    "jiraStatus": "Unknown",
+    "workflowState": "Imported",
+    "qaStatus": "Evidence Reviewed",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Classify ticket for workflow routing",
+    "reviewState": "Not Reviewed",
+    "updatedAt": "2026-09-07T00:00:00+01:00"
+  }
+}

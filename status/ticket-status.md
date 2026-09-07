@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-04T14:25:53.436+0100
+Updated: 2026-09-07T00:00:00+01:00
 
 | Ticket | Jira Status | QA Status | Summary |
 | --- | --- | --- | --- |
@@ -8,3 +8,4 @@ Updated: 2026-09-04T14:25:53.436+0100
 | TEST2-3 | READY FOR TESTING | Not Tested | test 3 confusion |
 | TEST2-4 | READY FOR TESTING | Evidence Reviewed | test 4 |
 | TEST2-5 | READY FOR TESTING | Evidence Reviewed | test 5 confusion v2 |
+| TEST2-6 | Unknown | Evidence Reviewed | TEST2-6 |

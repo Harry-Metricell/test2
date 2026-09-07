@@ -1,14 +1,15 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-04T14:25:53.436+0100",
+  "generatedAt": "2026-09-07T00:00:00+01:00",
   "counts": {
-    "tickets": 4,
-    "handoffs": 4,
+    "tickets": 5,
+    "handoffs": 5,
     "byWorkflowState": {
+      "Imported": 1,
       "Ready": 4
     },
     "byQaOutcome": {
-      "Not Tested": 4
+      "Not Tested": 5
     }
   },
   "policy": {
@@ -61,6 +62,17 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-04T14:25:53.436+0100"
+    },
+    {
+      "key": "TEST2-6",
+      "summary": "TEST2-6",
+      "jiraStatus": null,
+      "workflowState": "Imported",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Classify ticket for workflow routing",
+      "updatedAt": "2026-09-07T00:00:00+01:00"
     }
   ]
 }
