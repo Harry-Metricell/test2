@@ -79,7 +79,7 @@
       "summary": "TEST2-7",
       "jiraStatus": null,
       "workflowState": "Imported",
-      "qaStatus": "Ready for Testing",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Classify ticket for workflow routing",

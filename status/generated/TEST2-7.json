@@ -29,7 +29,7 @@
   "status": {
     "jiraStatus": "Unknown",
     "workflowState": "Imported",
-    "qaStatus": "Ready for Testing",
+    "qaStatus": "Awaiting Evidence Review",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
