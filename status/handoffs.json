@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-09-07T15:17:31.020+0100",
+  "generatedAt": "2026-09-07T15:45:55.099+0100",
   "handoffs": [
     {
       "handoffId": "handoff-TEST2-2-test",
@@ -35,21 +35,6 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-7-review",
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-7",
-      "inputs": {
-        "results": "tickets/TEST2-7/results.json",
-        "generated": "status/generated/TEST2-7.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-7/review.json",
-        "schema": "v4-qa-review.v1"
-      }
-    },
-    {
       "handoffId": "handoff-TEST2-8-test",
       "action": "test_ticket",
       "brief": "docs/briefs/qa-testing.md",
@@ -63,6 +48,21 @@
       "expectedOutput": {
         "path": "tickets/TEST2-8/results.json",
         "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-9-criteria",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-9",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-9/ticket.json",
+        "generated": "status/generated/TEST2-9.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-9/criteria.md",
+        "schema": "v4-qa-criteria.v1"
       }
     }
   ]

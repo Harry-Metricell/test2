@@ -1,0 +1,40 @@
+{
+  "key": "TEST2-9",
+  "id": "104024",
+  "summary": "Retain selected coverage after returning to the map",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-9",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-07T15:45:48.064+0100",
+    "updated": "2026-09-07T15:45:55.099+0100"
+  },
+  "description": "A user working in GIS changes the visible coverage layer, closes the layer panel, adjusts the map, and returns to the default view. The chosen coverage remains visible after the panel closes. Map navigation keeps its current position while the user changes tools. Returning to the default view restores the starting area while leaving the map controls available.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-9/ticket.json",
+    "criteria": "tickets/TEST2-9/criteria.md",
+    "status": "tickets/TEST2-9/status.json",
+    "screenshots": "tickets/TEST2-9/screenshots/",
+    "reports": "tickets/TEST2-9/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104024",
+    "importedAt": "2026-09-07T15:45:55.099+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Review Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "updatedAt": "2026-09-07T15:45:55.099+0100"
+  }
+}
