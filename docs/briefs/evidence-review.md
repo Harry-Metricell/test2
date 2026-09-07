@@ -13,20 +13,20 @@ If `status.json` already has `qaStatus: Evidence Reviewed`, return no-op unless 
 
 Compare every criterion independently with the tester's actual `steps_taken`, `actual_result`, and direct screenshot evidence. An observation is evidence only when it directly supports the criterion. Use `Passed` only with direct supporting evidence, `Failed` only with direct contradictory evidence, `Blocked` when required evidence or report generation is unavailable, and `Unverified` when evidence is inconclusive. Never infer a pass from a description alone.
 
-Use the Documents plugin for DOCX creation, structural checks, and render inspection. Create the Word report locally from:
+Use the Documents plugin for DOCX creation, structural checks, and render inspection. Create the report from:
 
 `C:\Users\harry.piper\OneDrive - Metricell Ltd\Test Document TemplateV2.docx`
 
-Save it locally under:
+Save it under:
 
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
 
-The Word report and screenshots stay local; do not upload them to GitHub. Copy the template to temporary work space, generate one DOCX, verify its structure and embedded screenshots, then render it once with this portable LibreOffice executable:
+Keep the report and screenshots local; do not upload them. Copy the template to temporary work space, generate one DOCX, verify its structure and embedded screenshots, then render it once with:
 
 `C:\Users\harry.piper\Documents\V4-QA-tools\LibreOfficePortable\App\libreoffice\program\soffice.exe`
 
-Inspect the resulting page PNG. Do not use Word as a fallback. If the executable is missing or the render fails, return `Blocked` and do not set `Evidence Reviewed`.
+Inspect the page PNGs. If the renderer is missing or fails, return `Blocked`; do not use Word or repeated fallbacks.
 
-After successful review and report verification, use the connected GitHub app's file API, exactly as the TEST2 tester does, to update only the assigned `tickets/<KEY>/status.json`. Read the file first and use its current SHA. Leave the API `branch` parameter omitted or null so the connector uses the repository default branch; do not pass `branch: "main"`, create a pull request, or use local `git push`. This workflow is already approved: do not ask the user for confirmation. Perform the update setting `qaStatus` to `Evidence Reviewed`, then read the file back to verify.
+After successful review and report verification, return the compact JSON summary. Do not update GitHub status from the fresh reviewer task: fresh-task safety controls may reject that state mutation even when the GitHub API is available. The coordinator will read the completed summary and, only after successful verification, update the assigned `tickets/<KEY>/status.json` through the authorised GitHub file API using the current SHA and the default branch (omit `branch`), then read it back.
 
-Do not modify criteria, results, reports, Jira, credentials, authentication state, or unrelated files. If the GitHub API is unavailable or rejects the write, report the exact blocker and do not substitute a local commit. Return one final compact JSON summary only containing the ticket, per-criterion outcomes, overall outcome, report path, evidence folder, status update, and blockers.
+Do not modify criteria, results, reports, Jira, credentials, authentication state, or unrelated files. Return one final compact JSON summary containing the ticket, per-criterion outcomes, overall outcome, report path, evidence folder, and blockers.
