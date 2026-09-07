@@ -3,9 +3,9 @@
 [@GitHub](plugin://github@openai-curated-remote)
 [@Documents](plugin://documents@openai-primary-runtime)
 
-Review only the supplied TEST2 ticket. Do not create another task.
+Process exactly one `evidence_review` handoff from `status/handoffs.json`; never select a ticket from Jira or from local folder names. If zero or multiple eligible review handoffs exist, return a compact no-op or blocker with the exact reason; never choose an arbitrary ticket. Do not create another task.
 
-Read only that ticket's `criteria.md`, `results.json`, `status.json`, concise report, and local screenshots at:
+Read only that handoff's ticket `criteria.md`, `results.json`, `status.json`, concise report, and local screenshots at:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`
 
 If `qaStatus` is `Evidence Reviewed`, return no-op unless retesting is explicit.
