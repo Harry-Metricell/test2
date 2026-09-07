@@ -1,5 +1,7 @@
 # TEST2 Evidence Review Brief
 
+Execute the workflow immediately after reading this brief; do not stop at a summary of the instructions.
+
 [@GitHub](plugin://github@openai-curated-remote)
 [@Documents](plugin://documents@openai-primary-runtime)
 
