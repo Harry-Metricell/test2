@@ -3,32 +3,38 @@
 [@GitHub](plugin://github@openai-curated-remote)
 [@Documents](plugin://documents@openai-primary-runtime)
 
-Required final action: after successful evidence and DOCX verification, the reviewer must update the assigned `tickets/<KEY>/status.json` through the connected GitHub file API and verify the read-back. This is not optional and must not be deferred.
+Review only the supplied TEST2 ticket. Do not create another task.
 
-Review exactly the supplied TEST2 ticket and no other ticket.
-
-Read only the assigned ticket's `criteria.md`, `results.json`, `status.json`, and concise report. Read `ticket.json` only if necessary. Read screenshots only from:
-
+Read only that ticket's `criteria.md`, `results.json`, `status.json`, concise report, and local screenshots at:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`
 
-If `status.json` already has `qaStatus: Evidence Reviewed`, return no-op unless retesting is explicitly requested.
+If `qaStatus` is `Evidence Reviewed`, return no-op unless retesting is explicit.
 
-Compare every criterion independently with the tester's actual `steps_taken`, `actual_result`, and direct screenshot evidence. An observation is evidence only when it directly supports the criterion. Use `Passed` only with direct supporting evidence, `Failed` only with direct contradictory evidence, `Blocked` when required evidence or report generation is unavailable, and `Unverified` when evidence is inconclusive. Never infer a pass from a description alone.
+Assess every criterion independently against the tester's actual `steps_taken`, `actual_result`, and direct screenshot evidence. Observations count only when they directly support the criterion. Use:
+- `Passed`: direct supporting evidence
+- `Failed`: direct contradictory evidence
+- `Blocked`: required evidence or report generation unavailable
+- `Unverified`: evidence inconclusive
 
-Use the Documents plugin for DOCX creation, structural checks, and render inspection. Create the report from:
+Never infer Passed from text alone. Do not modify criteria, results, Jira, credentials, authentication state, or unrelated tickets.
 
+Create one report from:
 `C:\Users\harry.piper\OneDrive - Metricell Ltd\Test Document TemplateV2.docx`
 
-Save it under:
-
+Save it to:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
 
-Keep the report and screenshots local; do not upload them. Copy the template to temporary work space, generate one DOCX, verify its structure and embedded screenshots, then render it once with:
-
+Use the Documents plugin for DOCX creation and structural checks. Embed the relevant screenshots, check for leftover template placeholders, then render the completed DOCX once with:
 `C:\Users\harry.piper\Documents\V4-QA-tools\LibreOfficePortable\App\libreoffice\program\soffice.exe`
+Inspect the rendered page PNGs. If generation, embedding, rendering, or inspection fails, return `Blocked` and do not change status.
 
-Inspect the page PNGs. If the renderer is missing or fails, return `Blocked` and do not set `Evidence Reviewed`.
+After successful verification, complete the status update yourself now:
+1. Fetch `tickets/<KEY>/status.json` from `main`.
+2. Replace only `qaStatus` with `Evidence Reviewed`.
+3. Immediately invoke the GitHub file-update API (`github_update_file`) using the fetched current file SHA and the default branch (omit `branch` or pass null).
+4. Fetch the file again and verify the read-back.
 
-After successful review and report verification, read the status file first, use its current SHA, omit the API `branch` parameter (or pass null), set `qaStatus` to `Evidence Reviewed`, then read it back to verify. Do not ask for confirmation, create a pull request, use local `git push`, or defer the status update to any other agent.
+This status write is a required execution step, not a request for permission. Do not ask for confirmation, say Pending, defer it, create a coordinator/publisher task, open a PR, or use local git. If the GitHub API itself rejects the write, return `Blocked` with the exact error and leave status unchanged.
 
-Do not modify criteria, results, reports, Jira, credentials, authentication state, or unrelated files. If the GitHub API rejects the required status write, return `Blocked` with the exact error and leave the status unchanged. Return one final compact JSON summary containing the ticket, per-criterion outcomes, overall outcome, report path, evidence folder, status update, and blockers.
+Return one compact JSON object only:
+`{ticket, criterionOutcomes, overallOutcome, reportPath, evidenceFolder, statusUpdate, blockers}`
