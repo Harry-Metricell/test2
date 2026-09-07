@@ -1,0 +1,57 @@
+{
+  "ticket": "TEST2-6",
+  "result": "Blocked",
+  "criteria": [
+    {
+      "criterion": "Given a user opens GIS from the V4 launcher, then the GIS workspace loads with the map and available controls visible.",
+      "result": "Passed",
+      "steps_taken": [
+        "Observed the authenticated V4 GIS workspace already open.",
+        "Verified the GIS heading, layer groups, map canvas, map search field, map style control, zoom controls, and reset control were visible."
+      ],
+      "actual_result": "GIS workspace loaded with the map and available controls visible.",
+      "evidence": [
+        "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-6\\screenshots\\TEST2-6-00-gis-initial.png"
+      ]
+    },
+    {
+      "criterion": "Given a user searches for a known site or location, then the map moves to the selected result and shows it as the active location.",
+      "result": "Unverified",
+      "steps_taken": [
+        "Focused the map search field.",
+        "Entered London.",
+        "Pressed Enter.",
+        "Observed the GIS state after the search attempt."
+      ],
+      "actual_result": "The field retained London, but no selected result, map movement, active location, or search result was shown.",
+      "evidence": [
+        "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-6\\screenshots\\TEST2-6-01-search-entered.png",
+        "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-6\\screenshots\\TEST2-6-02-search-no-result-state.png"
+      ],
+      "blocker": "No search result or active-location state became available."
+    },
+    {
+      "criterion": "Given a visible map marker is selected, then a details panel opens for the same location and shows identifying information.",
+      "result": "Blocked",
+      "steps_taken": [
+        "Inspected the post-search map state for a visible marker.",
+        "Did not select a marker because no visible marker was available."
+      ],
+      "actual_result": "Testing could not proceed because no visible marker was present.",
+      "blocker": "No visible map marker was available."
+    },
+    {
+      "criterion": "Given the details panel is closed, then the map remains at the selected location and GIS controls remain usable.",
+      "result": "Blocked",
+      "steps_taken": [
+        "Inspected the post-search GIS state for a details panel.",
+        "Did not close a details panel because none opened."
+      ],
+      "actual_result": "Testing could not proceed because no details panel was available to close.",
+      "blocker": "No marker/details panel was available."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "qaStatus": "Awaiting Evidence Review",
+  "jiraUpdated": false
+}
