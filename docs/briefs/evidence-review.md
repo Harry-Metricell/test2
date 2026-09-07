@@ -25,8 +25,8 @@ Keep the report and screenshots local; do not upload them. Copy the template to 
 
 `C:\Users\harry.piper\Documents\V4-QA-tools\LibreOfficePortable\App\libreoffice\program\soffice.exe`
 
-Inspect the page PNGs. If the renderer is missing or fails, return `Blocked`; do not use Word or repeated fallbacks.
+Inspect the page PNGs. If the renderer is missing or fails, return `Blocked` and do not set `Evidence Reviewed`.
 
-After successful review and report verification, return the compact JSON summary. Do not update GitHub status from the fresh reviewer task: fresh-task safety controls may reject that state mutation even when the GitHub API is available. The coordinator will read the completed summary and, only after successful verification, update the assigned `tickets/<KEY>/status.json` through the authorised GitHub file API using the current SHA and the default branch (omit `branch`), then read it back.
+After successful review and report verification, the reviewer must update only the assigned `tickets/<KEY>/status.json` through the connected GitHub file API. Read it first, use its current SHA, omit the API `branch` parameter (or pass null), set `qaStatus` to `Evidence Reviewed`, then read it back to verify. This is a required reviewer action. Do not defer it to a coordinator, ask for confirmation, create a pull request, or use local `git push`.
 
-Do not modify criteria, results, reports, Jira, credentials, authentication state, or unrelated files. Return one final compact JSON summary containing the ticket, per-criterion outcomes, overall outcome, report path, evidence folder, and blockers.
+Do not modify criteria, results, reports, Jira, credentials, authentication state, or unrelated files. If the GitHub API rejects the required status write, return `Blocked` with the exact error and leave the status unchanged. Return one final compact JSON summary containing the ticket, per-criterion outcomes, overall outcome, report path, evidence folder, status update, and blockers.
