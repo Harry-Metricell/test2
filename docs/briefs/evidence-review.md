@@ -24,7 +24,7 @@ Create one report from:
 Save it to:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
 
-Use the Documents plugin for DOCX creation and structural checks. Embed the relevant screenshots and remove leftover template placeholders.
+Use the Documents plugin for DOCX creation and structural checks. Use the connected GitHub app for the required status write; if unavailable, use a task-local clone of `https://github.com/Harry-Metricell/test2.git` and push only that status file to `main`. Never use the user's PC workspace. Embed the relevant screenshots and remove leftover template placeholders.
 
 Render once using a unique temporary folder and profile. Use this sequence, replacing `$report` with the generated DOCX path:
 ```powershell
