@@ -1,6 +1,6 @@
 # TEST2 QA Testing Brief
 
-Process exactly one open `test_ticket` handoff from `status/handoffs.json`; never choose a ticket from Jira or from local folder names. Read only that handoff's `criteria.md`, `ticket.json`, and `status.json`. If there is not exactly one eligible handoff, return a compact no-op or blocker with the exact reason. If `qaStatus` is `Awaiting Evidence Review` or `Evidence Reviewed`, return no-op unless retest is explicit.
+Process exactly one uniquely assigned open `test_ticket` handoff from `status/handoffs.json`; never choose a ticket from Jira or from local folder names. Read only that handoff's `criteria.md`, `ticket.json`, and `status.json`. If zero or multiple eligible handoffs exist, return a compact no-op or blocker with the exact reason. Never select the first, oldest, newest, or an arbitrary ticket. If `qaStatus` is `Awaiting Evidence Review` or `Evidence Reviewed`, return no-op unless retest is explicit.
 
 Use the authenticated V4 browser. If a V4 sign-in page asks for an email, enter `harry.piper@metricell.com` and click **Continue**. Never enter, request, or change a password or any other authentication state. Test every criterion independently. Capture an initial screenshot and screenshots after meaningful state changes. Save PNGs only under `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`; screenshots stay local.
 
