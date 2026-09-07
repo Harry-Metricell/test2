@@ -24,9 +24,22 @@ Create one report from:
 Save it to:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
 
-Use the Documents plugin for DOCX creation and structural checks. Embed the relevant screenshots, check for leftover template placeholders, then render the completed DOCX once with:
-`C:\Users\harry.piper\Documents\V4-QA-tools\LibreOfficePortable\App\libreoffice\program\soffice.exe`
-Inspect the rendered page PNGs. If generation, embedding, rendering, or inspection fails, return `Blocked` and do not change status.
+Use the Documents plugin for DOCX creation and structural checks. Embed the relevant screenshots and remove leftover template placeholders.
+
+Render once using a unique temporary folder and profile. Use this sequence, replacing `$report` with the generated DOCX path:
+```powershell
+$renderRoot = Join-Path $env:TEMP ("test2-render-" + [guid]::NewGuid().ToString("N"))
+$profile = Join-Path $renderRoot "profile"
+New-Item -ItemType Directory -Force -Path $profile,$renderRoot | Out-Null
+$soffice = "C:\Users\harry.piper\Documents\V4-QA-tools\LibreOfficePortable\App\libreoffice\program\soffice.com"
+$pdftoppm = "C:\Users\harry.piper\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\poppler\Library\bin\pdftoppm.exe"
+& $soffice --headless "-env:UserInstallation=file:///$($profile -replace '\\','/')" --convert-to pdf --outdir $renderRoot $report
+$pdf = Join-Path $renderRoot ((Split-Path $report -Leaf) -replace '\.docx$','.pdf')
+if (!(Test-Path -LiteralPath $pdf)) { throw "PDF was not created" }
+& $pdftoppm -png $pdf (Join-Path $renderRoot "page")
+if ((@(Get-ChildItem -LiteralPath $renderRoot -Filter "page-*.png")).Count -eq 0) { throw "Page PNGs were not created" }
+```
+Inspect the page PNGs. If generation, embedding, rendering, or inspection fails, return `Blocked` and do not change status.
 
 After successful verification, complete the status update yourself now:
 1. Fetch `tickets/<KEY>/status.json` from `main`.
