@@ -1,5 +1,7 @@
 # TEST2 Criteria Conversion Brief
 
+Execute the workflow immediately after reading this brief; do not stop at a summary of the instructions.
+
 Use the connected GitHub file APIs for all repository writes. Fetch each target file's current SHA, update only the permitted files directly on `main`, and verify remote read-back. Never use local git, GitHub Desktop commits, another local folder, Jira, or a task-local clone. Jira ingestion is owned by the static importer; do not read Jira or import tickets. Read only the selected GitHub handoff and its exact input paths.
 
 Process one open `criteria_conversion` handoff created by the static importer. Select the first eligible handoff in deterministic `handoffId` order from `status/handoffs.json`; do not require a ticket number in the task prompt. If none are eligible, make no changes and return a no-op stating the exact reason. A missing ticket folder or handoff is not permission to query Jira or create an import.
