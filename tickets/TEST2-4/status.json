@@ -1,6 +1,6 @@
 {
   "ticket": "TEST2-4",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Evidence Reviewed",
+  "qaStatus": "Awaiting Evidence Review",
   "status": "READY FOR TESTING"
 }
