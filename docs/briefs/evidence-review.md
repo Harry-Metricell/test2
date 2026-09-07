@@ -3,7 +3,7 @@
 [@GitHub](plugin://github@openai-curated-remote)
 [@Documents](plugin://documents@openai-primary-runtime)
 
-Process exactly one `evidence_review` handoff from `status/handoffs.json`; never select a ticket from Jira or from local folder names. If zero or multiple eligible review handoffs exist, return a compact no-op or blocker with the exact reason; never choose an arbitrary ticket. Do not create another task.
+Process one `evidence_review` handoff from `status/handoffs.json`; never select a ticket from Jira or from local folder names. Select the first eligible handoff in deterministic `handoffId` order; the task prompt must not contain a ticket number. If none are eligible, return a compact no-op with the exact reason. Do not create another task.
 
 Read only that handoff's ticket `criteria.md`, `results.json`, `status.json`, concise report, and local screenshots at:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`
@@ -24,7 +24,7 @@ Create one report from:
 Save it to:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
 
-Use the Documents plugin for DOCX creation and structural checks. Use the connected GitHub app for the required status write; if unavailable, use a task-local clone of `https://github.com/Harry-Metricell/test2.git` and push only that status file to `main`. Never use the user's PC workspace. Embed the relevant screenshots and remove leftover template placeholders.
+Use the Documents plugin for DOCX creation and structural checks. Use the current TEST2 project checkout managed by GitHub Desktop for the required status write. Commit and push only that status file to `main`; never use another local folder, Jira, or a task-local clone. Embed the relevant screenshots and remove leftover template placeholders.
 
 Render once using a unique temporary folder and profile. Use this sequence, replacing `$report` with the generated DOCX path:
 ```powershell
