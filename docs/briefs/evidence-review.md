@@ -3,6 +3,8 @@
 [@GitHub](plugin://github@openai-curated-remote)
 [@Documents](plugin://documents@openai-primary-runtime)
 
+Required final action: after successful evidence and DOCX verification, the reviewer must update the assigned `tickets/<KEY>/status.json` through the connected GitHub file API and verify the read-back. This is not optional and must not be deferred.
+
 Review exactly the supplied TEST2 ticket and no other ticket.
 
 Read only the assigned ticket's `criteria.md`, `results.json`, `status.json`, and concise report. Read `ticket.json` only if necessary. Read screenshots only from:
@@ -27,6 +29,6 @@ Keep the report and screenshots local; do not upload them. Copy the template to 
 
 Inspect the page PNGs. If the renderer is missing or fails, return `Blocked` and do not set `Evidence Reviewed`.
 
-After successful review and report verification, the reviewer must update only the assigned `tickets/<KEY>/status.json` through the connected GitHub file API. Read it first, use its current SHA, omit the API `branch` parameter (or pass null), set `qaStatus` to `Evidence Reviewed`, then read it back to verify. This is a required reviewer action. Do not defer it to a coordinator, ask for confirmation, create a pull request, or use local `git push`.
+After successful review and report verification, read the status file first, use its current SHA, omit the API `branch` parameter (or pass null), set `qaStatus` to `Evidence Reviewed`, then read it back to verify. Do not ask for confirmation, create a pull request, use local `git push`, or defer the status update to any other agent.
 
 Do not modify criteria, results, reports, Jira, credentials, authentication state, or unrelated files. If the GitHub API rejects the required status write, return `Blocked` with the exact error and leave the status unchanged. Return one final compact JSON summary containing the ticket, per-criterion outcomes, overall outcome, report path, evidence folder, status update, and blockers.
