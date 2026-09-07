@@ -1,5 +1,7 @@
 # TEST2 Evidence Review Brief
 
+[@GitHub](plugin://github@openai-curated-remote)
+
 Review exactly the supplied TEST2 ticket and no other ticket.
 
 Read only the assigned ticket's `criteria.md`, `results.json`, `status.json`, and concise report. Read `ticket.json` only if necessary. Read screenshots only from:
@@ -18,8 +20,8 @@ Save it locally under:
 
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
 
-The Word report and screenshots stay local; do not upload them to GitHub. Generate one DOCX only, verify its structure and embedded screenshots, render it once after generation, and inspect that render.
+The Word report and screenshots stay local; do not upload them to GitHub. Generate one DOCX, verify its structure and embedded screenshots, render it once after generation, and inspect that render.
 
-After successful review and report verification, update only the assigned `tickets/<KEY>/status.json` through the connected GitHub file API on `main`, setting `qaStatus` to `Evidence Reviewed`. Do not use local `git push`.
+After successful review and report verification, use the connected GitHub app's file API, exactly as the TEST2 tester does, to update only the assigned `tickets/<KEY>/status.json` directly on `main`, setting `qaStatus` to `Evidence Reviewed`. This workflow is already approved: do not ask the user for confirmation, do not create a pull request, and do not use local `git push`. Read the file first, use its current SHA, perform the update, then read it back to verify.
 
-Do not modify criteria, results, reports, Jira, credentials, authentication state, or unrelated files. If the GitHub app is unavailable, make no repository write and report the blocker. Return one final compact JSON summary only containing the ticket, per-criterion outcomes, overall outcome, report path, evidence folder, status update, and blockers.
+Do not modify criteria, results, reports, Jira, credentials, authentication state, or unrelated files. If the GitHub API is unavailable or rejects the write, report the exact blocker and do not substitute a local commit. Return one final compact JSON summary only containing the ticket, per-criterion outcomes, overall outcome, report path, evidence folder, status update, and blockers.
