@@ -24,7 +24,7 @@ Create one report from:
 Save it to:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
 
-Use the Documents plugin for DOCX creation and structural checks. Use the current TEST2 project checkout managed by GitHub Desktop for the required status write. Commit and push only that status file to `main`; never use another local folder, Jira, or a task-local clone. Embed the relevant screenshots and remove leftover template placeholders.
+Use the Documents plugin for DOCX creation and structural checks. Use the connected GitHub file API for the required status write: fetch the current status file SHA, update only that file directly on `main`, and verify remote read-back. Never use local git, GitHub Desktop commits, another local folder, Jira, or a task-local clone. Embed the relevant screenshots and remove leftover template placeholders.
 
 Render once using a unique temporary folder and profile. Use this sequence, replacing `$report` with the generated DOCX path:
 ```powershell
@@ -44,7 +44,7 @@ Inspect the page PNGs. If generation, embedding, rendering, or inspection fails,
 After successful verification, complete the status update yourself now:
 1. Fetch `tickets/<KEY>/status.json` from `main`.
 2. Replace only `qaStatus` with `Evidence Reviewed`.
-3. Immediately invoke the GitHub file-update API (`github_update_file`) using the fetched current file SHA and the default branch (omit `branch` or pass null).
+3. Immediately invoke the GitHub file-update API (`github_update_file`) using the fetched current file SHA and the default branch (omit `branch` or pass null); do not use local git or create a local commit.
 4. Fetch the file again and verify the read-back.
 
 This status write is a required execution step, not a request for permission. Do not ask for confirmation, say Pending, defer it, create a coordinator/publisher task, open a PR, or use local git. If the GitHub API itself rejects the write, return `Blocked` with the exact error and leave status unchanged.
