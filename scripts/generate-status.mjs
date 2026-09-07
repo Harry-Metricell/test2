@@ -139,7 +139,9 @@ function mergeStatus(ticket, localStatus) {
   return {
     jiraStatus: ticket.jira.status || 'Unknown',
     workflowState,
-    qaStatus: localStatus.qaStatus || 'Not Tested',
+    qaStatus: localStatus.qaStatus && localStatus.qaStatus !== 'Not Tested'
+      ? localStatus.qaStatus
+      : (criteriaReady(ticket) ? 'Ready for Testing' : (ticket.acceptanceCriteria.length ? 'Ready for Testing' : 'Criteria Review Required')),
     qaOutcome: localStatus.qaOutcome || localStatus.outcome || 'Not Tested',
     automationSuitability: localStatus.automationSuitability || 'Unclassified',
     actionOwner: localStatus.actionOwner || 'Coordinator',
@@ -228,7 +230,7 @@ function criteriaReady(ticket) {
 }
 
 function handoffFor(ticket) {
-  if ((ticket.status.workflowState === 'Ready' || ticket.status.workflowState === 'Imported') && ticket.acceptanceCriteria.length === 0 && !criteriaReady(ticket)) {
+  if (ticket.status.qaStatus === 'Criteria Review Required' && !criteriaReady(ticket)) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
       action: 'criteria_conversion',
@@ -239,7 +241,7 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/criteria.md`, schema: 'v4-qa-criteria.v1' }
     };
   }
-  if ((ticket.status.workflowState === 'Ready' || ticket.status.workflowState === 'Imported') && criteriaReady(ticket)) {
+  if (ticket.status.qaStatus === 'Ready for Testing' && criteriaReady(ticket)) {
     return {
       handoffId: `handoff-${ticket.key}-test`,
       action: 'test_ticket',
@@ -265,7 +267,7 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/results.json`, schema: 'v4-qa-test-result.v1' }
     };
   }
-  if (ticket.status.workflowState === 'Executed') {
+  if (ticket.status.qaStatus === 'Awaiting Evidence Review') {
     return {
       handoffId: `handoff-${ticket.key}-review`,
       action: 'evidence_review',
