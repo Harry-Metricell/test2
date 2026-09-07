@@ -4,7 +4,7 @@ Test exactly the supplied TEST2 ticket and no other ticket.
 
 Read only the supplied `criteria.md`, `ticket.json`, and `status.json`. If `qaStatus` is `Awaiting Evidence Review` or `Evidence Reviewed`, return no-op unless retest is explicit.
 
-Use the authenticated V4 browser. If a V4 sign-in window asks for an email, enter `harry.piper@metricell.com`; do not enter, request, or change a password or any other authentication state. Test every criterion independently. Capture an initial screenshot and screenshots after meaningful state changes. Save PNGs only under `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`; screenshots stay local.
+Use the authenticated V4 browser. If a V4 sign-in page asks for an email, enter `harry.piper@metricell.com` and click **Continue**. Never enter, request, or change a password or any other authentication state. Test every criterion independently. Capture an initial screenshot and screenshots after meaningful state changes. Save PNGs only under `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`; screenshots stay local.
 
 Record actual `steps_taken`. Use `Passed` only with direct supporting evidence, `Failed` only with direct contradictory evidence, `Blocked` for an external or missing dependency, and `Unverified` when evidence is inconclusive.
 
