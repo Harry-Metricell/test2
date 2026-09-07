@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'tickets/**'
+      - 'scripts/check-criteria.mjs'
       - 'scripts/generate-status.mjs'
       - 'package.json'
       - '.github/workflows/static-qa-plan.yml'
