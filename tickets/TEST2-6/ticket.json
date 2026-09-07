@@ -1,0 +1,9 @@
+{
+  "key": "TEST2-6",
+  "summary": "Verify GIS map search and marker interaction",
+  "description": "As a user, I need to open the GIS module from the V4 launcher and locate a site on the map.\n\nFrom the launcher, open GIS. The GIS workspace should load with the map and its available controls visible.\n\nUse the map search to find a known site or location. The map should move to the selected result and show the result as the active location.\n\nSelect the visible map marker itself, rather than only selecting an item from a side panel or list. A details panel should open for the same location, showing its identifying information.\n\nClose the details panel and return to the map. The map should remain at the selected location and the GIS controls should still be usable.",
+  "jiraStatus": "READY FOR TESTING",
+  "priority": "Low",
+  "source": "Jira",
+  "sourceIssue": "TEST2-6"
+}
