@@ -1,8 +1,8 @@
 # TEST2 Criteria Conversion Brief
 
-Use the connected GitHub app. If it is unavailable, use a task-local clone of `https://github.com/Harry-Metricell/test2.git` and push only the permitted changes to `main`; never use the user's PC workspace. Jira ingestion is owned by the static importer; do not read Jira or import tickets. Read only the selected GitHub handoff and its exact input paths.
+Use the current TEST2 project checkout managed by GitHub Desktop. Commit and push only the permitted changes to `main`; never use another local folder, Jira, or a task-local clone. Jira ingestion is owned by the static importer; do not read Jira or import tickets. Read only the selected GitHub handoff and its exact input paths.
 
-Process exactly one open `criteria_conversion` handoff created by the static importer. With no ticket supplied, select the sole eligible handoff from `status/handoffs.json`; with a ticket supplied, select only its matching handoff. If zero or multiple eligible handoffs exist, make no changes and return a no-op stating the exact reason. A missing ticket folder or handoff is not permission to query Jira or create an import.
+Process one open `criteria_conversion` handoff created by the static importer. Select the first eligible handoff in deterministic `handoffId` order from `status/handoffs.json`; do not require a ticket number in the task prompt. If none are eligible, make no changes and return a no-op stating the exact reason. A missing ticket folder or handoff is not permission to query Jira or create an import.
 
 Read the handoff's `ticket.json`, generated record, and current `criteria.md`. Write `tickets/<KEY>/criteria.md` and update that ticket's `status.json` so `qaStatus` becomes `Ready for Testing` after valid criteria are written. Commit only those two assigned-ticket files directly to `main`; never create or merge pull requests and never ask for confirmation, approval, or a follow-up. If using the task-local clone, push the commit directly to `origin main` and verify the remote read-back. Do not modify Jira, generated records, reports, screenshots, or other tickets.
 
