@@ -1,0 +1,9 @@
+{
+  "key": "TEST2-7",
+  "summary": "Verify GIS layer and map view controls",
+  "description": "As a user, I need to control the GIS map display after opening the GIS module.\n\nOpen GIS from the V4 launcher. The GIS workspace should load with the map and its controls visible.\n\nOpen the map layer control and enable an available coverage or network layer. The selected layer should become visible on the map.\n\nUse the zoom-in control to enlarge the map view. The map should visibly change scale while remaining centred on the current area.\n\nUse the reset map view control. The map should return to its default view and the GIS controls should remain usable.\n\nOpen the map style control and select another available style. The map appearance should change, and the style control should remain available for further use.",
+  "jiraStatus": "READY FOR TESTING",
+  "priority": "Low",
+  "source": "Jira",
+  "sourceIssue": "TEST2-7"
+}
