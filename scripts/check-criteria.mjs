@@ -22,24 +22,24 @@ for (const key of tickets) {
   const dir = path.join(ticketsDir, key);
   for (const required of ['ticket.json', 'criteria.md', 'status.json']) {
     const file = path.join(dir, required);
-    if (!fs.existsSync(file)) errors.push(\`${key}: missing ${file}\`);
+    if (!fs.existsSync(file)) errors.push(key + ': missing ' + file);
   }
   const criteriaFile = path.join(dir, 'criteria.md');
   if (fs.existsSync(criteriaFile)) {
     const criteria = fs.readFileSync(criteriaFile, 'utf8');
     if (!criteria.includes('Generated from Jira acceptance criteria') && !criteria.includes('Source: Jira description')) {
-      errors.push(\`${key}: criteria.md is missing its generated marker\`);
+      errors.push(key + ': criteria.md is missing its generated marker');
     }
     if (criteria.includes('\\n')) {
-      errors.push(\`${key}: criteria.md contains literal \\n escapes instead of line breaks\`);
+      errors.push(key + ': criteria.md contains literal \\n escapes instead of line breaks');
     }
     if (criteria.includes('No acceptance criteria extracted')) {
-      if (pendingCriteria.has(key)) pending.push(\`${key}: awaiting criteria conversion\`);
-      else errors.push(\`${key}: criteria.md still contains the unresolved generated placeholder\`);
+      if (pendingCriteria.has(key)) pending.push(key + ': awaiting criteria conversion');
+      else errors.push(key + ': criteria.md still contains the unresolved generated placeholder');
     }
     const checklistLines = criteria.split(/\r?\n/).filter((line) => /^- \[ \] /.test(line));
     if (checklistLines.length === 0 && !criteria.includes('No acceptance criteria extracted')) {
-      errors.push(\`${key}: criteria.md has no valid checklist bullets\`);
+      errors.push(key + ': criteria.md has no valid checklist bullets');
     }
   }
 }
