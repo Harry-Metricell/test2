@@ -1,8 +1,8 @@
 # TEST2 Criteria Conversion Brief
 
-Use the connected GitHub app. Read only the selected handoff and its exact input paths.
+Use the connected GitHub app. Jira ingestion is owned by the static importer; do not read Jira or import tickets. Read only the selected GitHub handoff and its exact input paths.
 
-Process exactly one open `criteria_conversion` handoff. With no ticket supplied, select the sole eligible handoff from `status/handoffs.json`; with a ticket supplied, select only its matching handoff. If zero or multiple eligible handoffs exist, make no changes and return a no-op.
+Process exactly one open `criteria_conversion` handoff created by the static importer. With no ticket supplied, select the sole eligible handoff from `status/handoffs.json`; with a ticket supplied, select only its matching handoff. If zero or multiple eligible handoffs exist, make no changes and return a no-op stating the exact reason. A missing ticket folder or handoff is not permission to query Jira or create an import.
 
 Read the handoff's `ticket.json`, generated record, and current `criteria.md`. Write and commit only `tickets/<KEY>/criteria.md`; never create or merge pull requests. Do not modify Jira, status files, generated records, reports, screenshots, or other tickets.
 
