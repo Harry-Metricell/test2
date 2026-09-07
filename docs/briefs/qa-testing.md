@@ -11,7 +11,7 @@ Record actual `steps_taken`. Use `Passed` only with direct supporting evidence, 
 Always finalise, including after testing or evidence errors:
 1. write `results.json` with every attempted criterion and blockers;
 2. write the original concise report;
-3. update `status.json` to `qaStatus: Awaiting Evidence Review`;
+3. update only `qaStatus` in `status.json` to `Awaiting Evidence Review` (never add or change `testStatus`; Jira status remains importer-owned);
 4. use the connected GitHub app's file APIs to write only those three assigned-ticket files directly to `main`.
 
 Do not use local `git push`, create a publisher task or manifest, modify `criteria.md`, Jira, unrelated tickets, credentials, cookies, tokens, or authentication state. If the GitHub app is unavailable, make no repository write and report the blocker. In a fresh chat read this brief once, then return one final structured summary only.
