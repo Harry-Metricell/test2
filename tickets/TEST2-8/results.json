@@ -1,0 +1,27 @@
+[
+  {
+    "criterion": "Open the GIS workspace; the map controls remain visible.",
+    "outcome": "Passed",
+    "steps_taken": "Opened the authenticated V4 GIS workspace and verified visible map controls including Map style, Zoom in, Zoom out, and Reset north and flatten map."
+  },
+  {
+    "criterion": "Open the layer panel and select a coverage layer; the selected coverage layer is visible.",
+    "outcome": "Passed",
+    "steps_taken": "Opened the layer panel, selected Predicted Coverage with prediction G900 SS, and verified Predicted Coverage appeared in Map layers and on the map legend."
+  },
+  {
+    "criterion": "Close the layer panel; the selected coverage layer remains visible.",
+    "outcome": "Unverified",
+    "steps_taken": "Attempted to close the panel through the visible navigation control; the launcher overlay opened and the layer panel remained present, so closure could not be verified."
+  },
+  {
+    "criterion": "Use another map tool after changing the zoom position; the zoom position is retained.",
+    "outcome": "Passed",
+    "steps_taken": "Clicked Zoom in, verified the scale changed from 100 km to 50 km, opened Map style, and verified the scale remained 50 km."
+  },
+  {
+    "criterion": "Return to the default view; the expected starting area is restored without hiding the map controls.",
+    "outcome": "Passed",
+    "steps_taken": "Reloaded the GIS workspace to return to its default view, verified a starting map area was displayed, and verified map controls remained visible."
+  }
+]
