@@ -15,6 +15,6 @@ Write the concise Word/report evidence only to:
 Write one temporary output file to:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\.staging\<handoffId>\test-output.json`
 
-The JSON must contain: `handoffId`, `ticket`, `qaStatus`, `results`, `reportPath`, `evidenceFolder`, `noOp`, `reason`. Set `qaStatus` to `Awaiting Evidence Review` after finalising the result, including blocked runs. Do not modify permanent ticket files, criteria, Jira, or authentication state.
+The JSON must contain: `handoffId`, `ticket`, `qaStatus`, `results`, `conciseReport`, `reportPath`, `evidenceFolder`, `noOp`, `reason`. `conciseReport` is the original short Markdown report for GitHub; do not put screenshots or DOCX content in it. Set `qaStatus` to `Awaiting Evidence Review` after finalising the result, including blocked runs. Do not modify permanent ticket files, criteria, Jira, or authentication state.
 
 Return one compact JSON object only with exactly those fields. No markdown or commentary.
