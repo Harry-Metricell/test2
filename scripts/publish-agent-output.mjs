@@ -133,7 +133,13 @@ if (outputType === 'criteria-output.json') {
   writeJson(path.join(ticketDir, 'review.json'), output);
   status.qaStatus = output.qaStatus || 'Evidence Reviewed';
   writeJson(statusFile, status);
-  if (!directFile) copyFolder(path.join(run, 'report.docx'), path.join(evidenceRoot, key, 'reports', `${key}.docx`));
+  if (!directFile) {
+    copyFolder(path.join(run, 'report.docx'), path.join(evidenceRoot, key, 'reports', `${key}.docx`));
+    if (fs.existsSync(path.join(run, 'report.pdf'))) {
+      copyFolder(path.join(run, 'report.pdf'), path.join(repo, 'tickets', key, 'report.pdf'));
+      changed.push(`tickets/${key}/report.pdf`);
+    }
+  }
   changed.push(`tickets/${key}/review.json`, `tickets/${key}/status.json`);
 }
 
