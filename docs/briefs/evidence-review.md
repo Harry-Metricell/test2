@@ -15,10 +15,10 @@ Create the Word report from:
 `C:\Users\harry.piper\OneDrive - Metricell Ltd\Test Document TemplateV2.docx`
 
 Save the final DOCX only to the selected staging folder:
-`C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\<handoffId>\\report.docx`. The publisher copies it to the permanent reports folder.
+`C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.docx`. The publisher copies it to the permanent reports folder.
 
 Render it once with a unique temporary profile and inspect the rendered pages. Write one temporary output file to:
-`C:\Users\harry.piper\Documents\V4-QA-evidence\.staging\<handoffId>\review-output.json`
+`C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>`
 
 The JSON must contain: `handoffId`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. Set `qaStatus` to `Evidence Reviewed` only after successful report verification. If report generation, rendering, or inspection fails, set `qaStatus` to `Awaiting Evidence Review` and explain the blocker.
 
