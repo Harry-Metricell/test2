@@ -13,10 +13,10 @@
       "reason": "Screenshot 04 directly shows Favourites (0) and No favourite Beacons yet after removal."
     }
   ],
-  "overallOutcome": "Passed",
-  "reportPath": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-3-review/report.docx",
+  "overallOutcome": "Blocked",
+  "reportPath": "",
   "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-3/screenshots",
-  "qaStatus": "Evidence Reviewed",
+  "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "All criteria have direct, consistent PNG evidence."
+  "reason": "All criteria have direct, consistent PNG evidence, but the required Word PDF render did not produce a non-empty report.pdf, so report verification failed."
 }
