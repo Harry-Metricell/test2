@@ -2,7 +2,7 @@
 
 Execute immediately; do not summarise this brief.
 
-Use the supplied first eligible `evidence_review` handoff in deterministic `handoffId` order. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op. If QA status is `Evidence Reviewed`, skip it.
+Use the supplied first eligible `evidence_review` handoff in deterministic `handoffId` order. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present. If QA status is `Evidence Reviewed`, skip it.
 
 Read only the selected ticket criteria, results, concise report, and screenshots at:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`
