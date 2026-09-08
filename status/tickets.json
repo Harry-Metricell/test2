@@ -1,14 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-07T15:45:55.099+0100",
+  "generatedAt": "2026-09-08T11:44:02.573+0100",
   "counts": {
-    "tickets": 4,
-    "handoffs": 4,
+    "tickets": 7,
+    "handoffs": 6,
     "byWorkflowState": {
-      "Ready": 4
+      "Ready": 7
     },
     "byQaOutcome": {
-      "Not Tested": 4
+      "Not Tested": 7
     }
   },
   "policy": {
@@ -39,6 +39,39 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-04T14:25:52.681+0100"
+    },
+    {
+      "key": "TEST2-4",
+      "summary": "test 4",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-08T11:43:58.540+0100"
+    },
+    {
+      "key": "TEST2-5",
+      "summary": "test 5 confusion v2",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Review Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-08T11:44:00.159+0100"
+    },
+    {
+      "key": "TEST2-6",
+      "summary": "Verify GIS map search and marker interaction",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Review Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-08T11:44:02.573+0100"
     },
     {
       "key": "TEST2-8",

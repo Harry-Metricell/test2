@@ -10,7 +10,7 @@
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-04T12:18:31.529+0100",
-    "updated": "2026-09-04T14:25:53.436+0100"
+    "updated": "2026-09-08T11:44:00.159+0100"
   },
   "description": "Beacon favourites need checking. Start on a visible beacon, use the star control to add it, open Favourites and confirm it appears, use the star control again to remove it, then confirm it no longer appears.",
   "acceptanceCriteria": [],
@@ -24,17 +24,17 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103684",
-    "importedAt": "2026-09-04T14:25:53.436+0100"
+    "importedAt": "2026-09-08T11:44:00.159+0100"
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Evidence Reviewed",
+    "qaStatus": "Criteria Review Required",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create testing handoff",
+    "nextAction": "Create criteria conversion handoff",
     "reviewState": "Not Reviewed",
-    "updatedAt": "2026-09-04T14:25:53.436+0100"
+    "updatedAt": "2026-09-08T11:44:00.159+0100"
   }
 }
