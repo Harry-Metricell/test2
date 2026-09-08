@@ -34,7 +34,10 @@ function runGit(args) {
   return execFileSync(git, ['-C', repo, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 }
 function ensureRepoClean() {
-  const changes = runGit(['status', '--porcelain']);
+  const changes = runGit(['status', '--porcelain'])
+    .split(/\r?\n/)
+    .filter(line => line && !line.endsWith(' .agent-staging/') && !line.includes(' .agent-staging/'))
+    .join('\n');
   if (changes) fail(`Repository has unrelated local changes:\n${changes}`);
 }
 function ensurePath(file) {
