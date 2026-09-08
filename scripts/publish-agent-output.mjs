@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 
 const repo = process.env.TEST2_REPO || 'C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github';
 const evidenceRoot = process.env.TEST2_EVIDENCE || 'C:\\Users\\harry.piper\\Documents\\V4-QA-evidence';
-const stagingRoot = path.join(evidenceRoot, '.staging');
+const stagingRoot = path.join(repo, '.agent-staging');
 
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
 function writeJson(file, value) {
@@ -39,6 +39,9 @@ function ensureRepoClean() {
 }
 function ensurePath(file) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
+}
+function copyFolder(source, target) {
+  if (fs.existsSync(source)) fs.cpSync(source, target, { recursive: true, force: true });
 }
 
 if (!fs.existsSync(stagingRoot)) process.exit(0);
@@ -75,12 +78,14 @@ if (files[0] === 'criteria-output.json') {
   fs.writeFileSync(path.join(ticketDir, 'report.md'), `${output.conciseReport.trim()}\n`, 'utf8');
   status.qaStatus = output.qaStatus || 'Awaiting Evidence Review';
   writeJson(statusFile, status);
+  copyFolder(path.join(run, 'screenshots'), path.join(evidenceRoot, key, 'screenshots'));
   changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/status.json`);
 } else {
   if (!Array.isArray(output.criterionOutcomes)) fail('criterionOutcomes is missing');
   writeJson(path.join(ticketDir, 'review.json'), output);
   status.qaStatus = output.qaStatus || 'Evidence Reviewed';
   writeJson(statusFile, status);
+  copyFolder(path.join(run, 'report.docx'), path.join(evidenceRoot, key, 'reports', `${key}.docx`));
   changed.push(`tickets/${key}/review.json`, `tickets/${key}/status.json`);
 }
 
