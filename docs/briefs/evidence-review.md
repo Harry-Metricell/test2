@@ -19,8 +19,9 @@ If PNG evidence exists, create the Word report from:
 Save the final DOCX only to:
 `C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.docx`.
 
-Render the DOCX once after generation. Prefer Microsoft Word at `C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE` when present; use another available renderer only if Word is unavailable. Use a unique temporary profile and inspect the rendered pages. Write one temporary output file to:
-`C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>`
+Render the DOCX exactly once after generation. If `C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE` exists, run this repository script exactly; do not use `soffice.exe` or another fallback:
+`powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/harry.piper/Documents/ChatGPT/Test2-github/scripts/render-docx-to-pdf.ps1 -InputDocx C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.docx -OutputPdf C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.pdf`
+Verify that `report.pdf` exists and is non-empty, render every PDF page to temporary PNGs with the available PDF renderer, and inspect every page for clipping, overlap, missing text, or other layout errors. If Word is unavailable, set `qaStatus` to `Awaiting Evidence Review` and explain that Word is unavailable; do not substitute `soffice.exe`. If PDF generation or inspection fails, set `qaStatus` to `Awaiting Evidence Review`. Write temporary render PNGs only inside the staging folder or system temp.
 
 The JSON must contain: `handoffId`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. Set `qaStatus` to `Evidence Reviewed` only after successful report verification. If report generation, PDF creation, or inspection fails after valid PNG evidence exists, set `qaStatus` to `Awaiting Evidence Review` and explain the blocker.
 
