@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-08T15:11:14.010+0100",
   "counts": {
     "tickets": 3,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
       "Ready": 3
     },
@@ -45,7 +45,7 @@
       "summary": "Retain selected coverage after returning to the map",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Blocked",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",

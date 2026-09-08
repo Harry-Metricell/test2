@@ -1,5 +1,22 @@
 {
   "schema": "v4-qa-handoffs.v1",
   "generatedAt": "2026-09-08T15:11:14.010+0100",
-  "handoffs": []
+  "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-9-test",
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-9",
+      "inputs": {
+        "criteria": "tickets/TEST2-9/criteria.md",
+        "ticketJson": "tickets/TEST2-9/ticket.json",
+        "status": "tickets/TEST2-9/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-9/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    }
+  ]
 }
