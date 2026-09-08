@@ -129,6 +129,13 @@ if (outputType === 'criteria-output.json') {
 }
 
 runGit(['add', '--', ...changed]);
+if (!runGit(['diff', '--cached', '--name-only'])) {
+  const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
+  if (!remote) fail('GitHub remote read-back returned no main ref');
+  fs.rmSync(run, { force: true, recursive: !directFile });
+  console.log(JSON.stringify({ ticket: key, changedFiles: [], published: true, noOp: true, cleaned: run }));
+  process.exit(0);
+}
 runGit(['commit', '-m', `Publish TEST2 ${key} agent output`]);
 pushWithRetry();
 const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
