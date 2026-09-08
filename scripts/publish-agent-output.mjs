@@ -69,6 +69,15 @@ function ensurePath(file) {
 function copyFolder(source, target) {
   if (fs.existsSync(source)) fs.cpSync(source, target, { recursive: true, force: true });
 }
+function cleanupRun(run, directFile) {
+  try {
+    fs.rmSync(run, { force: true, recursive: !directFile });
+    return true;
+  } catch (error) {
+    console.warn(`Published but temporary cleanup is pending: ${error.code || error.message}`);
+    return false;
+  }
+}
 
 if (!fs.existsSync(stagingRoot)) process.exit(0);
 ensureRepoClean();
@@ -132,13 +141,13 @@ runGit(['add', '--', ...changed]);
 if (!runGit(['diff', '--cached', '--name-only'])) {
   const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
   if (!remote) fail('GitHub remote read-back returned no main ref');
-  fs.rmSync(run, { force: true, recursive: !directFile });
-  console.log(JSON.stringify({ ticket: key, changedFiles: [], published: true, noOp: true, cleaned: run }));
+  const cleaned = cleanupRun(run, directFile);
+  console.log(JSON.stringify({ ticket: key, changedFiles: [], published: true, noOp: true, cleaned, cleanupPath: run }));
   process.exit(0);
 }
 runGit(['commit', '-m', `Publish TEST2 ${key} agent output`]);
 pushWithRetry();
 const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
 if (!remote) fail('GitHub remote read-back returned no main ref');
-fs.rmSync(run, { force: true, recursive: !directFile });
-console.log(JSON.stringify({ ticket: key, changedFiles: changed, published: true, cleaned: run }));
+const cleaned = cleanupRun(run, directFile);
+console.log(JSON.stringify({ ticket: key, changedFiles: changed, published: true, cleaned, cleanupPath: run }));
