@@ -10,20 +10,18 @@ Use the authenticated V4 browser. If sign-in asks for an email, enter `harry.pip
 
 
 
-Use this exact save method after every screenshot capture (saving evidence is required, not optional):
+Use this exact save method after every screenshot capture (saving evidence is required, not optional). `tab.screenshot()` returns PNG bytes, not a state object or data URL:
 ```js
 const fs = await import('node:fs');
 const path = await import('node:path');
-function saveEvidencePng(state, file) {
-  const shot = state?.screenshots?.[0];
-  if (!shot?.url?.startsWith('data:image/')) throw new Error('No screenshot data URL returned');
+function saveEvidencePng(bytes, file) {
+  if (!bytes || bytes.length === 0) throw new Error('No screenshot bytes returned');
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  const base64 = shot.url.slice(shot.url.indexOf(',') + 1);
-  fs.writeFileSync(file, Buffer.from(base64, 'base64'));
+  fs.writeFileSync(file, Buffer.from(bytes));
   if (!fs.existsSync(file) || fs.statSync(file).size === 0) throw new Error('PNG was not written');
 }
 ```
-Use a unique filename for each state, call `saveEvidencePng` immediately after the corresponding browser state capture, and verify the file exists before continuing. Do not say that the screenshot API has no save-to-path method; save the returned data URL with this helper.
+Use a unique filename for each state, call `saveEvidencePng(await tab.screenshot(), file)` immediately after the corresponding browser state capture, and verify the file exists before continuing. Do not substitute a screenshot ID or displayed image for the saved PNG.
 
 Before testing, create the staging screenshots folder. For every initial state and every meaningful criterion interaction, save a real PNG file in that folder; a displayed browser screenshot or screenshot ID alone is not evidence. Use the available file/screenshot save method, then verify each file exists and has non-zero size before finalising. If PNG files cannot be created or verified, set the affected outcomes to `Blocked`, explain the exact error in `reason`, and still write the required staged JSON.
 
