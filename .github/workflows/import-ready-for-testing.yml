@@ -7,7 +7,7 @@ on:
     - cron: '*/10 * * * *'
 
 concurrency:
-  group: jira-import
+  group: qa-repo-writes
   cancel-in-progress: false
 
 permissions:
