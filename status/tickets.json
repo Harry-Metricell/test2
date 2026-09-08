@@ -89,7 +89,7 @@
       "summary": "Retain selected coverage after returning to the map",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
