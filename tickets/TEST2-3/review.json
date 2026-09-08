@@ -1,0 +1,22 @@
+{
+  "handoffId": "handoff-TEST2-3-review",
+  "ticket": "TEST2-3",
+  "criterionOutcomes": [
+    {
+      "criterion": "you should be able to favourite a beacon it comes up in favourites.",
+      "outcome": "Blocked",
+      "reason": "Required PNG screenshot evidence is missing."
+    },
+    {
+      "criterion": "then un fav it and it goes out of favourite beacon",
+      "outcome": "Blocked",
+      "reason": "Required PNG screenshot evidence is missing."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-3/screenshots",
+  "qaStatus": "Ready for Testing",
+  "noOp": false,
+  "reason": "Screenshots are required: the specified evidence folder contains no non-empty PNG files."
+}
