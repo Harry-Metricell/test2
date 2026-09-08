@@ -93,13 +93,18 @@ function pngEvidence(key) {
 }
 function buildVerifiedReport(key, run) {
   const python = process.env.TEST2_PYTHON || 'C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe';
-  const builder = path.join(repo, 'scripts', 'build-evidence-report-pdf.py');
+  const template = process.env.TEST2_TEMPLATE || 'C:\\Users\\harry.piper\\Downloads\\Automated Test Case Template.docx';
+  const builder = path.join(repo, 'scripts', 'build-evidence-report.py');
+  const renderer = path.join(repo, 'scripts', 'render-docx-to-pdf.ps1');
   const reviewFile = path.join(run, 'review-output.json');
+  const docx = path.join(run, 'report.docx');
   const pdf = path.join(run, 'report.pdf');
   const screenshots = path.join(evidenceRoot, key, 'screenshots');
-  execFileSync(python, [builder, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', pdf], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
-  if (!nonEmpty(pdf)) fail('Report generation completed without a non-empty PDF');
-  return { pdf };
+  execFileSync(python, [builder, '--template', template, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', docx], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
+  if (!nonEmpty(docx)) fail('Template report generation completed without a non-empty DOCX');
+  execFileSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
+  if (!nonEmpty(pdf)) fail('Template PDF conversion completed without a non-empty PDF');
+  return { docx, pdf };
 }
 
 if (!fs.existsSync(stagingRoot)) process.exit(0);
@@ -172,6 +177,7 @@ if (outputType === 'criteria-output.json') {
   status.qaStatus = review.qaStatus || 'Evidence Reviewed';
   writeJson(statusFile, status);
   if (!directFile) {
+    copyFolder(path.join(run, 'report.docx'), path.join(evidenceRoot, key, 'reports', `${key}.docx`));
     copyFolder(path.join(run, 'report.pdf'), path.join(evidenceRoot, key, 'reports', `${key}.pdf`));
     if (nonEmpty(path.join(run, 'report.pdf'))) {
       copyFolder(path.join(run, 'report.pdf'), path.join(repo, 'tickets', key, 'report.pdf'));
