@@ -2,6 +2,8 @@
 
 Execute immediately; do not summarise this brief.
 
+Read exactly these local files and no others: `status/handoffs.json`; the selected handoff's `inputs.results`; `inputs.generated`; `tickets/<KEY>/criteria.md`; `tickets/<KEY>/report.md`; and screenshots only from the specified evidence folder. Treat the handoff paths as the only permitted repository inputs.
+
 Use the supplied first eligible `evidence_review` handoff in deterministic `handoffId` order. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present. If QA status is `Evidence Reviewed`, skip it.
 
 Read only the selected ticket criteria, results, concise report, and screenshots at:
