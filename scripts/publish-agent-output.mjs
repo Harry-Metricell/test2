@@ -57,15 +57,26 @@ function copyFolder(source, target) {
 if (!fs.existsSync(stagingRoot)) process.exit(0);
 ensureRepoClean();
 const runs = fs.readdirSync(stagingRoot, { withFileTypes: true })
-  .filter(entry => entry.isDirectory())
+  .filter(entry => entry.isDirectory() || entry.isFile())
   .map(entry => path.join(stagingRoot, entry.name))
   .sort();
-const run = runs.find(dir => fs.existsSync(path.join(dir, 'criteria-output.json')) || fs.existsSync(path.join(dir, 'test-output.json')) || fs.existsSync(path.join(dir, 'review-output.json')));
+const run = runs.find(candidate => {
+  if (fs.statSync(candidate).isFile()) return true;
+  return ['criteria-output.json', 'test-output.json', 'review-output.json']
+    .some(name => fs.existsSync(path.join(candidate, name)));
+});
 if (!run) process.exit(0);
 
-const files = ['criteria-output.json', 'test-output.json', 'review-output.json'].filter(name => fs.existsSync(path.join(run, name)));
+const directFile = fs.statSync(run).isFile();
+const files = directFile
+  ? [path.basename(run)]
+  : ['criteria-output.json', 'test-output.json', 'review-output.json']
+      .filter(name => fs.existsSync(path.join(run, name)));
 if (files.length !== 1) fail(`Expected exactly one output file in ${run}; found ${files.join(', ') || 'none'}`);
-const output = readJson(path.join(run, files[0]));
+const output = readJson(directFile ? run : path.join(run, files[0]));
+const outputType = files[0].endsWith('criteria-output.json') || output.criteriaMarkdown ? 'criteria-output.json'
+  : files[0].endsWith('test-output.json') || output.results ? 'test-output.json'
+  : 'review-output.json';
 const key = ticketKey(output.ticket);
 const ticketDir = path.join(repo, 'tickets', key);
 const statusFile = path.join(ticketDir, 'status.json');
@@ -74,28 +85,28 @@ const status = readJson(statusFile);
 if (output.handoffId && !String(output.handoffId).startsWith(`handoff-${key}-`)) fail('Handoff does not match ticket');
 
 const changed = [];
-if (files[0] === 'criteria-output.json') {
+if (outputType === 'criteria-output.json') {
   if (typeof output.criteriaMarkdown !== 'string' || !output.criteriaMarkdown.trim()) fail('criteriaMarkdown is missing');
   ensurePath(path.join(ticketDir, 'criteria.md'));
   fs.writeFileSync(path.join(ticketDir, 'criteria.md'), `${output.criteriaMarkdown.trim()}\n`, 'utf8');
   status.qaStatus = output.qaStatus || 'Ready for Testing';
   writeJson(statusFile, status);
   changed.push(`tickets/${key}/criteria.md`, `tickets/${key}/status.json`);
-} else if (files[0] === 'test-output.json') {
+} else if (outputType === 'test-output.json') {
   if (!output.results || typeof output.results !== 'object') fail('results is missing');
   if (typeof output.conciseReport !== 'string') fail('conciseReport is missing');
   writeJson(path.join(ticketDir, 'results.json'), output.results);
   fs.writeFileSync(path.join(ticketDir, 'report.md'), `${output.conciseReport.trim()}\n`, 'utf8');
   status.qaStatus = output.qaStatus || 'Awaiting Evidence Review';
   writeJson(statusFile, status);
-  copyFolder(path.join(run, 'screenshots'), path.join(evidenceRoot, key, 'screenshots'));
+  if (!directFile) copyFolder(path.join(run, 'screenshots'), path.join(evidenceRoot, key, 'screenshots'));
   changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/status.json`);
 } else {
   if (!Array.isArray(output.criterionOutcomes)) fail('criterionOutcomes is missing');
   writeJson(path.join(ticketDir, 'review.json'), output);
   status.qaStatus = output.qaStatus || 'Evidence Reviewed';
   writeJson(statusFile, status);
-  copyFolder(path.join(run, 'report.docx'), path.join(evidenceRoot, key, 'reports', `${key}.docx`));
+  if (!directFile) copyFolder(path.join(run, 'report.docx'), path.join(evidenceRoot, key, 'reports', `${key}.docx`));
   changed.push(`tickets/${key}/review.json`, `tickets/${key}/status.json`);
 }
 
@@ -104,6 +115,6 @@ runGit(['commit', '-m', `Publish TEST2 ${key} agent output`]);
 runGit(['push', 'origin', 'main']);
 const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
 if (!remote) fail('GitHub remote read-back returned no main ref');
-fs.rmSync(run, { recursive: true, force: true });
+fs.rmSync(run, { force: true, recursive: !directFile });
 console.log(JSON.stringify({ ticket: key, changedFiles: changed, published: true, cleaned: run }));
 
