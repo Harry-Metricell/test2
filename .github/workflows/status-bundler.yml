@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: status-bundler
+  group: qa-repo-writes
   cancel-in-progress: false
 
 jobs:
@@ -35,6 +35,18 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add status
-          git diff --cached --quiet || git commit -m "Bundle QA status and handoffs"
-          git push
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            git add status
+            if git diff --cached --quiet; then
+              exit 0
+            fi
+            git commit -m "Bundle QA status and handoffs"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+          done
+          echo "Unable to publish bundled status after three attempts."
+          exit 1
