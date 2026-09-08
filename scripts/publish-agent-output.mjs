@@ -18,7 +18,7 @@ function ticketKey(value) {
 function gitPath() {
   const candidates = [];
   if (process.env.TEST2_GIT) candidates.push(process.env.TEST2_GIT);
-  candidates.push('C:\\Users\\harry.piper\\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
+  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   const desktop = path.join(process.env.LOCALAPPDATA || '', 'GitHubDesktop');
   if (fs.existsSync(desktop)) {
     for (const entry of fs.readdirSync(desktop, { withFileTypes: true })) {
@@ -47,6 +47,22 @@ function ensureRepoClean() {
     .join('\n');
   if (changes) fail(`Repository has unrelated local changes:\n${changes}`);
 }
+function syncBeforePublish() {
+  runGit(['fetch', 'origin', 'main']);
+  runGit(['rebase', 'origin/main']);
+}
+function pushWithRetry() {
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      runGit(['push', 'origin', 'main']);
+      return;
+    } catch (error) {
+      if (attempt === 3) throw error;
+      runGit(['fetch', 'origin', 'main']);
+      runGit(['rebase', 'origin/main']);
+    }
+  }
+}
 function ensurePath(file) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
 }
@@ -56,6 +72,8 @@ function copyFolder(source, target) {
 
 if (!fs.existsSync(stagingRoot)) process.exit(0);
 ensureRepoClean();
+syncBeforePublish();
+
 const runs = fs.readdirSync(stagingRoot, { withFileTypes: true })
   .filter(entry => entry.isDirectory() || entry.isFile())
   .map(entry => path.join(stagingRoot, entry.name))
@@ -112,9 +130,8 @@ if (outputType === 'criteria-output.json') {
 
 runGit(['add', '--', ...changed]);
 runGit(['commit', '-m', `Publish TEST2 ${key} agent output`]);
-runGit(['push', 'origin', 'main']);
+pushWithRetry();
 const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
 if (!remote) fail('GitHub remote read-back returned no main ref');
 fs.rmSync(run, { force: true, recursive: !directFile });
 console.log(JSON.stringify({ ticket: key, changedFiles: changed, published: true, cleaned: run }));
-
