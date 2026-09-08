@@ -22,6 +22,6 @@ Save the final DOCX only to:
 Render the DOCX once after generation. Prefer Microsoft Word at `C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE` when present; use another available renderer only if Word is unavailable. Use a unique temporary profile and inspect the rendered pages. Write one temporary output file to:
 `C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>`
 
-The JSON must contain: `handoffId`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. Set `qaStatus` to `Evidence Reviewed` only after successful report verification. If report generation, rendering, or inspection fails after valid PNG evidence exists, set `qaStatus` to `Awaiting Evidence Review` and explain the blocker.
+The JSON must contain: `handoffId`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. Set `qaStatus` to `Evidence Reviewed` only after successful report verification. If report generation, PDF creation, or inspection fails after valid PNG evidence exists, set `qaStatus` to `Awaiting Evidence Review` and explain the blocker.
 
 Do not create helper scripts or unrelated files in the repository; use only the staging folder or temporary system files. Do not modify permanent ticket files, criteria, Jira, credentials, or authentication state. Return one compact JSON object only with exactly those fields. No markdown or commentary.
