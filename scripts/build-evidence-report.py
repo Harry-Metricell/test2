@@ -122,15 +122,30 @@ def main():
         criterion = text(item.get("criterion"))
         result = result_by_criterion.get(criterion, {})
         row = cases.add_row().cells
+        steps_value = result.get("steps_taken", [])
+        steps = [steps_value] if isinstance(steps_value, str) else [text(x) for x in steps_value]
+        actual = text(result.get("actual_result")) or text(item.get("reason")) or text(result.get("reason"))
+        if steps:
+            actual = f"{actual}\nSteps taken: {'; '.join(steps)}"
+        evidence = result.get("evidence", [])
+        if evidence:
+            actual = f"{actual}\nEvidence: {', '.join(text(x) for x in evidence)}"
         values = [
             f"{number}.0.0",
             criterion,
-            "\n".join(text(x) for x in result.get("steps_taken", [])),
-            outcome_text(item.get("outcome")),
-            text(item.get("reason")) or text(result.get("reason")),
+            "The behaviour described by the criterion is present.",
+            actual,
+            text(item.get("outcome")),
         ]
         if column_count == 6:
-            values.append(text(item.get("outcome")))
+            values = [
+                f"{number}.0.0",
+                criterion,
+                "; ".join(steps),
+                outcome_text(item.get("outcome")),
+                text(item.get("reason")) or text(result.get("reason")),
+                text(item.get("outcome")),
+            ]
         for index, value in enumerate(values):
             set_cell(row[index], value)
         add_image_row(cases, screenshot_paths(result, screenshots))
