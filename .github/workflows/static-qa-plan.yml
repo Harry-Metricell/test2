@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'tickets/**'
       - 'scripts/check-criteria.mjs'
       - 'scripts/generate-status.mjs'
       - 'package.json'
@@ -27,33 +26,18 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Validate generated outputs
-        run: npm run check
+      - name: Generate and validate outputs
+        run: |
+          npm run generate
+          npm run check
 
       - name: Commit generated outputs safely
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git rebase origin/main
-            npm run generate
-            git add status tickets
-
-            if ! git diff --cached --quiet; then
-              git commit -m "Generate QA status plan"
-            fi
-
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-
-            echo "Push race detected; retrying."
-          done
-
-          echo "Unable to push generated outputs after three attempts."
-          exit 1
+          git add status tickets
+          git diff --cached --quiet || git commit -m "Generate QA status plan"
+          git push
 
       - name: Show Codex handoff summary
         run: |
