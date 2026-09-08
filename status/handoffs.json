@@ -3,21 +3,6 @@
   "generatedAt": "2026-09-08T15:11:14.010+0100",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-3-review",
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-3",
-      "inputs": {
-        "results": "tickets/TEST2-3/results.json",
-        "generated": "status/generated/TEST2-3.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-3/review.json",
-        "schema": "v4-qa-review.v1"
-      }
-    },
-    {
       "handoffId": "handoff-TEST2-9-test",
       "action": "test_ticket",
       "brief": "docs/briefs/qa-testing.md",
