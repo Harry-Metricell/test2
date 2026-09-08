@@ -8,6 +8,9 @@ Select the first eligible open `test_ticket` handoff in deterministic `handoffId
 
 Use the authenticated V4 browser. If sign-in asks for an email, enter `harry.piper@metricell.com` and click Continue. Never enter a password or alter authentication state. Test every criterion independently. Use `Passed` only with direct evidence, `Failed` only with direct contradictory evidence, `Blocked` for missing/external dependencies, and `Unverified` for inconclusive evidence. Record actual `steps_taken`.
 
+
+Before testing, create the staging screenshots folder. For every initial state and every meaningful criterion interaction, save a real PNG file in that folder; a displayed browser screenshot or screenshot ID alone is not evidence. Use the available file/screenshot save method, then verify each file exists and has non-zero size before finalising. If PNG files cannot be created or verified, set the affected outcomes to `Blocked`, explain the exact error in `reason`, and still write the required staged JSON.
+
 Save screenshots only to the selected staging folder:
 `C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\<handoffId>\\screenshots\\`. The publisher copies them to the permanent evidence folder.
 
