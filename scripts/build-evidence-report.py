@@ -163,7 +163,7 @@ def main():
         add_image_row(cases, screenshot_paths(result, screenshots))
 
     doc.save(str(output))
-    patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review"})
+    patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review", "[Version]": "1.0", "[dd/mm/yyyy]": datetime.now().strftime("%d/%m/%Y"), "[Author]": "TEST2 QA Automation", "[Initial automated-test template]": "Generated from TEST2 evidence review"})
 
 
 if __name__ == "__main__":
