@@ -4,19 +4,19 @@
   "criterionOutcomes": [
     {
       "criterion": "you should be able to favourite a beacon it comes up in favourites.",
-      "outcome": "Blocked",
-      "reason": "Required PNG screenshot evidence is missing."
+      "outcome": "Passed",
+      "reason": "Screenshots 02 and 03 directly show the beacon star changed to Remove from favourites and Favourites (1) containing Colin Pitts 1 #447925375841."
     },
     {
       "criterion": "then un fav it and it goes out of favourite beacon",
-      "outcome": "Blocked",
-      "reason": "Required PNG screenshot evidence is missing."
+      "outcome": "Passed",
+      "reason": "Screenshot 04 directly shows Favourites (0) and No favourite Beacons yet after removal."
     }
   ],
-  "overallOutcome": "Blocked",
-  "reportPath": "",
+  "overallOutcome": "Passed",
+  "reportPath": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-3-review/report.docx",
   "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-3/screenshots",
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Evidence Reviewed",
   "noOp": false,
-  "reason": "Screenshots are required: the specified evidence folder contains no non-empty PNG files."
+  "reason": "All criteria have direct, consistent PNG evidence."
 }
