@@ -1,1 +1,1 @@
-QA run blocked: O2 Coverage Gap Candidate Areas could not load, and the available browser screenshot API could not create or verify the required staging PNG files. The selected layer and map zoom interaction were observed, but no criterion is claimable without the required evidence package.
+Blocked: Network Information could not load, selected-layer state was not retained after reopening GIS, and required PNG evidence could not be written and verified in the mandated staging folder.
