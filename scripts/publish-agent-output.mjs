@@ -5,6 +5,7 @@ import { execFileSync } from 'node:child_process';
 const repo = process.env.TEST2_REPO || 'C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github';
 const evidenceRoot = process.env.TEST2_EVIDENCE || 'C:\\Users\\harry.piper\\Documents\\V4-QA-evidence';
 const stagingRoot = path.join(repo, '.agent-staging');
+const publisherIndex = path.join(process.env.TEMP || '.', `test2-publisher-index-${process.pid}`);
 
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
 function writeJson(file, value) {
@@ -37,7 +38,12 @@ function runGit(args) {
   const binPath = path.join(gitRoot, 'mingw64', 'bin');
   return execFileSync(git, ['-C', repo, ...args], {
     encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
-    env: { ...process.env, GIT_EXEC_PATH: execPath, PATH: `${binPath};${process.env.PATH || ''}` }
+    env: {
+      ...process.env,
+      GIT_EXEC_PATH: execPath,
+      GIT_INDEX_FILE: publisherIndex,
+      PATH: `${binPath};${process.env.PATH || ''}`
+    }
   }).trim();
 }
 function ensureRepoClean() {
@@ -49,7 +55,6 @@ function ensureRepoClean() {
 }
 function syncBeforePublish() {
   runGit(['fetch', 'origin', 'main']);
-  runGit(['rebase', 'origin/main']);
 }
 function pushWithRetry() {
   for (let attempt = 1; attempt <= 3; attempt += 1) {
@@ -98,7 +103,9 @@ function buildVerifiedReport(key, run) {
 }
 
 if (!fs.existsSync(stagingRoot)) process.exit(0);
-ensureRepoClean();
+// Use a private temporary index so unrelated checkout changes and index locks do not block publishing.
+fs.rmSync(publisherIndex, { force: true });
+runGit(['read-tree', 'HEAD']);
 syncBeforePublish();
 
 const runs = fs.readdirSync(stagingRoot, { withFileTypes: true })
@@ -187,6 +194,7 @@ pushWithRetry();
 const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
 if (!remote) fail('GitHub remote read-back returned no main ref');
 const cleaned = cleanupRun(run, directFile);
+fs.rmSync(publisherIndex, { force: true });
 console.log(JSON.stringify({ ticket: key, changedFiles: changed, published: true, cleaned, cleanupPath: run }));
 
 
