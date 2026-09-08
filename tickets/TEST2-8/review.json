@@ -1,0 +1,32 @@
+{
+  "handoffId": "handoff-TEST2-8-review",
+  "ticket": "TEST2-8",
+  "criterionOutcomes": [
+    {
+      "criterion": "Open the GIS workspace; the map controls remain visible.",
+      "outcome": "Blocked"
+    },
+    {
+      "criterion": "Open the layer panel and select a coverage layer; the selected coverage layer is visible.",
+      "outcome": "Blocked"
+    },
+    {
+      "criterion": "Close the layer panel; the selected coverage layer remains visible.",
+      "outcome": "Blocked"
+    },
+    {
+      "criterion": "Use another map tool after changing the zoom position; the zoom position is retained.",
+      "outcome": "Blocked"
+    },
+    {
+      "criterion": "Return to the default view; the expected starting area is restored without hiding the map controls.",
+      "outcome": "Blocked"
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-8/screenshots/",
+  "qaStatus": "Ready for Testing",
+  "noOp": false,
+  "reason": "Screenshots are required: the specified evidence folder contains no non-empty PNG files."
+}
