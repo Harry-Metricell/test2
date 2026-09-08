@@ -2,7 +2,7 @@
 
 Execute immediately; do not summarise this brief.
 
-Select the first eligible open `test_ticket` handoff in deterministic `handoffId` order from the supplied TEST2 queue. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op. If QA status is `Awaiting Evidence Review` or `Evidence Reviewed`, skip it.
+Select the first eligible open `test_ticket` handoff in deterministic `handoffId` order from the local project's `status/handoffs.json`. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present. If QA status is `Awaiting Evidence Review` or `Evidence Reviewed`, skip it.
 
 Use the authenticated V4 browser. If sign-in asks for an email, enter `harry.piper@metricell.com` and click Continue. Never enter a password or alter authentication state. Test every criterion independently. Use `Passed` only with direct evidence, `Failed` only with direct contradictory evidence, `Blocked` for missing/external dependencies, and `Unverified` for inconclusive evidence. Record actual `steps_taken`.
 
