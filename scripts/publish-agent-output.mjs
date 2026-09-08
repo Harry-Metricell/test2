@@ -18,6 +18,7 @@ function ticketKey(value) {
 function gitPath() {
   const candidates = [];
   if (process.env.TEST2_GIT) candidates.push(process.env.TEST2_GIT);
+  candidates.push('C:\\Users\\harry.piper\\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   const desktop = path.join(process.env.LOCALAPPDATA || '', 'GitHubDesktop');
   if (fs.existsSync(desktop)) {
     for (const entry of fs.readdirSync(desktop, { withFileTypes: true })) {
@@ -31,7 +32,13 @@ function gitPath() {
 }
 const git = gitPath();
 function runGit(args) {
-  return execFileSync(git, ['-C', repo, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+  const gitRoot = path.dirname(path.dirname(git));
+  const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
+  const binPath = path.join(gitRoot, 'mingw64', 'bin');
+  return execFileSync(git, ['-C', repo, ...args], {
+    encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
+    env: { ...process.env, GIT_EXEC_PATH: execPath, PATH: `${binPath};${process.env.PATH || ''}` }
+  }).trim();
 }
 function ensureRepoClean() {
   const changes = runGit(['status', '--porcelain'])
