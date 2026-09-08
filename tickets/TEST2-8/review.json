@@ -5,33 +5,33 @@
     {
       "criterion": "Open the GIS workspace; the map controls remain visible.",
       "outcome": "Passed",
-      "reason": "01-initial.png directly shows the GIS workspace and visible map controls."
+      "reason": "01-initial.png directly shows the GIS workspace with visible map controls, search, zoom, reset-north, and map-style controls."
     },
     {
       "criterion": "Open the layer panel and select a coverage layer; the selected coverage layer is visible.",
       "outcome": "Unverified",
-      "reason": "02-coverage-layer.png shows the Predicted Coverage entry but not decisive selected-layer rendering."
+      "reason": "02-coverage-layer.png shows the Predicted Coverage entry, but does not directly prove selected coverage rendering in the map viewport."
     },
     {
       "criterion": "Close the layer panel; the selected coverage layer remains visible.",
       "outcome": "Unverified",
-      "reason": "03-panel-closed.png does not directly prove selected-layer persistence after closing the panel."
+      "reason": "03-panel-closed.png shows the launcher overlay rather than decisive proof that the selected coverage layer remained visible after closing the layer panel."
     },
     {
       "criterion": "Use another map tool after changing the zoom position; the zoom position is retained.",
       "outcome": "Unverified",
-      "reason": "No decisive before-and-after evidence demonstrates zoom retention after switching tools."
+      "reason": "04-map-context.png does not provide a decisive before-and-after comparison proving zoom retention after another map tool was used."
     },
     {
       "criterion": "Return to the default view; the expected starting area is restored without hiding the map controls.",
       "outcome": "Unverified",
-      "reason": "04-map-context.png does not prove default-view restoration."
+      "reason": "The supplied screenshots do not directly prove restoration of the expected default view."
     }
   ],
   "overallOutcome": "Unverified",
-  "reportPath": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-8-review/report.docx",
-  "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-8/screenshots",
+  "reportPath": "",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-8/screenshots/",
   "qaStatus": "Awaiting Evidence Review",
   "noOp": false,
-  "reason": "Valid PNG evidence exists and was assessed, but required Word rendering and visual inspection of the generated DOCX could not be completed because the Word render produced no output in this environment."
+  "reason": "PNG evidence exists and was assessed, but the required DOCX render/inspection could not be completed because the bundled renderer could not find soffice.exe. The existing staged report was not marked verified; Word is installed and may be used to complete rendering and inspection."
 }
