@@ -1,17 +1,20 @@
 # TEST2 QA Testing Brief
 
-Execute the workflow immediately after reading this brief; do not stop at a summary of the instructions.
+Execute immediately; do not summarise this brief.
 
-Process one open `test_ticket` handoff from `status/handoffs.json`; never choose a ticket from Jira or from local folder names. Select the first eligible handoff in deterministic `handoffId` order; the task prompt must not contain a ticket number. Read only that handoff's `criteria.md`, `ticket.json`, and `status.json`. If none are eligible, return a compact no-op with the exact reason. If `qaStatus` is `Awaiting Evidence Review` or `Evidence Reviewed`, return no-op unless retest is explicit.
+Select the first eligible open `test_ticket` handoff in deterministic `handoffId` order from the supplied TEST2 queue. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op. If QA status is `Awaiting Evidence Review` or `Evidence Reviewed`, skip it.
 
-Use the authenticated V4 browser. Use the connected GitHub file APIs for repository writes; fetch each target file's current SHA, update only the assigned files directly on `main`, and verify remote read-back. Never use local git, GitHub Desktop commits, another local folder, or Jira. If a V4 sign-in page asks for an email, enter `harry.piper@metricell.com` and click **Continue**. Never enter, request, or change a password or any other authentication state. Test every criterion independently. Capture an initial screenshot and screenshots after meaningful state changes. Save PNGs only under `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`; screenshots stay local.
+Use the authenticated V4 browser. If sign-in asks for an email, enter `harry.piper@metricell.com` and click Continue. Never enter a password or alter authentication state. Test every criterion independently. Use `Passed` only with direct evidence, `Failed` only with direct contradictory evidence, `Blocked` for missing/external dependencies, and `Unverified` for inconclusive evidence. Record actual `steps_taken`.
 
-Record actual `steps_taken`. Use `Passed` only with direct supporting evidence, `Failed` only with direct contradictory evidence, `Blocked` for an external or missing dependency, and `Unverified` when evidence is inconclusive.
+Save screenshots only to:
+`C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`
 
-Always finalise, including after testing or evidence errors:
-1. write `results.json` with every attempted criterion and blockers;
-2. write the original concise report;
-3. update only `qaStatus` in `status.json` to `Awaiting Evidence Review` (never add or change `testStatus`; Jira status remains importer-owned);
-4. use the connected GitHub file APIs to write only those three assigned-ticket files directly to `main`, fetching each current SHA and verifying remote read-back.
+Write the concise Word/report evidence only to:
+`C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
 
-Do not create a publisher task or manifest, modify `criteria.md`, Jira, unrelated tickets, credentials, cookies, tokens, or authentication state. In a fresh chat read this brief once, then return one final structured summary only.
+Write one temporary output file to:
+`C:\Users\harry.piper\Documents\V4-QA-evidence\.staging\<handoffId>\test-output.json`
+
+The JSON must contain: `handoffId`, `ticket`, `qaStatus`, `results`, `reportPath`, `evidenceFolder`, `noOp`, `reason`. Set `qaStatus` to `Awaiting Evidence Review` after finalising the result, including blocked runs. Do not modify permanent ticket files, criteria, Jira, or authentication state.
+
+Return one compact JSON object only with exactly those fields. No markdown or commentary.
