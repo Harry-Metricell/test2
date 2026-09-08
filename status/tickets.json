@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-08T11:44:02.573+0100",
   "counts": {
     "tickets": 7,
-    "handoffs": 6,
+    "handoffs": 7,
     "byWorkflowState": {
       "Ready": 7
     },
@@ -48,7 +48,7 @@
       "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-08T11:43:58.540+0100"
     },
     {
@@ -56,10 +56,10 @@
       "summary": "test 5 confusion v2",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Criteria Review Required",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-08T11:44:00.159+0100"
     },
     {
