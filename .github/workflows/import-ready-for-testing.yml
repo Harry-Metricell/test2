@@ -3,8 +3,8 @@ name: Import Ready For Testing Tickets
 on:
   workflow_dispatch:
   schedule:
-    # Weekdays at 06:15 UTC. Use workflow_dispatch for an immediate refresh.
-    - cron: '15 6 * * 1-5'
+    # Jira polling safety net; status updates are push-triggered.
+    - cron: '*/10 * * * *'
 
 concurrency:
   group: jira-import
