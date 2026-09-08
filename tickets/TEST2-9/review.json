@@ -1,0 +1,32 @@
+{
+  "handoffId": "handoff-TEST2-9-review",
+  "ticket": "TEST2-9",
+  "criterionOutcomes": [
+    {
+      "criterion": "Change the visible coverage layer; the chosen coverage remains visible after the layer panel is closed.",
+      "outcome": "Blocked",
+      "reason": "Required screenshot evidence is unavailable: the specified evidence folder contains no non-empty PNG."
+    },
+    {
+      "criterion": "Close the layer panel; the selected coverage remains visible on the map.",
+      "outcome": "Blocked",
+      "reason": "Required screenshot evidence is unavailable: the specified evidence folder contains no non-empty PNG."
+    },
+    {
+      "criterion": "Adjust the map and change tools; map navigation keeps its current position.",
+      "outcome": "Blocked",
+      "reason": "Required screenshot evidence is unavailable: the specified evidence folder contains no non-empty PNG."
+    },
+    {
+      "criterion": "Return to the default view; the starting area is restored and the map controls remain available.",
+      "outcome": "Blocked",
+      "reason": "Required screenshot evidence is unavailable: the specified evidence folder contains no non-empty PNG."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-9/screenshots/",
+  "qaStatus": "Ready for Testing",
+  "noOp": false,
+  "reason": "Screenshots are required for evidence review; no non-empty PNG evidence was found in the specified folder. No Word report was created."
+}
