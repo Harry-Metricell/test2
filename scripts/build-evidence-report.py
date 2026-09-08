@@ -115,16 +115,24 @@ def main():
 
     cases = doc.tables[5]
     remove_rows(cases)
+    column_count = len(cases.columns)
+    if column_count not in (5, 6):
+        raise SystemExit(f"template case table must have five or six columns, found {column_count}")
     for number, item in enumerate(outcomes, 1):
         criterion = text(item.get("criterion"))
         result = result_by_criterion.get(criterion, {})
         row = cases.add_row().cells
-        set_cell(row[0], f"{number}.0.0")
-        set_cell(row[1], criterion)
-        set_cell(row[2], "\n".join(text(x) for x in result.get("steps_taken", [])))
-        set_cell(row[3], outcome_text(item.get("outcome")))
-        set_cell(row[4], text(item.get("reason")) or text(result.get("reason")))
-        set_cell(row[5], text(item.get("outcome")))
+        values = [
+            f"{number}.0.0",
+            criterion,
+            "\n".join(text(x) for x in result.get("steps_taken", [])),
+            outcome_text(item.get("outcome")),
+            text(item.get("reason")) or text(result.get("reason")),
+        ]
+        if column_count == 6:
+            values.append(text(item.get("outcome")))
+        for index, value in enumerate(values):
+            set_cell(row[index], value)
         add_image_row(cases, screenshot_paths(result, screenshots))
 
     doc.save(str(output))
