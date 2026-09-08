@@ -2,26 +2,48 @@
   {
     "criterion": "Open the GIS workspace; the map controls remain visible.",
     "outcome": "Passed",
-    "steps_taken": "Opened the authenticated V4 GIS workspace and verified visible map controls including Map style, Zoom in, Zoom out, and Reset north and flatten map."
+    "reason": "GIS workspace was visible with map style, zoom, reset-north, search, and Mapbox controls present.",
+    "steps_taken": [
+      "Opened the authenticated GIS workspace",
+      "Captured initial workspace state"
+    ]
   },
   {
     "criterion": "Open the layer panel and select a coverage layer; the selected coverage layer is visible.",
-    "outcome": "Passed",
-    "steps_taken": "Opened the layer panel, selected Predicted Coverage with prediction G900 SS, and verified Predicted Coverage appeared in Map layers and on the map legend."
+    "outcome": "Unverified",
+    "reason": "The Predicted Coverage layer entry was visible, but direct selected-layer rendering was not confirmed in the map viewport.",
+    "steps_taken": [
+      "Opened the layer panel",
+      "Attempted to activate Predicted Coverage",
+      "Captured the resulting state"
+    ]
   },
   {
     "criterion": "Close the layer panel; the selected coverage layer remains visible.",
     "outcome": "Unverified",
-    "steps_taken": "Attempted to close the panel through the visible navigation control; the launcher overlay opened and the layer panel remained present, so closure could not be verified."
+    "reason": "The available launcher control opened the application launcher rather than closing the layer panel; persistence could not be conclusively verified.",
+    "steps_taken": [
+      "Attempted the panel control",
+      "Captured the resulting state",
+      "Restored the GIS workspace"
+    ]
   },
   {
     "criterion": "Use another map tool after changing the zoom position; the zoom position is retained.",
-    "outcome": "Passed",
-    "steps_taken": "Clicked Zoom in, verified the scale changed from 100 km to 50 km, opened Map style, and verified the scale remained 50 km."
+    "outcome": "Unverified",
+    "reason": "No decisive direct evidence was captured for zoom retention after switching map tools.",
+    "steps_taken": [
+      "Observed map controls",
+      "Did not claim a result without direct evidence"
+    ]
   },
   {
     "criterion": "Return to the default view; the expected starting area is restored without hiding the map controls.",
-    "outcome": "Passed",
-    "steps_taken": "Reloaded the GIS workspace to return to its default view, verified a starting map area was displayed, and verified map controls remained visible."
+    "outcome": "Unverified",
+    "reason": "No decisive direct evidence was captured for default-view restoration.",
+    "steps_taken": [
+      "Observed the reset-north control",
+      "Did not claim a result without direct evidence"
+    ]
   }
 ]
