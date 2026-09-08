@@ -2,7 +2,7 @@
 
 Execute immediately; do not summarise this brief.
 
-Select the first eligible open `criteria_conversion` handoff in deterministic `handoffId` order from the supplied TEST2 queue. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op.
+Select the first eligible open `criteria_conversion` handoff in deterministic `handoffId` order from the local project's `status/handoffs.json`. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present.
 
 Read only the selected handoff inputs. Convert the ticket source into `criteria.md` content with one unchecked bullet per distinct state-changing/user action. Never combine separate actions. Put the expected observable result in the same bullet. Observations belong with the action they evidence. Preserve source meaning; if extraction is unreliable, output one unchecked bullet stating that criteria could not be extracted.
 
