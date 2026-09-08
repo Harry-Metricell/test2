@@ -1,0 +1,23 @@
+[
+  {
+    "criterion": "you should be able to favourite a beacon it comes up in favourites.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Opened the authenticated GIS page.",
+      "Captured the initial beacon-list state in the browser.",
+      "Clicked Add to favourites for Colin Pitts 1 #447925375841.",
+      "Verified the UI showed Favourites (1) and Remove from favourites."
+    ],
+    "reason": "Direct UI behavior was observed, but the available browser control did not expose a writable PNG/data-URL save path; required evidence PNG could not be created and verified."
+  },
+  {
+    "criterion": "then un fav it and it goes out of favourite beacon",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Clicked Remove from favourites for Colin Pitts 1 #447925375841.",
+      "Waited for the UI update.",
+      "Verified the UI showed Favourites (0) and Add to favourites."
+    ],
+    "reason": "Direct UI behavior was observed, but the available browser control did not expose a writable PNG/data-URL save path; required evidence PNG could not be created and verified."
+  }
+]
