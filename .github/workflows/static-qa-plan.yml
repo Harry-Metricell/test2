@@ -2,18 +2,12 @@ name: Static QA Plan
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'scripts/check-criteria.mjs'
-      - 'scripts/generate-status.mjs'
-      - 'package.json'
-      - '.github/workflows/static-qa-plan.yml'
 
 permissions:
   contents: write
 
 concurrency:
-  group: static-qa-plan
+  group: qa-repo-writes
   cancel-in-progress: false
 
 jobs:
