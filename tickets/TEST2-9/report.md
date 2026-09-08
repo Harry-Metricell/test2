@@ -1,0 +1,1 @@
+QA run blocked: O2 Coverage Gap Candidate Areas could not load, and the available browser screenshot API could not create or verify the required staging PNG files. The selected layer and map zoom interaction were observed, but no criterion is claimable without the required evidence package.

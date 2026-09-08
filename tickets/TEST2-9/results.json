@@ -1,0 +1,42 @@
+[
+  {
+    "criterion": "Change the visible coverage layer; the chosen coverage remains visible after the layer panel is closed.",
+    "outcome": "Blocked",
+    "reason": "The selected O2 Coverage Gap Candidate Areas layer produced the visible error 'Unable to load coverage gap candidate areas.' The browser screenshot API returned image bytes for display only; no supported save-to-path method was available, so the required non-zero PNG evidence file could not be created or verified.",
+    "steps_taken": [
+      "Opened authenticated GIS",
+      "Opened Coverage Gap Candidate Areas",
+      "Selected O2",
+      "Added the layer",
+      "Observed the layer error"
+    ]
+  },
+  {
+    "criterion": "Close the layer panel; the selected coverage remains visible on the map.",
+    "outcome": "Blocked",
+    "reason": "The selected layer remained listed, but its coverage could not be loaded. Required PNG evidence could not be created or verified because the available screenshot API returned display bytes without a save-to-path method.",
+    "steps_taken": [
+      "Added O2 Coverage Gap Candidate Areas",
+      "Observed the selected layer in Map layers",
+      "Observed the coverage-load error"
+    ]
+  },
+  {
+    "criterion": "Adjust the map and change tools; map navigation keeps its current position.",
+    "outcome": "Blocked",
+    "reason": "Clicked Zoom in and the map visibly changed, but the required interaction PNG could not be created or verified because the available screenshot API returned display bytes without a save-to-path method.",
+    "steps_taken": [
+      "Clicked Zoom in",
+      "Observed map scale change from 50 m to 30 m"
+    ]
+  },
+  {
+    "criterion": "Return to the default view; the starting area is restored and the map controls remain available.",
+    "outcome": "Blocked",
+    "reason": "The required evidence PNG could not be created or verified because the available screenshot API returned display bytes without a save-to-path method; default-view restoration was not completed after the blocking layer-load error.",
+    "steps_taken": [
+      "Inspected available map controls",
+      "Did not claim default-view restoration without decisive evidence"
+    ]
+  }
+]
