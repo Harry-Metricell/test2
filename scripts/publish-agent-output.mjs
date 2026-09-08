@@ -78,6 +78,24 @@ function cleanupRun(run, directFile) {
     return false;
   }
 }
+function nonEmpty(file) {
+  return fs.existsSync(file) && fs.statSync(file).size > 0;
+}
+function pngEvidence(key) {
+  const dir = path.join(evidenceRoot, key, 'screenshots');
+  if (!fs.existsSync(dir)) return false;
+  return fs.readdirSync(dir).some(name => name.toLowerCase().endsWith('.png') && nonEmpty(path.join(dir, name)));
+}
+function buildVerifiedReport(key, run) {
+  const python = process.env.TEST2_PYTHON || 'C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe';
+  const builder = path.join(repo, 'scripts', 'build-evidence-report-pdf.py');
+  const reviewFile = path.join(run, 'review-output.json');
+  const pdf = path.join(run, 'report.pdf');
+  const screenshots = path.join(evidenceRoot, key, 'screenshots');
+  execFileSync(python, [builder, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', pdf], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
+  if (!nonEmpty(pdf)) fail('Report generation completed without a non-empty PDF');
+  return { pdf };
+}
 
 if (!fs.existsSync(stagingRoot)) process.exit(0);
 ensureRepoClean();
@@ -130,12 +148,25 @@ if (outputType === 'criteria-output.json') {
   changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/status.json`);
 } else {
   if (!Array.isArray(output.criterionOutcomes)) fail('criterionOutcomes is missing');
-  writeJson(path.join(ticketDir, 'review.json'), output);
-  status.qaStatus = output.qaStatus || 'Evidence Reviewed';
+  const review = { ...output };
+  const pdf = path.join(run, 'report.pdf');
+  try {
+    if (!nonEmpty(pdf)) {
+      if (!pngEvidence(key)) fail('Screenshots are required before report generation');
+      buildVerifiedReport(key, run);
+    }
+  } catch (error) {
+    review.overallOutcome = 'Blocked';
+    review.qaStatus = 'Blocked';
+    review.reportPath = '';
+    review.reason = `Report generation or PDF verification failed: ${error.message}`;
+  }
+  writeJson(path.join(ticketDir, 'review.json'), review);
+  status.qaStatus = review.qaStatus || 'Evidence Reviewed';
   writeJson(statusFile, status);
   if (!directFile) {
-    copyFolder(path.join(run, 'report.docx'), path.join(evidenceRoot, key, 'reports', `${key}.docx`));
-    if (fs.existsSync(path.join(run, 'report.pdf'))) {
+    copyFolder(path.join(run, 'report.pdf'), path.join(evidenceRoot, key, 'reports', `${key}.pdf`));
+    if (nonEmpty(path.join(run, 'report.pdf'))) {
       copyFolder(path.join(run, 'report.pdf'), path.join(repo, 'tickets', key, 'report.pdf'));
       changed.push(`tickets/${key}/report.pdf`);
     }
@@ -157,3 +188,4 @@ const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
 if (!remote) fail('GitHub remote read-back returned no main ref');
 const cleaned = cleanupRun(run, directFile);
 console.log(JSON.stringify({ ticket: key, changedFiles: changed, published: true, cleaned, cleanupPath: run }));
+
