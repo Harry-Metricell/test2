@@ -1,55 +1,23 @@
 # TEST2 Evidence Review Brief
 
-Execute the workflow immediately after reading this brief; do not stop at a summary of the instructions.
+Execute immediately; do not summarise this brief.
 
-[@GitHub](plugin://github@openai-curated-remote)
-[@Documents](plugin://documents@openai-primary-runtime)
+Use the supplied first eligible `evidence_review` handoff in deterministic `handoffId` order. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op. If QA status is `Evidence Reviewed`, skip it.
 
-Process one `evidence_review` handoff from `status/handoffs.json`; never select a ticket from Jira or from local folder names. Select the first eligible handoff in deterministic `handoffId` order; the task prompt must not contain a ticket number. If none are eligible, return a compact no-op with the exact reason. Do not create another task.
-
-Read only that handoff's ticket `criteria.md`, `results.json`, `status.json`, concise report, and local screenshots at:
+Read only the selected ticket criteria, results, concise report, and screenshots at:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`
 
-If `qaStatus` is `Evidence Reviewed`, return no-op unless retesting is explicit.
+Assess every criterion independently. Use `Passed` only with direct screenshot evidence, `Failed` only with direct contradictory evidence, `Blocked` when required evidence/report generation is unavailable, and `Unverified` when evidence is inconclusive. Never infer Passed from text alone.
 
-Assess every criterion independently against the tester's actual `steps_taken`, `actual_result`, and direct screenshot evidence. Observations count only when they directly support the criterion. Use:
-- `Passed`: direct supporting evidence
-- `Failed`: direct contradictory evidence
-- `Blocked`: required evidence or report generation unavailable
-- `Unverified`: evidence inconclusive
-
-Never infer Passed from text alone. Do not modify criteria, results, Jira, credentials, authentication state, or unrelated tickets.
-
-Create one report from:
+Create the Word report from:
 `C:\Users\harry.piper\OneDrive - Metricell Ltd\Test Document TemplateV2.docx`
 
-Save it to:
+Save the final report only to:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
 
-Use the Documents plugin for DOCX creation and structural checks. Use the connected GitHub file API for the required status write: fetch the current status file SHA, update only that file directly on `main`, and verify remote read-back. Never use local git, GitHub Desktop commits, another local folder, Jira, or a task-local clone. Embed the relevant screenshots and remove leftover template placeholders.
+Render it once with a unique temporary profile and inspect the rendered pages. Write one temporary output file to:
+`C:\Users\harry.piper\Documents\V4-QA-evidence\.staging\<handoffId>\review-output.json`
 
-Render once using a unique temporary folder and profile. Use this sequence, replacing `$report` with the generated DOCX path:
-```powershell
-$renderRoot = Join-Path $env:TEMP ("test2-render-" + [guid]::NewGuid().ToString("N"))
-$profile = Join-Path $renderRoot "profile"
-New-Item -ItemType Directory -Force -Path $profile,$renderRoot | Out-Null
-$soffice = "C:\Users\harry.piper\Documents\V4-QA-tools\LibreOfficePortable\App\libreoffice\program\soffice.com"
-$pdftoppm = "C:\Users\harry.piper\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\poppler\Library\bin\pdftoppm.exe"
-& $soffice --headless "-env:UserInstallation=file:///$($profile -replace '\\','/')" --convert-to pdf --outdir $renderRoot $report
-$pdf = Join-Path $renderRoot ((Split-Path $report -Leaf) -replace '\.docx$','.pdf')
-if (!(Test-Path -LiteralPath $pdf)) { throw "PDF was not created" }
-& $pdftoppm -png $pdf (Join-Path $renderRoot "page")
-if ((@(Get-ChildItem -LiteralPath $renderRoot -Filter "page-*.png")).Count -eq 0) { throw "Page PNGs were not created" }
-```
-Inspect the page PNGs. If generation, embedding, rendering, or inspection fails, return `Blocked` and do not change status.
+The JSON must contain: `handoffId`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. Set `qaStatus` to `Evidence Reviewed` only after successful report verification. If report generation, rendering, or inspection fails, set `qaStatus` to `Awaiting Evidence Review` and explain the blocker.
 
-After successful verification, complete the status update yourself now:
-1. Fetch `tickets/<KEY>/status.json` from `main`.
-2. Replace only `qaStatus` with `Evidence Reviewed`.
-3. Immediately invoke the GitHub file-update API (`github_update_file`) using the fetched current file SHA and the default branch (omit `branch` or pass null); do not use local git or create a local commit.
-4. Fetch the file again and verify the read-back.
-
-This status write is a required execution step, not a request for permission. Do not ask for confirmation, say Pending, defer it, create a coordinator/publisher task, open a PR, or use local git. If the GitHub API itself rejects the write, return `Blocked` with the exact error and leave status unchanged.
-
-Return one compact JSON object only:
-`{ticket, criterionOutcomes, overallOutcome, reportPath, evidenceFolder, statusUpdate, blockers}`
+Do not modify permanent ticket files, criteria, Jira, credentials, or authentication state. Return one compact JSON object only with exactly those fields. No markdown or commentary.
