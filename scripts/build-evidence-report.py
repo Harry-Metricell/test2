@@ -38,6 +38,22 @@ def add_image_row(table, images):
         paragraph.add_run("  ")
 
 
+def screenshot_paths(item, all_screenshots):
+    names = item.get("evidence", []) if isinstance(item, dict) else []
+    wanted = {Path(text(name)).name for name in names}
+    selected = [image for image in all_screenshots if image.name in wanted]
+    return selected or all_screenshots
+
+
+def outcome_text(outcome):
+    return {
+        "passed": "Criterion is satisfied with direct screenshot evidence.",
+        "failed": "Direct screenshot evidence contradicts the criterion.",
+        "unverified": "The available evidence is inconclusive for this criterion.",
+        "blocked": "The criterion could not be decided because required evidence or the test environment was unavailable.",
+    }.get(text(outcome).lower(), "The criterion outcome was recorded from the evidence review.")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--template", required=True)
@@ -106,13 +122,14 @@ def main():
         set_cell(row[0], f"{number}.0.0")
         set_cell(row[1], criterion)
         set_cell(row[2], "\n".join(text(x) for x in result.get("steps_taken", [])))
-        set_cell(row[3], "Criterion is satisfied with direct evidence.")
+        set_cell(row[3], outcome_text(item.get("outcome")))
         set_cell(row[4], text(item.get("reason")) or text(result.get("reason")))
         set_cell(row[5], text(item.get("outcome")))
-        add_image_row(cases, screenshots)
+        add_image_row(cases, screenshot_paths(result, screenshots))
 
     doc.save(str(output))
 
 
 if __name__ == "__main__":
     main()
+
