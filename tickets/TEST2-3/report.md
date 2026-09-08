@@ -1,1 +1,4 @@
-Blocked: favourite and unfavourite behavior was observed for Colin Pitts 1, but required PNG evidence could not be created and verified with the available browser control.
+- Passed: Favouriting a beacon adds it to the Favourites view.
+- Passed: Removing the favourite removes it from the Favourites view.
+
+Direct evidence captured in the staged screenshots.
