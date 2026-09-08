@@ -8,11 +8,10 @@ Select the first eligible open `test_ticket` handoff in deterministic `handoffId
 
 Use the authenticated V4 browser. If sign-in asks for an email, enter `harry.piper@metricell.com` and click Continue. Never enter a password or alter authentication state. Test every criterion independently. Use `Passed` only with direct evidence, `Failed` only with direct contradictory evidence, `Blocked` for missing/external dependencies, and `Unverified` for inconclusive evidence. Record actual `steps_taken`.
 
-Save screenshots only to:
-`C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`
+Save screenshots only to the selected staging folder:
+`C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\<handoffId>\\screenshots\\`. The publisher copies them to the permanent evidence folder.
 
-Write the concise Word/report evidence only to:
-`C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\reports\`
+Do not write a permanent report; include the concise report text in `test-output.json`.
 
 Write one temporary output file to:
 `C:\Users\harry.piper\Documents\V4-QA-evidence\.staging\<handoffId>\test-output.json`
