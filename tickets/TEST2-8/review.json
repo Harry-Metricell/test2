@@ -29,9 +29,9 @@
     }
   ],
   "overallOutcome": "Unverified",
-  "reportPath": "",
+  "reportPath": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-8-review/report.docx",
   "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-8/screenshots/",
-  "qaStatus": "Awaiting Evidence Review",
+  "qaStatus": "Evidence Reviewed",
   "noOp": false,
-  "reason": "PNG evidence exists and was assessed, but the required DOCX render/inspection could not be completed because the bundled renderer could not find soffice.exe. The existing staged report was not marked verified; Word is installed and may be used to complete rendering and inspection."
+  "reason": "PNG evidence exists and was assessed. The staged DOCX has a non-empty PDF render, and every rendered page was inspected with no clipping, overlap, or missing-text issues found."
 }
