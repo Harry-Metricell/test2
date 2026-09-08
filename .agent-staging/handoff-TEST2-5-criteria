@@ -1,0 +1,8 @@
+{
+  "handoffId": "handoff-TEST2-5-criteria",
+  "ticket": "TEST2-5",
+  "criteriaMarkdown": "<!-- Generated from Jira acceptance criteria. -->\n\n- [ ] On a visible beacon, use the star control to add the beacon to Favourites; the beacon is added to Favourites.\n- [ ] Open Favourites; the selected beacon appears in the Favourites list.\n- [ ] On the favourited beacon, use the star control again to remove it; the beacon is removed from Favourites.\n- [ ] Check the Favourites list after removal; the beacon no longer appears.\n",
+  "qaStatus": "Ready for Testing",
+  "noOp": false,
+  "reason": "Converted the ticket description into four distinct user actions with their observable results."
+}
