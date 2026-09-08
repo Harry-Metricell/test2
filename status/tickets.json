@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-08T15:11:14.010+0100",
   "counts": {
     "tickets": 3,
-    "handoffs": 1,
+    "handoffs": 2,
     "byWorkflowState": {
       "Ready": 3
     },
@@ -26,7 +26,7 @@
       "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-08T15:11:14.010+0100"
     },
     {
