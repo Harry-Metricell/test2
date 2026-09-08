@@ -23,7 +23,7 @@
       "summary": "test 3 confusion",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
+      "qaStatus": "Blocked",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
