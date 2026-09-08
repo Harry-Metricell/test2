@@ -291,6 +291,16 @@ const ticketDirs = fs.existsSync(ticketsDir)
 const tickets = ticketDirs.map(normalizeTicket);
 const handoffs = tickets.map(handoffFor).filter(Boolean);
 const criteriaQueue = handoffs.filter((handoff) => handoff.action === 'criteria_conversion');
+// status/generated is a derived projection. Remove records for ticket folders
+// that the importer has deleted so stale tickets cannot remain in GitHub.
+if (!checkOnly && fs.existsSync(generatedDir)) {
+  const activeKeys = new Set(tickets.map((ticket) => ticket.key));
+  for (const entry of fs.readdirSync(generatedDir, { withFileTypes: true })) {
+    if (!entry.isFile() || !/^TEST2-\d+\.json$/.test(entry.name)) continue;
+    const key = entry.name.slice(0, -'.json'.length);
+    if (!activeKeys.has(key)) fs.rmSync(path.join(generatedDir, entry.name), { force: true });
+  }
+}
 const generatedAt = tickets.map((t) => t.status.updatedAt || t.jira.updated || t.jira.created).filter(Boolean).sort().at(-1) || null;
 const summary = {
   schema: 'v4-qa-status.v1',

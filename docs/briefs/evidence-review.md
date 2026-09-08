@@ -13,8 +13,10 @@ Before creating a report, verify that this folder exists and contains at least o
 
 Assess every criterion independently. Use `Passed` only with direct screenshot evidence, `Failed` only with direct contradictory evidence, `Blocked` when required evidence/report generation is unavailable, and `Unverified` when evidence is inconclusive. Never infer Passed from text alone.
 
-If PNG evidence exists, create the Word report from:
-`C:\Users\harry.piper\OneDrive - Metricell Ltd\Test Document TemplateV2.docx`
+If PNG evidence exists, first write the review JSON to the staging folder, then run this deterministic builder. It must copy and fill the supplied template; do not create a new document from scratch:
+`C:/Users/harry.piper/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe C:/Users/harry.piper/Documents/ChatGPT/Test2-github/scripts/build-evidence-report.py --template "C:/Users/harry.piper/OneDrive - Metricell Ltd/Test Document TemplateV2.docx" --review-output C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/review-output.json --criteria C:/Users/harry.piper/Documents/ChatGPT/Test2-github/tickets/<KEY>/criteria.md --results C:/Users/harry.piper/Documents/ChatGPT/Test2-github/tickets/<KEY>/results.json --screenshots "C:/Users/harry.piper/Documents/V4-QA-evidence/<KEY>/screenshots" --output C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.docx`
+
+The builder is mandatory. If it fails, set `qaStatus` to `Awaiting Evidence Review` and do not claim the report is verified.
 
 Save the final DOCX only to:
 `C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.docx`.
