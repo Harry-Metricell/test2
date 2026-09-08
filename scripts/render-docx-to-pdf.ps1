@@ -8,6 +8,8 @@ if (!(Test-Path -LiteralPath $wordPath)) { throw "Microsoft Word not found: $wor
 if (!(Test-Path -LiteralPath $InputDocx)) { throw "DOCX not found: $InputDocx" }
 $outDir = Split-Path -Parent $OutputPdf
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+$OutputPdf = [IO.Path]::GetFullPath($OutputPdf)
+Remove-Item -LiteralPath $OutputPdf -Force -ErrorAction SilentlyContinue
 $word = $null
 $doc = $null
 try {
@@ -17,7 +19,9 @@ try {
   $doc = $word.Documents.Open($InputDocx, $false, $true)
   $doc.ExportAsFixedFormat($OutputPdf, 17)
   $doc.Close($false)
+  $doc = $null
   $word.Quit()
+  $word = $null
 } finally {
   if ($doc) { [Runtime.InteropServices.Marshal]::ReleaseComObject($doc) | Out-Null }
   if ($word) { [Runtime.InteropServices.Marshal]::ReleaseComObject($word) | Out-Null }
@@ -26,3 +30,4 @@ if (!(Test-Path -LiteralPath $OutputPdf) -or (Get-Item -LiteralPath $OutputPdf).
   throw "Word did not create a non-empty PDF: $OutputPdf"
 }
 Write-Output $OutputPdf
+
