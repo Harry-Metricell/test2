@@ -14,7 +14,7 @@ Save screenshots only to the selected staging folder:
 Do not write a permanent report; include the concise report text in `test-output.json`.
 
 Write one temporary output file to:
-`C:\Users\harry.piper\Documents\V4-QA-evidence\.staging\<handoffId>\test-output.json`
+`C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>`
 
 The JSON must contain: `handoffId`, `ticket`, `qaStatus`, `results`, `conciseReport`, `reportPath`, `evidenceFolder`, `noOp`, `reason`. `conciseReport` is the original short Markdown report for GitHub; do not put screenshots or DOCX content in it. Set `qaStatus` to `Awaiting Evidence Review` after finalising the result, including blocked runs. Do not modify permanent ticket files, criteria, Jira, or authentication state.
 
