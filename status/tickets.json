@@ -1,14 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-07T15:45:55.099+0100",
+  "generatedAt": "2026-09-08T15:11:14.010+0100",
   "counts": {
-    "tickets": 2,
+    "tickets": 3,
     "handoffs": 1,
     "byWorkflowState": {
-      "Ready": 2
+      "Ready": 3
     },
     "byQaOutcome": {
-      "Not Tested": 2
+      "Not Tested": 3
     }
   },
   "policy": {
@@ -18,6 +18,17 @@
     "missingEvidence": "warning_not_pass"
   },
   "tickets": [
+    {
+      "key": "TEST2-3",
+      "summary": "test 3 confusion",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-08T15:11:14.010+0100"
+    },
     {
       "key": "TEST2-8",
       "summary": "Preserve map context when switching GIS panels",
