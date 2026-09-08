@@ -54,6 +54,17 @@ def outcome_text(outcome):
     }.get(text(outcome).lower(), "The criterion outcome was recorded from the evidence review.")
 
 
+def patch_package_text(path, replacements):
+    temp = path.with_suffix(".patched.docx")
+    with zipfile.ZipFile(path, "r") as source, zipfile.ZipFile(temp, "w", zipfile.ZIP_DEFLATED) as target:
+        for item in source.infolist():
+            data = source.read(item.filename)
+            for old, new in replacements.items():
+                data = data.replace(old.encode("utf-8"), new.encode("utf-8"))
+            target.writestr(item, data)
+    temp.replace(path)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--template", required=True)
@@ -100,7 +111,7 @@ def main():
         set_cell(metadata.cell(4, 1), "Automated TEST2 Evidence Review")
 
     cycle = doc.tables[2]
-    values = ["Automated", "TEST2 evidence review", "Chrome", datetime.now().strftime("%d/%m/%Y"), "None recorded"]
+    values = ["Automated", ticket, "Chrome", "Chrome", datetime.now().strftime("%d/%m/%Y"), "None recorded"]
     for index, value in enumerate(values):
         if index < len(cycle.rows): set_cell(cycle.cell(index, 1), value)
 
@@ -151,6 +162,7 @@ def main():
         add_image_row(cases, screenshot_paths(result, screenshots))
 
     doc.save(str(output))
+    patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review"})
 
 
 if __name__ == "__main__":
