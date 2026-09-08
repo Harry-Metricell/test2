@@ -10,6 +10,8 @@ Use the authenticated V4 browser. If an authentication or login page appears, en
 
 Set the top-level `qaStatus` to `Blocked` if any criterion is Blocked; otherwise set it to `Awaiting Evidence Review`.
 
+After testing, restore the application and test data to their original conditions. Undo temporary selections, filters, favourites, map changes, panels, and other test-created state where possible. Do not alter unrelated data or settings. Record anything that could not be restored in the affected result's `reason` or `blockers`.
+
 
 
 Use this exact save method after every screenshot capture (saving evidence is required, not optional). `tab.screenshot()` returns PNG bytes, not a state object or data URL:
@@ -38,4 +40,5 @@ Write one temporary output file to:
 The JSON must contain: `handoffId`, `ticket`, `qaStatus`, `results`, `conciseReport`, `reportPath`, `evidenceFolder`, `noOp`, `reason`. `conciseReport` is the original short Markdown report for GitHub; do not put screenshots or DOCX content in it. Set `qaStatus` to `Blocked` for blocked runs and `Awaiting Evidence Review` for completed runs that have evidence to review. Do not create helper scripts or unrelated files in the repository; use only the staging folder or temporary system files. Do not modify permanent ticket files, criteria, Jira, or authentication state.
 
 Return one compact JSON object only with exactly those fields. No markdown or commentary.
+
 
