@@ -1,30 +1,16 @@
 # TEST2 Evidence Review Brief
 
-Execute immediately; do not summarise this brief.
+Execute immediately; return one compact JSON object only. Do not summarise this brief.
 
-Read exactly these local files and no others: `status/handoffs.json`; the selected handoff's `inputs.results`; `inputs.generated`; `tickets/<KEY>/criteria.md`; `tickets/<KEY>/report.md`; and screenshots only from the specified evidence folder. Treat the handoff paths as the only permitted repository inputs.
+Read exactly these inputs and no others: `status/handoffs.json`; the selected handoff's `inputs.results`; `inputs.generated`; `tickets/<KEY>/criteria.md`; `tickets/<KEY>/report.md`; and PNG screenshots only from `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`. Do not use Jira, the task prompt's ticket number, arbitrary ticket selection, or other repository files.
 
-Use the supplied first eligible `evidence_review` handoff in deterministic `handoffId` order. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present. If QA status is `Evidence Reviewed`, skip it.
+Select the first eligible `evidence_review` handoff in deterministic `handoffId` order. If none exists, return the required fields with `noOp: true`. If the selected ticket is already `Evidence Reviewed`, return a no-op.
 
-Read only the selected ticket criteria, results, concise report, and screenshots at:
-`C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`
+If the screenshot folder is missing, empty, or contains no non-empty PNG, assess every criterion as `Blocked`, set `overallOutcome` and `qaStatus` to `Blocked`, set `reportPath` to ``, explain that screenshots are required, and write the output immediately.
 
-Before creating a report, verify that this folder exists and contains at least one non-empty PNG. If it is missing or empty, assess every criterion as `Blocked`, set `overallOutcome` to `Blocked`, set `qaStatus` to `Blocked`, set `reportPath` to an empty string, explain that screenshots are required, and write the required `review-output.json` immediately. Do not create or render a Word report in this case.
+Assess every criterion independently. Use `Passed` only with direct screenshot evidence, `Failed` only with direct contradictory evidence, `Unverified` when evidence is inconclusive, and `Blocked` when required evidence or the test environment was unavailable. Never infer `Passed` from text alone.
 
-Assess every criterion independently. Use `Passed` only with direct screenshot evidence, `Failed` only with direct contradictory evidence, `Blocked` when required evidence/report generation is unavailable, and `Unverified` when evidence is inconclusive. Never infer Passed from text alone.
+Do not create, render, inspect, or upload a DOCX/PDF. Do not modify criteria, ticket files, Jira, credentials, or authentication state. The local publisher builds and verifies the report after receiving this JSON. With valid PNG evidence, set `qaStatus` to `Evidence Reviewed` only if the review itself is complete; the publisher will change it to `Blocked` if report generation or verification fails.
 
-If PNG evidence exists, first write the review JSON to the staging folder, then run this deterministic builder. It must copy and fill the supplied template; do not create a new document from scratch:
-`C:/Users/harry.piper/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe C:/Users/harry.piper/Documents/ChatGPT/Test2-github/scripts/build-evidence-report.py --template "C:/Users/harry.piper/OneDrive - Metricell Ltd/Test Document TemplateV2.docx" --review-output C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/review-output.json --criteria C:/Users/harry.piper/Documents/ChatGPT/Test2-github/tickets/<KEY>/criteria.md --results C:/Users/harry.piper/Documents/ChatGPT/Test2-github/tickets/<KEY>/results.json --screenshots "C:/Users/harry.piper/Documents/V4-QA-evidence/<KEY>/screenshots" --output C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.docx`
+The JSON must contain exactly: `handoffId`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. `criterionOutcomes` must contain one item per criterion with `criterion`, `outcome`, and `reason`. Set `reportPath` to `` because the publisher creates the report. Do not include markdown or commentary.
 
-The builder is mandatory. If it fails, set `overallOutcome` to `Blocked`, set `qaStatus` to `Blocked`, and do not claim the report is verified.
-
-Save the final DOCX only to:
-`C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.docx`.
-
-Render the DOCX exactly once after generation. If `C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE` exists, run this repository script exactly; do not use `soffice.exe` or another fallback:
-`powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/harry.piper/Documents/ChatGPT/Test2-github/scripts/render-docx-to-pdf.ps1 -InputDocx C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.docx -OutputPdf C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/report.pdf`
-Verify that `report.pdf` exists and is non-empty, render every PDF page to temporary PNGs with the available PDF renderer, and inspect every page for clipping, overlap, missing text, or other layout errors. If Word is unavailable, set `overallOutcome` to `Blocked` and `qaStatus` to `Blocked`, and explain that Word is unavailable; do not substitute `soffice.exe`. If PDF generation or inspection fails, set `overallOutcome` to `Blocked` and `qaStatus` to `Blocked`. Write temporary render PNGs only inside the staging folder or system temp.
-
-The JSON must contain: `handoffId`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. Set `qaStatus` to `Evidence Reviewed` only after successful report verification. If report generation, PDF creation, or inspection fails after valid PNG evidence exists, set `overallOutcome` to `Blocked`, set `qaStatus` to `Blocked`, and explain the blocker.
-
-Do not create helper scripts or unrelated files in the repository; use only the staging folder or temporary system files. Do not modify permanent ticket files, criteria, Jira, credentials, or authentication state. Return one compact JSON object only with exactly those fields. No markdown or commentary.
