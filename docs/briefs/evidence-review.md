@@ -12,5 +12,10 @@ Assess every criterion independently. Use `Passed` only with direct screenshot e
 
 Do not create, render, inspect, or upload a DOCX/PDF. Do not modify criteria, ticket files, Jira, credentials, or authentication state. The local publisher builds and verifies the report after receiving this JSON. With valid PNG evidence, set `qaStatus` to `Evidence Reviewed` only if the review itself is complete; the publisher will change it to `Blocked` if report generation or verification fails.
 
+
+Before returning, write that exact JSON object to:
+`C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/review-output.json`
+Create the folder if needed and verify the file exists and is non-empty. The local publisher consumes this file; returning JSON in chat alone is not a completed handoff.
+
 The JSON must contain exactly: `handoffId`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. `criterionOutcomes` must contain one item per criterion with `criterion`, `outcome`, and `reason`. Set `reportPath` to `` because the publisher creates the report. Do not include markdown or commentary.
 
