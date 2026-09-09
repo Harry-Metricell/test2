@@ -158,7 +158,6 @@ if (outputType === 'criteria-output.json') {
   status.qaStatus = output.qaStatus || 'Awaiting Evidence Review';
   if (output.qaStatus === 'Blocked') {
     status.blockedStage = 'testing';
-    status.testerAttempts = Number(status.testerAttempts || 0) + 1;
   } else {
     status.blockedStage = null;
   }
