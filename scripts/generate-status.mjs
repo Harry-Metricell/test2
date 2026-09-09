@@ -201,11 +201,11 @@ function normalizeTicket(dirName) {
     }
   };
   let localStatus = readJson(path.join(dir, 'status.json'), {});
-  // A tester block is an operational retry signal. Convert it once per block
+  // Any pipeline block is an operational retry signal. Convert it once per block
   // into a retryable state and persist the counter in the ticket status file.
   // This prevents repeated bundler runs from consuming all retries.
   const retries = Number(localStatus.retries || 0);
-  if (localStatus.qaStatus === 'Blocked' && localStatus.blockedStage === 'testing' && retries < 3) {
+  if (localStatus.qaStatus === 'Blocked' && retries < 3) {
     localStatus = {
       ...localStatus,
       qaStatus: 'Retry Queued',
