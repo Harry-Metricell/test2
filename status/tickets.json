@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-09T16:26:49.304+0100",
   "counts": {
     "tickets": 6,
-    "handoffs": 4,
+    "handoffs": 3,
     "byWorkflowState": {
       "In Progress": 1,
       "Ready": 4,
@@ -25,7 +25,7 @@
       "summary": "test 4",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
