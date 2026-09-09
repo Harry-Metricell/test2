@@ -2,7 +2,13 @@
 
 Run one persistent TEST2 orchestration cycle. It may be slow. Never return while any actionable handoff, child-task setup, child task, publisher, or bundler started by this run remains unresolved. Use live GitHub as the source of truth and do not use Jira. Continue scanning until every currently actionable handoff is processed or individually blocked; a blocked or unavailable ticket must never stop work on other tickets.
 
-Use the GitHub connector for every queue and ticket read; never use a stale local checkout copy for decisions. Read only:
+Use the GitHub connector for every queue and ticket read; never use a stale local checkout copy for decisions.
+
+Treat conversation history as unavailable and irrelevant. Do not use prior chat messages, prior summaries, worker reasoning, or old task transcripts. Reconstruct state only from the current live handoff file, selected ticket status/output files, publisher/bundler state, and the current run-state file.
+
+Do not reread completed outputs unless validating a required gate or diagnosing an explicit anomaly. Do not scan unrelated ticket folders. Do not perform browser testing or evidence review yourself; delegate those stages.
+
+Maintain only compact run state: ticket, stage, tester attempt count, child task id, started time, last observed state, and next action. Do not use conversation memory as state. Return one compact JSON object only. Read only:
 - live `status/handoffs.json`
 - the selected handoff inputs
 - `docs/briefs/criteria-conversion.md`
