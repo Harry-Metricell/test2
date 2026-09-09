@@ -171,9 +171,11 @@ function mergeStatus(ticket, localStatus) {
     ? localStatus.qaStatus
     : (criteriaReady(ticket) ? 'Ready for Testing' : (ticket.acceptanceCriteria.length ? 'Ready for Testing' : 'Criteria Review Required'));
   const jiraReady = jiraReadyForTesting(ticket);
-  const nextAction = qaStatus === 'Criteria Review Required'
-    ? 'Create criteria conversion handoff'
-    : workflowState === 'Retry Queued'
+  const nextAction = qaStatus === 'Evidence Reviewed'
+    ? 'QA review complete'
+    : qaStatus === 'Criteria Review Required'
+      ? 'Create criteria conversion handoff'
+      : workflowState === 'Retry Queued'
       ? (jiraReady ? `Retry ${retries}/${retryLimit} queued; coordinator will start tester` : 'Waiting for Jira status: READY FOR TESTING')
       : workflowState === 'Blocked' && retries >= retryLimit
         ? 'Manual review required after retry limit'
