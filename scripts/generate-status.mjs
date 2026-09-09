@@ -258,7 +258,7 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/criteria.md`, schema: 'v4-qa-criteria.v1' }
     };
   }
-  if ((ticket.status.qaStatus === 'Ready for Testing' || ticket.status.workflowState === 'Retry Queued') && criteriaReady(ticket)) {
+  if ((ticket.status.qaStatus === 'Ready for Testing' || ticket.status.qaStatus === 'Retry Queued' || ticket.status.workflowState === 'Retry Queued') && criteriaReady(ticket)) {
     return {
       handoffId: ticket.status.workflowState === 'Retry Queued'
         ? `handoff-${ticket.key}-retry`
