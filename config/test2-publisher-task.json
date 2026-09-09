@@ -1,0 +1,8 @@
+{
+  "schema": "test2-publisher-task.v1",
+  "taskName": "TEST2 Agent Publisher",
+  "intervalSeconds": 60,
+  "durationDays": 3650,
+  "script": "scripts/publish-agent-output.mjs",
+  "description": "Publishes validated TEST2 agent output without administrator access."
+}

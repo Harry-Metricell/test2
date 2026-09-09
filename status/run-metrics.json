@@ -1,0 +1,15 @@
+{
+  "schema": "v4-qa-run-metrics.v1",
+  "policy": "metadata_only; exact per-task token counts are not exposed",
+  "runs": [
+    {
+      "runId": "2026-09-07-TEST2-6",
+      "ticket": "TEST2-6",
+      "criteria": {"attempts": 2, "status": "completed"},
+      "tester": {"attempts": 1, "status": "completed"},
+      "reviewer": {"attempts": 1, "status": "completed"},
+      "staticQa": {"workflowRun": 34128881683, "status": "failed", "cause": "validator required local screenshots"},
+      "outcome": "Blocked"
+    }
+  ]
+}

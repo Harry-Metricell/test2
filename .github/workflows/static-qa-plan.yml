@@ -1,0 +1,38 @@
+name: Static QA Plan
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qa-repo-writes
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate and validate outputs
+        run: |
+          npm run generate
+          npm run check
+
+      - name: Commit generated outputs safely
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add status tickets
+          git diff --cached --quiet || git commit -m "Generate QA status plan"
+          git push
+
+      - name: Show Codex handoff summary
+        run: |
+          node -e "const fs=require('fs'); const h=JSON.parse(fs.readFileSync('status/handoffs.json','utf8')); console.log(JSON.stringify(h,null,2));"
