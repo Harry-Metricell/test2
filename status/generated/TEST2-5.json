@@ -4,13 +4,13 @@
   "summary": "test 5 confusion v2",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-5",
-    "status": "READY FOR TESTING",
+    "status": "In Progress",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-04T12:18:31.529+0100",
-    "updated": "2026-09-09T10:05:21.288+0100"
+    "updated": "2026-09-09T16:26:26.830+0100"
   },
   "description": "Beacon favourites need checking. Start on a visible beacon, use the star control to add it, open Favourites and confirm it appears, use the star control again to remove it, then confirm it no longer appears.",
   "acceptanceCriteria": [],
@@ -24,10 +24,10 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103684",
-    "importedAt": "2026-09-09T10:05:21.288+0100"
+    "importedAt": "2026-09-09T16:26:26.830+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "In Progress",
     "workflowState": "Ready",
     "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Not Tested",
@@ -37,6 +37,6 @@
     "reviewState": "Not Reviewed",
     "retries": 0,
     "blockedStage": null,
-    "updatedAt": "2026-09-09T10:05:21.288+0100"
+    "updatedAt": "2026-09-09T16:26:26.830+0100"
   }
 }

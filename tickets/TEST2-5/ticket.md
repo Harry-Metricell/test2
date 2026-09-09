@@ -2,7 +2,7 @@
 
 ## Current State
 
-- Jira status: READY FOR TESTING
+- Jira status: In Progress
 - QA outcome: Not Tested
 - Workflow state: Ready
 - Action owner: Coordinator

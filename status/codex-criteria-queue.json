@@ -1,7 +1,20 @@
 {
   "schema": "v4-qa-criteria-queue.v1",
-  "generatedAt": "2026-09-09T15:41:38.428+0100",
+  "generatedAt": "2026-09-09T16:26:49.304+0100",
   "tickets": [
+    {
+      "ticket": "TEST2-6",
+      "handoffId": "handoff-TEST2-6-criteria",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-6/ticket.json",
+        "generated": "status/generated/TEST2-6.json"
+      },
+      "output": {
+        "path": "tickets/TEST2-6/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
     {
       "ticket": "TEST2-7",
       "handoffId": "handoff-TEST2-7-criteria",

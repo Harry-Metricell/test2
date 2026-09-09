@@ -1,15 +1,16 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-09T15:41:38.428+0100",
+  "generatedAt": "2026-09-09T16:26:49.304+0100",
   "counts": {
-    "tickets": 5,
-    "handoffs": 3,
+    "tickets": 6,
+    "handoffs": 4,
     "byWorkflowState": {
+      "In Progress": 1,
       "Ready": 4,
       "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Not Tested": 5
+      "Not Tested": 6
     }
   },
   "policy": {
@@ -36,13 +37,27 @@
     {
       "key": "TEST2-5",
       "summary": "test 5 confusion v2",
-      "jiraStatus": "READY FOR TESTING",
+      "jiraStatus": "In Progress",
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
-      "updatedAt": "2026-09-09T10:05:21.288+0100",
+      "updatedAt": "2026-09-09T16:26:26.830+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-6",
+      "summary": "Verify GIS map search and marker interaction",
+      "jiraStatus": "In Progress",
+      "workflowState": "In Progress",
+      "qaStatus": "Criteria Review Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "No deterministic action available",
+      "updatedAt": "2026-09-09T16:26:49.304+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""
