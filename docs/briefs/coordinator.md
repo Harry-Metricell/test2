@@ -9,7 +9,7 @@ Use the GitHub connector for every queue and ticket read; never use a stale loca
 
 Treat conversation history as unavailable and irrelevant. Do not use prior chat messages, prior summaries, worker reasoning, or old task transcripts. Reconstruct state only from the current live handoff file, selected ticket status/output files, publisher/bundler state, and the current run-state file.
 
-Do not reread completed outputs unless validating a required gate or diagnosing an explicit anomaly. Do not scan unrelated ticket folders. Do not perform browser testing or evidence review yourself; delegate those stages.
+Do not reread completed outputs unless validating a required gate or diagnosing an explicit anomaly. Do not scan unrelated ticket folders. Do not perform browser testing or evidence review yourself; delegate those stages. Do not inspect, open, repair, generate, or validate Word/PDF files yourself; report generation is the publisher's responsibility. Treat publisher and bundler state as opaque gates and continue polling the live queue.
 
 Maintain only compact run state: ticket, stage, tester attempt count, child task id, started time, last observed state, and next action. Do not use conversation memory as state. Return one compact JSON object only. Read only:
 - live `status/handoffs.json`
