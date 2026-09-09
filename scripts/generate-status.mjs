@@ -37,9 +37,11 @@ const STATUS_PRIORITY = [
   'Imported'
 ];
 
-function readJson(file, fallback = null) {
+const REQUIRED_JSON = Symbol('required-json');
+
+function readJson(file, fallback = REQUIRED_JSON) {
   if (!fs.existsSync(file)) {
-    if (fallback !== null) return fallback;
+    if (fallback !== REQUIRED_JSON) return fallback;
     throw new Error(`${file}: file not found`);
   }
   const raw = fs.readFileSync(file, 'utf8');
