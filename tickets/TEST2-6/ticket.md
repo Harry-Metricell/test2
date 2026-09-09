@@ -6,7 +6,7 @@
 - QA outcome: Not Tested
 - Workflow state: In Progress
 - Action owner: Coordinator
-- Next action: No deterministic action available
+- Next action: Waiting for Jira status: READY FOR TESTING
 - Jira: https://metricell.atlassian.net/browse/TEST2-6
 
 ## Acceptance Criteria
