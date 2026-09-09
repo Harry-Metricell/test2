@@ -35,7 +35,7 @@ def add_image_row(table, images):
     paragraph = merged.paragraphs[0]
     for image in images:
         run = paragraph.add_run()
-        run.add_picture(str(image), width=Inches(2.0))
+        run.add_picture(str(image), width=Inches(4.0))
         paragraph.add_run("  ")
 
 
@@ -50,7 +50,7 @@ def outcome_text(outcome):
     return {
         "passed": "Criterion is satisfied with direct screenshot evidence.",
         "failed": "Direct screenshot evidence contradicts the criterion.",
-        "unverified": "The available evidence is inconclusive for this criterion.",
+        "unverified": "Evidence was inconclusive; reported as Failed for this report.",
         "blocked": "The criterion could not be decided because required evidence or the test environment was unavailable.",
     }.get(text(outcome).lower(), "The criterion outcome was recorded from the evidence review.")
 
@@ -119,15 +119,27 @@ def main():
 
     summary = doc.tables[3]
     passed = sum(text(item.get("outcome")).lower() == "passed" for item in outcomes)
-    failed = sum(text(item.get("outcome")).lower() == "failed" for item in outcomes)
-    if len(summary.rows) >= 2:
-        while len(summary.rows) > 2:
-            summary._tbl.remove(summary.rows[-1]._tr)
-        area_text = "\n".join(f"{index}. {text(item.get('criterion'))}" for index, item in enumerate(outcomes, 1))
-        set_cell(summary.cell(1, 0), area_text)
-        set_cell(summary.cell(1, 1), "Y" if passed else "N")
-        set_cell(summary.cell(1, 2), "Y" if failed else "N")
-        set_cell(summary.cell(1, 3), str(failed))
+    failed = sum(text(item.get("outcome")).lower() in ("failed", "unverified") for item in outcomes)
+    while len(summary.rows) > 1:
+        summary._tbl.remove(summary.rows[-1]._tr)
+    for index, item in enumerate(outcomes, 1):
+        row = summary.add_row().cells
+        raw_outcome = text(item.get("outcome")).lower()
+        set_cell(row[0], f"{index}. {text(item.get('criterion'))}")
+        set_cell(row[1], "Y" if raw_outcome == "passed" else "N")
+        set_cell(row[2], "Y" if raw_outcome in ("failed", "unverified") else "N")
+        set_cell(row[3], "1" if raw_outcome in ("failed", "unverified") else "0")
+
+    context = doc.tables[4]
+    context_values = [
+        "Not recorded in agent output.",
+        "Criteria from criteria.md.",
+        "Automated browser run; PNG evidence reviewed.",
+    ]
+    if context.rows:
+        for cell_index, value in ((1, context_values[0]), (3, context_values[1]), (5, context_values[2])):
+            if cell_index < len(context.rows[0].cells):
+                set_cell(context.cell(0, cell_index), value)
 
     cases = doc.tables[5]
     remove_rows(cases)
@@ -143,12 +155,13 @@ def main():
         actual = text(result.get("actual_result")) or text(item.get("reason")) or text(result.get("reason"))
         if steps:
             actual = f"{actual}\nSteps taken: {'; '.join(steps)}"
+        report_outcome = "Failed" if text(item.get("outcome")).lower() == "unverified" else text(item.get("outcome"))
         values = [
             f"{number}.0.0",
             criterion,
             "The behaviour described by the criterion is present.",
             actual,
-            text(item.get("outcome")),
+            report_outcome,
         ]
         if column_count == 6:
             values = [
@@ -157,7 +170,7 @@ def main():
                 "; ".join(steps),
                 outcome_text(item.get("outcome")),
                 text(item.get("reason")) or text(result.get("reason")),
-                text(item.get("outcome")),
+                report_outcome,
             ]
         for index, value in enumerate(values):
             set_cell(row[index], value)
@@ -170,5 +183,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
