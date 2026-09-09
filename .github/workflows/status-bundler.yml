@@ -40,7 +40,7 @@ jobs:
             git reset --hard origin/main
             node scripts/generate-status.mjs
             node scripts/check-criteria.mjs
-            git add status
+            git add status tickets/*/status.json
             if git diff --cached --quiet; then
               exit 0
             fi
