@@ -2,5 +2,7 @@
   "ticket": "TEST2-8",
   "jiraStatus": "READY FOR TESTING",
   "qaStatus": "Blocked",
-  "status": "READY FOR TESTING"
+  "status": "READY FOR TESTING",
+  "blockedStage": "review",
+  "retries": 0
 }
