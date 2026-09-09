@@ -282,6 +282,10 @@ function criteriaReady(ticket) {
   return /^-\s+\[ \]\s+\S/m.test(text);
 }
 
+function jiraReadyForTesting(ticket) {
+  return String(ticket.jira.status || '').trim().toLowerCase() === 'ready for testing';
+}
+
 function handoffFor(ticket) {
   if (ticket.status.qaStatus === 'Criteria Review Required' && !criteriaReady(ticket)) {
     return {
@@ -294,7 +298,7 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/criteria.md`, schema: 'v4-qa-criteria.v1' }
     };
   }
-  if ((ticket.status.qaStatus === 'Ready for Testing' || ticket.status.qaStatus === 'Retry Queued' || ticket.status.workflowState === 'Retry Queued') && criteriaReady(ticket)) {
+  if (jiraReadyForTesting(ticket) && (ticket.status.qaStatus === 'Ready for Testing' || ticket.status.qaStatus === 'Retry Queued' || ticket.status.workflowState === 'Retry Queued') && criteriaReady(ticket)) {
     return {
       handoffId: ticket.status.workflowState === 'Retry Queued'
         ? `handoff-${ticket.key}-retry`
@@ -311,7 +315,7 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/results.json`, schema: 'v4-qa-test-result.v1' }
     };
   }
-  if (ticket.status.qaStatus === 'Awaiting Evidence Review') {
+  if (jiraReadyForTesting(ticket) && ticket.status.qaStatus === 'Awaiting Evidence Review') {
     return {
       handoffId: `handoff-${ticket.key}-review`,
       action: 'evidence_review',
