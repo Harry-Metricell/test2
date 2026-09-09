@@ -39,7 +39,7 @@ Publisher and bundler waits are mandatory:
 - A worker finishing is not publication.
 - After criteria/test/review output, poll the local staging state until the publisher has consumed the output, then poll live GitHub until the expected files and status are present.
 - For a reviewer output, require a non-empty local verified PDF and remote `tickets/<KEY>/report.pdf` before declaring completion.
-- Do not start the next worker while the prior output is still only local.
+- Do not start the dependent next stage for the same ticket while its prior output is still only local. Independent criteria-conversion handoffs and independent tickets may continue while another ticket is waiting for publication.
 - A GitHub Action must have conclusion `success`; do not treat queued, running, or missing as complete. If the next-stage handoff list is empty immediately after a successful publish, do not block yet: refetch the remote handoff file after 30 seconds and again after 2 minutes, and continue polling while a worker, publisher, or bundler is in flight, and confirm the Status Bundler run for the published commit has completed successfully. Only then treat the next-stage handoff as genuinely absent.
 
 Create every child task in the saved Test2 project, never projectless. Use the synchronised local project environment; live GitHub reads remain authoritative, and do not create fresh worktrees because worktree setup can remain pending indefinitely. The exact create-task shape is:
