@@ -208,7 +208,7 @@ function normalizeTicket(dirName) {
   if (localStatus.qaStatus === 'Blocked' && retries < 3) {
     localStatus = {
       ...localStatus,
-      qaStatus: 'Retry Queued',
+      qaStatus: 'Ready for Testing',
       workflowState: 'Retry Queued',
       retries: retries + 1,
       nextAction: 'Create retry handoff',
@@ -334,11 +334,14 @@ const summary = {
     qaOutcome: t.status.qaOutcome,
     actionOwner: t.status.actionOwner,
     nextAction: t.status.nextAction,
-    updatedAt: t.status.updatedAt
+    updatedAt: t.status.updatedAt,
+    retries: t.status.retries,
+    retryLimit: 3,
+    retryLabel: t.status.retries > 0 ? `Retry ${t.status.retries}/3` : ''
   }))
 };
 
-const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Summary |', '| --- | --- | --- | --- |', ...tickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\n');
+const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Retry | Summary |', '| --- | --- | --- | --- | --- |', ...tickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.status.retries > 0 ? `Retry ${t.status.retries}/3` : ''} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\n');
 writeText(path.join(outDir, 'ticket-status.md'), report);
 
 writeJson(path.join(outDir, 'tickets.json'), summary);
