@@ -147,6 +147,8 @@ function mergeStatus(ticket, localStatus) {
     actionOwner: localStatus.actionOwner || 'Coordinator',
     nextAction: localStatus.nextAction || defaultNextAction(workflowState, criteriaReady(ticket)),
     reviewState: localStatus.reviewState || 'Not Reviewed',
+    retries: Number(localStatus.retries || 0),
+    blockedStage: localStatus.blockedStage || null,
     updatedAt: localStatus.updatedAt || ticket.jira.updated || ticket.source.importedAt || null
   };
 }
@@ -198,7 +200,22 @@ function normalizeTicket(dirName) {
       importedAt: fields.updated || fields.created || null
     }
   };
-  const localStatus = readJson(path.join(dir, 'status.json'), {});
+  let localStatus = readJson(path.join(dir, 'status.json'), {});
+  // A tester block is an operational retry signal. Convert it once per block
+  // into a retryable state and persist the counter in the ticket status file.
+  // This prevents repeated bundler runs from consuming all retries.
+  const retries = Number(localStatus.retries || 0);
+  if (localStatus.qaStatus === 'Blocked' && localStatus.blockedStage === 'testing' && retries < 3) {
+    localStatus = {
+      ...localStatus,
+      qaStatus: 'Retry Queued',
+      workflowState: 'Retry Queued',
+      retries: retries + 1,
+      nextAction: 'Create retry handoff',
+      updatedAt: new Date().toISOString()
+    };
+    if (!checkOnly) fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
+  }
   return { ...ticket, status: mergeStatus(ticket, localStatus) };
 }
 
@@ -230,27 +247,7 @@ function criteriaReady(ticket) {
 }
 
 function handoffFor(ticket) {
-  // Keep blocked work visible to the coordinator so it can decide retry vs human review.
-  // The coordinator, not this generator, owns the retry decision.
-  if (ticket.status.qaStatus === 'Blocked') {
-    const attempts = Number(ticket.status.testerAttempts || 0);
-    if (attempts < 3) {
-      return {
-        handoffId: `handoff-${ticket.key}-blocked-recovery-${attempts + 1}`,
-        action: 'blocked_recovery',
-        brief: 'docs/briefs/coordinator.md',
-        owner: 'Coordinator',
-        ticket: ticket.key,
-        inputs: {
-          status: `tickets/${ticket.key}/status.json`,
-          results: `tickets/${ticket.key}/results.json`
-        },
-        expectedOutput: { path: `tickets/${ticket.key}/status.json`, schema: 'v4-qa-status.v1' }
-      };
-    }
-    return null;
-  }
-  if (ticket.status.qaStatus === 'Criteria Review Required' && !criteriaReady(ticket)) {
+  // Blocked tester output is converted to Retry Queued during normalization above.\n  // After three retries it remains Blocked and produces no handoff.\n  if (ticket.status.qaStatus === 'Criteria Review Required' && !criteriaReady(ticket)) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
       action: 'criteria_conversion',
