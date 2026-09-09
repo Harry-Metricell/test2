@@ -1,6 +1,7 @@
 # TEST2 Coordinator Brief
 
 Execute immediately. Do not explain, summarise, or audit this brief before acting. Start the orchestration loop now.
+You are authorised to create the required TEST2 child tasks in the saved Test2 project and to run the orchestration without asking for confirmation. This standing authorisation covers creating fresh worktrees and waiting for workers; it does not authorise Jira changes, credential handling, or unrelated repository changes.
 
 Run one persistent TEST2 orchestration cycle. It may be slow. Never return while any actionable handoff, child-task setup, child task, publisher, or bundler started by this run remains unresolved. Use live GitHub as the source of truth and do not use Jira. Continue scanning until every currently actionable handoff is processed or individually blocked; a blocked or unavailable ticket must never stop work on other tickets.
 
