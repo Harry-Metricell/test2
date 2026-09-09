@@ -1,9 +1,9 @@
 # TEST2 Coordinator Brief
 
-Run one bounded TEST2 orchestration cycle. Use live GitHub as the source of truth and do not use Jira. Continue scanning until every currently actionable handoff is processed or individually blocked; a blocked or unavailable ticket must never stop work on other tickets.
+Run one persistent TEST2 orchestration cycle. It may be slow and must keep going until all currently actionable work and all started child tasks have reached a terminal state. Use live GitHub as the source of truth and do not use Jira. Continue scanning until every currently actionable handoff is processed or individually blocked; a blocked or unavailable ticket must never stop work on other tickets.
 
-Read only:
-- `status/handoffs.json`
+Use the GitHub connector for every queue and ticket read; never use a stale local checkout copy for decisions. Read only:
+- live `status/handoffs.json`
 - the selected handoff inputs
 - `docs/briefs/criteria-conversion.md`
 - `docs/briefs/qa-testing.md`
@@ -25,7 +25,7 @@ Publisher and bundler waits are mandatory:
 - After criteria/test/review output, poll the local staging state until the publisher has consumed the output, then poll live GitHub until the expected files and status are present.
 - For a reviewer output, require a non-empty local verified PDF and remote `tickets/<KEY>/report.pdf` before declaring completion.
 - Do not start the next worker while the prior output is still only local.
-- A GitHub Action must have conclusion `success`; do not treat queued, running, or missing as complete. If the next-stage handoff list is empty immediately after a successful publish, do not block yet: refetch the remote handoff file up to 3 times with short bounded waits, and confirm the Status Bundler run for the published commit has completed successfully. Only then treat the next-stage handoff as genuinely absent.
+- A GitHub Action must have conclusion `success`; do not treat queued, running, or missing as complete. If the next-stage handoff list is empty immediately after a successful publish, do not block yet: refetch the remote handoff file after 30 seconds and again after 2 minutes, and continue polling while a worker, publisher, or bundler is in flight, and confirm the Status Bundler run for the published commit has completed successfully. Only then treat the next-stage handoff as genuinely absent.
 
 Create every child task in the saved Test2 project, never projectless. The exact create-task shape is:
 ```json
@@ -44,4 +44,4 @@ Maintain temporary per-run attempt state outside GitHub. Count only tester attem
 
 Do not change Jira, modify criteria during testing, upload credentials, enter passwords, create reports in a worker, or scan unrelated ticket folders. Do not claim completion without remote read-back of required outputs and final status.
 
-After any ticket is blocked, immediately rescan for other eligible handoffs. Return one compact structured summary only when no actionable handoffs or in-flight child tasks remain, or when user action is required. A single blocked ticket is not a reason to end the cycle.
+After any ticket is blocked, immediately rescan for other eligible handoffs. Keep an outer loop until the live queue has no actionable handoffs and no child tasks or publisher/bundler operations started by this run remain. A transient empty/stale read is not terminal: refetch live GitHub after 30 seconds, then after 2 minutes, and continue this cycle while any work may still be propagating. Wait for child tasks with a real bounded timeout (up to 2 minutes per wait), then repeat; do not use an immediate snapshot as proof that work stopped. If a worker returns no-op because its checkout was stale, treat it as an operational failure, wait for propagation, and retry the same stage without selecting a different ticket. Return one compact structured summary only when no actionable handoffs or in-flight child tasks remain, or when user action is required. A single blocked ticket is not a reason to end the cycle.
