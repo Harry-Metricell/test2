@@ -1,0 +1,50 @@
+{
+  "handoffId": "handoff-TEST2-8-retry",
+  "ticket": "TEST2-8",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Open the GIS workspace and verify that the map and its controls are visible.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Reloaded the V4 GIS page",
+        "Verified the Map region, layer controls, search, reset, style, zoom, and Single/Dual controls were visible"
+      ],
+      "evidence": [
+        "screenshots/criterion-1-initial.png"
+      ]
+    },
+    {
+      "criterion": "Select a coverage layer, close the layer panel, and verify that the selected coverage layer remains visible on the map.",
+      "outcome": "Unverified",
+      "steps_taken": [
+        "Opened Coverage Gap Candidate Areas",
+        "Confirmed the layer and visible map data loaded"
+      ],
+      "reason": "The layer loaded, but the layer panel was not closed and post-close persistence was not verified.",
+      "evidence": [
+        "screenshots/criterion-2-before-select.png",
+        "screenshots/criterion-2-after-confirm.png"
+      ]
+    },
+    {
+      "criterion": "Change the zoom position, use another map tool, and verify that the zoom position is retained.",
+      "outcome": "Unverified",
+      "steps_taken": [],
+      "reason": "Not tested in this run."
+    },
+    {
+      "criterion": "Return to the default view and verify that the expected starting area is restored while the map controls remain visible.",
+      "outcome": "Unverified",
+      "steps_taken": [],
+      "reason": "Not tested in this run."
+    }
+  ],
+  "conciseReport": "GIS workspace and controls were directly verified. Coverage Gap Candidate Areas loaded with visible map data, but persistence after closing the layer panel was not verified. Zoom/tool retention and default-view restoration were not tested.",
+  "reportPath": ".agent-staging/handoff-TEST2-8-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-8-retry/screenshots",
+  "noOp": false,
+  "reason": "Run ended after partial testing; application was reloaded to restore the original state.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-09T13:58:52.563Z"
+}

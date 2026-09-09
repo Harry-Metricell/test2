@@ -1,40 +1,38 @@
 [
   {
-    "criterionId": "C1",
-    "outcome": "Blocked",
+    "criterion": "Open the GIS workspace and verify that the map and its controls are visible.",
+    "outcome": "Passed",
     "steps_taken": [
-      "Reloaded the current V4 browser page; the visible state was the SmartTools Authenticate sign-in email page."
+      "Reloaded the V4 GIS page",
+      "Verified the Map region, layer controls, search, reset, style, zoom, and Single/Dual controls were visible"
     ],
-    "reason": "Testing could not begin because V4 required the email sign-in step. The required email entry was not performed in this run.",
-    "blockers": [
-      "V4 authentication required before the GIS workspace is accessible"
+    "evidence": [
+      "screenshots/criterion-1-initial.png"
     ]
   },
   {
-    "criterionId": "C2",
-    "outcome": "Blocked",
-    "steps_taken": [],
-    "reason": "V4 authentication blocked access before testing.",
-    "blockers": [
-      "V4 authentication required"
+    "criterion": "Select a coverage layer, close the layer panel, and verify that the selected coverage layer remains visible on the map.",
+    "outcome": "Unverified",
+    "steps_taken": [
+      "Opened Coverage Gap Candidate Areas",
+      "Confirmed the layer and visible map data loaded"
+    ],
+    "reason": "The layer loaded, but the layer panel was not closed and post-close persistence was not verified.",
+    "evidence": [
+      "screenshots/criterion-2-before-select.png",
+      "screenshots/criterion-2-after-confirm.png"
     ]
   },
   {
-    "criterionId": "C3",
-    "outcome": "Blocked",
+    "criterion": "Change the zoom position, use another map tool, and verify that the zoom position is retained.",
+    "outcome": "Unverified",
     "steps_taken": [],
-    "reason": "V4 authentication blocked access before testing.",
-    "blockers": [
-      "V4 authentication required"
-    ]
+    "reason": "Not tested in this run."
   },
   {
-    "criterionId": "C4",
-    "outcome": "Blocked",
+    "criterion": "Return to the default view and verify that the expected starting area is restored while the map controls remain visible.",
+    "outcome": "Unverified",
     "steps_taken": [],
-    "reason": "V4 authentication blocked access before testing.",
-    "blockers": [
-      "V4 authentication required"
-    ]
+    "reason": "Not tested in this run."
   }
 ]

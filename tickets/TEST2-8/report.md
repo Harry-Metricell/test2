@@ -1,1 +1,1 @@
-Blocked: V4 authentication was required before the GIS workspace could be reached, so no criteria were tested.
+GIS workspace and controls were directly verified. Coverage Gap Candidate Areas loaded with visible map data, but persistence after closing the layer panel was not verified. Zoom/tool retention and default-view restoration were not tested.
