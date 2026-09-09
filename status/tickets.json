@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-09T14:44:20.819Z",
+  "generatedAt": "2026-09-09T14:45:30.590Z",
   "counts": {
     "tickets": 3,
     "handoffs": 1,
@@ -41,8 +41,8 @@
       "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create retry handoff",
-      "updatedAt": "2026-09-09T14:44:20.819Z",
+      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "updatedAt": "2026-09-09T14:45:30.590Z",
       "retries": 2,
       "retryLimit": 3,
       "retryLabel": "Retry 2/3"
