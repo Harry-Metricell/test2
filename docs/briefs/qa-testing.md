@@ -29,8 +29,8 @@ Use a unique filename for each state, call `saveEvidencePng(await tab.screenshot
 
 Before testing, create the staging screenshots folder. For every criterion, save one initial-state PNG before the first interaction. For each meaningful state-changing interaction, save a PNG immediately before and immediately after it. Do not capture redundant screenshots for scrolling, idle waits, or clicks that do not change state. A displayed browser screenshot or screenshot ID alone is not evidence. Use the available file/screenshot save method, then verify each file exists and has non-zero size before finalising. If PNG files cannot be created or verified, set the affected outcomes to `Blocked`, set top-level `qaStatus` to `Blocked`, explain the exact error in `reason`, and still write the required staged JSON.
 
-Save screenshots only to the selected staging folder:
-`C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\<handoffId>\\screenshots\\`. The publisher copies them to the permanent evidence folder.
+Treat each selected `test_ticket` handoff as one test attempt. Never reuse a previous handoff's staging folder or copy screenshots into a permanent ticket folder. Save screenshots only to the selected staging folder:
+`C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\<handoffId>\\screenshots\\`. The publisher assigns the permanent numbered attempt folder and records it in the published evidence paths; do not invent or edit that folder yourself.
 
 Do not write a permanent report; include the concise report text in `test-output.json`.
 
