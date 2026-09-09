@@ -3,7 +3,7 @@
 ## Current State
 
 - Jira status: READY FOR TESTING
-- QA outcome: Blocked
+- QA outcome: Unverified
 - Workflow state: Retry Queued
 - Action owner: Coordinator
 - Next action: Retry 1/3 queued; coordinator will start tester
