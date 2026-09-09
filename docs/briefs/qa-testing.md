@@ -2,9 +2,9 @@
 
 Execute immediately; do not summarise this brief.
 
-Read exactly these local files and no others: `status/handoffs.json`; the selected handoff's `inputs.criteria`; `inputs.ticketJson`; and `inputs.status`. Treat the handoff paths as the only permitted ticket inputs.
+Use the GitHub connector to fetch the live `main` branch file `status/handoffs.json` before selecting work; do not use a local checkout copy for queue selection. Then fetch only the selected handoff's remote `inputs.criteria`, `inputs.ticketJson`, and `inputs.status`. Treat the handoff paths as the only permitted ticket inputs. If a remote fetch fails, retry once after a short wait; never guess from stale local files.
 
-Select the first eligible open `test_ticket` handoff in deterministic `handoffId` order from the local project's `status/handoffs.json`. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present. If QA status is `Awaiting Evidence Review` or `Evidence Reviewed`, skip it.
+Select the first eligible open `test_ticket` handoff in deterministic `handoffId` order from the freshly fetched live GitHub `status/handoffs.json`. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present. If QA status is `Awaiting Evidence Review` or `Evidence Reviewed`, skip it.
 
 Use the authenticated V4 browser. If an authentication or login page appears, enter `harry.piper@metricell.com` in the email field and press `Continue`. Never enter a password, handle MFA, or alter authentication state. Test every criterion independently. Use `Passed` only with direct evidence, `Failed` only with direct contradictory evidence, `Blocked` when testing or required evidence is prevented by access, permissions, browser, data or environment problems, and `Unverified` only when testing occurred but the evidence is inconclusive. Record actual `steps_taken`. When the browser exposes its version, add `browserVersion` to the first result object; otherwise omit it. Capture the browser name and version only from visible browser information; never infer it.
 
