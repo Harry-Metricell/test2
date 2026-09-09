@@ -28,15 +28,15 @@
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Retry Queued",
-    "qaStatus": "Ready for Testing",
+    "workflowState": "Ready",
+    "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Retry 2/3 queued; coordinator will start tester",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
-    "retries": 2,
+    "retries": 1,
     "blockedStage": "testing",
-    "updatedAt": "2026-09-09T14:55:17.053Z"
+    "updatedAt": "2026-09-09T10:05:28.814+0100"
   }
 }
