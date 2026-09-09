@@ -1,6 +1,6 @@
 # TEST2 Coordinator Brief
 
-Run one bounded TEST2 orchestration cycle. Use live GitHub as the source of truth and do not use Jira.
+Run one bounded TEST2 orchestration cycle. Use live GitHub as the source of truth and do not use Jira. Continue scanning until every currently actionable handoff is processed or individually blocked; a blocked or unavailable ticket must never stop work on other tickets.
 
 Read only:
 - `status/handoffs.json`
@@ -44,4 +44,4 @@ Maintain temporary per-run attempt state outside GitHub. Count only tester attem
 
 Do not change Jira, modify criteria during testing, upload credentials, enter passwords, create reports in a worker, or scan unrelated ticket folders. Do not claim completion without remote read-back of required outputs and final status.
 
-Remain quiet while state is unchanged. Return one compact structured summary only when the cycle completes, is blocked, or needs user action.
+After any ticket is blocked, immediately rescan for other eligible handoffs. Return one compact structured summary only when no actionable handoffs or in-flight child tasks remain, or when user action is required. A single blocked ticket is not a reason to end the cycle.
