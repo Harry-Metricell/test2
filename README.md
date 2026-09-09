@@ -2,15 +2,30 @@
 
 Repository-controlled QA workflow for Metricell Smart Network V4.
 
-The aim is to reduce chat/token usage by moving repeatable work into GitHub Actions and plain repository files. Codex should be triggered only when the generated plan says human judgement, authenticated browser testing, evidence review, or static Playwright maintenance is required.
+The system keeps durable QA state in GitHub and uses Codex only for authenticated browser testing, evidence review, criteria ambiguity, and other judgement that static code cannot safely perform.
 
-## Current flow
+## Flow
 
-1. Jira import stores raw issue snapshots in `tickets/<KEY>/ticket.json`.
-2. `npm run generate` normalizes those snapshots into compact generated records.
-3. Generated status is written to `status/tickets.json` and `status/generated/<KEY>.json`.
-4. Required Codex work is written to `status/handoffs.json`.
-5. Separate Codex tasks consume the exact handoffs; GitHub Actions only generates and validates them.
+1. Jira import reads Jira and stores `tickets/<KEY>/ticket.json`; Jira is read-only.
+2. Static generation creates canonical criteria, status data, and `status/handoffs.json`.
+3. The coordinator reads live GitHub state and creates fresh worker tasks using only the linked brief.
+4. Tester and reviewer workers write compact output to local `.agent-staging`.
+5. The publisher validates output, copies evidence/reports to the configured local evidence folders, and publishes only the relevant ticket files.
+6. Status Bundler owns generated status, handoffs, `retries`, and `retryLimit`.
+
+## Publishing safety
+
+The publisher must never push from the dirty Desktop checkout. It uses GitHub Desktop Git and a temporary clean worktree based on the exact live remote `main` SHA. Its private index is populated from that worktree's `HEAD` before staging, so publishing cannot replace the repository with a partial tree.
+
+The publisher requires:
+
+- validated JSON output;
+- ticket-scoped paths;
+- remote read-back after publication;
+- local PNG evidence before report generation;
+- a verified PDF for a completed evidence report.
+
+The Windows scheduled publisher is kept disabled until a controlled real-output test has passed. The hidden launcher must not be treated as proof of success unless the Node publisher exit code and remote read-back are confirmed.
 
 ## Useful commands
 
@@ -21,11 +36,12 @@ npm run check
 
 ## Key folders
 
-- `.github/workflows/`: import and static planning workflows.
-- `tickets/`: raw Jira snapshots plus local per-ticket workflow files.
-- `status/`: generated dashboard-ready summaries and Codex handoffs.
-- `docs/`: workflow briefs, contracts, and operating notes.
+- `.github/workflows/`: import, validation, and status generation.
+- `tickets/`: Jira snapshots and per-ticket QA records.
+- `status/`: generated dashboard data and Codex handoffs.
+- `docs/briefs/`: complete worker and coordinator instructions.
+- `scripts/`: deterministic import, generation, validation, and publishing code.
 
-## Boundary
+## Boundaries
 
-This repo is allowed to import, normalize, plan, and preserve QA records. It must not silently approve Jira outcomes, publish unreviewed evidence, or overwrite progressed QA decisions with fresh Jira status.
+Do not upload credentials or authentication state. Do not change Jira from this repository. Do not change `criteria.md` during testing. Do not claim Passed without direct evidence. Keep the original GitHub report concise and record actual tester `steps_taken`.
