@@ -1,8 +1,9 @@
 {
   "ticket": "TEST2-6",
   "jiraStatus": "In Progress",
-  "qaStatus": "Not Tested",
+  "qaStatus": "Ready for Testing",
   "status": "In Progress",
   "retries": 0,
-  "retryLimit": 3
+  "retryLimit": 3,
+  "blockedStage": null
 }
