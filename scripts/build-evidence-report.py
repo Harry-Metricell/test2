@@ -35,7 +35,7 @@ def add_image_row(table, images):
     paragraph = merged.paragraphs[0]
     for image in images:
         run = paragraph.add_run()
-        run.add_picture(str(image), width=Inches(1.35))
+        run.add_picture(str(image), width=Inches(2.0))
         paragraph.add_run("  ")
 
 
@@ -112,7 +112,8 @@ def main():
         set_cell(metadata.cell(4, 1), "Automated TEST2 Evidence Review")
 
     cycle = doc.tables[2]
-    values = ["Automated", ticket, "Chrome", "Chrome", datetime.now().strftime("%d/%m/%Y"), "None recorded"]
+    browser_version = next((text(item.get("browserVersion")) for item in results if isinstance(item, dict) and item.get("browserVersion")), "version not recorded")
+    values = ["Automated", ticket, "Chrome", f"Chrome {browser_version}", datetime.now().strftime("%d/%m/%Y"), "None recorded"]
     for index, value in enumerate(values):
         if index < len(cycle.rows): set_cell(cycle.cell(index, 1), value)
 
@@ -120,7 +121,10 @@ def main():
     passed = sum(text(item.get("outcome")).lower() == "passed" for item in outcomes)
     failed = sum(text(item.get("outcome")).lower() == "failed" for item in outcomes)
     if len(summary.rows) >= 2:
-        set_cell(summary.cell(1, 0), ticket)
+        while len(summary.rows) > 2:
+            summary._tbl.remove(summary.rows[-1]._tr)
+        area_text = "\n".join(f"{index}. {text(item.get('criterion'))}" for index, item in enumerate(outcomes, 1))
+        set_cell(summary.cell(1, 0), area_text)
         set_cell(summary.cell(1, 1), "Y" if passed else "N")
         set_cell(summary.cell(1, 2), "Y" if failed else "N")
         set_cell(summary.cell(1, 3), str(failed))
@@ -139,9 +143,6 @@ def main():
         actual = text(result.get("actual_result")) or text(item.get("reason")) or text(result.get("reason"))
         if steps:
             actual = f"{actual}\nSteps taken: {'; '.join(steps)}"
-        evidence = result.get("evidence", [])
-        if evidence:
-            actual = f"{actual}\nEvidence: {', '.join(text(x) for x in evidence)}"
         values = [
             f"{number}.0.0",
             criterion,
@@ -160,7 +161,8 @@ def main():
             ]
         for index, value in enumerate(values):
             set_cell(row[index], value)
-        add_image_row(cases, screenshot_paths(result, screenshots))
+        for image in screenshot_paths(result, screenshots):
+            add_image_row(cases, [image])
 
     doc.save(str(output))
     patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review", "[Version]": "1.0", "[dd/mm/yyyy]": datetime.now().strftime("%d/%m/%Y"), "[Author]": "TEST2 QA Automation", "[Initial automated-test template]": "Generated from TEST2 evidence review"})
