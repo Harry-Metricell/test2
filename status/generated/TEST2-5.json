@@ -1,0 +1,40 @@
+{
+  "key": "TEST2-5",
+  "id": "103684",
+  "summary": "test 5 confusion v2",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-5",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-04T12:18:31.529+0100",
+    "updated": "2026-09-09T10:05:21.288+0100"
+  },
+  "description": "Beacon favourites need checking. Start on a visible beacon, use the star control to add it, open Favourites and confirm it appears, use the star control again to remove it, then confirm it no longer appears.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-5/ticket.json",
+    "criteria": "tickets/TEST2-5/criteria.md",
+    "status": "tickets/TEST2-5/status.json",
+    "screenshots": "tickets/TEST2-5/screenshots/",
+    "reports": "tickets/TEST2-5/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103684",
+    "importedAt": "2026-09-09T10:05:21.288+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Review Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "updatedAt": "2026-09-09T10:05:21.288+0100"
+  }
+}

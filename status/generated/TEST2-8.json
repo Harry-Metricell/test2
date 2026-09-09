@@ -1,0 +1,40 @@
+{
+  "key": "TEST2-8",
+  "id": "104023",
+  "summary": "Preserve map context when switching GIS panels",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-8",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-07T15:17:17.904+0100",
+    "updated": "2026-09-09T10:05:28.814+0100"
+  },
+  "description": "When a user opens the GIS workspace and moves between the layer panel and map tools, the current map context is retained. A selected coverage layer remains visible after the panel is closed, the zoom position is retained while another map tool is used, and returning to the default view restores the expected starting area without hiding the map controls.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-8/ticket.json",
+    "criteria": "tickets/TEST2-8/criteria.md",
+    "status": "tickets/TEST2-8/status.json",
+    "screenshots": "tickets/TEST2-8/screenshots/",
+    "reports": "tickets/TEST2-8/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104023",
+    "importedAt": "2026-09-09T10:05:28.814+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Review Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "updatedAt": "2026-09-09T10:05:28.814+0100"
+  }
+}
