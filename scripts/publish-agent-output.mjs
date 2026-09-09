@@ -115,8 +115,8 @@ function buildVerifiedReport(key, run) {
   const builder = path.join(repo, 'scripts', 'build-evidence-report.py');
   const renderer = path.join(repo, 'scripts', 'render-docx-to-pdf.ps1');
   const reviewFile = path.join(run, 'review-output.json');
-  const docx = path.join(run, 'report.docx');
-  const pdf = path.join(run, 'report.pdf');
+  const docx = path.join(run, `report-generated-${process.pid}.docx`);
+  const pdf = path.join(run, `report-generated-${process.pid}.pdf`);
   const screenshots = path.join(evidenceRoot, key, 'screenshots');
   execFileSync(python, [builder, '--template', template, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', docx], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(docx)) fail('Template report generation completed without a non-empty DOCX');
@@ -189,11 +189,14 @@ if (outputType === 'criteria-output.json') {
 } else {
   if (!Array.isArray(output.criterionOutcomes)) fail('criterionOutcomes is missing');
   const review = { ...output };
-  const pdf = path.join(run, 'report.pdf');
+  let generatedDocx = path.join(run, 'report.docx');
+  let generatedPdf = path.join(run, 'report.pdf');
   try {
-    if (!nonEmpty(pdf)) {
+    if (!nonEmpty(generatedPdf)) {
       if (!pngEvidence(key)) fail('Screenshots are required before report generation');
-      buildVerifiedReport(key, run);
+      const built = buildVerifiedReport(key, run);
+      generatedDocx = built.docx;
+      generatedPdf = built.pdf;
     }
   } catch (error) {
     review.overallOutcome = 'Blocked';
@@ -205,10 +208,10 @@ if (outputType === 'criteria-output.json') {
   status.qaStatus = review.qaStatus || 'Evidence Reviewed';
   writeJson(statusFile, status);
   if (!directFile) {
-    copyFolder(path.join(run, 'report.docx'), path.join(evidenceRoot, key, 'reports', `${key}.docx`));
-    copyFolder(path.join(run, 'report.pdf'), path.join(evidenceRoot, key, 'reports', `${key}.pdf`));
-    if (nonEmpty(path.join(run, 'report.pdf'))) {
-      copyFolder(path.join(run, 'report.pdf'), path.join(repo, 'tickets', key, 'report.pdf'));
+    copyFolder(generatedDocx, path.join(evidenceRoot, key, 'reports', `${key}.docx`));
+    copyFolder(generatedPdf, path.join(evidenceRoot, key, 'reports', `${key}.pdf`));
+    if (nonEmpty(generatedPdf)) {
+      copyFolder(generatedPdf, path.join(repo, 'tickets', key, 'report.pdf'));
       changed.push(`tickets/${key}/report.pdf`);
     }
   }
@@ -227,6 +230,7 @@ function publishFromCleanWorktree() {
       worktree = path.join(base, `worktree-${attempt}`);
       runGit(['worktree', 'add', '--detach', worktree, remoteSha]);
       const cleanIndex = path.join(base, `index-${attempt}`);
+      runGitAt(worktree, ['read-tree', 'HEAD'], cleanIndex);
       for (const relative of changed) {
         const source = path.join(repo, relative);
         const target = path.join(worktree, relative);
