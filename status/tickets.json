@@ -34,10 +34,10 @@
       "summary": "Preserve map context when switching GIS panels",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Criteria Review Required",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-09T10:05:28.814+0100"
     },
     {
