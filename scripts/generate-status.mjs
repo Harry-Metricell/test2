@@ -233,10 +233,24 @@ function normalizeTicket(dirName) {
       workflowState: 'Retry Queued',
       retries: retries + 1,
       retryLimit,
+      blockedStage: null,
       nextAction: 'Create retry handoff',
       updatedAt: new Date().toISOString()
     };
     if (!checkOnly) fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
+  }
+  // A previous publisher can leave blockedStage behind while a stale review status
+  // remains. Treat that combination as a queued retry instead of suppressing work.
+  if (localStatus.blockedStage && localStatus.qaStatus !== 'Blocked' && retries < retryLimit) {
+    localStatus = {
+      ...localStatus,
+      qaStatus: 'Ready for Testing',
+      workflowState: 'Retry Queued',
+      blockedStage: null,
+      nextAction: `Retry ${retries}/${retryLimit} queued; coordinator will start tester`,
+      updatedAt: new Date().toISOString()
+    };
+    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
   }
   return { ...ticket, status: mergeStatus(ticket, localStatus) };
 }
