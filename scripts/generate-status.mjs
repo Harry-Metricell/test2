@@ -247,7 +247,7 @@ function criteriaReady(ticket) {
 }
 
 function handoffFor(ticket) {
-  // Blocked tester output is converted to Retry Queued during normalization above.\n  // After three retries it remains Blocked and produces no handoff.\n  if (ticket.status.qaStatus === 'Criteria Review Required' && !criteriaReady(ticket)) {
+  if (ticket.status.qaStatus === 'Criteria Review Required' && !criteriaReady(ticket)) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
       action: 'criteria_conversion',
@@ -258,24 +258,11 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/criteria.md`, schema: 'v4-qa-criteria.v1' }
     };
   }
-  if (ticket.status.qaStatus === 'Ready for Testing' && criteriaReady(ticket)) {
+  if ((ticket.status.qaStatus === 'Ready for Testing' || ticket.status.workflowState === 'Retry Queued') && criteriaReady(ticket)) {
     return {
-      handoffId: `handoff-${ticket.key}-test`,
-      action: 'test_ticket',
-      brief: 'docs/briefs/qa-testing.md',
-      owner: 'ticket-tester',
-      ticket: ticket.key,
-      inputs: {
-        criteria: `tickets/${ticket.key}/criteria.md`,
-        ticketJson: `tickets/${ticket.key}/ticket.json`,
-        status: `tickets/${ticket.key}/status.json`
-      },
-      expectedOutput: { path: `tickets/${ticket.key}/results.json`, schema: 'v4-qa-test-result.v1' }
-    };
-  }
-  if (ticket.status.workflowState === 'Retry Queued') {
-    return {
-      handoffId: `handoff-${ticket.key}-retry`,
+      handoffId: ticket.status.workflowState === 'Retry Queued'
+        ? `handoff-${ticket.key}-retry`
+        : `handoff-${ticket.key}-test`,
       action: 'test_ticket',
       brief: 'docs/briefs/qa-testing.md',
       owner: 'ticket-tester',
