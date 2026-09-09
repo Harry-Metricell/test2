@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-09T16:26:49.304+0100",
   "counts": {
     "tickets": 6,
-    "handoffs": 3,
+    "handoffs": 2,
     "byWorkflowState": {
       "In Progress": 1,
       "Ready": 4,
@@ -53,7 +53,7 @@
       "summary": "Verify GIS map search and marker interaction",
       "jiraStatus": "In Progress",
       "workflowState": "In Progress",
-      "qaStatus": "Criteria Review Required",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "No deterministic action available",
