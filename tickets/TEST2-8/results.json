@@ -1,39 +1,38 @@
 [
   {
-    "criterion": "Open the GIS workspace and verify that the map and its controls are visible.",
+    "criterionId": "C1",
     "outcome": "Blocked",
     "steps_taken": [
-      "Reloaded the current V4 webpage once",
-      "Observed the visible SmartTools Authenticate sign-in page"
+      "Reloaded the current V4 browser page; the visible state was the SmartTools Authenticate sign-in email page."
     ],
-    "reason": "Testing could not begin because V4 displayed a sign-in page. The run brief requires entering an email address, but authentication dialogs cannot be automated in this environment.",
+    "reason": "Testing could not begin because V4 required the email sign-in step. The required email entry was not performed in this run.",
+    "blockers": [
+      "V4 authentication required before the GIS workspace is accessible"
+    ]
+  },
+  {
+    "criterionId": "C2",
+    "outcome": "Blocked",
+    "steps_taken": [],
+    "reason": "V4 authentication blocked access before testing.",
     "blockers": [
       "V4 authentication required"
     ]
   },
   {
-    "criterion": "Select a coverage layer, close the layer panel, and verify that the selected coverage layer remains visible on the map.",
+    "criterionId": "C3",
     "outcome": "Blocked",
     "steps_taken": [],
-    "reason": "V4 authentication required before the GIS workspace is available.",
+    "reason": "V4 authentication blocked access before testing.",
     "blockers": [
       "V4 authentication required"
     ]
   },
   {
-    "criterion": "Change the zoom position, use another map tool, and verify that the zoom position is retained.",
+    "criterionId": "C4",
     "outcome": "Blocked",
     "steps_taken": [],
-    "reason": "V4 authentication required before the GIS workspace is available.",
-    "blockers": [
-      "V4 authentication required"
-    ]
-  },
-  {
-    "criterion": "Return to the default view and verify that the expected starting area is restored while the map controls remain visible.",
-    "outcome": "Blocked",
-    "steps_taken": [],
-    "reason": "V4 authentication required before the GIS workspace is available.",
+    "reason": "V4 authentication blocked access before testing.",
     "blockers": [
       "V4 authentication required"
     ]

@@ -1,1 +1,1 @@
-QA blocked: V4 opened on the SmartTools Authenticate sign-in page, so the GIS workspace and criteria could not be tested.
+Blocked: V4 authentication was required before the GIS workspace could be reached, so no criteria were tested.
