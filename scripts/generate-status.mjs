@@ -142,17 +142,23 @@ function mergeStatus(ticket, localStatus) {
   const workflowState = statusRank(localState) <= statusRank(jiraState) ? localState : jiraState;
   const retries = Number(localStatus.retries || 0);
   const retryLimit = Number(localStatus.retryLimit || 3);
-  const nextAction = workflowState === 'Retry Queued'
-    ? `Retry ${retries}/${retryLimit} queued; coordinator will start tester`
-    : workflowState === 'Blocked' && retries >= retryLimit
-      ? 'Manual review required after retry limit'
-      : localStatus.nextAction || defaultNextAction(workflowState, criteriaReady(ticket));
+  const qaStatus = localStatus.qaStatus && localStatus.qaStatus !== 'Not Tested'
+    ? localStatus.qaStatus
+    : (criteriaReady(ticket) ? 'Ready for Testing' : (ticket.acceptanceCriteria.length ? 'Ready for Testing' : 'Criteria Review Required'));
+  const jiraReady = jiraReadyForTesting(ticket);
+  const nextAction = qaStatus === 'Criteria Review Required'
+    ? 'Create criteria conversion handoff'
+    : workflowState === 'Retry Queued'
+      ? (jiraReady ? `Retry ${retries}/${retryLimit} queued; coordinator will start tester` : 'Waiting for Jira status: READY FOR TESTING')
+      : workflowState === 'Blocked' && retries >= retryLimit
+        ? 'Manual review required after retry limit'
+        : !jiraReady && (qaStatus === 'Ready for Testing' || qaStatus === 'Awaiting Evidence Review')
+          ? 'Waiting for Jira status: READY FOR TESTING'
+          : localStatus.nextAction || defaultNextAction(workflowState, criteriaReady(ticket));
   return {
     jiraStatus: ticket.jira.status || 'Unknown',
     workflowState,
-    qaStatus: localStatus.qaStatus && localStatus.qaStatus !== 'Not Tested'
-      ? localStatus.qaStatus
-      : (criteriaReady(ticket) ? 'Ready for Testing' : (ticket.acceptanceCriteria.length ? 'Ready for Testing' : 'Criteria Review Required')),
+    qaStatus,
     qaOutcome: localStatus.qaOutcome || localStatus.outcome || 'Not Tested',
     automationSuitability: localStatus.automationSuitability || 'Unclassified',
     actionOwner: localStatus.actionOwner || 'Coordinator',
