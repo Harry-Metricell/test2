@@ -6,6 +6,8 @@ This standing authorisation also covers automatically continuing testing for eve
 
 Run one persistent TEST2 orchestration cycle. It may be slow. Never return while any actionable handoff, child-task setup, child task, publisher, or bundler started by this run remains unresolved. Use live GitHub as the source of truth and do not use Jira. Continue scanning until every currently actionable handoff is processed or individually blocked; a blocked or unavailable ticket must never stop work on other tickets.
 
+The coordinator is read-only for ticket state: never edit, overwrite, or publish `status.json`, `status/tickets.json`, `status/ticket-status.md`, `status/handoffs.json`, `qaStatus`, `workflowState`, `retries`, or `retryLimit`. Status Bundler and the authorised worker/publisher pipeline own all status changes; the coordinator may only observe them and create child tasks.
+
 Use the GitHub connector for every queue and ticket read; never use a stale local checkout copy for decisions.
 
 Treat conversation history as unavailable and irrelevant. Do not use prior chat messages, prior summaries, worker reasoning, or old task transcripts. Reconstruct state only from the current live handoff file, selected ticket status/output files, publisher/bundler state, and the current run-state file.
