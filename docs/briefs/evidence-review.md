@@ -2,9 +2,9 @@
 
 Execute immediately; return one compact JSON object only. Do not summarise this brief.
 
-Read exactly these inputs and no others: `status/handoffs.json`; the selected handoff's `inputs.results`; `inputs.generated`; `tickets/<KEY>/criteria.md`; `tickets/<KEY>/report.md`; and PNG screenshots only from `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`. Do not use Jira, the task prompt's ticket number, arbitrary ticket selection, or other repository files.
+Use the GitHub connector to fetch the live `main` branch file `status/handoffs.json` before selecting work; do not use a local checkout copy for queue selection. Then fetch only the selected handoff's remote `inputs.results`, `inputs.generated`, `tickets/<KEY>/criteria.md`, and `tickets/<KEY>/report.md`; read PNG screenshots only from `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\`. Do not use Jira, the task prompt's ticket number, arbitrary ticket selection, or other repository files.
 
-Select the first eligible `evidence_review` handoff in deterministic `handoffId` order. If none exists, return the required fields with `noOp: true`. If the selected ticket is already `Evidence Reviewed`, return a no-op.
+Select the first eligible `evidence_review` handoff in deterministic `handoffId` order from the freshly fetched live GitHub queue. If a remote fetch fails, retry once after a short wait; never guess from stale local files. If none exists, return the required fields with `noOp: true`. If the selected ticket is already `Evidence Reviewed`, return a no-op.
 
 If the screenshot folder is missing, empty, or contains no non-empty PNG, assess every criterion as `Blocked`, set `overallOutcome` and `qaStatus` to `Blocked`, set `reportPath` to ``, explain that screenshots are required, and write the output immediately.
 
