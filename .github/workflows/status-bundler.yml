@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'tickets/**'
+      - '!tickets/**/status.json'
       - 'scripts/generate-status.mjs'
       - 'package.json'
 
@@ -51,3 +52,4 @@ jobs:
           done
           echo "Unable to publish bundled status after three attempts."
           exit 1
+
