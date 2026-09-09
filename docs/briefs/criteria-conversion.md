@@ -2,9 +2,9 @@
 
 Execute immediately; do not summarise this brief.
 
-Read exactly these local files and no others: `status/handoffs.json`; the selected handoff's `inputs.ticketJson`; `status/generated/<KEY>.json`; and `tickets/<KEY>/criteria.md`. Treat the handoff paths as the only permitted ticket inputs.
+Use the GitHub connector to fetch the live `main` branch file `status/handoffs.json` before selecting work; do not use a local checkout copy for queue selection. Then fetch only the selected handoff's remote `inputs.ticketJson`, `status/generated/<KEY>.json`, and `tickets/<KEY>/criteria.md`. Treat the handoff paths as the only permitted ticket inputs. If a remote fetch fails, retry once after a short wait; never guess from stale local files.
 
-Select the first eligible open `criteria_conversion` handoff in deterministic `handoffId` order from the local project's `status/handoffs.json`. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present.
+Select the first eligible open `criteria_conversion` handoff in deterministic `handoffId` order from the freshly fetched live GitHub `status/handoffs.json`. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present.
 
 Read only the selected handoff inputs. Convert the ticket source into `criteria.md` content with one unchecked bullet per distinct state-changing/user action. Never combine separate actions. Put the expected observable result in the same bullet. Observations belong with the action they evidence. Preserve source meaning; if extraction is unreliable, output one unchecked bullet stating that criteria could not be extracted.
 
