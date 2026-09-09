@@ -36,7 +36,7 @@
     "nextAction": "Create retry handoff",
     "reviewState": "Not Reviewed",
     "retries": 1,
-    "blockedStage": null,
-    "updatedAt": "2026-09-09T11:35:45.163Z"
+    "blockedStage": "review",
+    "updatedAt": "2026-09-09T11:38:14.056Z"
   }
 }
