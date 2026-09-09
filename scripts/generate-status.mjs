@@ -230,6 +230,26 @@ function criteriaReady(ticket) {
 }
 
 function handoffFor(ticket) {
+  // Keep blocked work visible to the coordinator so it can decide retry vs human review.
+  // The coordinator, not this generator, owns the retry decision.
+  if (ticket.status.qaStatus === 'Blocked') {
+    const attempts = Number(ticket.status.testerAttempts || 0);
+    if (attempts < 3) {
+      return {
+        handoffId: `handoff-${ticket.key}-blocked-recovery-${attempts + 1}`,
+        action: 'blocked_recovery',
+        brief: 'docs/briefs/coordinator.md',
+        owner: 'Coordinator',
+        ticket: ticket.key,
+        inputs: {
+          status: `tickets/${ticket.key}/status.json`,
+          results: `tickets/${ticket.key}/results.json`
+        },
+        expectedOutput: { path: `tickets/${ticket.key}/status.json`, schema: 'v4-qa-status.v1' }
+      };
+    }
+    return null;
+  }
   if (ticket.status.qaStatus === 'Criteria Review Required' && !criteriaReady(ticket)) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
