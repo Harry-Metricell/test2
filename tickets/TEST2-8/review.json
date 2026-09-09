@@ -23,10 +23,10 @@
       "reason": "The final map screenshot shows controls, but the evidence does not decisively establish that the expected starting area was restored; another captured state shows the sign-in screen."
     }
   ],
-  "overallOutcome": "Unverified",
+  "overallOutcome": "Blocked",
   "reportPath": "",
   "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-8/screenshots",
-  "qaStatus": "Evidence Reviewed",
+  "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Evidence review completed for all four criteria using the selected live handoff and local PNG evidence."
+  "reason": "Report generation or PDF verification failed: text is not defined"
 }
