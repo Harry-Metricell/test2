@@ -38,7 +38,8 @@ Create every child task in the saved Test2 project, never projectless. Use a fre
   "prompt": "[@GitHub](plugin://github@openai-curated-remote) docs/briefs/<selected-brief>.md"
 }
 ```
-The `projectId` belongs inside `target`; never send it at the top level. Never use `environment: local` for child workers. Do not add a ticket number or extra instructions to worker prompts. Use the exact brief path from the selected handoff.
+The `projectId` belongs inside `target`; never send it at the top level. Never use `environment: local` for child workers.
+If `create_thread` returns a `clientThreadId` or setup-in-progress result instead of a ready `threadId`, do not treat that as worker failure. Poll `list_threads` for the newly created project task for up to 2 minutes, then pass only its returned ready `threadId` and `hostId` to `wait_threads`. If it is still setting up, wait another 2 minutes and continue; never declare the ticket blocked merely because worktree setup is slow. Do not add a ticket number or extra instructions to worker prompts. Use the exact brief path from the selected handoff.
 
 Maintain temporary per-run attempt state outside GitHub. Count only tester attempts for the same ticket in this coordinator run. Never start more than 3 tester attempts for one ticket in one run. Retry only after an operational failure or missing valid staged output. After the third unsuccessful tester attempt, stop retrying and leave the ticket Blocked for human review. This limit does not apply to unrelated tickets or future coordinator runs.
 
