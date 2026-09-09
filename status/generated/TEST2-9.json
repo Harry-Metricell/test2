@@ -30,7 +30,7 @@
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
     "qaStatus": "Evidence Reviewed",
-    "qaOutcome": "Not Tested",
+    "qaOutcome": "Failed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "Create testing handoff",
