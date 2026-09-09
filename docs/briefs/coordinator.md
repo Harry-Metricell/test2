@@ -46,10 +46,11 @@ Create every child task in the saved Test2 project, never projectless. Use the s
     "projectId": "39fdf60d-6165-4a78-ad05-c7344f38aacf",
     "environment": { "type": "local" }
   },
-  "prompt": "[@GitHub](plugin://github@openai-curated-remote) docs/briefs/<selected-brief>.md"
+"prompt": "[@GitHub](plugin://github@openai-curated-remote)read and follow: docs/briefs/<selected-brief>.md"
 }
 ```
 The `projectId` belongs inside `target`; never send it at the top level. Use `environment: local` for child workers only because the primary checkout has been synchronised before this run.
+Every child prompt must be exactly `[@GitHub](plugin://github@openai-curated-remote)read and follow: docs/briefs/<selected-brief>.md`; do not add a ticket number, summary, or other instructions.
 If `create_thread` returns a `clientThreadId` or setup-in-progress result instead of a ready `threadId`, do not treat that as worker failure.
 Never send a final summary immediately after `create_thread`, `list_threads`, or a queued/setup response. A child is not started until a ready child task is returned and observed running or completed. Store the child identifier in run state, poll it with `wait_threads` for up to 2 minutes, and continue the outer loop while it is pending. If the child identifier is not exposed, poll `list_threads` repeatedly for the newest Test2 project task; do not end the coordinator run while the handoff remains live. Poll `list_threads` for the newly created project task for up to 2 minutes, then pass only its returned ready `threadId` and `hostId` to `wait_threads`. If it is still setting up, keep polling every 2 minutes until it becomes ready or the task service returns a definite error; never declare the ticket blocked merely because worktree setup is slow. While it is pending, process other eligible tickets independently. Do not add a ticket number or extra instructions to worker prompts. Use the exact brief path from the selected handoff.
 The linked brief is the complete child-task instruction set. The child must read it immediately and follow it; do not paraphrase, duplicate, or replace its instructions in the task prompt.
