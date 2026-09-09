@@ -1,1 +1,0 @@
-Initial GIS workspace loaded with map controls visible. Predicted Coverage was visible in the layer panel, but selected-layer rendering, panel-close persistence, zoom retention, and default-view restoration were inconclusive and require further evidence.

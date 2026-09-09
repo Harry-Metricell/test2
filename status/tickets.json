@@ -1,14 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-08T15:11:14.010+0100",
+  "generatedAt": "2026-09-07T15:45:55.099+0100",
   "counts": {
-    "tickets": 3,
+    "tickets": 1,
     "handoffs": 0,
     "byWorkflowState": {
-      "Ready": 3
+      "Ready": 1
     },
     "byQaOutcome": {
-      "Not Tested": 3
+      "Not Tested": 1
     }
   },
   "policy": {
@@ -18,28 +18,6 @@
     "missingEvidence": "warning_not_pass"
   },
   "tickets": [
-    {
-      "key": "TEST2-3",
-      "summary": "test 3 confusion",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
-      "updatedAt": "2026-09-08T15:11:14.010+0100"
-    },
-    {
-      "key": "TEST2-8",
-      "summary": "Preserve map context when switching GIS panels",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
-      "updatedAt": "2026-09-07T15:17:31.020+0100"
-    },
     {
       "key": "TEST2-9",
       "summary": "Retain selected coverage after returning to the map",
