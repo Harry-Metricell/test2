@@ -30,7 +30,7 @@ for (const issue of issues) {
       console.warn(`Ignoring malformed ${statusFile}; Jira status will be preserved and QA status reset`);
     }
   }
-  // Jira is read-only: refresh only Jira-owned fields and preserve QA workflow state, retries, and block metadata.\n  const nextStatus = { ...existing, ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus };\n  fs.writeFileSync(statusFile, JSON.stringify(nextStatus, null, 2) + '\\n');
+  // Jira is read-only: refresh only Jira-owned fields and preserve QA workflow state, retries, and block metadata.\n  const nextStatus = { ...existing, ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus, retries: Number(existing.retries || 0), retryLimit: Number(existing.retryLimit || 3) };\n  fs.writeFileSync(statusFile, JSON.stringify(nextStatus, null, 2) + '\\n');
 }
 
 if (fs.existsSync('tickets')) {
