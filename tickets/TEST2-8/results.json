@@ -1,0 +1,53 @@
+[
+  {
+    "criterion": "Open the GIS workspace and verify that the map and its controls are visible.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Opened the authenticated GIS workspace."
+    ],
+    "evidence": [
+      "criterion-1-initial.png"
+    ]
+  },
+  {
+    "criterion": "Select a coverage layer, close the layer panel, and verify that the selected coverage layer remains visible on the map.",
+    "outcome": "Unverified",
+    "steps_taken": [
+      "Selected Coverage Gap Candidate Areas."
+    ],
+    "reason": "The coverage layer was visible, but the panel-close interaction did not produce conclusive evidence of the required final state.",
+    "evidence": [
+      "criterion-2-before.png",
+      "criterion-2-after.png",
+      "criterion-2-close-before.png",
+      "criterion-2-close-after.png"
+    ]
+  },
+  {
+    "criterion": "Change the zoom position, use another map tool, and verify that the zoom position is retained.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Used Zoom in, then used Reset north and flatten map."
+    ],
+    "evidence": [
+      "criterion-3-before.png",
+      "criterion-3-after-zoom.png",
+      "criterion-3-after-tool.png"
+    ]
+  },
+  {
+    "criterion": "Return to the default view and verify that the expected starting area is restored while the map controls remain visible.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Reloaded the GIS workspace to restore the default view."
+    ],
+    "reason": "Reload redirected to the SmartTools sign-in page; authentication was not changed, so the default view could not be verified or fully restored.",
+    "blockers": [
+      "Authentication required after reload."
+    ],
+    "evidence": [
+      "criterion-4-before.png",
+      "criterion-4-after-default.png"
+    ]
+  }
+]
