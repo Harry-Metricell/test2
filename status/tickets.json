@@ -1,15 +1,15 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-09T15:03:25.830Z",
+  "generatedAt": "2026-09-09T15:41:38.428+0100",
   "counts": {
-    "tickets": 3,
-    "handoffs": 1,
+    "tickets": 5,
+    "handoffs": 2,
     "byWorkflowState": {
-      "Ready": 2,
+      "Ready": 4,
       "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Not Tested": 3
+      "Not Tested": 5
     }
   },
   "policy": {
@@ -20,6 +20,20 @@
   },
   "tickets": [
     {
+      "key": "TEST2-4",
+      "summary": "test 4",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-09T15:41:26.290+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
       "key": "TEST2-5",
       "summary": "test 5 confusion v2",
       "jiraStatus": "READY FOR TESTING",
@@ -29,6 +43,20 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-09T10:05:21.288+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-7",
+      "summary": "Verify GIS layer and map view controls",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Review Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-09T15:41:38.428+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""

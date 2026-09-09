@@ -1,0 +1,44 @@
+{
+  "key": "TEST2-4",
+  "id": "103437",
+  "summary": "test 4",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-4",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-03T10:35:48.714+0100",
+    "updated": "2026-09-09T15:41:26.290+0100"
+  },
+  "description": "Acceptance Criteria:\nGIS screen can be opened from launcher",
+  "acceptanceCriteria": [
+    "GIS screen can be opened from launcher"
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-4/ticket.json",
+    "criteria": "tickets/TEST2-4/criteria.md",
+    "status": "tickets/TEST2-4/status.json",
+    "screenshots": "tickets/TEST2-4/screenshots/",
+    "reports": "tickets/TEST2-4/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103437",
+    "importedAt": "2026-09-09T15:41:26.290+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-09T15:41:26.290+0100"
+  }
+}
