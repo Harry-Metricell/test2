@@ -1,5 +1,21 @@
 {
   "schema": "v4-qa-handoffs.v1",
   "generatedAt": "2026-09-09T10:05:28.814+0100",
-  "handoffs": []
+  "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-8-blocked-recovery-1",
+      "action": "blocked_recovery",
+      "brief": "docs/briefs/coordinator.md",
+      "owner": "Coordinator",
+      "ticket": "TEST2-8",
+      "inputs": {
+        "status": "tickets/TEST2-8/status.json",
+        "results": "tickets/TEST2-8/results.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-8/status.json",
+        "schema": "v4-qa-status.v1"
+      }
+    }
+  ]
 }
