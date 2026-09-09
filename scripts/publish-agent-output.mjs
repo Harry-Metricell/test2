@@ -19,15 +19,15 @@ function ticketKey(value) {
 function gitPath() {
   const candidates = [];
   if (process.env.TEST2_GIT) candidates.push(process.env.TEST2_GIT);
-  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   const desktop = path.join(process.env.LOCALAPPDATA || '', 'GitHubDesktop');
   if (fs.existsSync(desktop)) {
-    for (const entry of fs.readdirSync(desktop, { withFileTypes: true })) {
+    for (const entry of fs.readdirSync(desktop, { withFileTypes: true }).sort((a, b) => b.name.localeCompare(a.name))) {
       if (entry.isDirectory() && entry.name.startsWith('app-')) {
         candidates.push(path.join(desktop, entry.name, 'resources', 'app', 'git', 'cmd', 'git.exe'));
       }
     }
   }
+  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   candidates.push('C:\\Program Files\\Git\\cmd\\git.exe', 'git');
   return candidates.find(candidate => candidate === 'git' || fs.existsSync(candidate)) || 'git';
 }
@@ -46,6 +46,20 @@ function runGit(args) {
     }
   }).trim();
 }
+function runGitAt(cwd, args, indexFile) {
+  const gitRoot = path.dirname(path.dirname(git));
+  const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
+  const binPath = path.join(gitRoot, 'mingw64', 'bin');
+  return execFileSync(git, ['-C', cwd, ...args], {
+    encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
+    env: {
+      ...process.env,
+      GIT_EXEC_PATH: execPath,
+      ...(indexFile ? { GIT_INDEX_FILE: indexFile } : {}),
+      PATH: `${binPath};${process.env.PATH || ''}`
+    }
+  }).trim();
+}
 function ensureRepoClean() {
   const changes = runGit(['status', '--porcelain'])
     .split(/\r?\n/)
@@ -59,12 +73,16 @@ function syncBeforePublish() {
 function pushWithRetry() {
   for (let attempt = 1; attempt <= 3; attempt += 1) {
     try {
-      runGit(['push', 'origin', 'main']);
+      runGit(['push', 'origin', 'HEAD:refs/heads/main']);
       return;
     } catch (error) {
       if (attempt === 3) throw error;
       runGit(['fetch', 'origin', 'main']);
-      runGit(['rebase', 'origin/main']);
+      try {
+        runGit(['merge-base', '--is-ancestor', 'origin/main', 'HEAD']);
+      } catch {
+        fail('Remote main advanced independently; refusing to rebase or overwrite the dirty Desktop checkout');
+      }
     }
   }
 }
@@ -197,21 +215,55 @@ if (outputType === 'criteria-output.json') {
   changed.push(`tickets/${key}/review.json`, `tickets/${key}/status.json`);
 }
 
-runGit(['add', '--', ...changed]);
-if (!runGit(['diff', '--cached', '--name-only'])) {
-  const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
-  if (!remote) fail('GitHub remote read-back returned no main ref');
-  const cleaned = cleanupRun(run, directFile);
-  console.log(JSON.stringify({ ticket: key, changedFiles: [], published: true, noOp: true, cleaned, cleanupPath: run }));
-  process.exit(0);
+function publishFromCleanWorktree() {
+  const base = path.join(process.env.TEMP || 'C:\\Windows\\Temp', `test2-publish-${process.pid}`);
+  fs.mkdirSync(base, { recursive: true });
+  let worktree = '';
+  try {
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      runGit(['fetch', 'origin', 'main']);
+      const remoteSha = runGit(['ls-remote', 'origin', 'refs/heads/main']).split(/\s+/)[0];
+      if (!/^[0-9a-f]{40}$/.test(remoteSha)) fail('GitHub remote read-back returned no usable main SHA');
+      worktree = path.join(base, `worktree-${attempt}`);
+      runGit(['worktree', 'add', '--detach', worktree, remoteSha]);
+      const cleanIndex = path.join(base, `index-${attempt}`);
+      for (const relative of changed) {
+        const source = path.join(repo, relative);
+        const target = path.join(worktree, relative);
+        ensurePath(target);
+        fs.copyFileSync(source, target);
+      }
+      runGitAt(worktree, ['add', '--', ...changed], cleanIndex);
+      if (!runGitAt(worktree, ['diff', '--cached', '--name-only'], cleanIndex)) {
+        if (!remoteSha) fail('GitHub remote read-back returned no main ref');
+        try { runGit(['worktree', 'remove', '--force', worktree]); } catch {}
+        worktree = '';
+        return { noOp: true };
+      }
+      runGitAt(worktree, ['commit', '-m', `Publish TEST2 ${key} agent output`], cleanIndex);
+      try {
+        runGitAt(worktree, ['push', 'origin', 'HEAD:refs/heads/main'], cleanIndex);
+        const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
+        if (!remote) fail('GitHub remote read-back returned no main ref');
+        return { noOp: false };
+      } catch (error) {
+        if (attempt === 3) throw error;
+      } finally {
+        try { runGit(['worktree', 'remove', '--force', worktree]); } catch {}
+        worktree = '';
+      }
+    }
+    fail('Publisher exhausted clean-worktree push retries');
+  } finally {
+    if (worktree) { try { runGit(['worktree', 'remove', '--force', worktree]); } catch {} }
+    try { fs.rmSync(base, { recursive: true, force: true }); } catch {}
+  }
 }
-runGit(['commit', '-m', `Publish TEST2 ${key} agent output`]);
-pushWithRetry();
-const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
-if (!remote) fail('GitHub remote read-back returned no main ref');
+
+const publication = publishFromCleanWorktree();
 const cleaned = cleanupRun(run, directFile);
 fs.rmSync(publisherIndex, { force: true });
-console.log(JSON.stringify({ ticket: key, changedFiles: changed, published: true, cleaned, cleanupPath: run }));
+console.log(JSON.stringify({ ticket: key, changedFiles: publication.noOp ? [] : changed, published: true, noOp: publication.noOp, cleaned, cleanupPath: run }));
 
 
 
