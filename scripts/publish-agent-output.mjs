@@ -107,6 +107,17 @@ function cleanupRun(run, directFile) {
     return false;
   }
 }
+function cleanupPublishedFiles(files) {
+  for (const relative of files) {
+    const target = path.join(repo, relative);
+    try {
+      runGit(['ls-files', '--error-unmatch', '--', relative]);
+      runGit(['restore', '--source=HEAD', '--worktree', '--', relative]);
+    } catch {
+      try { fs.rmSync(target, { force: true, recursive: true }); } catch {}
+    }
+  }
+}
 function nonEmpty(file) {
   return fs.existsSync(file) && fs.statSync(file).size > 0;
 }
@@ -288,6 +299,7 @@ function publishFromCleanWorktree() {
 }
 
 const publication = publishFromCleanWorktree();
+cleanupPublishedFiles(changed);
 const cleaned = cleanupRun(run, directFile);
 fs.rmSync(publisherIndex, { force: true });
 console.log(JSON.stringify({ ticket: key, changedFiles: publication.noOp ? [] : changed, published: true, noOp: publication.noOp, cleaned, cleanupPath: run }));
