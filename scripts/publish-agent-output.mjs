@@ -92,6 +92,12 @@ function ensurePath(file) {
 function copyFolder(source, target) {
   if (fs.existsSync(source)) fs.cpSync(source, target, { recursive: true, force: true });
 }
+function nextEvidenceAttempt(key, status) {
+  let attempt = Math.max(1, Number(status.retries || 0) + 1);
+  const root = path.join(evidenceRoot, key, 'screenshots');
+  while (fs.existsSync(path.join(root, `attempt-${String(attempt).padStart(3, '0')}`))) attempt += 1;
+  return attempt;
+}
 function cleanupRun(run, directFile) {
   try {
     fs.rmSync(run, { force: true, recursive: !directFile });
@@ -104,12 +110,11 @@ function cleanupRun(run, directFile) {
 function nonEmpty(file) {
   return fs.existsSync(file) && fs.statSync(file).size > 0;
 }
-function pngEvidence(key) {
-  const dir = path.join(evidenceRoot, key, 'screenshots');
+function pngEvidence(dir) {
   if (!fs.existsSync(dir)) return false;
   return fs.readdirSync(dir).some(name => name.toLowerCase().endsWith('.png') && nonEmpty(path.join(dir, name)));
 }
-function buildVerifiedReport(key, run) {
+function buildVerifiedReport(key, run, screenshots) {
   const python = process.env.TEST2_PYTHON || 'C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe';
   const template = process.env.TEST2_TEMPLATE || 'C:\\Users\\harry.piper\\Downloads\\Automated Test Case Template.docx';
   const builder = path.join(repo, 'scripts', 'build-evidence-report.py');
@@ -117,7 +122,6 @@ function buildVerifiedReport(key, run) {
   const reviewFile = path.join(run, 'review-output.json');
   const docx = path.join(run, `report-generated-${process.pid}.docx`);
   const pdf = path.join(run, `report-generated-${process.pid}.pdf`);
-  const screenshots = path.join(evidenceRoot, key, 'screenshots');
   execFileSync(python, [builder, '--template', template, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', docx], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(docx)) fail('Template report generation completed without a non-empty DOCX');
   execFileSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
@@ -171,12 +175,20 @@ if (outputType === 'criteria-output.json') {
 } else if (outputType === 'test-output.json') {
   if (!output.results || typeof output.results !== 'object') fail('results is missing');
   if (typeof output.conciseReport !== 'string') fail('conciseReport is missing');
-  writeJson(path.join(ticketDir, 'results.json'), output.results);
+  const attempt = nextEvidenceAttempt(key, status);
+  const attemptName = `attempt-${String(attempt).padStart(3, '0')}`;
+  const attemptEvidenceDir = path.join(evidenceRoot, key, 'screenshots', attemptName);
+  const results = Array.isArray(output.results) ? output.results.map(item => ({
+      ...item,
+      evidence: Array.isArray(item.evidence)
+        ? item.evidence.map(file => `screenshots/${attemptName}/${path.basename(String(file))}`)
+        : item.evidence
+    })) : output.results;
+  writeJson(path.join(ticketDir, 'results.json'), results);
   fs.writeFileSync(path.join(ticketDir, 'report.md'), `${output.conciseReport.trim()}\n`, 'utf8');
   ensurePath(path.join(ticketDir, 'history', 'placeholder'));
-  const attempt = Math.max(1, Number(status.retries || 0) + 1);
   const historyFile = path.join(ticketDir, 'history', `attempt-${String(attempt).padStart(3, '0')}-test.json`);
-  writeJson(historyFile, { ...output, historyAttempt: attempt, recordedAt: new Date().toISOString() });
+  writeJson(historyFile, { ...output, results, historyAttempt: attempt, recordedAt: new Date().toISOString() });
   status.qaStatus = output.qaStatus || 'Awaiting Evidence Review';
   if (output.qaStatus === 'Blocked') {
     status.blockedStage = 'testing';
@@ -184,7 +196,7 @@ if (outputType === 'criteria-output.json') {
     status.blockedStage = null;
   }
   writeJson(statusFile, status);
-  if (!directFile) copyFolder(path.join(run, 'screenshots'), path.join(evidenceRoot, key, 'screenshots'));
+  if (!directFile) copyFolder(path.join(run, 'screenshots'), attemptEvidenceDir);
   changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/history/${path.basename(historyFile)}`, `tickets/${key}/status.json`);
 } else {
   if (!Array.isArray(output.criterionOutcomes)) fail('criterionOutcomes is missing');
@@ -192,9 +204,20 @@ if (outputType === 'criteria-output.json') {
   let generatedDocx = path.join(run, 'report.docx');
   let generatedPdf = path.join(run, 'report.pdf');
   try {
+    const results = readJson(path.join(ticketDir, 'results.json'));
+    const evidencePath = (Array.isArray(results) ? results : [])
+      .flatMap(item => Array.isArray(item?.evidence) ? item.evidence : [])
+      .map(file => String(file))
+      .find(file => /screenshots[\\/]attempt-[0-9]+[\\/]/i.test(file));
+    const attemptMatch = evidencePath?.match(/screenshots[\\/]((?:attempt)-[0-9]+)/i);
+    const screenshots = attemptMatch
+      ? path.join(evidenceRoot, key, 'screenshots', attemptMatch[1])
+      : text(output.evidenceFolder).match(/[\\/]attempt-[0-9]+(?:[\\/]|$)/i)
+        ? text(output.evidenceFolder)
+        : '';
     if (!nonEmpty(generatedPdf)) {
-      if (!pngEvidence(key)) fail('Screenshots are required before report generation');
-      const built = buildVerifiedReport(key, run);
+      if (!screenshots || !pngEvidence(screenshots)) fail('The selected evidence folder contains no non-empty PNG files');
+      const built = buildVerifiedReport(key, run, screenshots);
       generatedDocx = built.docx;
       generatedPdf = built.pdf;
     }
