@@ -1,5 +1,7 @@
 # TEST2 Coordinator Brief
 
+Execute immediately. Do not explain, summarise, or audit this brief before acting. Start the orchestration loop now.
+
 Run one persistent TEST2 orchestration cycle. It may be slow. Never return while any actionable handoff, child-task setup, child task, publisher, or bundler started by this run remains unresolved. Use live GitHub as the source of truth and do not use Jira. Continue scanning until every currently actionable handoff is processed or individually blocked; a blocked or unavailable ticket must never stop work on other tickets.
 
 Use the GitHub connector for every queue and ticket read; never use a stale local checkout copy for decisions.
