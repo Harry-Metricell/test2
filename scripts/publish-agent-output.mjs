@@ -155,6 +155,10 @@ if (outputType === 'criteria-output.json') {
   if (typeof output.conciseReport !== 'string') fail('conciseReport is missing');
   writeJson(path.join(ticketDir, 'results.json'), output.results);
   fs.writeFileSync(path.join(ticketDir, 'report.md'), `${output.conciseReport.trim()}\n`, 'utf8');
+  ensurePath(path.join(ticketDir, 'history', 'placeholder'));
+  const attempt = Math.max(1, Number(status.retries || 0) + 1);
+  const historyFile = path.join(ticketDir, 'history', `attempt-${String(attempt).padStart(3, '0')}-test.json`);
+  writeJson(historyFile, { ...output, historyAttempt: attempt, recordedAt: new Date().toISOString() });
   status.qaStatus = output.qaStatus || 'Awaiting Evidence Review';
   if (output.qaStatus === 'Blocked') {
     status.blockedStage = 'testing';
@@ -163,7 +167,7 @@ if (outputType === 'criteria-output.json') {
   }
   writeJson(statusFile, status);
   if (!directFile) copyFolder(path.join(run, 'screenshots'), path.join(evidenceRoot, key, 'screenshots'));
-  changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/status.json`);
+  changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/history/${path.basename(historyFile)}`, `tickets/${key}/status.json`);
 } else {
   if (!Array.isArray(output.criterionOutcomes)) fail('criterionOutcomes is missing');
   const review = { ...output };
@@ -208,5 +212,6 @@ if (!remote) fail('GitHub remote read-back returned no main ref');
 const cleaned = cleanupRun(run, directFile);
 fs.rmSync(publisherIndex, { force: true });
 console.log(JSON.stringify({ ticket: key, changedFiles: changed, published: true, cleaned, cleanupPath: run }));
+
 
 
