@@ -22,7 +22,7 @@ Maintain only compact run state: ticket, stage, tester attempt count, child task
 Select the first eligible handoff by deterministic `handoffId` order. Never select by task prompt, ticket number, local folder order, or guesswork.
 
 Process each ticket through these gates:
-0. A tester block is handled deterministically by Status Bundler. Do not wait for or create a `blocked_recovery` handoff. If the live queue contains a generated `test_ticket` handoff, create the tester immediately; if the ticket has reached `retries` 3, no handoff is expected and it remains `Blocked` for human review.
+0. Any pipeline block is handled deterministically by Status Bundler. Do not wait for or create a `blocked_recovery` handoff. If the live queue contains a generated `test_ticket` handoff, create the tester immediately; if the ticket has reached `retries` 3, no handoff is expected and it remains `Blocked` for human review.
 1. criteria_conversion -> create a criteria worker.
 2. Wait for that worker to finish, then wait for the local publisher to push the criteria output and for GitHub Status Bundler to complete successfully.
 3. Refresh live GitHub state. If the selected handoff action is `test_ticket`, the handoff itself is the eligibility gate: create the tester immediately when its listed inputs exist, including retry handoffs. Do not require `qaStatus` to be `Ready for Testing` or derive a second gate; `Retry Queued` is valid only through its generated `test_ticket` handoff.
