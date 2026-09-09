@@ -1,12 +1,11 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-09T11:05:56.711Z",
+  "generatedAt": "2026-09-09T10:05:28.814+0100",
   "counts": {
     "tickets": 3,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Ready": 2,
-      "Retry Queued": 1
+      "Ready": 3
     },
     "byQaOutcome": {
       "Not Tested": 3
@@ -34,12 +33,12 @@
       "key": "TEST2-8",
       "summary": "Preserve map context when switching GIS panels",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
+      "workflowState": "Ready",
       "qaStatus": "Retry Queued",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create retry handoff",
-      "updatedAt": "2026-09-09T11:05:56.711Z"
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-09-09T10:05:28.814+0100"
     },
     {
       "key": "TEST2-9",
