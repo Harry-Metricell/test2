@@ -5,22 +5,22 @@
     {
       "criterion": "Open the GIS workspace and verify that the map and its controls are visible.",
       "outcome": "Passed",
-      "reason": "criterion-1-initial.png directly shows the GIS workspace, map, layer panel, search, Single/Dual controls, and map controls."
+      "reason": "criterion-1-initial.png directly shows the GIS workspace with the map, layer panel, search controls, compass, reset, and zoom controls visible."
     },
     {
       "criterion": "Select a coverage layer, close the layer panel, and verify that the selected coverage layer remains visible on the map.",
       "outcome": "Unverified",
-      "reason": "The evidence shows a selected Beacons layer and map data, but does not directly show the required coverage layer remaining visible after the layer panel is closed."
+      "reason": "The available close-state evidence shows a Demand Scoring dialog rather than a completed Coverage Gap Candidate Areas selection with the panel closed; retention cannot be confirmed."
     },
     {
       "criterion": "Change the zoom position, use another map tool, and verify that the zoom position is retained.",
       "outcome": "Unverified",
-      "reason": "The screenshots show map controls and a map-tool interaction, but do not provide decisive evidence that the zoom position changed and was retained after using another tool."
+      "reason": "The screenshots show the map before and a zoom control tooltip, but do not directly establish that a second map tool was used and that the changed zoom position was retained."
     },
     {
       "criterion": "Return to the default view and verify that the expected starting area is restored while the map controls remain visible.",
-      "outcome": "Unverified",
-      "reason": "The final map screenshot shows controls, but the evidence does not decisively establish that the expected starting area was restored; another captured state shows the sign-in screen."
+      "outcome": "Failed",
+      "reason": "criterion-4-after-default.png directly shows the sign-in screen instead of the GIS default view, and the required map controls are not visible."
     }
   ],
   "overallOutcome": "Blocked",
