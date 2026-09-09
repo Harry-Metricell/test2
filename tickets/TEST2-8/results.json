@@ -3,51 +3,49 @@
     "criterion": "Open the GIS workspace and verify that the map and its controls are visible.",
     "outcome": "Passed",
     "steps_taken": [
-      "Opened the authenticated GIS workspace."
+      "Opened GIS from the Metricell launcher",
+      "Verified visible map, layer controls, map style, zoom controls, and reset control"
     ],
     "evidence": [
-      "criterion-1-initial.png"
+      "screenshots/04-gis-controls-visible.png"
     ]
   },
   {
     "criterion": "Select a coverage layer, close the layer panel, and verify that the selected coverage layer remains visible on the map.",
     "outcome": "Unverified",
+    "reason": "Coverage Gap Candidate Areas was added and shown in Map layers, but the required close-panel state was not available as a distinct visible control before restoration.",
     "steps_taken": [
-      "Selected Coverage Gap Candidate Areas."
+      "Opened Coverage Gap Candidate Areas",
+      "Added the default All coverage layer",
+      "Verified the layer appeared in Map layers",
+      "Removed the temporary layer to restore state"
     ],
-    "reason": "The coverage layer was visible, but the panel-close interaction did not produce conclusive evidence of the required final state.",
     "evidence": [
-      "criterion-2-before.png",
-      "criterion-2-after.png",
-      "criterion-2-close-before.png",
-      "criterion-2-close-after.png"
+      "screenshots/08-coverage-layer-visible.png"
     ]
   },
   {
     "criterion": "Change the zoom position, use another map tool, and verify that the zoom position is retained.",
-    "outcome": "Passed",
+    "outcome": "Unverified",
+    "reason": "Zoom changed successfully, but the required second map-tool retention check was not completed.",
     "steps_taken": [
-      "Used Zoom in, then used Reset north and flatten map."
+      "Clicked Zoom in",
+      "Observed the map remained loaded"
     ],
     "evidence": [
-      "criterion-3-before.png",
-      "criterion-3-after-zoom.png",
-      "criterion-3-after-tool.png"
+      "screenshots/09-before-zoom.png",
+      "screenshots/10-after-zoom.png"
     ]
   },
   {
     "criterion": "Return to the default view and verify that the expected starting area is restored while the map controls remain visible.",
-    "outcome": "Blocked",
+    "outcome": "Unverified",
+    "reason": "The available Reset north and flatten map control was not sufficient to verify restoration of the expected starting area.",
     "steps_taken": [
-      "Reloaded the GIS workspace to restore the default view."
-    ],
-    "reason": "Reload redirected to the SmartTools sign-in page; authentication was not changed, so the default view could not be verified or fully restored.",
-    "blockers": [
-      "Authentication required after reload."
+      "Restored the temporary coverage layer state by removing it"
     ],
     "evidence": [
-      "criterion-4-before.png",
-      "criterion-4-after-default.png"
+      "screenshots/11-restored-layer-state.png"
     ]
   }
 ]

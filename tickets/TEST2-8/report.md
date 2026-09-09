@@ -1,1 +1,1 @@
-TEST2-8: GIS workspace opened and map controls were visible. Coverage layer selection was observed but panel-close persistence evidence was inconclusive. Zoom and map-tool interaction were exercised. Reload required authentication, blocking default-view verification and full restoration.
+GIS opened with map controls visible. Coverage Gap Candidate Areas could be added and displayed, then removed to restore temporary state. Zoom interaction worked. The panel-close retention, second-tool zoom retention, and default-area restoration checks remain unverified.
