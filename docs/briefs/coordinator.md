@@ -24,7 +24,7 @@ Maintain only compact run state: ticket, stage, child task id, started time, las
 - `docs/briefs/evidence-review.md`
 - selected ticket status/results/review files when needed
 
-Select the first eligible handoff by deterministic `handoffId` order. Never select by task prompt, ticket number, local folder order, or guesswork.
+Select the first eligible handoff by stage priority, then deterministic `handoffId` order: `criteria_conversion` first, `test_ticket` second, and `evidence_review` third. Never select by task prompt, ticket number, local folder order, or guesswork. Do not create a tester or reviewer while any eligible earlier-stage handoff remains.
 
 Process each ticket through these gates:
 0. Any pipeline block is handled deterministically by Status Bundler. Do not wait for or create a `blocked_recovery` handoff. If the live queue contains a generated `test_ticket` handoff, create the tester immediately; if the ticket has reached `retries` 3, no handoff is expected and it remains `Blocked` for human review.
