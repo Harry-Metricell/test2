@@ -1,1 +1,1 @@
-GIS opened with map controls visible. Coverage Gap Candidate Areas could be added and displayed, then removed to restore temporary state. Zoom interaction worked. The panel-close retention, second-tool zoom retention, and default-area restoration checks remain unverified.
+QA blocked: V4 opened on the SmartTools Authenticate sign-in page, so the GIS workspace and criteria could not be tested.

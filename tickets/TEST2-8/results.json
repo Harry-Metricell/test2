@@ -1,51 +1,41 @@
 [
   {
     "criterion": "Open the GIS workspace and verify that the map and its controls are visible.",
-    "outcome": "Passed",
+    "outcome": "Blocked",
     "steps_taken": [
-      "Opened GIS from the Metricell launcher",
-      "Verified visible map, layer controls, map style, zoom controls, and reset control"
+      "Reloaded the current V4 webpage once",
+      "Observed the visible SmartTools Authenticate sign-in page"
     ],
-    "evidence": [
-      "screenshots/04-gis-controls-visible.png"
+    "reason": "Testing could not begin because V4 displayed a sign-in page. The run brief requires entering an email address, but authentication dialogs cannot be automated in this environment.",
+    "blockers": [
+      "V4 authentication required"
     ]
   },
   {
     "criterion": "Select a coverage layer, close the layer panel, and verify that the selected coverage layer remains visible on the map.",
-    "outcome": "Unverified",
-    "reason": "Coverage Gap Candidate Areas was added and shown in Map layers, but the required close-panel state was not available as a distinct visible control before restoration.",
-    "steps_taken": [
-      "Opened Coverage Gap Candidate Areas",
-      "Added the default All coverage layer",
-      "Verified the layer appeared in Map layers",
-      "Removed the temporary layer to restore state"
-    ],
-    "evidence": [
-      "screenshots/08-coverage-layer-visible.png"
+    "outcome": "Blocked",
+    "steps_taken": [],
+    "reason": "V4 authentication required before the GIS workspace is available.",
+    "blockers": [
+      "V4 authentication required"
     ]
   },
   {
     "criterion": "Change the zoom position, use another map tool, and verify that the zoom position is retained.",
-    "outcome": "Unverified",
-    "reason": "Zoom changed successfully, but the required second map-tool retention check was not completed.",
-    "steps_taken": [
-      "Clicked Zoom in",
-      "Observed the map remained loaded"
-    ],
-    "evidence": [
-      "screenshots/09-before-zoom.png",
-      "screenshots/10-after-zoom.png"
+    "outcome": "Blocked",
+    "steps_taken": [],
+    "reason": "V4 authentication required before the GIS workspace is available.",
+    "blockers": [
+      "V4 authentication required"
     ]
   },
   {
     "criterion": "Return to the default view and verify that the expected starting area is restored while the map controls remain visible.",
-    "outcome": "Unverified",
-    "reason": "The available Reset north and flatten map control was not sufficient to verify restoration of the expected starting area.",
-    "steps_taken": [
-      "Restored the temporary coverage layer state by removing it"
-    ],
-    "evidence": [
-      "screenshots/11-restored-layer-state.png"
+    "outcome": "Blocked",
+    "steps_taken": [],
+    "reason": "V4 authentication required before the GIS workspace is available.",
+    "blockers": [
+      "V4 authentication required"
     ]
   }
 ]
