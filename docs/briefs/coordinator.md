@@ -1,30 +1,47 @@
 # TEST2 Coordinator Brief
 
-Run one bounded TEST2 orchestration cycle. Use GitHub as the source of truth and do not use Jira.
+Run one bounded TEST2 orchestration cycle. Use live GitHub as the source of truth and do not use Jira.
 
 Read only:
 - `status/handoffs.json`
 - the selected handoff inputs
-- the three worker briefs: `docs/briefs/criteria-conversion.md`, `docs/briefs/qa-testing.md`, `docs/briefs/evidence-review.md`
-- the selected ticket's status/results/review files when needed
+- `docs/briefs/criteria-conversion.md`
+- `docs/briefs/qa-testing.md`
+- `docs/briefs/evidence-review.md`
+- selected ticket status/results/review files when needed
 
-Discover eligible work from the live GitHub handoff list and select the first eligible handoff by deterministic `handoffId` order. Never select by task prompt, ticket number, local folder order, or guesswork.
+Select the first eligible handoff by deterministic `handoffId` order. Never select by task prompt, ticket number, local folder order, or guesswork.
 
-Process each ticket through the gated sequence:
-1. criteria-conversion handoff -> create a new project-backed child task with only `[@GitHub](plugin://github@openai-curated-remote)` and `docs/briefs/criteria-conversion.md`
-2. after remote criteria/status refresh, test_ticket handoff -> create a new project-backed child task with only the GitHub mention and `docs/briefs/qa-testing.md`
-3. after tester output is published and evidence handoff exists, evidence_review handoff -> create a new project-backed child task with only the GitHub mention and `docs/briefs/evidence-review.md`
-4. after reviewer output, wait for the local publisher and GitHub status-bundler; confirm report.pdf, review.json, status.json, and the final status by remote read-back
+Process each ticket through these gates:
+1. criteria_conversion -> create a criteria worker.
+2. Wait for that worker to finish, then wait for the local publisher to push the criteria output and for GitHub Status Bundler to complete successfully.
+3. Refresh live GitHub state. Only then create the eligible test_ticket worker.
+4. Wait for the tester, then wait for the local publisher and Status Bundler. Confirm the tester output is remote and the evidence_review handoff exists.
+5. Only then create the evidence_review worker.
+6. Wait for the reviewer, then wait for the local publisher to generate and verify the PDF and push `report.pdf`, `review.json`, `status.json`, and concise `report.md`. Then wait for Status Bundler and verify all required files and final status by remote read-back.
 
-Create child tasks in the saved Test2 project, never projectless:
-- projectId: `39fdf60d-6165-4a78-ad05-c7344f38aacf`
-- target: project with local environment
-- do not include a ticket number or extra instructions in worker prompts
+Publisher and bundler waits are mandatory:
+- A worker finishing is not publication.
+- After criteria/test/review output, poll the local staging state until the publisher has consumed the output, then poll live GitHub until the expected files and status are present.
+- For a reviewer output, require a non-empty local verified PDF and remote `tickets/<KEY>/report.pdf` before declaring completion.
+- Do not start the next worker while the prior output is still only local.
+- A GitHub Action must have conclusion `success`; do not treat queued, running, or missing as complete.
 
-Wait for each child task to finish before starting the next gated stage. After every stage, refresh the remote handoff/status state; a stale local checkout is not evidence of missing work. If the required child task cannot be created, record the exact task-service error and stop that ticket without substituting work.
+Create every child task in the saved Test2 project, never projectless. The exact create-task shape is:
+```json
+{
+  "target": {
+    "type": "project",
+    "projectId": "39fdf60d-6165-4a78-ad05-c7344f38aacf",
+    "environment": { "type": "local" }
+  },
+  "prompt": "[@GitHub](plugin://github@openai-curated-remote) docs/briefs/<selected-brief>.md"
+}
+```
+The `projectId` belongs inside `target`; never send it at the top level. Do not add a ticket number or extra instructions to worker prompts. Use the exact brief path from the selected handoff.
 
-Maintain temporary per-run attempt state outside GitHub. Count only tester attempts for the same ticket in this coordinator run. Never start more than 3 tester attempts for one ticket in one run. Retry only when the prior attempt failed operationally or produced no valid staged output. If the third attempt still cannot complete, stop retrying and leave the ticket Blocked for human review. Do not apply the three-attempt rule to unrelated tickets or future coordinator runs.
+Maintain temporary per-run attempt state outside GitHub. Count only tester attempts for the same ticket in this coordinator run. Never start more than 3 tester attempts for one ticket in one run. Retry only after an operational failure or missing valid staged output. After the third unsuccessful tester attempt, stop retrying and leave the ticket Blocked for human review. This limit does not apply to unrelated tickets or future coordinator runs.
 
-Do not test Jira, change criteria during testing, upload credentials, enter passwords, create reports yourself, or scan unrelated ticket folders. Do not claim a ticket complete without remote read-back of the required outputs and final status.
+Do not change Jira, modify criteria during testing, upload credentials, enter passwords, create reports in a worker, or scan unrelated ticket folders. Do not claim completion without remote read-back of required outputs and final status.
 
 Remain quiet while state is unchanged. Return one compact structured summary only when the cycle completes, is blocked, or needs user action.
