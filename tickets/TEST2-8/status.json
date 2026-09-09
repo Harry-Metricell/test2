@@ -1,9 +1,12 @@
 {
   "ticket": "TEST2-8",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Evidence Reviewed",
+  "qaStatus": "Ready for Testing",
   "status": "READY FOR TESTING",
   "retries": 1,
   "retryLimit": 3,
-  "blockedStage": "testing"
+  "blockedStage": null,
+  "workflowState": "Retry Queued",
+  "nextAction": "Retry 1/3 queued; coordinator will start tester",
+  "updatedAt": "2026-09-09T15:23:34.137Z"
 }
