@@ -1,1 +1,0 @@
-GIS workspace and controls were directly verified. Coverage Gap Candidate Areas loaded with visible map data, but persistence after closing the layer panel was not verified. Zoom/tool retention and default-view restoration were not tested.
