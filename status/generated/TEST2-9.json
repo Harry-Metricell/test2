@@ -33,7 +33,7 @@
     "qaOutcome": "Failed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create testing handoff",
+    "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
     "retries": 0,
     "blockedStage": null,
