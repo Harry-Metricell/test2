@@ -147,6 +147,7 @@ if (outputType === 'criteria-output.json') {
   ensurePath(path.join(ticketDir, 'criteria.md'));
   fs.writeFileSync(path.join(ticketDir, 'criteria.md'), `${output.criteriaMarkdown.trim()}\n`, 'utf8');
   status.qaStatus = output.qaStatus || 'Ready for Testing';
+  status.blockedStage = output.qaStatus === 'Blocked' ? 'criteria' : null;
   writeJson(statusFile, status);
   changed.push(`tickets/${key}/criteria.md`, `tickets/${key}/status.json`);
 } else if (outputType === 'test-output.json') {
@@ -155,6 +156,12 @@ if (outputType === 'criteria-output.json') {
   writeJson(path.join(ticketDir, 'results.json'), output.results);
   fs.writeFileSync(path.join(ticketDir, 'report.md'), `${output.conciseReport.trim()}\n`, 'utf8');
   status.qaStatus = output.qaStatus || 'Awaiting Evidence Review';
+  if (output.qaStatus === 'Blocked') {
+    status.blockedStage = 'testing';
+    status.testerAttempts = Number(status.testerAttempts || 0) + 1;
+  } else {
+    status.blockedStage = null;
+  }
   writeJson(statusFile, status);
   if (!directFile) copyFolder(path.join(run, 'screenshots'), path.join(evidenceRoot, key, 'screenshots'));
   changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/status.json`);
