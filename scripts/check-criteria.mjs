@@ -27,7 +27,12 @@ for (const key of tickets) {
   const criteriaFile = path.join(dir, 'criteria.md');
   if (fs.existsSync(criteriaFile)) {
     const criteria = fs.readFileSync(criteriaFile, 'utf8');
-    if (!criteria.includes('Generated from Jira acceptance criteria') && !criteria.includes('Source: Jira description')) {
+    const hasGeneratedMarker = [
+      'Generated from Jira acceptance criteria',
+      'Generated from Jira description',
+      'Source: Jira description'
+    ].some((marker) => criteria.includes(marker));
+    if (!hasGeneratedMarker) {
       errors.push(key + ': criteria.md is missing its generated marker');
     }
     if (criteria.includes('\\n')) {
