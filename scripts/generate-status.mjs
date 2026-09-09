@@ -136,6 +136,29 @@ function statusRank(state) {
   return i === -1 ? STATUS_PRIORITY.length : i;
 }
 
+function aggregateResultOutcome(results) {
+  const values = Array.isArray(results)
+    ? results.map((item) => item?.outcome).filter(Boolean)
+    : [results?.overallOutcome].filter(Boolean);
+  const normalized = values.map((value) => String(value).trim().toLowerCase());
+  if (normalized.includes('blocked')) return 'Blocked';
+  if (normalized.includes('failed')) return 'Failed';
+  if (normalized.includes('unverified')) return 'Unverified';
+  if (normalized.length > 0 && normalized.every((value) => value === 'passed')) return 'Passed';
+  return null;
+}
+
+function artifactOutcome(dir, localStatus) {
+  const review = readJson(path.join(dir, 'review.json'), null);
+  const results = readJson(path.join(dir, 'results.json'), null);
+  const reviewOutcome = review?.overallOutcome || null;
+  const resultsOutcome = aggregateResultOutcome(results);
+  if (localStatus.qaStatus === 'Evidence Reviewed' && reviewOutcome) return reviewOutcome;
+  if (resultsOutcome) return resultsOutcome;
+  if (reviewOutcome) return reviewOutcome;
+  return localStatus.qaOutcome || null;
+}
+
 function mergeStatus(ticket, localStatus) {
   const jiraState = canonicalState(ticket.jira.status, 'Imported');
   const localState = canonicalState(localStatus.workflowState || localStatus.status, 'Imported');
@@ -227,6 +250,8 @@ function normalizeTicket(dirName) {
     retryLimit: 3
   });
   if (!fs.existsSync(statusPath) && !checkOnly) writeJson(statusPath, localStatus);
+  const derivedOutcome = artifactOutcome(dir, localStatus);
+  if (derivedOutcome) localStatus = { ...localStatus, qaOutcome: derivedOutcome };
   // Any pipeline block is an operational retry signal. Convert it once per block
   // into a retryable state and persist the counter in the ticket status file.
   // This prevents repeated bundler runs from consuming all retries.
