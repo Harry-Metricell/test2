@@ -38,6 +38,10 @@ const STATUS_PRIORITY = [
 ];
 
 function readJson(file, fallback = null) {
+  if (!fs.existsSync(file)) {
+    if (fallback !== null) return fallback;
+    throw new Error(`${file}: file not found`);
+  }
   const raw = fs.readFileSync(file, 'utf8');
   try {
     return JSON.parse(raw);
@@ -207,7 +211,16 @@ function normalizeTicket(dirName) {
       importedAt: fields.updated || fields.created || null
     }
   };
-  let localStatus = readJson(path.join(dir, 'status.json'), {});
+  const statusPath = path.join(dir, 'status.json');
+  let localStatus = readJson(statusPath, {
+    ticket: ticket.key,
+    jiraStatus: ticket.jira.status || 'Unknown',
+    qaStatus: 'Not Tested',
+    status: ticket.jira.status || 'Unknown',
+    retries: 0,
+    retryLimit: 3
+  });
+  if (!fs.existsSync(statusPath) && !checkOnly) writeJson(statusPath, localStatus);
   // Any pipeline block is an operational retry signal. Convert it once per block
   // into a retryable state and persist the counter in the ticket status file.
   // This prevents repeated bundler runs from consuming all retries.
