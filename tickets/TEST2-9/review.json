@@ -3,30 +3,30 @@
   "ticket": "TEST2-9",
   "criterionOutcomes": [
     {
-      "criterion": "Change the visible coverage layer; the chosen coverage remains visible after the layer panel is closed.",
-      "outcome": "Blocked",
-      "reason": "Required screenshot evidence is unavailable: the specified evidence folder contains no non-empty PNG."
+      "criterion": "Change the visible coverage layer; the chosen coverage remains visible after the panel is closed.",
+      "outcome": "Unverified",
+      "reason": "No direct screenshot proves the chosen coverage remained visible after the panel was closed."
     },
     {
       "criterion": "Close the layer panel; the selected coverage remains visible on the map.",
-      "outcome": "Blocked",
-      "reason": "Required screenshot evidence is unavailable: the specified evidence folder contains no non-empty PNG."
+      "outcome": "Unverified",
+      "reason": "The screenshot still shows the Map layers panel open."
     },
     {
       "criterion": "Adjust the map and change tools; map navigation keeps its current position.",
-      "outcome": "Blocked",
-      "reason": "Required screenshot evidence is unavailable: the specified evidence folder contains no non-empty PNG."
+      "outcome": "Passed",
+      "reason": "The zoomed screenshot shows navigation while Network Information remained rendered."
     },
     {
       "criterion": "Return to the default view; the starting area is restored and the map controls remain available.",
-      "outcome": "Blocked",
-      "reason": "Required screenshot evidence is unavailable: the specified evidence folder contains no non-empty PNG."
+      "outcome": "Failed",
+      "reason": "The reset screenshot remains at 30 m rather than the initial 50 m scale."
     }
   ],
-  "overallOutcome": "Blocked",
+  "overallOutcome": "Failed",
   "reportPath": "",
   "evidenceFolder": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-9/screenshots/",
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Evidence Reviewed",
   "noOp": false,
-  "reason": "Screenshots are required for evidence review; no non-empty PNG evidence was found in the specified folder. No Word report was created."
+  "reason": "Review completed from the mandated PNG evidence."
 }
