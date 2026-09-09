@@ -6,15 +6,15 @@ This standing authorisation also covers automatically continuing testing for eve
 
 Run one persistent TEST2 orchestration cycle. It may be slow. Never return while any actionable handoff, child-task setup, child task, publisher, or bundler started by this run remains unresolved. Use live GitHub as the source of truth and do not use Jira. Continue scanning until every currently actionable handoff is processed or individually blocked; a blocked or unavailable ticket must never stop work on other tickets.
 
-The coordinator is read-only for ticket state: never edit, overwrite, or publish `status.json`, `status/tickets.json`, `status/ticket-status.md`, `status/handoffs.json`, `qaStatus`, `workflowState`, `retries`, or `retryLimit`. Status Bundler and the authorised worker/publisher pipeline own all status changes; the coordinator may only observe them and create child tasks.
-
 Use the GitHub connector for every queue and ticket read; never use a stale local checkout copy for decisions.
 
 If a GitHub connector request fails, times out, returns an error, or produces no usable response, resend the same request. Retry immediately once, then retry after 30 seconds, then after 2 minutes. Do not treat a single connector failure as a ticket block or end the coordinator cycle. Notify the user only after the retries produce a definite authentication, permission, or service failure.
 
+The coordinator is read-only for ticket state: never edit, overwrite, or publish `status.json`, `status/tickets.json`, `status/ticket-status.md`, `status/handoffs.json`, `qaStatus`, `workflowState`, `retries`, or `retryLimit`. Status Bundler and the authorised worker/publisher pipeline own all status changes; the coordinator may only observe them and create child tasks.
+
 Treat conversation history as unavailable and irrelevant. Do not use prior chat messages, prior summaries, worker reasoning, or old task transcripts. Reconstruct state only from the current live handoff file, selected ticket status/output files, publisher/bundler state, and the current run-state file.
 
-Do not reread completed outputs unless validating a required gate or diagnosing an explicit anomaly. Do not scan unrelated ticket folders. Do not perform browser testing or evidence review yourself; delegate those stages. Do not inspect, open, repair, generate, or validate Word/PDF files yourself; report generation is the publisher's responsibility. Treat publisher and bundler state as opaque gates and continue polling the live queue.
+Do not reread completed outputs unless validating a required gate or diagnosing an explicit anomaly. Do not scan unrelated ticket folders. Do not perform browser testing or evidence review yourself; delegate those stages. Never open, read, inspect, render, repair, generate, or validate any Word or PDF file. A PDF is only a publisher output to wait for after an `evidence_review` child has completed; it is never coordinator input. Treat publisher and bundler state as opaque gates and continue polling the live queue.
 
 Maintain only compact run state: ticket, stage, child task id, started time, last observed state, and next action. Do not count tester attempts or retries. Do not use conversation memory as state. Return one compact JSON object only. Read only:
 - live `status/handoffs.json`
@@ -30,7 +30,7 @@ Process each ticket through these gates:
 0. Any pipeline block is handled deterministically by Status Bundler. Do not wait for or create a `blocked_recovery` handoff. If the live queue contains a generated `test_ticket` handoff, create the tester immediately; if the ticket has reached `retries` 3, no handoff is expected and it remains `Blocked` for human review.
 1. criteria_conversion -> create a criteria worker.
 2. Wait for that worker to finish, then wait for the local publisher to push the criteria output and for GitHub Status Bundler to complete successfully.
-3. Refresh live GitHub state. If the selected handoff action is `test_ticket`, the handoff itself is the eligibility gate: create the tester immediately when its listed inputs exist, including retry handoffs. Do not require `qaStatus` to be `Ready for Testing` or derive a second gate; `Retry Queued` is valid only through its generated `test_ticket` handoff.
+3. Refresh live GitHub state. If the selected handoff action is `test_ticket`, the handoff itself is the eligibility gate: create a new tester task immediately when its listed inputs exist, including retry handoffs. Do not open reports, PDFs, screenshots, or prior chat transcripts before creating that tester. Do not require `qaStatus` to be `Ready for Testing` or derive a second gate; `Retry Queued` is valid only through its generated `test_ticket` handoff.
 4. Wait for the tester, then wait for the local publisher and Status Bundler. Confirm the tester output is remote and the evidence_review handoff exists.
 5. Only then create the evidence_review worker.
 6. Wait for the reviewer, then wait for the local publisher to generate and verify the PDF and push `report.pdf`, `review.json`, `status.json`, and concise `report.md`. Then wait for Status Bundler and verify all required files and final status by remote read-back.
