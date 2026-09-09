@@ -42,8 +42,7 @@ def add_image_row(table, images):
 def screenshot_paths(item, all_screenshots):
     names = item.get("evidence", []) if isinstance(item, dict) else []
     wanted = {Path(text(name)).name for name in names}
-    selected = [image for image in all_screenshots if image.name in wanted]
-    return selected or all_screenshots
+    return [image for image in all_screenshots if image.name in wanted]
 
 
 def outcome_text(outcome):
@@ -189,6 +188,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
