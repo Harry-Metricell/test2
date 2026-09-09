@@ -1,1 +1,0 @@
-All four TEST2-5 beacon favourites criteria passed. Added Colin Pitts 1 #447925375841 to Favourites, confirmed it appeared, removed it, and confirmed the Favourites list was empty. The Beacons layer was removed afterwards to restore the original map state.
