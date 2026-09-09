@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+// Deterministic status projection; keep this file in the bundler trigger set.\nimport fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
