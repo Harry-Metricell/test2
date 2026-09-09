@@ -1,1 +1,1 @@
-Blocked: GIS controls were visible and zoom/map-tool context was retained, but coverage data failed to load, preventing direct verification of coverage persistence and the expected default view.
+TEST2-8: GIS workspace and coverage-layer context were exercised with saved evidence. Workspace visibility and default restoration passed; the coverage layer remained selected in map controls, although its data panel showed a load error. Zoom retention was Unverified because the visible scale did not change after Zoom in.

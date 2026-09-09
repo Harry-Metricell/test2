@@ -1,7 +1,7 @@
 {
   "ticket": "TEST2-8",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Awaiting Evidence Review",
   "status": "READY FOR TESTING",
   "retries": 1,
   "retryLimit": 3,
