@@ -27,18 +27,18 @@ Publisher and bundler waits are mandatory:
 - Do not start the next worker while the prior output is still only local.
 - A GitHub Action must have conclusion `success`; do not treat queued, running, or missing as complete. If the next-stage handoff list is empty immediately after a successful publish, do not block yet: refetch the remote handoff file after 30 seconds and again after 2 minutes, and continue polling while a worker, publisher, or bundler is in flight, and confirm the Status Bundler run for the published commit has completed successfully. Only then treat the next-stage handoff as genuinely absent.
 
-Create every child task in the saved Test2 project, never projectless. The exact create-task shape is:
+Create every child task in the saved Test2 project, never projectless. Use a fresh worktree so a dirty/stale primary checkout cannot hide published handoffs. The exact create-task shape is:
 ```json
 {
   "target": {
     "type": "project",
     "projectId": "39fdf60d-6165-4a78-ad05-c7344f38aacf",
-    "environment": { "type": "local" }
+    "environment": { "type": "worktree", "startingState": { "type": "branch", "branchName": "main" } }
   },
   "prompt": "[@GitHub](plugin://github@openai-curated-remote) docs/briefs/<selected-brief>.md"
 }
 ```
-The `projectId` belongs inside `target`; never send it at the top level. Do not add a ticket number or extra instructions to worker prompts. Use the exact brief path from the selected handoff.
+The `projectId` belongs inside `target`; never send it at the top level. Never use `environment: local` for child workers. Do not add a ticket number or extra instructions to worker prompts. Use the exact brief path from the selected handoff.
 
 Maintain temporary per-run attempt state outside GitHub. Count only tester attempts for the same ticket in this coordinator run. Never start more than 3 tester attempts for one ticket in one run. Retry only after an operational failure or missing valid staged output. After the third unsuccessful tester attempt, stop retrying and leave the ticket Blocked for human review. This limit does not apply to unrelated tickets or future coordinator runs.
 
