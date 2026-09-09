@@ -10,6 +10,8 @@ The coordinator is read-only for ticket state: never edit, overwrite, or publish
 
 Use the GitHub connector for every queue and ticket read; never use a stale local checkout copy for decisions.
 
+If a GitHub connector request fails, times out, returns an error, or produces no usable response, resend the same request. Retry immediately once, then retry after 30 seconds, then after 2 minutes. Do not treat a single connector failure as a ticket block or end the coordinator cycle. Notify the user only after the retries produce a definite authentication, permission, or service failure.
+
 Treat conversation history as unavailable and irrelevant. Do not use prior chat messages, prior summaries, worker reasoning, or old task transcripts. Reconstruct state only from the current live handoff file, selected ticket status/output files, publisher/bundler state, and the current run-state file.
 
 Do not reread completed outputs unless validating a required gate or diagnosing an explicit anomaly. Do not scan unrelated ticket folders. Do not perform browser testing or evidence review yourself; delegate those stages. Do not inspect, open, repair, generate, or validate Word/PDF files yourself; report generation is the publisher's responsibility. Treat publisher and bundler state as opaque gates and continue polling the live queue.
