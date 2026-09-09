@@ -36,18 +36,18 @@ Publisher and bundler waits are mandatory:
 - Do not start the next worker while the prior output is still only local.
 - A GitHub Action must have conclusion `success`; do not treat queued, running, or missing as complete. If the next-stage handoff list is empty immediately after a successful publish, do not block yet: refetch the remote handoff file after 30 seconds and again after 2 minutes, and continue polling while a worker, publisher, or bundler is in flight, and confirm the Status Bundler run for the published commit has completed successfully. Only then treat the next-stage handoff as genuinely absent.
 
-Create every child task in the saved Test2 project, never projectless. Use a fresh worktree so a dirty/stale primary checkout cannot hide published handoffs. The exact create-task shape is:
+Create every child task in the saved Test2 project, never projectless. Use the synchronised local project environment; live GitHub reads remain authoritative, and do not create fresh worktrees because worktree setup can remain pending indefinitely. The exact create-task shape is:
 ```json
 {
   "target": {
     "type": "project",
     "projectId": "39fdf60d-6165-4a78-ad05-c7344f38aacf",
-    "environment": { "type": "worktree", "startingState": { "type": "branch", "branchName": "main" } }
+    "environment": { "type": "local" }
   },
   "prompt": "[@GitHub](plugin://github@openai-curated-remote) docs/briefs/<selected-brief>.md"
 }
 ```
-The `projectId` belongs inside `target`; never send it at the top level. Never use `environment: local` for child workers.
+The `projectId` belongs inside `target`; never send it at the top level. Use `environment: local` for child workers only because the primary checkout has been synchronised before this run.
 If `create_thread` returns a `clientThreadId` or setup-in-progress result instead of a ready `threadId`, do not treat that as worker failure.
 Never send a final summary immediately after `create_thread`, `list_threads`, or a queued/setup response. A child is not started until a ready child task is returned and observed running or completed. Store the child identifier in run state, poll it with `wait_threads` for up to 2 minutes, and continue the outer loop while it is pending. If the child identifier is not exposed, poll `list_threads` repeatedly for the newest Test2 project task; do not end the coordinator run while the handoff remains live. Poll `list_threads` for the newly created project task for up to 2 minutes, then pass only its returned ready `threadId` and `hostId` to `wait_threads`. If it is still setting up, keep polling every 2 minutes until it becomes ready or the task service returns a definite error; never declare the ticket blocked merely because worktree setup is slow. While it is pending, process other eligible tickets independently. Do not add a ticket number or extra instructions to worker prompts. Use the exact brief path from the selected handoff.
 The linked brief is the complete child-task instruction set. The child must read it immediately and follow it; do not paraphrase, duplicate, or replace its instructions in the task prompt.
