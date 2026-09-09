@@ -42,9 +42,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-09T10:05:28.814+0100",
-      "retries": 0,
+      "retries": 1,
       "retryLimit": 3,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/3"
     },
     {
       "key": "TEST2-9",
