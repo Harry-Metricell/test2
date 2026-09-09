@@ -1,1 +1,1 @@
-GIS workspace and controls were directly verified. Coverage Gap Candidate Areas loaded with visible map data, but persistence after closing the layer panel was not verified. Zoom/tool retention and default-view restoration were not tested.
+Blocked: GIS controls were visible and zoom/map-tool context was retained, but coverage data failed to load, preventing direct verification of coverage persistence and the expected default view.

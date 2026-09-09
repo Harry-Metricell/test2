@@ -5,5 +5,5 @@
   "status": "READY FOR TESTING",
   "retries": 1,
   "retryLimit": 3,
-  "blockedStage": null
+  "blockedStage": "testing"
 }
