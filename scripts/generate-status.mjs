@@ -136,6 +136,13 @@ function mergeStatus(ticket, localStatus) {
   const jiraState = canonicalState(ticket.jira.status, 'Imported');
   const localState = canonicalState(localStatus.workflowState || localStatus.status, 'Imported');
   const workflowState = statusRank(localState) <= statusRank(jiraState) ? localState : jiraState;
+  const retries = Number(localStatus.retries || 0);
+  const retryLimit = Number(localStatus.retryLimit || 3);
+  const nextAction = workflowState === 'Retry Queued'
+    ? `Retry ${retries}/${retryLimit} queued; coordinator will start tester`
+    : workflowState === 'Blocked' && retries >= retryLimit
+      ? 'Manual review required after retry limit'
+      : localStatus.nextAction || defaultNextAction(workflowState, criteriaReady(ticket));
   return {
     jiraStatus: ticket.jira.status || 'Unknown',
     workflowState,
@@ -145,9 +152,9 @@ function mergeStatus(ticket, localStatus) {
     qaOutcome: localStatus.qaOutcome || localStatus.outcome || 'Not Tested',
     automationSuitability: localStatus.automationSuitability || 'Unclassified',
     actionOwner: localStatus.actionOwner || 'Coordinator',
-    nextAction: localStatus.nextAction || defaultNextAction(workflowState, criteriaReady(ticket)),
+    nextAction,
     reviewState: localStatus.reviewState || 'Not Reviewed',
-    retries: Number(localStatus.retries || 0),
+    retries,
     blockedStage: localStatus.blockedStage || null,
     updatedAt: localStatus.updatedAt || ticket.jira.updated || ticket.source.importedAt || null
   };
@@ -359,3 +366,4 @@ for (const ticket of tickets) {
 }
 
 console.log(JSON.stringify({ ok: true, tickets: tickets.length, handoffs: handoffs.length }, null, 2));
+
