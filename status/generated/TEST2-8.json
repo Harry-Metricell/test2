@@ -29,13 +29,13 @@
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Awaiting Evidence Review",
+    "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Evidence review required",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
-    "retries": 0,
+    "retries": 1,
     "blockedStage": null,
     "updatedAt": "2026-09-09T10:05:28.814+0100"
   }
