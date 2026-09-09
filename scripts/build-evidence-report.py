@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 
 from docx import Document
-from docx.shared import Inches, Pt
+from docx.shared import Inches, Pt, RGBColor
 
 
 def text(value):
@@ -110,6 +110,11 @@ def main():
     if len(metadata.rows) >= 5:
         set_cell(metadata.cell(3, 1), datetime.now().strftime("%d/%m/%Y"))
         set_cell(metadata.cell(4, 1), "Automated TEST2 Evidence Review")
+    for row in metadata.rows:
+        for cell in row.cells:
+            for paragraph in cell.paragraphs:
+                for run in paragraph.runs:
+                    run.font.color.rgb = RGBColor(255, 255, 255)
 
     cycle = doc.tables[2]
     browser_version = next((text(item.get("browserVersion")) for item in results if isinstance(item, dict) and item.get("browserVersion")), "version not recorded")
@@ -156,10 +161,11 @@ def main():
         if steps:
             actual = f"{actual}\nSteps taken: {'; '.join(steps)}"
         report_outcome = "Failed" if text(item.get("outcome")).lower() == "unverified" else text(item.get("outcome"))
+        expected_result = text(result.get("expected_result")) or criterion
         values = [
             f"{number}.0.0",
             criterion,
-            "The behaviour described by the criterion is present.",
+            expected_result,
             actual,
             report_outcome,
         ]
@@ -168,7 +174,7 @@ def main():
                 f"{number}.0.0",
                 criterion,
                 "; ".join(steps),
-                outcome_text(item.get("outcome")),
+                expected_result,
                 text(item.get("reason")) or text(result.get("reason")),
                 report_outcome,
             ]
@@ -183,6 +189,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
