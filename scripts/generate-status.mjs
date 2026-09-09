@@ -279,11 +279,15 @@ function handoffFor(ticket) {
   if (ticket.status.workflowState === 'Retry Queued') {
     return {
       handoffId: `handoff-${ticket.key}-retry`,
-      action: 'retry_test',
+      action: 'test_ticket',
       brief: 'docs/briefs/qa-testing.md',
       owner: 'ticket-tester',
       ticket: ticket.key,
-      inputs: { generated: `status/generated/${ticket.key}.json` },
+      inputs: {
+        criteria: `tickets/${ticket.key}/criteria.md`,
+        ticketJson: `tickets/${ticket.key}/ticket.json`,
+        status: `tickets/${ticket.key}/status.json`
+      },
       expectedOutput: { path: `tickets/${ticket.key}/results.json`, schema: 'v4-qa-test-result.v1' }
     };
   }
