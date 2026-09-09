@@ -35,6 +35,8 @@
     "actionOwner": "Coordinator",
     "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
     "updatedAt": "2026-09-07T15:45:55.099+0100"
   }
 }
