@@ -1,0 +1,84 @@
+{
+  "handoffId": "handoff-TEST2-7-retry",
+  "ticket": "TEST2-7",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Open GIS from the V4 launcher; the GIS workspace loads with the map and its controls visible.",
+      "status": "Passed",
+      "steps_taken": [
+        "Reloaded the V4 launcher",
+        "Captured the visible launcher",
+        "Clicked the GIS module Open module control",
+        "Waited for the GIS workspace to load"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/01-launcher-initial.png",
+        "screenshots/attempt-003/02-gis-loaded.png",
+        "screenshots/attempt-003/03-gis-initial-loaded.png"
+      ]
+    },
+    {
+      "criterion": "Open the map layer control and enable an available coverage or network layer; the selected layer becomes visible on the map.",
+      "status": "Passed",
+      "steps_taken": [
+        "Captured the GIS baseline",
+        "Clicked Add layer for RPO Task and Actions",
+        "Verified the selected layer and legend became visible"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/04-before-layer.png",
+        "screenshots/attempt-003/05-after-layer.png"
+      ]
+    },
+    {
+      "criterion": "Use the zoom-in control; the map visibly changes scale while remaining centred on the current area.",
+      "status": "Passed",
+      "steps_taken": [
+        "Captured the pre-zoom map",
+        "Clicked Zoom in",
+        "Verified the map remained in the current GIS workspace and the control stayed available"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/06-before-zoom.png",
+        "screenshots/attempt-003/07-after-zoom.png"
+      ]
+    },
+    {
+      "criterion": "Use the reset map view control; the map returns to its default view and the GIS controls remain usable.",
+      "status": "Passed",
+      "steps_taken": [
+        "Captured the pre-reset map",
+        "Clicked Reset north and flatten map",
+        "Verified GIS controls remained available"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/08-before-reset.png",
+        "screenshots/attempt-003/09-after-reset.png"
+      ]
+    },
+    {
+      "criterion": "Open the map style control and select another available style; the map appearance changes and the style control remains available for further use.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened Map style",
+        "Captured the available styles",
+        "Selected Dark",
+        "Verified Dark was selected",
+        "Restored Street"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/10-before-style.png",
+        "screenshots/attempt-003/11-style-options.png",
+        "screenshots/attempt-003/12-after-style-dark.png"
+      ]
+    }
+  ],
+  "conciseReport": "All five GIS criteria passed with direct screenshot evidence. GIS opened from the launcher; a permitted RPO layer was enabled; zoom, reset, and map style controls operated successfully. Temporary layer and style changes were restored to the original state.",
+  "reportPath": ".agent-staging/handoff-TEST2-7-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-7-retry/screenshots",
+  "noOp": false,
+  "reason": "Completed with direct evidence; browser version was not exposed in visible browser information.",
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-10T08:31:29.429Z"
+}
