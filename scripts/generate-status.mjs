@@ -153,11 +153,19 @@ function aggregateResultOutcome(results) {
 function artifactOutcome(dir, localStatus) {
   const review = readJson(path.join(dir, 'review.json'), null);
   const results = readJson(path.join(dir, 'results.json'), null);
+  const attempts = fs.existsSync(path.join(dir, 'history'))
+    ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\\d+-test\\.json$/i.test(name)).sort()
+    : [];
+  const latestAttempt = attempts.length ? readJson(path.join(dir, 'history', attempts.at(-1)), null) : null;
+  const latestNumber = Number(latestAttempt?.historyAttempt || attempts.at(-1)?.match(/attempt-(\\d+)-test/i)?.[1] || 0);
+  const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\\d+)/i)?.[1] || 0);
+  const reviewIsStale = latestNumber > reviewNumber;
   const reviewOutcome = review?.overallOutcome || null;
   const resultsOutcome = aggregateResultOutcome(results);
-  if (localStatus.qaStatus === 'Evidence Reviewed' && reviewOutcome) return reviewOutcome;
+  if (!reviewIsStale && localStatus.qaStatus === 'Evidence Reviewed' && reviewOutcome) return reviewOutcome;
   if (resultsOutcome) return resultsOutcome;
-  if (reviewOutcome) return reviewOutcome;
+  if (!reviewIsStale && reviewOutcome) return reviewOutcome;
+  if (latestAttempt?.results) return aggregateResultOutcome(latestAttempt.results);
   return localStatus.qaOutcome || null;
 }
 
@@ -274,9 +282,20 @@ function normalizeTicket(dirName) {
   const derivedOutcome = artifactOutcome(dir, localStatus);
   if (derivedOutcome) localStatus = { ...localStatus, qaOutcome: derivedOutcome };
   const review = readJson(path.join(dir, 'review.json'), null);
+  const attempts = fs.existsSync(path.join(dir, 'history'))
+    ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\\d+-test\\.json$/i.test(name)).sort()
+    : [];
+  const latestAttempt = attempts.length ? readJson(path.join(dir, 'history', attempts.at(-1)), null) : null;
+  const latestNumber = Number(latestAttempt?.historyAttempt || attempts.at(-1)?.match(/attempt-(\\d+)-test/i)?.[1] || 0);
+  const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\\d+)/i)?.[1] || 0);
+  // A newer published test supersedes an older review, including a block caused by report/PDF publication.
+  if (latestAttempt && latestNumber > reviewNumber) {
+    localStatus = { ...localStatus, qaStatus: latestAttempt.qaStatus || 'Awaiting Evidence Review', workflowState: ticket.jira.status || localStatus.workflowState, blockedStage: null, nextAction: 'Create evidence review handoff' };
+    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\\n', 'utf8');
+  }
   // A published review is the authoritative completion signal for the review
   // stage. Reconcile stale publisher/bundler status before generating handoffs.
-  if (review?.qaStatus === 'Evidence Reviewed') {
+  if (review?.qaStatus === 'Evidence Reviewed' && latestNumber <= reviewNumber) {
     localStatus = {
       ...localStatus,
       qaStatus: 'Evidence Reviewed',
