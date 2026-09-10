@@ -1,6 +1,6 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Generated from the Jira ticket source. -->
 
-- [ ] Use the star control on a visible beacon to add it to Favourites; the beacon is marked as favourited.
-- [ ] Open Favourites; the added beacon appears in the Favourites list.
-- [ ] Use the star control on the favourited beacon to remove it from Favourites; the beacon is no longer marked as favourited.
-- [ ] Confirm the removed beacon is no longer in Favourites; it does not appear in the Favourites list.
+- [ ] Starting with a visible beacon that is not in Favourites, select its star control; the beacon is marked as favourited.
+- [ ] Open Favourites; the beacon selected in the previous step appears in the Favourites list.
+- [ ] From the favourited beacon, select its star control again; the beacon is no longer marked as favourited.
+- [ ] Open or refresh Favourites after removal; the beacon selected in the previous steps is absent from the Favourites list.

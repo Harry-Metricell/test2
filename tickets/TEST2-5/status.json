@@ -8,5 +8,6 @@
   "qaOutcome": "Passed",
   "workflowState": "In Progress",
   "blockedStage": null,
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "criteriaVerified": true
 }

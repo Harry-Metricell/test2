@@ -8,5 +8,6 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "Blocked",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "criteriaVerified": true
 }
