@@ -3,12 +3,13 @@
   "generatedAt": "2026-09-10T09:54:08.882+0100",
   "counts": {
     "tickets": 6,
-    "handoffs": 2,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 1,
       "In Progress": 1,
+      "Ready": 1,
       "Rejected": 1,
-      "Retry Queued": 3
+      "Retry Queued": 2
     },
     "byQaOutcome": {
       "Blocked": 2,
@@ -83,11 +84,11 @@
       "key": "TEST2-8",
       "summary": "Preserve map context when switching GIS panels",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Ready",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Unverified",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-09T15:27:28.936Z",
       "retries": 2,
       "retryLimit": 3,
@@ -102,10 +103,10 @@
       "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-10T09:08:11.892Z",
-      "retries": 2,
+      "updatedAt": "2026-09-10T09:25:42.426Z",
+      "retries": 3,
       "retryLimit": 3,
-      "retryLabel": "Retry 2/3"
+      "retryLabel": "Retry 3/3"
     }
   ]
 }
