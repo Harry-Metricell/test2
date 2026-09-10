@@ -14,8 +14,8 @@
     "byQaOutcome": {
       "Blocked": 1,
       "Failed": 1,
-      "Not Tested": 4,
-      "Passed": 2,
+      "Not Tested": 3,
+      "Passed": 3,
       "Unverified": 1
     }
   },
@@ -45,8 +45,8 @@
       "summary": "test 4",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-10T11:30:59.169+0100",
