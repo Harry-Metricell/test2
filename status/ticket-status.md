@@ -4,7 +4,7 @@ Updated: 2026-09-10T11:03:10.834+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
-| TEST2-10 | READY FOR TESTING | Ready for Testing |  | 2-10 |
+| TEST2-10 | READY FOR TESTING | Ready for Testing | Retry 1/3 | 2-10 |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-3 | To Do | Ready for Testing |  | test 3 confusion |
 | TEST2-4 | Blocked | Criteria Check Required |  | test 4 |
