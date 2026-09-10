@@ -1,11 +1,11 @@
 # Ticket Status
 
-Updated: 2026-09-10T10:55:38.363+0100
+Updated: 2026-09-10T11:03:10.834+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
 | TEST2-10 | READY FOR TESTING | Ready for Testing |  | 2-10 |
-| TEST2-2 | READY FOR TESTING | Ready for Testing |  | test |
+| TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-3 | To Do | Ready for Testing |  | test 3 confusion |
 | TEST2-4 | Blocked | Criteria Check Required |  | test 4 |
 | TEST2-5 | In Progress | Criteria Check Required |  | test 5 confusion v2 |
