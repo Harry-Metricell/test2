@@ -261,7 +261,13 @@ function normalizeTicket(dirName) {
   // This prevents repeated bundler runs from consuming all retries.
   const retries = Number.isFinite(Number(localStatus.retries)) ? Number(localStatus.retries) : 0;
   const retryLimit = Number.isFinite(Number(localStatus.retryLimit)) ? Number(localStatus.retryLimit) : 3;
-  if (localStatus.qaStatus === 'Blocked' && retries < retryLimit) {
+  // Failed attempts can be marked Evidence Reviewed, so retry from the
+  // persisted outcome as well as from a blocked QA status.
+  const retryableOutcome = ['failed', 'blocked'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase());
+  const qaStatusKey = String(localStatus.qaStatus || '').trim().toLowerCase();
+  const retryableStatus = qaStatusKey === 'blocked';
+  const newRetryableAttempt = retryableOutcome && !['ready for testing', 'retry queued'].includes(qaStatusKey);
+  if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
     localStatus = {
       ...localStatus,
       qaStatus: 'Ready for Testing',
