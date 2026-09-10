@@ -314,6 +314,7 @@ function normalizeTicket(dirName) {
       updatedAt: new Date().toISOString()
     };
     if (!checkOnly) fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
+    }
   }
   // A previous publisher can leave blockedStage behind while a stale review status
   // remains. Treat that combination as a queued retry instead of suppressing work.
