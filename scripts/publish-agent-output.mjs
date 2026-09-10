@@ -135,7 +135,7 @@ function buildVerifiedReport(key, run, screenshots) {
   const pdf = path.join(run, `report-generated-${process.pid}.pdf`);
   execFileSync(python, [builder, '--template', template, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', docx], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(docx)) fail('Template report generation completed without a non-empty DOCX');
-  execFileSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
+    execFileSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(pdf)) fail('Template PDF conversion completed without a non-empty PDF');
   return { docx, pdf };
 }
