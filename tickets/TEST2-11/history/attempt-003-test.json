@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-11-retry",
+  "ticket": "TEST2-11",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Starting from the application launcher, open the API Audit entry point. The API Audit screen loads successfully and is visibly available for use.",
+      "status": "Passed",
+      "steps_taken": [
+        "Navigated to the V4 launcher.",
+        "Selected the API request audit Open module entry point.",
+        "Verified the API request audit screen loaded with visible filters, metrics, charts, and request explorer."
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-1-initial-launcher.png",
+        "screenshots/attempt-003/criterion-1-api-audit-loaded.png"
+      ],
+      "reason": "Direct visible browser evidence confirms the launcher-to-API-Audit journey. Browser version was not exposed in visible browser information. No temporary application or test-data changes were made."
+    }
+  ],
+  "conciseReport": "- Passed: From the application launcher, API request audit opened successfully and was visibly usable with filters, metrics, charts, and request explorer.\n- Evidence: handoff-TEST2-11-retry staging screenshots.\n- Browser version was not exposed in visible browser information.",
+  "reportPath": null,
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-11-retry/screenshots",
+  "noOp": false,
+  "reason": "Completed test run with direct evidence; ready for independent evidence review.",
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-10T15:07:08.731Z"
+}
