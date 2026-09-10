@@ -55,6 +55,13 @@ jobs:
       - name: Generate normalized tracker data and handoffs
         run: npm run generate
 
+      - name: Synchronize checkout before commit
+        run: |
+          git stash push --include-untracked -m "import-generated-state"
+          git fetch origin main
+          git rebase origin/main
+          git stash pop
+
       - name: Commit imported and generated data
         run: |
           git config user.name "github-actions"
