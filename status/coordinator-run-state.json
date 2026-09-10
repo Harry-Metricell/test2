@@ -1,4 +1,15 @@
 {
   "schema": "v4-qa-coordinator-run-state.v1",
-  "active": []
+  "active": [
+    {
+      "handoffId": "handoff-TEST2-11-retry",
+      "ticket": "TEST2-11",
+      "stage": "test_ticket",
+      "childTaskId": "01a08bd6-3888-7303-bdc7-ef42ba382e56",
+      "childHostId": "local",
+      "startedAt": "2026-09-10T15:01:18.235Z",
+      "lastObservedState": "created",
+      "nextAction": "wait for tester, publisher, and Status Bundler"
+    }
+  ]
 }
