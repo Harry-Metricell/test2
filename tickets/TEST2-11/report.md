@@ -1,0 +1,3 @@
+- Passed: From the application launcher, API request audit opened successfully and was visibly usable with filters, metrics, charts, and request explorer.
+- Evidence: handoff-TEST2-11-retry staging screenshots.
+- Browser version was not exposed in visible browser information.

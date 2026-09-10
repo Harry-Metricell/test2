@@ -1,0 +1,20 @@
+[
+  {
+    "criterion": "Starting from the application launcher, open the API Audit entry point. The API Audit screen loads successfully and is visibly available for use.",
+    "status": "Passed",
+    "steps_taken": [
+      "Navigated to the V4 launcher.",
+      "Completed the visible authentication email-and-Continue flow with the specified email address.",
+      "Returned to the loaded launcher and selected API request audit.",
+      "Verified the API request audit screen loaded with visible filters, metrics, charts, and request explorer."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial-launcher.png",
+      "screenshots/attempt-001/criterion-1-before-continue.png",
+      "screenshots/attempt-001/criterion-1-after-auth-launcher.png",
+      "screenshots/attempt-001/criterion-1-before-api-audit.png",
+      "screenshots/attempt-001/criterion-1-after-api-audit.png"
+    ],
+    "reason": "Direct visible browser evidence confirms the launcher-to-API-Audit journey. Browser version was not exposed in visible browser information. No temporary application or test-data changes were made."
+  }
+]
