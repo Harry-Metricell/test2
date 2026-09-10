@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-10T13:40:10.432+0100",
+  "generatedAt": "2026-09-10T13:40:09.339+0100",
   "counts": {
     "tickets": 9,
     "handoffs": 2,
@@ -12,8 +12,8 @@
     "byQaOutcome": {
       "Blocked": 2,
       "Failed": 1,
-      "Not Tested": 4,
-      "Passed": 1,
+      "Not Tested": 3,
+      "Passed": 2,
       "Unverified": 1
     }
   },
@@ -29,14 +29,14 @@
       "summary": "test 4",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Criteria Check Required",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
-      "updatedAt": "2026-09-10T13:40:10.432+0100",
-      "retries": 0,
+      "nextAction": "QA review complete",
+      "updatedAt": "2026-09-10T11:38:31.952Z",
+      "retries": 3,
       "retryLimit": 3,
-      "retryLabel": ""
+      "retryLabel": "Retry 3/3"
     },
     {
       "key": "TEST2-5",
