@@ -18,8 +18,18 @@
       "childTaskId": "01a08b06-6618-7cf2-9b2c-b168c1eebcea",
       "childHostId": "local",
       "startedAt": "2026-09-10T11:14:19.684Z",
+      "lastObservedState": "running",
+      "nextAction": "wait for criteria worker, publisher and Status Bundler"
+    },
+    {
+      "handoffId": "handoff-TEST2-9-criteria",
+      "ticket": "TEST2-9",
+      "stage": "criteria_conversion",
+      "childTaskId": "01a08b06-de61-7cc0-8619-86c44d6a1390",
+      "childHostId": "local",
+      "startedAt": "2026-09-10T11:14:51.870Z",
       "lastObservedState": "created",
-      "nextAction": "wait for criteria worker, publisher, and Status Bundler"
+      "nextAction": "wait for criteria worker, publisher and Status Bundler"
     }
   ]
 }
