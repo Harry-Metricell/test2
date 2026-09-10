@@ -37,7 +37,7 @@ function runGit(args) {
   const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   const binPath = path.join(gitRoot, 'mingw64', 'bin');
   return execFileSync(git, ['-C', repo, ...args], {
-    encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
+    encoding: 'utf8', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
     env: {
       ...process.env,
       GIT_EXEC_PATH: execPath,
@@ -51,7 +51,7 @@ function runGitAt(cwd, args, indexFile) {
   const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   const binPath = path.join(gitRoot, 'mingw64', 'bin');
   return execFileSync(git, ['-C', cwd, ...args], {
-    encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
+    encoding: 'utf8', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
     env: {
       ...process.env,
       GIT_EXEC_PATH: execPath,
@@ -133,9 +133,9 @@ function buildVerifiedReport(key, run, screenshots) {
   const reviewFile = path.join(run, 'review-output.json');
   const docx = path.join(run, `report-generated-${process.pid}.docx`);
   const pdf = path.join(run, `report-generated-${process.pid}.pdf`);
-  execFileSync(python, [builder, '--template', template, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', docx], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
+  execFileSync(python, [builder, '--template', template, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', docx], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(docx)) fail('Template report generation completed without a non-empty DOCX');
-    execFileSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
+    execFileSync('powershell.exe', ['-NoProfile', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(pdf)) fail('Template PDF conversion completed without a non-empty PDF');
   return { docx, pdf };
 }
