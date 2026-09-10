@@ -5,7 +5,6 @@ Updated: 2026-09-10T10:53:10.081+0100
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
 | TEST2-10 | READY FOR TESTING | Ready for Testing |  | 2-10 |
-| TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-3 | To Do | Ready for Testing |  | test 3 confusion |
 | TEST2-4 | Blocked | Evidence Reviewed |  | test 4 |
 | TEST2-5 | In Progress | Evidence Reviewed |  | test 5 confusion v2 |
