@@ -19,21 +19,6 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-4-criteria",
-      "action": "criteria_conversion",
-      "brief": "docs/briefs/criteria-conversion.md",
-      "owner": "criteria-converter",
-      "ticket": "TEST2-4",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-4/ticket.json",
-        "generated": "status/generated/TEST2-4.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-4/criteria.md",
-        "schema": "v4-qa-criteria.v1"
-      }
-    },
-    {
       "handoffId": "handoff-TEST2-5-criteria",
       "action": "criteria_conversion",
       "brief": "docs/briefs/criteria-conversion.md",

@@ -1,7 +1,7 @@
 {
   "ticket": "TEST2-4",
   "jiraStatus": "Blocked",
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Evidence Reviewed",
   "status": "Blocked",
   "retries": 0,
   "retryLimit": 3,
