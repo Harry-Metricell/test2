@@ -6,7 +6,7 @@
 - QA outcome: Not Tested
 - Workflow state: Retry Queued
 - Action owner: Coordinator
-- Next action: Create criteria conversion handoff
+- Next action: Retry 0/3 queued; coordinator will start tester
 - Jira: https://metricell.atlassian.net/browse/TEST2-11
 
 ## Acceptance Criteria
