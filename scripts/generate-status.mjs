@@ -263,6 +263,19 @@ function normalizeTicket(dirName) {
   }
   const derivedOutcome = artifactOutcome(dir, localStatus);
   if (derivedOutcome) localStatus = { ...localStatus, qaOutcome: derivedOutcome };
+  const review = readJson(path.join(dir, 'review.json'), null);
+  // A published review is the authoritative completion signal for the review
+  // stage. Reconcile stale publisher/bundler status before generating handoffs.
+  if (review?.qaStatus === 'Evidence Reviewed') {
+    localStatus = {
+      ...localStatus,
+      qaStatus: 'Evidence Reviewed',
+      workflowState: ticket.jira.status || localStatus.workflowState,
+      blockedStage: null,
+      nextAction: 'QA review complete'
+    };
+    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
+  }
   // Any pipeline block is an operational retry signal. Convert it once per block
   // into a retryable state and persist the counter in the ticket status file.
   // This prevents repeated bundler runs from consuming all retries.
@@ -459,5 +472,6 @@ for (const ticket of tickets) {
 }
 
 console.log(JSON.stringify({ ok: true, tickets: tickets.length, handoffs: handoffs.length }, null, 2));
+
 
 
