@@ -1,3 +1,4 @@
 <!-- Generated from Jira acceptance criteria. -->
 
-- [ ] GIS screen can be opened from launcher
+- [ ] Starting from the application launcher, select GIS.
+- [ ] The GIS screen opens and is visible to the user.
