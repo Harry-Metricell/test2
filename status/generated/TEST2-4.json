@@ -31,7 +31,7 @@
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Awaiting Evidence Review",
+    "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",

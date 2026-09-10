@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-10T15:07:38.507Z",
   "counts": {
     "tickets": 10,
-    "handoffs": 3,
+    "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 4,
       "Ready": 2,
@@ -30,7 +30,7 @@
       "summary": "test 4",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
