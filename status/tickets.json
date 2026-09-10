@@ -8,8 +8,8 @@
       "Blocked": 1,
       "In Progress": 1,
       "Ready": 1,
-      "Rejected": 1,
-      "Retry Queued": 2
+      "Rejected": 2,
+      "Retry Queued": 1
     },
     "byQaOutcome": {
       "Blocked": 2,
@@ -98,11 +98,11 @@
       "key": "TEST2-9",
       "summary": "Retain selected coverage after returning to the map",
       "jiraStatus": "Rejected",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Rejected",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
-      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-10T09:25:42.426Z",
       "retries": 3,
       "retryLimit": 3,

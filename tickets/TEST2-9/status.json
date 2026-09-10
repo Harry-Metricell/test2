@@ -1,13 +1,13 @@
 {
   "ticket": "TEST2-9",
   "jiraStatus": "Rejected",
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Evidence Reviewed",
   "status": "Rejected",
   "retries": 3,
   "retryLimit": 3,
   "qaOutcome": "Blocked",
-  "workflowState": "Retry Queued",
+  "workflowState": "Rejected",
   "blockedStage": null,
-  "nextAction": "Create retry handoff",
+  "nextAction": "QA review complete",
   "updatedAt": "2026-09-10T09:25:42.426Z"
 }
