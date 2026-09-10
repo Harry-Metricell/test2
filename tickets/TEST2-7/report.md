@@ -1,1 +1,1 @@
-- [ ] GIS map controls test — Blocked; authenticated V4 webpage was unavailable in the connected Chrome profile, so no UI interaction or screenshot evidence was possible.
+- [ ] GIS launcher and map-control criteria — Blocked; the only available authenticated browser tab was the TEST2 QA Tracker projection, not the V4 application.

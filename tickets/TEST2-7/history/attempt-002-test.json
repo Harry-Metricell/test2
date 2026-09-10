@@ -1,0 +1,60 @@
+{
+  "handoffId": "handoff-TEST2-7-retry",
+  "ticket": "TEST2-7",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Open GIS from the V4 launcher; the GIS workspace loads with the map and its controls visible.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Reloaded the available authenticated Chrome tab and waited for loading",
+        "Verified the visible page was TEST2 QA Tracker, not the V4 application or launcher"
+      ],
+      "evidence": [],
+      "reason": "The available browser tab is the TEST2 QA Tracker projection at https://test2-qa-tracker.metricell.chatgpt.site/; no authenticated V4 application tab or launcher was available."
+    },
+    {
+      "criterion": "Open the map layer control and enable an available coverage or network layer; the selected layer becomes visible on the map.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Could not reach the V4 launcher or GIS workspace"
+      ],
+      "evidence": [],
+      "reason": "V4 GIS was unavailable in the visible browser tabs."
+    },
+    {
+      "criterion": "Use the zoom-in control; the map visibly changes scale while remaining centred on the current area.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Could not reach the V4 launcher or GIS workspace"
+      ],
+      "evidence": [],
+      "reason": "V4 GIS was unavailable in the visible browser tabs."
+    },
+    {
+      "criterion": "Use the reset map view control; the map returns to its default view and the GIS controls remain usable.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Could not reach the V4 launcher or GIS workspace"
+      ],
+      "evidence": [],
+      "reason": "V4 GIS was unavailable in the visible browser tabs."
+    },
+    {
+      "criterion": "Open the map style control and select another available style; the map appearance changes and the style control remains available for further use.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Could not reach the V4 launcher or GIS workspace"
+      ],
+      "evidence": [],
+      "reason": "V4 GIS was unavailable in the visible browser tabs."
+    }
+  ],
+  "conciseReport": "- [ ] GIS launcher and map-control criteria — Blocked; the only available authenticated browser tab was the TEST2 QA Tracker projection, not the V4 application.",
+  "reportPath": "",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-7-retry/screenshots",
+  "noOp": false,
+  "reason": "Required authenticated V4 browser page was not available; no screenshot evidence could be captured from the tracker projection without testing the wrong application.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-10T08:24:29.426Z"
+}

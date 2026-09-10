@@ -3,48 +3,46 @@
     "criterion": "Open GIS from the V4 launcher; the GIS workspace loads with the map and its controls visible.",
     "outcome": "Blocked",
     "steps_taken": [
-      "Fetched the live main-branch handoff queue and selected handoff-TEST2-7-test.",
-      "Fetched the selected remote criteria, ticketJson, and status inputs.",
-      "Created the isolated staging screenshots folder.",
-      "Inspected the authenticated Chrome profile; no V4 webpage or launcher tab was available."
+      "Reloaded the available authenticated Chrome tab and waited for loading",
+      "Verified the visible page was TEST2 QA Tracker, not the V4 application or launcher"
     ],
-    "reason": "The required authenticated V4 browser page was unavailable. The open browser tabs were the TEST2 QA Tracker, GitHub Actions, and Jira; no authoritative V4 base URL was available to navigate without guessing. No criterion interaction or screenshot evidence could be captured.",
-    "evidence": []
+    "evidence": [],
+    "reason": "The available browser tab is the TEST2 QA Tracker projection at https://test2-qa-tracker.metricell.chatgpt.site/; no authenticated V4 application tab or launcher was available."
   },
   {
     "criterion": "Open the map layer control and enable an available coverage or network layer; the selected layer becomes visible on the map.",
     "outcome": "Blocked",
     "steps_taken": [
-      "Could not reach the required V4 launcher because the authenticated V4 webpage was unavailable."
+      "Could not reach the V4 launcher or GIS workspace"
     ],
-    "reason": "Required V4 browser environment unavailable; no screenshot evidence.",
-    "evidence": []
+    "evidence": [],
+    "reason": "V4 GIS was unavailable in the visible browser tabs."
   },
   {
     "criterion": "Use the zoom-in control; the map visibly changes scale while remaining centred on the current area.",
     "outcome": "Blocked",
     "steps_taken": [
-      "Could not reach the required V4 GIS workspace because the authenticated V4 webpage was unavailable."
+      "Could not reach the V4 launcher or GIS workspace"
     ],
-    "reason": "Required V4 browser environment unavailable; no screenshot evidence.",
-    "evidence": []
+    "evidence": [],
+    "reason": "V4 GIS was unavailable in the visible browser tabs."
   },
   {
     "criterion": "Use the reset map view control; the map returns to its default view and the GIS controls remain usable.",
     "outcome": "Blocked",
     "steps_taken": [
-      "Could not reach the required V4 GIS workspace because the authenticated V4 webpage was unavailable."
+      "Could not reach the V4 launcher or GIS workspace"
     ],
-    "reason": "Required V4 browser environment unavailable; no screenshot evidence.",
-    "evidence": []
+    "evidence": [],
+    "reason": "V4 GIS was unavailable in the visible browser tabs."
   },
   {
     "criterion": "Open the map style control and select another available style; the map appearance changes and the style control remains available for further use.",
     "outcome": "Blocked",
     "steps_taken": [
-      "Could not reach the required V4 GIS workspace because the authenticated V4 webpage was unavailable."
+      "Could not reach the V4 launcher or GIS workspace"
     ],
-    "reason": "Required V4 browser environment unavailable; no screenshot evidence.",
-    "evidence": []
+    "evidence": [],
+    "reason": "V4 GIS was unavailable in the visible browser tabs."
   }
 ]
