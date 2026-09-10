@@ -1,1 +1,0 @@
-- [x] GIS screen can be opened from launcher — Passed; authenticated V4 GIS page loaded at /gis and displayed map controls/layers.

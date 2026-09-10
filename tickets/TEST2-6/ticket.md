@@ -4,9 +4,9 @@
 
 - Jira status: Rejected
 - QA outcome: Blocked
-- Workflow state: Retry Queued
+- Workflow state: Blocked
 - Action owner: Coordinator
-- Next action: Create criteria conversion handoff
+- Next action: Manual review required after retry limit
 - Jira: https://metricell.atlassian.net/browse/TEST2-6
 
 ## Acceptance Criteria
