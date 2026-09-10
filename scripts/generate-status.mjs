@@ -197,7 +197,8 @@ function mergeStatus(ticket, localStatus) {
     reviewState: localStatus.reviewState || 'Not Reviewed',
     retries,
     blockedStage: localStatus.blockedStage || null,
-    updatedAt: localStatus.updatedAt || ticket.jira.updated || ticket.source.importedAt || null
+    updatedAt: localStatus.updatedAt || ticket.jira.updated || ticket.source.importedAt || null,
+    criteriaVerified: localStatus.criteriaVerified === true
   };
 }
 
@@ -368,7 +369,7 @@ function jiraReadyForTesting(ticket) {
 }
 
 function handoffFor(ticket) {
-  if (localStatus.criteriaVerified !== true) {
+  if (ticket.status.criteriaVerified !== true) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
       action: 'criteria_conversion',
