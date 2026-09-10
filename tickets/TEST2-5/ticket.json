@@ -46,13 +46,13 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-09-09T16:26:26.830+0100",
+    "updated": "2026-09-10T13:38:13.309+0100",
     "status": {
-      "self": "https://metricell.atlassian.net/rest/api/3/status/10733",
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
       "description": "",
       "iconUrl": "https://metricell.atlassian.net/",
-      "name": "In Progress",
-      "id": "10733",
+      "name": "READY FOR TESTING",
+      "id": "10735",
       "statusCategory": {
         "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
         "id": 4,

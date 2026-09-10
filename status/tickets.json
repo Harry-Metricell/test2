@@ -1,12 +1,11 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-10T11:49:38.723Z",
+  "generatedAt": "2026-09-10T13:38:13.309+0100",
   "counts": {
-    "tickets": 9,
+    "tickets": 8,
     "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 4,
-      "In Progress": 1,
       "Ready": 1,
       "Rejected": 3
     },
@@ -14,7 +13,7 @@
       "Blocked": 2,
       "Failed": 1,
       "Not Tested": 2,
-      "Passed": 3,
+      "Passed": 2,
       "Unverified": 1
     }
   },
@@ -28,30 +27,16 @@
     {
       "key": "TEST2-5",
       "summary": "test 5 confusion v2",
-      "jiraStatus": "In Progress",
-      "workflowState": "In Progress",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
-      "actionOwner": "Coordinator",
-      "nextAction": "QA review complete",
-      "updatedAt": "2026-09-09T16:26:26.830+0100",
-      "retries": 0,
-      "retryLimit": 3,
-      "retryLabel": ""
-    },
-    {
-      "key": "TEST2-4",
-      "summary": "test 4",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
-      "updatedAt": "2026-09-10T11:38:31.952Z",
-      "retries": 3,
+      "updatedAt": "2026-09-10T13:38:13.309+0100",
+      "retries": 0,
       "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retryLabel": ""
     },
     {
       "key": "TEST2-10",

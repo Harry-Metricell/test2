@@ -1,1 +1,0 @@
-- Passed: GIS screen can be opened from launcher; verified the launcher loaded and opening GIS displayed the GIS workspace and map.

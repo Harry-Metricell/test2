@@ -2,9 +2,9 @@
 
 ## Current State
 
-- Jira status: In Progress
+- Jira status: READY FOR TESTING
 - QA outcome: Passed
-- Workflow state: In Progress
+- Workflow state: Ready
 - Action owner: Coordinator
 - Next action: QA review complete
 - Jira: https://metricell.atlassian.net/browse/TEST2-5

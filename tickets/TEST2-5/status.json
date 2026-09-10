@@ -1,12 +1,12 @@
 {
   "ticket": "TEST2-5",
-  "jiraStatus": "In Progress",
+  "jiraStatus": "READY FOR TESTING",
   "qaStatus": "Evidence Reviewed",
-  "status": "In Progress",
+  "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 3,
   "qaOutcome": "Passed",
-  "workflowState": "In Progress",
+  "workflowState": "READY FOR TESTING",
   "blockedStage": null,
   "nextAction": "QA review complete",
   "criteriaVerified": true
