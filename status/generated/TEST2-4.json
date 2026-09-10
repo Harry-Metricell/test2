@@ -31,11 +31,11 @@
   "status": {
     "jiraStatus": "Blocked",
     "workflowState": "Blocked",
-    "qaStatus": "Evidence Reviewed",
+    "qaStatus": "Criteria Check Required",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "QA review complete",
+    "nextAction": "Create criteria conversion handoff",
     "reviewState": "Not Reviewed",
     "retries": 0,
     "blockedStage": null,

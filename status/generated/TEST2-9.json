@@ -29,11 +29,11 @@
   "status": {
     "jiraStatus": "Rejected",
     "workflowState": "Rejected",
-    "qaStatus": "Evidence Reviewed",
+    "qaStatus": "Criteria Check Required",
     "qaOutcome": "Failed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "QA review complete",
+    "nextAction": "Create criteria conversion handoff",
     "reviewState": "Not Reviewed",
     "retries": 3,
     "blockedStage": null,

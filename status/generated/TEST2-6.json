@@ -29,11 +29,11 @@
   "status": {
     "jiraStatus": "Rejected",
     "workflowState": "Retry Queued",
-    "qaStatus": "Blocked",
+    "qaStatus": "Criteria Check Required",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Waiting for Jira status: READY FOR TESTING",
+    "nextAction": "Create criteria conversion handoff",
     "reviewState": "Not Reviewed",
     "retries": 3,
     "blockedStage": "testing",
