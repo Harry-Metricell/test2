@@ -1,0 +1,60 @@
+{
+  "handoffId": "handoff-TEST2-6-retry",
+  "ticket": "TEST2-6",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": 1,
+      "outcome": "Passed",
+      "steps_taken": [
+        "Reloaded the V4 launcher",
+        "Opened GIS using its launcher card"
+      ],
+      "evidence": [
+        "screenshots/attempt-004/criterion-1-initial-launcher.png",
+        "screenshots/attempt-004/criterion-1-after-open.png"
+      ]
+    },
+    {
+      "criterion": 2,
+      "outcome": "Passed",
+      "steps_taken": [
+        "Entered London in Search Map",
+        "Selected London UK",
+        "Verified the map moved and displayed a map marker"
+      ],
+      "evidence": [
+        "screenshots/attempt-004/criterion-2-before-search.png",
+        "screenshots/attempt-004/criterion-2-after-search.png",
+        "screenshots/attempt-004/criterion-2-before-select-result.png",
+        "screenshots/attempt-004/criterion-2-after-select-result.png"
+      ]
+    },
+    {
+      "criterion": 3,
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Clicked the visible Map marker image"
+      ],
+      "evidence": [
+        "screenshots/attempt-004/criterion-3-before-marker.png",
+        "screenshots/attempt-004/criterion-3-after-marker.png"
+      ],
+      "reason": "The visible marker remained present but no details panel or identifying information opened; the required decisive result could not be evidenced."
+    },
+    {
+      "criterion": 4,
+      "outcome": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "Blocked because criterion 3 did not open a details panel, so there was no panel to close and no valid final assertion for this criterion."
+    }
+  ],
+  "conciseReport": "GIS opened from the launcher and map search successfully moved to London UK with a visible marker. Selecting the visible marker did not open the required details panel, so marker details and panel-close behavior remain blocked.",
+  "reportPath": ".agent-staging/handoff-TEST2-6-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-6-retry/screenshots",
+  "noOp": false,
+  "reason": "Criteria 3 and 4 are blocked because marker selection did not produce a details panel.",
+  "historyAttempt": 4,
+  "recordedAt": "2026-09-10T09:17:47.876Z"
+}

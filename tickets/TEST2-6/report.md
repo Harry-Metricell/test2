@@ -1,1 +1,1 @@
-GIS loaded from the V4 launcher and map search successfully moved to London with a visible marker. Marker clicks did not open identifying details, so marker-details and close-panel criteria remain unverified.
+GIS opened from the launcher and map search successfully moved to London UK with a visible marker. Selecting the visible marker did not open the required details panel, so marker details and panel-close behavior remain blocked.
