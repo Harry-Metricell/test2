@@ -1,0 +1,80 @@
+{
+  "handoffId": "handoff-TEST2-6-retry",
+  "ticket": "TEST2-6",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Open the GIS module from the V4 launcher; the GIS workspace loads with the map and its available controls visible.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Reloaded the V4 launcher",
+        "Captured the launcher initial state",
+        "Clicked the GIS module Open module button",
+        "Verified GIS, map, layer controls, search, and zoom controls were visible"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/c1-initial.png",
+        "screenshots/attempt-002/c1-after-open-gis.png"
+      ],
+      "reason": "Direct UI evidence confirms the GIS workspace loaded from the launcher.",
+      "browserVersion": null,
+      "blockers": []
+    },
+    {
+      "criterion": "Use the map search to find a known site or location; the map moves to the selected result and shows it as the active location.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Entered London in Search Map",
+        "Selected the visible London UK result",
+        "Verified the map moved to London and a map marker appeared"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/c2-before-search.png",
+        "screenshots/attempt-002/c2-after-search.png",
+        "screenshots/attempt-002/c2-before-select-result.png",
+        "screenshots/attempt-002/c2-after-select-result.png"
+      ],
+      "reason": "Direct UI evidence confirms the selected London result repositioned the map and created an active marker.",
+      "browserVersion": null,
+      "blockers": []
+    },
+    {
+      "criterion": "Select the visible map marker itself; a details panel opens for the same location and shows its identifying information.",
+      "outcome": "Failed",
+      "steps_taken": [
+        "Clicked the visible map marker at the selected London location",
+        "Waited for the UI to update",
+        "Verified no details panel or identifying information appeared"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/c3-before-marker-coordinate.png",
+        "screenshots/attempt-002/c3-after-marker-coordinate.png"
+      ],
+      "reason": "Direct contradictory evidence: the visible marker remained and no details panel opened after the marker click.",
+      "browserVersion": null,
+      "blockers": []
+    },
+    {
+      "criterion": "Close the details panel and return to the map; the map remains at the selected location and the GIS controls remain usable.",
+      "outcome": "Unverified",
+      "steps_taken": [
+        "Attempted the marker interaction required to produce the details panel",
+        "Observed that no details panel opened",
+        "Cleared the map search and navigated back to the launcher to restore state"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/c3-after-marker-coordinate.png"
+      ],
+      "reason": "Testing occurred, but the required details panel was not created, so its close-and-return journey could not be evaluated.",
+      "browserVersion": null,
+      "blockers": []
+    }
+  ],
+  "conciseReport": "## TEST2-6\n\n- GIS opened successfully from the V4 launcher and map controls were visible.\n- Map search moved the map to London and displayed an active marker.\n- Clicking the visible marker did not open a details panel; the marker-interaction criterion failed.\n- The panel-close criterion could not be verified because no panel opened.\n- Application state was restored to the V4 launcher.",
+  "reportPath": null,
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-6-retry/screenshots",
+  "noOp": false,
+  "reason": "Tested all four criteria independently with staged screenshots. Browser version was not exposed in visible browser information.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-10T08:41:29.480Z"
+}

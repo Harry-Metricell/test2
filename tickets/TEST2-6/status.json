@@ -1,7 +1,7 @@
 {
   "ticket": "TEST2-6",
   "jiraStatus": "In Progress",
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Awaiting Evidence Review",
   "status": "In Progress",
   "retries": 1,
   "retryLimit": 3,
