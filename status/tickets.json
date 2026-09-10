@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-10T08:41:55.846Z",
+  "generatedAt": "2026-09-10T08:37:52.778Z",
   "counts": {
     "tickets": 6,
     "handoffs": 3,
@@ -9,9 +9,8 @@
       "Retry Queued": 3
     },
     "byQaOutcome": {
-      "Failed": 1,
       "Passed": 3,
-      "Unverified": 2
+      "Unverified": 3
     }
   },
   "policy": {
@@ -54,11 +53,11 @@
       "summary": "Verify GIS map search and marker interaction",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Failed",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Unverified",
       "actionOwner": "Coordinator",
       "nextAction": "Retry 2/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-10T08:41:55.846Z",
+      "updatedAt": "2026-09-10T08:37:52.778Z",
       "retries": 2,
       "retryLimit": 3,
       "retryLabel": "Retry 2/3"

@@ -3,10 +3,11 @@
   "jiraStatus": "In Progress",
   "qaStatus": "Awaiting Evidence Review",
   "status": "In Progress",
-  "retries": 1,
+  "retries": 2,
   "retryLimit": 3,
   "blockedStage": null,
   "workflowState": "Retry Queued",
   "nextAction": "Create retry handoff",
-  "updatedAt": "2026-09-10T08:37:52.778Z"
+  "updatedAt": "2026-09-10T08:37:52.778Z",
+  "qaOutcome": "Unverified"
 }
