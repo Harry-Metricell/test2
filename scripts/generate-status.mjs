@@ -301,7 +301,8 @@ function normalizeTicket(dirName) {
   const qaStatusKey = String(localStatus.qaStatus || '').trim().toLowerCase();
   const retryableStatus = qaStatusKey === 'blocked';
   const newRetryableAttempt = retryableOutcome && !['ready for testing', 'retry queued'].includes(qaStatusKey);
-  if (!review?.qaStatus || review.qaStatus !== 'Evidence Reviewed') {\n    if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
+  if (!review?.qaStatus || review.qaStatus !== 'Evidence Reviewed') {
+    if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
     localStatus = {
       ...localStatus,
       qaStatus: 'Ready for Testing',
