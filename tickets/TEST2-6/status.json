@@ -1,13 +1,13 @@
 {
   "ticket": "TEST2-6",
   "jiraStatus": "Rejected",
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Blocked",
   "status": "Rejected",
   "retries": 3,
   "retryLimit": 3,
-  "blockedStage": null,
-  "workflowState": "Retry Queued",
-  "nextAction": "Create retry handoff",
+  "blockedStage": "jira",
+  "workflowState": "Blocked",
+  "nextAction": "Waiting for Jira status: READY FOR TESTING",
   "updatedAt": "2026-09-10T08:37:52.778Z",
   "qaOutcome": "Blocked",
   "criteriaVerified": true
