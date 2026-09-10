@@ -103,7 +103,7 @@
       "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
-      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-09-10T08:37:52.778Z",
       "retries": 3,
       "retryLimit": 3,
