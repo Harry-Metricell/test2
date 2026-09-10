@@ -44,7 +44,7 @@
       "summary": "test 5 confusion v2",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
