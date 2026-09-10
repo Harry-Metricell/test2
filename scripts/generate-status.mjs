@@ -254,6 +254,13 @@ function normalizeTicket(dirName) {
     retryLimit: 3
   });
   if (!fs.existsSync(statusPath) && !checkOnly) writeJson(statusPath, localStatus);
+  // ticket.json is the authoritative imported Jira snapshot. Keep the small
+  // Jira mirror in status.json synchronised while preserving QA-owned fields.
+  const importedJiraStatus = ticket.jira.status || 'Unknown';
+  if (localStatus.jiraStatus !== importedJiraStatus || localStatus.status !== importedJiraStatus) {
+    localStatus = { ...localStatus, jiraStatus: importedJiraStatus, status: importedJiraStatus };
+    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
+  }
   const derivedOutcome = artifactOutcome(dir, localStatus);
   if (derivedOutcome) localStatus = { ...localStatus, qaOutcome: derivedOutcome };
   // Any pipeline block is an operational retry signal. Convert it once per block
@@ -452,4 +459,5 @@ for (const ticket of tickets) {
 }
 
 console.log(JSON.stringify({ ok: true, tickets: tickets.length, handoffs: handoffs.length }, null, 2));
+
 
