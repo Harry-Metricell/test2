@@ -173,7 +173,7 @@ function mergeStatus(ticket, localStatus) {
       ? localStatus.qaStatus
       : (criteriaReady(ticket) ? 'Ready for Testing' : (ticket.acceptanceCriteria.length ? 'Ready for Testing' : 'Criteria Review Required'));
   const jiraReady = jiraReadyForTesting(ticket);
-  const jiraGateBlocked = !jiraReady && (qaStatus === 'Ready for Testing' || qaStatus === 'Awaiting Evidence Review');
+  const jiraGateBlocked = !jiraReady && ['Ready for Testing', 'Awaiting Evidence Review', 'Blocked'].includes(qaStatus);
   const projectedWorkflowState = jiraGateBlocked ? 'Blocked' : workflowState;
   const nextAction = qaStatus === 'Evidence Reviewed'
     ? 'QA review complete'
