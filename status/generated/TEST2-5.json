@@ -37,6 +37,7 @@
     "reviewState": "Not Reviewed",
     "retries": 0,
     "blockedStage": null,
-    "updatedAt": "2026-09-09T16:26:26.830+0100"
+    "updatedAt": "2026-09-09T16:26:26.830+0100",
+    "criteriaVerified": false
   }
 }
