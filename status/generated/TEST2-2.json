@@ -40,7 +40,7 @@
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create criteria conversion handoff",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
     "retries": 0,
     "blockedStage": null,
