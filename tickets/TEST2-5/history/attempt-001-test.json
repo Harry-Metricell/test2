@@ -1,0 +1,59 @@
+{
+  "handoffId": "handoff-TEST2-5-test",
+  "ticket": "TEST2-5",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": 1,
+      "status": "Passed",
+      "steps_taken": "Opened the required launcher, opened GIS, added the Beacons layer, and confirmed a visible beacon with its star control.",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial-launcher.png",
+        "screenshots/attempt-001/criterion-1-before-add-beacons.png",
+        "screenshots/attempt-001/criterion-1-after-add-beacons.png"
+      ]
+    },
+    {
+      "criterion": 2,
+      "status": "Passed",
+      "steps_taken": "Selected Add to favourites for Colin Pitts 1 #447925375841 and confirmed the control changed to Remove from favourites.",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-before-add.png",
+        "screenshots/attempt-001/criterion-2-after-add.png"
+      ]
+    },
+    {
+      "criterion": 3,
+      "status": "Passed",
+      "steps_taken": "Selected the Favourites filter and confirmed Colin Pitts 1 #447925375841 appeared in the list.",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-before-open.png",
+        "screenshots/attempt-001/criterion-3-after-open.png"
+      ]
+    },
+    {
+      "criterion": 4,
+      "status": "Passed",
+      "steps_taken": "Selected the beacon's Remove from favourites control and confirmed the list became empty.",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-before-remove.png",
+        "screenshots/attempt-001/criterion-4-after-remove-criterion-5-final.png"
+      ]
+    },
+    {
+      "criterion": 5,
+      "status": "Passed",
+      "steps_taken": "Confirmed the Favourites list displayed 'No favourite Beacons yet' after removal.",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-after-remove-criterion-5-final.png"
+      ]
+    }
+  ],
+  "conciseReport": "TEST2-5 passed: added a visible beacon to Favourites, confirmed it appeared, removed it, and confirmed the Favourites list was empty. Test-created beacon layer and favourite state were restored.",
+  "reportPath": null,
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-5-test/screenshots",
+  "noOp": false,
+  "reason": null,
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-10T13:57:05.059Z"
+}
