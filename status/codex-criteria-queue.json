@@ -3,19 +3,6 @@
   "generatedAt": "2026-09-10T10:55:38.363+0100",
   "tickets": [
     {
-      "ticket": "TEST2-2",
-      "handoffId": "handoff-TEST2-2-criteria",
-      "brief": "docs/briefs/criteria-conversion.md",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-2/ticket.json",
-        "generated": "status/generated/TEST2-2.json"
-      },
-      "output": {
-        "path": "tickets/TEST2-2/criteria.md",
-        "schema": "v4-qa-criteria.v1"
-      }
-    },
-    {
       "ticket": "TEST2-4",
       "handoffId": "handoff-TEST2-4-criteria",
       "brief": "docs/briefs/criteria-conversion.md",
