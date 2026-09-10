@@ -31,7 +31,8 @@ for (const key of tickets) {
       'Generated from Jira acceptance criteria',
       'Generated from Jira description',
       'Source: Jira description',
-      'Converted from the complete Jira ticket source'
+      'Converted from the complete Jira ticket source',
+      'Generated from the Jira ticket source'
     ].some((marker) => criteria.includes(marker));
     if (!hasGeneratedMarker) {
       errors.push(key + ': criteria.md is missing its generated marker');
