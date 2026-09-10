@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-3",
+  "id": "103333",
+  "summary": "test 3 confusion",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-3",
+    "status": "To Do",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-02T16:30:31.877+0100",
+    "updated": "2026-09-10T10:30:55.756+0100"
+  },
+  "description": "the beacons favourite should work. you should be able to favourite a beacon it comes up in favourites. then un fav it and it goes out of favourite beacon",
+  "acceptanceCriteria": [
+    "you should be able to favourite a beacon it comes up in favourites.",
+    "then un fav it and it goes out of favourite beacon"
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-3/ticket.json",
+    "criteria": "tickets/TEST2-3/criteria.md",
+    "status": "tickets/TEST2-3/status.json",
+    "screenshots": "tickets/TEST2-3/screenshots/",
+    "reports": "tickets/TEST2-3/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103333",
+    "importedAt": "2026-09-10T10:30:55.756+0100"
+  },
+  "status": {
+    "jiraStatus": "To Do",
+    "workflowState": "To Do",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-10T10:30:55.756+0100"
+  }
+}

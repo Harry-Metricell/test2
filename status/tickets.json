@@ -1,18 +1,21 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-10T09:54:08.882+0100",
+  "generatedAt": "2026-09-10T10:30:55.941+0100",
   "counts": {
-    "tickets": 6,
+    "tickets": 8,
     "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 1,
       "In Progress": 1,
-      "Ready": 1,
+      "Ready": 2,
       "Rejected": 2,
-      "Retry Queued": 1
+      "Retry Queued": 1,
+      "To Do": 1
     },
     "byQaOutcome": {
-      "Blocked": 2,
+      "Blocked": 1,
+      "Failed": 1,
+      "Not Tested": 2,
       "Passed": 3,
       "Unverified": 1
     }
@@ -24,6 +27,34 @@
     "missingEvidence": "warning_not_pass"
   },
   "tickets": [
+    {
+      "key": "TEST2-2",
+      "summary": "test",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-10T10:30:55.941+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-3",
+      "summary": "test 3 confusion",
+      "jiraStatus": "To Do",
+      "workflowState": "To Do",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "updatedAt": "2026-09-10T10:30:55.756+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
     {
       "key": "TEST2-4",
       "summary": "test 4",
@@ -100,7 +131,7 @@
       "jiraStatus": "Rejected",
       "workflowState": "Rejected",
       "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Blocked",
+      "qaOutcome": "Failed",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-10T09:25:42.426Z",
