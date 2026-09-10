@@ -437,6 +437,7 @@ if (!checkOnly && fs.existsSync(generatedDir)) {
   }
 }
 const generatedAt = tickets.map((t) => t.status.updatedAt || t.jira.updated || t.jira.created).filter(Boolean).sort().at(-1) || null;
+const displayTickets = [...tickets].sort((a, b) => String(a.jira.status || 'Unknown').localeCompare(String(b.jira.status || 'Unknown')) || a.key.localeCompare(b.key, undefined, { numeric: true }));
 const summary = {
   schema: 'v4-qa-status.v1',
   generatedAt,
@@ -452,7 +453,7 @@ const summary = {
     tracker: 'publish_only_approved_status',
     missingEvidence: 'warning_not_pass'
   },
-  tickets: tickets.map((t) => ({
+  tickets: displayTickets.map((t) => ({
     key: t.key,
     summary: t.summary,
     jiraStatus: t.jira.status,
@@ -468,7 +469,7 @@ const summary = {
   }))
 };
 
-const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Retry | Summary |', '| --- | --- | --- | --- | --- |', ...tickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.status.retries > 0 ? `Retry ${t.status.retries}/3` : ''} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\n');
+const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Retry | Summary |', '| --- | --- | --- | --- | --- |', ...displayTickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.status.retries > 0 ? `Retry ${t.status.retries}/3` : ''} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\n');
 writeText(path.join(outDir, 'ticket-status.md'), report);
 
 writeJson(path.join(outDir, 'tickets.json'), summary);
