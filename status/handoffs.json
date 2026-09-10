@@ -33,21 +33,6 @@
         "path": "tickets/TEST2-4/results.json",
         "schema": "v4-qa-test-result.v1"
       }
-    },
-    {
-      "handoffId": "handoff-TEST2-9-criteria",
-      "action": "criteria_conversion",
-      "brief": "docs/briefs/criteria-conversion.md",
-      "owner": "criteria-converter",
-      "ticket": "TEST2-9",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-9/ticket.json",
-        "generated": "status/generated/TEST2-9.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-9/criteria.md",
-        "schema": "v4-qa-criteria.v1"
-      }
     }
   ]
 }

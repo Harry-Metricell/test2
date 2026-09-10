@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-10T11:30:59.169+0100",
   "counts": {
     "tickets": 9,
-    "handoffs": 3,
+    "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 3,
       "In Progress": 1,
@@ -12,8 +12,7 @@
       "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Blocked": 1,
-      "Failed": 1,
+      "Blocked": 2,
       "Not Tested": 4,
       "Passed": 2,
       "Unverified": 1
@@ -129,10 +128,10 @@
       "summary": "Retain selected coverage after returning to the map",
       "jiraStatus": "Rejected",
       "workflowState": "Rejected",
-      "qaStatus": "Criteria Check Required",
-      "qaOutcome": "Failed",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-10T09:25:42.426Z",
       "retries": 3,
       "retryLimit": 3,
