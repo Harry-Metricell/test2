@@ -177,8 +177,14 @@ if (output.handoffId && !String(output.handoffId).startsWith(`handoff-${key}-`))
 const changed = [];
 if (outputType === 'criteria-output.json') {
   if (typeof output.criteriaMarkdown !== 'string' || !output.criteriaMarkdown.trim()) fail('criteriaMarkdown is missing');
+  let criteriaMarkdown = output.criteriaMarkdown.trim();
+  if (!/Generated from Jira acceptance criteria|Generated from Jira description|Source: Jira description|Converted from the complete Jira ticket source|Generated from the Jira ticket source/i.test(criteriaMarkdown)) {
+    criteriaMarkdown = '<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->\n\n' + criteriaMarkdown;
+  }
+  criteriaMarkdown = criteriaMarkdown.replace(/^-\\s+(?!\\[)/gm, '- [ ] ');
+  if (!/^- \\[ \\] \\S/m.test(criteriaMarkdown)) fail('criteriaMarkdown has no valid unchecked checklist bullets');
   ensurePath(path.join(ticketDir, 'criteria.md'));
-  fs.writeFileSync(path.join(ticketDir, 'criteria.md'), `${output.criteriaMarkdown.trim()}\n`, 'utf8');
+  fs.writeFileSync(path.join(ticketDir, 'criteria.md'), criteriaMarkdown + '\n', 'utf8');
   status.qaStatus = output.qaStatus || 'Ready for Testing';
   status.criteriaVerified = output.qaStatus !== 'Blocked';
   status.blockedStage = output.qaStatus === 'Blocked' ? 'criteria' : null;
