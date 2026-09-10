@@ -1,7 +1,22 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-09-10T13:40:09.339+0100",
+  "generatedAt": "2026-09-10T13:48:23.430+0100",
   "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-11-criteria",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-11",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-11/ticket.json",
+        "generated": "status/generated/TEST2-11.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-11/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
     {
       "handoffId": "handoff-TEST2-4-review",
       "action": "evidence_review",
