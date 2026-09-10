@@ -100,7 +100,7 @@
       "summary": "Verify GIS map search and marker interaction",
       "jiraStatus": "Rejected",
       "workflowState": "Blocked",
-      "qaStatus": "Ready for Testing",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
