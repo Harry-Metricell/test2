@@ -1,0 +1,8 @@
+{
+  "handoffId": "handoff-TEST2-10-criteria",
+  "ticket": "TEST2-10",
+  "criteriaMarkdown": "<!-- Generated from Jira acceptance criteria. -->\n\n- [ ] Starting from the SmartTools V4 launcher, open the Beacon report and verify that the report view loads.\n- [ ] In the Beacon report, select a Beacon and a date range, then verify that the selected Beacon and date range are displayed as the active context.\n- [ ] Move from the initial report view through each available report view, verifying that each requested view opens successfully.\n- [ ] After changing report views, verify that the selected Beacon and date range remain unchanged and that the displayed results correspond to that same context.\n- [ ] Return to the original report view and verify that it is displayed with the selected Beacon, date range, and expected results still retained.\n",
+  "qaStatus": "Ready for Testing",
+  "noOp": false,
+  "reason": "The Jira source provides a clear user goal and five concrete acceptance requirements. They can be converted into observable browser checks by defining the required starting point, active context, successful view navigation, context persistence, and return-state verification."
+}
