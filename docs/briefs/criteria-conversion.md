@@ -6,7 +6,7 @@ Use the GitHub connector to fetch the live `main` branch file `status/handoffs.j
 
 Select the first eligible open `criteria_conversion` handoff in deterministic `handoffId` order from the freshly fetched live GitHub `status/handoffs.json`. Do not use Jira, ticket numbers from the task prompt, local folder names, or arbitrary ticket selection. If none exists, return one compact JSON no-op with `noOp: true` and all required fields present.
 
-Read only the selected handoff inputs. Convert the ticket source into `criteria.md` content with one unchecked bullet per distinct state-changing/user action. Never combine separate actions. Put the expected observable result in the same bullet. Observations belong with the action they evidence. Preserve source meaning; if extraction is unreliable, output one unchecked bullet stating that criteria could not be extracted.
+Read only the selected handoff inputs. For every selected ticket, inspect the original Jira description and the existing `criteria.md` together. If existing criteria are present, validate that every action, object, condition, and expected result is faithful to the Jira source; preserve them when correct and rewrite only when needed. If criteria are missing, write new criteria. Use one unchecked bullet per distinct state-changing/user action. Never combine separate actions. Put the expected observable result in the same bullet. Observations belong with the action they evidence. Preserve source meaning; if the Jira source is genuinely ambiguous or insufficient, set `qaStatus` to `Blocked` and explain why.
 
 Write one temporary output file to:
 `C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/<handoffId>/criteria-output.json`
