@@ -1,0 +1,1 @@
+- Passed: GIS screen opened successfully from the launcher and loaded usable GIS controls and beacon data.
