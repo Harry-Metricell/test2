@@ -8,9 +8,9 @@
       "Confirmed the resulting page visibly showed the GIS workspace and map."
     ],
     "evidence": [
-      "screenshots/attempt-004/criterion-1-initial-launcher.png",
-      "screenshots/attempt-004/criterion-1-before-open-gis.png",
-      "screenshots/attempt-004/criterion-1-after-open-gis.png"
+      "screenshots/attempt-005/criterion-1-initial-launcher.png",
+      "screenshots/attempt-005/criterion-1-before-open-gis.png",
+      "screenshots/attempt-005/criterion-1-after-open-gis.png"
     ],
     "reason": "Direct visible evidence confirmed the launcher and resulting GIS workspace."
   }
