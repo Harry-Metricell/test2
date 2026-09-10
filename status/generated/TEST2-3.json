@@ -41,6 +41,6 @@
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-10T10:30:55.756+0100",
-    "criteriaVerified": false
+    "criteriaVerified": true
   }
 }
