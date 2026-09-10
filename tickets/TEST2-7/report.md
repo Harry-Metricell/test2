@@ -1,0 +1,1 @@
+- [ ] GIS map controls test — Blocked; authenticated V4 webpage was unavailable in the connected Chrome profile, so no UI interaction or screenshot evidence was possible.
