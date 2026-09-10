@@ -301,7 +301,7 @@ function normalizeTicket(dirName) {
   const qaStatusKey = String(localStatus.qaStatus || '').trim().toLowerCase();
   const retryableStatus = qaStatusKey === 'blocked';
   const newRetryableAttempt = retryableOutcome && !['ready for testing', 'retry queued'].includes(qaStatusKey);
-  if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
+  if (!review?.qaStatus || review.qaStatus !== 'Evidence Reviewed') {\n    if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
     localStatus = {
       ...localStatus,
       qaStatus: 'Ready for Testing',
@@ -373,6 +373,17 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/criteria.md`, schema: 'v4-qa-criteria.v1' }
     };
   }
+  if (jiraReadyForTesting(ticket) && ticket.status.qaStatus === 'Awaiting Evidence Review') {
+    return {
+      handoffId: `handoff-${ticket.key}-review`,
+      action: 'evidence_review',
+      brief: 'docs/briefs/evidence-review.md',
+      owner: 'evidence-reviewer',
+      ticket: ticket.key,
+      inputs: { results: `tickets/${ticket.key}/results.json`, generated: `status/generated/${ticket.key}.json` },
+      expectedOutput: { path: `tickets/${ticket.key}/review.json`, schema: 'v4-qa-review.v1' }
+    };
+  }
   if (jiraReadyForTesting(ticket) && (ticket.status.qaStatus === 'Ready for Testing' || ticket.status.qaStatus === 'Retry Queued' || ticket.status.workflowState === 'Retry Queued') && criteriaReady(ticket)) {
     return {
       handoffId: ticket.status.workflowState === 'Retry Queued'
@@ -388,17 +399,6 @@ function handoffFor(ticket) {
         status: `tickets/${ticket.key}/status.json`
       },
       expectedOutput: { path: `tickets/${ticket.key}/results.json`, schema: 'v4-qa-test-result.v1' }
-    };
-  }
-  if (jiraReadyForTesting(ticket) && ticket.status.qaStatus === 'Awaiting Evidence Review') {
-    return {
-      handoffId: `handoff-${ticket.key}-review`,
-      action: 'evidence_review',
-      brief: 'docs/briefs/evidence-review.md',
-      owner: 'evidence-reviewer',
-      ticket: ticket.key,
-      inputs: { results: `tickets/${ticket.key}/results.json`, generated: `status/generated/${ticket.key}.json` },
-      expectedOutput: { path: `tickets/${ticket.key}/review.json`, schema: 'v4-qa-review.v1' }
     };
   }
   return null;
