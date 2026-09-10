@@ -28,16 +28,16 @@
   },
   "status": {
     "jiraStatus": "Rejected",
-    "workflowState": "Retry Queued",
-    "qaStatus": "Criteria Check Required",
+    "workflowState": "Blocked",
+    "qaStatus": "Ready for Testing",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create criteria conversion handoff",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "retries": 3,
-    "blockedStage": "testing",
+    "blockedStage": null,
     "updatedAt": "2026-09-10T08:37:52.778Z",
-    "criteriaVerified": false
+    "criteriaVerified": true
   }
 }
