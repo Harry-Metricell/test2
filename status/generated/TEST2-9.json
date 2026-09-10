@@ -4,13 +4,13 @@
   "summary": "Retain selected coverage after returning to the map",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-9",
-    "status": "READY FOR TESTING",
+    "status": "Rejected",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-07T15:45:48.064+0100",
-    "updated": "2026-09-07T15:45:55.099+0100"
+    "updated": "2026-09-10T10:21:09.509+0100"
   },
   "description": "A user working in GIS changes the visible coverage layer, closes the layer panel, adjusts the map, and returns to the default view. The chosen coverage remains visible after the panel closes. Map navigation keeps its current position while the user changes tools. Returning to the default view restores the starting area while leaving the map controls available.",
   "acceptanceCriteria": [],
@@ -24,16 +24,16 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104024",
-    "importedAt": "2026-09-07T15:45:55.099+0100"
+    "importedAt": "2026-09-10T10:21:09.509+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "Rejected",
     "workflowState": "Retry Queued",
     "qaStatus": "Ready for Testing",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Retry 2/3 queued; coordinator will start tester",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "retries": 2,
     "blockedStage": null,

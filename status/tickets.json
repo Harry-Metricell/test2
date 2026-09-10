@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-10T09:54:08.882+0100",
   "counts": {
     "tickets": 6,
-    "handoffs": 3,
+    "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 1,
       "In Progress": 1,
@@ -96,12 +96,12 @@
     {
       "key": "TEST2-9",
       "summary": "Retain selected coverage after returning to the map",
-      "jiraStatus": "READY FOR TESTING",
+      "jiraStatus": "Rejected",
       "workflowState": "Retry Queued",
       "qaStatus": "Ready for Testing",
       "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-10T09:08:11.892Z",
       "retries": 2,
       "retryLimit": 3,
