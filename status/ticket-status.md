@@ -9,4 +9,4 @@ Updated: 2026-09-10T09:21:59.610+0100
 | TEST2-6 | READY FOR TESTING | Ready for Testing |  | Verify GIS map search and marker interaction |
 | TEST2-7 | READY FOR TESTING | Evidence Reviewed |  | Verify GIS layer and map view controls |
 | TEST2-8 | READY FOR TESTING | Awaiting Evidence Review | Retry 1/3 | Preserve map context when switching GIS panels |
-| TEST2-9 | READY FOR TESTING | Evidence Reviewed |  | Retain selected coverage after returning to the map |
+| TEST2-9 | READY FOR TESTING | Ready for Testing | Retry 1/3 | Retain selected coverage after returning to the map |

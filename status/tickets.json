@@ -3,10 +3,10 @@
   "generatedAt": "2026-09-10T09:21:59.610+0100",
   "counts": {
     "tickets": 6,
-    "handoffs": 2,
+    "handoffs": 3,
     "byWorkflowState": {
-      "Ready": 5,
-      "Retry Queued": 1
+      "Ready": 4,
+      "Retry Queued": 2
     },
     "byQaOutcome": {
       "Failed": 1,
@@ -96,15 +96,15 @@
       "key": "TEST2-9",
       "summary": "Retain selected coverage after returning to the map",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
+      "workflowState": "Retry Queued",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Failed",
       "actionOwner": "Coordinator",
-      "nextAction": "QA review complete",
-      "updatedAt": "2026-09-07T15:45:55.099+0100",
-      "retries": 0,
+      "nextAction": "Retry 1/3 queued; coordinator will start tester",
+      "updatedAt": "2026-09-10T08:37:04.753Z",
+      "retries": 1,
       "retryLimit": 3,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/3"
     }
   ]
 }
