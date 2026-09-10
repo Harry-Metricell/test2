@@ -5,12 +5,11 @@
     "tickets": 8,
     "handoffs": 2,
     "byWorkflowState": {
-      "Blocked": 1,
+      "Blocked": 2,
       "In Progress": 1,
       "Ready": 2,
       "Rejected": 2,
-      "Retry Queued": 1,
-      "To Do": 1
+      "Retry Queued": 1
     },
     "byQaOutcome": {
       "Blocked": 1,
@@ -45,7 +44,7 @@
       "key": "TEST2-3",
       "summary": "test 3 confusion",
       "jiraStatus": "To Do",
-      "workflowState": "To Do",
+      "workflowState": "Blocked",
       "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",

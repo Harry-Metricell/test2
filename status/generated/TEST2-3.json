@@ -31,7 +31,7 @@
   },
   "status": {
     "jiraStatus": "To Do",
-    "workflowState": "To Do",
+    "workflowState": "Blocked",
     "qaStatus": "Ready for Testing",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
