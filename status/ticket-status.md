@@ -6,7 +6,7 @@ Updated: 2026-09-10T11:30:59.169+0100
 | --- | --- | --- | --- | --- |
 | TEST2-5 | In Progress | Evidence Reviewed |  | test 5 confusion v2 |
 | TEST2-4 | READY FOR TESTING | Ready for Testing |  | test 4 |
-| TEST2-10 | READY FOR TESTING | Ready for Testing | Retry 2/3 | 2-10 |
+| TEST2-10 | READY FOR TESTING | Ready for Testing | Retry 3/3 | 2-10 |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Blocked | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
