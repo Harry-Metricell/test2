@@ -1,17 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-10T11:49:38.723Z",
+  "generatedAt": "2026-09-10T13:40:10.432+0100",
   "counts": {
-    "tickets": 7,
-    "handoffs": 0,
+    "tickets": 9,
+    "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 4,
+      "Ready": 2,
       "Rejected": 3
     },
     "byQaOutcome": {
       "Blocked": 2,
       "Failed": 1,
-      "Not Tested": 2,
+      "Not Tested": 4,
       "Passed": 1,
       "Unverified": 1
     }
@@ -23,6 +24,34 @@
     "missingEvidence": "warning_not_pass"
   },
   "tickets": [
+    {
+      "key": "TEST2-4",
+      "summary": "test 4",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-10T13:40:10.432+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-5",
+      "summary": "test 5 confusion v2",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-10T13:40:09.339+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
     {
       "key": "TEST2-10",
       "summary": "2-10",
