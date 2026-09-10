@@ -19,6 +19,7 @@ function ticketKey(value) {
 function gitPath() {
   const candidates = [];
   if (process.env.TEST2_GIT) candidates.push(process.env.TEST2_GIT);
+  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   const desktop = path.join(process.env.LOCALAPPDATA || '', 'GitHubDesktop');
   if (fs.existsSync(desktop)) {
     for (const entry of fs.readdirSync(desktop, { withFileTypes: true }).sort((a, b) => b.name.localeCompare(a.name))) {
@@ -27,7 +28,6 @@ function gitPath() {
       }
     }
   }
-  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   candidates.push('C:\\Program Files\\Git\\cmd\\git.exe', 'git');
   return candidates.find(candidate => candidate === 'git' || fs.existsSync(candidate)) || 'git';
 }
@@ -178,10 +178,11 @@ const changed = [];
 if (outputType === 'criteria-output.json') {
   if (typeof output.criteriaMarkdown !== 'string' || !output.criteriaMarkdown.trim()) fail('criteriaMarkdown is missing');
   let criteriaMarkdown = output.criteriaMarkdown.trim();
+  criteriaMarkdown = criteriaMarkdown.replace(/\\n/g, '\n');
   if (!/Generated from Jira acceptance criteria|Generated from Jira description|Source: Jira description|Converted from the complete Jira ticket source|Generated from the Jira ticket source/i.test(criteriaMarkdown)) {
     criteriaMarkdown = '<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->\n\n' + criteriaMarkdown;
   }
-  criteriaMarkdown = criteriaMarkdown.replace(/^-\\s+(?!\\[)/gm, '- [ ] ');
+  criteriaMarkdown = criteriaMarkdown.replace(/^-\s+(?!\[)/gm, '- [ ] ');
   if (!/^- \\[ \\] \\S/m.test(criteriaMarkdown)) fail('criteriaMarkdown has no valid unchecked checklist bullets');
   ensurePath(path.join(ticketDir, 'criteria.md'));
   fs.writeFileSync(path.join(ticketDir, 'criteria.md'), criteriaMarkdown + '\n', 'utf8');
