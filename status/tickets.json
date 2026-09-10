@@ -10,8 +10,9 @@
       "Retry Queued": 3
     },
     "byQaOutcome": {
+      "Blocked": 1,
       "Passed": 3,
-      "Unverified": 3
+      "Unverified": 2
     }
   },
   "policy": {
@@ -97,13 +98,13 @@
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
       "qaStatus": "Ready for Testing",
-      "qaOutcome": "Unverified",
+      "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-10T08:37:04.753Z",
-      "retries": 1,
+      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "updatedAt": "2026-09-10T09:08:11.892Z",
+      "retries": 2,
       "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retryLabel": "Retry 2/3"
     }
   ]
 }
