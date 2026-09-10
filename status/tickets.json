@@ -73,9 +73,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-09T15:41:38.428+0100",
-      "retries": 0,
+      "retries": 2,
       "retryLimit": 3,
-      "retryLabel": ""
+      "retryLabel": "Retry 2/3"
     },
     {
       "key": "TEST2-8",
@@ -85,11 +85,11 @@
       "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Unverified",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/3 queued; coordinator will start tester",
+      "nextAction": "Retry 2/3 queued; coordinator will start tester",
       "updatedAt": "2026-09-09T15:27:28.936Z",
-      "retries": 1,
+      "retries": 2,
       "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retryLabel": "Retry 2/3"
     },
     {
       "key": "TEST2-9",
