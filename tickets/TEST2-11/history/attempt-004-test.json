@@ -1,0 +1,26 @@
+{
+  "handoffId": "handoff-TEST2-11-retry",
+  "ticket": "TEST2-11",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Starting from the application launcher, open the API Audit entry point. The API Audit screen loads successfully and is visibly available for use.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Navigated to the required V4 launcher URL.",
+        "Verified the launcher loaded and displayed the API request audit module.",
+        "Opened API request audit from the launcher.",
+        "Verified the API request audit screen loaded with visible filters, metrics, charts, and request explorer."
+      ],
+      "evidence": [],
+      "reason": "The browser journey was visibly successful, but the available browser control did not expose screenshot PNG bytes to the required filesystem save-and-verify method. Required initial, transition, and final PNG evidence could therefore not be created and verified. Browser version was not exposed in visible browser information."
+    }
+  ],
+  "conciseReport": "TEST2-11 retry reached API request audit successfully from the launcher, but the run is Blocked because required saved PNG evidence could not be created and verified with the available browser controls.",
+  "reportPath": "",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-11-retry/screenshots",
+  "noOp": false,
+  "reason": "GitHub connector was unavailable, so local handoff inputs were used as fallback. Browser journey passed visibly; mandatory saved screenshot evidence was not filesystem-verifiable.",
+  "historyAttempt": 4,
+  "recordedAt": "2026-09-10T15:26:04.733Z"
+}

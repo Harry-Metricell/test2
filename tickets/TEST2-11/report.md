@@ -1,3 +1,1 @@
-- Passed: From the application launcher, API request audit opened successfully and was visibly usable with filters, metrics, charts, and request explorer.
-- Evidence: handoff-TEST2-11-retry staging screenshots.
-- Browser version was not exposed in visible browser information.
+TEST2-11 retry reached API request audit successfully from the launcher, but the run is Blocked because required saved PNG evidence could not be created and verified with the available browser controls.
