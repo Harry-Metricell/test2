@@ -1,0 +1,60 @@
+{
+  "handoffId": "handoff-TEST2-10-retry",
+  "ticket": "TEST2-10",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Open the Beacon report from the V4 launcher.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Navigated to the V4 launcher and completed the required email sign-in step",
+        "Inspected the visible launcher modules"
+      ],
+      "evidence": [],
+      "reason": "The visible launcher does not expose a Beacon report module. Required saved PNG evidence could not be created through the available browser control surface."
+    },
+    {
+      "criterion": "Select a Beacon and a date range.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Could not enter the Beacon report because no Beacon module was visible"
+      ],
+      "evidence": [],
+      "reason": "Blocked by missing Beacon report module on the launcher."
+    },
+    {
+      "criterion": "Move between the available report views.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Could not enter the Beacon report because no Beacon module was visible"
+      ],
+      "evidence": [],
+      "reason": "Blocked by missing Beacon report module on the launcher."
+    },
+    {
+      "criterion": "Verify that the selected Beacon, date range, and displayed results remain correct.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Could not enter the Beacon report because no Beacon module was visible"
+      ],
+      "evidence": [],
+      "reason": "Blocked by missing Beacon report module on the launcher."
+    },
+    {
+      "criterion": "Return to the original view and confirm the expected report is still shown.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Could not enter the Beacon report because no Beacon module was visible"
+      ],
+      "evidence": [],
+      "reason": "Blocked by missing Beacon report module on the launcher."
+    }
+  ],
+  "conciseReport": "# TEST2-10\n\nBlocked: the visible V4 launcher did not expose a Beacon report module, preventing all Beacon report criteria from being tested.",
+  "reportPath": ".agent-staging/handoff-TEST2-10-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-10-retry/screenshots",
+  "noOp": false,
+  "reason": "The live handoff and remote inputs were verified from origin/main. Authentication succeeded, but the launcher showed no Beacon report module. No permanent ticket files, Jira, or authentication state were modified.",
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-10T11:29:05.329Z"
+}

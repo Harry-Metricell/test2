@@ -1,59 +1,48 @@
 [
   {
-    "criterion": 1,
+    "criterion": "Open the Beacon report from the V4 launcher.",
     "status": "Blocked",
     "steps_taken": [
-      "Navigated to the required V4 launcher",
-      "Completed the visible email sign-in step",
-      "Inspected the launcher cards"
+      "Navigated to the V4 launcher and completed the required email sign-in step",
+      "Inspected the visible launcher modules"
     ],
-    "evidence": [
-      "screenshots/attempt-002/criterion-1-initial-launcher.png"
-    ],
-    "reason": "The visible launcher has no Beacon report module or control, so the required report cannot be opened."
+    "evidence": [],
+    "reason": "The visible launcher does not expose a Beacon report module. Required saved PNG evidence could not be created through the available browser control surface."
   },
   {
-    "criterion": 2,
+    "criterion": "Select a Beacon and a date range.",
     "status": "Blocked",
     "steps_taken": [
-      "Returned to the required V4 launcher and inspected the visible controls"
+      "Could not enter the Beacon report because no Beacon module was visible"
     ],
-    "evidence": [
-      "screenshots/attempt-002/criterion-2-initial-launcher.png"
-    ],
-    "reason": "Beacon report unavailable from the visible launcher; Beacon and date range cannot be selected."
+    "evidence": [],
+    "reason": "Blocked by missing Beacon report module on the launcher."
   },
   {
-    "criterion": 3,
+    "criterion": "Move between the available report views.",
     "status": "Blocked",
     "steps_taken": [
-      "Returned to the required V4 launcher and inspected the visible controls"
+      "Could not enter the Beacon report because no Beacon module was visible"
     ],
-    "evidence": [
-      "screenshots/attempt-002/criterion-3-initial-launcher.png"
-    ],
-    "reason": "Beacon report unavailable from the visible launcher; report views cannot be opened."
+    "evidence": [],
+    "reason": "Blocked by missing Beacon report module on the launcher."
   },
   {
-    "criterion": 4,
+    "criterion": "Verify that the selected Beacon, date range, and displayed results remain correct.",
     "status": "Blocked",
     "steps_taken": [
-      "Returned to the required V4 launcher and inspected the visible controls"
+      "Could not enter the Beacon report because no Beacon module was visible"
     ],
-    "evidence": [
-      "screenshots/attempt-002/criterion-4-initial-launcher.png"
-    ],
-    "reason": "Beacon report unavailable from the visible launcher; selected context and displayed results cannot be verified."
+    "evidence": [],
+    "reason": "Blocked by missing Beacon report module on the launcher."
   },
   {
-    "criterion": 5,
+    "criterion": "Return to the original view and confirm the expected report is still shown.",
     "status": "Blocked",
     "steps_taken": [
-      "Returned to the required V4 launcher and inspected the visible controls"
+      "Could not enter the Beacon report because no Beacon module was visible"
     ],
-    "evidence": [
-      "screenshots/attempt-002/criterion-5-initial-launcher.png"
-    ],
-    "reason": "Beacon report unavailable from the visible launcher; the original report view cannot be restored or confirmed."
+    "evidence": [],
+    "reason": "Blocked by missing Beacon report module on the launcher."
   }
 ]
