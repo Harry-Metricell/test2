@@ -4,13 +4,13 @@
   "summary": "Verify GIS map search and marker interaction",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-6",
-    "status": "READY FOR TESTING",
+    "status": "Rejected",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-07T14:25:32.387+0100",
-    "updated": "2026-09-10T09:21:59.610+0100"
+    "updated": "2026-09-10T10:49:48.547+0100"
   },
   "description": "As a user, I need to open the GIS module from the V4 launcher and locate a site on the map.\nFrom the launcher, open GIS. The GIS workspace should load with the map and its available controls visible.\nUse the map search to find a known site or location. The map should move to the selected result and show the result as the active location.\nSelect the visible map marker itself, rather than only selecting an item from a side panel or list. A details panel should open for the same location, showing its identifying information.\nClose the details panel and return to the map. The map should remain at the selected location and the GIS controls should still be usable.",
   "acceptanceCriteria": [],
@@ -24,16 +24,16 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104020",
-    "importedAt": "2026-09-10T09:21:59.610+0100"
+    "importedAt": "2026-09-10T10:49:48.547+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "Rejected",
     "workflowState": "Retry Queued",
     "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Retry 3/3 queued; coordinator will start tester",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "retries": 3,
     "blockedStage": "testing",

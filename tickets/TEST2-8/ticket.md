@@ -2,9 +2,9 @@
 
 ## Current State
 
-- Jira status: READY FOR TESTING
+- Jira status: Rejected
 - QA outcome: Unverified
-- Workflow state: Ready
+- Workflow state: Rejected
 - Action owner: Coordinator
 - Next action: QA review complete
 - Jira: https://metricell.atlassian.net/browse/TEST2-8

@@ -1,0 +1,49 @@
+{
+  "key": "TEST2-10",
+  "id": "104422",
+  "summary": "2-10",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-10",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-10T10:53:01.695+0100",
+    "updated": "2026-09-10T10:53:10.081+0100"
+  },
+  "description": "As a SmartTools user, I want the Beacon report to retain my selected context when moving between report views, so that I can continue reviewing the same information.\nAcceptance criteria:\nOpen the Beacon report from the V4 launcher.\nSelect a Beacon and a date range.\nMove between the available report views.\nVerify that the selected Beacon, date range, and displayed results remain correct.\nReturn to the original view and confirm the expected report is still shown.",
+  "acceptanceCriteria": [
+    "Open the Beacon report from the V4 launcher.",
+    "Select a Beacon and a date range.",
+    "Move between the available report views.",
+    "Verify that the selected Beacon, date range, and displayed results remain correct.",
+    "Return to the original view and confirm the expected report is still shown."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-10/ticket.json",
+    "criteria": "tickets/TEST2-10/criteria.md",
+    "status": "tickets/TEST2-10/status.json",
+    "screenshots": "tickets/TEST2-10/screenshots/",
+    "reports": "tickets/TEST2-10/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104422",
+    "importedAt": "2026-09-10T10:53:10.081+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-10T10:53:10.081+0100",
+    "criteriaVerified": false
+  }
+}
