@@ -175,12 +175,15 @@ function mergeStatus(ticket, localStatus) {
   const jiraReady = jiraReadyForTesting(ticket);
   const jiraGateBlocked = !jiraReady && ['Ready for Testing', 'Awaiting Evidence Review', 'Blocked'].includes(qaStatus);
   const projectedWorkflowState = jiraGateBlocked ? 'Blocked' : workflowState;
+  const retryExhausted = retries >= retryLimit && ['blocked', 'failed'].includes(String(localStatus.qaOutcome || localStatus.outcome || '').trim().toLowerCase());
   const nextAction = qaStatus === 'Evidence Reviewed'
     ? 'QA review complete'
     : (qaStatus === 'Criteria Check Required' || qaStatus === 'Criteria Review Required')
       ? 'Create criteria conversion handoff'
       : projectedWorkflowState === 'Retry Queued'
       ? (jiraReady ? `Retry ${retries}/${retryLimit} queued; coordinator will start tester` : 'Waiting for Jira status: READY FOR TESTING')
+      : retryExhausted
+        ? 'Manual review required after retry limit'
       : jiraGateBlocked
         ? 'Waiting for Jira status: READY FOR TESTING'
       : projectedWorkflowState === 'Blocked' && retries >= retryLimit
