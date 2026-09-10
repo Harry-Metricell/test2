@@ -1,1 +1,1 @@
-- [x] GIS screen can be opened from launcher — Passed; launcher opened GIS at /gis with usable controls.
+- Passed: GIS screen can be opened from launcher; verified the launcher loaded and opening GIS displayed the GIS workspace and map.

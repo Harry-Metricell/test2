@@ -1,19 +1,17 @@
 [
   {
     "criterion": "GIS screen can be opened from launcher",
-    "status": "Passed",
+    "outcome": "Passed",
     "steps_taken": [
       "Navigated to the V4 launcher and waited for it to finish loading.",
-      "Captured the launcher initial state.",
-      "Captured the state immediately before opening GIS.",
-      "Clicked the visible GIS Open module control.",
-      "Waited for GIS to finish loading and captured the resulting GIS screen."
+      "Confirmed the visible GIS launcher module and opened it.",
+      "Confirmed the resulting page visibly showed the GIS workspace and map."
     ],
     "evidence": [
-      "screenshots/attempt-003/criterion-1-initial-launcher.png",
-      "screenshots/attempt-003/criterion-1-before-open.png",
-      "screenshots/attempt-003/criterion-1-after-open.png"
+      "screenshots/attempt-004/criterion-1-initial-launcher.png",
+      "screenshots/attempt-004/criterion-1-before-open-gis.png",
+      "screenshots/attempt-004/criterion-1-after-open-gis.png"
     ],
-    "reason": "Direct evidence shows the launcher GIS module and the resulting GIS screen with usable controls."
+    "reason": "Direct visible evidence confirmed the launcher and resulting GIS workspace."
   }
 ]
