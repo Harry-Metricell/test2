@@ -171,20 +171,24 @@ function mergeStatus(ticket, localStatus) {
     ? localStatus.qaStatus
     : (criteriaReady(ticket) ? 'Ready for Testing' : (ticket.acceptanceCriteria.length ? 'Ready for Testing' : 'Criteria Review Required'));
   const jiraReady = jiraReadyForTesting(ticket);
+  const jiraGateBlocked = !jiraReady && (qaStatus === 'Ready for Testing' || qaStatus === 'Awaiting Evidence Review');
+  const projectedWorkflowState = jiraGateBlocked ? 'Blocked' : workflowState;
   const nextAction = qaStatus === 'Evidence Reviewed'
     ? 'QA review complete'
     : qaStatus === 'Criteria Review Required'
       ? 'Create criteria conversion handoff'
-      : workflowState === 'Retry Queued'
+      : projectedWorkflowState === 'Retry Queued'
       ? (jiraReady ? `Retry ${retries}/${retryLimit} queued; coordinator will start tester` : 'Waiting for Jira status: READY FOR TESTING')
-      : workflowState === 'Blocked' && retries >= retryLimit
+      : jiraGateBlocked
+        ? 'Waiting for Jira status: READY FOR TESTING'
+      : projectedWorkflowState === 'Blocked' && retries >= retryLimit
         ? 'Manual review required after retry limit'
         : !jiraReady && (qaStatus === 'Ready for Testing' || qaStatus === 'Awaiting Evidence Review')
           ? 'Waiting for Jira status: READY FOR TESTING'
           : localStatus.nextAction || defaultNextAction(workflowState, criteriaReady(ticket));
   return {
     jiraStatus: ticket.jira.status || 'Unknown',
-    workflowState,
+    workflowState: projectedWorkflowState,
     qaStatus,
     qaOutcome: localStatus.qaOutcome || localStatus.outcome || 'Not Tested',
     automationSuitability: localStatus.automationSuitability || 'Unclassified',
