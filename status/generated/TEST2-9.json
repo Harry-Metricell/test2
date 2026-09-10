@@ -30,7 +30,7 @@
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Retry Queued",
     "qaStatus": "Ready for Testing",
-    "qaOutcome": "Failed",
+    "qaOutcome": "Unverified",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "Retry 1/3 queued; coordinator will start tester",
