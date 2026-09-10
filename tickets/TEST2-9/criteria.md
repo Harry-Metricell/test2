@@ -1,6 +1,8 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] Change the visible coverage layer; the chosen coverage remains visible after the layer panel is closed.
-- [ ] Close the layer panel; the selected coverage remains visible on the map.
-- [ ] Adjust the map and change tools; map navigation keeps its current position.
-- [ ] Return to the default view; the starting area is restored and the map controls remain available.
+<!-- Converted from the full Jira ticket description. -->
+
+- [ ] Starting from the ticket's initial map area, open the GIS coverage-layer controls and select a different visible coverage layer; the selected coverage layer is displayed on the map.
+- [ ] Close the coverage-layer panel after selecting a coverage layer; the selected coverage layer remains visible on the map.
+- [ ] With the selected coverage layer visible, adjust the map position and change to another available map tool; the map remains at the adjusted position while the tool changes.
+- [ ] From the adjusted map state, return to the default view; the map restores the initial starting area and the map controls remain available for use.
