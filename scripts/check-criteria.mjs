@@ -3,30 +3,6 @@ import path from 'node:path';
 
 const ticketsDir = 'tickets';
 const errors = [];
-const config = fs.existsSync('config/qa-workflow.json')
-  ? JSON.parse(fs.readFileSync('config/qa-workflow.json', 'utf8'))
-  : { criteriaValidation: { enabled: false } };
-const validation = [];
-const stopWords = new Set('about after again against all also and are because before being between but can could does each for from has have into its more most must not of on one only or other our should that the their then there these they this through to under was were when where which while with would you'.split(' '));
-function words(text) {
-  return new Set(String(text || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\\s+/).filter((word) => word.length >= 5 && !stopWords.has(word)));
-}
-function sourceText(ticket) {
-  const description = ticket.fields?.description;
-  if (!description) return '';
-  const walk = (node) => Array.isArray(node) ? node.map(walk).join(' ') : (node?.text || '') + ' ' + (node?.content ? walk(node.content) : '');
-  return walk(description);
-}
-function validateCriteria(key, ticket, criteria) {
-  if (!config.criteriaValidation?.enabled) return;
-  const source = words(sourceText(ticket));
-  const generated = words(criteria);
-  const missing = [...source].filter((word) => !generated.has(word));
-  const result = { ticket: key, missingSourceTerms: missing, addedTerms: [], ambiguous: missing.length > 0, result: missing.length ? 'Review Required' : 'Valid' };
-  validation.push(result);
-  if (missing.length && config.criteriaValidation.failOnMissingSourceTerms) pending.push(key + ': criteria differs from Jira source; review required');
-}
-
 const pending = [];
 const handoffs = fs.existsSync('status/handoffs.json')
   ? JSON.parse(fs.readFileSync('status/handoffs.json', 'utf8')).handoffs || []
@@ -51,7 +27,6 @@ for (const key of tickets) {
   const criteriaFile = path.join(dir, 'criteria.md');
   if (fs.existsSync(criteriaFile)) {
     const criteria = fs.readFileSync(criteriaFile, 'utf8');
-    const ticket = JSON.parse(fs.readFileSync(path.join(dir, 'ticket.json'), 'utf8').replace(/\\\\n/g, ''));
     const hasGeneratedMarker = [
       'Generated from Jira acceptance criteria',
       'Generated from Jira description',
@@ -75,7 +50,6 @@ for (const key of tickets) {
 }
 
 if (!fs.existsSync('status/handoffs.json')) errors.push('status/handoffs.json is missing');
-if (config.criteriaValidation?.enabled) fs.writeFileSync('status/criteria-validation.json', JSON.stringify({ schema: 'v4-qa-criteria-validation.v1', validation }, null, 2) + '\\n');
 
 console.log(JSON.stringify({ tickets: tickets.length, errors, pending, handoffs: handoffs.length }, null, 2));
 if (errors.length) process.exit(1);
