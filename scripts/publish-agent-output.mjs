@@ -180,6 +180,7 @@ if (outputType === 'criteria-output.json') {
   ensurePath(path.join(ticketDir, 'criteria.md'));
   fs.writeFileSync(path.join(ticketDir, 'criteria.md'), `${output.criteriaMarkdown.trim()}\n`, 'utf8');
   status.qaStatus = output.qaStatus || 'Ready for Testing';
+  status.criteriaVerified = output.qaStatus !== 'Blocked';
   status.blockedStage = output.qaStatus === 'Blocked' ? 'criteria' : null;
   writeJson(statusFile, status);
   changed.push(`tickets/${key}/criteria.md`, `tickets/${key}/status.json`);
