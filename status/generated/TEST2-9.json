@@ -33,7 +33,7 @@
     "qaOutcome": "Failed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "QA review complete",
+    "nextAction": "Manual review required after retry limit",
     "reviewState": "Not Reviewed",
     "retries": 3,
     "blockedStage": null,

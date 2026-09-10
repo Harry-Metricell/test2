@@ -6,7 +6,7 @@
 - QA outcome: Failed
 - Workflow state: Rejected
 - Action owner: Coordinator
-- Next action: QA review complete
+- Next action: Manual review required after retry limit
 - Jira: https://metricell.atlassian.net/browse/TEST2-9
 
 ## Acceptance Criteria
