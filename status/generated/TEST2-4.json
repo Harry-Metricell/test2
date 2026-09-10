@@ -31,11 +31,11 @@
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Ready for Testing",
+    "qaStatus": "Awaiting Evidence Review",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "QA review complete",
+    "nextAction": "Create evidence review handoff",
     "reviewState": "Not Reviewed",
     "retries": 3,
     "blockedStage": null,
