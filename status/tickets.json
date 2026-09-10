@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-10T11:30:59.169+0100",
   "counts": {
     "tickets": 9,
-    "handoffs": 5,
+    "handoffs": 4,
     "byWorkflowState": {
       "Blocked": 3,
       "In Progress": 1,
@@ -101,10 +101,10 @@
       "summary": "Verify GIS layer and map view controls",
       "jiraStatus": "Rejected",
       "workflowState": "Rejected",
-      "qaStatus": "Criteria Check Required",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-10T09:54:08.882+0100",
       "retries": 2,
       "retryLimit": 3,
