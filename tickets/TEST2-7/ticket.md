@@ -4,7 +4,7 @@
 
 - Jira status: Rejected
 - QA outcome: Passed
-- Workflow state: Ready
+- Workflow state: Rejected
 - Action owner: Coordinator
 - Next action: QA review complete
 - Jira: https://metricell.atlassian.net/browse/TEST2-7
