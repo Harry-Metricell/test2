@@ -167,15 +167,17 @@ function mergeStatus(ticket, localStatus) {
   const workflowState = statusRank(localState) <= statusRank(jiraState) ? localState : jiraState;
   const retries = Number(localStatus.retries || 0);
   const retryLimit = Number(localStatus.retryLimit || 3);
-  const qaStatus = localStatus.qaStatus && localStatus.qaStatus !== 'Not Tested'
-    ? localStatus.qaStatus
-    : (criteriaReady(ticket) ? 'Ready for Testing' : (ticket.acceptanceCriteria.length ? 'Ready for Testing' : 'Criteria Review Required'));
+  const qaStatus = localStatus.criteriaVerified !== true
+    ? 'Criteria Check Required'
+    : localStatus.qaStatus && localStatus.qaStatus !== 'Not Tested'
+      ? localStatus.qaStatus
+      : (criteriaReady(ticket) ? 'Ready for Testing' : (ticket.acceptanceCriteria.length ? 'Ready for Testing' : 'Criteria Review Required'));
   const jiraReady = jiraReadyForTesting(ticket);
   const jiraGateBlocked = !jiraReady && (qaStatus === 'Ready for Testing' || qaStatus === 'Awaiting Evidence Review');
   const projectedWorkflowState = jiraGateBlocked ? 'Blocked' : workflowState;
   const nextAction = qaStatus === 'Evidence Reviewed'
     ? 'QA review complete'
-    : qaStatus === 'Criteria Review Required'
+    : (qaStatus === 'Criteria Check Required' || qaStatus === 'Criteria Review Required')
       ? 'Create criteria conversion handoff'
       : projectedWorkflowState === 'Retry Queued'
       ? (jiraReady ? `Retry ${retries}/${retryLimit} queued; coordinator will start tester` : 'Waiting for Jira status: READY FOR TESTING')
