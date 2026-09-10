@@ -5,13 +5,13 @@
     {
       "criterion": "GIS screen can be opened from launcher",
       "outcome": "Passed",
-      "reason": "The selected attempt-002 PNG evidence directly shows the Metricell Launcher with the GIS Open module and then the GIS screen loaded with map, layer controls, and beacon list visible."
+      "reason": "Direct screenshot evidence from attempt-005 shows the Metricell Launcher with the GIS module and the resulting GIS workspace with map visible after opening GIS."
     }
   ],
-  "overallOutcome": "Blocked",
+  "overallOutcome": "Passed",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-4\\screenshots\\attempt-002",
-  "qaStatus": "Blocked",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-4\\screenshots\\attempt-005",
+  "qaStatus": "Evidence Reviewed",
   "noOp": false,
-  "reason": "Report generation or PDF verification failed: ENOENT: no such file or directory, open 'C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\tickets\\TEST2-4\\results.json'"
+  "reason": "The live main-branch handoff was verified, the selected attempt-005 folder exists with non-empty PNG evidence, and the criterion was independently confirmed from the screenshots."
 }
