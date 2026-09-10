@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-10T15:07:38.507Z",
+  "generatedAt": "2026-09-10T13:54:29.147Z",
   "counts": {
     "tickets": 10,
     "handoffs": 1,
@@ -72,11 +72,11 @@
       "summary": "checker",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-09-10T15:07:38.507Z",
+      "updatedAt": "2026-09-10T13:54:29.147Z",
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"

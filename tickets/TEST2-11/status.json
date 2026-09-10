@@ -3,7 +3,7 @@
   "jiraStatus": "READY FOR TESTING",
   "qaStatus": "Blocked",
   "status": "READY FOR TESTING",
-  "retries": 1,
+  "retries": 3,
   "retryLimit": 3,
   "criteriaVerified": true,
   "blockedStage": "testing",
