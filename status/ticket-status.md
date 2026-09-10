@@ -1,10 +1,9 @@
 # Ticket Status
 
-Updated: 2026-09-10T13:38:13.309+0100
+Updated: 2026-09-10T11:49:38.723Z
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
-| TEST2-5 | READY FOR TESTING | Evidence Reviewed |  | test 5 confusion v2 |
 | TEST2-10 | READY FOR TESTING | Blocked | Retry 3/3 | 2-10 |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Blocked | Retry 3/3 | Verify GIS map search and marker interaction |
