@@ -1,4 +1,1 @@
-- Passed: Network Information coverage was added and remained visible on the map.
-- Unverified: the current UI did not expose decisive evidence that the layer panel itself could be closed.
-- Passed: map navigation changed the view while coverage remained rendered.
-- Passed: the north/reset control was exercised and map controls remained available.
+Blocked: GIS loaded and map navigation retained its changed position, and the default view restored successfully, but Coverage Gap Candidate Areas failed to load so coverage persistence could not be verified.

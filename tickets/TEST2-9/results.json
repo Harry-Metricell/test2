@@ -1,45 +1,60 @@
 [
   {
     "criterion": "Change the visible coverage layer; the chosen coverage remains visible after the layer panel is closed.",
-    "outcome": "Passed",
-    "steps_taken": "Captured the initial GIS state, selected Network Information with Add layer, and verified Network Information appeared in the Map layers stack and coverage was visible on the map.",
-    "evidence": [
-      "screenshots/00-initial.png",
-      "screenshots/01-network-layer-added.png"
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Reloaded the V4 GIS page",
+      "Selected Coverage Gap Candidate Areas",
+      "Added the layer and inspected the resulting map state"
     ],
-    "actual_result": "Network Information was added and remained visible in the map-layer stack with coverage rendered on the map.",
-    "blockers": []
+    "reason": "The visible GIS workspace reported 'Unable to load coverage gap candidate areas', preventing direct verification that the coverage remained visible after closing the layer panel.",
+    "evidence": [
+      "screenshots/attempt-002/criterion-2-before-select.png",
+      "screenshots/attempt-002/criterion-2-after-select.png",
+      "screenshots/attempt-002/criterion-2-before-add.png",
+      "screenshots/attempt-002/criterion-2-after-add.png"
+    ],
+    "browserVersion": null
   },
   {
     "criterion": "Close the layer panel; the selected coverage remains visible on the map.",
-    "outcome": "Unverified",
-    "steps_taken": "Attempted the available panel/menu control and captured the resulting map state.",
-    "evidence": [
-      "screenshots/02-layer-panel-closed.png"
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Inspected the post-add GIS state and layer controls"
     ],
-    "actual_result": "The captured state did not provide decisive direct evidence that the layer panel itself was closed.",
-    "blockers": [
-      "The current UI did not expose a distinct accessible layer-panel close control; the available top-left control opened the application menu."
-    ]
+    "reason": "Coverage Gap Candidate Areas failed to load, so the required visible coverage state could not be verified.",
+    "evidence": [
+      "screenshots/attempt-002/criterion-2-after-add.png"
+    ],
+    "browserVersion": null
   },
   {
     "criterion": "Adjust the map and change tools; map navigation keeps its current position.",
     "outcome": "Passed",
-    "steps_taken": "Clicked the map Zoom in control and captured the changed map view.",
-    "evidence": [
-      "screenshots/03-map-navigation-zoomed.png"
+    "steps_taken": [
+      "Captured the initial map state",
+      "Clicked Zoom in",
+      "Opened Map style",
+      "Verified the map URL retained the changed zoom position and controls remained available"
     ],
-    "actual_result": "The map view changed through navigation while the selected coverage layer remained rendered.",
-    "blockers": []
+    "evidence": [
+      "screenshots/attempt-002/criterion-3-initial.png",
+      "screenshots/attempt-002/criterion-3-after-zoom.png",
+      "screenshots/attempt-002/criterion-3-after-tool.png"
+    ],
+    "browserVersion": null
   },
   {
     "criterion": "Return to the default view; the starting area is restored and the map controls remain available.",
     "outcome": "Passed",
-    "steps_taken": "Clicked the visible north/reset map control and captured the resulting state.",
-    "evidence": [
-      "screenshots/04-default-view-reset.png"
+    "steps_taken": [
+      "Reloaded the GIS workspace to restore the default view",
+      "Verified the default UK starting area and visible map controls"
     ],
-    "actual_result": "The reset control was exercised and the map controls remained available in the captured state.",
-    "blockers": []
+    "evidence": [
+      "screenshots/attempt-002/criterion-4-before-default.png",
+      "screenshots/attempt-002/criterion-4-after-default.png"
+    ],
+    "browserVersion": null
   }
 ]
