@@ -72,7 +72,7 @@
       "summary": "checker",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Retry 0/3 queued; coordinator will start tester",
