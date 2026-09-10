@@ -6,7 +6,8 @@
     "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 1,
-      "Ready": 2,
+      "In Progress": 1,
+      "Rejected": 1,
       "Retry Queued": 3
     },
     "byQaOutcome": {
@@ -40,7 +41,7 @@
       "key": "TEST2-5",
       "summary": "test 5 confusion v2",
       "jiraStatus": "In Progress",
-      "workflowState": "Ready",
+      "workflowState": "In Progress",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
@@ -68,7 +69,7 @@
       "key": "TEST2-7",
       "summary": "Verify GIS layer and map view controls",
       "jiraStatus": "Rejected",
-      "workflowState": "Ready",
+      "workflowState": "Rejected",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",

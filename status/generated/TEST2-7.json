@@ -28,7 +28,7 @@
   },
   "status": {
     "jiraStatus": "Rejected",
-    "workflowState": "Ready",
+    "workflowState": "Rejected",
     "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",

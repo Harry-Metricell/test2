@@ -28,7 +28,7 @@
   },
   "status": {
     "jiraStatus": "In Progress",
-    "workflowState": "Ready",
+    "workflowState": "In Progress",
     "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
