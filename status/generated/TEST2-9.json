@@ -30,7 +30,7 @@
     "jiraStatus": "Rejected",
     "workflowState": "Rejected",
     "qaStatus": "Evidence Reviewed",
-    "qaOutcome": "Blocked",
+    "qaOutcome": "Failed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",

@@ -12,7 +12,8 @@
       "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Blocked": 2,
+      "Blocked": 1,
+      "Failed": 1,
       "Not Tested": 4,
       "Passed": 2,
       "Unverified": 1
@@ -129,7 +130,7 @@
       "jiraStatus": "Rejected",
       "workflowState": "Rejected",
       "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Blocked",
+      "qaOutcome": "Failed",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-10T09:25:42.426Z",
