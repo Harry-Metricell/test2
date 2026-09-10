@@ -1,3 +1,3 @@
-## QA result
+# TEST2-10
 
-Blocked: the V4 launcher and Survey Analyser loaded, but the workbook chooser reported that no saved workbooks are available, so the required Beacon report journey could not begin.
+Blocked: the visible V4 launcher did not expose a Beacon report module, preventing all Beacon report criteria from being tested.

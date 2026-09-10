@@ -1,0 +1,71 @@
+{
+  "handoffId": "handoff-TEST2-10-retry",
+  "ticket": "TEST2-10",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": 1,
+      "status": "Blocked",
+      "steps_taken": [
+        "Navigated to the required V4 launcher",
+        "Completed the visible email sign-in step",
+        "Inspected the launcher cards"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial-launcher.png"
+      ],
+      "reason": "The visible launcher has no Beacon report module or control, so the required report cannot be opened."
+    },
+    {
+      "criterion": 2,
+      "status": "Blocked",
+      "steps_taken": [
+        "Returned to the required V4 launcher and inspected the visible controls"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial-launcher.png"
+      ],
+      "reason": "Beacon report unavailable from the visible launcher; Beacon and date range cannot be selected."
+    },
+    {
+      "criterion": 3,
+      "status": "Blocked",
+      "steps_taken": [
+        "Returned to the required V4 launcher and inspected the visible controls"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial-launcher.png"
+      ],
+      "reason": "Beacon report unavailable from the visible launcher; report views cannot be opened."
+    },
+    {
+      "criterion": 4,
+      "status": "Blocked",
+      "steps_taken": [
+        "Returned to the required V4 launcher and inspected the visible controls"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial-launcher.png"
+      ],
+      "reason": "Beacon report unavailable from the visible launcher; selected context and displayed results cannot be verified."
+    },
+    {
+      "criterion": 5,
+      "status": "Blocked",
+      "steps_taken": [
+        "Returned to the required V4 launcher and inspected the visible controls"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial-launcher.png"
+      ],
+      "reason": "Beacon report unavailable from the visible launcher; the original report view cannot be restored or confirmed."
+    }
+  ],
+  "conciseReport": "# TEST2-10\n\nBlocked: the visible V4 launcher did not expose a Beacon report module, preventing all Beacon report criteria from being tested.",
+  "reportPath": ".agent-staging/handoff-TEST2-10-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-10-retry/screenshots",
+  "noOp": false,
+  "reason": "All five criteria were independently blocked by the missing Beacon report launcher control.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-10T10:54:18.166Z"
+}

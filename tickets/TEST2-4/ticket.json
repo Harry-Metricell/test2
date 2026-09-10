@@ -63,19 +63,19 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-09-10T09:54:01.655+0100",
+    "updated": "2026-09-10T11:30:59.169+0100",
     "status": {
-      "self": "https://metricell.atlassian.net/rest/api/3/status/10737",
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
       "description": "",
       "iconUrl": "https://metricell.atlassian.net/",
-      "name": "Blocked",
-      "id": "10737",
+      "name": "READY FOR TESTING",
+      "id": "10735",
       "statusCategory": {
-        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/2",
-        "id": 2,
-        "key": "new",
-        "colorName": "blue-gray",
-        "name": "To Do"
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
       }
     }
   }

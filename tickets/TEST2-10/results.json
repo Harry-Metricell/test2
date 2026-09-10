@@ -3,61 +3,57 @@
     "criterion": 1,
     "status": "Blocked",
     "steps_taken": [
-      "Navigated to the required V4 launcher.",
-      "Opened Survey Analyser from the visible launcher.",
-      "Opened the workbook chooser; it visibly reported that no saved workbooks are available."
+      "Navigated to the required V4 launcher",
+      "Completed the visible email sign-in step",
+      "Inspected the launcher cards"
     ],
     "evidence": [
-      "screenshots/attempt-001/criterion-1-initial-launcher.png",
-      "screenshots/attempt-001/criterion-1-before-open-beacon.png",
-      "screenshots/attempt-001/criterion-1-after-open-beacon.png",
-      "screenshots/attempt-001/criterion-1-before-open-workbook.png",
-      "screenshots/attempt-001/criterion-1-after-open-workbook.png"
+      "screenshots/attempt-002/criterion-1-initial-launcher.png"
     ],
-    "reason": "Required Beacon report cannot be opened because the workbook chooser visibly reports: No saved workbooks are available."
+    "reason": "The visible launcher has no Beacon report module or control, so the required report cannot be opened."
   },
   {
     "criterion": 2,
     "status": "Blocked",
     "steps_taken": [
-      "Returned to the required V4 launcher and captured the initial state."
+      "Returned to the required V4 launcher and inspected the visible controls"
     ],
     "evidence": [
-      "screenshots/attempt-001/criterion-2-initial-launcher.png"
+      "screenshots/attempt-002/criterion-2-initial-launcher.png"
     ],
-    "reason": "Blocked by the unavailable Beacon report/workbook required for Beacon and date-range selection."
+    "reason": "Beacon report unavailable from the visible launcher; Beacon and date range cannot be selected."
   },
   {
     "criterion": 3,
     "status": "Blocked",
     "steps_taken": [
-      "Returned to the required V4 launcher and captured the initial state."
+      "Returned to the required V4 launcher and inspected the visible controls"
     ],
     "evidence": [
-      "screenshots/attempt-001/criterion-3-initial-launcher.png"
+      "screenshots/attempt-002/criterion-3-initial-launcher.png"
     ],
-    "reason": "Blocked because the Beacon report could not be opened."
+    "reason": "Beacon report unavailable from the visible launcher; report views cannot be opened."
   },
   {
     "criterion": 4,
     "status": "Blocked",
     "steps_taken": [
-      "Returned to the required V4 launcher and captured the initial state."
+      "Returned to the required V4 launcher and inspected the visible controls"
     ],
     "evidence": [
-      "screenshots/attempt-001/criterion-4-initial-launcher.png"
+      "screenshots/attempt-002/criterion-4-initial-launcher.png"
     ],
-    "reason": "Blocked because the Beacon report and selected context were unavailable."
+    "reason": "Beacon report unavailable from the visible launcher; selected context and displayed results cannot be verified."
   },
   {
     "criterion": 5,
     "status": "Blocked",
     "steps_taken": [
-      "Returned to the required V4 launcher and captured the initial state."
+      "Returned to the required V4 launcher and inspected the visible controls"
     ],
     "evidence": [
-      "screenshots/attempt-001/criterion-5-initial-launcher.png"
+      "screenshots/attempt-002/criterion-5-initial-launcher.png"
     ],
-    "reason": "Blocked because the original Beacon report view could not be opened."
+    "reason": "Beacon report unavailable from the visible launcher; the original report view cannot be restored or confirmed."
   }
 ]
