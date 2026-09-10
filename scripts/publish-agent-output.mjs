@@ -19,6 +19,7 @@ function ticketKey(value) {
 function gitPath() {
   const candidates = [];
   if (process.env.TEST2_GIT) candidates.push(process.env.TEST2_GIT);
+  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   const desktop = path.join(process.env.LOCALAPPDATA || '', 'GitHubDesktop');
   if (fs.existsSync(desktop)) {
     for (const entry of fs.readdirSync(desktop, { withFileTypes: true }).sort((a, b) => b.name.localeCompare(a.name))) {
@@ -27,7 +28,6 @@ function gitPath() {
       }
     }
   }
-  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   candidates.push('C:\\Program Files\\Git\\cmd\\git.exe', 'git');
   return candidates.find(candidate => candidate === 'git' || fs.existsSync(candidate)) || 'git';
 }
