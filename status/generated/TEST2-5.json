@@ -29,15 +29,15 @@
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Criteria Check Required",
-    "qaOutcome": "Not Tested",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create criteria conversion handoff",
+    "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-10T13:40:09.339+0100",
-    "criteriaVerified": false
+    "criteriaVerified": true
   }
 }

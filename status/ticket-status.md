@@ -5,7 +5,7 @@ Updated: 2026-09-10T13:48:23.430+0100
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
 | TEST2-4 | READY FOR TESTING | Awaiting Evidence Review | Retry 3/3 | test 4 |
-| TEST2-5 | READY FOR TESTING | Criteria Check Required |  | test 5 confusion v2 |
+| TEST2-5 | READY FOR TESTING | Ready for Testing |  | test 5 confusion v2 |
 | TEST2-10 | READY FOR TESTING | Blocked | Retry 3/3 | 2-10 |
 | TEST2-11 | READY FOR TESTING | Criteria Check Required |  | checker |
 | TEST2-2 | Rejected | Ready for Testing |  | test |

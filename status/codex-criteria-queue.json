@@ -14,19 +14,6 @@
         "path": "tickets/TEST2-11/criteria.md",
         "schema": "v4-qa-criteria.v1"
       }
-    },
-    {
-      "ticket": "TEST2-5",
-      "handoffId": "handoff-TEST2-5-criteria",
-      "brief": "docs/briefs/criteria-conversion.md",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-5/ticket.json",
-        "generated": "status/generated/TEST2-5.json"
-      },
-      "output": {
-        "path": "tickets/TEST2-5/criteria.md",
-        "schema": "v4-qa-criteria.v1"
-      }
     }
   ]
 }

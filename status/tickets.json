@@ -12,8 +12,8 @@
     "byQaOutcome": {
       "Blocked": 2,
       "Failed": 1,
-      "Not Tested": 4,
-      "Passed": 2,
+      "Not Tested": 3,
+      "Passed": 3,
       "Unverified": 1
     }
   },
@@ -43,10 +43,10 @@
       "summary": "test 5 confusion v2",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Criteria Check Required",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-10T13:40:09.339+0100",
       "retries": 0,
       "retryLimit": 3,
