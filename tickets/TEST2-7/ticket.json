@@ -88,19 +88,19 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-09-09T15:41:38.428+0100",
+    "updated": "2026-09-10T09:54:08.882+0100",
     "status": {
-      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10736",
       "description": "",
       "iconUrl": "https://metricell.atlassian.net/",
-      "name": "READY FOR TESTING",
-      "id": "10735",
+      "name": "Rejected",
+      "id": "10736",
       "statusCategory": {
-        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
-        "id": 4,
-        "key": "indeterminate",
-        "colorName": "yellow",
-        "name": "In Progress"
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/3",
+        "id": 3,
+        "key": "done",
+        "colorName": "green",
+        "name": "Done"
       }
     }
   }

@@ -4,13 +4,13 @@
   "summary": "Verify GIS layer and map view controls",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-7",
-    "status": "READY FOR TESTING",
+    "status": "Rejected",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-07T15:03:46.264+0100",
-    "updated": "2026-09-09T15:41:38.428+0100"
+    "updated": "2026-09-10T09:54:08.882+0100"
   },
   "description": "As a user, I need to control the GIS map display after opening the GIS module.\nOpen GIS from the V4 launcher. The GIS workspace should load with the map and its controls visible.\nOpen the map layer control and enable an available coverage or network layer. The selected layer should become visible on the map.\nUse the zoom-in control to enlarge the map view. The map should visibly change scale while remaining centred on the current area.\nUse the reset map view control. The map should return to its default view and the GIS controls should remain usable.\nOpen the map style control and select another available style. The map appearance should change, and the style control should remain available for further use.",
   "acceptanceCriteria": [],
@@ -24,10 +24,10 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104022",
-    "importedAt": "2026-09-09T15:41:38.428+0100"
+    "importedAt": "2026-09-10T09:54:08.882+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "Rejected",
     "workflowState": "Ready",
     "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Passed",
@@ -37,6 +37,6 @@
     "reviewState": "Not Reviewed",
     "retries": 2,
     "blockedStage": null,
-    "updatedAt": "2026-09-09T15:41:38.428+0100"
+    "updatedAt": "2026-09-10T09:54:08.882+0100"
   }
 }

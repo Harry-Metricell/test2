@@ -1,11 +1,12 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-10T08:37:52.778Z",
+  "generatedAt": "2026-09-10T09:54:08.882+0100",
   "counts": {
     "tickets": 6,
     "handoffs": 3,
     "byWorkflowState": {
-      "Ready": 3,
+      "Blocked": 1,
+      "Ready": 2,
       "Retry Queued": 3
     },
     "byQaOutcome": {
@@ -23,13 +24,13 @@
     {
       "key": "TEST2-4",
       "summary": "test 4",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
+      "jiraStatus": "Blocked",
+      "workflowState": "Blocked",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
-      "updatedAt": "2026-09-09T15:41:26.290+0100",
+      "updatedAt": "2026-09-10T09:54:01.655+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""
@@ -65,13 +66,13 @@
     {
       "key": "TEST2-7",
       "summary": "Verify GIS layer and map view controls",
-      "jiraStatus": "READY FOR TESTING",
+      "jiraStatus": "Rejected",
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
-      "updatedAt": "2026-09-09T15:41:38.428+0100",
+      "updatedAt": "2026-09-10T09:54:08.882+0100",
       "retries": 2,
       "retryLimit": 3,
       "retryLabel": "Retry 2/3"
