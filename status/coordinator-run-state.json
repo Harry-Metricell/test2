@@ -5,9 +5,9 @@
       "handoffId": "handoff-TEST2-11-retry",
       "ticket": "TEST2-11",
       "stage": "test_ticket",
-      "childTaskId": "01a08bd6-3888-7303-bdc7-ef42ba382e56",
+      "childTaskId": "01a08bd9-160b-7d31-974f-9874e93c6fb6",
       "childHostId": "local",
-      "startedAt": "2026-09-10T15:01:18.235Z",
+      "startedAt": "2026-09-10T15:04:25.205Z",
       "lastObservedState": "created",
       "nextAction": "wait for tester, publisher, and Status Bundler"
     }
