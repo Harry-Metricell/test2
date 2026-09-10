@@ -11,9 +11,9 @@
       "Retry Queued": 3
     },
     "byQaOutcome": {
-      "Blocked": 1,
+      "Blocked": 2,
       "Passed": 3,
-      "Unverified": 2
+      "Unverified": 1
     }
   },
   "policy": {
@@ -56,14 +56,14 @@
       "summary": "Verify GIS map search and marker interaction",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Unverified",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "nextAction": "Retry 3/3 queued; coordinator will start tester",
       "updatedAt": "2026-09-10T08:37:52.778Z",
-      "retries": 2,
+      "retries": 3,
       "retryLimit": 3,
-      "retryLabel": "Retry 2/3"
+      "retryLabel": "Retry 3/3"
     },
     {
       "key": "TEST2-7",
