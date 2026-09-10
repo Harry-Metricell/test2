@@ -404,7 +404,7 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/criteria.md`, schema: 'v4-qa-criteria.v1' }
     };
   }
-  if (jiraReadyForTesting(ticket) && ticket.status.qaStatus === 'Awaiting Evidence Review') {
+  if (jiraReadyForTesting(ticket) && ticket.status.qaStatus === 'Awaiting Evidence Review' && fs.existsSync(path.join(ticketsDir, ticket.key, 'results.json'))) {
     return {
       handoffId: `handoff-${ticket.key}-review`,
       action: 'evidence_review',

@@ -219,6 +219,7 @@ if (outputType === 'criteria-output.json') {
   changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/history/${path.basename(historyFile)}`, `tickets/${key}/status.json`);
 } else {
   if (!Array.isArray(output.criterionOutcomes)) fail('criterionOutcomes is missing');
+  if (!fs.existsSync(path.join(ticketDir, 'results.json'))) fail('Cannot publish evidence review before tester results.json is present');
   const review = { ...output };
   let generatedDocx = path.join(run, 'report.docx');
   let generatedPdf = path.join(run, 'report.pdf');
