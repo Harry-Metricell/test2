@@ -1,0 +1,8 @@
+{
+  "criteriaValidation": {
+    "enabled": true,
+    "mode": "deterministic",
+    "failOnMissingSourceTerms": true,
+    "escalateOnAmbiguity": true
+  }
+}
