@@ -34,16 +34,16 @@
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Retry Queued",
-    "qaStatus": "Ready for Testing",
-    "qaOutcome": "Not Tested",
+    "workflowState": "Blocked",
+    "qaStatus": "Blocked",
+    "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Retry 3/3 queued; coordinator will start tester",
+    "nextAction": "Manual review required after retry limit",
     "reviewState": "Not Reviewed",
     "retries": 3,
-    "blockedStage": null,
-    "updatedAt": "2026-09-10T11:29:28.578Z",
+    "blockedStage": "test_ticket",
+    "updatedAt": "2026-09-10T11:49:38.723Z",
     "criteriaVerified": true
   }
 }
