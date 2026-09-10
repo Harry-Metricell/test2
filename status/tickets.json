@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-10T11:03:10.834+0100",
   "counts": {
     "tickets": 9,
-    "handoffs": 6,
+    "handoffs": 5,
     "byWorkflowState": {
       "Blocked": 3,
       "In Progress": 1,
@@ -86,10 +86,10 @@
       "summary": "test 5 confusion v2",
       "jiraStatus": "In Progress",
       "workflowState": "In Progress",
-      "qaStatus": "Criteria Check Required",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-09T16:26:26.830+0100",
       "retries": 0,
       "retryLimit": 3,

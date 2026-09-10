@@ -1,4 +1,3 @@
-<!-- Converted from the complete Jira ticket source. -->
+<!-- Generated from Jira acceptance criteria. -->
 
-- [ ] Starting from the application launcher, select the GIS module.
-  - Expected result: The GIS screen opens and is visibly displayed.
+- [ ] GIS screen can be opened from launcher

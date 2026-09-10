@@ -6,7 +6,7 @@
 - QA outcome: Passed
 - Workflow state: Blocked
 - Action owner: Coordinator
-- Next action: Create criteria conversion handoff
+- Next action: QA review complete
 - Jira: https://metricell.atlassian.net/browse/TEST2-4
 
 ## Acceptance Criteria

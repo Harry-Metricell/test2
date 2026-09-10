@@ -29,15 +29,15 @@
   "status": {
     "jiraStatus": "In Progress",
     "workflowState": "In Progress",
-    "qaStatus": "Criteria Check Required",
+    "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create criteria conversion handoff",
+    "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-09T16:26:26.830+0100",
-    "criteriaVerified": false
+    "criteriaVerified": true
   }
 }
