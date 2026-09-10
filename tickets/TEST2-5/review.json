@@ -1,0 +1,37 @@
+{
+  "handoffId": "handoff-TEST2-5-review",
+  "ticket": "TEST2-5",
+  "criterionOutcomes": [
+    {
+      "criterion": 1,
+      "outcome": "Passed",
+      "reason": "Screenshots show the Metricell Launcher, GIS workspace, Beacons layer, and a visible beacon with its star control."
+    },
+    {
+      "criterion": 2,
+      "outcome": "Passed",
+      "reason": "The cited screenshot shows Colin Pitts 1 #447925375841 in the Beacons list with the star selected and Favourites (1)."
+    },
+    {
+      "criterion": 3,
+      "outcome": "Passed",
+      "reason": "The Favourites filter is selected and Colin Pitts 1 #447925375841 is visibly listed."
+    },
+    {
+      "criterion": 4,
+      "outcome": "Passed",
+      "reason": "The cited final screenshot follows removal and shows the Favourites count changed to 0."
+    },
+    {
+      "criterion": 5,
+      "outcome": "Passed",
+      "reason": "The cited final screenshot visibly states No favourite Beacons yet and the Favourites count is 0."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-5\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "All five criteria were independently confirmed from direct screenshots in the selected attempt-001 folder."
+}
