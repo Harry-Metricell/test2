@@ -1,1 +1,1 @@
-- Passed: GIS screen opened successfully from the launcher and loaded usable GIS controls and beacon data.
+- [x] GIS screen can be opened from launcher — Passed; launcher opened GIS at /gis with usable controls.
