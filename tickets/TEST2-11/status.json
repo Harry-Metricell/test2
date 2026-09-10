@@ -1,14 +1,14 @@
 {
   "ticket": "TEST2-11",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Criteria Check Required",
+  "qaStatus": "Ready for Testing",
   "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 3,
   "criteriaVerified": false,
-  "blockedStage": "criteria",
+  "blockedStage": null,
   "qaOutcome": "Not Tested",
-  "workflowState": "Ready",
-  "nextAction": "Create criteria conversion handoff",
-  "updatedAt": "2026-09-10T12:53:41.851Z"
+  "workflowState": "Retry Queued",
+  "nextAction": "Retry 0/3 queued; coordinator will start tester",
+  "updatedAt": "2026-09-10T12:54:50.963Z"
 }

@@ -1,13 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-10T13:48:23.430+0100",
+  "generatedAt": "2026-09-10T13:40:09.339+0100",
   "counts": {
     "tickets": 10,
     "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 4,
-      "Ready": 3,
-      "Rejected": 3
+      "Ready": 2,
+      "Rejected": 3,
+      "Retry Queued": 1
     },
     "byQaOutcome": {
       "Blocked": 2,
@@ -70,12 +71,12 @@
       "key": "TEST2-11",
       "summary": "checker",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
+      "workflowState": "Retry Queued",
       "qaStatus": "Criteria Check Required",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
       "nextAction": "Create criteria conversion handoff",
-      "updatedAt": "2026-09-10T13:48:23.430+0100",
+      "updatedAt": "2026-09-10T12:54:50.963Z",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""

@@ -28,7 +28,7 @@
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Ready",
+    "workflowState": "Retry Queued",
     "qaStatus": "Criteria Check Required",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
@@ -37,7 +37,7 @@
     "reviewState": "Not Reviewed",
     "retries": 0,
     "blockedStage": null,
-    "updatedAt": "2026-09-10T13:48:23.430+0100",
+    "updatedAt": "2026-09-10T12:54:50.963Z",
     "criteriaVerified": false
   }
 }
