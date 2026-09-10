@@ -1,0 +1,13 @@
+{
+  "handoffId": "handoff-TEST2-6-test",
+  "ticket": "TEST2-6",
+  "qaStatus": "Blocked",
+  "results": [],
+  "conciseReport": "Blocked before testing: the available browser-control surface could not save and verify the required PNG evidence files in the handoff staging folder.",
+  "reportPath": "C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\handoff-TEST2-6-test\\test-output.json",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\handoff-TEST2-6-test\\screenshots",
+  "noOp": false,
+  "reason": "Required screenshot evidence could not be created and verified because the available browser-control API exposes browser interaction but no supported file-saving path for screenshot PNG bytes.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-10T08:37:30.182Z"
+}
