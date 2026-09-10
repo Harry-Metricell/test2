@@ -259,7 +259,21 @@ function normalizeTicket(dirName) {
   // Any pipeline block is an operational retry signal. Convert it once per block
   // into a retryable state and persist the counter in the ticket status file.
   // This prevents repeated bundler runs from consuming all retries.
-  const retries = Number.isFinite(Number(localStatus.retries)) ? Number(localStatus.retries) : 0;
+  const recordedAttempts = fs.existsSync(path.join(dir, 'history'))
+    ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\d+-test\.json$/i.test(name)).length
+    : 0;
+  // The durable retry count is the number of retries actually represented by
+  // test history. This repairs old state where blocked transitions were counted
+  // but later failed/unverified attempts were not.
+  const recordedRetries = Math.max(0, recordedAttempts - 1);
+  const retries = Math.max(
+    Number.isFinite(Number(localStatus.retries)) ? Number(localStatus.retries) : 0,
+    recordedRetries
+  );
+  if (!checkOnly && retries !== Number(localStatus.retries || 0)) {
+    localStatus = { ...localStatus, retries };
+    fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
+  }
   const retryLimit = Number.isFinite(Number(localStatus.retryLimit)) ? Number(localStatus.retryLimit) : 3;
   // Failed attempts can be marked Evidence Reviewed, so retry from the
   // persisted outcome as well as from a blocked QA status.
