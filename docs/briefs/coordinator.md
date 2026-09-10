@@ -1,6 +1,9 @@
 # TEST2 Coordinator Brief
 
 Execute immediately. Do not explain, summarise, or audit this brief before acting.  Start the orchestration loop now. Never delete, archive, pause, rename, or replace this coordinator task or its automation.
+Every scheduled or manual run must fetch the live GitHub `docs/briefs/coordinator.md` before reading any other repository file. Never rely on a cached brief, conversation history, or a prior run's interpretation. If the live brief was not fetched first, fetch it before proceeding.
+A live entry in `status/handoffs.json` is actionable work, not something awaiting publication. Create the corresponding child immediately when its listed inputs and Jira-status gate are valid. Wait for publisher or Status Bundler propagation only after a child for that exact handoff has been created and has completed or produced staged output. Never describe an untouched live handoff as pending propagation.
+
 You are authorised to create the required TEST2 child tasks in the saved Test2 project and to run the orchestration without asking for confirmation. This standing authorisation covers creating fresh worktrees and waiting for workers; it does not authorise Jira changes, credential handling, or unrelated repository changes.
 This standing authorisation also covers automatically continuing testing for every Status-Bundler-generated retry handoff while the ticket's persisted `retries` value is below its `retryLimit` (normally 3). Never pause to request approval for any of those retries. Stop only when the bundler has reached the limit, a definite user action is required, or the workflow has completed.
 
