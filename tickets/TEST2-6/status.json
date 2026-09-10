@@ -3,7 +3,10 @@
   "jiraStatus": "In Progress",
   "qaStatus": "Ready for Testing",
   "status": "In Progress",
-  "retries": 0,
+  "retries": 1,
   "retryLimit": 3,
-  "blockedStage": null
+  "blockedStage": null,
+  "workflowState": "Retry Queued",
+  "nextAction": "Create retry handoff",
+  "updatedAt": "2026-09-10T08:37:52.778Z"
 }
