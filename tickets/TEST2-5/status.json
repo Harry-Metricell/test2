@@ -4,5 +4,9 @@
   "qaStatus": "Evidence Reviewed",
   "status": "In Progress",
   "retries": 0,
-  "retryLimit": 3
+  "retryLimit": 3,
+  "qaOutcome": "Passed",
+  "workflowState": "In Progress",
+  "blockedStage": null,
+  "nextAction": "QA review complete"
 }

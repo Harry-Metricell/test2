@@ -5,5 +5,8 @@
   "status": "Blocked",
   "retries": 0,
   "retryLimit": 3,
-  "blockedStage": null
+  "blockedStage": null,
+  "qaOutcome": "Passed",
+  "workflowState": "Blocked",
+  "nextAction": "QA review complete"
 }

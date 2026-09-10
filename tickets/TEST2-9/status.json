@@ -3,11 +3,11 @@
   "jiraStatus": "Rejected",
   "qaStatus": "Ready for Testing",
   "status": "Rejected",
-  "retries": 2,
+  "retries": 3,
   "retryLimit": 3,
   "qaOutcome": "Blocked",
   "workflowState": "Retry Queued",
   "blockedStage": null,
   "nextAction": "Create retry handoff",
-  "updatedAt": "2026-09-10T09:08:11.892Z"
+  "updatedAt": "2026-09-10T09:25:42.426Z"
 }
