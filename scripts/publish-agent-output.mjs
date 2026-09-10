@@ -183,7 +183,7 @@ if (outputType === 'criteria-output.json') {
     criteriaMarkdown = '<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->\n\n' + criteriaMarkdown;
   }
   criteriaMarkdown = criteriaMarkdown.replace(/^-\s+(?!\[)/gm, '- [ ] ');
-  if (!/^- \\[ \\] \\S/m.test(criteriaMarkdown)) fail('criteriaMarkdown has no valid unchecked checklist bullets');
+  if (!criteriaMarkdown.split(/\r?\n/).some((line) => line.startsWith('- [ ] '))) fail('criteriaMarkdown has no valid unchecked checklist bullets');
   ensurePath(path.join(ticketDir, 'criteria.md'));
   fs.writeFileSync(path.join(ticketDir, 'criteria.md'), criteriaMarkdown + '\n', 'utf8');
   status.qaStatus = output.qaStatus || 'Ready for Testing';
