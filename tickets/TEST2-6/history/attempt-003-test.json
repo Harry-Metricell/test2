@@ -1,0 +1,68 @@
+{
+  "handoffId": "handoff-TEST2-6-retry",
+  "ticket": "TEST2-6",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Open the GIS module from the V4 launcher; the GIS workspace loads with the map and its available controls visible.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Reloaded the V4 launcher",
+        "Captured the launcher before interaction",
+        "Opened GIS",
+        "Waited for the GIS workspace to finish loading"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/01-launcher-initial.png",
+        "screenshots/attempt-003/03-gis-initial-ready.png"
+      ]
+    },
+    {
+      "criterion": "Use the map search to find a known site or location; the map moves to the selected result and shows it as the active location.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Entered London in the map search",
+        "Selected the visible London UK result",
+        "Verified the map moved to London and showed a visible marker"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/04-before-search-submit.png",
+        "screenshots/attempt-003/06-before-select-location.png",
+        "screenshots/attempt-003/07-location-selected.png"
+      ]
+    },
+    {
+      "criterion": "Select the visible map marker itself; a details panel opens for the same location and shows its identifying information.",
+      "outcome": "Unverified",
+      "steps_taken": [
+        "Clicked the accessibility-exposed map marker",
+        "Clicked the visible marker at its rendered map position",
+        "Checked the resulting UI for a details panel"
+      ],
+      "reason": "The marker remained visible but no details panel or identifying information appeared after either click; the evidence is inconclusive.",
+      "evidence": [
+        "screenshots/attempt-003/08-before-marker-click.png",
+        "screenshots/attempt-003/09-marker-details.png",
+        "screenshots/attempt-003/10-marker-coordinate-click.png"
+      ]
+    },
+    {
+      "criterion": "Close the details panel and return to the map; the map remains at the selected location and the GIS controls remain usable.",
+      "outcome": "Unverified",
+      "steps_taken": [
+        "Verified the map and GIS controls remained visible after the marker interaction"
+      ],
+      "reason": "No details panel opened, so there was no panel to close; the complete close-and-return journey could not be verified.",
+      "evidence": [
+        "screenshots/attempt-003/10-marker-coordinate-click.png"
+      ]
+    }
+  ],
+  "conciseReport": "GIS loaded from the V4 launcher and map search successfully moved to London with a visible marker. Marker clicks did not open identifying details, so marker-details and close-panel criteria remain unverified.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-6-retry/screenshots",
+  "noOp": false,
+  "reason": "Completed browser attempt with saved evidence. Chrome version was not exposed in visible browser information.",
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-10T08:44:29.472Z"
+}

@@ -4,65 +4,53 @@
     "outcome": "Passed",
     "steps_taken": [
       "Reloaded the V4 launcher",
-      "Captured the launcher initial state",
-      "Clicked the GIS module Open module button",
-      "Verified GIS, map, layer controls, search, and zoom controls were visible"
+      "Captured the launcher before interaction",
+      "Opened GIS",
+      "Waited for the GIS workspace to finish loading"
     ],
     "evidence": [
-      "screenshots/attempt-002/c1-initial.png",
-      "screenshots/attempt-002/c1-after-open-gis.png"
-    ],
-    "reason": "Direct UI evidence confirms the GIS workspace loaded from the launcher.",
-    "browserVersion": null,
-    "blockers": []
+      "screenshots/attempt-003/01-launcher-initial.png",
+      "screenshots/attempt-003/03-gis-initial-ready.png"
+    ]
   },
   {
     "criterion": "Use the map search to find a known site or location; the map moves to the selected result and shows it as the active location.",
     "outcome": "Passed",
     "steps_taken": [
-      "Entered London in Search Map",
+      "Entered London in the map search",
       "Selected the visible London UK result",
-      "Verified the map moved to London and a map marker appeared"
+      "Verified the map moved to London and showed a visible marker"
     ],
     "evidence": [
-      "screenshots/attempt-002/c2-before-search.png",
-      "screenshots/attempt-002/c2-after-search.png",
-      "screenshots/attempt-002/c2-before-select-result.png",
-      "screenshots/attempt-002/c2-after-select-result.png"
-    ],
-    "reason": "Direct UI evidence confirms the selected London result repositioned the map and created an active marker.",
-    "browserVersion": null,
-    "blockers": []
+      "screenshots/attempt-003/04-before-search-submit.png",
+      "screenshots/attempt-003/06-before-select-location.png",
+      "screenshots/attempt-003/07-location-selected.png"
+    ]
   },
   {
     "criterion": "Select the visible map marker itself; a details panel opens for the same location and shows its identifying information.",
-    "outcome": "Failed",
+    "outcome": "Unverified",
     "steps_taken": [
-      "Clicked the visible map marker at the selected London location",
-      "Waited for the UI to update",
-      "Verified no details panel or identifying information appeared"
+      "Clicked the accessibility-exposed map marker",
+      "Clicked the visible marker at its rendered map position",
+      "Checked the resulting UI for a details panel"
     ],
+    "reason": "The marker remained visible but no details panel or identifying information appeared after either click; the evidence is inconclusive.",
     "evidence": [
-      "screenshots/attempt-002/c3-before-marker-coordinate.png",
-      "screenshots/attempt-002/c3-after-marker-coordinate.png"
-    ],
-    "reason": "Direct contradictory evidence: the visible marker remained and no details panel opened after the marker click.",
-    "browserVersion": null,
-    "blockers": []
+      "screenshots/attempt-003/08-before-marker-click.png",
+      "screenshots/attempt-003/09-marker-details.png",
+      "screenshots/attempt-003/10-marker-coordinate-click.png"
+    ]
   },
   {
     "criterion": "Close the details panel and return to the map; the map remains at the selected location and the GIS controls remain usable.",
     "outcome": "Unverified",
     "steps_taken": [
-      "Attempted the marker interaction required to produce the details panel",
-      "Observed that no details panel opened",
-      "Cleared the map search and navigated back to the launcher to restore state"
+      "Verified the map and GIS controls remained visible after the marker interaction"
     ],
+    "reason": "No details panel opened, so there was no panel to close; the complete close-and-return journey could not be verified.",
     "evidence": [
-      "screenshots/attempt-002/c3-after-marker-coordinate.png"
-    ],
-    "reason": "Testing occurred, but the required details panel was not created, so its close-and-return journey could not be evaluated.",
-    "browserVersion": null,
-    "blockers": []
+      "screenshots/attempt-003/10-marker-coordinate-click.png"
+    ]
   }
 ]
