@@ -1,0 +1,19 @@
+[
+  {
+    "criterion": "GIS screen can be opened from launcher",
+    "status": "Passed",
+    "steps_taken": [
+      "Navigated to the V4 launcher.",
+      "Captured and verified the launcher initial state.",
+      "Selected GIS and captured the pre-action state.",
+      "Verified the GIS workspace opened at /gis with visible map and layer controls.",
+      "Captured and verified the final GIS state."
+    ],
+    "evidence": [
+      "screenshots/attempt-006/criterion-1-initial-launcher.png",
+      "screenshots/attempt-006/criterion-1-before-open-gis.png",
+      "screenshots/attempt-006/criterion-1-after-open-gis.png"
+    ],
+    "reason": "Direct visible browser evidence confirms the launcher-to-GIS journey. Browser version was not exposed in visible browser information. No temporary application or test-data changes were made."
+  }
+]

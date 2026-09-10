@@ -1,0 +1,31 @@
+{
+  "handoffId": "handoff-TEST2-4-test",
+  "ticket": "TEST2-4",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "GIS screen can be opened from launcher",
+      "status": "Passed",
+      "steps_taken": [
+        "Navigated to the V4 launcher.",
+        "Captured and verified the launcher initial state.",
+        "Selected GIS and captured the pre-action state.",
+        "Verified the GIS workspace opened at /gis with visible map and layer controls.",
+        "Captured and verified the final GIS state."
+      ],
+      "evidence": [
+        "screenshots/attempt-006/criterion-1-initial-launcher.png",
+        "screenshots/attempt-006/criterion-1-before-open-gis.png",
+        "screenshots/attempt-006/criterion-1-after-open-gis.png"
+      ],
+      "reason": "Direct visible browser evidence confirms the launcher-to-GIS journey. Browser version was not exposed in visible browser information. No temporary application or test-data changes were made."
+    }
+  ],
+  "conciseReport": "- Passed: GIS screen can be opened from launcher; verified the launcher state and that selecting GIS opened the GIS workspace with visible map and layer controls.",
+  "reportPath": ".agent-staging/handoff-TEST2-4-test/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-4-test/screenshots",
+  "noOp": false,
+  "reason": "Completed the selected live handoff with fresh, verified screenshot evidence.",
+  "historyAttempt": 6,
+  "recordedAt": "2026-09-10T12:47:06.084Z"
+}
