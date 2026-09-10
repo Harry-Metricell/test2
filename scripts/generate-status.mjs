@@ -368,7 +368,7 @@ function jiraReadyForTesting(ticket) {
 }
 
 function handoffFor(ticket) {
-  if (ticket.status.qaStatus === 'Criteria Review Required' && !criteriaReady(ticket)) {
+  if (localStatus.criteriaVerified !== true) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
       action: 'criteria_conversion',
