@@ -2,14 +2,24 @@
   "schema": "v4-qa-coordinator-run-state.v1",
   "active": [
     {
-      "handoffId": "handoff-TEST2-11-retry",
-      "ticket": "TEST2-11",
-      "stage": "test_ticket",
-      "childTaskId": "01a08bd9-160b-7d31-974f-9874e93c6fb6",
+      "handoffId": "handoff-TEST2-4-review",
+      "ticket": "TEST2-4",
+      "stage": "evidence_review",
+      "childTaskId": "01a08bde-2349-7240-9c0b-346b52bea8ac",
       "childHostId": "local",
-      "startedAt": "2026-09-10T15:04:25.205Z",
+      "startedAt": "2026-09-10T15:10:07.715Z",
       "lastObservedState": "created",
-      "nextAction": "wait for tester, publisher, and Status Bundler"
+      "nextAction": "wait for reviewer, publisher, and Status Bundler"
+    },
+    {
+      "handoffId": "handoff-TEST2-5-review",
+      "ticket": "TEST2-5",
+      "stage": "evidence_review",
+      "childTaskId": "01a08bde-4632-71e1-852d-6de330765284",
+      "childHostId": "local",
+      "startedAt": "2026-09-10T15:10:07.715Z",
+      "lastObservedState": "created",
+      "nextAction": "wait for reviewer, publisher, and Status Bundler"
     }
   ]
 }
