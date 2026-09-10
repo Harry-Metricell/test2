@@ -3,8 +3,9 @@
   "jiraStatus": "READY FOR TESTING",
   "qaStatus": "Awaiting Evidence Review",
   "status": "READY FOR TESTING",
-  "retries": 0,
+  "retries": 2,
   "retryLimit": 3,
   "criteriaVerified": true,
-  "blockedStage": null
+  "blockedStage": null,
+  "qaOutcome": "Passed"
 }
