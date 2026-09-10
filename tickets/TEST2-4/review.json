@@ -1,0 +1,17 @@
+{
+  "handoffId": "handoff-TEST2-4-review",
+  "ticket": "TEST2-4",
+  "criterionOutcomes": [
+    {
+      "criterion": "GIS screen can be opened from launcher",
+      "outcome": "Passed",
+      "reason": "The selected attempt-002 PNG evidence directly shows the Metricell Launcher with the GIS Open module and then the GIS screen loaded with map, layer controls, and beacon list visible."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-4\\screenshots\\attempt-002",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Report generation or PDF verification failed: ENOENT: no such file or directory, open 'C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\tickets\\TEST2-4\\results.json'"
+}
