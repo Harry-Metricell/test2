@@ -178,6 +178,7 @@ const changed = [];
 if (outputType === 'criteria-output.json') {
   if (typeof output.criteriaMarkdown !== 'string' || !output.criteriaMarkdown.trim()) fail('criteriaMarkdown is missing');
   let criteriaMarkdown = output.criteriaMarkdown.trim();
+  criteriaMarkdown = criteriaMarkdown.replace(/\\n/g, '\n');
   if (!/Generated from Jira acceptance criteria|Generated from Jira description|Source: Jira description|Converted from the complete Jira ticket source|Generated from the Jira ticket source/i.test(criteriaMarkdown)) {
     criteriaMarkdown = '<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->\n\n' + criteriaMarkdown;
   }
