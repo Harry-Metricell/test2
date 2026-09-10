@@ -17,21 +17,6 @@
         "path": "tickets/TEST2-11/results.json",
         "schema": "v4-qa-test-result.v1"
       }
-    },
-    {
-      "handoffId": "handoff-TEST2-5-review",
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-5",
-      "inputs": {
-        "results": "tickets/TEST2-5/results.json",
-        "generated": "status/generated/TEST2-5.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-5/review.json",
-        "schema": "v4-qa-review.v1"
-      }
     }
   ]
 }
