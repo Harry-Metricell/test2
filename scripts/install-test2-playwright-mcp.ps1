@@ -47,7 +47,7 @@ $begin
 [mcp_servers.playwright]
 command = '$nodePath'
 args = ['$mcpCli', '--isolated', '--storage-state', '$storageState', '--output-dir', '$stagingRoot', '--viewport-size', '1440x900', '--timeout-action', '10000']
-cwd = '$repoPath'
+cwd = '$stagingRoot'
 startup_timeout_sec = 120
 tool_timeout_sec = 120
 enabled = true
