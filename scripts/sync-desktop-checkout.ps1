@@ -21,16 +21,21 @@ try {
     git fetch --quiet origin main
     if ($LASTEXITCODE -ne 0) { Log 'FAIL git fetch origin main'; exit 1 }
 
-    $changes = @(git status --porcelain)
-    if ($changes.Count -gt 0) {
-        Log "SKIP local changes present ($($changes.Count) item(s)); no files changed"
-        exit 0
-    }
-
     $behind = [int](git rev-list --count HEAD..origin/main)
     $ahead = [int](git rev-list --count origin/main..HEAD)
     if ($ahead -gt 0) { Log "SKIP local branch is ahead by $ahead commit(s); no files changed"; exit 0 }
     if ($behind -eq 0) { Log 'OK already up to date'; exit 0 }
+
+    $localPaths = @(git status --porcelain | ForEach-Object { $_.Substring(3).Trim() } | Where-Object { $_ })
+    if ($localPaths.Count -gt 0) {
+        $incomingPaths = @(git diff --name-only HEAD..origin/main)
+        $overlap = @($localPaths | Where-Object { $incomingPaths -contains $_ })
+        if ($overlap.Count -gt 0) {
+            Log "SKIP incoming update touches local file(s): $($overlap -join ', '); no files changed"
+            exit 0
+        }
+        Log "INFO preserving unrelated local file(s): $($localPaths -join ', ')"
+    }
 
     git merge --ff-only origin/main --quiet
     if ($LASTEXITCODE -ne 0) { Log 'FAIL fast-forward refused'; exit 1 }

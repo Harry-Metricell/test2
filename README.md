@@ -25,7 +25,7 @@ To keep the Desktop checkout current without overwrite prompts, install the safe
 powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-desktop-sync.ps1 -Repo "$PWD"
 ```
 
-It runs every two minutes, fetches `origin/main`, and fast-forwards only a clean `main` checkout. It skips and logs when local changes, a different branch, or local-only commits are present. Review `%LOCALAPPDATA%\TEST2\desktop-sync.log` when a pull appears not to happen. The task does not start or control the coordinator.
+It runs every two minutes, fetches `origin/main`, and fast-forwards `main` without overwriting local work. Unrelated local files are preserved while syncing; if an incoming commit touches a locally changed file, the task skips and logs that conflict. It also skips a different branch or local-only commits. Review `%LOCALAPPDATA%\TEST2\desktop-sync.log` when a pull appears not to happen. The task does not start or control the coordinator.
 
 - validated JSON output;
 - ticket-scoped paths;
