@@ -1,4 +1,4 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source. -->
 
-- [ ] Starting from the V4 launcher, confirm the launcher is visible and capture the initial screen.
-- [ ] Capture a final screen showing the launcher remains loaded.
+- [ ] Starting with the V4 launcher opened, verify that the launcher is visible and save a screenshot of this initial state.
+- [ ] After completing the initial-state check, verify that the V4 launcher remains loaded and save a screenshot of this final state.
