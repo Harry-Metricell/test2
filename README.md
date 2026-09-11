@@ -13,6 +13,16 @@ The system keeps durable QA state in GitHub and uses Codex only for authenticate
 5. The publisher validates output, copies evidence/reports to the configured local evidence folders, and publishes only the relevant ticket files.
 6. Status Bundler owns generated status, handoffs, `retries`, and `retryLimit`.
 
+## Start the coordinator
+
+The complete, canonical coordinator brief is [`docs/briefs/coordinator.md`](docs/briefs/coordinator.md). Keep the rules in that file rather than duplicating them in the README, so the coordinator has one source of truth.
+
+Start each manual or scheduled coordinator cycle as a fresh Codex task in the saved Test2 project with this prompt:
+
+> Fetch the live GitHub `docs/briefs/coordinator.md` before reading any other repository file, then execute that brief immediately. Do not use a cached local copy or previous task history.
+
+The coordinator must continue through all actionable handoffs and required publisher/bundler propagation described by the live brief. The scheduled publisher and Desktop sync tasks do not start or replace the coordinator.
+
 ## Publishing safety
 
 The publisher must never push from the dirty Desktop checkout. It uses GitHub Desktop Git and a temporary clean worktree based on the exact live remote `main` SHA. Its private index is populated from that worktree's `HEAD` before staging, so publishing cannot replace the repository with a partial tree.
