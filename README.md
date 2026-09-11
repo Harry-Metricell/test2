@@ -19,6 +19,14 @@ The publisher must never push from the dirty Desktop checkout. It uses GitHub De
 
 The publisher requires:
 
+To keep the Desktop checkout current without overwrite prompts, install the safe sync task from this repository in an elevated PowerShell window:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-desktop-sync.ps1 -Repo "$PWD"
+```
+
+It runs every two minutes, fetches `origin/main`, and fast-forwards only a clean `main` checkout. It skips and logs when local changes, a different branch, or local-only commits are present. Review `%LOCALAPPDATA%\TEST2\desktop-sync.log` when a pull appears not to happen. The task does not start or control the coordinator.
+
 - validated JSON output;
 - ticket-scoped paths;
 - remote read-back after publication;
