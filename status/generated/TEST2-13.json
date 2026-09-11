@@ -1,0 +1,47 @@
+{
+  "key": "TEST2-13",
+  "id": "104623",
+  "summary": "Verify launcher displays available V4 modules",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-13",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-11T15:29:28.487+0100",
+    "updated": "2026-09-11T15:29:45.717+0100"
+  },
+  "description": "Open the V4 launcher.\nAcceptance Criteria:\nThe launcher page is displayed.\nThe launcher shows the available V4 module cards.\nEach visible module card has an Open module control.",
+  "acceptanceCriteria": [
+    "The launcher page is displayed.",
+    "The launcher shows the available V4 module cards.",
+    "Each visible module card has an Open module control."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-13/ticket.json",
+    "criteria": "tickets/TEST2-13/criteria.md",
+    "status": "tickets/TEST2-13/status.json",
+    "screenshots": "tickets/TEST2-13/screenshots/",
+    "reports": "tickets/TEST2-13/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104623",
+    "importedAt": "2026-09-11T15:29:45.717+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-11T15:29:45.717+0100",
+    "criteriaVerified": false
+  }
+}

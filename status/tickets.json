@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-11T13:20:05.956+0100",
+  "generatedAt": "2026-09-11T15:29:45.717+0100",
   "counts": {
-    "tickets": 11,
-    "handoffs": 0,
+    "tickets": 12,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 6,
-      "Ready": 3,
+      "Ready": 4,
       "Rejected": 2
     },
     "byQaOutcome": {
       "Blocked": 3,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 4,
       "Unverified": 1
     }
@@ -92,6 +92,20 @@
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
+    },
+    {
+      "key": "TEST2-13",
+      "summary": "Verify launcher displays available V4 modules",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-11T15:29:45.717+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",
