@@ -1,0 +1,13 @@
+{
+  "handoffId": "handoff-TEST2-12-retry",
+  "ticket": "TEST2-12",
+  "qaStatus": "Not Tested",
+  "results": [],
+  "conciseReport": "No-op: requested handoff handoff-TEST2-12-retry is not live in the freshly fetched handoff queue.",
+  "reportPath": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-12-retry/test-output.json",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-12-retry/screenshots",
+  "noOp": true,
+  "reason": "Requested handoff handoff-TEST2-12-retry was not present in live status/handoffs.json; available TEST2-12 handoff was handoff-TEST2-12-criteria, so no ticket was selected or tested.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-11T12:37:05.541Z"
+}

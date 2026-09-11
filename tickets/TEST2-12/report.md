@@ -1,1 +1,1 @@
-Blocked before criterion testing: the V4 launcher remained on Initializing / Preparing modules, and the required screenshot capture failed because the screen handle was invalid.
+No-op: requested handoff handoff-TEST2-12-retry is not live in the freshly fetched handoff queue.

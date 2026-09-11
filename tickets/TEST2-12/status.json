@@ -1,13 +1,9 @@
 {
   "ticket": "TEST2-12",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Not Tested",
   "status": "READY FOR TESTING",
-  "retries": 1,
+  "retries": 0,
   "retryLimit": 3,
-  "criteriaVerified": true,
-  "blockedStage": null,
-  "workflowState": "Retry Queued",
-  "nextAction": "Create retry handoff",
-  "updatedAt": "2026-09-11T12:34:30.459Z"
+  "blockedStage": null
 }
