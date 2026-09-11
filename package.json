@@ -6,5 +6,9 @@
   "scripts": {
     "generate": "node scripts/generate-status.mjs",
     "check": "node scripts/check-criteria.mjs"
+  },
+  "devDependencies": {
+    "@playwright/mcp": "^0.0.80",
+    "playwright": "^1.63.0-alpha-2026-08-31"
   }
 }
