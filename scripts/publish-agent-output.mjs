@@ -143,7 +143,6 @@ function buildVerifiedReport(key, run, screenshots) {
 if (!fs.existsSync(stagingRoot)) process.exit(0);
 // Use a private temporary index so unrelated checkout changes and index locks do not block publishing.
 fs.rmSync(publisherIndex, { force: true });
-runGit(['read-tree', 'HEAD']);
 syncBeforePublish();
 
 const runs = fs.readdirSync(stagingRoot, { withFileTypes: true })
