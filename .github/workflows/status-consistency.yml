@@ -1,0 +1,28 @@
+name: Generated Status Consistency
+
+on:
+  pull_request:
+    paths:
+      - 'tickets/**'
+      - 'scripts/generate-status.mjs'
+      - 'scripts/check-criteria.mjs'
+      - 'package.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Regenerate projections
+        run: node scripts/generate-status.mjs
+      - name: Validate criteria
+        run: node scripts/check-criteria.mjs
+      - name: Fail if generated files are stale
+        run: git diff --exit-code -- status tickets
