@@ -3,11 +3,11 @@
   "generatedAt": "2026-09-11T13:20:05.956+0100",
   "counts": {
     "tickets": 11,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 5,
+      "Blocked": 6,
       "Ready": 3,
-      "Rejected": 3
+      "Rejected": 2
     },
     "byQaOutcome": {
       "Blocked": 2,
@@ -85,10 +85,10 @@
       "summary": "Basic screenshot evidence test",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Criteria Check Required",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-11T13:20:05.956+0100",
       "retries": 1,
       "retryLimit": 3,
@@ -154,8 +154,8 @@
       "key": "TEST2-9",
       "summary": "Retain selected coverage after returning to the map",
       "jiraStatus": "Rejected",
-      "workflowState": "Rejected",
-      "qaStatus": "Evidence Reviewed",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Failed",
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",

@@ -8,10 +8,10 @@ Updated: 2026-09-11T13:20:05.956+0100
 | TEST2-5 | READY FOR TESTING | Evidence Reviewed |  | test 5 confusion v2 |
 | TEST2-10 | READY FOR TESTING | Blocked | Retry 3/3 | 2-10 |
 | TEST2-11 | READY FOR TESTING | Blocked | Retry 4/3 | checker |
-| TEST2-12 | READY FOR TESTING | Criteria Check Required | Retry 1/3 | Basic screenshot evidence test |
+| TEST2-12 | READY FOR TESTING | Ready for Testing | Retry 1/3 | Basic screenshot evidence test |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Blocked | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
 | TEST2-8 | Rejected | Evidence Reviewed | Retry 2/3 | Preserve map context when switching GIS panels |
-| TEST2-9 | Rejected | Evidence Reviewed | Retry 3/3 | Retain selected coverage after returning to the map |
+| TEST2-9 | Rejected | Blocked | Retry 3/3 | Retain selected coverage after returning to the map |
 | TEST2-3 | To Do | Ready for Testing |  | test 3 confusion |
