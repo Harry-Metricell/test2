@@ -1,7 +1,8 @@
 [CmdletBinding()]
-param([string]$Repo = $PSScriptRoot | Split-Path)
+param([string]$Repo)
 
 $ErrorActionPreference = 'Stop'
+$Repo = if ($Repo) { (Resolve-Path -LiteralPath $Repo).Path } else { Split-Path -Parent $PSScriptRoot }
 $taskName = 'TEST2 Desktop GitHub Sync'
 $scriptPath = Join-Path $Repo 'scripts\sync-desktop-checkout.ps1'
 $action = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`" -Repo `"$Repo`""
