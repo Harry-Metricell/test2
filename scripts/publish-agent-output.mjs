@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 
 const repo = process.env.TEST2_REPO || 'C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github';
 const evidenceRoot = process.env.TEST2_EVIDENCE || 'C:\\Users\\harry.piper\\Documents\\V4-QA-evidence';
-const stagingRoot = path.join(repo, '.agent-staging');
+const stagingRoot = process.env.TEST2_STAGING_ROOT || path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'staging');
 const publisherIndex = path.join(process.env.TEMP || '.', `test2-publisher-index-${process.pid}`);
 
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
