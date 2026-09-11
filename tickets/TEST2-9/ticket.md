@@ -3,8 +3,8 @@
 ## Current State
 
 - Jira status: Rejected
-- QA outcome: Failed
-- Workflow state: Rejected
+- QA outcome: Blocked
+- Workflow state: Blocked
 - Action owner: Coordinator
 - Next action: Manual review required after retry limit
 - Jira: https://metricell.atlassian.net/browse/TEST2-9

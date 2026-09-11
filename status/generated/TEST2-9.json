@@ -30,7 +30,7 @@
     "jiraStatus": "Rejected",
     "workflowState": "Blocked",
     "qaStatus": "Blocked",
-    "qaOutcome": "Failed",
+    "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "Manual review required after retry limit",

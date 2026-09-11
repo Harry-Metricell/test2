@@ -5,7 +5,7 @@
   "status": "Rejected",
   "retries": 3,
   "retryLimit": 3,
-  "qaOutcome": "Failed",
+  "qaOutcome": "Blocked",
   "workflowState": "Blocked",
   "blockedStage": "testing",
   "nextAction": "Manual review required after retry limit",

@@ -10,8 +10,7 @@
       "Rejected": 2
     },
     "byQaOutcome": {
-      "Blocked": 2,
-      "Failed": 1,
+      "Blocked": 3,
       "Not Tested": 3,
       "Passed": 4,
       "Unverified": 1
@@ -156,7 +155,7 @@
       "jiraStatus": "Rejected",
       "workflowState": "Blocked",
       "qaStatus": "Blocked",
-      "qaOutcome": "Failed",
+      "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-09-10T09:25:42.426Z",
