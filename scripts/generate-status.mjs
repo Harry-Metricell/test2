@@ -291,7 +291,7 @@ function normalizeTicket(dirName) {
   // A newer published test supersedes an older review, including a block caused by report/PDF publication.
   if (latestAttempt && latestNumber > reviewNumber) {
     localStatus = { ...localStatus, qaStatus: latestAttempt.qaStatus || 'Awaiting Evidence Review', workflowState: ticket.jira.status || localStatus.workflowState, blockedStage: null, nextAction: 'Create evidence review handoff' };
-    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\\n', 'utf8');
+    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
   }
   // A published review is the authoritative completion signal for the review
   // stage. Reconcile stale publisher/bundler status before generating handoffs.
@@ -358,7 +358,18 @@ function normalizeTicket(dirName) {
     };
     if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
   }
-  // Exhausted blocked/failed tickets are terminal until human review.\r\n  if (retries >= retryLimit && ['blocked', 'failed'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase())) {\r\n    localStatus = { ...localStatus, qaStatus: 'Blocked', workflowState: 'Blocked', blockedStage: localStatus.blockedStage || 'testing', nextAction: 'Manual review required after retry limit' };\r\n    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\\n', 'utf8');\r\n  }\r\n  return { ...ticket, status: mergeStatus(ticket, localStatus) };
+  // Exhausted blocked/failed tickets are terminal until human review.
+  if (retries >= retryLimit && ['blocked', 'failed'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase())) {
+    localStatus = {
+      ...localStatus,
+      qaStatus: 'Blocked',
+      workflowState: 'Blocked',
+      blockedStage: localStatus.blockedStage || 'testing',
+      nextAction: 'Manual review required after retry limit'
+    };
+    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
+  }
+  return { ...ticket, status: mergeStatus(ticket, localStatus) };
 }
 
 function criteriaMarkdown(ticket) {
