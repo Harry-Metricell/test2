@@ -1,10 +1,11 @@
 [CmdletBinding()]
 param(
-    [string]$Repo = $PSScriptRoot | Split-Path,
+    [string]$Repo,
     [string]$LogPath = "$env:LOCALAPPDATA\TEST2\desktop-sync.log"
 )
 
 $ErrorActionPreference = 'Stop'
+$Repo = if ($Repo) { (Resolve-Path -LiteralPath $Repo).Path } else { Split-Path -Parent $PSScriptRoot }
 New-Item -ItemType Directory -Force -Path (Split-Path -Parent $LogPath) | Out-Null
 
 function Log([string]$Message) {
