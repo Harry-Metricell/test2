@@ -35,6 +35,40 @@ It runs every two minutes, fetches `origin/main`, and fast-forwards `main` witho
 
 The Windows scheduled publisher is kept disabled until a controlled real-output test has passed. The hidden launcher must not be treated as proof of success unless the Node publisher exit code and remote read-back are confirmed.
 
+## Windows installation
+
+The machine may block the Node.js MSI installer. Use the portable ZIP install instead:
+
+```powershell
+$dir="$env:LOCALAPPDATA\\TEST2\\node"
+New-Item -ItemType Directory -Force $dir | Out-Null
+Invoke-WebRequest -Uri "https://nodejs.org/dist/v24.19.0/node-v24.19.0-win-x64.zip" -OutFile "$env:TEMP\\node.zip"
+Expand-Archive "$env:TEMP\\node.zip" "$env:TEMP\\node-unpack" -Force
+Copy-Item "$env:TEMP\\node-unpack\\node-v24.19.0-win-x64\\*" $dir -Recurse -Force
+$env:Path="$dir;$env:Path"
+node --version
+npm.cmd --version
+```
+
+Use `npm.cmd` and `npx.cmd` because organisation policy may block the PowerShell wrappers:
+
+```powershell
+cd "C:\\Users\\<user>\\Documents\\ChatGPT\\Test2-github"
+npm.cmd install
+npx.cmd playwright install chromium
+```
+
+The Playwright browser is only needed when a screenshot-capable Playwright worker is enabled. Do not commit `.auth/user.json`, API keys, or other credentials.
+
+Install the two hidden Windows tasks from an elevated PowerShell window:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\\scripts\\install-test2-publisher.ps1 -Repo "$PWD"
+powershell -ExecutionPolicy Bypass -File .\\scripts\\install-test2-desktop-sync.ps1 -Repo "$PWD"
+```
+
+Desktop sync runs every two minutes and skips safely when conflicting local changes exist. Worker staging and coordinator runtime state are kept outside the repository in `%LOCALAPPDATA%\\TEST2`. The coordinator itself is started manually as a fresh Codex task; these scheduled tasks do not start it.
+
 ## Useful commands
 
 ```bash
