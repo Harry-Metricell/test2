@@ -1,1 +1,2 @@
-TEST2-11 retry reached API request audit successfully from the launcher, but the run is Blocked because required saved PNG evidence could not be created and verified with the available browser controls.
+- Passed: From the application launcher, opened API request audit; the API Audit screen loaded successfully and was visibly available for use.
+- Evidence: launcher initial state and loaded API Audit screen captured in the staged evidence folder.

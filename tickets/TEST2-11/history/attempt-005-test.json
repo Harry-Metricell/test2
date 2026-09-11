@@ -1,0 +1,29 @@
+{
+  "handoffId": "handoff-TEST2-11-retry",
+  "ticket": "TEST2-11",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": 1,
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the Smart Network V4 application launcher.",
+        "Opened the API request audit entry point from the launcher.",
+        "Verified that the API request audit screen loaded with visible filters, metrics, charts, and request explorer data."
+      ],
+      "evidence": [
+        "screenshots/attempt-005/criterion-1-launcher-initial.png",
+        "screenshots/attempt-005/criterion-1-api-audit-loaded.png"
+      ],
+      "reason": "API request audit loaded successfully and was visibly available for use.",
+      "browserVersion": null
+    }
+  ],
+  "conciseReport": "- Passed: From the application launcher, opened API request audit; the API Audit screen loaded successfully and was visibly available for use.\n- Evidence: launcher initial state and loaded API Audit screen captured in the staged evidence folder.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-11-retry/screenshots",
+  "noOp": false,
+  "reason": "Retry completed successfully; evidence is awaiting review.",
+  "historyAttempt": 5,
+  "recordedAt": "2026-09-11T12:33:05.766Z"
+}
