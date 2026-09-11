@@ -1,0 +1,13 @@
+{
+  "handoffId": "handoff-TEST2-12-test",
+  "ticket": "TEST2-12",
+  "qaStatus": "Blocked",
+  "results": [],
+  "conciseReport": "Blocked before criterion testing: the V4 launcher remained on Initializing / Preparing modules, and the required screenshot capture failed because the screen handle was invalid.",
+  "reportPath": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-12-test/test-output.json",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-12-test/screenshots",
+  "noOp": false,
+  "reason": "Required launcher access did not complete: visible state remained Initializing / Preparing modules. Required evidence save failed with CopyFromScreen: The handle is invalid. No criterion was tested.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-11T12:34:05.908Z"
+}
