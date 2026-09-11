@@ -5,13 +5,13 @@
     {
       "criterion": "Starting from the application launcher, open the API Audit entry point. The API Audit screen loads successfully and is visibly available for use.",
       "outcome": "Passed",
-      "reason": "Direct visual evidence from the selected attempt-001 screenshots shows the authenticated launcher, API Audit entry-point selection, and the loaded API request audit screen with visible filters, metrics, charts, and request explorer."
+      "reason": "Direct screenshots from attempt-005 show the Metricell launcher with the API request audit module available, followed by the loaded API request audit screen with visible filters, metrics, charts, and request explorer content."
     }
   ],
   "overallOutcome": "Blocked",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-11\\screenshots\\attempt-001",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-11\\screenshots\\attempt-005",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Report generation or PDF verification failed: ENOENT: no such file or directory, open 'C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\tickets\\TEST2-11\\results.json'"
+  "reason": "Report generation or PDF verification failed: text is not defined"
 }
