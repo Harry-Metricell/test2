@@ -358,7 +358,7 @@ function normalizeTicket(dirName) {
     };
     if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
   }
-  return { ...ticket, status: mergeStatus(ticket, localStatus) };
+  // Exhausted blocked/failed tickets are terminal until human review.\r\n  if (retries >= retryLimit && ['blocked', 'failed'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase())) {\r\n    localStatus = { ...localStatus, qaStatus: 'Blocked', workflowState: 'Blocked', blockedStage: localStatus.blockedStage || 'testing', nextAction: 'Manual review required after retry limit' };\r\n    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\\n', 'utf8');\r\n  }\r\n  return { ...ticket, status: mergeStatus(ticket, localStatus) };
 }
 
 function criteriaMarkdown(ticket) {
@@ -415,7 +415,7 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/review.json`, schema: 'v4-qa-review.v1' }
     };
   }
-  if (jiraReadyForTesting(ticket) && (ticket.status.qaStatus === 'Ready for Testing' || ticket.status.qaStatus === 'Retry Queued' || ticket.status.workflowState === 'Retry Queued') && criteriaReady(ticket)) {
+  if (jiraReadyForTesting(ticket) && ticket.status.retries < ticket.status.retryLimit && (ticket.status.qaStatus === 'Ready for Testing' || ticket.status.qaStatus === 'Retry Queued' || ticket.status.workflowState === 'Retry Queued') && criteriaReady(ticket)) {
     return {
       handoffId: ticket.status.workflowState === 'Retry Queued'
         ? `handoff-${ticket.key}-retry`
