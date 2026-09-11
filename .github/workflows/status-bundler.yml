@@ -2,6 +2,9 @@ name: Status Bundler
 
 on:
   workflow_dispatch:
+  schedule:
+    # Reconcile completed/no-op publisher outputs even when no new commit is created.
+    - cron: '*/5 * * * *'
   push:
     paths:
       - 'tickets/**'
