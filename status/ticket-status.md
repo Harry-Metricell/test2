@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-10T13:54:29.147Z
+Updated: 2026-09-11T13:20:05.956+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -8,6 +8,7 @@ Updated: 2026-09-10T13:54:29.147Z
 | TEST2-5 | READY FOR TESTING | Evidence Reviewed |  | test 5 confusion v2 |
 | TEST2-10 | READY FOR TESTING | Blocked | Retry 3/3 | 2-10 |
 | TEST2-11 | READY FOR TESTING | Blocked | Retry 3/3 | checker |
+| TEST2-12 | READY FOR TESTING | Criteria Check Required |  | Basic screenshot evidence test |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Blocked | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |

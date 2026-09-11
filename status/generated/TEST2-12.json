@@ -1,0 +1,46 @@
+{
+  "key": "TEST2-12",
+  "id": "104590",
+  "summary": "Basic screenshot evidence test",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-12",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-11T13:19:32.149+0100",
+    "updated": "2026-09-11T13:20:05.956+0100"
+  },
+  "description": "Open the V4 launcher and confirm the launcher is visible. This is a deliberately simple test ticket for validating saved PNG evidence capture.\nAcceptance criteria:\nStarting from the V4 launcher, confirm the launcher is visible and capture the initial screen.\nCapture a final screen showing the launcher remains loaded.",
+  "acceptanceCriteria": [
+    "Starting from the V4 launcher, confirm the launcher is visible and capture the initial screen.",
+    "Capture a final screen showing the launcher remains loaded."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-12/ticket.json",
+    "criteria": "tickets/TEST2-12/criteria.md",
+    "status": "tickets/TEST2-12/status.json",
+    "screenshots": "tickets/TEST2-12/screenshots/",
+    "reports": "tickets/TEST2-12/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104590",
+    "importedAt": "2026-09-11T13:20:05.956+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-11T13:20:05.956+0100",
+    "criteriaVerified": false
+  }
+}
