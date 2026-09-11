@@ -404,6 +404,11 @@ function jiraReadyForTesting(ticket) {
 }
 
 function handoffFor(ticket) {
+  const qaStatus = String(ticket.status.qaStatus || '').trim().toLowerCase();
+  const workflowState = String(ticket.status.workflowState || '').trim().toLowerCase();
+  const nextAction = String(ticket.status.nextAction || '').trim().toLowerCase();
+  const retries = Number(ticket.status.retries || 0);
+  const retryLimit = Number(ticket.status.retryLimit || 3);
   if (ticket.status.criteriaVerified !== true) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
@@ -426,9 +431,13 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/review.json`, schema: 'v4-qa-review.v1' }
     };
   }
-  if (jiraReadyForTesting(ticket) && ticket.status.retries < ticket.status.retryLimit && (ticket.status.qaStatus === 'Ready for Testing' || ticket.status.qaStatus === 'Retry Queued' || ticket.status.workflowState === 'Retry Queued') && criteriaReady(ticket)) {
+  const testingEligible = jiraReadyForTesting(ticket)
+    && retries < retryLimit
+    && (qaStatus === 'ready for testing' || qaStatus === 'retry queued' || workflowState === 'retry queued' || nextAction === 'create testing handoff')
+    && criteriaReady(ticket);
+  if (testingEligible) {
     return {
-      handoffId: ticket.status.workflowState === 'Retry Queued'
+      handoffId: workflowState === 'retry queued'
         ? `handoff-${ticket.key}-retry`
         : `handoff-${ticket.key}-test`,
       action: 'test_ticket',
