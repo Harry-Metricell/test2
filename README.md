@@ -9,7 +9,7 @@ The system keeps durable QA state in GitHub and uses Codex only for authenticate
 1. Jira import reads Jira and stores `tickets/<KEY>/ticket.json`; Jira is read-only.
 2. Static generation creates canonical criteria, status data, and `status/handoffs.json`.
 3. The coordinator reads live GitHub state and creates fresh worker tasks using only the linked brief.
-4. Tester and reviewer workers write compact output to local `.agent-staging`.
+4. Tester and reviewer workers write compact output to local `%LOCALAPPDATA%/TEST2/staging`.
 5. The publisher validates output, copies evidence/reports to the configured local evidence folders, and publishes only the relevant ticket files.
 6. Status Bundler owns generated status, handoffs, `retries`, and `retryLimit`.
 
