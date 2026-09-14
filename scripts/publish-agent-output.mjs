@@ -6,7 +6,8 @@ const repo = process.env.TEST2_REPO || 'C:\\Users\\harry.piper\\Documents\\ChatG
 const evidenceRoot = process.env.TEST2_EVIDENCE || 'C:\\Users\\harry.piper\\Documents\\V4-QA-evidence';
 const stagingRoot = process.env.TEST2_STAGING_ROOT || path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'staging');
 const publisherIndex = path.join(process.env.TEMP || '.', `test2-publisher-index-${process.pid}`);
-const publisherLock = path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'publisher.lock');
+const publisherLock = process.env.TEST2_PUBLISHER_LOCK
+  || path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'publisher.lock');
 if (path.resolve(stagingRoot).toLowerCase().startsWith(`${path.resolve(repo).toLowerCase()}${path.sep}`)) {
   throw new Error('TEST2 staging must remain outside the Desktop repository');
 }
@@ -63,7 +64,7 @@ function runGit(args) {
   const gitRoot = path.dirname(path.dirname(git));
   const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   const binPath = path.join(gitRoot, 'mingw64', 'bin');
-  return execFileSync(git, ['-C', repo, ...args], {
+  return execFileSync(process.env.ComSpec || 'cmd.exe', ['/d', '/c', git, '-C', repo, ...args], {
     encoding: 'utf8', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
     env: {
       ...process.env,
@@ -77,7 +78,7 @@ function runGitAt(cwd, args, indexFile) {
   const gitRoot = path.dirname(path.dirname(git));
   const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   const binPath = path.join(gitRoot, 'mingw64', 'bin');
-  return execFileSync(git, ['-C', cwd, ...args], {
+  return execFileSync(process.env.ComSpec || 'cmd.exe', ['/d', '/c', git, '-C', cwd, ...args], {
     encoding: 'utf8', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
     env: {
       ...process.env,
@@ -337,6 +338,7 @@ cleanupPublishedFiles(changed);
 const cleaned = cleanupRun(run, directFile);
 fs.rmSync(publisherIndex, { force: true });
 console.log(JSON.stringify({ ticket: key, changedFiles: publication.noOp ? [] : changed, published: true, noOp: publication.noOp, cleaned, cleanupPath: run }));
+
 
 
 
