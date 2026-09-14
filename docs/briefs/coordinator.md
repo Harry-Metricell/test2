@@ -73,3 +73,5 @@ After any ticket is blocked or any child is pending, immediately rescan for othe
 
 
 
+For `test_ticket` handoffs, use the existing persistent `TEST2 Tester Worker` task (`01a09f5e-dcab-7d42-9d57-792bdce53555`) via `send_message_to_thread`; do not create a new tester task. Send only the exact handoff assignment and require the worker to process one handoff, publish its staging output, and return to idle. Create fresh child tasks only for `criteria_conversion` and `evidence_review` unless the user explicitly provides a replacement persistent worker.
+
