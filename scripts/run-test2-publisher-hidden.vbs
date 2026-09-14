@@ -6,9 +6,10 @@ If Not fso.FileExists(node) Then node = "node.exe"
 script = repo & "\scripts\publish-agent-output.mjs"
 logPath = shell.ExpandEnvironmentStrings("%LOCALAPPDATA%\TEST2\publisher.log")
 repo = fso.GetParentFolderName(script)
-command = "cmd.exe /d /c cd /d """ & repo & """ && """ & node & """ """ & script & """ >> """ & logPath & """ 2>&1"
+command = """" & node & """ """ & script & """"
 exitCode = shell.Run(command, 0, True)
 WScript.Quit exitCode
+
 
 
 
