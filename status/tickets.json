@@ -11,9 +11,9 @@
       "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Blocked": 4,
+      "Blocked": 3,
       "Not Tested": 3,
-      "Passed": 4,
+      "Passed": 5,
       "Unverified": 1
     }
   },
@@ -85,8 +85,8 @@
       "summary": "Basic screenshot evidence test",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Blocked",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "Retry 2/3 queued; coordinator will start tester",
       "updatedAt": "2026-09-14T08:36:30.600Z",
