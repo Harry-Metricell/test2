@@ -15,23 +15,24 @@ At the start of every run, use `browser_navigate` to open the launcher URL above
 Set the top-level `qaStatus` to `Blocked` if any criterion is Blocked; otherwise set it to `Awaiting Evidence Review`.
 
 After testing, restore the application and test data to their original conditions. Undo temporary selections, filters, favourites, map changes, panels, and other test-created state where possible. Do not alter unrelated data or settings. Record anything that could not be restored in the affected result's `reason` or `blockers`.
-Use `browser_take_screenshot` after every required state, with `type` set to `png` and a relative filename in exactly `<handoffId>/screenshots/<unique-name>.png`. The MCP output root is `%LOCALAPPDATA%\TEST2\staging`, so this writes directly into the selected handoff's staging folder. Never use an absolute filename, `tab.screenshot()`, operating-system screen capture, or a screenshot displayed only in chat.
+Use `browser_take_screenshot` after every required state, with `type` set to `png` and a relative filename in exactly `<handoffId>/screenshots/<unique-name>.png`. The MCP output root is the repository-local `.agent-staging` folder, so this writes directly into the selected handoff's staging folder. Never use an absolute filename, `tab.screenshot()`, operating-system screen capture, or a screenshot displayed only in chat.
 
 For every criterion, save one initial-state PNG before the first interaction. For each meaningful state-changing interaction, save a PNG immediately before and immediately after it. Do not capture redundant screenshots for scrolling, idle waits, or clicks that do not change state. After each capture, verify the expected file exists and has non-zero size before continuing. If PNG files cannot be created or verified, set the affected outcomes to `Blocked`, set top-level `qaStatus` to `Blocked`, explain the exact error in `reason`, and still write the required staged JSON.
 
 Screenshot completeness is criterion-driven and mandatory. For each criterion, identify the exact visible states needed to prove the action and expected result before interacting. Save evidence for each decisive state, using unique filenames that include the criterion number and state (for example, `criterion-2-before-close.png`, `criterion-2-after-close.png`). A criterion is not evidence-complete unless its initial state, every meaningful state transition, and its final decisive assertion are each represented by a verified non-empty PNG. For journeys, the initial screenshot must show the required starting page or launcher before the first click; intermediate screenshots must show the visible control before and after each state-changing action; the final screenshot must show the expected result. Do not rely on `steps_taken`, text descriptions, a screenshot displayed in chat, or a screenshot ID to replace a saved PNG. Before returning output, verify every referenced evidence path exists, is inside the selected staging folder, and has non-zero size. If any required screenshot is missing, unreadable, outside the selected staging folder, or cannot be verified, mark that criterion `Blocked`, set top-level `qaStatus` to `Blocked`, and list the exact missing path or save error in `reason`.
 
 Treat each selected `test_ticket` handoff as one test attempt. Never reuse a previous handoff's staging folder or copy screenshots into a permanent ticket folder. Save screenshots only to the selected staging folder:
-`%LOCALAPPDATA%\\TEST2\\staging\\<handoffId>\\screenshots\\`. The publisher assigns the permanent numbered attempt folder and records it in the published evidence paths; do not invent or edit that folder yourself.
+`.agent-staging/<handoffId>/screenshots/`. The publisher assigns the permanent numbered attempt folder and records it in the published evidence paths; do not invent or edit that folder yourself.
 
 Do not write a permanent report; include the concise report text in `test-output.json`.
 
 Write one temporary output file to:
-`%LOCALAPPDATA%/TEST2/staging/<handoffId>`
+`.agent-staging/<handoffId>`
 
 The JSON must contain: `handoffId`, `ticket`, `qaStatus`, `results`, `conciseReport`, `reportPath`, `evidenceFolder`, `noOp`, `reason`. `conciseReport` is the original short Markdown report for GitHub; do not put screenshots or DOCX content in it. Set `qaStatus` to `Blocked` for blocked runs and `Awaiting Evidence Review` for completed runs that have evidence to review. Do not create helper scripts or unrelated files in the repository; use only the staging folder or temporary system files. Do not modify permanent ticket files, criteria, Jira, or authentication state.
 
 Return one compact JSON object only with exactly those fields. No markdown or commentary.
+
 
 
 
