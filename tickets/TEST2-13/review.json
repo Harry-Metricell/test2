@@ -1,0 +1,27 @@
+{
+  "handoffId": "handoff-TEST2-13-review",
+  "ticket": "TEST2-13",
+  "criterionOutcomes": [
+    {
+      "criterion": "The launcher page is displayed.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshot directly shows the Metricell Launcher page."
+    },
+    {
+      "criterion": "The launcher shows the available V4 module cards.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshot directly shows eight module cards: Survey Analyser, Agentic AI, GIS, Agentic AI Administration, Custom Datasets, Access admin, RPO, and API request audit."
+    },
+    {
+      "criterion": "Each visible module card has an Open module control.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshot directly shows an Open module control on each of the eight visible module cards."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-13\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Report generation or PDF verification failed: Command failed: C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\scripts\\build-evidence-report.py --template C:\\Users\\harry.piper\\Downloads\\Automated Test Case Template.docx --review-output C:\\Users\\harry.piper\\AppData\\Local\\TEST2\\staging\\handoff-TEST2-13-review\\review-output.json --criteria C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\tickets\\TEST2-13\\criteria.md --results C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\tickets\\TEST2-13\\results.json --screenshots C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-13\\screenshots\\attempt-001 --output C:\\Users\\harry.piper\\AppData\\Local\\TEST2\\staging\\handoff-TEST2-13-review\\report-generated-12708.docx\nTraceback (most recent call last):\r\n  File \"C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\scripts\\build-evidence-report.py\", line 190, in <module>\r\n    main()\r\n  File \"C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\scripts\\build-evidence-report.py\", line 80, in main\r\n    review = json.loads(Path(args.review_output).read_text(encoding=\"utf-8\"))\r\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\json\\__init__.py\", line 346, in loads\r\n    return _default_decoder.decode(s)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\json\\decoder.py\", line 338, in decode\r\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\r\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\json\\decoder.py\", line 354, in raw_decode\r\n    obj, end = self.scan_once(s, idx)\r\n               ^^^^^^^^^^^^^^^^^^^^^^\r\njson.decoder.JSONDecodeError: Invalid \\escape: line 1 column 793 (char 792)\r\n"
+}
