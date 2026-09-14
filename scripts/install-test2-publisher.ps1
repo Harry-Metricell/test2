@@ -9,7 +9,6 @@ if (!(Test-Path -LiteralPath $configPath)) { throw "Publisher task manifest not 
 
 $config = Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json
 $script = Join-Path $repo ($config.script -replace '/', '\')
-$launcher = Join-Path $repo 'scripts\run-test2-publisher-hidden.vbs'
 $taskName = [string]$config.taskName
 $intervalSeconds = [int]$config.intervalSeconds
 $durationDays = [int]$config.durationDays
@@ -17,12 +16,14 @@ $description = [string]$config.description
 
 if ($intervalSeconds -lt 60) { throw "intervalSeconds must be at least 60" }
 if (!(Test-Path -LiteralPath $script)) { throw "Publisher script not found: $script" }
-if (!(Test-Path -LiteralPath $launcher)) { throw "Hidden launcher not found: $launcher" }
+if ($node -eq 'node.exe') { throw "A portable Node runtime is required for the hidden publisher task" }
 
-$action = New-ScheduledTaskAction -Execute 'wscript.exe' -Argument "`"$launcher`"" -WorkingDirectory $repo
+ $scriptArgument = "`"$script`""
+ $action = New-ScheduledTaskAction -Execute $node -Argument $scriptArgument -WorkingDirectory $repo
 $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Seconds $intervalSeconds) -RepetitionDuration (New-TimeSpan -Days $durationDays)
 $settings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
 $principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
 Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Description $description -Force | Out-Null
 Write-Output "Installed: $taskName every $intervalSeconds seconds from $configPath"
+
 
