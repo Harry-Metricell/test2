@@ -1,0 +1,22 @@
+{
+  "handoffId": "handoff-TEST2-12-review",
+  "ticket": "TEST2-12",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting from the V4 launcher, confirm the launcher is visible and capture the initial screen.",
+      "outcome": "Passed",
+      "reason": "The selected attempt-003 screenshot directly shows the Metricell Launcher visible with its module cards."
+    },
+    {
+      "criterion": "Capture a final screen showing the launcher remains loaded.",
+      "outcome": "Passed",
+      "reason": "The selected attempt-003 initial and final screenshots directly show the launcher remains loaded with the same visible launcher screen."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-12\\screenshots\\attempt-003",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Report generation or PDF verification failed: reviewFile is not defined"
+}
