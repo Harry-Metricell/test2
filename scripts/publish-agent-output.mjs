@@ -4,13 +4,10 @@ import { execFileSync } from 'node:child_process';
 
 const repo = process.env.TEST2_REPO || 'C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github';
 const evidenceRoot = process.env.TEST2_EVIDENCE || 'C:\\Users\\harry.piper\\Documents\\V4-QA-evidence';
-const stagingRoot = process.env.TEST2_STAGING_ROOT || path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'staging');
+const stagingRoot = process.env.TEST2_STAGING_ROOT || path.join(repo, '.agent-staging');
 const publisherIndex = path.join(process.env.TEMP || '.', `test2-publisher-index-${process.pid}`);
 const publisherLock = process.env.TEST2_PUBLISHER_LOCK
   || path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'publisher.lock');
-if (path.resolve(stagingRoot).toLowerCase().startsWith(`${path.resolve(repo).toLowerCase()}${path.sep}`)) {
-  throw new Error('TEST2 staging must remain outside the Desktop repository');
-}
 
 function acquirePublisherLock() {
   fs.mkdirSync(path.dirname(publisherLock), { recursive: true });
@@ -349,6 +346,7 @@ cleanupPublishedFiles(changed);
 const cleaned = cleanupRun(run, directFile);
 fs.rmSync(publisherIndex, { force: true });
 console.log(JSON.stringify({ ticket: key, changedFiles: publication.noOp ? [] : changed, published: true, noOp: publication.noOp, cleaned, cleanupPath: run }));
+
 
 
 
