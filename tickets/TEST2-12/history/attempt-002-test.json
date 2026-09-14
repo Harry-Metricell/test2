@@ -1,13 +1,36 @@
 {
-  "handoffId": "handoff-TEST2-12-retry",
+  "handoffId": "handoff-TEST2-12-test",
   "ticket": "TEST2-12",
-  "qaStatus": "Not Tested",
-  "results": [],
-  "conciseReport": "No-op: the requested handoff is not live in status/handoffs.json on main.",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Starting from the V4 launcher, confirm the launcher is visible and capture the initial screen.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Navigated to the V4 launcher",
+        "Completed the required email-and-Continue authentication sequence",
+        "Confirmed the launcher was visible",
+        "Attempted the required PNG capture"
+      ],
+      "evidence": [],
+      "reason": "Required screenshot save failed: ENOENT because the configured staging directory did not exist, and directory creation was denied by the environment."
+    },
+    {
+      "criterion": "Capture a final screen showing the launcher remains loaded.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Confirmed the launcher remained loaded",
+        "Attempted the required PNG capture"
+      ],
+      "evidence": [],
+      "reason": "Required screenshot save failed: ENOENT because the configured staging directory did not exist, and directory creation was denied by the environment."
+    }
+  ],
+  "conciseReport": "Blocked: the V4 launcher loaded and remained visible after authentication, but mandatory PNG evidence could not be created because the configured staging directory was unavailable and creation was denied.",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\handoff-TEST2-12-retry\\screenshots",
-  "noOp": true,
-  "reason": "Live GitHub queue verification found no handoff with ID handoff-TEST2-12-retry; only handoff-TEST2-12-criteria is present for TEST2-12. No browser test was run.",
+  "evidenceFolder": "C:\\Users\\harry.piper\\AppData\\Local\\TEST2\\staging\\handoff-TEST2-12-test\\screenshots",
+  "noOp": false,
+  "reason": "Mandatory evidence capture was blocked by staging-directory ENOENT and access-denied errors.",
   "historyAttempt": 2,
-  "recordedAt": "2026-09-11T12:39:05.793Z"
+  "recordedAt": "2026-09-14T08:36:02.944Z"
 }

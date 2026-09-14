@@ -1,1 +1,1 @@
-No-op: the requested handoff is not live in status/handoffs.json on main.
+Blocked: the V4 launcher loaded and remained visible after authentication, but mandatory PNG evidence could not be created because the configured staging directory was unavailable and creation was denied.

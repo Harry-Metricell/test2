@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "criterion": "Starting from the V4 launcher, confirm the launcher is visible and capture the initial screen.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Navigated to the V4 launcher",
+      "Completed the required email-and-Continue authentication sequence",
+      "Confirmed the launcher was visible",
+      "Attempted the required PNG capture"
+    ],
+    "evidence": [],
+    "reason": "Required screenshot save failed: ENOENT because the configured staging directory did not exist, and directory creation was denied by the environment."
+  },
+  {
+    "criterion": "Capture a final screen showing the launcher remains loaded.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Confirmed the launcher remained loaded",
+      "Attempted the required PNG capture"
+    ],
+    "evidence": [],
+    "reason": "Required screenshot save failed: ENOENT because the configured staging directory did not exist, and directory creation was denied by the environment."
+  }
+]
