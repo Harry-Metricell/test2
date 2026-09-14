@@ -175,7 +175,7 @@ syncBeforePublish();
 const runs = fs.readdirSync(stagingRoot, { withFileTypes: true })
   .filter(entry => entry.isDirectory())
   .map(entry => path.join(stagingRoot, entry.name))
-  .sort();
+  .sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs);
 const run = runs.find(candidate => {
   return ['criteria-output.json', 'test-output.json', 'review-output.json']
     .some(name => fs.existsSync(path.join(candidate, name)));
