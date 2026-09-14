@@ -7,6 +7,9 @@ const evidenceRoot = process.env.TEST2_EVIDENCE || 'C:\\Users\\harry.piper\\Docu
 const stagingRoot = process.env.TEST2_STAGING_ROOT || path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'staging');
 const publisherIndex = path.join(process.env.TEMP || '.', `test2-publisher-index-${process.pid}`);
 const publisherLock = path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'publisher.lock');
+if (path.resolve(stagingRoot).toLowerCase().startsWith(`${path.resolve(repo).toLowerCase()}${path.sep}`)) {
+  throw new Error('TEST2 staging must remain outside the Desktop repository');
+}
 
 function acquirePublisherLock() {
   fs.mkdirSync(path.dirname(publisherLock), { recursive: true });
