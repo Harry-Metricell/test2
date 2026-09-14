@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-14T08:36:30.600Z
+Updated: 2026-09-14T11:08:16.971Z
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -9,7 +9,7 @@ Updated: 2026-09-14T08:36:30.600Z
 | TEST2-10 | READY FOR TESTING | Blocked | Retry 3/3 | 2-10 |
 | TEST2-11 | READY FOR TESTING | Blocked | Retry 4/3 | checker |
 | TEST2-12 | READY FOR TESTING | Awaiting Evidence Review | Retry 2/3 | Basic screenshot evidence test |
-| TEST2-13 | READY FOR TESTING | Awaiting Evidence Review |  | Verify launcher displays available V4 modules |
+| TEST2-13 | READY FOR TESTING | Ready for Testing | Retry 1/3 | Verify launcher displays available V4 modules |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Blocked | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
