@@ -159,6 +159,8 @@ function artifactOutcome(dir, localStatus) {
   const latestAttempt = attempts.length ? readJson(path.join(dir, 'history', attempts.at(-1)), null) : null;
   const latestNumber = Number(latestAttempt?.historyAttempt || attempts.at(-1)?.match(/attempt-(\\d+)-test/i)?.[1] || 0);
   const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\\d+)/i)?.[1] || 0);
+  // Any newer tester history supersedes an older review, including a review
+  // blocked only because its report/PDF could not be generated.
   const reviewIsStale = latestNumber > reviewNumber;
   const reviewOutcome = review?.overallOutcome || null;
   const resultsOutcome = aggregateResultOutcome(results);
@@ -329,7 +331,9 @@ function normalizeTicket(dirName) {
   const retryableOutcome = ['failed', 'blocked'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase());
   const qaStatusKey = String(localStatus.qaStatus || '').trim().toLowerCase();
   const retryableStatus = qaStatusKey === 'blocked';
-  const newRetryableAttempt = retryableOutcome && !['ready for testing', 'retry queued'].includes(qaStatusKey);
+  const newRetryableAttempt = retryableOutcome
+    && !['ready for testing', 'retry queued'].includes(qaStatusKey)
+    && !(latestAttempt && latestNumber > reviewNumber);
   if (!review?.qaStatus || review.qaStatus !== 'Evidence Reviewed') {
     if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
     localStatus = {
@@ -524,6 +528,7 @@ for (const ticket of tickets) {
 }
 
 console.log(JSON.stringify({ ok: true, tickets: tickets.length, handoffs: handoffs.length }, null, 2));
+
 
 
 
