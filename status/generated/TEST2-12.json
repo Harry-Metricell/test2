@@ -32,15 +32,15 @@
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Retry Queued",
-    "qaStatus": "Awaiting Evidence Review",
+    "qaStatus": "Ready for Testing",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Retry 2/3 queued; coordinator will start tester",
+    "nextAction": "Retry 3/3 queued; coordinator will start tester",
     "reviewState": "Not Reviewed",
-    "retries": 2,
+    "retries": 3,
     "blockedStage": null,
-    "updatedAt": "2026-09-14T08:36:30.600Z",
+    "updatedAt": "2026-09-14T11:09:26.307Z",
     "criteriaVerified": true
   }
 }

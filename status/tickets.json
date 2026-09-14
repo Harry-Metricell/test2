@@ -1,9 +1,9 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-14T11:08:16.971Z",
+  "generatedAt": "2026-09-14T11:09:26.307Z",
   "counts": {
     "tickets": 12,
-    "handoffs": 2,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 6,
       "Ready": 2,
@@ -85,14 +85,14 @@
       "summary": "Basic screenshot evidence test",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
-      "qaStatus": "Awaiting Evidence Review",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 2/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-14T08:36:30.600Z",
-      "retries": 2,
+      "nextAction": "Retry 3/3 queued; coordinator will start tester",
+      "updatedAt": "2026-09-14T11:09:26.307Z",
+      "retries": 3,
       "retryLimit": 3,
-      "retryLabel": "Retry 2/3"
+      "retryLabel": "Retry 3/3"
     },
     {
       "key": "TEST2-13",

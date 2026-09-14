@@ -1,22 +1,7 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-09-14T11:08:16.971Z",
+  "generatedAt": "2026-09-14T11:09:26.307Z",
   "handoffs": [
-    {
-      "handoffId": "handoff-TEST2-12-review",
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-12",
-      "inputs": {
-        "results": "tickets/TEST2-12/results.json",
-        "generated": "status/generated/TEST2-12.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-12/review.json",
-        "schema": "v4-qa-review.v1"
-      }
-    },
     {
       "handoffId": "handoff-TEST2-13-retry",
       "action": "test_ticket",
