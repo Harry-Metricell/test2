@@ -1,0 +1,35 @@
+{
+  "handoffId": "handoff-TEST2-13-retry",
+  "ticket": "TEST2-13",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "The launcher page is displayed.",
+      "outcome": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "Configured Playwright MCP browser tools were unavailable, so the required browser journey and PNG evidence could not be performed."
+    },
+    {
+      "criterion": "The launcher shows the available V4 module cards.",
+      "outcome": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "Configured Playwright MCP browser tools were unavailable, so the required browser journey and PNG evidence could not be performed."
+    },
+    {
+      "criterion": "Each visible module card has an Open module control.",
+      "outcome": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "Configured Playwright MCP browser tools were unavailable, so the required browser journey and PNG evidence could not be performed."
+    }
+  ],
+  "conciseReport": "## TEST2-13\n\n- Blocked: configured Playwright MCP browser tools were unavailable, so the launcher could not be tested and required PNG evidence could not be captured.",
+  "reportPath": ".agent-staging/handoff-TEST2-13-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-13-retry/screenshots",
+  "noOp": false,
+  "reason": "Configured Playwright MCP browser tools were unavailable; per docs/briefs/qa-testing.md the run is Blocked.",
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-14T14:20:24.963Z"
+}
