@@ -12,8 +12,8 @@
     },
     "byQaOutcome": {
       "Blocked": 3,
-      "Not Tested": 3,
-      "Passed": 5,
+      "Not Tested": 2,
+      "Passed": 6,
       "Unverified": 1
     }
   },
@@ -99,8 +99,8 @@
       "summary": "Verify launcher displays available V4 modules",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-11T15:29:45.717+0100",

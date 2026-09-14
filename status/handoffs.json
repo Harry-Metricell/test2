@@ -18,19 +18,18 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-13-test",
-      "action": "test_ticket",
-      "brief": "docs/briefs/qa-testing.md",
-      "owner": "ticket-tester",
+      "handoffId": "handoff-TEST2-13-review",
+      "action": "evidence_review",
+      "brief": "docs/briefs/evidence-review.md",
+      "owner": "evidence-reviewer",
       "ticket": "TEST2-13",
       "inputs": {
-        "criteria": "tickets/TEST2-13/criteria.md",
-        "ticketJson": "tickets/TEST2-13/ticket.json",
-        "status": "tickets/TEST2-13/status.json"
+        "results": "tickets/TEST2-13/results.json",
+        "generated": "status/generated/TEST2-13.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-13/results.json",
-        "schema": "v4-qa-test-result.v1"
+        "path": "tickets/TEST2-13/review.json",
+        "schema": "v4-qa-review.v1"
       }
     }
   ]
