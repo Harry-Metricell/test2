@@ -34,14 +34,14 @@
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Retry Queued",
     "qaStatus": "Ready for Testing",
-    "qaOutcome": "Passed",
+    "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Retry 1/3 queued; coordinator will start tester",
+    "nextAction": "Retry 2/3 queued; coordinator will start tester",
     "reviewState": "Not Reviewed",
-    "retries": 1,
+    "retries": 2,
     "blockedStage": null,
-    "updatedAt": "2026-09-14T11:08:16.971Z",
+    "updatedAt": "2026-09-14T14:06:49.104Z",
     "criteriaVerified": true
   }
 }
