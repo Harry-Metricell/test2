@@ -6,7 +6,7 @@
 - QA outcome: Passed
 - Workflow state: Retry Queued
 - Action owner: Coordinator
-- Next action: Retry 2/3 queued; coordinator will start tester
+- Next action: Retry 3/3 queued; coordinator will start tester
 - Jira: https://metricell.atlassian.net/browse/TEST2-12
 
 ## Acceptance Criteria
