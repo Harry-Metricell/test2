@@ -1,0 +1,45 @@
+{
+  "handoffId": "handoff-TEST2-13-retry",
+  "ticket": "TEST2-13",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "The launcher page is displayed.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Navigated to the required V4 launcher URL with Playwright.",
+        "Verified the launcher page was displayed in the Playwright snapshot.",
+        "Attempted to save and verify the required repository-local PNG evidence."
+      ],
+      "evidence": [],
+      "reason": "Required Playwright PNG evidence could not be verified at repository-local .agent-staging/handoff-TEST2-13-retry/screenshots; the configured screenshot output did not create that folder."
+    },
+    {
+      "criterion": "The launcher shows the available V4 module cards.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Verified the visible module cards in the Playwright snapshot.",
+        "Attempted to save and verify the required repository-local PNG evidence."
+      ],
+      "evidence": [],
+      "reason": "Required Playwright PNG evidence could not be verified at repository-local .agent-staging/handoff-TEST2-13-retry/screenshots."
+    },
+    {
+      "criterion": "Each visible module card has an Open module control.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Verified each visible module card had an Open module control in the Playwright snapshot.",
+        "Attempted to save and verify the required repository-local PNG evidence."
+      ],
+      "evidence": [],
+      "reason": "Required Playwright PNG evidence could not be verified at repository-local .agent-staging/handoff-TEST2-13-retry/screenshots."
+    }
+  ],
+  "conciseReport": "- Blocked: Required repository-local Playwright PNG evidence could not be created or verified.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-13-retry/screenshots",
+  "noOp": false,
+  "reason": "The current live brief requires repository-local .agent-staging, but the configured Playwright screenshot output did not create or expose that folder for verification.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-14T14:06:22.552Z"
+}
