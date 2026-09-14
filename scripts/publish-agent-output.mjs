@@ -6,6 +6,30 @@ const repo = process.env.TEST2_REPO || 'C:\\Users\\harry.piper\\Documents\\ChatG
 const evidenceRoot = process.env.TEST2_EVIDENCE || 'C:\\Users\\harry.piper\\Documents\\V4-QA-evidence';
 const stagingRoot = process.env.TEST2_STAGING_ROOT || path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'staging');
 const publisherIndex = path.join(process.env.TEMP || '.', `test2-publisher-index-${process.pid}`);
+const publisherLock = path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'publisher.lock');
+
+function acquirePublisherLock() {
+  fs.mkdirSync(path.dirname(publisherLock), { recursive: true });
+  try {
+    fs.mkdirSync(publisherLock);
+    fs.writeFileSync(path.join(publisherLock, 'pid'), String(process.pid), 'utf8');
+    return true;
+  } catch {
+    try {
+      const age = Date.now() - fs.statSync(publisherLock).mtimeMs;
+      if (age > 15 * 60 * 1000) {
+        fs.rmSync(publisherLock, { recursive: true, force: true });
+        fs.mkdirSync(publisherLock);
+        fs.writeFileSync(path.join(publisherLock, 'pid'), String(process.pid), 'utf8');
+        return true;
+      }
+    } catch {}
+    return false;
+  }
+}
+
+if (!acquirePublisherLock()) process.exit(0);
+process.on('exit', () => { try { fs.rmSync(publisherLock, { recursive: true, force: true }); } catch {} });
 
 function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
 function writeJson(file, value) {
@@ -146,11 +170,10 @@ fs.rmSync(publisherIndex, { force: true });
 syncBeforePublish();
 
 const runs = fs.readdirSync(stagingRoot, { withFileTypes: true })
-  .filter(entry => entry.isDirectory() || entry.isFile())
+  .filter(entry => entry.isDirectory())
   .map(entry => path.join(stagingRoot, entry.name))
   .sort();
 const run = runs.find(candidate => {
-  if (fs.statSync(candidate).isFile()) return true;
   return ['criteria-output.json', 'test-output.json', 'review-output.json']
     .some(name => fs.existsSync(path.join(candidate, name)));
 });
@@ -311,6 +334,7 @@ cleanupPublishedFiles(changed);
 const cleaned = cleanupRun(run, directFile);
 fs.rmSync(publisherIndex, { force: true });
 console.log(JSON.stringify({ ticket: key, changedFiles: publication.noOp ? [] : changed, published: true, noOp: publication.noOp, cleaned, cleanupPath: run }));
+
 
 
 
