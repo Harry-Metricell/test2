@@ -18,8 +18,8 @@ try {
     $branch = (git branch --show-current).Trim()
     if ($branch -ne 'main') { Log "SKIP branch is '$branch', expected main"; exit 0 }
 
-    git fetch --quiet origin main
-    if ($LASTEXITCODE -ne 0) { Log 'FAIL git fetch origin main'; exit 1 }
+    $fetchOutput = git fetch origin main 2>&1
+    if ($LASTEXITCODE -ne 0) { Log "FAIL git fetch origin main: $($fetchOutput -join ' ')"; exit 1 }
 
     $behind = [int](git rev-list --count HEAD..origin/main)
     $ahead = [int](git rev-list --count origin/main..HEAD)
@@ -37,8 +37,8 @@ try {
         Log "INFO preserving unrelated local file(s): $($localPaths -join ', ')"
     }
 
-    git merge --ff-only origin/main --quiet
-    if ($LASTEXITCODE -ne 0) { Log 'FAIL fast-forward refused'; exit 1 }
+    $mergeOutput = git merge --ff-only origin/main 2>&1
+    if ($LASTEXITCODE -ne 0) { Log "FAIL fast-forward refused: $($mergeOutput -join ' ')"; exit 1 }
     Log "OK fast-forwarded by $behind commit(s)"
 }
 catch {
@@ -46,3 +46,4 @@ catch {
     exit 1
 }
 finally { Pop-Location }
+
