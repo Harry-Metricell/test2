@@ -1,10 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
-$repo = 'C:\Users\harry.piper\Documents\ChatGPT\Test2-github'
-$node = 'C:\Users\harry.piper\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe'
+$repo = if ($Repo) { (Resolve-Path -LiteralPath $Repo).Path } else { Split-Path -Parent $PSScriptRoot }
+$node = if ($env:TEST2_NODE -and (Test-Path $env:TEST2_NODE)) { $env:TEST2_NODE } elseif (Test-Path "$env:LOCALAPPDATA\TEST2\node\node.exe") { "$env:LOCALAPPDATA\TEST2\node\node.exe" } else { 'node.exe' }
 $configPath = Join-Path $repo 'config\test2-publisher-task.json'
 
-if (!(Test-Path -LiteralPath $node)) { throw "Bundled Node runtime not found: $node" }
+if ($node -ne 'node.exe' -and !(Test-Path -LiteralPath $node)) { throw "Node runtime not found: $node" }
 if (!(Test-Path -LiteralPath $configPath)) { throw "Publisher task manifest not found: $configPath" }
 
 $config = Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json
@@ -25,3 +25,4 @@ $settings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -ExecutionT
 $principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
 Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Description $description -Force | Out-Null
 Write-Output "Installed: $taskName every $intervalSeconds seconds from $configPath"
+
