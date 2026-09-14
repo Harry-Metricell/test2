@@ -43,7 +43,7 @@ It runs every two minutes, fetches `origin/main`, and fast-forwards `main` witho
 - local PNG evidence before report generation;
 - a verified PDF for a completed evidence report.
 
-The Windows scheduled publisher is kept disabled until a controlled real-output test has passed. The hidden launcher must not be treated as proof of success unless the Node publisher exit code and remote read-back are confirmed.
+The Windows scheduled publisher runs hidden after installation. A successful task launch is not proof of publication: confirm the Node publisher exit code and remote read-back. Worker staging and coordinator runtime state must remain outside the Desktop repository.
 
 ## Windows installation
 
@@ -109,3 +109,4 @@ npm run check
 ## Boundaries
 
 Do not upload credentials or authentication state. Do not change Jira from this repository. Do not change `criteria.md` during testing. Do not claim Passed without direct evidence. Keep the original GitHub report concise and record actual tester `steps_taken`.
+
