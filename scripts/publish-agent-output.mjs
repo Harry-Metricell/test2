@@ -35,7 +35,17 @@ function acquirePublisherLock() {
 if (!acquirePublisherLock()) process.exit(0);
 process.on('exit', () => { try { fs.rmSync(publisherLock, { recursive: true, force: true }); } catch {} });
 
-function readJson(file) { return JSON.parse(fs.readFileSync(file, 'utf8')); }
+function readJson(file) {
+  const raw = fs.readFileSync(file, 'utf8');
+  try {
+    return JSON.parse(raw);
+  } catch (error) {
+    // Some Windows workers emit paths with single backslashes. Repair only
+    // invalid JSON escape sequences; valid JSON escapes remain unchanged.
+    const repaired = raw.replace(/\\(?!["\\/bfnrtu])/g, '\\\\');
+    try { return JSON.parse(repaired); } catch { throw error; }
+  }
+}
 function writeJson(file, value) {
   fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
@@ -263,6 +273,7 @@ if (outputType === 'criteria-output.json') {
         : '';
     if (!nonEmpty(generatedPdf)) {
       if (!screenshots || !pngEvidence(screenshots)) fail('The selected evidence folder contains no non-empty PNG files');
+      writeJson(path.join(run, 'review-output.json'), review);
       const built = buildVerifiedReport(key, run, screenshots);
       generatedDocx = built.docx;
       generatedPdf = built.pdf;
@@ -338,6 +349,7 @@ cleanupPublishedFiles(changed);
 const cleaned = cleanupRun(run, directFile);
 fs.rmSync(publisherIndex, { force: true });
 console.log(JSON.stringify({ ticket: key, changedFiles: publication.noOp ? [] : changed, published: true, noOp: publication.noOp, cleaned, cleanupPath: run }));
+
 
 
 
