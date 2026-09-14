@@ -4,13 +4,13 @@
   "summary": "2-10",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-10",
-    "status": "READY FOR TESTING",
+    "status": "Blocked",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-10T10:53:01.695+0100",
-    "updated": "2026-09-10T10:53:10.081+0100"
+    "updated": "2026-09-14T15:25:31.991+0100"
   },
   "description": "As a SmartTools user, I want the Beacon report to retain my selected context when moving between report views, so that I can continue reviewing the same information.\nAcceptance criteria:\nOpen the Beacon report from the V4 launcher.\nSelect a Beacon and a date range.\nMove between the available report views.\nVerify that the selected Beacon, date range, and displayed results remain correct.\nReturn to the original view and confirm the expected report is still shown.",
   "acceptanceCriteria": [
@@ -30,10 +30,10 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104422",
-    "importedAt": "2026-09-10T10:53:10.081+0100"
+    "importedAt": "2026-09-14T15:25:31.991+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "Blocked",
     "workflowState": "Blocked",
     "qaStatus": "Blocked",
     "qaOutcome": "Blocked",

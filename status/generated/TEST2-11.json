@@ -4,13 +4,13 @@
   "summary": "checker",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-11",
-    "status": "READY FOR TESTING",
+    "status": "Blocked",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-10T13:47:54.586+0100",
-    "updated": "2026-09-10T13:48:23.430+0100"
+    "updated": "2026-09-14T15:25:33.569+0100"
   },
   "description": "see API audit screen get to it from launcher",
   "acceptanceCriteria": [],
@@ -24,16 +24,16 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104455",
-    "importedAt": "2026-09-10T13:48:23.430+0100"
+    "importedAt": "2026-09-14T15:25:33.569+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "Blocked",
     "workflowState": "Blocked",
     "qaStatus": "Blocked",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required after retry limit",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "retries": 4,
     "blockedStage": "testing",

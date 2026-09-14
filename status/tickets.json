@@ -1,18 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-14T14:21:11.508Z",
+  "generatedAt": "2026-09-14T15:26:58.308+0100",
   "counts": {
-    "tickets": 12,
-    "handoffs": 0,
+    "tickets": 14,
+    "handoffs": 2,
     "byWorkflowState": {
-      "Blocked": 6,
+      "Blocked": 10,
       "Ready": 2,
-      "Rejected": 2,
-      "Retry Queued": 2
+      "Rejected": 2
     },
     "byQaOutcome": {
       "Blocked": 4,
-      "Not Tested": 2,
+      "Not Tested": 4,
       "Passed": 5,
       "Unverified": 1
     }
@@ -25,10 +24,24 @@
   },
   "tickets": [
     {
+      "key": "TEST2-3",
+      "summary": "test 3 confusion",
+      "jiraStatus": "Blocked",
+      "workflowState": "Blocked",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "updatedAt": "2026-09-14T15:25:26.699+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
       "key": "TEST2-4",
       "summary": "test 4",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
+      "jiraStatus": "Blocked",
+      "workflowState": "Blocked",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
@@ -41,13 +54,13 @@
     {
       "key": "TEST2-5",
       "summary": "test 5 confusion v2",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
+      "jiraStatus": "Blocked",
+      "workflowState": "Blocked",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
-      "updatedAt": "2026-09-10T13:40:09.339+0100",
+      "updatedAt": "2026-09-14T15:25:30.436+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""
@@ -55,7 +68,7 @@
     {
       "key": "TEST2-10",
       "summary": "2-10",
-      "jiraStatus": "READY FOR TESTING",
+      "jiraStatus": "Blocked",
       "workflowState": "Blocked",
       "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
@@ -69,12 +82,12 @@
     {
       "key": "TEST2-11",
       "summary": "checker",
-      "jiraStatus": "READY FOR TESTING",
+      "jiraStatus": "Blocked",
       "workflowState": "Blocked",
       "qaStatus": "Blocked",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-10T13:54:29.147Z",
       "retries": 4,
       "retryLimit": 3,
@@ -83,12 +96,12 @@
     {
       "key": "TEST2-12",
       "summary": "Basic screenshot evidence test",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
+      "jiraStatus": "Blocked",
+      "workflowState": "Blocked",
       "qaStatus": "Ready for Testing",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 3/3 queued; coordinator will start tester",
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-14T11:09:26.307Z",
       "retries": 3,
       "retryLimit": 3,
@@ -97,9 +110,9 @@
     {
       "key": "TEST2-13",
       "summary": "Verify launcher displays available V4 modules",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "jiraStatus": "Blocked",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
@@ -107,6 +120,34 @@
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
+    },
+    {
+      "key": "TEST2-14",
+      "summary": "Clean pipeline test 1",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-14T15:26:56.623+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-15",
+      "summary": "Clean pipeline test 2",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-14T15:26:58.308+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",
@@ -177,20 +218,6 @@
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
-    },
-    {
-      "key": "TEST2-3",
-      "summary": "test 3 confusion",
-      "jiraStatus": "To Do",
-      "workflowState": "Blocked",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-10T10:30:55.756+0100",
-      "retries": 0,
-      "retryLimit": 3,
-      "retryLabel": ""
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
   "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
-  "id": "104623",
-  "self": "https://metricell.atlassian.net/rest/api/3/issue/104623",
-  "key": "TEST2-13",
+  "id": "104896",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/104896",
+  "key": "TEST2-15",
   "fields": {
-    "summary": "Verify launcher displays available V4 modules",
+    "summary": "Clean pipeline test 2",
     "subtasks": [],
-    "created": "2026-09-11T15:29:28.487+0100",
+    "created": "2026-09-14T15:25:40.355+0100",
     "project": {
       "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
       "id": "10551",
@@ -30,7 +30,7 @@
           "content": [
             {
               "type": "text",
-              "text": "Open the V4 launcher."
+              "text": "Basic TEST2 pipeline test ticket."
             }
           ]
         },
@@ -39,7 +39,7 @@
           "content": [
             {
               "type": "text",
-              "text": "Acceptance Criteria:"
+              "text": "Acceptance criteria:"
             }
           ]
         },
@@ -54,7 +54,7 @@
                   "content": [
                     {
                       "type": "text",
-                      "text": "The launcher page is displayed."
+                      "text": "The V4 launcher page is visible at the required launcher URL."
                     }
                   ]
                 }
@@ -68,7 +68,7 @@
                   "content": [
                     {
                       "type": "text",
-                      "text": "The launcher shows the available V4 module cards."
+                      "text": "The launcher displays the available V4 module cards."
                     }
                   ]
                 }
@@ -99,19 +99,19 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-09-14T15:25:36.666+0100",
+    "updated": "2026-09-14T15:26:58.308+0100",
     "status": {
-      "self": "https://metricell.atlassian.net/rest/api/3/status/10737",
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
       "description": "",
       "iconUrl": "https://metricell.atlassian.net/",
-      "name": "Blocked",
-      "id": "10737",
+      "name": "READY FOR TESTING",
+      "id": "10735",
       "statusCategory": {
-        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/2",
-        "id": 2,
-        "key": "new",
-        "colorName": "blue-gray",
-        "name": "To Do"
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
       }
     }
   }

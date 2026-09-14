@@ -1,5 +1,32 @@
 {
   "schema": "v4-qa-criteria-queue.v1",
-  "generatedAt": "2026-09-14T14:21:11.508Z",
-  "tickets": []
+  "generatedAt": "2026-09-14T15:26:58.308+0100",
+  "tickets": [
+    {
+      "ticket": "TEST2-14",
+      "handoffId": "handoff-TEST2-14-criteria",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-14/ticket.json",
+        "generated": "status/generated/TEST2-14.json"
+      },
+      "output": {
+        "path": "tickets/TEST2-14/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "ticket": "TEST2-15",
+      "handoffId": "handoff-TEST2-15-criteria",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-15/ticket.json",
+        "generated": "status/generated/TEST2-15.json"
+      },
+      "output": {
+        "path": "tickets/TEST2-15/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    }
+  ]
 }

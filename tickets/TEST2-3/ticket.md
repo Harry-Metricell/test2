@@ -2,7 +2,7 @@
 
 ## Current State
 
-- Jira status: To Do
+- Jira status: Blocked
 - QA outcome: Not Tested
 - Workflow state: Blocked
 - Action owner: Coordinator

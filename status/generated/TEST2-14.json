@@ -1,0 +1,47 @@
+{
+  "key": "TEST2-14",
+  "id": "104895",
+  "summary": "Clean pipeline test 1",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-14",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-14T15:25:38.360+0100",
+    "updated": "2026-09-14T15:26:56.623+0100"
+  },
+  "description": "Basic TEST2 pipeline test ticket.\nAcceptance criteria:\nThe V4 launcher page is visible at the required launcher URL.\nThe launcher displays the available V4 module cards.\nEach visible module card has an Open module control.",
+  "acceptanceCriteria": [
+    "The V4 launcher page is visible at the required launcher URL.",
+    "The launcher displays the available V4 module cards.",
+    "Each visible module card has an Open module control."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-14/ticket.json",
+    "criteria": "tickets/TEST2-14/criteria.md",
+    "status": "tickets/TEST2-14/status.json",
+    "screenshots": "tickets/TEST2-14/screenshots/",
+    "reports": "tickets/TEST2-14/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104895",
+    "importedAt": "2026-09-14T15:26:56.623+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-14T15:26:56.623+0100",
+    "criteriaVerified": false
+  }
+}

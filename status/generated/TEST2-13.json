@@ -4,13 +4,13 @@
   "summary": "Verify launcher displays available V4 modules",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-13",
-    "status": "READY FOR TESTING",
+    "status": "Blocked",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-11T15:29:28.487+0100",
-    "updated": "2026-09-11T15:29:45.717+0100"
+    "updated": "2026-09-14T15:25:36.666+0100"
   },
   "description": "Open the V4 launcher.\nAcceptance Criteria:\nThe launcher page is displayed.\nThe launcher shows the available V4 module cards.\nEach visible module card has an Open module control.",
   "acceptanceCriteria": [
@@ -28,19 +28,19 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104623",
-    "importedAt": "2026-09-11T15:29:45.717+0100"
+    "importedAt": "2026-09-14T15:25:36.666+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Retry Queued",
-    "qaStatus": "Ready for Testing",
+    "jiraStatus": "Blocked",
+    "workflowState": "Blocked",
+    "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "Manual review required after retry limit",
     "reviewState": "Not Reviewed",
     "retries": 3,
-    "blockedStage": null,
+    "blockedStage": "testing",
     "updatedAt": "2026-09-14T14:21:11.508Z",
     "criteriaVerified": true
   }

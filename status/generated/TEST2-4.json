@@ -4,13 +4,13 @@
   "summary": "test 4",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-4",
-    "status": "READY FOR TESTING",
+    "status": "Blocked",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-03T10:35:48.714+0100",
-    "updated": "2026-09-10T13:40:10.432+0100"
+    "updated": "2026-09-14T15:25:28.662+0100"
   },
   "description": "Acceptance Criteria:\nGIS screen can be opened from launcher",
   "acceptanceCriteria": [
@@ -26,11 +26,11 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/103437",
-    "importedAt": "2026-09-10T13:40:10.432+0100"
+    "importedAt": "2026-09-14T15:25:28.662+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Ready",
+    "jiraStatus": "Blocked",
+    "workflowState": "Blocked",
     "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",

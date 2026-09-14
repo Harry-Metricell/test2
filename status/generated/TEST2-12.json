@@ -4,13 +4,13 @@
   "summary": "Basic screenshot evidence test",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-12",
-    "status": "READY FOR TESTING",
+    "status": "Blocked",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-11T13:19:32.149+0100",
-    "updated": "2026-09-11T13:20:05.956+0100"
+    "updated": "2026-09-14T15:25:35.211+0100"
   },
   "description": "Open the V4 launcher and confirm the launcher is visible. This is a deliberately simple test ticket for validating saved PNG evidence capture.\nAcceptance criteria:\nStarting from the V4 launcher, confirm the launcher is visible and capture the initial screen.\nCapture a final screen showing the launcher remains loaded.",
   "acceptanceCriteria": [
@@ -27,16 +27,16 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/104590",
-    "importedAt": "2026-09-11T13:20:05.956+0100"
+    "importedAt": "2026-09-14T15:25:35.211+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Retry Queued",
+    "jiraStatus": "Blocked",
+    "workflowState": "Blocked",
     "qaStatus": "Ready for Testing",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Retry 3/3 queued; coordinator will start tester",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "retries": 3,
     "blockedStage": null,
