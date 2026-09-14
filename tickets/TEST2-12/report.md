@@ -1,1 +1,2 @@
-Blocked: the V4 launcher loaded and remained visible after authentication, but mandatory PNG evidence could not be created because the configured staging directory was unavailable and creation was denied.
+- Passed: V4 launcher was visible from the required starting URL and initial evidence was captured.
+- Passed: Final evidence shows the launcher remained loaded.

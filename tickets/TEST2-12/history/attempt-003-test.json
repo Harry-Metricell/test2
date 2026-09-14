@@ -1,0 +1,40 @@
+{
+  "handoffId": "handoff-TEST2-12-retry",
+  "ticket": "TEST2-12",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Starting from the V4 launcher, confirm the launcher is visible and capture the initial screen.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the required V4 launcher URL.",
+        "Completed the visible email sign-in step with the required email and Continue control.",
+        "Verified the launcher was visible in the Playwright snapshot."
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-1-initial-launcher.png"
+      ],
+      "reason": "Direct Playwright evidence shows the V4 Launcher page loaded."
+    },
+    {
+      "criterion": "Capture a final screen showing the launcher remains loaded.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Captured the criterion initial launcher state.",
+        "Captured the final launcher state without changing application data."
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-2-initial-launcher.png",
+        "screenshots/attempt-003/criterion-2-final-launcher.png"
+      ],
+      "reason": "Direct Playwright evidence shows the launcher remained loaded."
+    }
+  ],
+  "conciseReport": "- Passed: V4 launcher was visible from the required starting URL and initial evidence was captured.\n- Passed: Final evidence shows the launcher remained loaded.",
+  "reportPath": "",
+  "evidenceFolder": "%LOCALAPPDATA%/TEST2/staging/handoff-TEST2-12-retry/screenshots",
+  "noOp": false,
+  "reason": "",
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-14T10:09:25.169Z"
+}
