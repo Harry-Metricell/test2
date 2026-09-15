@@ -12,7 +12,7 @@ Updated: 2026-09-14T15:26:58.308+0100
 | TEST2-12 | Blocked | Ready for Testing | Retry 3/3 | Basic screenshot evidence test |
 | TEST2-13 | Blocked | Blocked | Retry 3/3 | Verify launcher displays available V4 modules |
 | TEST2-14 | READY FOR TESTING | Ready for Testing |  | Clean pipeline test 1 |
-| TEST2-15 | READY FOR TESTING | Criteria Check Required |  | Clean pipeline test 2 |
+| TEST2-15 | READY FOR TESTING | Ready for Testing |  | Clean pipeline test 2 |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Blocked | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
