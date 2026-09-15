@@ -16,7 +16,7 @@ if (-not (Test-Path -LiteralPath $mcpCli -PathType Leaf)) {
 $test2Root = Join-Path $env:LOCALAPPDATA 'TEST2'
 $authDir = Join-Path $test2Root 'auth'
 $storageState = Join-Path $authDir 'user.json'
-$stagingRoot = Join-Path $test2Root 'staging'
+$stagingRoot = Join-Path $repoPath '.agent-staging'
 New-Item -ItemType Directory -Force -Path $authDir, $stagingRoot | Out-Null
 
 if ($ImportStorageState) {
