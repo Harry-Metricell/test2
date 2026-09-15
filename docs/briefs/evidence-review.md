@@ -14,7 +14,7 @@ Do not create, render, inspect, or upload a DOCX/PDF. Do not modify criteria, ti
 
 
 Before returning, write that exact JSON object to:
-`%LOCALAPPDATA%/TEST2/staging/<handoffId>/review-output.json`
+`.agent-staging/<handoffId>/review-output.json`
 Create the folder if needed and verify the file exists and is non-empty. The local publisher consumes this file; returning JSON in chat alone is not a completed handoff.
 
 The JSON must contain exactly: `handoffId`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. Set `evidenceFolder` to the exact selected `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\attempt-NNN` folder. `criterionOutcomes` must contain one item per criterion with `criterion`, `outcome`, and `reason`. Set `reportPath` to `` because the publisher creates the report. Do not include markdown or commentary.
