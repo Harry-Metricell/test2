@@ -24,7 +24,13 @@ $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -Repetiti
 $settings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
 $principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
 Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Description $description -Force | Out-Null
-Write-Output "Installed: $taskName every $intervalSeconds seconds from $configPath"
+$repairTaskName = "$taskName Repair"
+$repairArgs = '-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + $PSCommandPath + '" -Repo "' + $repo + '"'
+$repairAction = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument $repairArgs -WorkingDirectory $repo
+$repairTrigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
+$repairSettings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Minutes 2)
+Register-ScheduledTask -TaskName $repairTaskName -Action $repairAction -Trigger $repairTrigger -Settings $repairSettings -Principal $principal -Description "Repairs the hidden TEST2 Agent Publisher task after login." -Force | Out-Null
+Write-Output "Installed: $taskName every $intervalSeconds seconds and logon repair task: $repairTaskName"
 
 
 
