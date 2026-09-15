@@ -10,9 +10,9 @@
       "Rejected": 2
     },
     "byQaOutcome": {
-      "Blocked": 5,
+      "Blocked": 4,
       "Not Tested": 2,
-      "Passed": 6,
+      "Passed": 7,
       "Unverified": 1
     }
   },
@@ -140,8 +140,8 @@
       "summary": "Clean pipeline test 2",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Blocked",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "Create testing handoff",
       "updatedAt": "2026-09-14T15:26:58.308+0100",
