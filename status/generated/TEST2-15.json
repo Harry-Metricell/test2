@@ -32,16 +32,16 @@
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Ready",
-    "qaStatus": "Ready for Testing",
-    "qaOutcome": "Not Tested",
+    "workflowState": "Retry Queued",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create testing handoff",
+    "nextAction": "Create criteria conversion handoff",
     "reviewState": "Not Reviewed",
-    "retries": 0,
+    "retries": 1,
     "blockedStage": null,
-    "updatedAt": "2026-09-14T15:26:58.308+0100",
-    "criteriaVerified": true
+    "updatedAt": "2026-09-15T11:21:28.601Z",
+    "criteriaVerified": false
   }
 }
