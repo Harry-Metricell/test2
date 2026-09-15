@@ -238,14 +238,14 @@
       "summary": "Clean pipeline test 2",
       "jiraStatus": "Rejected",
       "workflowState": "Blocked",
-      "qaStatus": "Awaiting Evidence Review",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-15T14:48:26.475+0100",
-      "retries": 0,
+      "updatedAt": "2026-09-15T14:07:48.879Z",
+      "retries": 1,
       "retryLimit": 3,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/3"
     }
   ]
 }
