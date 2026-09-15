@@ -1,13 +1,13 @@
-# TEST2-14: Clean pipeline test 1
+# TEST2-17: Clean pipeline test 4
 
 ## Current State
 
-- Jira status: Rejected
-- QA outcome: Passed
-- Workflow state: Blocked
+- Jira status: READY FOR TESTING
+- QA outcome: Not Tested
+- Workflow state: Ready
 - Action owner: Coordinator
-- Next action: Waiting for Jira status: READY FOR TESTING
-- Jira: https://metricell.atlassian.net/browse/TEST2-14
+- Next action: Create criteria conversion handoff
+- Jira: https://metricell.atlassian.net/browse/TEST2-17
 
 ## Acceptance Criteria
 

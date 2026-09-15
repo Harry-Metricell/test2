@@ -2,11 +2,11 @@
 
 ## Current State
 
-- Jira status: READY FOR TESTING
+- Jira status: Rejected
 - QA outcome: Passed
-- Workflow state: Ready
+- Workflow state: Blocked
 - Action owner: Coordinator
-- Next action: Create testing handoff
+- Next action: Waiting for Jira status: READY FOR TESTING
 - Jira: https://metricell.atlassian.net/browse/TEST2-15
 
 ## Acceptance Criteria

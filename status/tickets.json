@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-14T15:26:58.308+0100",
+  "generatedAt": "2026-09-15T14:48:53.798+0100",
   "counts": {
-    "tickets": 14,
+    "tickets": 16,
     "handoffs": 2,
     "byWorkflowState": {
-      "Blocked": 10,
+      "Blocked": 12,
       "Ready": 2,
       "Rejected": 2
     },
     "byQaOutcome": {
       "Blocked": 4,
-      "Not Tested": 2,
+      "Not Tested": 4,
       "Passed": 7,
       "Unverified": 1
     }
@@ -122,29 +122,29 @@
       "retryLabel": "Retry 3/3"
     },
     {
-      "key": "TEST2-14",
-      "summary": "Clean pipeline test 1",
+      "key": "TEST2-16",
+      "summary": "Clean pipeline test 3",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Passed",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
-      "updatedAt": "2026-09-14T15:26:56.623+0100",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-15T14:48:52.208+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""
     },
     {
-      "key": "TEST2-15",
-      "summary": "Clean pipeline test 2",
+      "key": "TEST2-17",
+      "summary": "Clean pipeline test 4",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Passed",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
-      "updatedAt": "2026-09-14T15:26:58.308+0100",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-15T14:48:53.798+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""
@@ -218,6 +218,34 @@
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
+    },
+    {
+      "key": "TEST2-14",
+      "summary": "Clean pipeline test 1",
+      "jiraStatus": "Rejected",
+      "workflowState": "Blocked",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
+      "actionOwner": "Coordinator",
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "updatedAt": "2026-09-15T14:48:24.096+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-15",
+      "summary": "Clean pipeline test 2",
+      "jiraStatus": "Rejected",
+      "workflowState": "Blocked",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
+      "actionOwner": "Coordinator",
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "updatedAt": "2026-09-15T14:48:26.475+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
   "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
-  "id": "104895",
-  "self": "https://metricell.atlassian.net/rest/api/3/issue/104895",
-  "key": "TEST2-14",
+  "id": "105107",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/105107",
+  "key": "TEST2-17",
   "fields": {
-    "summary": "Clean pipeline test 1",
+    "summary": "Clean pipeline test 4",
     "subtasks": [],
-    "created": "2026-09-14T15:25:38.360+0100",
+    "created": "2026-09-15T14:48:31.383+0100",
     "project": {
       "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
       "id": "10551",
@@ -99,19 +99,19 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-09-15T14:48:24.096+0100",
+    "updated": "2026-09-15T14:48:53.798+0100",
     "status": {
-      "self": "https://metricell.atlassian.net/rest/api/3/status/10736",
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
       "description": "",
       "iconUrl": "https://metricell.atlassian.net/",
-      "name": "Rejected",
-      "id": "10736",
+      "name": "READY FOR TESTING",
+      "id": "10735",
       "statusCategory": {
-        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/3",
-        "id": 3,
-        "key": "done",
-        "colorName": "green",
-        "name": "Done"
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
       }
     }
   }
