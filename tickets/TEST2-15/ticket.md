@@ -4,9 +4,9 @@
 
 - Jira status: READY FOR TESTING
 - QA outcome: Blocked
-- Workflow state: Retry Queued
+- Workflow state: Ready
 - Action owner: Coordinator
-- Next action: Create criteria conversion handoff
+- Next action: Create testing handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-15
 
 ## Acceptance Criteria
