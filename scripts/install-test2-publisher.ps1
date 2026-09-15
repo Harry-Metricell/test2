@@ -30,6 +30,16 @@ $repairAction = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument $rep
 $repairTrigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
 $repairSettings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Minutes 2)
 Register-ScheduledTask -TaskName $repairTaskName -Action $repairAction -Trigger $repairTrigger -Settings $repairSettings -Principal $principal -Description "Repairs the hidden TEST2 Agent Publisher task after login." -Force | Out-Null
+$startup = Join-Path $env:APPDATA 'Microsoft\\Windows\\Start Menu\\Programs\\Startup'
+New-Item -ItemType Directory -Force -Path $startup | Out-Null
+$shortcutPath = Join-Path $startup 'TEST2 Agent Publisher Repair.lnk'
+$wsh = New-Object -ComObject WScript.Shell
+$shortcut = $wsh.CreateShortcut($shortcutPath)
+$shortcut.TargetPath = 'powershell.exe'
+$shortcut.Arguments = $repairArgs
+$shortcut.WorkingDirectory = $repo
+$shortcut.WindowStyle = 7
+$shortcut.Save()
 Write-Output "Installed: $taskName every $intervalSeconds seconds and logon repair task: $repairTaskName"
 
 
