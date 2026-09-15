@@ -1,9 +1,9 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-09-14T15:26:58.308+0100",
+  "generatedAt": "2026-09-15T12:46:18.437Z",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-14-test",
+      "handoffId": "handoff-TEST2-14-retry",
       "action": "test_ticket",
       "brief": "docs/briefs/qa-testing.md",
       "owner": "ticket-tester",
