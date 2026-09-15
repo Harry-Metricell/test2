@@ -33,15 +33,15 @@
   "status": {
     "jiraStatus": "Rejected",
     "workflowState": "Blocked",
-    "qaStatus": "Awaiting Evidence Review",
+    "qaStatus": "Ready for Testing",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
-    "retries": 0,
+    "retries": 1,
     "blockedStage": null,
-    "updatedAt": "2026-09-15T14:48:24.096+0100",
+    "updatedAt": "2026-09-15T14:13:10.719Z",
     "criteriaVerified": true
   }
 }

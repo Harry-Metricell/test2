@@ -18,5 +18,5 @@ Updated: 2026-09-15T14:48:53.798+0100
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
 | TEST2-8 | Rejected | Evidence Reviewed | Retry 2/3 | Preserve map context when switching GIS panels |
 | TEST2-9 | Rejected | Blocked | Retry 3/3 | Retain selected coverage after returning to the map |
-| TEST2-14 | Rejected | Awaiting Evidence Review |  | Clean pipeline test 1 |
+| TEST2-14 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 1 |
 | TEST2-15 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 2 |
