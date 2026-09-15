@@ -1,8 +1,8 @@
 {
   "ticket": "TEST2-14",
-  "jiraStatus": "Rejected",
-  "qaStatus": "Awaiting Evidence Review",
-  "status": "Rejected",
+  "jiraStatus": "READY FOR TESTING",
+  "qaStatus": "Blocked",
+  "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 3,
   "criteriaVerified": true,

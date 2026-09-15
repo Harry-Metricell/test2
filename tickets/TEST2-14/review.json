@@ -1,0 +1,27 @@
+{
+  "handoffId": "handoff-TEST2-14-review",
+  "ticket": "TEST2-14",
+  "criterionOutcomes": [
+    {
+      "criterion": "The V4 launcher page is visible at the required launcher URL.",
+      "outcome": "Blocked",
+      "reason": "Screenshots are required from the selected attempt folder, but attempt-001 contains no PNG evidence."
+    },
+    {
+      "criterion": "The launcher displays the available V4 module cards.",
+      "outcome": "Blocked",
+      "reason": "Screenshots are required from the selected attempt folder, but attempt-001 contains no PNG evidence."
+    },
+    {
+      "criterion": "Each visible module card has an Open module control.",
+      "outcome": "Blocked",
+      "reason": "Screenshots are required from the selected attempt folder, but attempt-001 contains no PNG evidence."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-14\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Report generation or PDF verification failed: The selected evidence folder contains no non-empty PNG files"
+}
