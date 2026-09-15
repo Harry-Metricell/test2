@@ -1,0 +1,23 @@
+[
+  {
+    "criterion": "The V4 launcher page is visible at the required launcher URL.",
+    "outcome": "Blocked",
+    "steps_taken": [],
+    "evidence": [],
+    "reason": "Capability preflight failed: the configured Playwright MCP browser_navigate tool was not available."
+  },
+  {
+    "criterion": "The launcher displays the available V4 module cards.",
+    "outcome": "Blocked",
+    "steps_taken": [],
+    "evidence": [],
+    "reason": "Capability preflight failed: the configured Playwright MCP browser tools were not available."
+  },
+  {
+    "criterion": "Each visible module card has an Open module control.",
+    "outcome": "Blocked",
+    "steps_taken": [],
+    "evidence": [],
+    "reason": "Capability preflight failed: the configured Playwright MCP browser tools were not available."
+  }
+]

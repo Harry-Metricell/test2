@@ -1,0 +1,1 @@
+- Blocked: The configured Playwright MCP browser tools were not available during capability preflight.
