@@ -1,19 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-15T12:49:12.969Z",
+  "generatedAt": "2026-09-14T15:26:58.308+0100",
   "counts": {
     "tickets": 14,
     "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 10,
-      "Ready": 1,
-      "Rejected": 2,
-      "Retry Queued": 1
+      "Ready": 2,
+      "Rejected": 2
     },
     "byQaOutcome": {
-      "Blocked": 6,
+      "Blocked": 5,
       "Not Tested": 2,
-      "Passed": 5,
+      "Passed": 6,
       "Unverified": 1
     }
   },
@@ -126,15 +125,15 @@
       "key": "TEST2-14",
       "summary": "Clean pipeline test 1",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-15T12:49:12.969Z",
-      "retries": 1,
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-09-14T15:26:56.623+0100",
+      "retries": 0,
       "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retryLabel": ""
     },
     {
       "key": "TEST2-15",
