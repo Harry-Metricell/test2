@@ -1,3 +1,5 @@
+param([string]$Repo = (Split-Path -Parent $PSScriptRoot))
+
 $ErrorActionPreference = 'Stop'
 
 $repo = if ($Repo) { (Resolve-Path -LiteralPath $Repo).Path } else { Split-Path -Parent $PSScriptRoot }

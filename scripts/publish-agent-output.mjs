@@ -1,13 +1,35 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
-const repo = process.env.TEST2_REPO || 'C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github';
+const sourceRepo = path.resolve(process.env.TEST2_REPO || path.join(path.dirname(fileURLToPath(import.meta.url)), '..'));
+let repo = sourceRepo;
 const evidenceRoot = process.env.TEST2_EVIDENCE || 'C:\\Users\\harry.piper\\Documents\\V4-QA-evidence';
 const stagingRoot = process.env.TEST2_STAGING_ROOT || path.join(repo, '.agent-staging');
 const publisherIndex = path.join(process.env.TEMP || '.', `test2-publisher-index-${process.pid}`);
 const publisherLock = process.env.TEST2_PUBLISHER_LOCK
   || path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'publisher.lock');
+const logFile = process.env.TEST2_PUBLISHER_LOG || path.join(path.dirname(publisherLock), 'publisher.log');
+function log(event, detail = {}) {
+  fs.mkdirSync(path.dirname(logFile), { recursive: true });
+  if (fs.existsSync(logFile) && fs.statSync(logFile).size > 1024 * 1024) {
+    fs.copyFileSync(logFile, `${logFile}.previous`);
+    fs.truncateSync(logFile);
+  }
+  fs.appendFileSync(logFile, `${JSON.stringify({ at: new Date().toISOString(), event, ...detail })}\n`);
+}
+let activeRun;
+process.on('uncaughtExceptionMonitor', error => {
+  log('failed', { message: error.message, run: activeRun });
+  // Retain failed outputs and give other handoffs a chance on the next tick.
+  if (activeRun) {
+    try { fs.writeFileSync(path.join(activeRun, 'publisher-error.json'), JSON.stringify({ at: Date.now(), message: error.message })); } catch {}
+  }
+});
+process.on('exit', code => log('exit', { code }));
+log('started', { repo: sourceRepo, stagingRoot });
 
 function acquirePublisherLock() {
   fs.mkdirSync(path.dirname(publisherLock), { recursive: true });
@@ -35,7 +57,7 @@ process.on('exit', () => { try { fs.rmSync(publisherLock, { recursive: true, for
 function readJson(file) {
   const raw = fs.readFileSync(file, 'utf8');
   try {
-    return JSON.parse(raw);
+    return JSON.parse(raw.replace(/^\uFEFF/, ''));
   } catch (error) {
     // Some Windows workers emit paths with single backslashes. Repair only
     // invalid JSON escape sequences; valid JSON escapes remain unchanged.
@@ -71,10 +93,12 @@ function runGit(args) {
   const gitRoot = path.dirname(path.dirname(git));
   const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   const binPath = path.join(gitRoot, 'mingw64', 'bin');
-  return execFileSync(process.env.ComSpec || 'cmd.exe', ['/d', '/c', git, '-C', repo, ...args], {
+  return execFileSync(git, ['-C', repo, ...args], {
+    timeout: 60000,
     encoding: 'utf8', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
     env: {
       ...process.env,
+      GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: 'Never',
       GIT_EXEC_PATH: execPath,
       GIT_INDEX_FILE: publisherIndex,
       PATH: `${binPath};${process.env.PATH || ''}`
@@ -85,41 +109,20 @@ function runGitAt(cwd, args, indexFile) {
   const gitRoot = path.dirname(path.dirname(git));
   const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   const binPath = path.join(gitRoot, 'mingw64', 'bin');
-  return execFileSync(process.env.ComSpec || 'cmd.exe', ['/d', '/c', git, '-C', cwd, ...args], {
+  return execFileSync(git, ['-C', cwd, ...args], {
+    timeout: 60000,
     encoding: 'utf8', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
     env: {
       ...process.env,
+      GIT_TERMINAL_PROMPT: '0', GCM_INTERACTIVE: 'Never',
       GIT_EXEC_PATH: execPath,
       ...(indexFile ? { GIT_INDEX_FILE: indexFile } : {}),
       PATH: `${binPath};${process.env.PATH || ''}`
     }
   }).trim();
 }
-function ensureRepoClean() {
-  const changes = runGit(['status', '--porcelain'])
-    .split(/\r?\n/)
-    .filter(line => line && !line.endsWith(' .agent-staging/') && !line.includes(' .agent-staging/'))
-    .join('\n');
-  if (changes) fail(`Repository has unrelated local changes:\n${changes}`);
-}
 function syncBeforePublish() {
   runGit(['fetch', 'origin', 'main']);
-}
-function pushWithRetry() {
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
-    try {
-      runGit(['push', 'origin', 'HEAD:refs/heads/main']);
-      return;
-    } catch (error) {
-      if (attempt === 3) throw error;
-      runGit(['fetch', 'origin', 'main']);
-      try {
-        runGit(['merge-base', '--is-ancestor', 'origin/main', 'HEAD']);
-      } catch {
-        fail('Remote main advanced independently; refusing to rebase or overwrite the dirty Desktop checkout');
-      }
-    }
-  }
 }
 function ensurePath(file) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -140,17 +143,6 @@ function cleanupRun(run, directFile) {
   } catch (error) {
     console.warn(`Published but temporary cleanup is pending: ${error.code || error.message}`);
     return false;
-  }
-}
-function cleanupPublishedFiles(files) {
-  for (const relative of files) {
-    const target = path.join(repo, relative);
-    try {
-      runGit(['ls-files', '--error-unmatch', '--', relative]);
-      runGit(['restore', '--source=HEAD', '--worktree', '--', relative]);
-    } catch {
-      try { fs.rmSync(target, { force: true, recursive: true }); } catch {}
-    }
   }
 }
 function nonEmpty(file) {
@@ -185,10 +177,24 @@ const runs = fs.readdirSync(stagingRoot, { withFileTypes: true })
   .map(entry => path.join(stagingRoot, entry.name))
   .sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs);
 const run = runs.find(candidate => {
+  const errorFile = path.join(candidate, 'publisher-error.json');
+  if (fs.existsSync(errorFile) && Date.now() - fs.statSync(errorFile).mtimeMs < 300000) return false;
   return ['criteria-output.json', 'test-output.json', 'review-output.json']
     .some(name => fs.existsSync(path.join(candidate, name)));
 });
-if (!run) process.exit(0);
+if (!run) { log('idle'); process.exit(0); }
+activeRun = run;
+
+// Fetch does not update Desktop files. Read and generate everything in a fresh
+// remote checkout; never restore or delete the user's working files on cleanup.
+const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-publisher-source-'));
+const processingRepo = path.join(scratch, 'checkout');
+runGit(['worktree', 'add', '--detach', processingRepo, 'origin/main']);
+repo = processingRepo;
+process.on('exit', () => {
+  try { runGitAt(sourceRepo, ['worktree', 'remove', '--force', processingRepo]); } catch {}
+  try { fs.rmSync(scratch, { recursive: true, force: true }); } catch {}
+});
 
 const directFile = fs.statSync(run).isFile();
 const files = directFile
@@ -201,6 +207,8 @@ const outputType = files[0].endsWith('criteria-output.json') || output.criteriaM
   : files[0].endsWith('test-output.json') || output.results ? 'test-output.json'
   : 'review-output.json';
 const key = ticketKey(output.ticket);
+log('processing', { ticket: key, handoffId: output.handoffId, outputType });
+if (output.noOp === true) { log('worker_no_op', { ticket: key }); process.exit(0); }
 const ticketDir = path.join(repo, 'tickets', key);
 const statusFile = path.join(ticketDir, 'status.json');
 if (!fs.existsSync(statusFile)) fail(`Missing status file for ${key}`);
@@ -230,10 +238,23 @@ if (outputType === 'criteria-output.json') {
   const attempt = nextEvidenceAttempt(key, status);
   const attemptName = `attempt-${String(attempt).padStart(3, '0')}`;
   const attemptEvidenceDir = path.join(evidenceRoot, key, 'screenshots', attemptName);
+  // Validate each referenced file before publishing status or assigning paths.
+  if (!Array.isArray(output.results)) fail('results must be an array');
+  for (const item of output.results) {
+    if (item.outcome === 'Passed' && !item.evidence?.length) fail('Passed criterion has no evidence');
+    for (const file of item.evidence || []) {
+      const name = path.win32.basename(String(file));
+      const source = path.join(run, 'screenshots', name);
+      if (!/\.png$/i.test(name) || !nonEmpty(source)) fail(`Missing staged PNG: ${source}`);
+      const header = fs.readFileSync(source).subarray(0, 8);
+      if (!header.equals(Buffer.from([137,80,78,71,13,10,26,10]))) fail(`Invalid PNG: ${source}`);
+    }
+  }
+  copyFolder(path.join(run, 'screenshots'), attemptEvidenceDir);
   const results = Array.isArray(output.results) ? output.results.map(item => ({
       ...item,
       evidence: Array.isArray(item.evidence)
-        ? item.evidence.map(file => `screenshots/${attemptName}/${path.basename(String(file))}`)
+        ? item.evidence.map(file => `screenshots/${attemptName}/${path.win32.basename(String(file))}`)
         : item.evidence
     })) : output.results;
   writeJson(path.join(ticketDir, 'results.json'), results);
@@ -248,7 +269,9 @@ if (outputType === 'criteria-output.json') {
     status.blockedStage = null;
   }
   writeJson(statusFile, status);
-  if (!directFile) copyFolder(path.join(run, 'screenshots'), attemptEvidenceDir);
+  for (const item of results) for (const file of item.evidence || []) {
+    if (!nonEmpty(path.join(evidenceRoot, key, file))) fail(`Evidence copy failed: ${file}`);
+  }
   changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/history/${path.basename(historyFile)}`, `tickets/${key}/status.json`);
 } else {
   if (!Array.isArray(output.criterionOutcomes)) fail('criterionOutcomes is missing');
@@ -265,8 +288,8 @@ if (outputType === 'criteria-output.json') {
     const attemptMatch = evidencePath?.match(/screenshots[\\/]((?:attempt)-[0-9]+)/i);
     const screenshots = attemptMatch
       ? path.join(evidenceRoot, key, 'screenshots', attemptMatch[1])
-      : text(output.evidenceFolder).match(/[\\/]attempt-[0-9]+(?:[\\/]|$)/i)
-        ? text(output.evidenceFolder)
+      : String(output.evidenceFolder || '').match(/[\\/]attempt-[0-9]+(?:[\\/]|$)/i)
+        ? String(output.evidenceFolder)
         : '';
     if (!nonEmpty(generatedPdf)) {
       if (!screenshots || !pngEvidence(screenshots)) fail('The selected evidence folder contains no non-empty PNG files');
@@ -324,8 +347,10 @@ function publishFromCleanWorktree() {
       runGitAt(worktree, ['commit', '-m', `Publish TEST2 ${key} agent output`], cleanIndex);
       try {
         runGitAt(worktree, ['push', 'origin', 'HEAD:refs/heads/main'], cleanIndex);
-        const remote = runGit(['ls-remote', 'origin', 'refs/heads/main']);
-        if (!remote) fail('GitHub remote read-back returned no main ref');
+        const publishedCommit = runGitAt(worktree, ['rev-parse', 'HEAD'], cleanIndex);
+        runGit(['fetch', 'origin', 'main']);
+        // Confirm our exact commit is remote, even if a bundler commit followed it.
+        runGit(['merge-base', '--is-ancestor', publishedCommit, 'origin/main']);
         return { noOp: false };
       } catch (error) {
         if (attempt === 3) throw error;
@@ -342,7 +367,7 @@ function publishFromCleanWorktree() {
 }
 
 const publication = publishFromCleanWorktree();
-cleanupPublishedFiles(changed);
+log('published', { ticket: key, handoffId: output.handoffId, ...publication });
 const cleaned = cleanupRun(run, directFile);
 fs.rmSync(publisherIndex, { force: true });
 console.log(JSON.stringify({ ticket: key, changedFiles: publication.noOp ? [] : changed, published: true, noOp: publication.noOp, cleaned, cleanupPath: run }));

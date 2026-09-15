@@ -77,11 +77,13 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-publisher.ps1 -
 powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-desktop-sync.ps1 -Repo "$PWD"
 ```
 
-Desktop sync runs every two minutes and skips safely when conflicting local changes exist. Worker staging and coordinator runtime state are kept outside the repository in `%LOCALAPPDATA%\TEST2`. The coordinator itself is started manually as a fresh Codex task; these scheduled tasks do not start it.
+Desktop sync runs every two minutes and skips safely when conflicting local changes exist. Worker staging and coordinator runtime state use the ignored `.agent-staging` directory. The publisher processes tickets in a fresh checkout of GitHub main, so it works even when Desktop is behind or has local edits. The coordinator itself is started manually as a fresh Codex task; these scheduled tasks do not start it.
+
+For publisher errors, check `%LOCALAPPDATA%\TEST2\publisher.log` and follow [publisher diagnostics](docs/publisher-operations.md). Query Windows tasks outside the sandbox before concluding that registration is missing. A task exit code of zero is not sufficient evidence that a ticket published.
 
 ### Playwright screenshots for tester tasks
 
-Tester tasks use Playwright MCP so the browser that performs each action also writes the evidence PNG. The files go directly to `%LOCALAPPDATA%\TEST2\staging\<handoffId>\screenshots`; login state remains local and is never committed.
+Tester tasks use Playwright MCP so the browser that performs each action also writes the evidence PNG. The files go directly to the repository-local `.agent-staging\<handoffId>\screenshots`; login state remains local and is never committed.
 
 Configure Codex using a private saved Playwright login. The installer copies it to `%LOCALAPPDATA%\TEST2\auth\user.json`, updates `%USERPROFILE%\.codex\config.toml`, and keeps a backup of the previous configuration:
 
