@@ -1,1 +1,1 @@
-- Blocked: Authentication advanced to Microsoft sign-in and further authentication is prohibited; the launcher could not be reached or evidenced.
+Opened the required V4 launcher, confirmed the Metricell Launcher was visible, and captured verified PNG evidence.

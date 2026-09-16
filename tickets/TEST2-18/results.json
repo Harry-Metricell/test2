@@ -1,31 +1,32 @@
 [
   {
-    "criterion": "Open the required V4 launcher URL.",
-    "outcome": "Blocked",
+    "criterion": 1,
+    "outcome": "Passed",
     "steps_taken": [
-      "Navigated to the required V4 launcher URL with Playwright.",
-      "Entered the required email address and clicked Continue once.",
-      "Waited for the resulting page to load; it remained on Microsoft sign-in."
+      "Navigated to the required V4 launcher URL."
     ],
-    "evidence": [],
-    "reason": "Authentication advanced to Microsoft sign-in requiring further authentication. Password, MFA, consent, and authentication-state changes are prohibited."
+    "evidence": [
+      "screenshots/attempt-003/criterion-1-2-3-launcher.png"
+    ]
   },
   {
-    "criterion": "Confirm the launcher is visible.",
-    "outcome": "Blocked",
+    "criterion": 2,
+    "outcome": "Passed",
     "steps_taken": [
-      "The launcher was not reached because authentication remained at Microsoft sign-in."
+      "Confirmed the Metricell Launcher page is visible."
     ],
-    "evidence": [],
-    "reason": "Required launcher access was blocked by the prohibited further authentication step."
+    "evidence": [
+      "screenshots/attempt-003/criterion-1-2-3-launcher.png"
+    ]
   },
   {
-    "criterion": "Capture a saved PNG showing the launcher.",
-    "outcome": "Blocked",
+    "criterion": 3,
+    "outcome": "Passed",
     "steps_taken": [
-      "The launcher was not reached, so no launcher screenshot was captured."
+      "Captured and verified a saved PNG showing the launcher."
     ],
-    "evidence": [],
-    "reason": "The required launcher screenshot could not be captured because authentication did not advance to the launcher."
+    "evidence": [
+      "screenshots/attempt-003/criterion-1-2-3-launcher.png"
+    ]
   }
 ]

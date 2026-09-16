@@ -1,0 +1,44 @@
+{
+  "handoffId": "handoff-TEST2-18-retry",
+  "ticket": "TEST2-18",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": 1,
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the required V4 launcher URL."
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-1-2-3-launcher.png"
+      ]
+    },
+    {
+      "criterion": 2,
+      "outcome": "Passed",
+      "steps_taken": [
+        "Confirmed the Metricell Launcher page is visible."
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-1-2-3-launcher.png"
+      ]
+    },
+    {
+      "criterion": 3,
+      "outcome": "Passed",
+      "steps_taken": [
+        "Captured and verified a saved PNG showing the launcher."
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-1-2-3-launcher.png"
+      ]
+    }
+  ],
+  "conciseReport": "Opened the required V4 launcher, confirmed the Metricell Launcher was visible, and captured verified PNG evidence.",
+  "reportPath": ".agent-staging/handoff-TEST2-18-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-18-retry/screenshots",
+  "noOp": false,
+  "reason": "",
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-16T14:09:27.802Z"
+}
