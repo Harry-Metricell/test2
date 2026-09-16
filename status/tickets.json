@@ -11,9 +11,9 @@
       "Retry Queued": 2
     },
     "byQaOutcome": {
-      "Blocked": 7,
+      "Blocked": 6,
       "Not Tested": 2,
-      "Passed": 8,
+      "Passed": 9,
       "Unverified": 1
     }
   },
@@ -155,8 +155,8 @@
       "summary": "Launcher evidence smoke test",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Blocked",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "Retry 2/3 queued; coordinator will start tester",
       "updatedAt": "2026-09-16T14:03:50.290Z",
