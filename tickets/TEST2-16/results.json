@@ -2,33 +2,22 @@
   {
     "criterion": "The V4 launcher page is visible at the required launcher URL.",
     "outcome": "Blocked",
-    "steps_taken": [
-      "Navigated to the required V4 launcher URL with Playwright.",
-      "Completed the visible email sign-in step.",
-      "Verified the launcher page in the Playwright snapshot.",
-      "Attempted to save and verify repository-local PNG evidence."
-    ],
+    "steps_taken": [],
     "evidence": [],
-    "reason": "Required Playwright PNG evidence could not be verified at repository-local .agent-staging/handoff-TEST2-16-test/screenshots; the running MCP instance did not create that folder."
+    "reason": "The corrected Playwright MCP configuration has not been reloaded by the running Codex desktop session; repository-local screenshot evidence cannot be verified."
   },
   {
     "criterion": "The launcher displays the available V4 module cards.",
     "outcome": "Blocked",
-    "steps_taken": [
-      "Verified the visible module cards in the Playwright snapshot.",
-      "Attempted to save and verify repository-local PNG evidence."
-    ],
+    "steps_taken": [],
     "evidence": [],
-    "reason": "Required Playwright PNG evidence could not be verified at repository-local .agent-staging/handoff-TEST2-16-test/screenshots."
+    "reason": "The corrected Playwright MCP configuration has not been reloaded by the running Codex desktop session; repository-local screenshot evidence cannot be verified."
   },
   {
     "criterion": "Each visible module card has an Open module control.",
     "outcome": "Blocked",
-    "steps_taken": [
-      "Verified each visible module card had an Open module control in the Playwright snapshot.",
-      "Attempted to save and verify repository-local PNG evidence."
-    ],
+    "steps_taken": [],
     "evidence": [],
-    "reason": "Required Playwright PNG evidence could not be verified at repository-local .agent-staging/handoff-TEST2-16-test/screenshots."
+    "reason": "The corrected Playwright MCP configuration has not been reloaded by the running Codex desktop session; repository-local screenshot evidence cannot be verified."
   }
 ]
