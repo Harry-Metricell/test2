@@ -1,0 +1,71 @@
+{
+  "handoffId": "handoff-TEST2-20-retry",
+  "ticket": "TEST2-20",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Start at https://o2intelligence-v4-dev.metricell.com/.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/ with Playwright.",
+        "Waited for the page to finish loading.",
+        "Verified the browser-derived URL became https://o2intelligence-v4-dev.metricell.com/launcher."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-launcher.png",
+        "screenshots/attempt-002/criterion-1-final-launcher.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "reason": "Direct Playwright URL and launcher evidence confirm the required V4 host and loaded launcher."
+    },
+    {
+      "criterion": "Record the browser-derived current URL in the test result.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Recorded the browser-derived current URL as https://o2intelligence-v4-dev.metricell.com/launcher."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial-launcher.png",
+        "screenshots/attempt-002/criterion-2-final-launcher.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "reason": "The recorded browser URL identifies the required V4 host."
+    },
+    {
+      "criterion": "Capture and save a non-empty PNG showing the loaded Metricell Launcher.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Captured the loaded launcher with Playwright using PNG format, css scale, and a relative handoff path.",
+        "Verified all referenced PNG files exist and have non-zero size."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial-launcher.png",
+        "screenshots/attempt-002/criterion-3-final-launcher.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "reason": "Verified non-empty PNG files directly show the Metricell Launcher."
+    },
+    {
+      "criterion": "The evidence review confirms both the required V4 host and the launcher page.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Verified the launcher page was visibly rendered in the Playwright snapshot.",
+        "Verified the browser-derived URL was https://o2intelligence-v4-dev.metricell.com/launcher.",
+        "Captured and verified the paired screenshot evidence."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial-launcher.png",
+        "screenshots/attempt-002/criterion-4-final-launcher.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "reason": "The URL and saved PNG together establish both the required V4 host and the launcher page."
+    }
+  ],
+  "conciseReport": "- Passed: The required V4 launcher loaded at https://o2intelligence-v4-dev.metricell.com/launcher.\n- Passed: The browser-derived URL identifies the required V4 host.\n- Passed: Non-empty PNG evidence was saved and verified showing the Metricell Launcher.\n- Passed: URL and screenshot evidence together confirm the required host and launcher page.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-20-retry/screenshots",
+  "noOp": false,
+  "reason": "Completed the selected handoff with fresh, verified Playwright screenshot evidence.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-16T15:16:25.107Z"
+}

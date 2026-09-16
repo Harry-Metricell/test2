@@ -1,1 +1,4 @@
-- Blocked: The launcher and required browser URL were visible, but Playwright did not create verifiable PNG evidence in repository-local staging.
+- Passed: The required V4 launcher loaded at https://o2intelligence-v4-dev.metricell.com/launcher.
+- Passed: The browser-derived URL identifies the required V4 host.
+- Passed: Non-empty PNG evidence was saved and verified showing the Metricell Launcher.
+- Passed: URL and screenshot evidence together confirm the required host and launcher page.
