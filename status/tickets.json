@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-16T14:04:44.314Z",
+  "generatedAt": "2026-09-16T15:40:22.235+0100",
   "counts": {
-    "tickets": 18,
-    "handoffs": 0,
+    "tickets": 19,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 13,
-      "Ready": 3,
+      "Ready": 4,
       "Rejected": 2
     },
     "byQaOutcome": {
       "Blocked": 5,
-      "Not Tested": 2,
+      "Not Tested": 3,
       "Passed": 9,
       "Unverified": 2
     }
@@ -176,6 +176,20 @@
       "retries": 2,
       "retryLimit": 3,
       "retryLabel": "Retry 2/3"
+    },
+    {
+      "key": "TEST2-20",
+      "summary": "Launcher URL evidence verification",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-16T15:40:22.235+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",

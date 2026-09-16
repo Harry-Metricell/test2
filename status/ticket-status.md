@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-16T14:04:44.314Z
+Updated: 2026-09-16T15:40:22.235+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -15,6 +15,7 @@ Updated: 2026-09-16T14:04:44.314Z
 | TEST2-17 | READY FOR TESTING | Blocked | Retry 3/3 | Clean pipeline test 4 |
 | TEST2-18 | READY FOR TESTING | Evidence Reviewed | Retry 2/3 | Launcher evidence smoke test |
 | TEST2-19 | READY FOR TESTING | Evidence Reviewed | Retry 2/3 | Launcher controls evidence smoke test |
+| TEST2-20 | READY FOR TESTING | Criteria Check Required |  | Launcher URL evidence verification |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Blocked | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |

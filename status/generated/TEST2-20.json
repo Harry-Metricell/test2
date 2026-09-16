@@ -1,0 +1,48 @@
+{
+  "key": "TEST2-20",
+  "id": "105280",
+  "summary": "Launcher URL evidence verification",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-20",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-16T15:40:15.375+0100",
+    "updated": "2026-09-16T15:40:22.235+0100"
+  },
+  "description": "Validate the TEST2 URL-evidence rule.\nAcceptance criteria:\nStart at https://o2intelligence-v4-dev.metricell.com/.\nRecord the browser-derived current URL in the test result.\nCapture and save a non-empty PNG showing the loaded Metricell Launcher.\nThe evidence review confirms both the required V4 host and the launcher page.",
+  "acceptanceCriteria": [
+    "Start at https://o2intelligence-v4-dev.metricell.com/.",
+    "Record the browser-derived current URL in the test result.",
+    "Capture and save a non-empty PNG showing the loaded Metricell Launcher.",
+    "The evidence review confirms both the required V4 host and the launcher page."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-20/ticket.json",
+    "criteria": "tickets/TEST2-20/criteria.md",
+    "status": "tickets/TEST2-20/status.json",
+    "screenshots": "tickets/TEST2-20/screenshots/",
+    "reports": "tickets/TEST2-20/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105280",
+    "importedAt": "2026-09-16T15:40:22.235+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-16T15:40:22.235+0100",
+    "criteriaVerified": false
+  }
+}
