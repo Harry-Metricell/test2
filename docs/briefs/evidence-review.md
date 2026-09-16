@@ -8,7 +8,7 @@ If the coordinator message supplies a handoff ID and ticket, select that exact h
 
 If the selected attempt folder is missing, empty, or contains no non-empty PNG, assess every criterion as `Blocked`, set `overallOutcome` and `qaStatus` to `Blocked`, set `reportPath` to ``, explain that screenshots are required from the selected attempt folder, and write the output immediately.
 
-Assess every criterion independently. Use `Passed` only with direct screenshot evidence, `Failed` only with direct contradictory evidence, `Unverified` when evidence is inconclusive, and `Blocked` when required evidence or the test environment was unavailable. Never infer `Passed` from text alone.
+Assess every criterion independently. Use `Passed` only with direct screenshot evidence, `Failed` only with direct contradictory evidence, `Unverified` when evidence is inconclusive, and `Blocked` when required evidence or the test environment was unavailable. For a criterion about the required starting or current URL, also require the corresponding result's browser-derived `browserUrl` value to be present and to match the expected V4 host; a page screenshot cannot prove the browser address on its own. Never infer `Passed` from text alone.
 
 Do not create, render, inspect, or upload a DOCX/PDF. Do not modify criteria, ticket files, Jira, credentials, or authentication state. The local publisher builds and verifies the report after receiving this JSON. With valid PNG evidence, set `qaStatus` to `Evidence Reviewed` only if the review itself is complete; the publisher will change it to `Blocked` if report generation or verification fails.
 
