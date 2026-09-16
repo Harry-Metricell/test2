@@ -1,0 +1,42 @@
+{
+  "handoffId": "handoff-TEST2-17-retry",
+  "ticket": "TEST2-17",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "The V4 launcher page is visible at the required launcher URL.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Navigated to the required launcher URL with Playwright.",
+        "Retried navigation once after a short wait."
+      ],
+      "reason": "Playwright browser navigation failed on both attempts with net::ERR_NAME_NOT_RESOLVED for https://smartnetworkv4-o2-uk-dev.metricell.com/launcher. The launcher could not be reached, so required initial and decisive PNG evidence could not be captured.",
+      "evidence": []
+    },
+    {
+      "criterion": "The launcher displays the available V4 module cards.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Could not reach the launcher because the required URL failed DNS resolution."
+      ],
+      "reason": "Blocked by the same launcher DNS resolution failure; no valid starting page or screenshot evidence was available.",
+      "evidence": []
+    },
+    {
+      "criterion": "Each visible module card has an Open module control.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Could not reach the launcher because the required URL failed DNS resolution."
+      ],
+      "reason": "Blocked by the same launcher DNS resolution failure; no module cards could be inspected or evidenced.",
+      "evidence": []
+    }
+  ],
+  "conciseReport": "Blocked: the required V4 launcher URL returned net::ERR_NAME_NOT_RESOLVED on the initial navigation and one retry, preventing testing and required PNG evidence capture.",
+  "reportPath": ".agent-staging/handoff-TEST2-17-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-17-retry/screenshots",
+  "noOp": false,
+  "reason": "Required Playwright navigation to the launcher failed twice with net::ERR_NAME_NOT_RESOLVED. All criteria are Blocked and no screenshot paths are referenced.",
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-16T11:28:25.474Z"
+}
