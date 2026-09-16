@@ -12,6 +12,10 @@ $mcpCli = Join-Path $repoPath 'node_modules\@playwright\mcp\cli.js'
 if (-not (Test-Path -LiteralPath $mcpCli -PathType Leaf)) {
     throw 'Playwright MCP is not installed. Run npm.cmd install in the repository first.'
 }
+$mcpLauncher = Join-Path $repoPath 'scripts\run-test2-playwright-mcp.mjs'
+if (-not (Test-Path -LiteralPath $mcpLauncher -PathType Leaf)) {
+    throw 'TEST2 Playwright MCP launcher is missing from the repository.'
+}
 
 $test2Root = Join-Path $env:LOCALAPPDATA 'TEST2'
 $authDir = Join-Path $test2Root 'auth'
@@ -38,7 +42,7 @@ if ($config -notmatch [regex]::Escape($begin) -and $config -match '(?m)^\[mcp_se
     throw 'An unmanaged mcp_servers.playwright entry already exists in config.toml. Remove or rename it before installing TEST2 Playwright MCP.'
 }
 
-foreach ($value in @($nodePath, $mcpCli, $storageState, $stagingRoot)) {
+foreach ($value in @($nodePath, $mcpLauncher, $storageState, $stagingRoot)) {
     if ($value.Contains("'")) { throw "TOML path contains an unsupported apostrophe: $value" }
 }
 
@@ -46,7 +50,7 @@ $block = @"
 $begin
 [mcp_servers.playwright]
 command = '$nodePath'
-args = ['$mcpCli', '--isolated', '--storage-state', '$storageState', '--output-dir', '$stagingRoot', '--viewport-size', '1440x900', '--timeout-action', '10000']
+args = ['$mcpLauncher', '--isolated', '--storage-state', '$storageState', '--output-dir', '$stagingRoot', '--viewport-size', '1440x900', '--timeout-action', '10000']
 cwd = '$stagingRoot'
 startup_timeout_sec = 120
 tool_timeout_sec = 120
