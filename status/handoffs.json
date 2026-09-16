@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-16T14:00:44.906+0100",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-18-test",
+      "handoffId": "handoff-TEST2-18-retry",
       "action": "test_ticket",
       "brief": "docs/briefs/qa-testing.md",
       "owner": "ticket-tester",
