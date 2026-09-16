@@ -1,1 +1,3 @@
-- Blocked: The running Playwright MCP session has not reloaded the corrected repository-local staging configuration.
+## TEST2-16
+
+All three launcher acceptance criteria were observed as passed on the live V4 launcher. Criterion-specific PNG evidence is staged for review.
