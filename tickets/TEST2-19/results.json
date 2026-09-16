@@ -1,31 +1,17 @@
 [
   {
-    "criterion": "Open the required V4 launcher URL.",
-    "outcome": "Blocked",
+    "criterion": "Open the required V4 launcher URL; confirm visible module cards expose Open controls; capture saved PNG evidence.",
+    "outcome": "Passed",
     "steps_taken": [
-      "Navigated to the required V4 launcher URL with Playwright.",
-      "Entered the required email address and clicked Continue once.",
-      "Waited for the resulting page to load; it remained on Microsoft sign-in."
+      "Navigated to the required launcher URL.",
+      "Completed the visible email sign-in sequence with the supplied email and waited for /launcher.",
+      "Confirmed the launcher visibly displayed module cards with Open controls, including Survey Analyser, Agentic AI, GIS, RPO, and API request audit.",
+      "Saved and verified non-empty PNG evidence."
     ],
-    "evidence": [],
-    "reason": "Authentication advanced to Microsoft sign-in requiring further authentication. Password, MFA, consent, and authentication-state changes are prohibited."
-  },
-  {
-    "criterion": "Confirm visible module cards expose Open controls.",
-    "outcome": "Blocked",
-    "steps_taken": [
-      "The launcher was not reached because authentication remained at Microsoft sign-in."
+    "evidence": [
+      "screenshots/attempt-003/criterion-1-launcher-controls.png"
     ],
-    "evidence": [],
-    "reason": "Required launcher access was blocked by the prohibited further authentication step."
-  },
-  {
-    "criterion": "Capture saved PNG evidence of the visible controls.",
-    "outcome": "Blocked",
-    "steps_taken": [
-      "The launcher was not reached, so no launcher screenshot was captured."
-    ],
-    "evidence": [],
-    "reason": "The required launcher screenshot could not be captured because authentication did not advance to the launcher."
+    "reason": null,
+    "blockers": []
   }
 ]

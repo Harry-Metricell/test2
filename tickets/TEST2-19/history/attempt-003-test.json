@@ -1,0 +1,29 @@
+{
+  "handoffId": "handoff-TEST2-19-retry",
+  "ticket": "TEST2-19",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Open the required V4 launcher URL; confirm visible module cards expose Open controls; capture saved PNG evidence.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the required launcher URL.",
+        "Completed the visible email sign-in sequence with the supplied email and waited for /launcher.",
+        "Confirmed the launcher visibly displayed module cards with Open controls, including Survey Analyser, Agentic AI, GIS, RPO, and API request audit.",
+        "Saved and verified non-empty PNG evidence."
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-1-launcher-controls.png"
+      ],
+      "reason": null,
+      "blockers": []
+    }
+  ],
+  "conciseReport": "# TEST2-19\n\nPassed: the required V4 launcher loaded after the visible email sign-in sequence, and module cards exposed visible Open controls. Saved PNG evidence is included for review.",
+  "reportPath": ".agent-staging/handoff-TEST2-19-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-19-retry/screenshots",
+  "noOp": false,
+  "reason": null,
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-16T14:12:25.543Z"
+}
