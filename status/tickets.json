@@ -3,18 +3,17 @@
   "generatedAt": "2026-09-16T14:04:44.314Z",
   "counts": {
     "tickets": 18,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 13,
-      "Ready": 2,
-      "Rejected": 2,
-      "Retry Queued": 1
+      "Ready": 3,
+      "Rejected": 2
     },
     "byQaOutcome": {
       "Blocked": 5,
       "Not Tested": 2,
-      "Passed": 10,
-      "Unverified": 1
+      "Passed": 9,
+      "Unverified": 2
     }
   },
   "policy": {
@@ -168,11 +167,11 @@
       "key": "TEST2-19",
       "summary": "Launcher controls evidence smoke test",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Passed",
+      "workflowState": "Ready",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Unverified",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-16T14:04:44.314Z",
       "retries": 2,
       "retryLimit": 3,
