@@ -1,0 +1,32 @@
+{
+  "handoffId": "handoff-TEST2-20-review",
+  "ticket": "TEST2-20",
+  "criterionOutcomes": [
+    {
+      "criterion": "Start at https://o2intelligence-v4-dev.metricell.com/.",
+      "outcome": "Passed",
+      "reason": "Browser-derived URL is https://o2intelligence-v4-dev.metricell.com/launcher and the selected attempt contains direct launcher PNG evidence."
+    },
+    {
+      "criterion": "Record the browser-derived current URL in the test result.",
+      "outcome": "Passed",
+      "reason": "The result records browserUrl as https://o2intelligence-v4-dev.metricell.com/launcher, identifying the required V4 host."
+    },
+    {
+      "criterion": "Capture and save a non-empty PNG showing the loaded Metricell Launcher.",
+      "outcome": "Passed",
+      "reason": "The selected attempt-002 folder contains non-empty PNG evidence; visual inspection shows the loaded Metricell Launcher."
+    },
+    {
+      "criterion": "The evidence review confirms both the required V4 host and the launcher page.",
+      "outcome": "Passed",
+      "reason": "The browser-derived URL matches the expected V4 host and the selected PNG evidence visibly shows the launcher page."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-20\\screenshots\\attempt-002",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "All four criteria were independently verified from the selected attempt-002 PNG evidence and the recorded browserUrl."
+}
