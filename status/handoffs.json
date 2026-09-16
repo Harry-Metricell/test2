@@ -1,21 +1,5 @@
 {
   "schema": "v4-qa-handoffs.v1",
   "generatedAt": "2026-09-16T14:55:45.192Z",
-  "handoffs": [
-    {
-      "handoffId": "handoff-TEST2-20-review",
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-20",
-      "inputs": {
-        "results": "tickets/TEST2-20/results.json",
-        "generated": "status/generated/TEST2-20.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-20/review.json",
-        "schema": "v4-qa-review.v1"
-      }
-    }
-  ]
+  "handoffs": []
 }

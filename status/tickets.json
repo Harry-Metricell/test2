@@ -3,12 +3,11 @@
   "generatedAt": "2026-09-16T14:55:45.192Z",
   "counts": {
     "tickets": 19,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 13,
-      "Ready": 3,
-      "Rejected": 2,
-      "Retry Queued": 1
+      "Ready": 4,
+      "Rejected": 2
     },
     "byQaOutcome": {
       "Blocked": 5,
@@ -182,11 +181,11 @@
       "key": "TEST2-20",
       "summary": "Launcher URL evidence verification",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Ready",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/3 queued; coordinator will start tester",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-16T14:55:45.192Z",
       "retries": 1,
       "retryLimit": 3,
