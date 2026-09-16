@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-16T14:00:44.906+0100",
+  "generatedAt": "2026-09-16T14:01:43.715Z",
   "counts": {
     "tickets": 18,
     "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 13,
-      "Ready": 2,
+      "Ready": 1,
       "Rejected": 2,
-      "Retry Queued": 1
+      "Retry Queued": 2
     },
     "byQaOutcome": {
-      "Blocked": 6,
-      "Not Tested": 3,
+      "Blocked": 7,
+      "Not Tested": 2,
       "Passed": 8,
       "Unverified": 1
     }
@@ -168,15 +168,15 @@
       "key": "TEST2-19",
       "summary": "Launcher controls evidence smoke test",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
+      "workflowState": "Retry Queued",
       "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
-      "updatedAt": "2026-09-16T14:00:44.906+0100",
-      "retries": 0,
+      "nextAction": "Retry 1/3 queued; coordinator will start tester",
+      "updatedAt": "2026-09-16T14:01:43.715Z",
+      "retries": 1,
       "retryLimit": 3,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/3"
     },
     {
       "key": "TEST2-2",
