@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-16T11:28:43.111Z",
+  "generatedAt": "2026-09-16T14:00:44.906+0100",
   "counts": {
-    "tickets": 16,
-    "handoffs": 0,
+    "tickets": 18,
+    "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 13,
-      "Ready": 1,
+      "Ready": 3,
       "Rejected": 2
     },
     "byQaOutcome": {
       "Blocked": 5,
-      "Not Tested": 2,
+      "Not Tested": 4,
       "Passed": 8,
       "Unverified": 1
     }
@@ -148,6 +148,34 @@
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
+    },
+    {
+      "key": "TEST2-18",
+      "summary": "Launcher evidence smoke test",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-16T14:00:43.265+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-19",
+      "summary": "Launcher controls evidence smoke test",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-16T14:00:44.906+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",

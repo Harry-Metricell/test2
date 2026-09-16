@@ -1,0 +1,47 @@
+{
+  "key": "TEST2-19",
+  "id": "105213",
+  "summary": "Launcher controls evidence smoke test",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-19",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-16T14:00:15.912+0100",
+    "updated": "2026-09-16T14:00:44.906+0100"
+  },
+  "description": "Basic TEST2 pipeline validation.\nAcceptance criteria:\nOpen the required V4 launcher URL.\nConfirm visible module cards expose Open controls.\nCapture saved PNG evidence of the visible controls.",
+  "acceptanceCriteria": [
+    "Open the required V4 launcher URL.",
+    "Confirm visible module cards expose Open controls.",
+    "Capture saved PNG evidence of the visible controls."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-19/ticket.json",
+    "criteria": "tickets/TEST2-19/criteria.md",
+    "status": "tickets/TEST2-19/status.json",
+    "screenshots": "tickets/TEST2-19/screenshots/",
+    "reports": "tickets/TEST2-19/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105213",
+    "importedAt": "2026-09-16T14:00:44.906+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-16T14:00:44.906+0100",
+    "criteriaVerified": false
+  }
+}

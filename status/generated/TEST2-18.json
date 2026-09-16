@@ -1,0 +1,47 @@
+{
+  "key": "TEST2-18",
+  "id": "105212",
+  "summary": "Launcher evidence smoke test",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-18",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-16T14:00:13.163+0100",
+    "updated": "2026-09-16T14:00:43.265+0100"
+  },
+  "description": "Basic TEST2 pipeline validation.\nAcceptance criteria:\nOpen the required V4 launcher URL.\nConfirm the launcher is visible.\nCapture a saved PNG showing the launcher.",
+  "acceptanceCriteria": [
+    "Open the required V4 launcher URL.",
+    "Confirm the launcher is visible.",
+    "Capture a saved PNG showing the launcher."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-18/ticket.json",
+    "criteria": "tickets/TEST2-18/criteria.md",
+    "status": "tickets/TEST2-18/status.json",
+    "screenshots": "tickets/TEST2-18/screenshots/",
+    "reports": "tickets/TEST2-18/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105212",
+    "importedAt": "2026-09-16T14:00:43.265+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-16T14:00:43.265+0100",
+    "criteriaVerified": false
+  }
+}

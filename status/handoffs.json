@@ -1,5 +1,36 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-09-16T11:28:43.111Z",
-  "handoffs": []
+  "generatedAt": "2026-09-16T14:00:44.906+0100",
+  "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-18-criteria",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-18",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-18/ticket.json",
+        "generated": "status/generated/TEST2-18.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-18/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-19-criteria",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-19",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-19/ticket.json",
+        "generated": "status/generated/TEST2-19.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-19/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    }
+  ]
 }
