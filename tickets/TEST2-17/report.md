@@ -1,0 +1,1 @@
+- Blocked: Required repository-local Playwright PNG evidence could not be created or verified.
