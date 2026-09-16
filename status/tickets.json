@@ -11,9 +11,9 @@
       "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Blocked": 5,
+      "Blocked": 4,
       "Not Tested": 3,
-      "Passed": 7,
+      "Passed": 8,
       "Unverified": 1
     }
   },
@@ -127,8 +127,8 @@
       "summary": "Clean pipeline test 3",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Blocked",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
       "nextAction": "Retry 2/3 queued; coordinator will start tester",
       "updatedAt": "2026-09-16T08:20:46.996Z",
