@@ -1,6 +1,6 @@
 # TEST2 QA Testing Brief
 
-Every test run must start at `https://smartnetworkv4-o2-uk-dev.metricell.com/launcher`. Open or navigate to that URL, wait for it to load, and use the visible launcher as the starting page; an already-open V4 destination module is never a valid run starting point. When the sign-in or Microsoft email page appears, enter exactly `harry.piper@metricell.com` in the visible email field, click `Continue` once, and wait for the page to load before continuing.
+Every test run must start at `https://o2intelligence-v4-dev.metricell.com/`. Open or navigate to that URL, wait for it to load, and use the visible launcher as the starting page; an already-open V4 destination module is never a valid run starting point. When the sign-in or Microsoft email page appears, enter exactly `harry.piper@metricell.com` in the visible email field, click `Continue` once, and wait for the page to load before continuing.
 
 Execute immediately; do not summarise this brief.
 
