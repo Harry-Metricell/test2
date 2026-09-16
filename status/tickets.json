@@ -3,11 +3,11 @@
   "generatedAt": "2026-09-16T11:28:43.111Z",
   "counts": {
     "tickets": 16,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 12,
-      "Rejected": 2,
-      "Retry Queued": 2
+      "Blocked": 13,
+      "Ready": 1,
+      "Rejected": 2
     },
     "byQaOutcome": {
       "Blocked": 5,
@@ -125,11 +125,11 @@
       "key": "TEST2-16",
       "summary": "Clean pipeline test 3",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Ready",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-16T08:20:46.996Z",
       "retries": 2,
       "retryLimit": 3,
@@ -139,8 +139,8 @@
       "key": "TEST2-17",
       "summary": "Clean pipeline test 4",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
