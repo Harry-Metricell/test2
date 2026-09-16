@@ -5,6 +5,7 @@ import shutil
 import zipfile
 from datetime import datetime
 from pathlib import Path
+import re
 
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
@@ -54,6 +55,26 @@ def outcome_text(outcome):
     }.get(text(outcome).lower(), "The criterion outcome was recorded from the evidence review.")
 
 
+def criteria_from_markdown(path):
+    """Return the ordered human-readable criteria from canonical criteria.md."""
+    values = []
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        match = re.match(r"^\s*-\s*\[[ xX]\]\s+(.+?)\s*$", line)
+        if match:
+            values.append(match.group(1))
+    return values
+
+
+def display_criterion(value, criteria):
+    """Resolve numeric reviewer IDs back to their canonical criterion text."""
+    raw = text(value).strip()
+    if raw.isdigit():
+        index = int(raw) - 1
+        if 0 <= index < len(criteria):
+            return criteria[index]
+    return raw
+
+
 def patch_package_text(path, replacements):
     temp = path.with_suffix(".patched.docx")
     with zipfile.ZipFile(path, "r") as source, zipfile.ZipFile(temp, "w", zipfile.ZIP_DEFLATED) as target:
@@ -79,6 +100,7 @@ def main():
     output = Path(args.output)
     review = json.loads(Path(args.review_output).read_text(encoding="utf-8"))
     results = json.loads(Path(args.results).read_text(encoding="utf-8"))
+    criteria = criteria_from_markdown(args.criteria)
     ticket = text(review.get("ticket"))
     if not ticket.startswith("TEST2-"):
         raise SystemExit("review-output has an invalid TEST2 ticket")
@@ -129,7 +151,7 @@ def main():
     for index, item in enumerate(outcomes, 1):
         row = summary.add_row().cells
         raw_outcome = text(item.get("outcome")).lower()
-        set_cell(row[0], f"{index}. {text(item.get('criterion'))}")
+        set_cell(row[0], f"{index}. {display_criterion(item.get('criterion'), criteria)}")
         set_cell(row[1], "Y" if raw_outcome == "passed" else "N")
         set_cell(row[2], "Y" if raw_outcome in ("failed", "unverified") else "N")
         set_cell(row[3], "1" if raw_outcome in ("failed", "unverified") else "0")
@@ -151,8 +173,9 @@ def main():
     if column_count not in (5, 6):
         raise SystemExit(f"template case table must have five or six columns, found {column_count}")
     for number, item in enumerate(outcomes, 1):
-        criterion = text(item.get("criterion"))
-        result = result_by_criterion.get(criterion, {})
+        criterion_id = text(item.get("criterion"))
+        criterion = display_criterion(criterion_id, criteria)
+        result = result_by_criterion.get(criterion_id, result_by_criterion.get(criterion, {}))
         row = cases.add_row().cells
         steps_value = result.get("steps_taken", [])
         steps = [steps_value] if isinstance(steps_value, str) else [text(x) for x in steps_value]
