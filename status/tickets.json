@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-16T08:26:44.344Z",
+  "generatedAt": "2026-09-16T11:26:53.261Z",
   "counts": {
     "tickets": 16,
     "handoffs": 2,
@@ -143,11 +143,11 @@
       "qaStatus": "Ready for Testing",
       "qaOutcome": "Blocked",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-16T08:26:44.344Z",
-      "retries": 1,
+      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "updatedAt": "2026-09-16T11:26:53.261Z",
+      "retries": 2,
       "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retryLabel": "Retry 2/3"
     },
     {
       "key": "TEST2-2",
