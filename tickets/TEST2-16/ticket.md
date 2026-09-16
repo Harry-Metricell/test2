@@ -4,9 +4,9 @@
 
 - Jira status: READY FOR TESTING
 - QA outcome: Passed
-- Workflow state: Retry Queued
+- Workflow state: Ready
 - Action owner: Coordinator
-- Next action: Retry 2/3 queued; coordinator will start tester
+- Next action: QA review complete
 - Jira: https://metricell.atlassian.net/browse/TEST2-16
 
 ## Acceptance Criteria
