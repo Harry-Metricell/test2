@@ -1,0 +1,27 @@
+{
+  "handoffId": "handoff-TEST2-19-review",
+  "ticket": "TEST2-19",
+  "criterionOutcomes": [
+    {
+      "criterion": "Open the required V4 launcher URL.",
+      "outcome": "Unverified",
+      "reason": "The PNG directly shows the Metricell Launcher loaded, but it does not show the browser address or otherwise identify the required URL."
+    },
+    {
+      "criterion": "Confirm visible module cards expose Open controls.",
+      "outcome": "Passed",
+      "reason": "The PNG directly shows multiple visible launcher module cards, each with a visible arrow Open control."
+    },
+    {
+      "criterion": "Capture saved PNG evidence of the visible controls.",
+      "outcome": "Passed",
+      "reason": "The declared attempt-003 PNG exists and is non-empty; visual inspection confirms it captures the launcher controls."
+    }
+  ],
+  "overallOutcome": "Unverified",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-19\\screenshots\\attempt-003",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Evidence review completed. The screenshot confirms the launcher and visible Open controls, but the required URL itself is not directly evidenced."
+}
