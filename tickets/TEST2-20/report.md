@@ -1,0 +1,1 @@
+- Blocked: The launcher and required browser URL were visible, but Playwright did not create verifiable PNG evidence in repository-local staging.

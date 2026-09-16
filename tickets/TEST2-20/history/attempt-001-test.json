@@ -1,0 +1,60 @@
+{
+  "handoffId": "handoff-TEST2-20-test",
+  "ticket": "TEST2-20",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Starting from a browser with no preselected page, navigate to the assigned V4 launcher URL. The browser loads a Metricell Launcher page rather than an error or unrelated page.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Navigated with Playwright to https://o2intelligence-v4-dev.metricell.com/.",
+        "Entered harry.piper@metricell.com and clicked Continue once.",
+        "Verified the loaded page URL was https://o2intelligence-v4-dev.metricell.com/launcher and the page was Metricell Launcher.",
+        "Attempted to save and verify repository-local PNG evidence."
+      ],
+      "evidence": [],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "reason": "The Playwright screenshot tool reported success but no PNG was created in repository-local .agent-staging/handoff-TEST2-20-test/screenshots."
+    },
+    {
+      "criterion": "On the loaded page, record the browser-derived current URL in the test result. The recorded URL identifies the required V4 host.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Recorded the browser-derived URL as https://o2intelligence-v4-dev.metricell.com/launcher.",
+        "Attempted to save and verify the required screenshot evidence."
+      ],
+      "evidence": [],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "reason": "The URL was available, but the criterion requires evidence-complete output and the required PNG could not be verified in repository-local staging."
+    },
+    {
+      "criterion": "After the Launcher has loaded, capture and save a non-empty PNG screenshot showing the Metricell Launcher page.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Attempted to capture a PNG using Playwright with scale css and a relative handoff path.",
+        "Verified the required repository-local screenshot folder was not created."
+      ],
+      "evidence": [],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "reason": "Required non-empty PNG evidence could not be verified in repository-local .agent-staging/handoff-TEST2-20-test/screenshots."
+    },
+    {
+      "criterion": "During evidence review, use the recorded browser URL and the saved PNG together to confirm both required facts.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Recorded the required V4 launcher URL and visible launcher state.",
+        "No saved PNG was available for the required paired evidence."
+      ],
+      "evidence": [],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "reason": "The saved PNG component of the required evidence pair could not be created or verified."
+    }
+  ],
+  "conciseReport": "- Blocked: The launcher and required browser URL were visible, but Playwright did not create verifiable PNG evidence in repository-local staging.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-20-test/screenshots",
+  "noOp": false,
+  "reason": "Playwright navigation and launcher verification succeeded, but the screenshot tool reported success without creating files under the configured repository-local .agent-staging output directory.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-16T14:55:25.164Z"
+}
