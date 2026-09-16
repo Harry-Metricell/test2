@@ -1,0 +1,43 @@
+{
+  "handoffId": "handoff-TEST2-19-retry",
+  "ticket": "TEST2-19",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Open the required V4 launcher URL.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Navigated to the required V4 launcher URL with Playwright.",
+        "Entered the required email address and clicked Continue once.",
+        "Waited for the resulting page to load; it remained on Microsoft sign-in."
+      ],
+      "evidence": [],
+      "reason": "Authentication advanced to Microsoft sign-in requiring further authentication. Password, MFA, consent, and authentication-state changes are prohibited."
+    },
+    {
+      "criterion": "Confirm visible module cards expose Open controls.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "The launcher was not reached because authentication remained at Microsoft sign-in."
+      ],
+      "evidence": [],
+      "reason": "Required launcher access was blocked by the prohibited further authentication step."
+    },
+    {
+      "criterion": "Capture saved PNG evidence of the visible controls.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "The launcher was not reached, so no launcher screenshot was captured."
+      ],
+      "evidence": [],
+      "reason": "The required launcher screenshot could not be captured because authentication did not advance to the launcher."
+    }
+  ],
+  "conciseReport": "- Blocked: Authentication advanced to Microsoft sign-in and further authentication is prohibited; the launcher could not be reached or evidenced.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-19-retry/screenshots",
+  "noOp": false,
+  "reason": "Microsoft sign-in required password/MFA after the permitted email-and-Continue sequence; no prohibited authentication action was taken.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-16T14:04:26.063Z"
+}
