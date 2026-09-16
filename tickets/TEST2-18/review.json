@@ -1,0 +1,27 @@
+{
+  "handoffId": "handoff-TEST2-18-review",
+  "ticket": "TEST2-18",
+  "criterionOutcomes": [
+    {
+      "criterion": 1,
+      "outcome": "Passed",
+      "reason": "The selected attempt-003 PNG directly shows the required V4 Metricell Launcher page was opened."
+    },
+    {
+      "criterion": 2,
+      "outcome": "Passed",
+      "reason": "The selected attempt-003 PNG directly shows the Metricell Launcher heading and launcher cards."
+    },
+    {
+      "criterion": 3,
+      "outcome": "Passed",
+      "reason": "The selected attempt-003 evidence file is a non-empty saved PNG showing the launcher."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-18\\screenshots\\attempt-003",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "All three criteria were independently verified from the selected non-empty attempt-003 PNG."
+}
