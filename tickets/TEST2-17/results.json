@@ -2,32 +2,22 @@
   {
     "criterion": "The V4 launcher page is visible at the required launcher URL.",
     "outcome": "Blocked",
-    "steps_taken": [
-      "Navigated to the required V4 launcher URL with Playwright.",
-      "Verified the launcher page in the Playwright snapshot.",
-      "Attempted to save and verify repository-local PNG evidence."
-    ],
+    "steps_taken": [],
     "evidence": [],
-    "reason": "Required Playwright PNG evidence could not be verified at repository-local .agent-staging/handoff-TEST2-17-test/screenshots; the configured screenshot output did not create that folder."
+    "reason": "The running Playwright MCP session still does not write relative screenshots into the configured repository-local .agent-staging folder."
   },
   {
     "criterion": "The launcher displays the available V4 module cards.",
     "outcome": "Blocked",
-    "steps_taken": [
-      "Verified the visible module cards in the Playwright snapshot.",
-      "Attempted to save and verify repository-local PNG evidence."
-    ],
+    "steps_taken": [],
     "evidence": [],
-    "reason": "Required Playwright PNG evidence could not be verified at repository-local .agent-staging/handoff-TEST2-17-test/screenshots."
+    "reason": "The running Playwright MCP session still does not write relative screenshots into the configured repository-local .agent-staging folder."
   },
   {
     "criterion": "Each visible module card has an Open module control.",
     "outcome": "Blocked",
-    "steps_taken": [
-      "Verified each visible module card had an Open module control in the Playwright snapshot.",
-      "Attempted to save and verify repository-local PNG evidence."
-    ],
+    "steps_taken": [],
     "evidence": [],
-    "reason": "Required Playwright PNG evidence could not be verified at repository-local .agent-staging/handoff-TEST2-17-test/screenshots."
+    "reason": "The running Playwright MCP session still does not write relative screenshots into the configured repository-local .agent-staging folder."
   }
 ]

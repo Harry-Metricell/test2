@@ -1,0 +1,35 @@
+{
+  "handoffId": "handoff-TEST2-17-retry",
+  "ticket": "TEST2-17",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "The V4 launcher page is visible at the required launcher URL.",
+      "outcome": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "The running Playwright MCP session still does not write relative screenshots into the configured repository-local .agent-staging folder."
+    },
+    {
+      "criterion": "The launcher displays the available V4 module cards.",
+      "outcome": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "The running Playwright MCP session still does not write relative screenshots into the configured repository-local .agent-staging folder."
+    },
+    {
+      "criterion": "Each visible module card has an Open module control.",
+      "outcome": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "The running Playwright MCP session still does not write relative screenshots into the configured repository-local .agent-staging folder."
+    }
+  ],
+  "conciseReport": "- Blocked: Playwright MCP screenshot output is not available under the configured repository-local staging folder.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-17-retry/screenshots",
+  "noOp": false,
+  "reason": "Restart Codex desktop to reload the corrected Playwright MCP configuration before another tester attempt.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-16T11:26:30.106Z"
+}

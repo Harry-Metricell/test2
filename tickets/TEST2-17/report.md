@@ -1,1 +1,1 @@
-- Blocked: Required repository-local Playwright PNG evidence could not be created or verified.
+- Blocked: Playwright MCP screenshot output is not available under the configured repository-local staging folder.
