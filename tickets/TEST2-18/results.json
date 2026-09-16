@@ -1,17 +1,17 @@
 [
   {
-    "criterion": "Starting from a new browser page, navigate to the assigned V4 launcher URL. The V4 launcher page loads without a navigation error.",
+    "criterion": "Open the required V4 launcher URL.",
     "outcome": "Blocked",
     "steps_taken": [
-      "Navigated to the assigned V4 launcher URL with Playwright.",
+      "Navigated to the required V4 launcher URL with Playwright.",
       "Entered the required email address and clicked Continue once.",
       "Waited for the resulting page to load; it remained on Microsoft sign-in."
     ],
     "evidence": [],
-    "reason": "Authentication advanced to a Microsoft sign-in page requiring further authentication. Password, MFA, consent, and authentication-state changes are prohibited, so the launcher could not be reached or evidenced."
+    "reason": "Authentication advanced to Microsoft sign-in requiring further authentication. Password, MFA, consent, and authentication-state changes are prohibited."
   },
   {
-    "criterion": "On the loaded V4 launcher page, verify that the launcher is visibly rendered and its launcher content is available to the user.",
+    "criterion": "Confirm the launcher is visible.",
     "outcome": "Blocked",
     "steps_taken": [
       "The launcher was not reached because authentication remained at Microsoft sign-in."
@@ -20,7 +20,7 @@
     "reason": "Required launcher access was blocked by the prohibited further authentication step."
   },
   {
-    "criterion": "Capture and save a non-empty PNG screenshot that clearly shows the rendered V4 launcher.",
+    "criterion": "Capture a saved PNG showing the launcher.",
     "outcome": "Blocked",
     "steps_taken": [
       "The launcher was not reached, so no launcher screenshot was captured."

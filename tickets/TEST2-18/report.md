@@ -1,1 +1,1 @@
-- Blocked: Authentication advanced to Microsoft sign-in and further authentication is prohibited by the QA brief; the launcher could not be reached or evidenced.
+- Blocked: Authentication advanced to Microsoft sign-in and further authentication is prohibited; the launcher could not be reached or evidenced.
