@@ -1,14 +1,14 @@
 {
   "ticket": "TEST2-17",
-  "jiraStatus": "READY FOR TESTING",
+  "jiraStatus": "Rejected",
   "qaStatus": "Awaiting Evidence Review",
-  "status": "READY FOR TESTING",
+  "status": "Rejected",
   "retries": 3,
   "retryLimit": 3,
   "criteriaVerified": true,
   "blockedStage": "evidence_review",
   "qaOutcome": "Blocked",
-  "workflowState": "READY FOR TESTING",
+  "workflowState": "Rejected",
   "nextAction": "Create final evidence review handoff",
   "updatedAt": "2026-09-16T11:28:43.111Z"
 }

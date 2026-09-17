@@ -4,13 +4,13 @@
   "summary": "Clean pipeline test 4",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-17",
-    "status": "READY FOR TESTING",
+    "status": "Rejected",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-15T14:48:31.383+0100",
-    "updated": "2026-09-15T14:48:53.798+0100"
+    "updated": "2026-09-17T10:50:07.227+0100"
   },
   "description": "Basic TEST2 pipeline test ticket.\nAcceptance criteria:\nThe V4 launcher page is visible at the required launcher URL.\nThe launcher displays the available V4 module cards.\nEach visible module card has an Open module control.",
   "acceptanceCriteria": [
@@ -28,11 +28,11 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105107",
-    "importedAt": "2026-09-15T14:48:53.798+0100"
+    "importedAt": "2026-09-17T10:50:07.227+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Ready",
+    "jiraStatus": "Rejected",
+    "workflowState": "Blocked",
     "qaStatus": "Awaiting Evidence Review",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",

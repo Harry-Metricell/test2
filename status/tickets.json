@@ -3,10 +3,10 @@
   "generatedAt": "2026-09-17T09:17:35.299Z",
   "counts": {
     "tickets": 20,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 13,
-      "Ready": 6,
+      "Blocked": 14,
+      "Ready": 5,
       "Rejected": 1
     },
     "byQaOutcome": {
@@ -134,20 +134,6 @@
       "retries": 2,
       "retryLimit": 3,
       "retryLabel": "Retry 2/3"
-    },
-    {
-      "key": "TEST2-17",
-      "summary": "Clean pipeline test 4",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Blocked",
-      "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
-      "updatedAt": "2026-09-16T11:28:43.111Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
     },
     {
       "key": "TEST2-18",
@@ -302,6 +288,20 @@
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
+    },
+    {
+      "key": "TEST2-17",
+      "summary": "Clean pipeline test 4",
+      "jiraStatus": "Rejected",
+      "workflowState": "Blocked",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Blocked",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create final evidence review handoff",
+      "updatedAt": "2026-09-16T11:28:43.111Z",
+      "retries": 3,
+      "retryLimit": 3,
+      "retryLabel": "Retry 3/3"
     }
   ]
 }
