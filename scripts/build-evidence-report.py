@@ -10,6 +10,7 @@ import re
 
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
+from PIL import Image
 
 
 def text(value):
@@ -78,6 +79,11 @@ def verify_embedded_images(docx_path, expected_images):
     if missing:
         raise SystemExit(f"generated DOCX is missing {len(missing)} referenced screenshot image(s)")
     return len(expected)
+
+
+def image_size(image_path):
+    with Image.open(image_path) as image:
+        return image.size
 
 
 def outcome_text(outcome):
@@ -251,6 +257,7 @@ def main():
     Path(args.image_manifest).write_text(json.dumps({
         "embeddedEvidenceImages": embedded_count,
         "embeddedFiles": [image.name for image in embedded_images],
+        "embeddedImageSizes": [list(size) for size in sorted({image_size(image) for image in embedded_images})],
     }, indent=2) + "\n", encoding="utf-8")
 
 

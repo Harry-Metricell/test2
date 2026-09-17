@@ -157,6 +157,7 @@ function buildVerifiedReport(key, run, screenshots) {
   const template = process.env.TEST2_TEMPLATE || 'C:\\Users\\harry.piper\\Downloads\\Automated Test Case Template.docx';
   const builder = path.join(repo, 'scripts', 'build-evidence-report.py');
   const renderer = path.join(repo, 'scripts', 'render-docx-to-pdf.ps1');
+  const pdfVerifier = path.join(repo, 'scripts', 'verify-report-pdf.py');
   const reviewFile = path.join(run, 'review-output.json');
   const docx = path.join(run, `report-generated-${process.pid}.docx`);
   const pdf = path.join(run, `report-generated-${process.pid}.pdf`);
@@ -169,6 +170,7 @@ function buildVerifiedReport(key, run, screenshots) {
   }
   execFileSync('powershell.exe', ['-NoProfile', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(pdf)) fail('Template PDF conversion completed without a non-empty PDF');
+  execFileSync(python, [pdfVerifier, '--pdf', pdf, '--image-manifest', imageManifest], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   return { docx, pdf };
 }
 
