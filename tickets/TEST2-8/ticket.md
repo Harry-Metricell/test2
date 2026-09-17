@@ -4,9 +4,9 @@
 
 - Jira status: Rejected
 - QA outcome: Unverified
-- Workflow state: Rejected
+- Workflow state: Blocked
 - Action owner: Coordinator
-- Next action: QA review complete
+- Next action: Waiting for Jira status: READY FOR TESTING
 - Jira: https://metricell.atlassian.net/browse/TEST2-8
 
 ## Acceptance Criteria

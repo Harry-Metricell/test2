@@ -29,14 +29,14 @@
   "status": {
     "jiraStatus": "Rejected",
     "workflowState": "Blocked",
-    "qaStatus": "Blocked",
+    "qaStatus": "Awaiting Evidence Review",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required after retry limit",
+    "nextAction": "Create final evidence review handoff",
     "reviewState": "Not Reviewed",
     "retries": 3,
-    "blockedStage": "qa",
+    "blockedStage": "evidence_review",
     "updatedAt": "2026-09-10T08:37:52.778Z",
     "criteriaVerified": true
   }

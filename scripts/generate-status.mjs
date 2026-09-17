@@ -159,11 +159,11 @@ function artifactOutcome(dir, localStatus) {
   const review = readJson(path.join(dir, 'review.json'), null);
   const results = readJson(path.join(dir, 'results.json'), null);
   const attempts = fs.existsSync(path.join(dir, 'history'))
-    ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\\d+-test\\.json$/i.test(name)).sort()
+    ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\d+-test\.json$/i.test(name)).sort()
     : [];
   const latestAttempt = attempts.length ? readJson(path.join(dir, 'history', attempts.at(-1)), null) : null;
-  const latestNumber = Number(latestAttempt?.historyAttempt || attempts.at(-1)?.match(/attempt-(\\d+)-test/i)?.[1] || 0);
-  const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\\d+)/i)?.[1] || 0);
+  const latestNumber = Number(latestAttempt?.historyAttempt || attempts.at(-1)?.match(/attempt-(\d+)-test/i)?.[1] || 0);
+  const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\d+)/i)?.[1] || 0);
   // Any newer tester history supersedes an older review, including a review
   // blocked only because its report/PDF could not be generated.
   const reviewIsStale = latestNumber > reviewNumber;
@@ -191,7 +191,10 @@ function mergeStatus(ticket, localStatus) {
   const jiraGateBlocked = !jiraReady && ['Ready for Testing', 'Awaiting Evidence Review', 'Blocked'].includes(qaStatus);
   const projectedWorkflowState = jiraGateBlocked ? 'Blocked' : workflowState;
   const retryExhausted = retries >= retryLimit && ['blocked', 'failed'].includes(String(localStatus.qaOutcome || localStatus.outcome || '').trim().toLowerCase());
-  const nextAction = retryExhausted
+  const finalReviewPending = qaStatus === 'Awaiting Evidence Review' && localStatus.blockedStage === 'evidence_review';
+  const nextAction = finalReviewPending
+    ? 'Create final evidence review handoff'
+    : retryExhausted
     ? 'Manual review required after retry limit'
     : qaStatus === 'Evidence Reviewed'
     ? 'QA review complete'
@@ -290,25 +293,39 @@ function normalizeTicket(dirName) {
   if (derivedOutcome) localStatus = { ...localStatus, qaOutcome: derivedOutcome };
   const review = readJson(path.join(dir, 'review.json'), null);
   const attempts = fs.existsSync(path.join(dir, 'history'))
-    ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\\d+-test\\.json$/i.test(name)).sort()
+    ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\d+-test\.json$/i.test(name)).sort()
     : [];
   const latestAttempt = attempts.length ? readJson(path.join(dir, 'history', attempts.at(-1)), null) : null;
-  const latestNumber = Number(latestAttempt?.historyAttempt || attempts.at(-1)?.match(/attempt-(\\d+)-test/i)?.[1] || 0);
-  const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\\d+)/i)?.[1] || 0);
-  // A newer published test supersedes an older review, including a block caused by report/PDF publication.
+  const latestNumber = Number(latestAttempt?.historyAttempt || attempts.at(-1)?.match(/attempt-(\d+)-test/i)?.[1] || 0);
+  const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\d+)/i)?.[1] || 0);
+  // A newer published test supersedes an older review.  A blocked final
+  // attempt still needs evidence review so the user receives a report.
   if (latestAttempt && latestNumber > reviewNumber) {
-    localStatus = { ...localStatus, qaStatus: latestAttempt.qaStatus || 'Awaiting Evidence Review', workflowState: ticket.jira.status || localStatus.workflowState, blockedStage: null, nextAction: 'Create evidence review handoff' };
+    const exhausted = Number(localStatus.retries || 0) >= Number(localStatus.retryLimit || 3);
+    const needsFinalReview = exhausted;
+    localStatus = {
+      ...localStatus,
+      qaStatus: needsFinalReview ? 'Awaiting Evidence Review' : (latestAttempt.qaStatus || 'Awaiting Evidence Review'),
+      workflowState: ticket.jira.status || localStatus.workflowState,
+      blockedStage: needsFinalReview ? 'evidence_review' : null,
+      nextAction: needsFinalReview ? 'Create final evidence review handoff' : 'Create evidence review handoff'
+    };
     if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
   }
   // A published review is the authoritative completion signal for the review
   // stage. Reconcile stale publisher/bundler status before generating handoffs.
-  if (review?.qaStatus === 'Evidence Reviewed' && latestNumber <= reviewNumber) {
+  const reviewHasReport = review?.noOp !== true
+    && reviewNumber >= latestNumber
+    && fs.existsSync(path.join(dir, 'report.pdf'))
+    && fs.statSync(path.join(dir, 'report.pdf')).size > 0;
+  if (reviewHasReport) {
+    const reviewBlocked = ['blocked', 'failed'].includes(String(review.overallOutcome || review.qaStatus || '').trim().toLowerCase());
     localStatus = {
       ...localStatus,
-      qaStatus: 'Evidence Reviewed',
-      workflowState: ticket.jira.status || localStatus.workflowState,
-      blockedStage: null,
-      nextAction: 'QA review complete'
+      qaStatus: reviewBlocked ? 'Blocked' : 'Evidence Reviewed',
+      workflowState: reviewBlocked ? 'Blocked' : (ticket.jira.status || localStatus.workflowState),
+      blockedStage: reviewBlocked ? 'reviewed' : null,
+      nextAction: reviewBlocked ? 'Manual review required; final evidence report published' : 'QA review complete'
     };
     if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
   }
@@ -367,15 +384,28 @@ function normalizeTicket(dirName) {
     };
     if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
   }
-  // Exhausted blocked/failed tickets are terminal until human review.
-  if (retries >= retryLimit && ['blocked', 'failed'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase())) {
-    localStatus = {
-      ...localStatus,
-      qaStatus: 'Blocked',
-      workflowState: 'Blocked',
-      blockedStage: localStatus.blockedStage || 'testing',
-      nextAction: 'Manual review required after retry limit'
-    };
+  // A final blocked test is not terminal until evidence review has produced its
+  // report.  Once that report exists, it is terminal for automatic testing.
+  const exhaustedFinalBlock = retries >= retryLimit && (
+    ['blocked', 'failed'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase())
+    || String(latestAttempt?.qaStatus || '').trim().toLowerCase() === 'blocked'
+  );
+  if (exhaustedFinalBlock) {
+    localStatus = reviewHasReport
+      ? {
+          ...localStatus,
+          qaStatus: 'Blocked',
+          workflowState: 'Blocked',
+          blockedStage: 'reviewed',
+          nextAction: 'Manual review required; final evidence report published'
+        }
+      : {
+          ...localStatus,
+          qaStatus: 'Awaiting Evidence Review',
+          workflowState: ticket.jira.status || localStatus.workflowState,
+          blockedStage: 'evidence_review',
+          nextAction: 'Create final evidence review handoff'
+        };
     if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
   }
   return { ...ticket, status: mergeStatus(ticket, localStatus) };
@@ -418,9 +448,21 @@ function handoffFor(ticket) {
   const nextAction = String(ticket.status.nextAction || '').trim().toLowerCase();
   const retries = Number(ticket.status.retries || 0);
   const retryLimit = Number(ticket.status.retryLimit || 3);
+  const historyDir = path.join(ticketsDir, ticket.key, 'history');
+  const attempts = fs.existsSync(historyDir)
+    ? fs.readdirSync(historyDir).filter((name) => /^attempt-\d+-test\.json$/i.test(name)).sort()
+    : [];
+  const latestAttempt = Number(attempts.at(-1)?.match(/attempt-(\d+)-test/i)?.[1] || 0);
+  const review = readJson(path.join(ticketsDir, ticket.key, 'review.json'), null);
+  const reviewedAttempt = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\d+)/i)?.[1] || 0);
+  const reviewHasReport = review?.noOp !== true
+    && reviewedAttempt >= latestAttempt
+    && fs.existsSync(path.join(ticketsDir, ticket.key, 'report.pdf'))
+    && fs.statSync(path.join(ticketsDir, ticket.key, 'report.pdf')).size > 0;
   if (ticket.status.criteriaVerified !== true) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
+      handoffVersion: `${ticket.key}:criteria_conversion:${ticket.jira.updated || ticket.source.importedAt || 'current'}`,
       action: 'criteria_conversion',
       brief: 'docs/briefs/criteria-conversion.md',
       owner: 'criteria-converter',
@@ -429,9 +471,16 @@ function handoffFor(ticket) {
       expectedOutput: { path: `tickets/${ticket.key}/criteria.md`, schema: 'v4-qa-criteria.v1' }
     };
   }
-  if (jiraReadyForTesting(ticket) && ticket.status.qaStatus === 'Awaiting Evidence Review' && fs.existsSync(path.join(ticketsDir, ticket.key, 'results.json'))) {
+  const needsReview = jiraReadyForTesting(ticket)
+    && fs.existsSync(path.join(ticketsDir, ticket.key, 'results.json'))
+    && latestAttempt > reviewedAttempt
+    && !reviewHasReport
+    && (ticket.status.qaStatus === 'Awaiting Evidence Review' || retries >= retryLimit);
+  if (needsReview) {
     return {
-      handoffId: `handoff-${ticket.key}-review`,
+      handoffId: `handoff-${ticket.key}-review-attempt-${String(latestAttempt).padStart(3, '0')}`,
+      handoffVersion: `${ticket.key}:evidence_review:${latestAttempt}`,
+      attempt: latestAttempt,
       action: 'evidence_review',
       brief: 'docs/briefs/evidence-review.md',
       owner: 'evidence-reviewer',
@@ -445,10 +494,13 @@ function handoffFor(ticket) {
     && (qaStatus === 'ready for testing' || qaStatus === 'retry queued' || workflowState === 'retry queued' || nextAction === 'create testing handoff')
     && criteriaReady(ticket);
   if (testingEligible) {
+    const nextAttempt = Math.max(1, latestAttempt + 1);
     return {
       handoffId: workflowState === 'retry queued'
-        ? `handoff-${ticket.key}-retry`
-        : `handoff-${ticket.key}-test`,
+        ? `handoff-${ticket.key}-retry-attempt-${String(nextAttempt).padStart(3, '0')}`
+        : `handoff-${ticket.key}-test-attempt-${String(nextAttempt).padStart(3, '0')}`,
+      handoffVersion: `${ticket.key}:test_ticket:${nextAttempt}`,
+      attempt: nextAttempt,
       action: 'test_ticket',
       brief: 'docs/briefs/qa-testing.md',
       owner: 'ticket-tester',

@@ -6,7 +6,7 @@
 - QA outcome: Blocked
 - Workflow state: Blocked
 - Action owner: Coordinator
-- Next action: Manual review required after retry limit
+- Next action: Create final evidence review handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-6
 
 ## Acceptance Criteria

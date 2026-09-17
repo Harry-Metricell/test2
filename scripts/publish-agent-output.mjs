@@ -208,7 +208,27 @@ const outputType = files[0].endsWith('criteria-output.json') || output.criteriaM
   : 'review-output.json';
 const key = ticketKey(output.ticket);
 log('processing', { ticket: key, handoffId: output.handoffId, outputType });
-if (output.noOp === true) { log('worker_no_op', { ticket: key }); process.exit(0); }
+if (output.noOp === true) {
+  // A no-op is never publishable work.  Removing it prevents a stale worker
+  // from repeatedly masking a later real output in the same handoff folder.
+  log('worker_no_op', { ticket: key, handoffId: output.handoffId });
+  cleanupRun(run, directFile);
+  process.exit(0);
+}
+const expectedAction = outputType === 'criteria-output.json'
+  ? 'criteria_conversion'
+  : outputType === 'test-output.json'
+    ? 'test_ticket'
+    : 'evidence_review';
+if (typeof output.handoffVersion !== 'string' || !output.handoffVersion) fail('handoffVersion is missing');
+const liveQueue = readJson(path.join(repo, 'status', 'handoffs.json'));
+const liveHandoff = (liveQueue.handoffs || []).find((handoff) => handoff.handoffId === output.handoffId);
+if (!liveHandoff
+  || liveHandoff.ticket !== key
+  || liveHandoff.action !== expectedAction
+  || liveHandoff.handoffVersion !== output.handoffVersion) {
+  fail(`Stale or mismatched worker output for ${output.handoffId}`);
+}
 const ticketDir = path.join(repo, 'tickets', key);
 const statusFile = path.join(ticketDir, 'status.json');
 if (!fs.existsSync(statusFile)) fail(`Missing status file for ${key}`);
@@ -274,36 +294,31 @@ if (outputType === 'criteria-output.json') {
   }
   changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/history/${path.basename(historyFile)}`, `tickets/${key}/status.json`);
 } else {
-  if (!Array.isArray(output.criterionOutcomes)) fail('criterionOutcomes is missing');
+  if (!Array.isArray(output.criterionOutcomes) || output.criterionOutcomes.length === 0) fail('criterionOutcomes is missing');
+  if (output.criterionOutcomes.some((item) => !item || typeof item.criterion !== 'string' || typeof item.outcome !== 'string' || typeof item.reason !== 'string')) {
+    fail('criterionOutcomes has an invalid item');
+  }
   if (!fs.existsSync(path.join(ticketDir, 'results.json'))) fail('Cannot publish evidence review before tester results.json is present');
   const review = { ...output };
   let generatedDocx = path.join(run, 'report.docx');
   let generatedPdf = path.join(run, 'report.pdf');
-  try {
-    const results = readJson(path.join(ticketDir, 'results.json'));
-    const evidencePath = (Array.isArray(results) ? results : [])
-      .flatMap(item => Array.isArray(item?.evidence) ? item.evidence : [])
-      .map(file => String(file))
-      .find(file => /screenshots[\\/]attempt-[0-9]+[\\/]/i.test(file));
-    const attemptMatch = evidencePath?.match(/screenshots[\\/]((?:attempt)-[0-9]+)/i);
-    const screenshots = attemptMatch
-      ? path.join(evidenceRoot, key, 'screenshots', attemptMatch[1])
-      : String(output.evidenceFolder || '').match(/[\\/]attempt-[0-9]+(?:[\\/]|$)/i)
-        ? String(output.evidenceFolder)
-        : '';
-    if (!nonEmpty(generatedPdf)) {
-      if (!screenshots || !pngEvidence(screenshots)) fail('The selected evidence folder contains no non-empty PNG files');
-      writeJson(path.join(run, 'review-output.json'), review);
-      const built = buildVerifiedReport(key, run, screenshots);
-      generatedDocx = built.docx;
-      generatedPdf = built.pdf;
-    }
-  } catch (error) {
-    review.overallOutcome = 'Blocked';
-    review.qaStatus = 'Blocked';
-    review.reportPath = '';
-    review.reason = `Report generation or PDF verification failed: ${error.message}`;
-  }
+  const results = readJson(path.join(ticketDir, 'results.json'));
+  const evidencePath = (Array.isArray(results) ? results : [])
+    .flatMap(item => Array.isArray(item?.evidence) ? item.evidence : [])
+    .map(file => String(file))
+    .find(file => /screenshots[\\/]attempt-[0-9]+[\\/]/i.test(file));
+  const attemptMatch = evidencePath?.match(/screenshots[\\/]((?:attempt)-[0-9]+)/i);
+  const screenshots = attemptMatch
+    ? path.join(evidenceRoot, key, 'screenshots', attemptMatch[1])
+    : String(output.evidenceFolder || '').match(/[\\/]attempt-[0-9]+(?:[\\/]|$)/i)
+      ? String(output.evidenceFolder)
+      : '';
+  if (!screenshots || !pngEvidence(screenshots)) fail('The selected evidence folder contains no non-empty PNG files');
+  writeJson(path.join(run, 'review-output.json'), review);
+  const built = buildVerifiedReport(key, run, screenshots);
+  generatedDocx = built.docx;
+  generatedPdf = built.pdf;
+  if (!nonEmpty(generatedPdf)) fail('Evidence review report PDF is missing after generation');
   writeJson(path.join(ticketDir, 'review.json'), review);
   status.qaStatus = review.qaStatus || 'Evidence Reviewed';
   writeJson(statusFile, status);
