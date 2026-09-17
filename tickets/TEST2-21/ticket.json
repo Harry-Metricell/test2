@@ -1,0 +1,490 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "105313",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/105313",
+  "key": "TEST2-21",
+  "fields": {
+    "summary": "real ticket",
+    "subtasks": [],
+    "created": "2026-09-17T09:43:14.837+0100",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "As a SmartTools user",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "39ac1e729fff"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "I want to filter Beacons by assigned group and profile",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "495bbb11bd2e"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "So that I can focus the map on the devices relevant to my investigation",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "ce51b34526a8"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue/Change Description:",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "55b9500773bf"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Provide group and profile filter controls using the available Beacon groups and profiles returned by the Beacon data service. A selected group or profile filters the map. When both are selected, only Beacons matching both selections are displayed."
+            }
+          ],
+          "attrs": {
+            "localId": "aea6ea344842"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "This story covers group/profile filtering for the map. Side-panel Beacon list filtering and synchronisation are owned by VM2ST-71."
+            }
+          ],
+          "attrs": {
+            "localId": "78f59641c56c"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Status filtering, search/sort, favourites, geofencing, and report functionality are out of scope."
+            }
+          ],
+          "attrs": {
+            "localId": "6b00fcda357f"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance Criteria:",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "4898a14e6291"
+          }
+        },
+        {
+          "type": "bulletList",
+          "content": [
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "f33a510a21f2"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given the Beacon view loads, when filter options are retrieved, then the available Beacon groups and profiles are shown without duplicate option labels."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "18697b9fac6b"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "3580dd36c00b"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given a user selects a group, when the filter is applied, then the map shows only Beacons assigned to that group."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "9567a10c721a"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "4c0393f6449c"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given a user selects a profile, when the filter is applied, then the map shows only Beacons assigned to that profile."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "dca1f81a9b8d"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "421dec28215f"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given a user selects both a group and a profile, when the filters are applied, then the map shows only Beacons that match both selections."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "d9ab9ac893b8"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "ffd7ec139c50"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given the selected filters return no matching Beacons, when the view refreshes, then no map markers are shown while the map and filters remain usable."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "0ff17d061b28"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "attrs": {
+                "localId": "ee4f0bb23364"
+              },
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Given a user changes either filter, when the refreshed results are displayed, then previous map results are not retained."
+                    }
+                  ],
+                  "attrs": {
+                    "localId": "2aa94ec6b271"
+                  }
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "f268b89e6442"
+          }
+        },
+        {
+          "type": "rule",
+          "attrs": {
+            "localId": "94c74d9a6a84"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Object Change List:",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "ba884b372a70"
+          }
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2,
+            "localId": "67fb4c00a44f"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Merge Requests"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Docusaurus Requests",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "b391fec2ff2a"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Merge to Master:"
+            }
+          ],
+          "attrs": {
+            "localId": "8c89c642cb9d"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Application Merge Requests",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "e008b799c57a"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Merge to test:"
+            }
+          ],
+          "attrs": {
+            "localId": "b84a0a9d129b"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Merge to main:"
+            }
+          ],
+          "attrs": {
+            "localId": "43ab77111cc5"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Project Upgrader Merge Requests",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "0e76323c2da8"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Feature folder merge:"
+            }
+          ],
+          "attrs": {
+            "localId": "9de5dfbfb825"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Version folder Merge:"
+            }
+          ],
+          "attrs": {
+            "localId": "cd3bbffc76fa"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Database Merge Requests",
+              "marks": [
+                {
+                  "type": "strong"
+                }
+              ]
+            }
+          ],
+          "attrs": {
+            "localId": "89c2e3760ec6"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Merge to staging:"
+            }
+          ],
+          "attrs": {
+            "localId": "9a2fddcc1efb"
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Merge to main:"
+            }
+          ],
+          "attrs": {
+            "localId": "150b9edc7776"
+          }
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-09-17T09:44:04.402+0100",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  }
+}\n

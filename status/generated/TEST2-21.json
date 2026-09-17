@@ -1,0 +1,62 @@
+{
+  "key": "TEST2-21",
+  "id": "105313",
+  "summary": "real ticket",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-21",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-17T09:43:14.837+0100",
+    "updated": "2026-09-17T09:44:04.402+0100"
+  },
+  "description": "As a SmartTools user\nI want to filter Beacons by assigned group and profile\nSo that I can focus the map on the devices relevant to my investigation\nIssue/Change Description:\nProvide group and profile filter controls using the available Beacon groups and profiles returned by the Beacon data service. A selected group or profile filters the map. When both are selected, only Beacons matching both selections are displayed.\nThis story covers group/profile filtering for the map. Side-panel Beacon list filtering and synchronisation are owned by VM2ST-71.\nStatus filtering, search/sort, favourites, geofencing, and report functionality are out of scope.\nAcceptance Criteria:\nGiven the Beacon view loads, when filter options are retrieved, then the available Beacon groups and profiles are shown without duplicate option labels.\nGiven a user selects a group, when the filter is applied, then the map shows only Beacons assigned to that group.\nGiven a user selects a profile, when the filter is applied, then the map shows only Beacons assigned to that profile.\nGiven a user selects both a group and a profile, when the filters are applied, then the map shows only Beacons that match both selections.\nGiven the selected filters return no matching Beacons, when the view refreshes, then no map markers are shown while the map and filters remain usable.\nGiven a user changes either filter, when the refreshed results are displayed, then previous map results are not retained.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
+  "acceptanceCriteria": [
+    "Given the Beacon view loads, when filter options are retrieved, then the available Beacon groups and profiles are shown without duplicate option labels.",
+    "Given a user selects a group, when the filter is applied, then the map shows only Beacons assigned to that group.",
+    "Given a user selects a profile, when the filter is applied, then the map shows only Beacons assigned to that profile.",
+    "Given a user selects both a group and a profile, when the filters are applied, then the map shows only Beacons that match both selections.",
+    "Given the selected filters return no matching Beacons, when the view refreshes, then no map markers are shown while the map and filters remain usable.",
+    "Given a user changes either filter, when the refreshed results are displayed, then previous map results are not retained.",
+    "Merge Requests",
+    "Docusaurus Requests",
+    "Merge to Master:",
+    "Application Merge Requests",
+    "Merge to test:",
+    "Merge to main:",
+    "Project Upgrader Merge Requests",
+    "Feature folder merge:",
+    "Version folder Merge:",
+    "Database Merge Requests",
+    "Merge to staging:",
+    "Merge to main:"
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-21/ticket.json",
+    "criteria": "tickets/TEST2-21/criteria.md",
+    "status": "tickets/TEST2-21/status.json",
+    "screenshots": "tickets/TEST2-21/screenshots/",
+    "reports": "tickets/TEST2-21/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105313",
+    "importedAt": "2026-09-17T09:44:04.402+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-17T09:44:04.402+0100",
+    "criteriaVerified": false
+  }
+}
