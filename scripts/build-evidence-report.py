@@ -3,6 +3,7 @@ import argparse
 import json
 import shutil
 import zipfile
+import hashlib
 from datetime import datetime
 from pathlib import Path
 import re
@@ -44,6 +45,39 @@ def screenshot_paths(item, all_screenshots):
     names = item.get("evidence", []) if isinstance(item, dict) else []
     wanted = {Path(text(name)).name for name in names}
     return [image for image in all_screenshots if image.name in wanted]
+
+
+def result_for_outcome(outcome, results, result_by_criterion, criteria, position):
+    """Match a reviewer outcome to its tester result without dropping evidence.
+
+    Reviewers normally return the complete criterion text, while tester output
+    normally uses its ordinal number. Both sources are ordered against the
+    canonical criteria, so the ordinal fallback is safe only after the exact
+    text forms have been attempted.
+    """
+    criterion_id = text(outcome.get("criterion"))
+    criterion = display_criterion(criterion_id, criteria)
+    exact = result_by_criterion.get(criterion_id) or result_by_criterion.get(criterion)
+    if exact:
+        return exact
+    if position < len(results) and isinstance(results[position], dict):
+        return results[position]
+    raise SystemExit(f"review criterion {position + 1} has no matching tester result")
+
+
+def verify_embedded_images(docx_path, expected_images):
+    """Prove each referenced PNG was added to the DOCX, not merely available."""
+    expected = {hashlib.sha256(Path(image).read_bytes()).hexdigest() for image in expected_images}
+    with zipfile.ZipFile(docx_path) as package:
+        embedded = {
+            hashlib.sha256(package.read(name)).hexdigest()
+            for name in package.namelist()
+            if name.startswith("word/media/")
+        }
+    missing = expected - embedded
+    if missing:
+        raise SystemExit(f"generated DOCX is missing {len(missing)} referenced screenshot image(s)")
+    return len(expected)
 
 
 def outcome_text(outcome):
@@ -94,6 +128,7 @@ def main():
     parser.add_argument("--results", required=True)
     parser.add_argument("--screenshots", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--image-manifest", required=True)
     args = parser.parse_args()
 
     template = Path(args.template)
@@ -172,10 +207,11 @@ def main():
     column_count = len(cases.columns)
     if column_count not in (5, 6):
         raise SystemExit(f"template case table must have five or six columns, found {column_count}")
+    embedded_images = []
     for number, item in enumerate(outcomes, 1):
         criterion_id = text(item.get("criterion"))
         criterion = display_criterion(criterion_id, criteria)
-        result = result_by_criterion.get(criterion_id, result_by_criterion.get(criterion, {}))
+        result = result_for_outcome(item, results, result_by_criterion, criteria, number - 1)
         row = cases.add_row().cells
         steps_value = result.get("steps_taken", [])
         steps = [steps_value] if isinstance(steps_value, str) else [text(x) for x in steps_value]
@@ -202,11 +238,20 @@ def main():
             ]
         for index, value in enumerate(values):
             set_cell(row[index], value)
-        for image in screenshot_paths(result, screenshots):
+        criterion_images = screenshot_paths(result, screenshots)
+        if not criterion_images and text(result.get("outcome")).lower() != "blocked":
+            raise SystemExit(f"criterion {number} has no embeddable screenshot evidence")
+        for image in criterion_images:
             add_image_row(cases, [image])
+            embedded_images.append(image)
 
     doc.save(str(output))
     patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review", "[Version]": "1.0", "[dd/mm/yyyy]": datetime.now().strftime("%d/%m/%Y"), "[Author]": "TEST2 QA Automation", "[Initial automated-test template]": "Generated from TEST2 evidence review"})
+    embedded_count = verify_embedded_images(output, embedded_images)
+    Path(args.image_manifest).write_text(json.dumps({
+        "embeddedEvidenceImages": embedded_count,
+        "embeddedFiles": [image.name for image in embedded_images],
+    }, indent=2) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":
