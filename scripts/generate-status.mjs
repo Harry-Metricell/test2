@@ -113,11 +113,16 @@ function flattenAdf(node) {
 function acceptanceCriteria(descriptionText) {
   const marker = /Acceptance Criteria:\s*/i.exec(descriptionText);
   if (marker) {
-    return descriptionText
+    const afterMarker = descriptionText
       .slice(marker.index + marker[0].length)
       .split(/\n+/)
       .map((line) => line.replace(/\\n/g, '\n').replace(/^[-*]\s*/, '').trim())
-      .filter((line) => line && !/^Object Change List:/i.test(line));
+      .filter(Boolean);
+    // Jira's flattened rich text contains all later sections.  Criteria end at
+    // the object-change section; treating its headings as tests creates
+    // unrelated, untestable checklist items.
+    const end = afterMarker.findIndex((line) => /^Object Change List:/i.test(line));
+    return end === -1 ? afterMarker : afterMarker.slice(0, end);
   }
 
   const concise = descriptionText.replace(/\s+/g, ' ').trim();
