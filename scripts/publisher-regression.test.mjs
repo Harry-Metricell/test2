@@ -10,7 +10,7 @@ const publisher = fileURLToPath(new URL('./publish-agent-output.mjs', import.met
 const git = process.env.TEST2_GIT;
 if (!git) throw new Error('Set TEST2_GIT to the absolute Git executable path');
 
-test('publishes new remote tickets from stale dirty Desktop; rejects absent PNGs', () => {
+test('publishes new remote tickets from stale dirty Desktop; rejects incomplete evidence', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'publisher regression '));
   const remote = path.join(root, 'remote.git');
   const seed = path.join(root, 'seed');
@@ -44,12 +44,12 @@ test('publishes new remote tickets from stale dirty Desktop; rejects absent PNGs
     write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-test-attempt-001', handoffVersion: 'TEST2-99:test_ticket:1', ticket: 'TEST2-99', action: 'test_ticket' }] }));
     g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue TEST2 test'); g(seed, 'push');
     const testStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-test-attempt-001');
-    write(path.join(testStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-001', handoffVersion: 'TEST2-99:test_ticket:1', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [{ outcome: 'Passed', evidence: ['missing.png'] }], conciseReport: 'Passed' }));
+    write(path.join(testStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-001', handoffVersion: 'TEST2-99:test_ticket:1', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [{ outcome: 'Passed', evidence: ['criterion-1-initial.png'] }], conciseReport: 'Passed' }));
     const before = g(seed, 'rev-parse', 'origin/main');
-    const second = run(); assert.equal(second.status, 1); assert.match(second.stderr, /Missing staged PNG/);
+    const second = run(); assert.equal(second.status, 1); assert.match(second.stderr, /needs its own initial and final PNG evidence/);
     g(seed, 'fetch'); assert.equal(g(seed, 'rev-parse', 'origin/main'), before);
     assert.equal(fs.existsSync(path.join(testStage, 'test-output.json')), true);
-    assert.match(fs.readFileSync(path.join(root, 'publisher.log'), 'utf8'), /Missing staged PNG/);
+    assert.match(fs.readFileSync(path.join(root, 'publisher.log'), 'utf8'), /needs its own initial and final PNG evidence/);
     const staleStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-stale');
     write(path.join(staleStage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-stale', handoffVersion: 'TEST2-99:criteria_conversion:stale', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] Stale output.', qaStatus: 'Ready for Testing', noOp: false }));
     const stale = run(); assert.equal(stale.status, 1); assert.match(stale.stderr, /Stale or mismatched worker output/);

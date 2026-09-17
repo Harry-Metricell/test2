@@ -260,10 +260,23 @@ if (outputType === 'criteria-output.json') {
   const attemptEvidenceDir = path.join(evidenceRoot, key, 'screenshots', attemptName);
   // Validate each referenced file before publishing status or assigning paths.
   if (!Array.isArray(output.results)) fail('results must be an array');
-  for (const item of output.results) {
-    if (item.outcome === 'Passed' && !item.evidence?.length) fail('Passed criterion has no evidence');
-    for (const file of item.evidence || []) {
+  const evidenceOwners = new Map();
+  for (const [index, item] of output.results.entries()) {
+    const outcome = String(item?.outcome || item?.status || '');
+    const evidence = Array.isArray(item?.evidence) ? item.evidence : [];
+    if (outcome !== 'Blocked' && evidence.length < 2) {
+      fail(`${outcome || 'Unspecified'} criterion ${index + 1} needs its own initial and final PNG evidence`);
+    }
+    const criterionPrefix = `criterion-${index + 1}-`;
+    for (const file of evidence) {
       const name = path.win32.basename(String(file));
+      if (!name.toLowerCase().startsWith(criterionPrefix)) {
+        fail(`Criterion ${index + 1} evidence must use its own ${criterionPrefix} filename: ${name}`);
+      }
+      if (evidenceOwners.has(name)) {
+        fail(`PNG evidence is reused by criteria ${evidenceOwners.get(name) + 1} and ${index + 1}: ${name}`);
+      }
+      evidenceOwners.set(name, index);
       const source = path.join(run, 'screenshots', name);
       if (!/\.png$/i.test(name) || !nonEmpty(source)) fail(`Missing staged PNG: ${source}`);
       const header = fs.readFileSync(source).subarray(0, 8);
