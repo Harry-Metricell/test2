@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-17T09:17:35.299Z",
   "counts": {
     "tickets": 20,
-    "handoffs": 2,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 13,
       "Ready": 6,
@@ -196,10 +196,10 @@
       "summary": "real ticket",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Unverified",
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-17T09:17:35.299Z",
       "retries": 3,
       "retryLimit": 3,

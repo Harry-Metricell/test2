@@ -18,23 +18,6 @@
         "path": "tickets/TEST2-17/review.json",
         "schema": "v4-qa-review.v1"
       }
-    },
-    {
-      "handoffId": "handoff-TEST2-21-review-attempt-003",
-      "handoffVersion": "TEST2-21:evidence_review:3",
-      "attempt": 3,
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-21",
-      "inputs": {
-        "results": "tickets/TEST2-21/results.json",
-        "generated": "status/generated/TEST2-21.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-21/review.json",
-        "schema": "v4-qa-review.v1"
-      }
     }
   ]
 }

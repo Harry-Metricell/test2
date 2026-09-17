@@ -36,14 +36,14 @@
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Awaiting Evidence Review",
+    "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Unverified",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create final evidence review handoff",
+    "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
     "retries": 3,
-    "blockedStage": "evidence_review",
+    "blockedStage": null,
     "updatedAt": "2026-09-17T09:17:35.299Z",
     "criteriaVerified": true
   }
