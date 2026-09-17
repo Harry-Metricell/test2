@@ -1,0 +1,93 @@
+{
+  "handoffId": "handoff-TEST2-21-retry",
+  "ticket": "TEST2-21",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": 1,
+      "outcome": "Passed",
+      "steps_taken": [
+        "Opened launcher",
+        "Opened GIS",
+        "Added Beacons layer",
+        "Opened Configure Beacons",
+        "Retrieved Group options"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-1-initial-launcher.png",
+        "screenshots/attempt-003/criterion-1-beacon-view-initial.png",
+        "screenshots/attempt-003/criterion-1-before-configure.png",
+        "screenshots/attempt-003/criterion-1-after-configure.png"
+      ],
+      "reason": "Group and Profile controls were visible; Group options were retrieved with distinct labels."
+    },
+    {
+      "criterion": 2,
+      "outcome": "Unverified",
+      "steps_taken": [
+        "Selected Retail Store Trial in Group",
+        "Applied filter",
+        "Observed refreshed Beacon view"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-2-before-apply.png",
+        "screenshots/attempt-003/criterion-2-after-apply.png"
+      ],
+      "reason": "The refreshed view showed 'No Beacons are available', so matching Beacon assignment could not be directly verified."
+    },
+    {
+      "criterion": 3,
+      "outcome": "Unverified",
+      "steps_taken": [
+        "Opened Beacon configuration"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-1-after-configure.png"
+      ],
+      "reason": "Profile control was visible, but no independent profile-filter result was captured."
+    },
+    {
+      "criterion": 4,
+      "outcome": "Unverified",
+      "steps_taken": [
+        "Opened Beacon configuration"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-1-after-configure.png"
+      ],
+      "reason": "Both controls were visible, but no independent combined-filter result was captured."
+    },
+    {
+      "criterion": 5,
+      "outcome": "Passed",
+      "steps_taken": [
+        "Selected a group producing no matching Beacons",
+        "Applied filter",
+        "Observed refreshed view"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-2-after-apply.png"
+      ],
+      "reason": "The view displayed 'No Beacons are available' after filtering and remained usable."
+    },
+    {
+      "criterion": 6,
+      "outcome": "Unverified",
+      "steps_taken": [
+        "Applied a changed Group filter"
+      ],
+      "evidence": [
+        "screenshots/attempt-003/criterion-2-before-apply.png",
+        "screenshots/attempt-003/criterion-2-after-apply.png"
+      ],
+      "reason": "Previous Beacon result retention could not be independently confirmed from the available result set."
+    }
+  ],
+  "conciseReport": "TEST2-21: Beacon group/profile filter controls were found and a group filter transition was exercised. Available group labels were distinct. Retail Store Trial returned no Beacons, proving the empty-result state but not matching-result behavior. Profile-only and combined filtering, and result replacement, remain unverified.",
+  "reportPath": ".agent-staging/handoff-TEST2-21-retry/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-21-retry/screenshots",
+  "noOp": false,
+  "reason": "Run completed with direct browser evidence; several criteria remain unverified because the available filtered dataset did not provide a matching Beacon result and the run was not allowed to infer behavior.",
+  "historyAttempt": 3,
+  "recordedAt": "2026-09-17T09:13:33.178Z"
+}
