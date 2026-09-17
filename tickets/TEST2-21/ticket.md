@@ -3,10 +3,10 @@
 ## Current State
 
 - Jira status: READY FOR TESTING
-- QA outcome: Not Tested
+- QA outcome: Unverified
 - Workflow state: Retry Queued
 - Action owner: Coordinator
-- Next action: Retry 2/3 queued; coordinator will start tester
+- Next action: Retry 3/3 queued; coordinator will start tester
 - Jira: https://metricell.atlassian.net/browse/TEST2-21
 
 ## Acceptance Criteria
@@ -17,18 +17,6 @@
 4. Given a user selects both a group and a profile, when the filters are applied, then the map shows only Beacons that match both selections.
 5. Given the selected filters return no matching Beacons, when the view refreshes, then no map markers are shown while the map and filters remain usable.
 6. Given a user changes either filter, when the refreshed results are displayed, then previous map results are not retained.
-7. Merge Requests
-8. Docusaurus Requests
-9. Merge to Master:
-10. Application Merge Requests
-11. Merge to test:
-12. Merge to main:
-13. Project Upgrader Merge Requests
-14. Feature folder merge:
-15. Version folder Merge:
-16. Database Merge Requests
-17. Merge to staging:
-18. Merge to main:
 
 ## Subtasks
 
