@@ -36,8 +36,8 @@
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Retry Queued",
-    "qaStatus": "Ready for Testing",
-    "qaOutcome": "Not Tested",
+    "qaStatus": "Awaiting Evidence Review",
+    "qaOutcome": "Unverified",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "Retry 2/3 queued; coordinator will start tester",

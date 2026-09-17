@@ -12,9 +12,9 @@
     },
     "byQaOutcome": {
       "Blocked": 5,
-      "Not Tested": 3,
+      "Not Tested": 2,
       "Passed": 10,
-      "Unverified": 2
+      "Unverified": 3
     }
   },
   "policy": {
@@ -197,8 +197,8 @@
       "summary": "real ticket",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Unverified",
       "actionOwner": "Coordinator",
       "nextAction": "Retry 2/3 queued; coordinator will start tester",
       "updatedAt": "2026-09-17T09:07:48.458Z",
