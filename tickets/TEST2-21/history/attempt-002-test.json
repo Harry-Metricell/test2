@@ -1,0 +1,82 @@
+{
+  "handoffId": "handoff-TEST2-21-retry",
+  "ticket": "TEST2-21",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Given the Beacon view loads, when filter options are retrieved, then the available Beacon groups and profiles are shown without duplicate option labels.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened launcher",
+        "Opened GIS",
+        "Opened Beacons configuration",
+        "Opened Group options",
+        "Opened Profile options"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial-launcher.png",
+        "screenshots/attempt-002/criterion-1-initial-gis-beacons.png",
+        "screenshots/attempt-002/criterion-1-before-open-filters.png",
+        "screenshots/attempt-002/criterion-1-after-open-group-options.png",
+        "screenshots/attempt-002/criterion-1-after-open-profile-options.png"
+      ],
+      "reason": "Unique group and profile labels were visible in the live option lists."
+    },
+    {
+      "criterion": "Given a user selects a group, when the filter is applied, then the map shows only Beacons assigned to that group.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened configuration from the Beacons layer",
+        "Selected VIP Beacons x8",
+        "Reset profile to All profiles",
+        "Applied filters"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-after-group-vip.png"
+      ],
+      "reason": "The live result showed Nick Judd 2 with assigned group VIP Beacons x8."
+    },
+    {
+      "criterion": "Given a user selects a profile, when the filter is applied, then the map shows only Beacons assigned to that profile.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened configuration",
+        "Selected JB-LDD-Test",
+        "Applied filters"
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-before-apply-profile.png",
+        "screenshots/attempt-002/criterion-3-after-apply-profile.png"
+      ],
+      "reason": "The live result showed Nick Judd 2 with assigned profile JB-LDD-Test."
+    },
+    {
+      "criterion": "Given a user selects both a group and a profile, when the filters are applied, then the map shows only Beacons that match both selections.",
+      "status": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "The independent positive intersection journey and decisive screenshots were not completed in this attempt."
+    },
+    {
+      "criterion": "Given the selected filters return no matching Beacons, when the view refreshes, then no map markers are shown while the map and filters remain usable.",
+      "status": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "The independent no-match journey and decisive screenshots were not completed in this attempt."
+    },
+    {
+      "criterion": "Given a user changes either filter, when the refreshed results are displayed, then previous map results are not retained.",
+      "status": "Blocked",
+      "steps_taken": [],
+      "evidence": [],
+      "reason": "The independent filter-change journey and decisive screenshots were not completed in this attempt."
+    }
+  ],
+  "conciseReport": "Retry testing completed from the live launcher. Group and profile option uniqueness, group filtering, and profile filtering passed with fresh evidence. The remaining three criteria are blocked because their independent journeys and complete decisive evidence were not completed in this attempt.",
+  "reportPath": "",
+  "evidenceFolder": "handoff-TEST2-21-retry/screenshots",
+  "noOp": false,
+  "reason": "Tested the exact live handoff inputs from GitHub. Top-level status is Blocked because three criteria lack complete independent evidence.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-17T09:07:26.614Z"
+}
