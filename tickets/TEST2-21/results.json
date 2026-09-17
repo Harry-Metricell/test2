@@ -1,0 +1,48 @@
+[
+  {
+    "criterion": "Given the Beacon view is loaded and the Beacon data service has returned filter options, when the group and profile controls are opened, then each available group and profile is displayed once with no duplicate option labels.",
+    "status": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-group-options-open.png"
+    ],
+    "notes": "Group options and profile options were each displayed as unique labels in the live UI."
+  },
+  {
+    "criterion": "Given the Beacon view is loaded, a group option is available, and Beacons assigned to that group exist, when the user selects the group, then the map refreshes to show only Beacons assigned to the selected group.",
+    "status": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-after-group-vip-beacons.png"
+    ],
+    "notes": "Selecting VIP Beacons x8 reduced the live Beacon list to Luke Alexander, whose assigned group was VIP Beacons x8."
+  },
+  {
+    "criterion": "Given the Beacon view is loaded, a profile option is available, and Beacons assigned to that profile exist, when the user selects the profile, then the map refreshes to show only Beacons assigned to that profile.",
+    "status": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-no-matching-beacons.png"
+    ],
+    "notes": "The available JB-LDD-Test profile could be selected, but the live filtered view returned no Beacons, so the positive assigned-profile case could not be verified."
+  },
+  {
+    "criterion": "Given the Beacon view is loaded and a selected group and profile are available, when the user selects both filters, then the map refreshes to show only Beacons assigned to both the selected group and the selected profile.",
+    "status": "Blocked",
+    "evidence": [],
+    "notes": "No live data combination was observed that provided a positive intersection for both filters."
+  },
+  {
+    "criterion": "Given the selected group and/or profile has no matching Beacons, when the filtered view finishes refreshing, then no Beacon markers are displayed and the map and filter controls remain usable.",
+    "status": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-no-matching-beacons.png"
+    ],
+    "notes": "After selecting JB-LDD-Test with All groups, the view displayed No Beacons are available while the map and configuration remained usable."
+  },
+  {
+    "criterion": "Given filtered Beacon markers are currently displayed, when the user changes either the group or profile selection and the refreshed results finish loading, then markers from the previous filter selection are no longer displayed.",
+    "status": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-6-after-change-to-jb-ldd-test.png"
+    ],
+    "notes": "The previously displayed VIP Beacons x8 result was replaced by No Beacons are available after changing the profile."
+  }
+]
