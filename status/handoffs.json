@@ -3,18 +3,19 @@
   "generatedAt": "2026-09-17T09:44:04.402+0100",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-21-criteria",
-      "action": "criteria_conversion",
-      "brief": "docs/briefs/criteria-conversion.md",
-      "owner": "criteria-converter",
+      "handoffId": "handoff-TEST2-21-test",
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
       "ticket": "TEST2-21",
       "inputs": {
+        "criteria": "tickets/TEST2-21/criteria.md",
         "ticketJson": "tickets/TEST2-21/ticket.json",
-        "generated": "status/generated/TEST2-21.json"
+        "status": "tickets/TEST2-21/status.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-21/criteria.md",
-        "schema": "v4-qa-criteria.v1"
+        "path": "tickets/TEST2-21/results.json",
+        "schema": "v4-qa-test-result.v1"
       }
     }
   ]
