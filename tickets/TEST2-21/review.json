@@ -1,0 +1,42 @@
+{
+  "handoffId": "handoff-TEST2-21-review",
+  "ticket": "TEST2-21",
+  "criterionOutcomes": [
+    {
+      "criterion": "Given the Beacon view loads, when filter options are retrieved, then the available Beacon groups and profiles are shown without duplicate option labels.",
+      "outcome": "Passed",
+      "reason": "Direct screenshots from attempt-002 show the group and profile option lists with unique labels."
+    },
+    {
+      "criterion": "Given a user selects a group, when the filter is applied, then the map shows only Beacons assigned to that group.",
+      "outcome": "Passed",
+      "reason": "The direct attempt-002 screenshot shows the filtered Beacon result assigned to VIP Beacons x8."
+    },
+    {
+      "criterion": "Given a user selects a profile, when the filter is applied, then the map shows only Beacons assigned to that profile.",
+      "outcome": "Passed",
+      "reason": "Direct attempt-002 before-and-after screenshots show the result assigned to profile JB-LDD-Test."
+    },
+    {
+      "criterion": "Given a user selects both a group and a profile, when the filters are applied, then the map shows only Beacons that match both selections.",
+      "outcome": "Blocked",
+      "reason": "The selected attempt contains no decisive evidence for the independent group-and-profile intersection journey."
+    },
+    {
+      "criterion": "Given the selected filters return no matching Beacons, when the view refreshes, then no map markers are shown while the map and filters remain usable.",
+      "outcome": "Blocked",
+      "reason": "The selected attempt contains no decisive evidence for the independent no-match journey."
+    },
+    {
+      "criterion": "Given a user changes either filter, when the refreshed results are displayed, then previous map results are not retained.",
+      "outcome": "Blocked",
+      "reason": "The selected attempt contains no decisive evidence for the independent filter-change journey."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-21\\screenshots\\attempt-002",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Report generation or PDF verification failed: Command failed: C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe C:\\Users\\HARRY~1.PIP\\AppData\\Local\\Temp\\test2-publisher-source-Bytb1V\\checkout\\scripts\\build-evidence-report.py --template C:\\Users\\harry.piper\\Downloads\\Automated Test Case Template.docx --review-output C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\handoff-TEST2-21-review\\review-output.json --criteria C:\\Users\\HARRY~1.PIP\\AppData\\Local\\Temp\\test2-publisher-source-Bytb1V\\checkout\\tickets\\TEST2-21\\criteria.md --results C:\\Users\\HARRY~1.PIP\\AppData\\Local\\Temp\\test2-publisher-source-Bytb1V\\checkout\\tickets\\TEST2-21\\results.json --screenshots C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-21\\screenshots\\attempt-003 --output C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\handoff-TEST2-21-review\\report-generated-62336.docx\nreview-output has no criterionOutcomes\r\n"
+}
