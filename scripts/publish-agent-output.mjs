@@ -162,15 +162,26 @@ function buildVerifiedReport(key, run, screenshots) {
   const docx = path.join(run, `report-generated-${process.pid}.docx`);
   const pdf = path.join(run, `report-generated-${process.pid}.pdf`);
   const imageManifest = path.join(run, `report-images-${process.pid}.json`);
+  try {
+    execFileSync(python, ['-c', 'import docx, PIL, pypdf'], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30000 });
+  } catch {
+    fail(`Python reporting dependencies are unavailable. Install the pinned packages in requirements-reporting.txt for ${python}.`);
+  }
   execFileSync(python, [builder, '--template', template, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', docx, '--image-manifest', imageManifest], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(docx)) fail('Template report generation completed without a non-empty DOCX');
   const imageSummary = readJson(imageManifest);
-  if (!Number.isInteger(imageSummary.embeddedEvidenceImages) || imageSummary.embeddedEvidenceImages < 1) {
-    fail('Template report generation embedded no evidence screenshots');
+  if (!Number.isInteger(imageSummary.embeddedEvidenceImages) || imageSummary.embeddedEvidenceImages < 1 || !Array.isArray(imageSummary.expectedEvidence) || imageSummary.expectedEvidence.length !== imageSummary.embeddedEvidenceImages) {
+    fail('Template report generation did not produce a complete evidence-identity manifest');
   }
   execFileSync('powershell.exe', ['-NoProfile', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(pdf)) fail('Template PDF conversion completed without a non-empty PDF');
-  execFileSync(python, [pdfVerifier, '--pdf', pdf, '--image-manifest', imageManifest], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
+  try {
+    const audit = execFileSync(python, [pdfVerifier, '--pdf', pdf, '--image-manifest', imageManifest], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
+    log('pdf_evidence_verified', { ticket: key, ...JSON.parse(audit) });
+  } catch (error) {
+    const detail = String(error.stdout || error.stderr || error.message).trim();
+    fail(`PDF evidence verification failed: ${detail}`);
+  }
   return { docx, pdf };
 }
 

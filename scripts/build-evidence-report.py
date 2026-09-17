@@ -81,9 +81,21 @@ def verify_embedded_images(docx_path, expected_images):
     return len(expected)
 
 
-def image_size(image_path):
+def image_fingerprint(image):
+    grayscale = image.convert("L").resize((17, 16), Image.Resampling.LANCZOS)
+    pixels = list(grayscale.get_flattened_data())
+    bits = "".join(
+        "1" if pixels[row * 17 + column] > pixels[row * 17 + column + 1] else "0"
+        for row in range(16)
+        for column in range(16)
+    )
+    return f"{int(bits, 2):064x}"
+
+
+def evidence_identity(image_path):
+    image_path = Path(image_path)
     with Image.open(image_path) as image:
-        return image.size
+        return {"file": image_path.name, "sourceSha256": hashlib.sha256(image_path.read_bytes()).hexdigest(), "visualFingerprint": image_fingerprint(image)}
 
 
 def outcome_text(outcome):
@@ -254,10 +266,10 @@ def main():
     doc.save(str(output))
     patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review", "[Version]": "1.0", "[dd/mm/yyyy]": datetime.now().strftime("%d/%m/%Y"), "[Author]": "TEST2 QA Automation", "[Initial automated-test template]": "Generated from TEST2 evidence review"})
     embedded_count = verify_embedded_images(output, embedded_images)
+    expected_evidence = list({image.name: evidence_identity(image) for image in embedded_images}.values())
     Path(args.image_manifest).write_text(json.dumps({
         "embeddedEvidenceImages": embedded_count,
-        "embeddedFiles": [image.name for image in embedded_images],
-        "embeddedImageSizes": [list(size) for size in sorted({image_size(image) for image in embedded_images})],
+        "expectedEvidence": expected_evidence,
     }, indent=2) + "\n", encoding="utf-8")
 
 

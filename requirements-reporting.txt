@@ -1,0 +1,4 @@
+# Pinned reporting dependencies for the TEST2 publisher and PDF verifier.
+Pillow==12.3.0
+pypdf==6.10.0
+python-docx==1.2.0

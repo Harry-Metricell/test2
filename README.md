@@ -70,6 +70,14 @@ npx.cmd playwright install chromium
 
 Do not commit `.auth/user.json`, API keys, or other credentials.
 
+### Reporting dependencies
+
+The publisher uses the pinned packages in `requirements-reporting.txt` to build evidence reports and verify their screenshots. The bundled Codex runtime already includes them. On another machine, install them into the Python selected by `TEST2_PYTHON` before enabling the publisher:
+
+```powershell
+python -m pip install -r .\requirements-reporting.txt
+```
+
 Install the two hidden Windows tasks from an elevated PowerShell window:
 
 ```powershell
