@@ -1,0 +1,56 @@
+[
+  {
+    "criterion": "Given the V4 launcher URL is available to the QA user, when the user opens it in a browser, the V4 launcher interface is displayed without an error page or a loading state remaining on screen.",
+    "outcome": "Passed",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "steps_taken": [
+      "Returned to the required V4 launcher URL in the Playwright browser.",
+      "Captured the criterion-specific initial state.",
+      "Opened the required launcher URL and waited for navigation to complete.",
+      "Confirmed the Metricell launcher interface was displayed with no error page or persistent loading state.",
+      "Captured the criterion-specific final state."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "reason": "The launcher completed loading and displayed the Metricell launcher interface.",
+    "blockers": []
+  },
+  {
+    "criterion": "Given the V4 launcher page is displayed, the browser evidence shows the page together with its URL in the browser address bar.",
+    "outcome": "Passed",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "steps_taken": [
+      "Returned to the required V4 launcher URL in the same Playwright page.",
+      "Read and recorded the current browser URL before the initial screenshot.",
+      "Captured the criterion-specific initial state.",
+      "Confirmed the visible page was the Metricell launcher and the Playwright browser reported the launcher URL.",
+      "Captured the criterion-specific final state."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "reason": "The browser-derived URL was https://o2intelligence-v4-dev.metricell.com/launcher while the launcher page was visibly displayed.",
+    "blockers": []
+  },
+  {
+    "criterion": "Given the V4 launcher page has loaded, at least one V4 module card is visible on the page.",
+    "outcome": "Passed",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "steps_taken": [
+      "Returned to the required V4 launcher URL in the same Playwright page.",
+      "Read and recorded the current browser URL before the initial screenshot.",
+      "Captured the criterion-specific initial state.",
+      "Inspected the loaded launcher and confirmed visible module cards including Agentic AI, GIS, Dashboards, and Customer Care.",
+      "Captured the criterion-specific final state."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "reason": "Multiple V4 module cards were visible on the loaded launcher page.",
+    "blockers": []
+  }
+]
