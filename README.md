@@ -120,6 +120,10 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-desktop-sync.ps
 
 Desktop sync runs every two minutes and skips safely when conflicting local changes exist. Worker staging and coordinator runtime state use the ignored `.agent-staging` directory. The publisher processes tickets in a fresh checkout of GitHub main, so it works even when Desktop is behind or has local edits. The coordinator itself is started manually as a fresh Codex task; these scheduled tasks do not start it.
 
+### Local retention
+
+The publisher automatically removes renderer/debug by-products from `.agent-staging` after 14 days, including generated draft reports, renderer page images, console logs, and page snapshots. It never automatically deletes worker output JSON, screenshot folders, `publisher-error.json`, the private Playwright login, installed browser/runtime files, or the permanent `%USERPROFILE%\Documents\V4-QA-evidence` folder. Those protected files are either required to retry a failed handoff or are the local copy of test evidence.
+
 For publisher errors, check `%LOCALAPPDATA%\TEST2\publisher.log` and follow [publisher diagnostics](docs/publisher-operations.md). Query Windows tasks outside the sandbox before concluding that registration is missing. A task exit code of zero is not sufficient evidence that a ticket published.
 
 ### Playwright screenshots for tester tasks

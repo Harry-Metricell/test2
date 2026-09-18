@@ -54,7 +54,7 @@ Create every child task in the saved Test2 project, never projectless. Use the s
 {
   "target": {
     "type": "project",
-    "projectId": "39fdf60d-6165-4a78-ad05-c7344f38aacf",
+    "projectId": "0ff079bf-a407-4d92-ad7c-31d5eb5fde8b",
     "environment": { "type": "local" }
   },
 "prompt": "[@GitHub](plugin://github@openai-curated-remote)read and follow: docs/briefs/<selected-brief>.md"
@@ -75,5 +75,5 @@ After any ticket is blocked or any child is pending, immediately rescan for othe
 
 
 
-For `test_ticket` handoffs, use the existing persistent `TEST2 Tester Worker` task (`01a09f5e-dcab-7d42-9d57-792bdce53555`) via `send_message_to_thread`; do not create a new tester task by default. Send the exact handoff assignment, including the handoff ID and ticket key, and require the worker to reread the live QA brief, run its capability preflight, process one handoff, publish its staging output, and return to idle. After sending the assignment, poll the worker immediately and again within 30 seconds: it must become active or produce the expected remote output. If it remains idle, returns no output, reports missing GitHub/Playwright/write capabilities, or does not produce staged output within 8 minutes, treat the persistent worker as unavailable for this handoff, record the operational failure, and create one fresh local tester task using the exact selected handoff. Never create both a persistent and fresh tester for the same handoff concurrently. Create fresh child tasks only for `criteria_conversion` and `evidence_review` unless this documented persistent-worker fallback is triggered.
+For every `test_ticket` handoff, create one fresh local tester task using the exact selected handoff. Do not use, revive, or message a persistent tester worker. The fresh tester must reread the live QA brief, run its capability preflight, process exactly one handoff, publish its staging output, and then end. Store and poll its ready task ID exactly as for criteria and evidence-review workers. Never create two testers for the same handoff concurrently.
 

@@ -98,6 +98,30 @@ def evidence_identity(image_path):
         return {"file": image_path.name, "sourceSha256": hashlib.sha256(image_path.read_bytes()).hexdigest(), "visualFingerprint": image_fingerprint(image)}
 
 
+def unique_evidence_identities(logical):
+    """Return one physical identity for each byte-identical source image."""
+    expected = []
+    seen = set()
+    for item in logical:
+        identity = item["sourceSha256"]
+        if identity not in seen:
+            seen.add(identity)
+            expected.append(item)
+    return expected
+
+
+def evidence_manifest(images):
+    """Describe logical evidence references and the unique images Word embeds.
+
+    python-docx/Word stores byte-identical images once even when several
+    criterion rows reference them.  The PDF verifier must therefore check the
+    unique physical images, while the logical list preserves the complete
+    criterion-level audit trail.
+    """
+    logical = [evidence_identity(image) for image in images]
+    return {"expectedEvidence": unique_evidence_identities(logical), "logicalEvidence": logical}
+
+
 def outcome_text(outcome):
     return {
         "passed": "Criterion is satisfied with direct screenshot evidence.",
@@ -266,10 +290,10 @@ def main():
     doc.save(str(output))
     patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review", "[Version]": "1.0", "[dd/mm/yyyy]": datetime.now().strftime("%d/%m/%Y"), "[Author]": "TEST2 QA Automation", "[Initial automated-test template]": "Generated from TEST2 evidence review"})
     embedded_count = verify_embedded_images(output, embedded_images)
-    expected_evidence = list({image.name: evidence_identity(image) for image in embedded_images}.values())
+    manifest = evidence_manifest(embedded_images)
     Path(args.image_manifest).write_text(json.dumps({
         "embeddedEvidenceImages": embedded_count,
-        "expectedEvidence": expected_evidence,
+        **manifest,
     }, indent=2) + "\n", encoding="utf-8")
 
 

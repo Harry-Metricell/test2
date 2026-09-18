@@ -18,6 +18,16 @@ class ResultMatchingTests(unittest.TestCase):
         matched = REPORT.result_for_outcome(reviewer_outcome, [tester_result], {"1": tester_result}, criteria, 0)
         self.assertEqual(matched, tester_result)
 
+    def test_manifest_keeps_logical_references_but_deduplicates_identical_images(self):
+        logical = [
+            {"file": "criterion-1-initial.png", "sourceSha256": "same", "visualFingerprint": "a"},
+            {"file": "criterion-2-final.png", "sourceSha256": "same", "visualFingerprint": "a"},
+        ]
+        expected = REPORT.unique_evidence_identities(logical)
+        self.assertEqual(len(logical), 2)
+        self.assertEqual(len(expected), 1)
+        self.assertEqual(expected[0]["file"], "criterion-1-initial.png")
+
 
 if __name__ == "__main__":
     unittest.main()

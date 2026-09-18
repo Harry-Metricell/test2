@@ -12,6 +12,7 @@ const publisherIndex = path.join(process.env.TEMP || '.', `test2-publisher-index
 const publisherLock = process.env.TEST2_PUBLISHER_LOCK
   || path.join(process.env.LOCALAPPDATA || repo, 'TEST2', 'publisher.lock');
 const logFile = process.env.TEST2_PUBLISHER_LOG || path.join(path.dirname(publisherLock), 'publisher.log');
+const transientRetentionMs = 14 * 24 * 60 * 60 * 1000;
 function log(event, detail = {}) {
   fs.mkdirSync(path.dirname(logFile), { recursive: true });
   if (fs.existsSync(logFile) && fs.statSync(logFile).size > 1024 * 1024) {
@@ -145,6 +146,27 @@ function cleanupRun(run, directFile) {
     return false;
   }
 }
+function pruneTransientStaging(root) {
+  // Keep worker output, screenshots, publisher errors and all permanent
+  // evidence.  Only remove old renderer/debug by-products that can always be
+  // regenerated from retained worker output.
+  const transientName = /^(?:console-.*\.log|page-.*\.yml|TEST2-\d+-report-(?:render|check|page-\d+)\.(?:docx|pdf|png)|report-generated-\d+\.(?:docx|pdf)|report-images-\d+\.json)$/i;
+  let removed = 0;
+  if (!fs.existsSync(root)) return removed;
+  const visit = directory => {
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      const target = path.join(directory, entry.name);
+      if (entry.isDirectory()) visit(target);
+      else if (transientName.test(entry.name) && Date.now() - fs.statSync(target).mtimeMs > transientRetentionMs) {
+        fs.rmSync(target, { force: true });
+        removed += 1;
+      }
+    }
+  };
+  visit(root);
+  if (removed) log('staging_retention_pruned', { removed, retentionDays: transientRetentionMs / 86400000 });
+  return removed;
+}
 function nonEmpty(file) {
   return fs.existsSync(file) && fs.statSync(file).size > 0;
 }
@@ -186,6 +208,7 @@ function buildVerifiedReport(key, run, screenshots) {
 }
 
 if (!fs.existsSync(stagingRoot)) process.exit(0);
+pruneTransientStaging(stagingRoot);
 // Use a private temporary index so unrelated checkout changes and index locks do not block publishing.
 fs.rmSync(publisherIndex, { force: true });
 syncBeforePublish();
