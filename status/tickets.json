@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-17T09:17:35.299Z",
+  "generatedAt": "2026-09-18T11:44:51.679+0100",
   "counts": {
-    "tickets": 20,
-    "handoffs": 0,
+    "tickets": 21,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 14,
-      "Ready": 5,
+      "Ready": 6,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 5,
-      "Not Tested": 2,
+      "Not Tested": 3,
       "Passed": 10,
       "Unverified": 3
     }
@@ -190,6 +190,20 @@
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
+    },
+    {
+      "key": "TEST2-22",
+      "summary": "Confirm the V4 launcher page loads",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-18T11:44:51.679+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",

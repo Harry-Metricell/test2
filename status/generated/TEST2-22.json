@@ -1,0 +1,47 @@
+{
+  "key": "TEST2-22",
+  "id": "105448",
+  "summary": "Confirm the V4 launcher page loads",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-22",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-18T11:44:46.294+0100",
+    "updated": "2026-09-18T11:44:51.679+0100"
+  },
+  "description": "As a QA user,\nI want to open the V4 launcher page\nSo that I can access the available V4 modules.\nAcceptance criteria:\nThe launcher page loads successfully.\nThe page URL is visible in the browser evidence.\nAt least one V4 module card is visible.",
+  "acceptanceCriteria": [
+    "The launcher page loads successfully.",
+    "The page URL is visible in the browser evidence.",
+    "At least one V4 module card is visible."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-22/ticket.json",
+    "criteria": "tickets/TEST2-22/criteria.md",
+    "status": "tickets/TEST2-22/status.json",
+    "screenshots": "tickets/TEST2-22/screenshots/",
+    "reports": "tickets/TEST2-22/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105448",
+    "importedAt": "2026-09-18T11:44:51.679+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-18T11:44:51.679+0100",
+    "criteriaVerified": false
+  }
+}
