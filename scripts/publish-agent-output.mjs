@@ -154,7 +154,7 @@ function pngEvidence(dir) {
 }
 function buildVerifiedReport(key, run, screenshots) {
   const python = process.env.TEST2_PYTHON || 'C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe';
-  const template = process.env.TEST2_TEMPLATE || 'C:\\Users\\harry.piper\\Downloads\\Automated Test Case Template.docx';
+  const template = process.env.TEST2_TEMPLATE || path.join(repo, 'assets', 'templates', 'Automated Test Case Template.docx');
   const builder = path.join(repo, 'scripts', 'build-evidence-report.py');
   const renderer = path.join(repo, 'scripts', 'render-docx-to-pdf.ps1');
   const pdfVerifier = path.join(repo, 'scripts', 'verify-report-pdf.py');

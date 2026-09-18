@@ -45,7 +45,17 @@ It runs every two minutes, fetches `origin/main`, and fast-forwards `main` witho
 
 The Windows scheduled publisher runs hidden after installation. A successful task launch is not proof of publication: confirm the Node publisher exit code and remote read-back. Worker staging and coordinator runtime state must remain outside the Desktop repository.
 
-## Windows installation
+## New PC setup
+
+Complete these steps in order before starting the coordinator. GitHub contains the code, the report template, and the package lock; your saved V4 login remains private and must be supplied separately.
+
+1. Open PowerShell and enter the repository folder:
+
+```powershell
+cd "C:\Users\<user>\Documents\ChatGPT\Test2-github"
+```
+
+2. Install portable Node locally. This avoids organisation policies that can block the MSI installer:
 
 The machine may block the Node.js MSI installer. Use the portable ZIP install instead:
 
@@ -57,18 +67,41 @@ Expand-Archive "$env:TEMP\node.zip" "$env:TEMP\node-unpack" -Force
 Copy-Item "$env:TEMP\node-unpack\node-v24.19.0-win-x64\*" $nodeDir -Recurse -Force
 $env:Path="$nodeDir;$env:Path"
 node --version
-npm.cmd --version
+& "$nodeDir\npm.cmd" --version
 ```
 
-Use `npm.cmd` and `npx.cmd` because organisation policy may block the PowerShell wrappers:
+3. Install the repository packages and Chromium with the portable runtime. Use these explicit paths even if `npm` and `npx` are not on PATH:
 
 ```powershell
-cd "C:\Users\<user>\Documents\ChatGPT\Test2-github"
-npm.cmd install
-npx.cmd playwright install chromium
+& "$env:LOCALAPPDATA\TEST2\node\npm.cmd" install
+& "$env:LOCALAPPDATA\TEST2\node\npx.cmd" playwright install chromium
 ```
 
-Do not commit `.auth/user.json`, API keys, or other credentials.
+4. Install the saved V4 browser login and Playwright MCP. You must provide the private `user.json` source path; it is deliberately not stored in GitHub:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.ps1 -ImportStorageState "C:\private-package\Framework\playwright\.auth\user.json"
+```
+
+Restart the Codex desktop app after this step. A tester task must then show the Playwright browser tools, including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`.
+
+5. Install the two hidden background tasks. Run this in an elevated PowerShell window if task registration is denied:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-publisher.ps1 -Repo "$PWD"
+powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-desktop-sync.ps1 -Repo "$PWD"
+```
+
+6. Confirm the setup before running the coordinator:
+
+```powershell
+& "$env:LOCALAPPDATA\TEST2\node\node.exe" --version
+& "$env:LOCALAPPDATA\TEST2\node\npx.cmd" playwright --version
+Get-ScheduledTask -TaskName "TEST2 Agent Publisher","TEST2 Desktop GitHub Sync" | Select-Object TaskName,State
+Test-Path "$env:LOCALAPPDATA\TEST2\auth\user.json"
+```
+
+The report template is safely stored in Git at `assets/templates/Automated Test Case Template.docx`; the publisher uses it by default. Do not commit `.auth/user.json`, API keys, or other credentials.
 
 ### Reporting dependencies
 
@@ -78,7 +111,7 @@ The publisher uses the pinned packages in `requirements-reporting.txt` to build 
 python -m pip install -r .\requirements-reporting.txt
 ```
 
-Install the two hidden Windows tasks from an elevated PowerShell window:
+The same two hidden Windows tasks can be repaired or reinstalled at any time:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-publisher.ps1 -Repo "$PWD"
