@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-18T11:44:51.679+0100
+Updated: 2026-09-18T16:53:47.266+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -25,3 +25,4 @@ Updated: 2026-09-18T11:44:51.679+0100
 | TEST2-14 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 1 |
 | TEST2-15 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 2 |
 | TEST2-17 | Rejected | Awaiting Evidence Review | Retry 3/3 | Clean pipeline test 4 |
+| TEST2-23 | To Do | Criteria Check Required |  | Fresh coordinator and tester smoke test |

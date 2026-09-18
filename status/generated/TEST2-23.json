@@ -1,0 +1,46 @@
+{
+  "key": "TEST2-23",
+  "id": "105519",
+  "summary": "Fresh coordinator and tester smoke test",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-23",
+    "status": "To Do",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-18T16:53:46.659+0100",
+    "updated": "2026-09-18T16:53:47.266+0100"
+  },
+  "description": "As a QA user,\nI want to open the V4 launcher in a fresh automated test\nSo that I can confirm the coordinator creates a fresh tester and captures browser evidence.\nAcceptance criteria:\nThe V4 launcher page loads successfully.\nBrowser evidence shows the launcher URL and at least one V4 module card.",
+  "acceptanceCriteria": [
+    "The V4 launcher page loads successfully.",
+    "Browser evidence shows the launcher URL and at least one V4 module card."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-23/ticket.json",
+    "criteria": "tickets/TEST2-23/criteria.md",
+    "status": "tickets/TEST2-23/status.json",
+    "screenshots": "tickets/TEST2-23/screenshots/",
+    "reports": "tickets/TEST2-23/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105519",
+    "importedAt": "2026-09-18T16:53:47.266+0100"
+  },
+  "status": {
+    "jiraStatus": "To Do",
+    "workflowState": "To Do",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-18T16:53:47.266+0100",
+    "criteriaVerified": false
+  }
+}

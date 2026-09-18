@@ -1,17 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-18T11:44:51.679+0100",
+  "generatedAt": "2026-09-18T16:53:47.266+0100",
   "counts": {
-    "tickets": 21,
-    "handoffs": 0,
+    "tickets": 22,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 14,
       "Ready": 6,
-      "Rejected": 1
+      "Rejected": 1,
+      "To Do": 1
     },
     "byQaOutcome": {
       "Blocked": 5,
-      "Not Tested": 2,
+      "Not Tested": 3,
       "Passed": 11,
       "Unverified": 3
     }
@@ -316,6 +317,20 @@
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
+    },
+    {
+      "key": "TEST2-23",
+      "summary": "Fresh coordinator and tester smoke test",
+      "jiraStatus": "To Do",
+      "workflowState": "To Do",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-18T16:53:47.266+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     }
   ]
 }
