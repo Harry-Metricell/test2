@@ -16,7 +16,7 @@ Updated: 2026-09-18T11:44:51.679+0100
 | TEST2-19 | READY FOR TESTING | Evidence Reviewed | Retry 2/3 | Launcher controls evidence smoke test |
 | TEST2-20 | READY FOR TESTING | Evidence Reviewed | Retry 1/3 | Launcher URL evidence verification |
 | TEST2-21 | READY FOR TESTING | Evidence Reviewed | Retry 3/3 | real ticket |
-| TEST2-22 | READY FOR TESTING | Criteria Check Required |  | Confirm the V4 launcher page loads |
+| TEST2-22 | READY FOR TESTING | Ready for Testing |  | Confirm the V4 launcher page loads |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
