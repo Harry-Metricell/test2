@@ -3,12 +3,11 @@
   "generatedAt": "2026-09-18T16:53:47.266+0100",
   "counts": {
     "tickets": 22,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 14,
+      "Blocked": 15,
       "Ready": 6,
-      "Rejected": 1,
-      "To Do": 1
+      "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 5,
@@ -322,11 +321,11 @@
       "key": "TEST2-23",
       "summary": "Fresh coordinator and tester smoke test",
       "jiraStatus": "To Do",
-      "workflowState": "To Do",
-      "qaStatus": "Criteria Check Required",
+      "workflowState": "Blocked",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Not Tested",
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-18T16:53:47.266+0100",
       "retries": 0,
       "retryLimit": 3,
