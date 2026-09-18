@@ -11,8 +11,8 @@
     },
     "byQaOutcome": {
       "Blocked": 5,
-      "Not Tested": 3,
-      "Passed": 10,
+      "Not Tested": 2,
+      "Passed": 11,
       "Unverified": 3
     }
   },
@@ -196,10 +196,10 @@
       "summary": "Confirm the V4 launcher page loads",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create evidence review handoff",
       "updatedAt": "2026-09-18T11:44:51.679+0100",
       "retries": 0,
       "retryLimit": 3,
