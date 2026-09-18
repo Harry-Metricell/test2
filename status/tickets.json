@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-18T11:44:51.679+0100",
   "counts": {
     "tickets": 21,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 14,
       "Ready": 6,
@@ -196,10 +196,10 @@
       "summary": "Confirm the V4 launcher page loads",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Create evidence review handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-18T11:44:51.679+0100",
       "retries": 0,
       "retryLimit": 3,
