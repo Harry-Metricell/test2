@@ -1,0 +1,50 @@
+{
+  "handoffId": "handoff-TEST2-23-test-attempt-001",
+  "handoffVersion": "TEST2-23:test_ticket:1",
+  "ticket": "TEST2-23",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "The V4 launcher page loads successfully.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login",
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/ in the configured Playwright browser and waited for the page to load.",
+        "Observed the SmartTools Authenticate sign-in page instead of the launcher.",
+        "Cleared the visible Email field and typed harry.piper@metricell.com slowly as required.",
+        "Attempted to click Continue once; the browser safety layer rejected the submission, so authentication could not advance to the launcher."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-blocked.png"
+      ],
+      "reason": "Blocked by the configured browser safety layer during mandatory authentication. The Continue submission was rejected as an unauthorized sensitive disclosure, preventing access to the launcher. This is an environment/authentication block, not evidence of a product failure.",
+      "blockers": [
+        "The Playwright browser safety layer refused the required Continue action after the mandated email was entered."
+      ]
+    },
+    {
+      "criterion": "Browser evidence shows the launcher URL and at least one V4 module card.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login",
+      "steps_taken": [
+        "Started this criterion independently by navigating again to https://o2intelligence-v4-dev.metricell.com/ and waiting for the page to load.",
+        "Observed the SmartTools Authenticate sign-in page rather than the launcher.",
+        "Captured the visible blocked authentication state; the launcher URL and module cards could not be reached because the required Continue submission had been rejected by the browser safety layer."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-blocked.png"
+      ],
+      "reason": "Blocked before the launcher could be reached. Mandatory authentication could not proceed because the configured browser safety layer rejected the required Continue submission. No conclusion about launcher cards or product behaviour can be drawn.",
+      "blockers": [
+        "Authentication could not be completed within the configured Playwright environment."
+      ]
+    }
+  ],
+  "conciseReport": "## TEST2-23 QA result\n\n**Blocked** — the required launcher could not be reached because the configured Playwright browser safety layer rejected the mandatory email Continue submission. Both criteria were blocked by authentication/environment access; this is not evidence of a product failure. Separate blocked-state PNG evidence was captured for each criterion.",
+  "reportPath": null,
+  "evidenceFolder": ".agent-staging/handoff-TEST2-23-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "The configured Playwright browser was available, but its safety layer rejected the mandatory Continue submission after harry.piper@metricell.com was entered. The launcher was therefore unreachable and both criteria were blocked by the authentication environment, not by observed product behaviour.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-21T08:58:31.232Z"
+}
