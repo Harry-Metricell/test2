@@ -1,0 +1,13 @@
+{
+  "schema": "v4-user-guide-plan.v1",
+  "baselineTemplate": "assets/user-guide/V4 User Guide Template.docx",
+  "publishedGuide": "assets/user-guide/V4 User Guide.docx",
+  "captureRoot": ".guide-staging",
+  "updatePolicy": {
+    "highlightAddedOrChangedContent": true,
+    "highlightColour": "yellow",
+    "preserveUnchangedContent": true,
+    "requireScreenshotForChangedFeature": true
+  },
+  "sections": []
+}

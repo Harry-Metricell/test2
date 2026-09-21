@@ -159,7 +159,22 @@ Complete sign-in in the opened browser, press Enter only after the V4 launcher i
 ```bash
 npm run generate
 npm run check
+npm run check:guide
 ```
+
+## User guide updater
+
+The user guide is a separate document-update workflow, not a Jira or coordinator action. It preserves an approved Word baseline, updates only the sections named in `config/user-guide-plan.json`, and highlights every newly added or materially changed heading, step, caption, and screenshot in yellow. Unchanged content remains unmodified.
+
+While creating the initial Word template, save it as `assets/user-guide/V4 User Guide Template.docx`. Use normal Word heading styles and place `[[AUTO_GUIDE_CONTENT]]` on its own paragraph where feature sections should be inserted. Do not highlight the initial template: yellow is reserved for changes made after its first approval.
+
+Add one object to `config/user-guide-plan.json` for each feature section, with an id, title, HTTPS starting URL, ordered steps, and required screenshot ids. Validate the plan before capture:
+
+```powershell
+& "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-plan.mjs
+```
+
+Guide captures are staged locally under `.guide-staging` and never enter the Jira/publisher queue. The capture worker instructions are in `docs/briefs/user-guide-capture.md`. The document builder will use the saved template and validated captures to produce the yellow-highlighted update and a PDF verification pass.
 
 ## Key folders
 

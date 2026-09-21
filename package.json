@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "generate": "node scripts/generate-status.mjs",
-    "check": "node scripts/check-criteria.mjs"
+    "check": "node scripts/check-criteria.mjs",
+    "check:guide": "node scripts/check-user-guide-plan.mjs"
   },
   "devDependencies": {
     "@playwright/mcp": "^0.0.80",
