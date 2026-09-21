@@ -119,6 +119,24 @@ The publisher uses the pinned packages in `requirements-reporting.txt` to build 
 python -m pip install -r .\requirements-reporting.txt
 ```
 
+### User-guide document renderer
+
+Word guide updates are rendered to images for a visual check before they are published. Install the local-only LibreOffice renderer once; it is extracted under `%LOCALAPPDATA%\TEST2\libreoffice` and does not alter the shared Windows installation:
+
+```powershell
+$downloadDir = "$env:TEMP\TEST2-document-renderer"
+$msi = "$downloadDir\LibreOffice_26.8.0_Win_x86-64.msi"
+New-Item -ItemType Directory -Force $downloadDir | Out-Null
+if (-not (Test-Path -LiteralPath $msi)) {
+  Invoke-WebRequest -Uri "https://download.documentfoundation.org/libreoffice/stable/26.8.0/win/x86_64/LibreOffice_26.8.0_Win_x86-64.msi" -OutFile $msi
+}
+New-Item -ItemType Directory -Force "$env:LOCALAPPDATA\TEST2\libreoffice" | Out-Null
+Start-Process msiexec.exe -ArgumentList @('/a', $msi, '/qn', "TARGETDIR=$env:LOCALAPPDATA\TEST2\libreoffice") -Wait
+& "$env:LOCALAPPDATA\TEST2\libreoffice\program\soffice.exe" --version
+```
+
+The temporary guide baseline already has a hidden `[[AUTO_GUIDE_CONTENT]]` insertion marker. It remains visually unchanged, but the future updater can replace that exact paragraph with yellow-highlighted approved changes.
+
 The same two hidden Windows tasks can be repaired or reinstalled at any time:
 
 ```powershell
