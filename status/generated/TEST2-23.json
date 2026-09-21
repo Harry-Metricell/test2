@@ -36,11 +36,11 @@
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Retry 1/3 queued; coordinator will start tester",
+    "nextAction": "Retry 2/3 queued; coordinator will start tester",
     "reviewState": "Not Reviewed",
-    "retries": 1,
+    "retries": 2,
     "blockedStage": null,
-    "updatedAt": "2026-09-21T08:58:42.464Z",
+    "updatedAt": "2026-09-21T08:59:05.146Z",
     "criteriaVerified": true
   }
 }
