@@ -199,6 +199,16 @@ function criterionKey(value) {
     : '';
 }
 
+function criterionIndex(value, criteria) {
+  const numeric = typeof value === 'number'
+    ? value
+    : typeof value === 'string' && /^\d+$/.test(value.trim())
+      ? Number(value.trim())
+      : null;
+  if (!Number.isInteger(numeric) || numeric < 1 || numeric > criteria.length) return null;
+  return numeric - 1;
+}
+
 function validateCriterionCoverage(items, criteria, label) {
   if (!Array.isArray(items) || items.length !== criteria.length) {
     fail(`${label} must contain exactly one result for each of the ${criteria.length} checklist criteria`);
@@ -206,8 +216,11 @@ function validateCriterionCoverage(items, criteria, label) {
   const expected = new Set(criteria.map(criterionKey));
   if (expected.size !== criteria.length) fail('criteria.md contains duplicate checklist criteria');
   const actual = new Set();
+  const normalized = [];
   for (const [index, item] of items.entries()) {
-    const key = criterionKey(item?.criterion);
+    const ordinal = criterionIndex(item?.criterion, criteria);
+    const canonicalCriterion = ordinal === null ? item?.criterion : criteria[ordinal];
+    const key = criterionKey(canonicalCriterion);
     if (!key || !expected.has(key) || actual.has(key)) {
       fail(`${label} item ${index + 1} does not map uniquely to a checklist criterion`);
     }
@@ -216,6 +229,27 @@ function validateCriterionCoverage(items, criteria, label) {
       fail(`${label} item ${index + 1} has an invalid outcome: ${item?.outcome || '(missing)'}`);
     }
     actual.add(key);
+    normalized.push({ ...item, criterion: canonicalCriterion });
+  }
+  return normalized;
+}
+
+function derivedReviewOutcome(criterionOutcomes) {
+  const outcomes = criterionOutcomes.map(item => String(item.outcome).trim().toLowerCase());
+  if (outcomes.includes('blocked')) return 'Blocked';
+  if (outcomes.includes('failed')) return 'Failed';
+  if (outcomes.includes('unverified')) return 'Unverified';
+  return 'Passed';
+}
+
+function validateReviewSummary(criterionOutcomes, overallOutcome, qaStatus) {
+  const derived = derivedReviewOutcome(criterionOutcomes);
+  if (String(overallOutcome || '').trim().toLowerCase() !== derived.toLowerCase()) {
+    fail(`Evidence review overallOutcome must be ${derived}, derived from criterionOutcomes`);
+  }
+  const expectedQaStatus = derived === 'Blocked' ? 'Blocked' : 'Evidence Reviewed';
+  if (String(qaStatus || '').trim().toLowerCase() !== expectedQaStatus.toLowerCase()) {
+    fail(`Evidence review qaStatus must be ${expectedQaStatus} when overallOutcome is ${derived}`);
   }
 }
 function buildVerifiedReport(key, run, screenshots) {
@@ -344,7 +378,7 @@ if (outputType === 'criteria-output.json') {
   if (!output.results || typeof output.results !== 'object') fail('results is missing');
   if (typeof output.conciseReport !== 'string') fail('conciseReport is missing');
   const criteria = requiredCriteria(ticketDir);
-  validateCriterionCoverage(output.results, criteria, 'Tester results');
+  output.results = validateCriterionCoverage(output.results, criteria, 'Tester results');
   const attempt = nextEvidenceAttempt(key, status, output.handoffId);
   const attemptName = `attempt-${String(attempt).padStart(3, '0')}`;
   const attemptEvidenceDir = path.join(evidenceRoot, key, 'screenshots', attemptName);
@@ -413,11 +447,12 @@ if (outputType === 'criteria-output.json') {
   changed.push(`tickets/${key}/guide-impact.json`, `tickets/${key}/status.json`);
 } else {
   if (!Array.isArray(output.criterionOutcomes) || output.criterionOutcomes.length === 0) fail('criterionOutcomes is missing');
-  if (output.criterionOutcomes.some((item) => !item || typeof item.criterion !== 'string' || typeof item.outcome !== 'string' || typeof item.reason !== 'string')) {
+  if (output.criterionOutcomes.some((item) => !item || !['string', 'number'].includes(typeof item.criterion) || typeof item.outcome !== 'string' || typeof item.reason !== 'string')) {
     fail('criterionOutcomes has an invalid item');
   }
   const criteria = requiredCriteria(ticketDir);
-  validateCriterionCoverage(output.criterionOutcomes, criteria, 'Evidence review');
+  output.criterionOutcomes = validateCriterionCoverage(output.criterionOutcomes, criteria, 'Evidence review');
+  validateReviewSummary(output.criterionOutcomes, output.overallOutcome, output.qaStatus);
   if (!fs.existsSync(path.join(ticketDir, 'results.json'))) fail('Cannot publish evidence review before tester results.json is present');
   const review = { ...output };
   let generatedDocx = path.join(run, 'report.docx');

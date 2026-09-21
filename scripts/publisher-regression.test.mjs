@@ -79,6 +79,26 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     const noOp = run(); assert.equal(noOp.status, 0, noOp.stderr);
     assert.equal(fs.existsSync(noOpStage), false);
 
+    // Reviewer summaries are derived from criterion results, so a failed item
+    // cannot be smuggled through as a passed review.
+    g(seed, 'fetch'); g(seed, 'reset', '--hard', 'origin/main');
+    write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-review-invalid-summary', handoffVersion: 'TEST2-99:evidence_review:1', ticket: 'TEST2-99', action: 'evidence_review' }] }));
+    g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue invalid review summary'); g(seed, 'push');
+    const invalidReviewStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-review-invalid-summary');
+    write(path.join(invalidReviewStage, 'review-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-review-invalid-summary', handoffVersion: 'TEST2-99:evidence_review:1', ticket: 'TEST2-99', criterionOutcomes: [{ criterion: 1, outcome: 'Failed', reason: 'Expected control was absent.' }], overallOutcome: 'Passed', qaStatus: 'Evidence Reviewed', reportPath: '', evidenceFolder: '', noOp: false, reason: 'Invalid summary fixture.' }));
+    const invalidReview = run(); assert.equal(invalidReview.status, 1); assert.match(invalidReview.stderr, /overallOutcome must be Failed/);
+    fs.rmSync(invalidReviewStage, { recursive: true, force: true });
+
+    // A one-based numeric criterion reference is safely mapped before later
+    // report prerequisites are checked.
+    g(seed, 'fetch'); g(seed, 'reset', '--hard', 'origin/main');
+    write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-review-numeric', handoffVersion: 'TEST2-99:evidence_review:1', ticket: 'TEST2-99', action: 'evidence_review' }] }));
+    g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue numeric review'); g(seed, 'push');
+    const numericReviewStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-review-numeric');
+    write(path.join(numericReviewStage, 'review-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-review-numeric', handoffVersion: 'TEST2-99:evidence_review:1', ticket: 'TEST2-99', criterionOutcomes: [{ criterion: 1, outcome: 'Passed', reason: 'Visible.' }], overallOutcome: 'Passed', qaStatus: 'Evidence Reviewed', reportPath: '', evidenceFolder: '', noOp: false, reason: 'Numeric criterion fixture.' }));
+    const numericReview = run(); assert.equal(numericReview.status, 1); assert.match(numericReview.stderr, /Cannot publish evidence review before tester results.json is present/);
+    fs.rmSync(numericReviewStage, { recursive: true, force: true });
+
     // Guide impact is accepted only after a passed evidence review with its PDF,
     // then becomes a durable, publishable ticket decision.
     fs.rmSync(staleStage, { recursive: true, force: true });

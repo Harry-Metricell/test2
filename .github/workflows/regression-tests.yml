@@ -5,11 +5,15 @@ on:
     branches: [main]
     paths:
       - 'scripts/**'
+      - 'config/user-guide-*.json'
+      - 'package.json'
       - 'requirements-reporting.txt'
       - '.github/workflows/regression-tests.yml'
   pull_request:
     paths:
       - 'scripts/**'
+      - 'config/user-guide-*.json'
+      - 'package.json'
       - 'requirements-reporting.txt'
       - '.github/workflows/regression-tests.yml'
 
@@ -40,3 +44,11 @@ jobs:
 
       - name: Run evidence report regression tests
         run: python scripts/build-evidence-report.test.py
+
+      - name: Run PDF evidence verifier regression tests
+        run: python scripts/verify-report-pdf.test.py
+
+      - name: Validate user-guide configuration
+        run: |
+          node scripts/check-user-guide-plan.mjs
+          node scripts/check-user-guide-impact-policy.mjs
