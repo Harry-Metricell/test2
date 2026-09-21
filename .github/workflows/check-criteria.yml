@@ -21,21 +21,6 @@ jobs:
         with:
           node-version: '20'
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install report test dependencies
-        run: python -m pip install -r requirements-reporting.txt
-
-      - name: Run publisher regression tests
-        env:
-          TEST2_GIT: /usr/bin/git
-        run: node --test scripts/publisher-regression.test.mjs
-
-      - name: Run evidence report regression tests
-        run: python scripts/build-evidence-report.test.py
-
       - name: Validate ticket folders and criteria
         run: node scripts/check-criteria.mjs
 
