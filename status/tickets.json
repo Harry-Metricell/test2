@@ -1,12 +1,12 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-18T16:53:47.266+0100",
+  "generatedAt": "2026-09-21T09:38:48.269+0100",
   "counts": {
     "tickets": 22,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 15,
-      "Ready": 6,
+      "Blocked": 14,
+      "Ready": 7,
       "Rejected": 1
     },
     "byQaOutcome": {
@@ -206,6 +206,20 @@
       "retryLabel": ""
     },
     {
+      "key": "TEST2-23",
+      "summary": "Fresh coordinator and tester smoke test",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-09-21T09:38:48.269+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
       "key": "TEST2-2",
       "summary": "test",
       "jiraStatus": "Rejected",
@@ -316,20 +330,6 @@
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
-    },
-    {
-      "key": "TEST2-23",
-      "summary": "Fresh coordinator and tester smoke test",
-      "jiraStatus": "To Do",
-      "workflowState": "Blocked",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
-      "actionOwner": "Coordinator",
-      "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-18T16:53:47.266+0100",
-      "retries": 0,
-      "retryLimit": 3,
-      "retryLabel": ""
     }
   ]
 }

@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-18T16:53:47.266+0100
+Updated: 2026-09-21T09:38:48.269+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -17,6 +17,7 @@ Updated: 2026-09-18T16:53:47.266+0100
 | TEST2-20 | READY FOR TESTING | Evidence Reviewed | Retry 1/3 | Launcher URL evidence verification |
 | TEST2-21 | READY FOR TESTING | Evidence Reviewed | Retry 3/3 | real ticket |
 | TEST2-22 | READY FOR TESTING | Evidence Reviewed |  | Confirm the V4 launcher page loads |
+| TEST2-23 | READY FOR TESTING | Ready for Testing |  | Fresh coordinator and tester smoke test |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
@@ -25,4 +26,3 @@ Updated: 2026-09-18T16:53:47.266+0100
 | TEST2-14 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 1 |
 | TEST2-15 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 2 |
 | TEST2-17 | Rejected | Awaiting Evidence Review | Retry 3/3 | Clean pipeline test 4 |
-| TEST2-23 | To Do | Ready for Testing |  | Fresh coordinator and tester smoke test |

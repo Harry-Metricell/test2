@@ -4,13 +4,13 @@
   "summary": "Fresh coordinator and tester smoke test",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-23",
-    "status": "To Do",
+    "status": "READY FOR TESTING",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-18T16:53:46.659+0100",
-    "updated": "2026-09-18T16:53:47.266+0100"
+    "updated": "2026-09-21T09:38:48.269+0100"
   },
   "description": "As a QA user,\nI want to open the V4 launcher in a fresh automated test\nSo that I can confirm the coordinator creates a fresh tester and captures browser evidence.\nAcceptance criteria:\nThe V4 launcher page loads successfully.\nBrowser evidence shows the launcher URL and at least one V4 module card.",
   "acceptanceCriteria": [
@@ -27,20 +27,20 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105519",
-    "importedAt": "2026-09-18T16:53:47.266+0100"
+    "importedAt": "2026-09-21T09:38:48.269+0100"
   },
   "status": {
-    "jiraStatus": "To Do",
-    "workflowState": "Blocked",
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
     "qaStatus": "Ready for Testing",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Waiting for Jira status: READY FOR TESTING",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
     "retries": 0,
     "blockedStage": null,
-    "updatedAt": "2026-09-18T16:53:47.266+0100",
+    "updatedAt": "2026-09-21T09:38:48.269+0100",
     "criteriaVerified": true
   }
 }
