@@ -85,6 +85,14 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.
 
 Restart the Codex desktop app after this step. A tester task must then show the Playwright browser tools, including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`.
 
+If a tester reaches a sign-in page, do not rely on logging in through an ordinary browser: isolated tester tasks cannot use that browser session. Refresh the private tester login instead. The command opens a browser; complete the usual sign-in yourself, wait until the V4 launcher is visible, then return to PowerShell and press Enter. It replaces only the local private login file and does not send credentials to GitHub:
+
+```powershell
+& "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\refresh-test2-auth.mjs
+```
+
+Restart the Codex desktop app after a successful refresh, then create a fresh tester task. This avoids the tester needing to submit an email/password or MFA form itself.
+
 5. Install the two hidden background tasks. Run this in an elevated PowerShell window if task registration is denied:
 
 ```powershell
@@ -137,6 +145,14 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.
 ```
 
 Restart the Codex desktop app after installation. New tester tasks should expose Playwright browser tools including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`. If those tools are absent, do not run a ticket: check the Codex MCP configuration and restart first.
+
+When the saved V4 session expires, refresh it through the dedicated private browser flow rather than an ordinary browser window:
+
+```powershell
+& "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\refresh-test2-auth.mjs
+```
+
+Complete sign-in in the opened browser, press Enter only after the V4 launcher is visible, and restart Codex. The script refuses to overwrite the saved state if the browser is still on an authentication page.
 
 ## Useful commands
 
