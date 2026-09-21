@@ -436,7 +436,9 @@ if (outputType === 'criteria-output.json') {
 }
 
 function publishFromCleanWorktree() {
-  const base = path.join(process.env.TEMP || 'C:\\Windows\\Temp', `test2-publish-${process.pid}`);
+  // os.tmpdir() keeps temporary publisher worktrees valid on Windows and in
+  // the Linux GitHub Actions regression runner.
+  const base = path.join(os.tmpdir(), `test2-publish-${process.pid}`);
   fs.mkdirSync(base, { recursive: true });
   let worktree = '';
   try {
