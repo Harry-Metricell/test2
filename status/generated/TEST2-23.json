@@ -38,6 +38,7 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
+    "guideImpact": null,
     "retries": 2,
     "blockedStage": null,
     "updatedAt": "2026-09-21T08:59:05.146Z",

@@ -6,7 +6,8 @@
   "scripts": {
     "generate": "node scripts/generate-status.mjs",
     "check": "node scripts/check-criteria.mjs",
-    "check:guide": "node scripts/check-user-guide-plan.mjs"
+    "check:guide": "node scripts/check-user-guide-plan.mjs",
+    "check:guide-impact": "node scripts/check-user-guide-impact-policy.mjs"
   },
   "devDependencies": {
     "@playwright/mcp": "^0.0.80",

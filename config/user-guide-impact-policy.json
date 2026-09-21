@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact-policy.v1",
+  "enabled": true,
+  "onlyForPassedEvidenceReviews": true,
+  "decisions": [
+    "not_needed",
+    "update_required"
+  ],
+  "requireAffectedSectionWhenUpdateRequired": true,
+  "requireReason": true
+}

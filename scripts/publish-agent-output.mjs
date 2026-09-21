@@ -264,7 +264,7 @@ const runs = fs.readdirSync(stagingRoot, { withFileTypes: true })
 const run = runs.find(candidate => {
   const errorFile = path.join(candidate, 'publisher-error.json');
   if (fs.existsSync(errorFile) && Date.now() - fs.statSync(errorFile).mtimeMs < 300000) return false;
-  return ['criteria-output.json', 'test-output.json', 'review-output.json']
+  return ['criteria-output.json', 'test-output.json', 'review-output.json', 'guide-impact-output.json']
     .some(name => fs.existsSync(path.join(candidate, name)));
 });
 if (!run) { log('idle'); process.exit(0); }
@@ -284,12 +284,13 @@ process.on('exit', () => {
 const directFile = fs.statSync(run).isFile();
 const files = directFile
   ? [path.basename(run)]
-  : ['criteria-output.json', 'test-output.json', 'review-output.json']
+  : ['criteria-output.json', 'test-output.json', 'review-output.json', 'guide-impact-output.json']
       .filter(name => fs.existsSync(path.join(run, name)));
 if (files.length !== 1) fail(`Expected exactly one output file in ${run}; found ${files.join(', ') || 'none'}`);
 const output = readJson(directFile ? run : path.join(run, files[0]));
 const outputType = files[0].endsWith('criteria-output.json') || output.criteriaMarkdown ? 'criteria-output.json'
   : files[0].endsWith('test-output.json') || output.results ? 'test-output.json'
+  : files[0].endsWith('guide-impact-output.json') || output.decision ? 'guide-impact-output.json'
   : 'review-output.json';
 const key = ticketKey(output.ticket);
 log('processing', { ticket: key, handoffId: output.handoffId, outputType });
@@ -304,6 +305,8 @@ const expectedAction = outputType === 'criteria-output.json'
   ? 'criteria_conversion'
   : outputType === 'test-output.json'
     ? 'test_ticket'
+    : outputType === 'guide-impact-output.json'
+      ? 'guide_impact_assessment'
     : 'evidence_review';
 if (typeof output.handoffVersion !== 'string' || !output.handoffVersion) fail('handoffVersion is missing');
 const liveQueue = readJson(path.join(repo, 'status', 'handoffs.json'));
@@ -393,6 +396,21 @@ if (outputType === 'criteria-output.json') {
     if (!nonEmpty(path.join(evidenceRoot, key, file))) fail(`Evidence copy failed: ${file}`);
   }
   changed.push(`tickets/${key}/results.json`, `tickets/${key}/report.md`, `tickets/${key}/history/${path.basename(historyFile)}`, `tickets/${key}/status.json`);
+} else if (outputType === 'guide-impact-output.json') {
+  const policy = readJson(path.join(repo, 'config', 'user-guide-impact-policy.json'));
+  if (policy.enabled !== true || policy.onlyForPassedEvidenceReviews !== true) fail('User-guide impact assessment is disabled by policy');
+  if (!['not_needed', 'update_required'].includes(output.decision)) fail('guide impact decision is invalid');
+  if (typeof output.reason !== 'string' || !output.reason.trim()) fail('guide impact reason is missing');
+  if (output.decision === 'update_required' && (typeof output.affectedSection !== 'string' || !output.affectedSection.trim())) fail('update_required needs affectedSection');
+  if (output.decision === 'not_needed' && String(output.affectedSection || '').trim()) fail('not_needed must not name an affectedSection');
+  const review = readJson(path.join(ticketDir, 'review.json'));
+  if (String(review.overallOutcome || review.qaStatus || '').trim().toLowerCase() !== 'passed') fail('Guide impact can only be published after a passed evidence review');
+  if (!nonEmpty(path.join(ticketDir, 'report.pdf'))) fail('Guide impact requires the passed evidence report');
+  const guideImpact = { schema: 'v4-user-guide-impact.v1', ...output, assessedAt: new Date().toISOString() };
+  writeJson(path.join(ticketDir, 'guide-impact.json'), guideImpact);
+  status.guideImpact = guideImpact;
+  writeJson(statusFile, status);
+  changed.push(`tickets/${key}/guide-impact.json`, `tickets/${key}/status.json`);
 } else {
   if (!Array.isArray(output.criterionOutcomes) || output.criterionOutcomes.length === 0) fail('criterionOutcomes is missing');
   if (output.criterionOutcomes.some((item) => !item || typeof item.criterion !== 'string' || typeof item.outcome !== 'string' || typeof item.reason !== 'string')) {

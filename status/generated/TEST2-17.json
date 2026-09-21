@@ -39,6 +39,7 @@
     "actionOwner": "Coordinator",
     "nextAction": "Create final evidence review handoff",
     "reviewState": "Not Reviewed",
+    "guideImpact": null,
     "retries": 3,
     "blockedStage": "evidence_review",
     "updatedAt": "2026-09-16T11:28:43.111Z",

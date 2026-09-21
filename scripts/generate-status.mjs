@@ -7,6 +7,7 @@ const checkOnly = process.argv.includes('--check');
 const ticketsDir = path.join(root, 'tickets');
 const outDir = path.join(root, 'status');
 const generatedDir = path.join(outDir, 'generated');
+const guideImpactPolicyPath = path.join(root, 'config', 'user-guide-impact-policy.json');
 
 const STATUS_LABELS = new Map([
   ['published', 'Published'],
@@ -153,6 +154,17 @@ function artifactOutcome(dir, localStatus) {
   return localStatus.qaOutcome || null;
 }
 
+function passedEvidenceReview(dir, review, latestAttempt, reviewNumber, latestNumber) {
+  return Boolean(
+    review?.noOp !== true
+    && latestAttempt
+    && reviewNumber >= latestNumber
+    && fs.existsSync(path.join(dir, 'report.pdf'))
+    && fs.statSync(path.join(dir, 'report.pdf')).size > 0
+    && String(review.overallOutcome || review.qaStatus || '').trim().toLowerCase() === 'passed'
+  );
+}
+
 function mergeStatus(ticket, localStatus) {
   const jiraState = canonicalState(ticket.jira.status, 'Imported');
   const localState = canonicalState(localStatus.workflowState || localStatus.status, 'Imported');
@@ -195,6 +207,7 @@ function mergeStatus(ticket, localStatus) {
     actionOwner: localStatus.actionOwner || 'Coordinator',
     nextAction,
     reviewState: localStatus.reviewState || 'Not Reviewed',
+    guideImpact: localStatus.guideImpact || null,
     retries,
     blockedStage: localStatus.blockedStage || null,
     updatedAt: localStatus.updatedAt || ticket.jira.updated || ticket.source.importedAt || null,
@@ -269,6 +282,8 @@ function normalizeTicket(dirName) {
   const derivedOutcome = artifactOutcome(dir, localStatus);
   if (derivedOutcome) localStatus = { ...localStatus, qaOutcome: derivedOutcome };
   const review = readJson(path.join(dir, 'review.json'), null);
+  const guideImpact = readJson(path.join(dir, 'guide-impact.json'), null);
+  if (guideImpact?.decision) localStatus = { ...localStatus, guideImpact };
   const attempts = fs.existsSync(path.join(dir, 'history'))
     ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\d+-test\.json$/i.test(name)).sort()
     : [];
@@ -440,6 +455,8 @@ function handoffFor(ticket) {
     && reviewedAttempt >= latestAttempt
     && fs.existsSync(path.join(ticketsDir, ticket.key, 'report.pdf'))
     && fs.statSync(path.join(ticketsDir, ticket.key, 'report.pdf')).size > 0;
+  const guideImpactPolicy = readJson(guideImpactPolicyPath, { enabled: false, onlyForPassedEvidenceReviews: true });
+  const guideImpact = readJson(path.join(ticketsDir, ticket.key, 'guide-impact.json'), null);
   if (ticket.status.criteriaVerified !== true) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
@@ -468,6 +485,28 @@ function handoffFor(ticket) {
       ticket: ticket.key,
       inputs: { results: `tickets/${ticket.key}/results.json`, generated: `status/generated/${ticket.key}.json` },
       expectedOutput: { path: `tickets/${ticket.key}/review.json`, schema: 'v4-qa-review.v1' }
+    };
+  }
+  const passedReview = passedEvidenceReview(path.join(ticketsDir, ticket.key), review, latestAttempt, reviewedAttempt, latestAttempt);
+  if (guideImpactPolicy.enabled === true
+    && guideImpactPolicy.onlyForPassedEvidenceReviews === true
+    && passedReview
+    && !guideImpact?.decision) {
+    return {
+      handoffId: `handoff-${ticket.key}-guide-impact`,
+      handoffVersion: `${ticket.key}:guide_impact_assessment:${latestAttempt}`,
+      action: 'guide_impact_assessment',
+      brief: 'docs/briefs/user-guide-impact.md',
+      owner: 'guide-impact-assessor',
+      ticket: ticket.key,
+      inputs: {
+        ticketJson: `tickets/${ticket.key}/ticket.json`,
+        generated: `status/generated/${ticket.key}.json`,
+        review: `tickets/${ticket.key}/review.json`,
+        report: `tickets/${ticket.key}/report.md`,
+        policy: 'config/user-guide-impact-policy.json'
+      },
+      expectedOutput: { path: `tickets/${ticket.key}/guide-impact.json`, schema: 'v4-user-guide-impact.v1' }
     };
   }
   const testingEligible = jiraReadyForTesting(ticket)
@@ -541,6 +580,7 @@ const summary = {
     workflowState: t.status.workflowState,
     qaStatus: t.status.qaStatus,
     qaOutcome: t.status.qaOutcome,
+    guideImpact: t.status.guideImpact?.decision || null,
     actionOwner: t.status.actionOwner,
     nextAction: t.status.nextAction,
     updatedAt: t.status.updatedAt,

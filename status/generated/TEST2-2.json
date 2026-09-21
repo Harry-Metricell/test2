@@ -42,6 +42,7 @@
     "actionOwner": "Coordinator",
     "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
+    "guideImpact": null,
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-10T11:03:10.834+0100",

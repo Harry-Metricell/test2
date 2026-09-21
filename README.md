@@ -176,6 +176,18 @@ Add one object to `config/user-guide-plan.json` for each feature section, with a
 
 Guide captures are staged locally under `.guide-staging` and never enter the Jira/publisher queue. The capture worker instructions are in `docs/briefs/user-guide-capture.md`. The document builder will use the saved template and validated captures to produce the yellow-highlighted update and a PDF verification pass.
 
+### Ticket-driven guide decisions
+
+Only tickets with a completed, **Passed** evidence review can be assessed for user-guide impact. Failed, blocked, unreviewed, and report-less tickets never enter this stage. The short assessor records either `not_needed` or `update_required`; only `update_required` tickets proceed to guide capture and document work.
+
+This behaviour is deliberately easy to change without code: edit `config/user-guide-impact-policy.json`, then validate it before starting the coordinator:
+
+```powershell
+& "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-impact-policy.mjs
+```
+
+Do not set `onlyForPassedEvidenceReviews` to `false`: validation rejects it so the guide remains based on verified delivered behaviour.
+
 ## Key folders
 
 - `.github/workflows/`: import, validation, and status generation.
