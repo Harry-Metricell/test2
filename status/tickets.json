@@ -6,14 +6,13 @@
     "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 14,
-      "Ready": 6,
-      "Rejected": 1,
-      "Retry Queued": 1
+      "Ready": 7,
+      "Rejected": 1
     },
     "byQaOutcome": {
-      "Blocked": 6,
+      "Blocked": 5,
       "Not Tested": 2,
-      "Passed": 11,
+      "Passed": 12,
       "Unverified": 3
     }
   },
@@ -210,11 +209,11 @@
       "key": "TEST2-23",
       "summary": "Fresh coordinator and tester smoke test",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "nextAction": "Create evidence review handoff",
       "updatedAt": "2026-09-21T08:59:05.146Z",
       "retries": 2,
       "retryLimit": 3,
