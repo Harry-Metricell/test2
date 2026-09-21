@@ -48,29 +48,6 @@ function readJson(file, fallback = REQUIRED_JSON) {
   try {
     return JSON.parse(raw);
   } catch (error) {
-    // Some legacy imports contain a complete JSON document followed by a duplicate.
-    let depth = 0;
-    let inString = false;
-    let escaped = false;
-    for (let i = 0; i < raw.length; i += 1) {
-      const ch = raw[i];
-      if (inString) {
-        if (escaped) escaped = false;
-        else if (ch === '\\') escaped = true;
-        else if (ch === '"') inString = false;
-        continue;
-      }
-      if (ch === '"') inString = true;
-      else if (ch === '{') depth += 1;
-      else if (ch === '}' && --depth === 0) {
-        try {
-          return JSON.parse(raw.slice(0, i + 1));
-        } catch {
-          break;
-        }
-      }
-    }
-    if (fallback !== null) return fallback;
     throw new Error(`${file}: ${error.message}`);
   }
 }
@@ -356,7 +333,11 @@ function normalizeTicket(dirName) {
   const newRetryableAttempt = retryableOutcome
     && !['ready for testing', 'retry queued'].includes(qaStatusKey)
     && !(latestAttempt && latestNumber > reviewNumber);
-  if (!review?.qaStatus || review.qaStatus !== 'Evidence Reviewed') {
+  // A completed successful review is terminal. A reviewed Failed/Blocked
+  // result remains retryable until its retry limit is reached.
+  const successfulReview = reviewHasReport
+    && !['blocked', 'failed'].includes(String(review?.overallOutcome || review?.qaStatus || '').trim().toLowerCase());
+  if (!successfulReview) {
     if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
     localStatus = {
       ...localStatus,

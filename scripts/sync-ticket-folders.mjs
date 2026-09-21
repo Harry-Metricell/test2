@@ -20,7 +20,7 @@ for (const issue of issues) {
   fs.mkdirSync(path.join(dir, 'reports'), { recursive: true });
   fs.writeFileSync(path.join(dir, 'screenshots', '.gitkeep'), '');
   fs.writeFileSync(path.join(dir, 'reports', '.gitkeep'), '');
-  fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify(issue, null, 2) + '\\n');
+  fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify(issue, null, 2) + '\n');
   const statusFile = path.join(dir, 'status.json');
   let existing = {};
   if (fs.existsSync(statusFile)) {
@@ -30,7 +30,10 @@ for (const issue of issues) {
       console.warn(`Ignoring malformed ${statusFile}; Jira status will be preserved and QA status reset`);
     }
   }
-  // Jira is read-only: refresh only Jira-owned fields and preserve QA workflow state, retries, and block metadata.\n  const nextStatus = { ...existing, ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus, retries: Number(existing.retries || 0), retryLimit: Number(existing.retryLimit || 3) };\n  fs.writeFileSync(statusFile, JSON.stringify(nextStatus, null, 2) + '\\n');
+  // Jira is read-only: refresh only Jira-owned fields and preserve QA workflow
+  // state, retries, and block metadata.
+  const nextStatus = { ...existing, ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus, retries: Number(existing.retries || 0), retryLimit: Number(existing.retryLimit || 3) };
+  fs.writeFileSync(statusFile, JSON.stringify(nextStatus, null, 2) + '\n');
 }
 
 if (fs.existsSync('tickets')) {

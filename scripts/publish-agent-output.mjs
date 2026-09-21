@@ -131,7 +131,12 @@ function ensurePath(file) {
 function copyFolder(source, target) {
   if (fs.existsSync(source)) fs.cpSync(source, target, { recursive: true, force: true });
 }
-function nextEvidenceAttempt(key, status) {
+function nextEvidenceAttempt(key, status, handoffId) {
+  // Handoffs carry their durable attempt number. Reuse it if a prior push
+  // failed after copying evidence, so retrying publication cannot renumber the
+  // same tester output.
+  const handoffAttempt = String(handoffId || '').match(/-attempt-(\d+)$/i)?.[1];
+  if (handoffAttempt) return Number(handoffAttempt);
   let attempt = Math.max(1, Number(status.retries || 0) + 1);
   const root = path.join(evidenceRoot, key, 'screenshots');
   while (fs.existsSync(path.join(root, `attempt-${String(attempt).padStart(3, '0')}`))) attempt += 1;
@@ -173,6 +178,45 @@ function nonEmpty(file) {
 function pngEvidence(dir) {
   if (!fs.existsSync(dir)) return false;
   return fs.readdirSync(dir).some(name => name.toLowerCase().endsWith('.png') && nonEmpty(path.join(dir, name)));
+}
+
+const VALID_OUTCOMES = new Set(['passed', 'failed', 'blocked', 'unverified']);
+
+function requiredCriteria(ticketDir) {
+  const criteriaFile = path.join(ticketDir, 'criteria.md');
+  if (!fs.existsSync(criteriaFile)) fail(`Missing criteria.md for ${path.basename(ticketDir)}`);
+  const criteria = fs.readFileSync(criteriaFile, 'utf8')
+    .split(/\r?\n/)
+    .map(line => line.match(/^\s*-\s+\[\s?\]\s+(.+?)\s*$/)?.[1])
+    .filter(Boolean);
+  if (!criteria.length) fail(`criteria.md has no testable checklist criteria for ${path.basename(ticketDir)}`);
+  return criteria;
+}
+
+function criterionKey(value) {
+  return typeof value === 'string'
+    ? value.replace(/\s+/g, ' ').trim().toLocaleLowerCase()
+    : '';
+}
+
+function validateCriterionCoverage(items, criteria, label) {
+  if (!Array.isArray(items) || items.length !== criteria.length) {
+    fail(`${label} must contain exactly one result for each of the ${criteria.length} checklist criteria`);
+  }
+  const expected = new Set(criteria.map(criterionKey));
+  if (expected.size !== criteria.length) fail('criteria.md contains duplicate checklist criteria');
+  const actual = new Set();
+  for (const [index, item] of items.entries()) {
+    const key = criterionKey(item?.criterion);
+    if (!key || !expected.has(key) || actual.has(key)) {
+      fail(`${label} item ${index + 1} does not map uniquely to a checklist criterion`);
+    }
+    const outcome = String(item?.outcome || '').trim().toLowerCase();
+    if (!VALID_OUTCOMES.has(outcome)) {
+      fail(`${label} item ${index + 1} has an invalid outcome: ${item?.outcome || '(missing)'}`);
+    }
+    actual.add(key);
+  }
 }
 function buildVerifiedReport(key, run, screenshots) {
   const python = process.env.TEST2_PYTHON || 'C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe';
@@ -296,7 +340,9 @@ if (outputType === 'criteria-output.json') {
 } else if (outputType === 'test-output.json') {
   if (!output.results || typeof output.results !== 'object') fail('results is missing');
   if (typeof output.conciseReport !== 'string') fail('conciseReport is missing');
-  const attempt = nextEvidenceAttempt(key, status);
+  const criteria = requiredCriteria(ticketDir);
+  validateCriterionCoverage(output.results, criteria, 'Tester results');
+  const attempt = nextEvidenceAttempt(key, status, output.handoffId);
   const attemptName = `attempt-${String(attempt).padStart(3, '0')}`;
   const attemptEvidenceDir = path.join(evidenceRoot, key, 'screenshots', attemptName);
   // Validate each referenced file before publishing status or assigning paths.
@@ -352,6 +398,8 @@ if (outputType === 'criteria-output.json') {
   if (output.criterionOutcomes.some((item) => !item || typeof item.criterion !== 'string' || typeof item.outcome !== 'string' || typeof item.reason !== 'string')) {
     fail('criterionOutcomes has an invalid item');
   }
+  const criteria = requiredCriteria(ticketDir);
+  validateCriterionCoverage(output.criterionOutcomes, criteria, 'Evidence review');
   if (!fs.existsSync(path.join(ticketDir, 'results.json'))) fail('Cannot publish evidence review before tester results.json is present');
   const review = { ...output };
   let generatedDocx = path.join(run, 'report.docx');

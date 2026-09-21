@@ -44,12 +44,31 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-test-attempt-001', handoffVersion: 'TEST2-99:test_ticket:1', ticket: 'TEST2-99', action: 'test_ticket' }] }));
     g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue TEST2 test'); g(seed, 'push');
     const testStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-test-attempt-001');
-    write(path.join(testStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-001', handoffVersion: 'TEST2-99:test_ticket:1', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [{ outcome: 'Passed', evidence: ['criterion-1-initial.png'] }], conciseReport: 'Passed' }));
+    write(path.join(testStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-001', handoffVersion: 'TEST2-99:test_ticket:1', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [{ criterion: 'Launcher is visible.', outcome: 'Passed', evidence: ['criterion-1-initial.png'] }], conciseReport: 'Passed' }));
     const before = g(seed, 'rev-parse', 'origin/main');
     const second = run(); assert.equal(second.status, 1); assert.match(second.stderr, /needs its own initial and final PNG evidence/);
     g(seed, 'fetch'); assert.equal(g(seed, 'rev-parse', 'origin/main'), before);
     assert.equal(fs.existsSync(path.join(testStage, 'test-output.json')), true);
     assert.match(fs.readFileSync(path.join(root, 'publisher.log'), 'utf8'), /needs its own initial and final PNG evidence/);
+    fs.rmSync(testStage, { recursive: true, force: true });
+
+    // A tester cannot silently omit a criterion, even before evidence copying.
+    g(seed, 'fetch'); g(seed, 'reset', '--hard', 'origin/main');
+    write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-test-attempt-002', handoffVersion: 'TEST2-99:test_ticket:2', ticket: 'TEST2-99', action: 'test_ticket' }] }));
+    g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue incomplete TEST2 test'); g(seed, 'push');
+    const incompleteStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-test-attempt-002');
+    write(path.join(incompleteStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-002', handoffVersion: 'TEST2-99:test_ticket:2', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [], conciseReport: 'Incomplete' }));
+    const incomplete = run(); assert.equal(incomplete.status, 1); assert.match(incomplete.stderr, /exactly one result for each/);
+    fs.rmSync(incompleteStage, { recursive: true, force: true });
+
+    // Outcome values are a closed, auditable set rather than arbitrary text.
+    g(seed, 'fetch'); g(seed, 'reset', '--hard', 'origin/main');
+    write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-test-attempt-003', handoffVersion: 'TEST2-99:test_ticket:3', ticket: 'TEST2-99', action: 'test_ticket' }] }));
+    g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue invalid-outcome TEST2 test'); g(seed, 'push');
+    const invalidOutcomeStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-test-attempt-003');
+    write(path.join(invalidOutcomeStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-003', handoffVersion: 'TEST2-99:test_ticket:3', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [{ criterion: 'Launcher is visible.', outcome: 'Maybe', evidence: [] }], conciseReport: 'Invalid' }));
+    const invalidOutcome = run(); assert.equal(invalidOutcome.status, 1); assert.match(invalidOutcome.stderr, /invalid outcome: Maybe/);
+    fs.rmSync(invalidOutcomeStage, { recursive: true, force: true });
     const staleStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-stale');
     write(path.join(staleStage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-stale', handoffVersion: 'TEST2-99:criteria_conversion:stale', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] Stale output.', qaStatus: 'Ready for Testing', noOp: false }));
     const stale = run(); assert.equal(stale.status, 1); assert.match(stale.stderr, /Stale or mismatched worker output/);
