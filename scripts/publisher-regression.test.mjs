@@ -62,6 +62,15 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     const incomplete = run(); assert.equal(incomplete.status, 1); assert.match(incomplete.stderr, /exactly one result for each/);
     fs.rmSync(incompleteStage, { recursive: true, force: true });
 
+    // A blocked criterion cannot be published as an evidence-review-ready test.
+    g(seed, 'fetch'); g(seed, 'reset', '--hard', 'origin/main');
+    write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-test-attempt-002-status', handoffVersion: 'TEST2-99:test_ticket:2-status', ticket: 'TEST2-99', action: 'test_ticket' }] }));
+    g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue inconsistent TEST2 test status'); g(seed, 'push');
+    const inconsistentStatusStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-test-attempt-002-status');
+    write(path.join(inconsistentStatusStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-002-status', handoffVersion: 'TEST2-99:test_ticket:2-status', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [{ criterion: 'Launcher is visible.', outcome: 'Blocked', evidence: [] }], conciseReport: 'Inconsistent status' }));
+    const inconsistentStatus = run(); assert.equal(inconsistentStatus.status, 1); assert.match(inconsistentStatus.stderr, /Tester qaStatus must be Blocked/);
+    fs.rmSync(inconsistentStatusStage, { recursive: true, force: true });
+
     // Outcome values are a closed, auditable set rather than arbitrary text.
     g(seed, 'fetch'); g(seed, 'reset', '--hard', 'origin/main');
     write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-test-attempt-003', handoffVersion: 'TEST2-99:test_ticket:3', ticket: 'TEST2-99', action: 'test_ticket' }] }));

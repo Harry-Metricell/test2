@@ -252,6 +252,15 @@ function validateReviewSummary(criterionOutcomes, overallOutcome, qaStatus) {
     fail(`Evidence review qaStatus must be ${expectedQaStatus} when overallOutcome is ${derived}`);
   }
 }
+
+function validateTesterStatus(results, qaStatus) {
+  const expectedQaStatus = results.some(item => String(item.outcome).trim().toLowerCase() === 'blocked')
+    ? 'Blocked'
+    : 'Awaiting Evidence Review';
+  if (String(qaStatus || '').trim().toLowerCase() !== expectedQaStatus.toLowerCase()) {
+    fail(`Tester qaStatus must be ${expectedQaStatus}, derived from result outcomes`);
+  }
+}
 function buildVerifiedReport(key, run, screenshots) {
   const python = process.env.TEST2_PYTHON || 'C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe';
   const template = process.env.TEST2_TEMPLATE || path.join(repo, 'assets', 'templates', 'Automated Test Case Template.docx');
@@ -379,6 +388,7 @@ if (outputType === 'criteria-output.json') {
   if (typeof output.conciseReport !== 'string') fail('conciseReport is missing');
   const criteria = requiredCriteria(ticketDir);
   output.results = validateCriterionCoverage(output.results, criteria, 'Tester results');
+  validateTesterStatus(output.results, output.qaStatus);
   const attempt = nextEvidenceAttempt(key, status, output.handoffId);
   const attemptName = `attempt-${String(attempt).padStart(3, '0')}`;
   const attemptEvidenceDir = path.join(evidenceRoot, key, 'screenshots', attemptName);
