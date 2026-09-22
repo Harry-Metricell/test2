@@ -39,6 +39,7 @@
     "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
+    "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-14T15:25:26.699+0100",

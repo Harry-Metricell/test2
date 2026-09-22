@@ -8,6 +8,7 @@ const ticketsDir = path.join(root, 'tickets');
 const outDir = path.join(root, 'status');
 const generatedDir = path.join(outDir, 'generated');
 const guideImpactPolicyPath = path.join(root, 'config', 'user-guide-impact-policy.json');
+const guideUpdatePolicyPath = path.join(root, 'config', 'user-guide-update-policy.json');
 
 const STATUS_LABELS = new Map([
   ['published', 'Published'],
@@ -208,6 +209,7 @@ function mergeStatus(ticket, localStatus) {
     nextAction,
     reviewState: localStatus.reviewState || 'Not Reviewed',
     guideImpact: localStatus.guideImpact || null,
+    guideUpdate: localStatus.guideUpdate || null,
     retries,
     blockedStage: localStatus.blockedStage || null,
     updatedAt: localStatus.updatedAt || ticket.jira.updated || ticket.source.importedAt || null,
@@ -284,6 +286,8 @@ function normalizeTicket(dirName) {
   const review = readJson(path.join(dir, 'review.json'), null);
   const guideImpact = readJson(path.join(dir, 'guide-impact.json'), null);
   if (guideImpact?.decision) localStatus = { ...localStatus, guideImpact };
+  const guideUpdate = readJson(path.join(dir, 'guide-update.json'), null);
+  if (guideUpdate?.title) localStatus = { ...localStatus, guideUpdate };
   const attempts = fs.existsSync(path.join(dir, 'history'))
     ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\d+-test\.json$/i.test(name)).sort()
     : [];
@@ -456,7 +460,9 @@ function handoffFor(ticket) {
     && fs.existsSync(path.join(ticketsDir, ticket.key, 'report.pdf'))
     && fs.statSync(path.join(ticketsDir, ticket.key, 'report.pdf')).size > 0;
   const guideImpactPolicy = readJson(guideImpactPolicyPath, { enabled: false, onlyForPassedEvidenceReviews: true });
+  const guideUpdatePolicy = readJson(guideUpdatePolicyPath, { enabled: false, onlyForPassedEvidenceReviews: true });
   const guideImpact = readJson(path.join(ticketsDir, ticket.key, 'guide-impact.json'), null);
+  const guideUpdate = readJson(path.join(ticketsDir, ticket.key, 'guide-update.json'), null);
   if (ticket.status.criteriaVerified !== true) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,
@@ -507,6 +513,30 @@ function handoffFor(ticket) {
         policy: 'config/user-guide-impact-policy.json'
       },
       expectedOutput: { path: `tickets/${ticket.key}/guide-impact.json`, schema: 'v4-user-guide-impact.v1' }
+    };
+  }
+  if (guideUpdatePolicy.enabled === true
+    && guideUpdatePolicy.onlyForPassedEvidenceReviews === true
+    && guideImpact?.decision === 'update_required'
+    && passedReview
+    && !guideUpdate?.title) {
+    return {
+      handoffId: `handoff-${ticket.key}-guide-update`,
+      handoffVersion: `${ticket.key}:guide_update_authoring:${latestAttempt}`,
+      action: 'guide_update_authoring',
+      brief: 'docs/briefs/user-guide-authoring.md',
+      owner: 'guide-update-author',
+      ticket: ticket.key,
+      inputs: {
+        ticketJson: `tickets/${ticket.key}/ticket.json`,
+        generated: `status/generated/${ticket.key}.json`,
+        review: `tickets/${ticket.key}/review.json`,
+        report: `tickets/${ticket.key}/report.md`,
+        results: `tickets/${ticket.key}/results.json`,
+        impact: `tickets/${ticket.key}/guide-impact.json`,
+        policy: 'config/user-guide-update-policy.json'
+      },
+      expectedOutput: { path: `tickets/${ticket.key}/guide-update.json`, schema: 'v4-user-guide-update.v1' }
     };
   }
   const testingEligible = jiraReadyForTesting(ticket)
@@ -580,6 +610,7 @@ const summary = {
     qaStatus: t.status.qaStatus,
     qaOutcome: t.status.qaOutcome,
     guideImpact: t.status.guideImpact?.decision || null,
+    guideUpdate: t.status.guideUpdate?.title || null,
     actionOwner: t.status.actionOwner,
     nextAction: t.status.nextAction,
     updatedAt: t.status.updatedAt,

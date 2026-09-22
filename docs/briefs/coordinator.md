@@ -30,9 +30,10 @@ Before dispatching any worker, check `.agent-staging/<handoffId>` for its comple
 - `docs/briefs/qa-testing.md`
 - `docs/briefs/evidence-review.md`
 - `docs/briefs/user-guide-impact.md`
+- `docs/briefs/user-guide-authoring.md`
 - selected ticket status/results/review files when needed
 
-Select the first eligible handoff by stage priority, then deterministic `handoffId` order: `criteria_conversion` first, `test_ticket` second, `evidence_review` third, and `guide_impact_assessment` fourth. Never select by task prompt, ticket number, local folder order, or guesswork. Do not create a tester or reviewer while any eligible earlier-stage handoff remains.
+Select the first eligible handoff by stage priority, then deterministic `handoffId` order: `criteria_conversion` first, `test_ticket` second, `evidence_review` third, `guide_impact_assessment` fourth, and `guide_update_authoring` fifth. Never select by task prompt, ticket number, local folder order, or guesswork. Do not create a tester or reviewer while any eligible earlier-stage handoff remains.
 
 Process each ticket through these gates:
 0. Any pipeline block is handled deterministically by Status Bundler. Do not wait for or create a `blocked_recovery` handoff. If the live queue contains a generated `test_ticket` handoff, create the tester immediately. At `retries` 3, no further test handoff is expected, but an `evidence_review` handoff for the final attempt is required until a remote non-empty `report.pdf` is verified.
@@ -42,7 +43,8 @@ Process each ticket through these gates:
 4. Wait for the tester, then wait for the local publisher and Status Bundler. Confirm the handoff-specific tester history file (`tickets/<KEY>/history/attempt-###-test.json`) is remote, not merely that the reusable `results.json` exists; then confirm the evidence_review handoff exists. A reusable results file from an earlier attempt does not satisfy publication for the current handoff.
 5. Only then create the evidence_review worker, and only when the ticket's imported Jira status is exactly `READY FOR TESTING`; if Jira has moved to any other status, wait for the next import/bundler update.
 6. Wait for the reviewer, then wait for the local publisher to generate and verify the PDF and push `report.pdf`, `review.json`, `status.json`, and concise `report.md` as one publication. A non-empty PDF alone is insufficient: the publisher must confirm that the referenced browser PNGs were embedded in the generated report before conversion. If report generation or evidence embedding fails, retain the same evidence-review handoff and its staged output; do not publish a partial review, clear the queue, or create a second reviewer. Then wait for Status Bundler and verify all required files and final status by remote read-back.
-7. A `guide_impact_assessment` handoff is eligible only after a remote passed evidence review and non-empty report PDF. Create its short assessor, then wait for publisher and bundler propagation of `tickets/<KEY>/guide-impact.json`. It is a classification only: do not create a guide-capture or document worker from the coordinator yet.
+7. A `guide_impact_assessment` handoff is eligible only after a remote passed evidence review and non-empty report PDF. Create its short assessor, then wait for publisher and bundler propagation of `tickets/<KEY>/guide-impact.json`.
+8. A `guide_update_authoring` handoff is eligible only after a remote `update_required` impact decision and the same passed evidence review. Create its short authoring worker, then wait for propagation of `tickets/<KEY>/guide-update.json`. It writes instructions only; it must not capture, render, or edit the Word guide.
 
 Publisher and bundler waits are mandatory:
 - A worker finishing is not publication.

@@ -1,0 +1,9 @@
+{
+  "schema": "v4-user-guide-update-policy.v1",
+  "enabled": true,
+  "onlyForPassedEvidenceReviews": true,
+  "requireVerifiedTicketEvidence": true,
+  "highlightColour": "yellow",
+  "preserveExistingGuideContent": true,
+  "allowChangeTypes": ["add", "amend"]
+}

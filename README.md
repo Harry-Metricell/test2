@@ -192,16 +192,24 @@ Add one object to `config/user-guide-plan.json` for each feature section, with a
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-plan.mjs
 ```
 
-Guide captures are staged locally under `.guide-staging` and never enter the Jira/publisher queue. The capture worker instructions are in `docs/briefs/user-guide-capture.md`. The document builder will use the saved template and validated captures to produce the yellow-highlighted update and a PDF verification pass.
+The document builder uses the saved template (or the current living guide after its first update) and validated ticket evidence to produce the yellow-highlighted update. It does not silently replace existing guide text. To build a specific published guide update locally:
+
+```powershell
+& "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-update-policy.mjs
+& "$env:LOCALAPPDATA\TEST2\python\python.exe" .\scripts\build-user-guide.py --ticket TEST2-123
+```
+
+The builder rejects missing/non-verified PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden `[[AUTO_GUIDE_CONTENT]]` marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section.
 
 ### Ticket-driven guide decisions
 
-Only tickets with a completed, **Passed** evidence review can be assessed for user-guide impact. Failed, blocked, unreviewed, and report-less tickets never enter this stage. The short assessor records either `not_needed` or `update_required`; only `update_required` tickets proceed to guide capture and document work.
+Only tickets with a completed, **Passed** evidence review can be assessed for user-guide impact. Failed, blocked, unreviewed, and report-less tickets never enter this stage. The short assessor records either `not_needed` or `update_required`. For `update_required`, a compact authoring worker reuses only the ticket’s verified PNG evidence and writes a proposed section title, ordered user steps, and the source screenshots to `tickets/<KEY>/guide-update.json`. The deterministic Word builder then applies these approved inputs to the living guide, keeping the insertion marker for the next update.
 
 This behaviour is deliberately easy to change without code: edit `config/user-guide-impact-policy.json`, then validate it before starting the coordinator:
 
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-impact-policy.mjs
+& "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-update-policy.mjs
 ```
 
 Do not set `onlyForPassedEvidenceReviews` to `false`: validation rejects it so the guide remains based on verified delivered behaviour.

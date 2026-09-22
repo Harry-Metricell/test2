@@ -36,6 +36,7 @@
     "nextAction": "Create final evidence review handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
+    "guideUpdate": null,
     "retries": 3,
     "blockedStage": "evidence_review",
     "updatedAt": "2026-09-10T08:37:52.778Z",

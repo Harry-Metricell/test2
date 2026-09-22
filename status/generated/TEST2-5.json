@@ -36,6 +36,7 @@
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
+    "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-14T15:25:30.436+0100",
