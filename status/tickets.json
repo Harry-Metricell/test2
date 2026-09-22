@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-21T08:59:05.146Z",
+  "generatedAt": "2026-09-22T10:12:45.918+0100",
   "counts": {
-    "tickets": 22,
-    "handoffs": 8,
+    "tickets": 23,
+    "handoffs": 9,
     "byWorkflowState": {
       "Blocked": 14,
-      "Ready": 7,
+      "Ready": 8,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 5,
-      "Not Tested": 2,
+      "Not Tested": 3,
       "Passed": 12,
       "Unverified": 3
     }
@@ -246,6 +246,22 @@
       "retries": 2,
       "retryLimit": 3,
       "retryLabel": "Retry 2/3"
+    },
+    {
+      "key": "TEST2-24",
+      "summary": "Verify published User Guide resource",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-22T10:12:45.918+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",

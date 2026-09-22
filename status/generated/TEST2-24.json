@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-24",
+  "id": "105655",
+  "summary": "Verify published User Guide resource",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-24",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-22T10:12:31.515+0100",
+    "updated": "2026-09-22T10:12:45.918+0100"
+  },
+  "description": "Confirm the TEST2 QA Tracker User Guide page lists the published V4 User Guide and that the guide download works. This is a basic end-to-end test ticket.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-24/ticket.json",
+    "criteria": "tickets/TEST2-24/criteria.md",
+    "status": "tickets/TEST2-24/status.json",
+    "screenshots": "tickets/TEST2-24/screenshots/",
+    "reports": "tickets/TEST2-24/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105655",
+    "importedAt": "2026-09-22T10:12:45.918+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-22T10:12:45.918+0100",
+    "criteriaVerified": false
+  }
+}
