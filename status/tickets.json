@@ -11,8 +11,8 @@
     },
     "byQaOutcome": {
       "Blocked": 5,
-      "Not Tested": 4,
-      "Passed": 12,
+      "Not Tested": 3,
+      "Passed": 13,
       "Unverified": 3
     }
   },
@@ -268,12 +268,12 @@
       "summary": "Verify V4 launcher displays available module cards",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create evidence review handoff",
       "updatedAt": "2026-09-22T13:56:22.499+0100",
       "retries": 0,
       "retryLimit": 3,
