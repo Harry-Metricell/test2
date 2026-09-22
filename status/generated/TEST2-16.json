@@ -39,7 +39,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-16-guide-impact",
+      "handoffVersion": "TEST2-16:guide_impact_assessment:3",
+      "ticket": "TEST2-16",
+      "decision": "not_needed",
+      "affectedSection": "",
+      "reason": "The reviewed evidence confirms existing launcher visibility, module cards, and their open controls, but does not establish any new or changed user-facing behaviour, instructions, navigation, or terminology.",
+      "noOp": false,
+      "assessedAt": "2026-09-22T12:21:34.708Z"
+    },
     "guideUpdate": null,
     "retries": 2,
     "blockedStage": null,
