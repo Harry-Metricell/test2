@@ -9,5 +9,16 @@
   "qaOutcome": "Passed",
   "workflowState": "Rejected",
   "nextAction": "QA review complete",
-  "criteriaVerified": true
+  "criteriaVerified": true,
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-7-guide-impact",
+    "handoffVersion": "TEST2-7:guide_impact_assessment:3",
+    "ticket": "TEST2-7",
+    "decision": "update_required",
+    "affectedSection": "Using GIS map controls",
+    "reason": "The passed review verifies user-facing steps for opening GIS, enabling a map layer, zooming, resetting the view, and changing map style. Users need instructions explaining how to find and use these controls.",
+    "noOp": false,
+    "assessedAt": "2026-09-22T12:54:35.054Z"
+  }
 }
