@@ -10,5 +10,16 @@
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
   "nextAction": "QA review complete",
-  "updatedAt": "2026-09-16T14:03:50.290Z"
+  "updatedAt": "2026-09-16T14:03:50.290Z",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-18-guide-impact",
+    "handoffVersion": "TEST2-18:guide_impact_assessment:3",
+    "ticket": "TEST2-18",
+    "decision": "not_needed",
+    "affectedSection": "",
+    "reason": "The reviewed evidence only confirms that the existing V4 launcher opens and is visible; it introduces no new or changed user-facing instructions, navigation, behaviour, or terminology.",
+    "noOp": false,
+    "assessedAt": "2026-09-22T12:20:34.897Z"
+  }
 }
