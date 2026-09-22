@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-22T10:12:45.918+0100",
   "counts": {
     "tickets": 23,
-    "handoffs": 4,
+    "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 14,
       "Ready": 8,
@@ -47,7 +47,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Open GIS from the Launcher",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-10T11:38:31.952Z",
