@@ -1,0 +1,29 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-7-guide-update",
+  "handoffVersion": "TEST2-7:guide_update_authoring:3",
+  "ticket": "TEST2-7",
+  "title": "Using GIS map controls",
+  "affectedSection": "Using GIS map controls",
+  "changeType": "add",
+  "steps": [
+    "Open GIS from the V4 launcher.",
+    "Open the map layer control.",
+    "Enable an available coverage or network layer.",
+    "Select Zoom in to enlarge the map view.",
+    "Select Reset north and flatten map to restore the default view.",
+    "Open Map style.",
+    "Select an available map style."
+  ],
+  "screenshots": [
+    "screenshots/attempt-003/02-gis-loaded.png",
+    "screenshots/attempt-003/05-after-layer.png",
+    "screenshots/attempt-003/07-after-zoom.png",
+    "screenshots/attempt-003/09-after-reset.png",
+    "screenshots/attempt-003/11-style-options.png",
+    "screenshots/attempt-003/12-after-style-dark.png"
+  ],
+  "reason": "Add instructions for opening GIS, displaying a map layer, zooming, resetting the map view, and changing the map style.",
+  "noOp": false,
+  "authoredAt": "2026-09-22T14:12:34.678Z"
+}
