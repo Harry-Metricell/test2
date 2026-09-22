@@ -9,5 +9,5 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "Create evidence review handoff"
+  "nextAction": "QA review complete"
 }
