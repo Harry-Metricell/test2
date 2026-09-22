@@ -18,7 +18,7 @@ Updated: 2026-09-22T10:12:45.918+0100
 | TEST2-21 | READY FOR TESTING | Evidence Reviewed | Retry 3/3 | real ticket |
 | TEST2-22 | READY FOR TESTING | Evidence Reviewed |  | Confirm the V4 launcher page loads |
 | TEST2-23 | READY FOR TESTING | Evidence Reviewed | Retry 2/3 | Fresh coordinator and tester smoke test |
-| TEST2-24 | READY FOR TESTING | Criteria Check Required |  | Verify published User Guide resource |
+| TEST2-24 | READY FOR TESTING | Ready for Testing |  | Verify published User Guide resource |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
