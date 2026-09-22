@@ -545,7 +545,6 @@ const ticketDirs = fs.existsSync(ticketsDir)
 
 const tickets = ticketDirs.map(normalizeTicket);
 const handoffs = tickets.map(handoffFor).filter(Boolean);
-const criteriaQueue = handoffs.filter((handoff) => handoff.action === 'criteria_conversion');
 // status/generated is a derived projection. Remove records for ticket folders
 // that the importer has deleted so stale tickets cannot remain in GitHub.
 if (!checkOnly && fs.existsSync(generatedDir)) {
@@ -595,7 +594,6 @@ writeText(path.join(outDir, 'ticket-status.md'), report);
 
 writeJson(path.join(outDir, 'tickets.json'), summary);
 writeJson(path.join(outDir, 'handoffs.json'), { schema: 'v4-qa-handoffs.v1', generatedAt: summary.generatedAt, handoffs });
-writeJson(path.join(outDir, 'codex-criteria-queue.json'), { schema: 'v4-qa-criteria-queue.v1', generatedAt: summary.generatedAt, tickets: criteriaQueue.map((handoff) => ({ ticket: handoff.ticket, handoffId: handoff.handoffId, brief: handoff.brief, inputs: handoff.inputs, output: handoff.expectedOutput })) });
 for (const ticket of tickets) {
   writeJson(path.join(generatedDir, `${ticket.key}.json`), ticket);
   const criteriaFile = path.join('tickets', ticket.key, 'criteria.md');
