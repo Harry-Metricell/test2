@@ -41,25 +41,6 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-20-guide-impact",
-      "handoffVersion": "TEST2-20:guide_impact_assessment:2",
-      "action": "guide_impact_assessment",
-      "brief": "docs/briefs/user-guide-impact.md",
-      "owner": "guide-impact-assessor",
-      "ticket": "TEST2-20",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-20/ticket.json",
-        "generated": "status/generated/TEST2-20.json",
-        "review": "tickets/TEST2-20/review.json",
-        "report": "tickets/TEST2-20/report.md",
-        "policy": "config/user-guide-impact-policy.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-20/guide-impact.json",
-        "schema": "v4-user-guide-impact.v1"
-      }
-    },
-    {
       "handoffId": "handoff-TEST2-22-guide-impact",
       "handoffVersion": "TEST2-22:guide_impact_assessment:1",
       "action": "guide_impact_assessment",
