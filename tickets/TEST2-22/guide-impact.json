@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-22-guide-impact",
+  "handoffVersion": "TEST2-22:guide_impact_assessment:1",
+  "ticket": "TEST2-22",
+  "decision": "not_needed",
+  "affectedSection": "",
+  "reason": "The reviewed evidence only confirms existing launcher availability and module-card visibility; it introduces no new or changed user instructions, navigation, visible behaviour, or terminology.",
+  "noOp": false,
+  "assessedAt": "2026-09-22T12:18:34.724Z"
+}
