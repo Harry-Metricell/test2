@@ -1,0 +1,24 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-5-guide-update",
+  "handoffVersion": "TEST2-5:guide_update_authoring:1",
+  "ticket": "TEST2-5",
+  "title": "Manage Beacon Favourites",
+  "affectedSection": "Manage Beacon Favourites",
+  "changeType": "add",
+  "steps": [
+    "Open GIS and add the Beacons layer.",
+    "Select the star control beside a visible beacon to add it to Favourites.",
+    "Select Favourites to view the added beacon.",
+    "Select the beacon's star control again to remove it from Favourites.",
+    "Confirm that Favourites shows no favourite beacons."
+  ],
+  "screenshots": [
+    "screenshots/attempt-001/criterion-2-after-add.png",
+    "screenshots/attempt-001/criterion-3-after-open.png",
+    "screenshots/attempt-001/criterion-4-after-remove-criterion-5-final.png"
+  ],
+  "reason": "Add instructions for adding a visible beacon to Favourites, finding it there, and removing it again.",
+  "noOp": false,
+  "authoredAt": "2026-09-22T13:01:35.096Z"
+}
