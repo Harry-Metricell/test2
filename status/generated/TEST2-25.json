@@ -46,7 +46,27 @@
       "noOp": false,
       "assessedAt": "2026-09-22T14:10:34.736Z"
     },
-    "guideUpdate": null,
+    "guideUpdate": {
+      "schema": "v4-user-guide-update.v1",
+      "handoffId": "handoff-TEST2-25-guide-update",
+      "handoffVersion": "TEST2-25:guide_update_authoring:1",
+      "ticket": "TEST2-25",
+      "title": "Open a module from the V4 launcher",
+      "affectedSection": "V4 Launcher and Available Modules",
+      "changeType": "amend",
+      "steps": [
+        "Open the configured V4 launcher page.",
+        "Wait for the Metricell Launcher module grid to appear.",
+        "Locate the card for the module you want to use.",
+        "Select the Open module control on that card."
+      ],
+      "screenshots": [
+        "screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "reason": "The verified launcher displays 12 available module cards, each with its own Open module control.",
+      "noOp": false,
+      "authoredAt": "2026-09-22T14:15:35.128Z"
+    },
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-22T13:56:22.499+0100",
