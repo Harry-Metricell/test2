@@ -37,7 +37,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-4-guide-impact",
+      "handoffVersion": "TEST2-4:guide_impact_assessment:6",
+      "ticket": "TEST2-4",
+      "decision": "update_required",
+      "affectedSection": "Opening GIS from the Launcher",
+      "reason": "The reviewed behaviour adds user-facing navigation from the Launcher to the GIS workspace, so users need instructions explaining how to open GIS and recognise the resulting map and layer controls.",
+      "noOp": false,
+      "assessedAt": "2026-09-22T12:19:34.827Z"
+    },
     "guideUpdate": null,
     "retries": 3,
     "blockedStage": null,

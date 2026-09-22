@@ -57,22 +57,24 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-4-guide-impact",
-      "handoffVersion": "TEST2-4:guide_impact_assessment:6",
-      "action": "guide_impact_assessment",
-      "brief": "docs/briefs/user-guide-impact.md",
-      "owner": "guide-impact-assessor",
+      "handoffId": "handoff-TEST2-4-guide-update",
+      "handoffVersion": "TEST2-4:guide_update_authoring:6",
+      "action": "guide_update_authoring",
+      "brief": "docs/briefs/user-guide-authoring.md",
+      "owner": "guide-update-author",
       "ticket": "TEST2-4",
       "inputs": {
         "ticketJson": "tickets/TEST2-4/ticket.json",
         "generated": "status/generated/TEST2-4.json",
         "review": "tickets/TEST2-4/review.json",
         "report": "tickets/TEST2-4/report.md",
-        "policy": "config/user-guide-impact-policy.json"
+        "results": "tickets/TEST2-4/results.json",
+        "impact": "tickets/TEST2-4/guide-impact.json",
+        "policy": "config/user-guide-update-policy.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-4/guide-impact.json",
-        "schema": "v4-user-guide-impact.v1"
+        "path": "tickets/TEST2-4/guide-update.json",
+        "schema": "v4-user-guide-update.v1"
       }
     },
     {
