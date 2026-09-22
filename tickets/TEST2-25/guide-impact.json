@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-25-guide-impact",
+  "handoffVersion": "TEST2-25:guide_impact_assessment:1",
+  "ticket": "TEST2-25",
+  "decision": "update_required",
+  "affectedSection": "V4 Launcher and Available Modules",
+  "reason": "The verified launcher presents users with 12 available module cards and an Open control on every card. The guide should explain how users identify and open available modules from the V4 launcher.",
+  "noOp": false,
+  "assessedAt": "2026-09-22T14:10:34.736Z"
+}
