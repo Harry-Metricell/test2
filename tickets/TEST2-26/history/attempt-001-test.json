@@ -1,0 +1,75 @@
+{
+  "handoffId": "handoff-TEST2-26-test-attempt-001",
+  "handoffVersion": "TEST2-26:test_ticket:1",
+  "ticket": "TEST2-26",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Given the configured V4 launcher page is available, open it and verify that at least one module card is visible with an Open module control.",
+      "outcome": "Passed",
+      "reason": "The authenticated Metricell Launcher displayed 12 visible module cards, each with an Open control; the Agentic AI card and its Open control were directly visible.",
+      "steps_taken": [
+        "Navigated to the required V4 launcher URL and completed the permitted email-and-Continue authentication sequence.",
+        "Returned to the launcher independently for this criterion and read the browser URL as https://o2intelligence-v4-dev.metricell.com/launcher.",
+        "Inspected the launcher and confirmed visible module cards with Open controls.",
+        "Captured and verified separate non-empty initial and final PNG evidence."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "browserVersion": null,
+      "blockers": []
+    },
+    {
+      "criterion": "On a visible module card, select the Open module control and verify that the selected module page is displayed.",
+      "outcome": "Passed",
+      "reason": "Selecting the visible Open Agentic AI control navigated from the launcher to https://o2intelligence-v4-dev.metricell.com/agentic-ai, where the Agentic AI interface was displayed.",
+      "steps_taken": [
+        "Returned independently to the required launcher and read the browser URL as https://o2intelligence-v4-dev.metricell.com/launcher.",
+        "Captured the criterion initial state and the launcher immediately before opening the module.",
+        "Selected the visible Open Agentic AI control.",
+        "Confirmed the browser navigated to /agentic-ai and displayed the Agentic AI interface with its agent selector, prompt control, conversation tab, and map.",
+        "Captured and verified separate non-empty after-open and final PNG evidence."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-open.png",
+        "screenshots/attempt-001/criterion-2-after-open.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "browserVersion": null,
+      "blockers": []
+    },
+    {
+      "criterion": "After the module opens, verify that the resulting module page displays without a load error and capture evidence of both the launcher card and the opened module page.",
+      "outcome": "Passed",
+      "reason": "The Agentic AI module page rendered at /agentic-ai with its primary controls, conversation workspace, and map visible. Playwright reported zero console errors after the module opened. Criterion-specific evidence includes both the launcher card and opened module page.",
+      "steps_taken": [
+        "Returned independently to the required launcher and read the browser URL as https://o2intelligence-v4-dev.metricell.com/launcher.",
+        "Captured the criterion initial state and the launcher card immediately before opening Agentic AI.",
+        "Selected the visible Open Agentic AI control.",
+        "Confirmed the module page rendered at https://o2intelligence-v4-dev.metricell.com/agentic-ai with no visible load error and zero Playwright console errors.",
+        "Captured and verified separate non-empty after-open and final PNG evidence, then restored the application to the launcher."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-open.png",
+        "screenshots/attempt-001/criterion-3-after-open.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "browserVersion": null,
+      "blockers": []
+    }
+  ],
+  "conciseReport": "## TEST2-26 QA result\n\nAll three acceptance criteria passed. The V4 launcher displayed visible module cards with Open controls; selecting Open Agentic AI displayed the Agentic AI module at `/agentic-ai` without a visible load error. Criterion-specific initial, transition, and final PNG evidence has been staged for review, and the application was restored to the launcher.",
+  "reportPath": ".agent-staging/handoff-TEST2-26-test-attempt-001/test-output.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-26-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Testing completed successfully; all criteria passed with complete staged evidence and are awaiting evidence review.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-22T15:10:35.430Z"
+}
