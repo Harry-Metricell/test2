@@ -77,7 +77,6 @@ function ticketKey(value) {
 function gitPath() {
   const candidates = [];
   if (process.env.TEST2_GIT) candidates.push(process.env.TEST2_GIT);
-  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   const desktop = path.join(process.env.LOCALAPPDATA || '', 'GitHubDesktop');
   if (fs.existsSync(desktop)) {
     for (const entry of fs.readdirSync(desktop, { withFileTypes: true }).sort((a, b) => b.name.localeCompare(a.name))) {
@@ -86,14 +85,20 @@ function gitPath() {
       }
     }
   }
+  // Prefer GitHub Desktop's Git: its bundled credential manager is the one
+  // authenticated by the user's Desktop sign-in and is available to the
+  // unattended publisher task.
+  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
   candidates.push('C:\\Program Files\\Git\\cmd\\git.exe', 'git');
   return candidates.find(candidate => candidate === 'git' || fs.existsSync(candidate)) || 'git';
 }
 const git = gitPath();
 function runGit(args) {
   const gitRoot = path.dirname(path.dirname(git));
-  const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   const binPath = path.join(gitRoot, 'mingw64', 'bin');
+  const execPath = fs.existsSync(path.join(binPath, 'git-remote-https.exe'))
+    ? binPath
+    : path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   return execFileSync(git, ['-C', repo, ...args], {
     timeout: 60000,
     encoding: 'utf8', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
@@ -108,8 +113,10 @@ function runGit(args) {
 }
 function runGitAt(cwd, args, indexFile) {
   const gitRoot = path.dirname(path.dirname(git));
-  const execPath = path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   const binPath = path.join(gitRoot, 'mingw64', 'bin');
+  const execPath = fs.existsSync(path.join(binPath, 'git-remote-https.exe'))
+    ? binPath
+    : path.join(gitRoot, 'mingw64', 'libexec', 'git-core');
   return execFileSync(git, ['-C', cwd, ...args], {
     timeout: 60000,
     encoding: 'utf8', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
