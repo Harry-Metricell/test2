@@ -302,7 +302,7 @@
       "workflowState": "Rejected",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
-      "guideImpact": null,
+      "guideImpact": "update_required",
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
