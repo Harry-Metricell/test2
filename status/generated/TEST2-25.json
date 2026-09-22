@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-25",
+  "id": "105723",
+  "summary": "Verify V4 launcher displays available module cards",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-25",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-22T13:56:21.824+0100",
+    "updated": "2026-09-22T13:56:22.499+0100"
+  },
+  "description": "Open the configured V4 launcher page. Confirm the launcher loads successfully, the available V4 module cards are visible, and each visible card has an Open module control. Capture screenshot evidence for the launcher and the visible cards.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-25/ticket.json",
+    "criteria": "tickets/TEST2-25/criteria.md",
+    "status": "tickets/TEST2-25/status.json",
+    "screenshots": "tickets/TEST2-25/screenshots/",
+    "reports": "tickets/TEST2-25/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105723",
+    "importedAt": "2026-09-22T13:56:22.499+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-22T13:56:22.499+0100",
+    "criteriaVerified": false
+  }
+}
