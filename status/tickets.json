@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-22T10:12:45.918+0100",
   "counts": {
     "tickets": 23,
-    "handoffs": 3,
+    "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 14,
       "Ready": 8,
@@ -63,7 +63,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Manage Beacon Favourites",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-14T15:25:30.436+0100",
