@@ -38,7 +38,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-23-guide-impact",
+      "handoffVersion": "TEST2-23:guide_impact_assessment:3",
+      "ticket": "TEST2-23",
+      "decision": "not_needed",
+      "affectedSection": "",
+      "reason": "The reviewed work only verifies that the existing V4 launcher loads and displays existing module cards; it introduces no new or changed end-user instructions, navigation, visible behaviour, or terminology.",
+      "noOp": false,
+      "assessedAt": "2026-09-22T12:17:22.830Z"
+    },
     "guideUpdate": null,
     "retries": 2,
     "blockedStage": null,

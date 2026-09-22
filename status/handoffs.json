@@ -60,25 +60,6 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-23-guide-impact",
-      "handoffVersion": "TEST2-23:guide_impact_assessment:3",
-      "action": "guide_impact_assessment",
-      "brief": "docs/briefs/user-guide-impact.md",
-      "owner": "guide-impact-assessor",
-      "ticket": "TEST2-23",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-23/ticket.json",
-        "generated": "status/generated/TEST2-23.json",
-        "review": "tickets/TEST2-23/review.json",
-        "report": "tickets/TEST2-23/report.md",
-        "policy": "config/user-guide-impact-policy.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-23/guide-impact.json",
-        "schema": "v4-user-guide-impact.v1"
-      }
-    },
-    {
       "handoffId": "handoff-TEST2-24-criteria",
       "handoffVersion": "TEST2-24:criteria_conversion:2026-09-22T10:12:45.918+0100",
       "action": "criteria_conversion",
@@ -114,22 +95,24 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-5-guide-impact",
-      "handoffVersion": "TEST2-5:guide_impact_assessment:1",
-      "action": "guide_impact_assessment",
-      "brief": "docs/briefs/user-guide-impact.md",
-      "owner": "guide-impact-assessor",
+      "handoffId": "handoff-TEST2-5-guide-update",
+      "handoffVersion": "TEST2-5:guide_update_authoring:1",
+      "action": "guide_update_authoring",
+      "brief": "docs/briefs/user-guide-authoring.md",
+      "owner": "guide-update-author",
       "ticket": "TEST2-5",
       "inputs": {
         "ticketJson": "tickets/TEST2-5/ticket.json",
         "generated": "status/generated/TEST2-5.json",
         "review": "tickets/TEST2-5/review.json",
         "report": "tickets/TEST2-5/report.md",
-        "policy": "config/user-guide-impact-policy.json"
+        "results": "tickets/TEST2-5/results.json",
+        "impact": "tickets/TEST2-5/guide-impact.json",
+        "policy": "config/user-guide-update-policy.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-5/guide-impact.json",
-        "schema": "v4-user-guide-impact.v1"
+        "path": "tickets/TEST2-5/guide-update.json",
+        "schema": "v4-user-guide-update.v1"
       }
     },
     {

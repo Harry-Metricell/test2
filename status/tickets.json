@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-22T10:12:45.918+0100",
   "counts": {
     "tickets": 23,
-    "handoffs": 8,
+    "handoffs": 7,
     "byWorkflowState": {
       "Blocked": 14,
       "Ready": 8,
@@ -62,7 +62,7 @@
       "workflowState": "Blocked",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
-      "guideImpact": null,
+      "guideImpact": "update_required",
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
@@ -238,7 +238,7 @@
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
-      "guideImpact": null,
+      "guideImpact": "not_needed",
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
