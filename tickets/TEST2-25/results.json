@@ -1,0 +1,74 @@
+[
+  {
+    "criterion": "When the configured V4 launcher page is opened, the launcher interface finishes loading without displaying a load error.",
+    "outcome": "Passed",
+    "reason": "The authenticated launcher finished loading at the configured launcher URL with the Metricell Launcher header, welcome message, and module grid visible; no load error was displayed.",
+    "steps_taken": [
+      "Navigated to the configured V4 launcher URL.",
+      "Completed the required email-and-Continue authentication sequence.",
+      "Returned to the launcher for this criterion and waited for loading to finish.",
+      "Read the current URL from the browser and captured separate initial and final full-page PNG evidence."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "browserVersion": null,
+    "blockers": []
+  },
+  {
+    "criterion": "With the V4 launcher loaded, every V4 module currently available to the user is represented by a visible module card.",
+    "outcome": "Passed",
+    "reason": "The launcher visibly displayed 12 available module cards: Agentic AI, GIS, Dashboards, Customer Care, Survey Analyser, RPO, Data Management, Documents, Agentic AI Administration, Device Administration, Access admin, and API request audit.",
+    "steps_taken": [
+      "Returned independently to the configured launcher URL and waited for loading to finish.",
+      "Read the current URL from the browser.",
+      "Inspected the launcher accessibility snapshot and confirmed 12 visible module cards.",
+      "Captured separate initial and final full-page PNG evidence showing the complete module grid."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "browserVersion": null,
+    "blockers": []
+  },
+  {
+    "criterion": "With the V4 launcher loaded, every visible V4 module card displays an Open module control.",
+    "outcome": "Passed",
+    "reason": "Each of the 12 visible module cards exposed its own Open control in the launcher accessibility snapshot and displayed the corresponding arrow control on the card.",
+    "steps_taken": [
+      "Returned independently to the configured launcher URL and waited for loading to finish.",
+      "Read the current URL from the browser.",
+      "Inspected every visible module card and confirmed an Open control for each one.",
+      "Captured separate initial and final full-page PNG evidence showing all controls."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "browserVersion": null,
+    "blockers": []
+  },
+  {
+    "criterion": "Screenshot evidence shows the loaded V4 launcher and all visible module cards, including each card's Open module control.",
+    "outcome": "Passed",
+    "reason": "The criterion-specific full-page PNGs visibly show the loaded launcher, all 12 module cards, and each card's arrow-shaped Open control.",
+    "steps_taken": [
+      "Returned independently to the configured launcher URL and waited for loading to finish.",
+      "Read the current URL from the browser.",
+      "Captured separate initial and final full-page PNGs from the same Playwright page used for verification.",
+      "Verified both evidence files exist in the selected staging folder and have non-zero size."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "browserVersion": null,
+    "blockers": []
+  }
+]
