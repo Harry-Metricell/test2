@@ -4,13 +4,13 @@
   "summary": "Verify published User Guide resource",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-24",
-    "status": "READY FOR TESTING",
+    "status": "Rejected",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-22T10:12:31.515+0100",
-    "updated": "2026-09-22T10:12:45.918+0100"
+    "updated": "2026-09-22T15:23:16.070+0100"
   },
   "description": "Confirm the TEST2 QA Tracker User Guide page lists the published V4 User Guide and that the guide download works. This is a basic end-to-end test ticket.",
   "acceptanceCriteria": [],
@@ -24,22 +24,22 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105655",
-    "importedAt": "2026-09-22T10:12:45.918+0100"
+    "importedAt": "2026-09-22T15:23:16.070+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Ready",
+    "jiraStatus": "Rejected",
+    "workflowState": "Blocked",
     "qaStatus": "Ready for Testing",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create testing handoff",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
-    "updatedAt": "2026-09-22T10:12:45.918+0100",
+    "updatedAt": "2026-09-22T15:23:16.070+0100",
     "criteriaVerified": true
   }
 }
