@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-20-guide-impact",
+  "handoffVersion": "TEST2-20:guide_impact_assessment:2",
+  "ticket": "TEST2-20",
+  "decision": "not_needed",
+  "affectedSection": "",
+  "reason": "The reviewed behavior only verifies the QA URL and screenshot evidence rule for the existing Metricell Launcher; it introduces no new end-user instructions, navigation, visible behavior, or terminology.",
+  "noOp": false,
+  "assessedAt": "2026-09-22T12:16:43.740Z"
+}
