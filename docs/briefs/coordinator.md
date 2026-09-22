@@ -1,5 +1,17 @@
 # TEST2 Coordinator Brief
 
+## Cost-controlled worker model allocation
+
+When creating child tasks, use the lowest-cost model that can safely complete the stage:
+
+- `criteria_conversion`: GPT-5.6-luna with low reasoning.
+- `guide_impact_assessment`: GPT-5.6-luna with low reasoning.
+- `guide_update_authoring`: GPT-5.6-luna with low reasoning.
+- `test_ticket`: retain the configured stronger browser-capable model.
+- `evidence_review`: retain the configured stronger review-capable model.
+
+This allocation changes model selection only; it must not relax any brief, validation rule, evidence requirement, retry rule, or publication gate. Publisher, importer, bundler, and status generation remain deterministic scripts and do not require a model.
+
 Before reading the queue or creating a child, acquire an exclusive `.agent-staging/coordinator.lock` directory in the synchronised repository checkout. If it exists and is less than 15 minutes old, return a compact no-op and create no child. Replace only stale locks and remove the lock during cleanup. This repository-local lock is writable in child-task sandboxes and prevents separate coordinator chats from processing the same handoff concurrently.
 
 Execute immediately. Do not explain, summarise, or audit this brief before acting.  Start the orchestration loop now. Never delete, archive, pause, rename, or replace this coordinator task or its automation.
