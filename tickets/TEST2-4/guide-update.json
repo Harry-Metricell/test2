@@ -1,0 +1,22 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-4-guide-update",
+  "handoffVersion": "TEST2-4:guide_update_authoring:6",
+  "ticket": "TEST2-4",
+  "title": "Open GIS from the Launcher",
+  "affectedSection": "Opening GIS from the Launcher",
+  "changeType": "add",
+  "steps": [
+    "Open the Launcher.",
+    "Select GIS.",
+    "Confirm the GIS workspace displays a map and layer controls."
+  ],
+  "screenshots": [
+    "screenshots/attempt-006/criterion-1-initial-launcher.png",
+    "screenshots/attempt-006/criterion-1-before-open-gis.png",
+    "screenshots/attempt-006/criterion-1-after-open-gis.png"
+  ],
+  "reason": "Add instructions for opening the GIS workspace from the Launcher and recognising the resulting map and layer controls.",
+  "noOp": false,
+  "authoredAt": "2026-09-22T12:58:35.178Z"
+}
