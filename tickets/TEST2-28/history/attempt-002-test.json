@@ -1,0 +1,106 @@
+{
+  "handoffId": "handoff-TEST2-28-retry-attempt-002",
+  "handoffVersion": "TEST2-28:test_ticket:2",
+  "ticket": "TEST2-28",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Starting at https://o2intelligence-v4-dev.metricell.com/launcher, the V4 launcher displays an Agentic AI module card with an Open control.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Navigated to the required launcher URL.",
+        "Completed the visible email and Continue sequence with harry.piper@metricell.com.",
+        "Launcher displayed 'Could not load the application bootstrap' and 'Request failed with status 403.'"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "reason": "Live application bootstrap request returned HTTP 403, preventing the launcher module card from loading. Evidence captures the visible blocked state.",
+      "outcome": "Blocked"
+    },
+    {
+      "criterion": "Selecting Open on the Agentic AI card displays the Agentic AI module.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Navigated to the required launcher URL and completed the visible email and Continue sequence.",
+        "Launcher bootstrap displayed HTTP 403; no Agentic AI card or Open control was available."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "reason": "Live application bootstrap request returned HTTP 403, so the required control and module were inaccessible.",
+      "outcome": "Blocked"
+    },
+    {
+      "criterion": "After selecting Open on the Agentic AI card, the browser URL is exactly https://o2intelligence-v4-dev.metricell.com/agentic-ai.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Navigated to the required launcher URL and completed the visible email and Continue sequence.",
+        "Launcher bootstrap displayed HTTP 403; no Agentic AI card or Open control was available to select."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "reason": "Live application bootstrap request returned HTTP 403, preventing navigation to the required module URL.",
+      "outcome": "Blocked"
+    },
+    {
+      "criterion": "Using the browser Back action from the Agentic AI module returns to the V4 launcher.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Navigated to the required launcher URL and completed the visible email and Continue sequence.",
+        "Launcher bootstrap displayed HTTP 403, so the Agentic AI module could not be opened."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "reason": "Live application bootstrap request returned HTTP 403; the required starting module was inaccessible.",
+      "outcome": "Blocked"
+    },
+    {
+      "criterion": "After using the browser Back action, the browser URL is exactly https://o2intelligence-v4-dev.metricell.com/launcher.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Navigated to the required launcher URL and completed the visible email and Continue sequence.",
+        "Launcher bootstrap displayed HTTP 403, preventing the module navigation and subsequent browser Back journey."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-final.png"
+      ],
+      "reason": "Live application bootstrap request returned HTTP 403, preventing the required navigation journey.",
+      "outcome": "Blocked"
+    },
+    {
+      "criterion": "After returning to the launcher, its module cards are visible and usable.",
+      "status": "Blocked",
+      "steps_taken": [
+        "Navigated to the required launcher URL and completed the visible email and Continue sequence.",
+        "Launcher bootstrap displayed HTTP 403; module cards were not available to inspect or use."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "reason": "Live application bootstrap request returned HTTP 403, preventing launcher module cards from loading.",
+      "outcome": "Blocked"
+    }
+  ],
+  "conciseReport": "## QA Summary\n\n- **TEST2-28:** Blocked. The required launcher loaded a visible application bootstrap error: `Request failed with status 403`. The Agentic AI navigation and browser Back journey could not be tested.\n- The required email and Continue sequence completed.\n- Evidence is saved in `.agent-staging/handoff-TEST2-28-retry-attempt-002/screenshots/`.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-28-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "The live V4 application bootstrap endpoint returned HTTP 403 after the required email and Continue sequence, blocking all six criteria. Each criterion has dedicated initial-state and final blocked-state PNG evidence.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-23T15:53:56.075Z"
+}
