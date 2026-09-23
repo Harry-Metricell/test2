@@ -1,0 +1,49 @@
+{
+  "key": "TEST2-28",
+  "id": "105921",
+  "summary": "Verify final browser URLs through Agentic AI navigation",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-28",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-23T16:06:19.231+0100",
+    "updated": "2026-09-23T16:06:30.722+0100"
+  },
+  "description": "Regression check for the V4 launcher and per-criterion final URL evidence.\nTest at https://o2intelligence-v4-dev.metricell.com/launcher.\nAcceptance criteria:\nThe V4 launcher displays the Agentic AI module card and its Open control.\nSelecting Open on Agentic AI displays the Agentic AI module, and the final browser URL is https://o2intelligence-v4-dev.metricell.com/agentic-ai.\nUsing browser Back returns to the launcher, and the final browser URL is https://o2intelligence-v4-dev.metricell.com/launcher with module cards visible and usable.",
+  "acceptanceCriteria": [
+    "The V4 launcher displays the Agentic AI module card and its Open control.",
+    "Selecting Open on Agentic AI displays the Agentic AI module, and the final browser URL is https://o2intelligence-v4-dev.metricell.com/agentic-ai.",
+    "Using browser Back returns to the launcher, and the final browser URL is https://o2intelligence-v4-dev.metricell.com/launcher with module cards visible and usable."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-28/ticket.json",
+    "criteria": "tickets/TEST2-28/criteria.md",
+    "status": "tickets/TEST2-28/status.json",
+    "screenshots": "tickets/TEST2-28/screenshots/",
+    "reports": "tickets/TEST2-28/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105921",
+    "importedAt": "2026-09-23T16:06:30.722+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-23T16:06:30.722+0100",
+    "criteriaVerified": false
+  }
+}
