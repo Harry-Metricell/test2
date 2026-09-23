@@ -20,5 +20,26 @@
     "reason": "The verified behavior shows users can select an Open module control on a visible launcher card and reach the selected module page without a load error. The guide should explain how to open an available module from the V4 launcher.",
     "noOp": false,
     "assessedAt": "2026-09-23T09:03:55.893Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-26-guide-update",
+    "handoffVersion": "TEST2-26:guide_update_authoring:1",
+    "ticket": "TEST2-26",
+    "title": "Open a module from the V4 launcher",
+    "affectedSection": "V4 Launcher and Available Modules",
+    "changeType": "amend",
+    "steps": [
+      "Open the V4 launcher.",
+      "On a visible module card, select Open module.",
+      "Confirm that the selected module page opens without a load error."
+    ],
+    "screenshots": [
+      "screenshots/attempt-001/criterion-2-before-open.png",
+      "screenshots/attempt-001/criterion-2-after-open.png"
+    ],
+    "reason": "Add the verified steps for opening an available module from a V4 launcher card and confirming that its module page displays.",
+    "noOp": false,
+    "authoredAt": "2026-09-23T10:18:56.349Z"
   }
 }
