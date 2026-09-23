@@ -1,28 +1,28 @@
 {
-  "handoffId": "handoff-TEST2-27-review-attempt-001",
-  "handoffVersion": "TEST2-27:evidence_review:1",
+  "handoffId": "handoff-TEST2-27-review-attempt-002",
+  "handoffVersion": "TEST2-27:evidence_review:2",
   "ticket": "TEST2-27",
   "criterionOutcomes": [
     {
       "criterion": "The V4 launcher displays the Agentic AI module card and its Open control.",
       "outcome": "Passed",
-      "reason": "The attempt-001 screenshots directly show the V4 Launcher with the Agentic AI module card and its enabled arrow Open control; the browser-derived URL is the expected V4 /launcher URL."
+      "reason": "Attempt 002 screenshot shows the Agentic AI card and its Open arrow control on the launcher; result browserUrl is on the expected V4 host."
     },
     {
       "criterion": "Selecting Open on Agentic AI displays the Agentic AI module page at /agentic-ai without a load error.",
-      "outcome": "Failed",
-      "reason": "The attempt-001 screenshots directly show the Agentic AI module page loaded without a visible load error, but the corresponding browser-derived browserUrl is https://o2intelligence-v4-dev.metricell.com/launcher rather than the required /agentic-ai current URL."
+      "outcome": "Unverified",
+      "reason": "Screenshot shows the Agentic AI module rendered, but the corresponding browserUrl records /launcher rather than /agentic-ai, so the required destination URL is not verified."
     },
     {
       "criterion": "Using the browser Back control returns to /launcher, where the module cards are visible and usable.",
-      "outcome": "Passed",
-      "reason": "The attempt-001 before-back and after-back evidence directly shows the Agentic AI module followed by the restored V4 Launcher with module cards and enabled controls, and the browser-derived URL matches the expected V4 /launcher URL."
+      "outcome": "Unverified",
+      "reason": "Screenshot shows launcher cards after Back, but the corresponding browserUrl records /agentic-ai rather than /launcher, so the required current URL is not verified."
     }
   ],
-  "overallOutcome": "Failed",
+  "overallOutcome": "Unverified",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-27\\screenshots\\attempt-001",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-27\\screenshots\\attempt-002",
   "qaStatus": "Evidence Reviewed",
   "noOp": false,
-  "reason": "Evidence review completed for all three criteria; criterion 2 failed because its browser-derived URL contradicts the required /agentic-ai path."
+  "reason": "Reviewed all three criteria against attempt 002 screenshots and result browserUrl values; URL evidence is inconsistent for criteria 2 and 3."
 }
