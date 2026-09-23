@@ -1,23 +1,5 @@
 {
   "schema": "v4-qa-handoffs.v1",
   "generatedAt": "2026-09-23T14:33:34.373Z",
-  "handoffs": [
-    {
-      "handoffId": "handoff-TEST2-27-review-attempt-002",
-      "handoffVersion": "TEST2-27:evidence_review:2",
-      "attempt": 2,
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-27",
-      "inputs": {
-        "results": "tickets/TEST2-27/results.json",
-        "generated": "status/generated/TEST2-27.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-27/review.json",
-        "schema": "v4-qa-review.v1"
-      }
-    }
-  ]
+  "handoffs": []
 }

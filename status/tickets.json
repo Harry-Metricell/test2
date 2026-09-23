@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-23T14:33:34.373Z",
   "counts": {
     "tickets": 26,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 15,
       "Ready": 10,
@@ -12,8 +12,8 @@
     "byQaOutcome": {
       "Blocked": 5,
       "Not Tested": 3,
-      "Passed": 15,
-      "Unverified": 3
+      "Passed": 14,
+      "Unverified": 4
     }
   },
   "policy": {
@@ -284,12 +284,12 @@
       "summary": "Verify returning to the V4 launcher from an opened module",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Passed",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create evidence review handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-23T14:33:34.373Z",
       "retries": 1,
       "retryLimit": 3,
