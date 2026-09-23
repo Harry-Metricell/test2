@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-22T15:54:16.090+0100",
+  "generatedAt": "2026-09-23T12:31:27.736+0100",
   "counts": {
-    "tickets": 25,
-    "handoffs": 0,
+    "tickets": 26,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 15,
-      "Ready": 9,
+      "Ready": 10,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 5,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 14,
       "Unverified": 3
     }
@@ -275,6 +275,22 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-22T15:54:16.090+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-27",
+      "summary": "Verify returning to the V4 launcher from an opened module",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-23T12:31:27.736+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""

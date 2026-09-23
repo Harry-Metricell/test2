@@ -1,0 +1,53 @@
+{
+  "key": "TEST2-27",
+  "id": "105888",
+  "summary": "Verify returning to the V4 launcher from an opened module",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-27",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-23T12:31:13.109+0100",
+    "updated": "2026-09-23T12:31:27.736+0100"
+  },
+  "description": "Verify the browser can return to the V4 launcher after opening a module.\nTest at https://o2intelligence-v4-dev.metricell.com/launcher.\nAcceptance criteria:\nThe V4 launcher displays the Agentic AI module card and its Open control.\nSelecting Open on Agentic AI displays the Agentic AI module page at\n/agentic-ai\nwithout a load error.\nUsing the browser Back control returns to\n/launcher\n, where the module cards are visible and usable.",
+  "acceptanceCriteria": [
+    "The V4 launcher displays the Agentic AI module card and its Open control.",
+    "Selecting Open on Agentic AI displays the Agentic AI module page at",
+    "/agentic-ai",
+    "without a load error.",
+    "Using the browser Back control returns to",
+    "/launcher",
+    ", where the module cards are visible and usable."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-27/ticket.json",
+    "criteria": "tickets/TEST2-27/criteria.md",
+    "status": "tickets/TEST2-27/status.json",
+    "screenshots": "tickets/TEST2-27/screenshots/",
+    "reports": "tickets/TEST2-27/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/105888",
+    "importedAt": "2026-09-23T12:31:27.736+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-23T12:31:27.736+0100",
+    "criteriaVerified": false
+  }
+}
