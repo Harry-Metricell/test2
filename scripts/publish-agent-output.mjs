@@ -216,6 +216,16 @@ function criterionIndex(value, criteria) {
   return numeric - 1;
 }
 
+function criterionSimilarity(left, right) {
+  const ignored = new Set(['a', 'an', 'and', 'are', 'as', 'at', 'by', 'for', 'from', 'in', 'is', 'it', 'of', 'on', 'or', 'the', 'to', 'using', 'where', 'with']);
+  const tokens = value => new Set(String(value || '').toLocaleLowerCase().match(/[a-z0-9]+/g)?.filter(token => token.length > 1 && !ignored.has(token)) || []);
+  const leftTokens = tokens(left);
+  const rightTokens = tokens(right);
+  if (!leftTokens.size || !rightTokens.size) return 0;
+  const overlap = [...leftTokens].filter(token => rightTokens.has(token)).length;
+  return overlap / new Set([...leftTokens, ...rightTokens]).size;
+}
+
 function validateCriterionCoverage(items, criteria, label) {
   if (!Array.isArray(items) || items.length !== criteria.length) {
     fail(`${label} must contain exactly one result for each of the ${criteria.length} checklist criteria`);
@@ -223,20 +233,43 @@ function validateCriterionCoverage(items, criteria, label) {
   const expected = new Set(criteria.map(criterionKey));
   if (expected.size !== criteria.length) fail('criteria.md contains duplicate checklist criteria');
   const actual = new Set();
-  const normalized = [];
+  const normalized = new Array(items.length);
+  const unmatched = [];
   for (const [index, item] of items.entries()) {
     const ordinal = criterionIndex(item?.criterion, criteria);
-    const canonicalCriterion = ordinal === null ? item?.criterion : criteria[ordinal];
-    const key = criterionKey(canonicalCriterion);
-    if (!key || !expected.has(key) || actual.has(key)) {
+    const exactKey = criterionKey(item?.criterion);
+    const exactIndex = ordinal ?? criteria.findIndex(criterion => criterionKey(criterion) === exactKey);
+    if (exactIndex >= 0) {
+      const key = criterionKey(criteria[exactIndex]);
+      if (actual.has(key)) fail(`${label} item ${index + 1} does not map uniquely to a checklist criterion`);
+      actual.add(key);
+      normalized[index] = { ...item, criterion: criteria[exactIndex] };
+    } else {
+      unmatched.push({ index, item });
+    }
+  }
+  // Older workers sometimes paraphrased a criterion despite covering it. Map
+  // only an unambiguous, high-overlap one-to-one match; otherwise reject it.
+  for (const { index, item } of unmatched) {
+    const ranked = criteria
+      .map((criterion, candidateIndex) => ({ criterion, candidateIndex, score: criterionSimilarity(item?.criterion, criterion) }))
+      .filter(candidate => !actual.has(criterionKey(candidate.criterion)))
+      .sort((a, b) => b.score - a.score);
+    const best = ranked[0];
+    const runnerUp = ranked[1];
+    if (!best || best.score < 0.65 || (runnerUp && best.score - runnerUp.score < 0.15)) {
       fail(`${label} item ${index + 1} does not map uniquely to a checklist criterion`);
     }
+    actual.add(criterionKey(best.criterion));
+    normalized[index] = { ...item, criterion: best.criterion };
+  }
+  if (actual.size !== criteria.length) fail(`${label} does not cover every checklist criterion`);
+
+  for (const [index, item] of normalized.entries()) {
     const outcome = String(item?.outcome || '').trim().toLowerCase();
     if (!VALID_OUTCOMES.has(outcome)) {
       fail(`${label} item ${index + 1} has an invalid outcome: ${item?.outcome || '(missing)'}`);
     }
-    actual.add(key);
-    normalized.push({ ...item, criterion: canonicalCriterion });
   }
   return normalized;
 }
