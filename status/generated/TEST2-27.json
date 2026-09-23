@@ -12,15 +12,11 @@
     "created": "2026-09-23T12:31:13.109+0100",
     "updated": "2026-09-23T12:31:27.736+0100"
   },
-  "description": "Verify the browser can return to the V4 launcher after opening a module.\nTest at https://o2intelligence-v4-dev.metricell.com/launcher.\nAcceptance criteria:\nThe V4 launcher displays the Agentic AI module card and its Open control.\nSelecting Open on Agentic AI displays the Agentic AI module page at\n/agentic-ai\nwithout a load error.\nUsing the browser Back control returns to\n/launcher\n, where the module cards are visible and usable.",
+  "description": "Verify the browser can return to the V4 launcher after opening a module.\nTest at https://o2intelligence-v4-dev.metricell.com/launcher.\nAcceptance criteria:\nThe V4 launcher displays the Agentic AI module card and its Open control.\nSelecting Open on Agentic AI displays the Agentic AI module page at /agentic-ai without a load error.\nUsing the browser Back control returns to /launcher, where the module cards are visible and usable.",
   "acceptanceCriteria": [
     "The V4 launcher displays the Agentic AI module card and its Open control.",
-    "Selecting Open on Agentic AI displays the Agentic AI module page at",
-    "/agentic-ai",
-    "without a load error.",
-    "Using the browser Back control returns to",
-    "/launcher",
-    ", where the module cards are visible and usable."
+    "Selecting Open on Agentic AI displays the Agentic AI module page at /agentic-ai without a load error.",
+    "Using the browser Back control returns to /launcher, where the module cards are visible and usable."
   ],
   "files": {
     "ticket": "tickets/TEST2-27/ticket.json",
