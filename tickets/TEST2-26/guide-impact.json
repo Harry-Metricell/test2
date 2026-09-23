@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-26-guide-impact",
+  "handoffVersion": "TEST2-26:guide_impact_assessment:1",
+  "ticket": "TEST2-26",
+  "decision": "update_required",
+  "affectedSection": "V4 Launcher and Available Modules",
+  "reason": "The verified behavior shows users can select an Open module control on a visible launcher card and reach the selected module page without a load error. The guide should explain how to open an available module from the V4 launcher.",
+  "noOp": false,
+  "assessedAt": "2026-09-23T09:03:55.893Z"
+}
