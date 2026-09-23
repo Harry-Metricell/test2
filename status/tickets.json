@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-22T15:54:16.090+0100",
   "counts": {
     "tickets": 25,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 15,
       "Ready": 9,
@@ -271,7 +271,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Open a module from the V4 launcher",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-22T15:54:16.090+0100",
