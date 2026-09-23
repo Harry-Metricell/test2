@@ -1,0 +1,53 @@
+[
+  {
+    "criterion": "The V4 launcher displays the Agentic AI module card and its Open control.",
+    "status": "Passed",
+    "steps_taken": [
+      "Navigated to the V4 launcher.",
+      "Confirmed the Agentic AI card and enabled Open control were visible."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "outcome": "Passed"
+  },
+  {
+    "criterion": "Selecting Open on Agentic AI displays the Agentic AI module page at /agentic-ai without a load error.",
+    "status": "Passed",
+    "steps_taken": [
+      "Returned to the launcher and captured its initial state.",
+      "Selected Open on the Agentic AI card.",
+      "Confirmed the URL ended in /agentic-ai, the Agentic AI workspace loaded, and the browser reported zero console errors."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-open.png",
+      "screenshots/attempt-001/criterion-2-after-open.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "outcome": "Passed"
+  },
+  {
+    "criterion": "Using the browser Back control returns to /launcher, where the module cards are visible and usable.",
+    "status": "Passed",
+    "steps_taken": [
+      "Returned to the launcher and captured its initial state.",
+      "Opened Agentic AI and confirmed the module page loaded.",
+      "Used browser Back.",
+      "Confirmed /launcher appeared with the module cards and enabled Agentic AI Open control."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-open.png",
+      "screenshots/attempt-001/criterion-3-after-open.png",
+      "screenshots/attempt-001/criterion-3-before-back.png",
+      "screenshots/attempt-001/criterion-3-after-back.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "outcome": "Passed"
+  }
+]
