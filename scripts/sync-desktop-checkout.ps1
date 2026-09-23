@@ -91,19 +91,16 @@ try {
         exit 0
     }
 
-    $discardGenerated = @($localPaths | Where-Object {
+    $discardGenerated = @($overlap | Where-Object {
         $candidate = $_ -replace '\\', '/'
-        $generatedPatterns | Where-Object { $candidate -match $_ }
-    })
-    $discardGenerated = @($discardGenerated | Where-Object {
-        $incomingPaths -contains ($_ -replace '\\', '/') -and $alreadyAtRemote -notcontains $_
+        ($alreadyAtRemote -contains $_) -or ($generatedPatterns | Where-Object { $candidate -match $_ })
     })
     $unrelatedLocalPaths = @($localPaths | Where-Object { $incomingPaths -notcontains ($_ -replace '\\', '/') })
     if ($unrelatedLocalPaths.Count -gt 0) {
         Log "INFO preserving unrelated local file(s): $($unrelatedLocalPaths -join ', ')"
     }
     if ($discardGenerated.Count -gt 0) {
-        Log "INFO replacing locally modified generated status file(s) from GitHub: $($discardGenerated -join ', ')"
+        Log "INFO backing up and refreshing safe incoming overlap(s) from GitHub: $($discardGenerated -join ', ')"
         foreach ($relativePath in $discardGenerated) {
             $target = Join-Path $Repo ($relativePath -replace '/', '\\')
             if (Test-Path -LiteralPath $target) {
