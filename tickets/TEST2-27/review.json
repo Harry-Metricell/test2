@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-27-review-attempt-001",
+  "handoffVersion": "TEST2-27:evidence_review:1",
+  "ticket": "TEST2-27",
+  "criterionOutcomes": [
+    {
+      "criterion": "The V4 launcher displays the Agentic AI module card and its Open control.",
+      "outcome": "Passed",
+      "reason": "The attempt-001 screenshots directly show the V4 Launcher with the Agentic AI module card and its enabled arrow Open control; the browser-derived URL is the expected V4 /launcher URL."
+    },
+    {
+      "criterion": "Selecting Open on Agentic AI displays the Agentic AI module page at /agentic-ai without a load error.",
+      "outcome": "Failed",
+      "reason": "The attempt-001 screenshots directly show the Agentic AI module page loaded without a visible load error, but the corresponding browser-derived browserUrl is https://o2intelligence-v4-dev.metricell.com/launcher rather than the required /agentic-ai current URL."
+    },
+    {
+      "criterion": "Using the browser Back control returns to /launcher, where the module cards are visible and usable.",
+      "outcome": "Passed",
+      "reason": "The attempt-001 before-back and after-back evidence directly shows the Agentic AI module followed by the restored V4 Launcher with module cards and enabled controls, and the browser-derived URL matches the expected V4 /launcher URL."
+    }
+  ],
+  "overallOutcome": "Failed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-27\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Evidence review completed for all three criteria; criterion 2 failed because its browser-derived URL contradicts the required /agentic-ai path."
+}
