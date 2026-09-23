@@ -266,10 +266,11 @@ function validateCriterionCoverage(items, criteria, label) {
   if (actual.size !== criteria.length) fail(`${label} does not cover every checklist criterion`);
 
   for (const [index, item] of normalized.entries()) {
-    const outcome = String(item?.outcome || '').trim().toLowerCase();
+    const outcome = String(item?.outcome || item?.status || '').trim().toLowerCase();
     if (!VALID_OUTCOMES.has(outcome)) {
-      fail(`${label} item ${index + 1} has an invalid outcome: ${item?.outcome || '(missing)'}`);
+      fail(`${label} item ${index + 1} has an invalid outcome: ${item?.outcome || item?.status || '(missing)'}`);
     }
+    normalized[index] = { ...item, outcome: outcome[0].toUpperCase() + outcome.slice(1) };
   }
   return normalized;
 }

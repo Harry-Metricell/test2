@@ -47,7 +47,7 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     const testStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-test-attempt-001');
     // A clear paraphrase should canonicalize to the checklist item; this
     // fixture then fails for its deliberately incomplete screenshot evidence.
-    write(path.join(testStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-001', handoffVersion: 'TEST2-99:test_ticket:1', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [{ criterion: 'The launcher page is visible.', outcome: 'Passed', evidence: ['criterion-1-initial.png'] }], conciseReport: 'Passed' }));
+    write(path.join(testStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-001', handoffVersion: 'TEST2-99:test_ticket:1', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [{ criterion: 'The launcher page is visible.', status: 'Passed', evidence: ['criterion-1-initial.png'] }], conciseReport: 'Passed' }));
     const before = g(seed, 'rev-parse', 'origin/main');
     const second = run(); assert.equal(second.status, 1); assert.match(second.stderr, /needs its own initial and final PNG evidence/);
     g(seed, 'fetch'); assert.equal(g(seed, 'rev-parse', 'origin/main'), before);
