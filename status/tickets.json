@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-23T15:50:15.959Z",
+  "generatedAt": "2026-09-23T15:54:50.989Z",
   "counts": {
     "tickets": 27,
     "handoffs": 1,
@@ -306,11 +306,11 @@
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-23T15:50:15.959Z",
-      "retries": 1,
+      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "updatedAt": "2026-09-23T15:54:50.989Z",
+      "retries": 2,
       "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retryLabel": "Retry 2/3"
     },
     {
       "key": "TEST2-2",
