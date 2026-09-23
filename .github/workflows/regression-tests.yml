@@ -42,6 +42,9 @@ jobs:
           TEST2_GIT: /usr/bin/git
         run: node --test scripts/publisher-regression.test.mjs
 
+      - name: Run Jira rich-text criteria regression tests
+        run: node --test scripts/jira-adf.test.mjs
+
       - name: Run evidence report regression tests
         run: python scripts/build-evidence-report.test.py
 
@@ -56,3 +59,4 @@ jobs:
           node scripts/check-user-guide-plan.mjs
           node scripts/check-user-guide-impact-policy.mjs
           node scripts/check-user-guide-update-policy.mjs
+

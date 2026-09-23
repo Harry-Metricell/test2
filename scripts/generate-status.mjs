@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { acceptanceCriteria, flattenAdf } from './jira-adf.mjs';
 
 const root = process.cwd();
 const checkOnly = process.argv.includes('--check');
@@ -76,40 +77,6 @@ function writeText(file, value) {
   }
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, body);
-}
-
-function flattenAdf(node) {
-  if (!node) return '';
-  if (typeof node === 'string') return node;
-  if (Array.isArray(node)) return node.map(flattenAdf).filter(Boolean).join('\n');
-  const own = node.text || '';
-  const children = node.content ? flattenAdf(node.content) : '';
-  if (node.type === 'paragraph' || node.type === 'heading' || node.type === 'listItem') return [own, children].filter(Boolean).join(' ').trim();
-  if (node.type === 'bulletList' || node.type === 'orderedList') return children;
-  return [own, children].filter(Boolean).join(' ').trim();
-}
-
-function acceptanceCriteria(descriptionText) {
-  const marker = /Acceptance Criteria:\s*/i.exec(descriptionText);
-  if (marker) {
-    const afterMarker = descriptionText
-      .slice(marker.index + marker[0].length)
-      .split(/\n+/)
-      .map((line) => line.replace(/\\n/g, '\n').replace(/^[-*]\s*/, '').trim())
-      .filter(Boolean);
-    // Jira's flattened rich text contains all later sections.  Criteria end at
-    // the object-change section; treating its headings as tests creates
-    // unrelated, untestable checklist items.
-    const end = afterMarker.findIndex((line) => /^Object Change List:/i.test(line));
-    return end === -1 ? afterMarker : afterMarker.slice(0, end);
-  }
-
-  const concise = descriptionText.replace(/\s+/g, ' ').trim();
-  if (!concise || concise.length > 500 || !/\b(should|must|shall|able to)\b/i.test(concise)) return [];
-
-  const sentences = concise.split(/(?<=[.!?])\s+/).map((line) => line.trim()).filter(Boolean);
-  const actions = sentences.filter((line) => !/\b(?:should|must|shall) work\.?$/i.test(line));
-  return actions.length ? actions : [concise];
 }
 
 function canonicalState(value, fallback = 'Imported') {
@@ -635,6 +602,7 @@ for (const ticket of tickets) {
 }
 
 console.log(JSON.stringify({ ok: true, tickets: tickets.length, handoffs: handoffs.length }, null, 2));
+
 
 
 

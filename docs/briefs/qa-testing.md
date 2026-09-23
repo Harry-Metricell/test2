@@ -31,7 +31,10 @@ Write one temporary output file to:
 
 The JSON must contain: `handoffId`, `handoffVersion`, `ticket`, `qaStatus`, `results`, `conciseReport`, `reportPath`, `evidenceFolder`, `noOp`, `reason`. Copy `handoffVersion` exactly from the selected live handoff. `conciseReport` is the original short Markdown report for GitHub; do not put screenshots or DOCX content in it. `qaStatus` is derived: set it to `Blocked` if any result is Blocked; otherwise it must be `Awaiting Evidence Review`. A block caused solely by unavailable or non-matching live test data must say so explicitly in `reason`; do not claim a product failure. Do not create helper scripts or unrelated files in the repository; use only the staging folder or temporary system files. Do not modify permanent ticket files, criteria, Jira, or authentication state.
 
+For every `results[].criterion`, copy the exact checklist text from the selected handoff's `inputs.criteria` file. A one-based numeric criterion identifier is also accepted when copying the full text is impractical. Do not paraphrase criterion identifiers: the publisher must be able to map every result to exactly one canonical checklist item.
+
 Return one compact JSON object only with exactly those fields. No markdown or commentary.
+
 
 
 
