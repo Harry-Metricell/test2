@@ -5,10 +5,28 @@ import path from 'node:path';
 import os from 'node:os';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { formatReviewReport } from './format-review-report.mjs';
 
 const publisher = fileURLToPath(new URL('./publish-agent-output.mjs', import.meta.url));
 const git = process.env.TEST2_GIT;
 if (!git) throw new Error('Set TEST2_GIT to the absolute Git executable path');
+
+test('review report markdown reflects the authoritative review rather than stale tester claims', () => {
+  const markdown = formatReviewReport('TEST2-27', 'Launcher | navigation', {
+    qaStatus: 'Evidence Reviewed',
+    overallOutcome: 'Unverified',
+    reason: 'URL evidence did not match.',
+    criterionOutcomes: [
+      { criterion: 'Launcher loads.', outcome: 'Passed', reason: 'Visible at the expected URL.' },
+      { criterion: 'Open navigates to module.', outcome: 'Unverified', reason: 'The final browser URL did not match.' }
+    ]
+  }, 'attempt-002');
+  assert.match(markdown, /Overall outcome:\*\* Unverified/);
+  assert.match(markdown, /Evidence reviewed:\*\* attempt-002/);
+  assert.match(markdown, /\*\*Unverified:\*\* Open navigates to module\./);
+  assert.match(markdown, /Launcher \\| navigation/);
+  assert.doesNotMatch(markdown, /Passed all 3 acceptance criteria/);
+});
 
 test('publishes new remote tickets from stale dirty Desktop; rejects incomplete evidence', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'publisher regression '));

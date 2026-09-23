@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { formatReviewReport } from './format-review-report.mjs';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -553,6 +554,9 @@ if (outputType === 'criteria-output.json') {
   generatedPdf = built.pdf;
   if (!nonEmpty(generatedPdf)) fail('Evidence review report PDF is missing after generation');
   writeJson(path.join(ticketDir, 'review.json'), review);
+  const ticketSummary = readJson(path.join(ticketDir, 'ticket.json'))?.fields?.summary || '';
+  const reportMarkdown = formatReviewReport(key, ticketSummary, review, attemptMatch?.[1] || path.basename(screenshots));
+  fs.writeFileSync(path.join(ticketDir, 'report.md'), reportMarkdown, 'utf8');
   status.qaStatus = review.qaStatus || 'Evidence Reviewed';
   writeJson(statusFile, status);
   if (!directFile) {
@@ -563,7 +567,7 @@ if (outputType === 'criteria-output.json') {
       changed.push(`tickets/${key}/report.pdf`);
     }
   }
-  changed.push(`tickets/${key}/review.json`, `tickets/${key}/status.json`);
+  changed.push(`tickets/${key}/review.json`, `tickets/${key}/report.md`, `tickets/${key}/status.json`);
 }
 
 function publishFromCleanWorktree() {
