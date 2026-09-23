@@ -1,53 +1,50 @@
 [
   {
     "criterion": "The V4 launcher displays the Agentic AI module card and its Open control.",
-    "status": "Passed",
+    "outcome": "Passed",
     "steps_taken": [
-      "Navigated to the V4 launcher.",
-      "Confirmed the Agentic AI card and enabled Open control were visible."
-    ],
-    "evidence": [
-      "screenshots/attempt-001/criterion-1-initial.png",
-      "screenshots/attempt-001/criterion-1-final.png"
+      "Navigated to the V4 root URL as the run starting point.",
+      "Completed the visible email and Continue sign-in step.",
+      "Inspected /launcher and confirmed the Agentic AI card and Open control."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
-    "outcome": "Passed"
+    "evidence": [
+      "screenshots/attempt-002/criterion-1-initial.png",
+      "screenshots/attempt-002/criterion-1-final.png"
+    ],
+    "reason": "Agentic AI module card and Open control were visible on the launcher."
   },
   {
     "criterion": "Selecting Open on Agentic AI displays the Agentic AI module page at /agentic-ai without a load error.",
-    "status": "Passed",
+    "outcome": "Passed",
     "steps_taken": [
-      "Returned to the launcher and captured its initial state.",
-      "Selected Open on the Agentic AI card.",
-      "Confirmed the URL ended in /agentic-ai, the Agentic AI workspace loaded, and the browser reported zero console errors."
-    ],
-    "evidence": [
-      "screenshots/attempt-001/criterion-2-initial.png",
-      "screenshots/attempt-001/criterion-2-before-open.png",
-      "screenshots/attempt-001/criterion-2-after-open.png",
-      "screenshots/attempt-001/criterion-2-final.png"
+      "Started at /launcher and confirmed Agentic AI Open control.",
+      "Selected Open on Agentic AI.",
+      "Verified the resulting URL was /agentic-ai, page title was Metricell, and no console errors were reported."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
-    "outcome": "Passed"
+    "evidence": [
+      "screenshots/attempt-002/criterion-2-initial.png",
+      "screenshots/attempt-002/criterion-2-before-open.png",
+      "screenshots/attempt-002/criterion-2-after-open.png"
+    ],
+    "reason": "Open navigated to /agentic-ai; the module rendered with no load error."
   },
   {
     "criterion": "Using the browser Back control returns to /launcher, where the module cards are visible and usable.",
-    "status": "Passed",
+    "outcome": "Passed",
     "steps_taken": [
-      "Returned to the launcher and captured its initial state.",
-      "Opened Agentic AI and confirmed the module page loaded.",
+      "Started at the loaded /agentic-ai module page.",
       "Used browser Back.",
-      "Confirmed /launcher appeared with the module cards and enabled Agentic AI Open control."
+      "Verified /launcher returned with Agentic AI, GIS, Dashboards, and other module cards and Open controls visible."
     ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/agentic-ai",
     "evidence": [
-      "screenshots/attempt-001/criterion-3-initial.png",
-      "screenshots/attempt-001/criterion-3-before-open.png",
-      "screenshots/attempt-001/criterion-3-after-open.png",
-      "screenshots/attempt-001/criterion-3-before-back.png",
-      "screenshots/attempt-001/criterion-3-after-back.png",
-      "screenshots/attempt-001/criterion-3-final.png"
+      "screenshots/attempt-002/criterion-3-initial.png",
+      "screenshots/attempt-002/criterion-3-before-back.png",
+      "screenshots/attempt-002/criterion-3-after-back.png",
+      "screenshots/attempt-002/criterion-3-final.png"
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
-    "outcome": "Passed"
+    "reason": "Browser Back returned to /launcher; module cards and Open controls were visible and enabled."
   }
 ]
