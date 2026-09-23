@@ -109,6 +109,8 @@ Get-ScheduledTask -TaskName "TEST2 Agent Publisher","TEST2 Desktop GitHub Sync" 
 Test-Path "$env:LOCALAPPDATA\TEST2\auth\user.json"
 ```
 
+The Desktop sync task fast-forwards only `main` when it is not ahead of GitHub. If incoming changes overlap generated Jira/status projections (`status/generated/*.json`, `status/handoffs.json`, `status/ticket-status.md`, `status/tickets.json`, and imported ticket `status.json`/`ticket.md`), it saves byte-for-byte copies under the ignored `.agent-staging/desktop-sync-backup/` folder and refreshes those projections from GitHub. Hand-edited source files and local commits are never overwritten; an overlap there is logged and requires manual reconciliation. The sync log is `%LOCALAPPDATA%\TEST2\desktop-sync.log`.
+
 The report template is safely stored in Git at `assets/templates/Automated Test Case Template.docx`; the publisher uses it by default. Do not commit `.auth/user.json`, API keys, or other credentials.
 
 ### Reporting dependencies
