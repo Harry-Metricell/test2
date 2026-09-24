@@ -1,0 +1,48 @@
+{
+  "key": "TEST2-30",
+  "id": "106057",
+  "summary": "Open the GIS module from the V4 launcher",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-30",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-24T15:28:06.832+0100",
+    "updated": "2026-09-24T15:28:15.754+0100"
+  },
+  "description": "Basic V4 navigation smoke test. Start at https://o2intelligence-v4-dev.metricell.com/launcher and sign in if prompted.\nAcceptance criteria:\nThe V4 launcher displays a GIS module card with an Open control.\nSelecting Open on the GIS card opens the GIS module page on the same V4 host without an application load error.",
+  "acceptanceCriteria": [
+    "The V4 launcher displays a GIS module card with an Open control.",
+    "Selecting Open on the GIS card opens the GIS module page on the same V4 host without an application load error."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-30/ticket.json",
+    "criteria": "tickets/TEST2-30/criteria.md",
+    "status": "tickets/TEST2-30/status.json",
+    "screenshots": "tickets/TEST2-30/screenshots/",
+    "reports": "tickets/TEST2-30/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106057",
+    "importedAt": "2026-09-24T15:28:15.754+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-24T15:28:15.754+0100",
+    "criteriaVerified": false
+  }
+}
