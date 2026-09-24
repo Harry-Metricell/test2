@@ -1,0 +1,73 @@
+[
+  {
+    "criterion": "The V4 launcher loads and displays the available module cards.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Opened the V4 site from its root launcher entry point.",
+      "Entered harry.piper@metricell.com in the visible email field and selected Continue once.",
+      "Waited for /launcher to finish loading and confirmed 12 visible module cards.",
+      "Captured and verified dedicated initial and final PNG evidence."
+    ],
+    "reason": "The launcher loaded at /launcher and displayed 12 module cards.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ]
+  },
+  {
+    "criterion": "Each visible module card has a usable Open control.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Confirmed the 12 visible module cards each had an Open control.",
+      "Used every Open control and confirmed each opened its matching module page.",
+      "Recorded the destination URL for each opened module; the final decisive action opened API request audit at https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-24T09%3A18%3A59.423Z&startUtc=2026-09-23T09%3A18%3A59.423Z&live=true.",
+      "Returned to the launcher after each module check and restored the launcher at the end."
+    ],
+    "reason": "All 12 Open controls navigated to their corresponding modules. Dashboards opened and displayed an Under construction message. The application was restored to the launcher.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-24T09%3A18%3A59.423Z&startUtc=2026-09-23T09%3A18%3A59.423Z&live=true",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-agentic-ai-open.png",
+      "screenshots/attempt-001/criterion-2-after-agentic-ai-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-agentic-ai.png",
+      "screenshots/attempt-001/criterion-2-launcher-ready-after-agentic-ai.png",
+      "screenshots/attempt-001/criterion-2-before-gis-open.png",
+      "screenshots/attempt-001/criterion-2-after-gis-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-gis.png",
+      "screenshots/attempt-001/criterion-2-before-dashboards-open.png",
+      "screenshots/attempt-001/criterion-2-after-dashboards-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-dashboards.png",
+      "screenshots/attempt-001/criterion-2-before-customer-care-open.png",
+      "screenshots/attempt-001/criterion-2-after-customer-care-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-customer-care.png",
+      "screenshots/attempt-001/criterion-2-before-survey-analyser-open.png",
+      "screenshots/attempt-001/criterion-2-after-survey-analyser-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-survey-analyser.png",
+      "screenshots/attempt-001/criterion-2-before-rpo-open.png",
+      "screenshots/attempt-001/criterion-2-after-rpo-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-rpo.png",
+      "screenshots/attempt-001/criterion-2-before-data-management-open.png",
+      "screenshots/attempt-001/criterion-2-after-data-management-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-data-management.png",
+      "screenshots/attempt-001/criterion-2-before-documents-open.png",
+      "screenshots/attempt-001/criterion-2-after-documents-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-documents.png",
+      "screenshots/attempt-001/criterion-2-before-agentic-ai-administration-open.png",
+      "screenshots/attempt-001/criterion-2-after-agentic-ai-administration-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-agentic-ai-administration.png",
+      "screenshots/attempt-001/criterion-2-before-device-administration-open.png",
+      "screenshots/attempt-001/criterion-2-after-device-administration-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-device-administration.png",
+      "screenshots/attempt-001/criterion-2-before-access-admin-open.png",
+      "screenshots/attempt-001/criterion-2-after-access-admin-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-access-admin.png",
+      "screenshots/attempt-001/criterion-2-before-api-request-audit-open.png",
+      "screenshots/attempt-001/criterion-2-after-api-request-audit-open.png",
+      "screenshots/attempt-001/criterion-2-after-return-api-request-audit.png",
+      "screenshots/attempt-001/criterion-2-before-api-request-audit-final-open.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-restored-launcher.png"
+    ]
+  }
+]
