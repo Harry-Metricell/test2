@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-24T15:28:15.754+0100
+Updated: 2026-09-24T17:09:14.673+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -33,3 +33,4 @@ Updated: 2026-09-24T15:28:15.754+0100
 | TEST2-15 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 2 |
 | TEST2-17 | Rejected | Awaiting Evidence Review | Retry 3/3 | Clean pipeline test 4 |
 | TEST2-24 | Rejected | Ready for Testing |  | Verify published User Guide resource |
+| TEST2-31 | To Do | Criteria Check Required |  | Open API Request Audit from the V4 launcher |
