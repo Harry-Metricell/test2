@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-28-review-attempt-002",
+  "handoffVersion": "TEST2-28:evidence_review:2",
+  "ticket": "TEST2-28",
+  "criterionOutcomes": [
+    {
+      "outcome": "Blocked",
+      "criterion": "The V4 launcher displays the Agentic AI module card and its Open control.",
+      "reason": "The selected attempt screenshot shows the application bootstrap error and HTTP 403; the launcher card and Open control could not load."
+    },
+    {
+      "outcome": "Blocked",
+      "criterion": "Selecting Open on Agentic AI displays the Agentic AI module, and the final browser URL is https://o2intelligence-v4-dev.metricell.com/agentic-ai.",
+      "reason": "The selected attempt screenshot shows the application bootstrap error and HTTP 403. Results report the launcher URL, and the Agentic AI module could not be opened."
+    },
+    {
+      "outcome": "Blocked",
+      "criterion": "Using browser Back returns to the launcher, and the final browser URL is https://o2intelligence-v4-dev.metricell.com/launcher with module cards visible and usable.",
+      "reason": "The selected attempt screenshot shows the application bootstrap error and HTTP 403. Browser Back from the module could not be exercised and usable launcher cards are not available."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-28\\screenshots\\attempt-002",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "The selected attempt evidence shows the V4 application bootstrap failing with HTTP 403, preventing the required launcher and Agentic AI navigation checks."
+}
