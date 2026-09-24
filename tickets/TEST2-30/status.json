@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-30-guide-impact",
+    "handoffVersion": "TEST2-30:guide_impact_assessment:1",
+    "ticket": "TEST2-30",
+    "decision": "update_required",
+    "affectedSection": "GIS module",
+    "reason": "The verified behaviour introduces a user-facing navigation path: users open the GIS module from a GIS card in the V4 launcher. The guide should explain where to find the card and how to use its Open control.",
+    "noOp": false,
+    "assessedAt": "2026-09-24T15:30:45.670Z"
+  }
 }
