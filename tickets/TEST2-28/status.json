@@ -6,9 +6,9 @@
   "retries": 3,
   "retryLimit": 3,
   "criteriaVerified": true,
-  "blockedStage": "evidence_review",
+  "blockedStage": "reviewed",
   "qaOutcome": "Blocked",
-  "workflowState": "READY FOR TESTING",
-  "nextAction": "Create final evidence review handoff",
+  "workflowState": "Blocked",
+  "nextAction": "Manual review required; final evidence report published",
   "updatedAt": "2026-09-23T15:55:49.355Z"
 }

@@ -21,7 +21,7 @@ Updated: 2026-09-24T09:48:05.023+0100
 | TEST2-25 | READY FOR TESTING | Evidence Reviewed |  | Verify V4 launcher displays available module cards |
 | TEST2-26 | READY FOR TESTING | Evidence Reviewed |  | Verify a V4 module opens from the launcher |
 | TEST2-27 | READY FOR TESTING | Evidence Reviewed | Retry 1/3 | Verify returning to the V4 launcher from an opened module |
-| TEST2-28 | READY FOR TESTING | Awaiting Evidence Review | Retry 3/3 | Verify final browser URLs through Agentic AI navigation |
+| TEST2-28 | READY FOR TESTING | Blocked | Retry 3/3 | Verify final browser URLs through Agentic AI navigation |
 | TEST2-29 | READY FOR TESTING | Awaiting Evidence Review |  | Confirm V4 launcher loads with usable module cards |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
