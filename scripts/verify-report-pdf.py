@@ -9,7 +9,9 @@ from pypdf import PdfReader
 
 
 FINGERPRINT_BITS = 256
-MAX_FINGERPRINT_DISTANCE = 8
+# Word/LibreOffice may rasterize or recompress screenshots. A small allowance
+# handles that conversion while remaining far below unrelated-image distances.
+MAX_FINGERPRINT_DISTANCE = 12
 
 
 def image_fingerprint(image):

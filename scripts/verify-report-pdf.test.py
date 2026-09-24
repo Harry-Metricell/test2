@@ -61,6 +61,28 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
         self.assertEqual(missing, [])
         self.assertEqual(matched[0]["method"], "dhash_16x16")
 
+    def test_accepts_word_pdf_recompressed_screenshot(self):
+        # Reproduce the source -> PDF image conversion seen in production:
+        # a browser screenshot with a mostly uniform background and small UI.
+        image = Image.new("RGB", (1280, 800), (239, 243, 251))
+        draw = ImageDraw.Draw(image)
+        draw.rounded_rectangle((260, 0, 1020, 165), radius=12, fill=(255, 255, 255))
+        draw.rectangle((285, 105, 995, 150), fill=(210, 20, 35))
+        import io
+        buffer = io.BytesIO()
+        image.resize((477, 298), Image.Resampling.LANCZOS).save(buffer, format="JPEG", quality=85)
+        converted_image = Image.open(io.BytesIO(buffer.getvalue()))
+        self.assertLessEqual(
+            VERIFY.fingerprint_distance(VERIFY.image_fingerprint(image), VERIFY.image_fingerprint(converted_image)),
+            VERIFY.MAX_FINGERPRINT_DISTANCE,
+        )
+        matched, missing = VERIFY.match_expected_images(
+            [expected("criterion-1-final.png", image, "source-a")],
+            [observed("Image72.jpg", converted_image, "converted")],
+        )
+        self.assertEqual(missing, [])
+        self.assertEqual(matched[0]["method"], "dhash_16x16")
+
 
 if __name__ == "__main__":
     unittest.main()

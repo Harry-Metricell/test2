@@ -249,8 +249,9 @@ function validateCriterionCoverage(items, criteria, label) {
       unmatched.push({ index, item });
     }
   }
-  // Older workers sometimes paraphrased a criterion despite covering it. Map
-  // only an unambiguous, high-overlap one-to-one match; otherwise reject it.
+  // Older workers sometimes paraphrase criteria despite preserving checklist
+  // order. Accept only a meaningful, unique match to that same checklist slot;
+  // evidence validation below independently enforces criterion-N filenames.
   for (const { index, item } of unmatched) {
     const ranked = criteria
       .map((criterion, candidateIndex) => ({ criterion, candidateIndex, score: criterionSimilarity(item?.criterion, criterion) }))
@@ -258,7 +259,8 @@ function validateCriterionCoverage(items, criteria, label) {
       .sort((a, b) => b.score - a.score);
     const best = ranked[0];
     const runnerUp = ranked[1];
-    if (!best || best.score < 0.65 || (runnerUp && best.score - runnerUp.score < 0.15)) {
+    if (!best || best.candidateIndex !== index || best.score < 0.35
+        || (runnerUp && best.score - runnerUp.score < 0.1)) {
       fail(`${label} item ${index + 1} does not map uniquely to a checklist criterion`);
     }
     actual.add(criterionKey(best.criterion));
