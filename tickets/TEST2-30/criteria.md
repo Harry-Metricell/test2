@@ -1,4 +1,6 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] The V4 launcher displays a GIS module card with an Open control.
-- [ ] Selecting Open on the GIS card opens the GIS module page on the same V4 host without an application load error.
+# Acceptance Criteria
+
+- [ ] Starting at the V4 launcher URL and after signing in if prompted, verify that the launcher visibly contains a GIS module card with an Open control.
+- [ ] From the visible GIS module card, select Open and verify that the browser opens the GIS module page on the same V4 host and displays no application load error.
