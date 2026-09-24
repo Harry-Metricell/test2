@@ -49,7 +49,27 @@
       "noOp": false,
       "assessedAt": "2026-09-24T15:06:36.838Z"
     },
-    "guideUpdate": null,
+    "guideUpdate": {
+      "schema": "v4-user-guide-update.v1",
+      "handoffId": "handoff-TEST2-29-guide-update",
+      "handoffVersion": "TEST2-29:guide_update_authoring:1",
+      "ticket": "TEST2-29",
+      "title": "Open a module from the V4 launcher",
+      "affectedSection": "V4 launcher and module cards",
+      "changeType": "amend",
+      "steps": [
+        "Open the V4 launcher.",
+        "Wait for the available module cards to appear.",
+        "Select Open on the card for the module you want to use."
+      ],
+      "screenshots": [
+        "screenshots/attempt-001/criterion-1-final.png",
+        "screenshots/attempt-001/criterion-2-after-api-request-audit-open.png"
+      ],
+      "reason": "Amend the launcher instructions to cover the verified module cards and their Open controls.",
+      "noOp": false,
+      "authoredAt": "2026-09-24T15:12:46.051Z"
+    },
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-24T09:48:05.023+0100",
