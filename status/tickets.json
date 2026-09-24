@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-24T15:28:15.754+0100",
   "counts": {
     "tickets": 29,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 16,
       "Ready": 12,
@@ -335,7 +335,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Open the GIS module from the V4 launcher",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-24T15:28:15.754+0100",
