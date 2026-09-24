@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-23T15:55:49.355Z",
+  "generatedAt": "2026-09-24T09:48:05.023+0100",
   "counts": {
-    "tickets": 27,
-    "handoffs": 1,
+    "tickets": 28,
+    "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 15,
-      "Ready": 11,
+      "Ready": 12,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 6,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 14,
       "Unverified": 4
     }
@@ -310,6 +310,22 @@
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
+    },
+    {
+      "key": "TEST2-29",
+      "summary": "Confirm V4 launcher loads with usable module cards",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-24T09:48:05.023+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",
