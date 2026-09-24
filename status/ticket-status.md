@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-24T17:09:14.673+0100
+Updated: 2026-09-24T22:12:46.107+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -24,6 +24,7 @@ Updated: 2026-09-24T17:09:14.673+0100
 | TEST2-28 | READY FOR TESTING | Blocked | Retry 3/3 | Verify final browser URLs through Agentic AI navigation |
 | TEST2-29 | READY FOR TESTING | Evidence Reviewed |  | Confirm V4 launcher loads with usable module cards |
 | TEST2-30 | READY FOR TESTING | Evidence Reviewed |  | Open the GIS module from the V4 launcher |
+| TEST2-31 | READY FOR TESTING | Criteria Check Required |  | Open API Request Audit from the V4 launcher |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
@@ -33,4 +34,3 @@ Updated: 2026-09-24T17:09:14.673+0100
 | TEST2-15 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 2 |
 | TEST2-17 | Rejected | Awaiting Evidence Review | Retry 3/3 | Clean pipeline test 4 |
 | TEST2-24 | Rejected | Ready for Testing |  | Verify published User Guide resource |
-| TEST2-31 | To Do | Criteria Check Required |  | Open API Request Audit from the V4 launcher |

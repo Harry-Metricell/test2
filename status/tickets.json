@@ -1,14 +1,13 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-24T17:09:14.673+0100",
+  "generatedAt": "2026-09-24T22:12:46.107+0100",
   "counts": {
     "tickets": 30,
     "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 16,
-      "Ready": 12,
-      "Rejected": 1,
-      "To Do": 1
+      "Ready": 13,
+      "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 6,
@@ -345,6 +344,22 @@
       "retryLabel": ""
     },
     {
+      "key": "TEST2-31",
+      "summary": "Open API Request Audit from the V4 launcher",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-24T22:12:46.107+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
       "key": "TEST2-2",
       "summary": "test",
       "jiraStatus": "Rejected",
@@ -484,22 +499,6 @@
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-22T15:23:16.070+0100",
-      "retries": 0,
-      "retryLimit": 3,
-      "retryLabel": ""
-    },
-    {
-      "key": "TEST2-31",
-      "summary": "Open API Request Audit from the V4 launcher",
-      "jiraStatus": "To Do",
-      "workflowState": "To Do",
-      "qaStatus": "Criteria Check Required",
-      "qaOutcome": "Not Tested",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
-      "updatedAt": "2026-09-24T17:09:14.673+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""

@@ -4,13 +4,13 @@
   "summary": "Open API Request Audit from the V4 launcher",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-31",
-    "status": "To Do",
+    "status": "READY FOR TESTING",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-24T17:09:14.559+0100",
-    "updated": "2026-09-24T17:09:14.673+0100"
+    "updated": "2026-09-24T22:12:46.107+0100"
   },
   "description": "Basic V4 navigation smoke test. Start at https://o2intelligence-v4-dev.metricell.com/launcher and sign in if prompted.\nAcceptance criteria:\nThe launcher displays an API Request Audit module card with an Open control.\nSelecting Open on that card loads the API Request Audit module on the same V4 host without an application load error.",
   "acceptanceCriteria": [
@@ -27,11 +27,11 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106061",
-    "importedAt": "2026-09-24T17:09:14.673+0100"
+    "importedAt": "2026-09-24T22:12:46.107+0100"
   },
   "status": {
-    "jiraStatus": "To Do",
-    "workflowState": "To Do",
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
     "qaStatus": "Criteria Check Required",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
@@ -42,7 +42,7 @@
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
-    "updatedAt": "2026-09-24T17:09:14.673+0100",
+    "updatedAt": "2026-09-24T22:12:46.107+0100",
     "criteriaVerified": false
   }
 }

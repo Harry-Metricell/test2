@@ -1,10 +1,10 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-09-24T17:09:14.673+0100",
+  "generatedAt": "2026-09-24T22:12:46.107+0100",
   "handoffs": [
     {
       "handoffId": "handoff-TEST2-31-criteria",
-      "handoffVersion": "TEST2-31:criteria_conversion:2026-09-24T17:09:14.673+0100",
+      "handoffVersion": "TEST2-31:criteria_conversion:2026-09-24T22:12:46.107+0100",
       "action": "criteria_conversion",
       "brief": "docs/briefs/criteria-conversion.md",
       "owner": "criteria-converter",
