@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-29-guide-impact",
+    "handoffVersion": "TEST2-29:guide_impact_assessment:1",
+    "ticket": "TEST2-29",
+    "decision": "update_required",
+    "affectedSection": "V4 launcher and module cards",
+    "reason": "The reviewed launcher behavior adds a user-facing way to view available module cards and open modules, which requires instructions for navigating the launcher and using the Open controls.",
+    "noOp": false,
+    "assessedAt": "2026-09-24T15:06:36.838Z"
+  }
 }
