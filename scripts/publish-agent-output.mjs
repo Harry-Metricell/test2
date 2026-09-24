@@ -329,7 +329,7 @@ function buildVerifiedReport(key, run, screenshots) {
   execFileSync('powershell.exe', ['-NoProfile', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(pdf)) fail('Template PDF conversion completed without a non-empty PDF');
   try {
-    const audit = execFileSync(python, [pdfVerifier, '--pdf', pdf, '--image-manifest', imageManifest], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
+    const audit = execFileSync(python, [pdfVerifier, '--pdf', pdf, '--image-manifest', imageManifest, '--screenshots', screenshots], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
     log('pdf_evidence_verified', { ticket: key, ...JSON.parse(audit) });
   } catch (error) {
     const detail = String(error.stdout || error.stderr || error.message).trim();
