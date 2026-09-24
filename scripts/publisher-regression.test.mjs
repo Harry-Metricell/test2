@@ -101,8 +101,13 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     fs.rmSync(invalidOutcomeStage, { recursive: true, force: true });
     const staleStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-stale');
     write(path.join(staleStage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-stale', handoffVersion: 'TEST2-99:criteria_conversion:stale', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] Stale output.', qaStatus: 'Ready for Testing', noOp: false }));
-    const stale = run(); assert.equal(stale.status, 1); assert.match(stale.stderr, /Stale or mismatched worker output/);
-    assert.equal(fs.existsSync(path.join(staleStage, 'criteria-output.json')), true);
+    const stale = run(); assert.equal(stale.status, 0, stale.stderr);
+    assert.match(stale.stdout, /"staleArchived":true/);
+    assert.equal(fs.existsSync(staleStage), false);
+    const archivedStale = fs.readdirSync(path.join(desktop, '.agent-staging/archive-stale-output'))
+      .find(name => name.startsWith('handoff-TEST2-99-stale-'));
+    assert.ok(archivedStale);
+    assert.equal(fs.existsSync(path.join(desktop, '.agent-staging/archive-stale-output', archivedStale, 'criteria-output.json')), true);
     const noOpStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-noop');
     write(path.join(noOpStage, 'review-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-noop', ticket: 'TEST2-99', noOp: true }));
     const noOp = run(); assert.equal(noOp.status, 0, noOp.stderr);
@@ -130,7 +135,6 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
 
     // Guide impact is accepted only after a passed evidence review with its PDF,
     // then becomes a durable, publishable ticket decision.
-    fs.rmSync(staleStage, { recursive: true, force: true });
     fs.rmSync(invalidOutcomeStage, { recursive: true, force: true });
     g(seed, 'fetch'); g(seed, 'reset', '--hard', 'origin/main');
     write(path.join(seed, 'tickets/TEST2-99/review.json'), JSON.stringify({ overallOutcome: 'Passed', qaStatus: 'Evidence Reviewed' }));

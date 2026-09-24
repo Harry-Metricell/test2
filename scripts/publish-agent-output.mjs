@@ -130,8 +130,24 @@ function runGitAt(cwd, args, indexFile) {
     }
   }).trim();
 }
+function fetchLatest() {
+  // Desktop sync and the publisher share origin/main. If both fetch at once,
+  // Git can reject one ref update even though the remote fetch succeeded.
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      runGit(['fetch', 'origin', 'main']);
+      return;
+    } catch (error) {
+      const detail = String(error.stderr || error.message);
+      const refRace = /incorrect old value|cannot lock ref|is at .+ but expected/i.test(detail);
+      if (!refRace || attempt === 3) throw error;
+      log('fetch_ref_race_retry', { attempt });
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, attempt * 250);
+    }
+  }
+}
 function syncBeforePublish() {
-  runGit(['fetch', 'origin', 'main']);
+  fetchLatest();
 }
 function ensurePath(file) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -158,6 +174,14 @@ function cleanupRun(run, directFile) {
     console.warn(`Published but temporary cleanup is pending: ${error.code || error.message}`);
     return false;
   }
+}
+function archiveStaleRun(run, handoffId) {
+  const archiveRoot = path.join(stagingRoot, 'archive-stale-output');
+  fs.mkdirSync(archiveRoot, { recursive: true });
+  const target = path.join(archiveRoot, `${path.basename(run)}-${Date.now()}-${process.pid}`);
+  fs.renameSync(run, target);
+  log('stale_worker_archived', { handoffId, archivePath: target });
+  return target;
 }
 function pruneTransientStaging(root) {
   // Keep worker output, screenshots, publisher errors and all permanent
@@ -405,7 +429,9 @@ if (!liveHandoff
   || liveHandoff.ticket !== key
   || liveHandoff.action !== expectedAction
   || liveHandoff.handoffVersion !== output.handoffVersion) {
-  fail(`Stale or mismatched worker output for ${output.handoffId}`);
+  const archivePath = archiveStaleRun(run, output.handoffId);
+  console.log(JSON.stringify({ ticket: key, handoffId: output.handoffId, staleArchived: true, archivePath }));
+  process.exit(0);
 }
 const ticketDir = path.join(repo, 'tickets', key);
 const statusFile = path.join(ticketDir, 'status.json');
@@ -580,7 +606,7 @@ function publishFromCleanWorktree() {
   let worktree = '';
   try {
     for (let attempt = 1; attempt <= 3; attempt += 1) {
-      runGit(['fetch', 'origin', 'main']);
+      fetchLatest();
       const remoteSha = runGit(['ls-remote', 'origin', 'refs/heads/main']).split(/\s+/)[0];
       if (!/^[0-9a-f]{40}$/.test(remoteSha)) fail('GitHub remote read-back returned no usable main SHA');
       worktree = path.join(base, `worktree-${attempt}`);
@@ -604,7 +630,7 @@ function publishFromCleanWorktree() {
       try {
         runGitAt(worktree, ['push', 'origin', 'HEAD:refs/heads/main'], cleanIndex);
         const publishedCommit = runGitAt(worktree, ['rev-parse', 'HEAD'], cleanIndex);
-        runGit(['fetch', 'origin', 'main']);
+        fetchLatest();
         // Confirm our exact commit is remote, even if a bundler commit followed it.
         runGit(['merge-base', '--is-ancestor', publishedCommit, 'origin/main']);
         return { noOp: false };
