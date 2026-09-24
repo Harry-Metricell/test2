@@ -1,0 +1,23 @@
+{
+  "handoffId": "handoff-TEST2-29-review-attempt-001",
+  "handoffVersion": "TEST2-29:evidence_review:1",
+  "ticket": "TEST2-29",
+  "criterionOutcomes": [
+    {
+      "outcome": "Passed",
+      "criterion": "The V4 launcher loads and displays the available module cards.",
+      "reason": "The initial and final screenshots directly show the V4 launcher with the available module cards. The result browserUrl is present and matches the expected V4 host and /launcher path."
+    },
+    {
+      "outcome": "Passed",
+      "criterion": "Each visible module card has a usable Open control.",
+      "reason": "The attempt screenshots show the launcher and resulting module pages for the Open actions, plus return states. The results browserUrl is present and matches the expected V4 host."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-29\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Reviewed the two criteria against the selected attempt-001 PNG evidence; both have direct visual support."
+}
