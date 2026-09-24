@@ -3,10 +3,10 @@
 ## Current State
 
 - Jira status: READY FOR TESTING
-- QA outcome: Not Tested
+- QA outcome: Passed
 - Workflow state: Ready
 - Action owner: Coordinator
-- Next action: Create criteria conversion handoff
+- Next action: Create evidence review handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-30
 
 ## Acceptance Criteria
