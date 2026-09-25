@@ -115,9 +115,9 @@ function artifactOutcome(dir, localStatus) {
   const reviewIsStale = latestNumber > reviewNumber;
   const reviewOutcome = review?.overallOutcome || null;
   const resultsOutcome = aggregateResultOutcome(results);
-  if (!reviewIsStale && localStatus.qaStatus === 'Evidence Reviewed' && reviewOutcome) return reviewOutcome;
-  if (resultsOutcome) return resultsOutcome;
+  // The current review overrides tester claims even after a retry is queued.
   if (!reviewIsStale && reviewOutcome) return reviewOutcome;
+  if (resultsOutcome) return resultsOutcome;
   if (latestAttempt?.results) return aggregateResultOutcome(latestAttempt.results);
   return localStatus.qaOutcome || null;
 }
@@ -302,15 +302,17 @@ function normalizeTicket(dirName) {
   // test history. This repairs old state where blocked transitions were counted
   // but later failed/unverified attempts were not.
   const recordedRetries = Math.max(0, recordedAttempts - 1);
-  const retries = Math.max(
-    Number.isFinite(Number(localStatus.retries)) ? Number(localStatus.retries) : 0,
-    recordedRetries
-  );
+  const retryLimit = Number.isFinite(Number(localStatus.retryLimit)) ? Number(localStatus.retryLimit) : 3;
+  const queuedRetry = localStatus.workflowState === 'Retry Queued' && localStatus.qaStatus === 'Ready for Testing';
+  // A queued retry counts once; completed retry attempts come from history.
+  // Repeated bundler runs cannot spend the limit again for the same attempt.
+  const retries = latestAttempt
+    ? Math.min(retryLimit, recordedRetries + Number(queuedRetry))
+    : (Number.isFinite(Number(localStatus.retries)) ? Number(localStatus.retries) : 0);
   if (!checkOnly && retries !== Number(localStatus.retries || 0)) {
     localStatus = { ...localStatus, retries };
     fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
   }
-  const retryLimit = Number.isFinite(Number(localStatus.retryLimit)) ? Number(localStatus.retryLimit) : 3;
   // Failed attempts can be marked Evidence Reviewed, so retry from the
   // persisted outcome as well as from a blocked QA status.
   const retryableOutcome = ['failed', 'blocked', 'unverified'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase());

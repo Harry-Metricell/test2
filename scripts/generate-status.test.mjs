@@ -62,6 +62,19 @@ test('an Unverified evidence review queues one retry and keeps its report', () =
     assert.equal(queue.handoffs[0]?.action, 'test_ticket');
     run();
     assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 1);
+
+    // A later blocked second attempt with a stale 3/3 counter must recover
+    // the true 1/3 history count, then queue only the next retry (2/3).
+    write('history/attempt-002-test.json', { historyAttempt: 2, qaStatus: 'Blocked', results: [{ criterion: 1, outcome: 'Blocked' }] });
+    write('review.json', { historyAttempt: 2, evidenceFolder: 'screenshots/attempt-002', overallOutcome: 'Blocked', qaStatus: 'Blocked', criterionOutcomes: [{ criterion: 1, outcome: 'Blocked', reason: 'Authentication stopped testing.' }] });
+    write('status.json', { ticket: 'TEST2-99', jiraStatus: 'READY FOR TESTING', qaStatus: 'Blocked', workflowState: 'Blocked', qaOutcome: 'Blocked', criteriaVerified: true, retries: 3, retryLimit: 3 });
+    run();
+    const recovered = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
+    const next = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8'));
+    assert.equal(recovered.retries, 2);
+    assert.equal(next.handoffs[0]?.handoffId, 'handoff-TEST2-99-retry-attempt-003');
+    run();
+    assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 2);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
