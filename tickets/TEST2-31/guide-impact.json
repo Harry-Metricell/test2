@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-31-guide-impact",
+  "handoffVersion": "TEST2-31:guide_impact_assessment:1",
+  "ticket": "TEST2-31",
+  "decision": "update_required",
+  "affectedSection": "Using the API Request Audit module",
+  "reason": "The verified behaviour adds an API Request Audit card to the V4 launcher and a user-facing Open navigation path to the module, which users may need instructions to find and access.",
+  "noOp": false,
+  "assessedAt": "2026-09-25T09:00:42.208Z"
+}
