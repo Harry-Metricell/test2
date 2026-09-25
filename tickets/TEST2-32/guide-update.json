@@ -1,0 +1,20 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-32-guide-update",
+  "handoffVersion": "TEST2-32:guide_update_authoring:1",
+  "ticket": "TEST2-32",
+  "title": "Return to the V4 launcher from GIS",
+  "affectedSection": "Open GIS and return to the V4 launcher",
+  "changeType": "add",
+  "steps": [
+    "Select Open GIS on the GIS card in the V4 launcher.",
+    "Use the browser Back control to return to the V4 launcher."
+  ],
+  "screenshots": [
+    "screenshots/attempt-001/criterion-1-final.png",
+    "screenshots/attempt-001/criterion-2-final.png"
+  ],
+  "reason": "Document the verified navigation between the V4 launcher and the GIS module.",
+  "noOp": false,
+  "authoredAt": "2026-09-25T10:28:36.807Z"
+}
