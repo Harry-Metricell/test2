@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-25T10:25:21.390+0100",
+  "generatedAt": "2026-09-25T13:43:09.392+0100",
   "counts": {
-    "tickets": 31,
-    "handoffs": 0,
+    "tickets": 32,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 16,
-      "Ready": 14,
+      "Ready": 15,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 6,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 18,
       "Unverified": 4
     }
@@ -371,6 +371,22 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-25T10:25:21.390+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-33",
+      "summary": "Use the GIS map zoom controls",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-25T13:43:09.392+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""

@@ -1,0 +1,50 @@
+{
+  "key": "TEST2-33",
+  "id": "106129",
+  "summary": "Use the GIS map zoom controls",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-33",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-25T13:42:47.848+0100",
+    "updated": "2026-09-25T13:43:09.392+0100"
+  },
+  "description": "Verify the basic map zoom controls in the V4 GIS module.\nStart at https://o2intelligence-v4-dev.metricell.com/launcher and sign in if prompted. Open GIS and wait for the base map to finish loading. This test requires no saved data changes or particular data layer.\nAcceptance criteria:\nWith GIS loaded, the map's zoom-in (+) and zoom-out (-) controls are visible and usable.\nSelecting zoom-in (+) once increases the map zoom level, visibly showing a smaller geographic area without an application error.\nSelecting zoom-out (-) once then decreases the map zoom level, visibly showing a larger geographic area without an application error.\nUser documentation: Users need simple instructions for locating these controls and adjusting the map scale. Assess whether the existing guide already explains this; add or amend guidance only where needed.",
+  "acceptanceCriteria": [
+    "With GIS loaded, the map's zoom-in (+) and zoom-out (-) controls are visible and usable.",
+    "Selecting zoom-in (+) once increases the map zoom level, visibly showing a smaller geographic area without an application error.",
+    "Selecting zoom-out (-) once then decreases the map zoom level, visibly showing a larger geographic area without an application error.",
+    "User documentation: Users need simple instructions for locating these controls and adjusting the map scale. Assess whether the existing guide already explains this; add or amend guidance only where needed."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-33/ticket.json",
+    "criteria": "tickets/TEST2-33/criteria.md",
+    "status": "tickets/TEST2-33/status.json",
+    "screenshots": "tickets/TEST2-33/screenshots/",
+    "reports": "tickets/TEST2-33/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106129",
+    "importedAt": "2026-09-25T13:43:09.392+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-25T13:43:09.392+0100",
+    "criteriaVerified": false
+  }
+}
