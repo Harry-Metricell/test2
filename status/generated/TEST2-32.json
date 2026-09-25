@@ -38,7 +38,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-32-guide-impact",
+      "handoffVersion": "TEST2-32:guide_impact_assessment:1",
+      "ticket": "TEST2-32",
+      "decision": "update_required",
+      "affectedSection": "Open GIS and return to the V4 launcher",
+      "reason": "The delivered behavior adds user-facing navigation instructions: users open GIS from the V4 launcher and use the browser Back control to return to the launcher.",
+      "noOp": false,
+      "assessedAt": "2026-09-25T10:25:42.329Z"
+    },
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
