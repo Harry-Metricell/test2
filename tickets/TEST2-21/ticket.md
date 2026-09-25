@@ -4,9 +4,9 @@
 
 - Jira status: READY FOR TESTING
 - QA outcome: Unverified
-- Workflow state: Ready
+- Workflow state: Blocked
 - Action owner: Coordinator
-- Next action: QA review complete
+- Next action: Manual review required after retry limit
 - Jira: https://metricell.atlassian.net/browse/TEST2-21
 
 ## Acceptance Criteria
