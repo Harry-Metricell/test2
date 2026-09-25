@@ -1,0 +1,54 @@
+[
+  {
+    "criterion": "Starting at the V4 launcher, after signing in if prompted, opening GIS, and waiting for the base map to finish loading, the map displays visible zoom-in (+) and zoom-out (-) controls that can be selected.",
+    "status": "Passed",
+    "steps_taken": [
+      "Navigated to the required launcher URL.",
+      "Entered harry.piper@metricell.com in the visible email field and clicked Continue once; the launcher loaded.",
+      "Opened GIS from the launcher, waited for the map to load, and observed visible Zoom in and Zoom out controls.",
+      "Returned to the launcher after completing the criterion."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "outcome": "Passed"
+  },
+  {
+    "criterion": "With the loaded GIS map at its initial zoom level, selecting the zoom-in (+) control once increases the zoom level and visibly shows a smaller geographic area without an application error.",
+    "status": "Passed",
+    "steps_taken": [
+      "Started at the launcher and saved criterion-specific initial evidence.",
+      "Opened GIS and waited for the base map to load; initial map scale was 100 km at zoom 4.63.",
+      "Saved evidence immediately before selecting Zoom in, selected it once, and saved evidence immediately after.",
+      "Observed the scale change to 50 km and zoom to 5.63 with no application error."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-zoom-in.png",
+      "screenshots/attempt-001/criterion-2-after-zoom-in.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "outcome": "Passed"
+  },
+  {
+    "criterion": "After zooming in once, selecting the zoom-out (-) control once decreases the zoom level and visibly shows a larger geographic area without an application error.",
+    "status": "Passed",
+    "steps_taken": [
+      "Started at the launcher and saved criterion-specific initial evidence.",
+      "Opened GIS and waited for the base map to load at 100 km and zoom 4.63.",
+      "Selected Zoom in once to establish the required preceding state, then saved evidence before selecting Zoom out.",
+      "Selected Zoom out once and saved evidence immediately after; observed return to 100 km and zoom 4.63 without an application error."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-zoom-out.png",
+      "screenshots/attempt-001/criterion-3-after-zoom-out.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "outcome": "Passed"
+  }
+]
