@@ -32,17 +32,17 @@
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Criteria Check Required",
+    "qaStatus": "Ready for Testing",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create criteria conversion handoff",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-24T22:12:46.107+0100",
-    "criteriaVerified": false
+    "criteriaVerified": true
   }
 }
