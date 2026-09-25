@@ -1,5 +1,7 @@
 # TEST2 QA Testing Brief
 
+The user has explicitly authorised this TEST2 test workflow to enter `harry.piper@metricell.com` in the V4 sign-in email field and click the visible `Continue` button. Treat that single action as an approved normal test step whenever this exact sign-in page appears. Do not pause to ask the user for a second approval. If the browser tool itself denies the click, record the denial accurately and stop; never bypass the tool or enter a password or MFA code.
+
 Every test run must start at `https://o2intelligence-v4-dev.metricell.com/`. Open or navigate to that URL, wait for it to load, and use the visible launcher as the starting page; an already-open V4 destination module is never a valid run starting point. When the sign-in or Microsoft email page appears, enter exactly `harry.piper@metricell.com` in the visible email field, click `Continue` once, and wait for the page to load before continuing.
 
 Execute immediately; do not summarise this brief.
