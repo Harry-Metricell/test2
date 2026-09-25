@@ -1,0 +1,23 @@
+{
+  "handoffId": "handoff-TEST2-31-review-attempt-001",
+  "handoffVersion": "TEST2-31:evidence_review:1",
+  "ticket": "TEST2-31",
+  "criterionOutcomes": [
+    {
+      "criterion": "The launcher displays an API Request Audit module card with an Open control.",
+      "outcome": "Passed",
+      "reason": "criterion-1-final.png directly shows the API request audit card and its Open arrow control on the launcher."
+    },
+    {
+      "criterion": "Selecting Open on that card loads the API Request Audit module on the same V4 host without an application load error.",
+      "outcome": "Passed",
+      "reason": "criterion-2-after-open.png directly shows the API request audit module, controls, populated metrics, and chart without a visible application load error. The result's browserUrl is https://o2intelligence-v4-dev.metricell.com/api-request-audit?... and matches the expected V4 host."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-31\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Both criteria were assessed against the selected attempt's non-empty PNG screenshots; all screenshot files named in results are present."
+}
