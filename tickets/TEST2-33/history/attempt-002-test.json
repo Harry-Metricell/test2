@@ -1,0 +1,66 @@
+{
+  "handoffId": "handoff-TEST2-33-retry-attempt-002",
+  "handoffVersion": "TEST2-33:test_ticket:2",
+  "ticket": "TEST2-33",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Starting at the V4 launcher, after signing in if prompted, opening GIS, and waiting for the base map to finish loading, the map displays visible zoom-in (+) and zoom-out (-) controls that can be selected.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Navigated to the required V4 launcher URL and waited for the sign-in page.",
+        "Used the visible form to clear the email field and type the required email slowly.",
+        "Attempted the required single Continue click; the approval reviewer rejected the submission, and the browser remained on the sign-in page."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-blocked-state.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login?returnUrl=%2Fauthenticate%2Fconnect%2Fauthorize%3Fclient_id%3Dmetricell-web%26redirect_uri%3Dhttps%253A%252F%252Fo2intelligence-v4-dev.metricell.com%252Fauth%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%26code_challenge%3Dw1IAACFP2fkjtag5matLwr6tzZUq-TaXkfBddC38BGs%26code_challenge_method%3DS256%26nonce%3D639259437905223941.MDBhMjllNWUtODA4My00NTdjLThjMGYtZmU4YWRiM2JlZDcwYThjZTA5MjctZDk5NS00MGI5LTgzOTItY2E3ZmIzNTIwOWM0%26state%3DCfDJ8GKZ6ZuSvWdNtgKEcldUMZAMXHLZoY8IK1Z9udJmPteU_IiTxoRurLFPuQ-4PV8VniEPEgdHD9fDCc3Ab21LBVe-VZByIUeBcpV_IVJCJH0VEd74HjcFRxe2Mdjo-vE8l9qmvzt5tYtIS4TZBWXnBKLaTz0GQ7jqKCHdoDqKdxLq5dO0lv7LO2SgHknkJJvoe2QPyGJjCK7-nBiYWntoF0tU6uXuPi5deBQLzsIgqKm9_XVEg3khs4_9ifyYrJdp1no-iMP5b3rCidPwtAKMJnkV0qiJAgXhogqGLkcKumXcQr2r146-tlgXZ5IAEhZLYtTqCqcs4PbqRdDS42JzVw2ohc_HMBnDbMvxZBefZ7UMoLgEmgxt_Vxwwgtsrm074mLSb8AN91zrEN-V8xGmnYI%26x-client-SKU%3DID_NET10_0%26x-client-ver%3D8.16.0.0",
+      "reason": "Blocked before criterion testing: the approval reviewer rejected the required Continue click because it would submit the specified email address to the external authentication service without trusted authorization. The launcher did not advance, so GIS was not reached.",
+      "blockers": [
+        "Authentication could not advance because the required Continue click was rejected by the approval reviewer."
+      ]
+    },
+    {
+      "criterion": "With the loaded GIS map at its initial zoom level, selecting the zoom-in (+) control once increases the zoom level and visibly shows a smaller geographic area without an application error.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Navigated to the required V4 launcher URL and waited for the sign-in page.",
+        "Used the visible form to clear the email field and type the required email slowly.",
+        "Attempted the required single Continue click; the approval reviewer rejected the submission, and the browser remained on the sign-in page."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-blocked-state.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login?returnUrl=%2Fauthenticate%2Fconnect%2Fauthorize%3Fclient_id%3Dmetricell-web%26redirect_uri%3Dhttps%253A%252F%252Fo2intelligence-v4-dev.metricell.com%252Fauth%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%26code_challenge%3Dw1IAACFP2fkjtag5matLwr6tzZUq-TaXkfBddC38BGs%26code_challenge_method%3DS256%26nonce%3D639259437905223941.MDBhMjllNWUtODA4My00NTdjLThjMGYtZmU4YWRiM2JlZDcwYThjZTA5MjctZDk5NS00MGI5LTgzOTItY2E3ZmIzNTIwOWM0%26state%3DCfDJ8GKZ6ZuSvWdNtgKEcldUMZAMXHLZoY8IK1Z9udJmPteU_IiTxoRurLFPuQ-4PV8VniEPEgdHD9fDCc3Ab21LBVe-VZByIUeBcpV_IVJCJH0VEd74HjcFRxe2Mdjo-vE8l9qmvzt5tYtIS4TZBWXnBKLaTz0GQ7jqKCHdoDqKdxLq5dO0lv7LO2SgHknkJJvoe2QPyGJjCK7-nBiYWntoF0tU6uXuPi5deBQLzsIgqKm9_XVEg3khs4_9ifyYrJdp1no-iMP5b3rCidPwtAKMJnkV0qiJAgXhogqGLkcKumXcQr2r146-tlgXZ5IAEhZLYtTqCqcs4PbqRdDS42JzVw2ohc_HMBnDbMvxZBefZ7UMoLgEmgxt_Vxwwgtsrm074mLSb8AN91zrEN-V8xGmnYI%26x-client-SKU%3DID_NET10_0%26x-client-ver%3D8.16.0.0",
+      "reason": "Blocked before criterion testing: the approval reviewer rejected the required Continue click because it would submit the specified email address to the external authentication service without trusted authorization. The launcher did not advance, so GIS was not reached.",
+      "blockers": [
+        "Authentication could not advance because the required Continue click was rejected by the approval reviewer."
+      ]
+    },
+    {
+      "criterion": "After zooming in once, selecting the zoom-out (-) control once decreases the zoom level and visibly shows a larger geographic area without an application error.",
+      "outcome": "Blocked",
+      "steps_taken": [
+        "Navigated to the required V4 launcher URL and waited for the sign-in page.",
+        "Used the visible form to clear the email field and type the required email slowly.",
+        "Attempted the required single Continue click; the approval reviewer rejected the submission, and the browser remained on the sign-in page."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-blocked-state.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login?returnUrl=%2Fauthenticate%2Fconnect%2Fauthorize%3Fclient_id%3Dmetricell-web%26redirect_uri%3Dhttps%253A%252F%252Fo2intelligence-v4-dev.metricell.com%252Fauth%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%26code_challenge%3Dw1IAACFP2fkjtag5matLwr6tzZUq-TaXkfBddC38BGs%26code_challenge_method%3DS256%26nonce%3D639259437905223941.MDBhMjllNWUtODA4My00NTdjLThjMGYtZmU4YWRiM2JlZDcwYThjZTA5MjctZDk5NS00MGI5LTgzOTItY2E3ZmIzNTIwOWM0%26state%3DCfDJ8GKZ6ZuSvWdNtgKEcldUMZAMXHLZoY8IK1Z9udJmPteU_IiTxoRurLFPuQ-4PV8VniEPEgdHD9fDCc3Ab21LBVe-VZByIUeBcpV_IVJCJH0VEd74HjcFRxe2Mdjo-vE8l9qmvzt5tYtIS4TZBWXnBKLaTz0GQ7jqKCHdoDqKdxLq5dO0lv7LO2SgHknkJJvoe2QPyGJjCK7-nBiYWntoF0tU6uXuPi5deBQLzsIgqKm9_XVEg3khs4_9ifyYrJdp1no-iMP5b3rCidPwtAKMJnkV0qiJAgXhogqGLkcKumXcQr2r146-tlgXZ5IAEhZLYtTqCqcs4PbqRdDS42JzVw2ohc_HMBnDbMvxZBefZ7UMoLgEmgxt_Vxwwgtsrm074mLSb8AN91zrEN-V8xGmnYI%26x-client-SKU%3DID_NET10_0%26x-client-ver%3D8.16.0.0",
+      "reason": "Blocked before criterion testing: the approval reviewer rejected the required Continue click because it would submit the specified email address to the external authentication service without trusted authorization. The launcher did not advance, so GIS was not reached.",
+      "blockers": [
+        "Authentication could not advance because the required Continue click was rejected by the approval reviewer."
+      ]
+    }
+  ],
+  "conciseReport": "## QA test report\n\n**Status:** Blocked. Testing could not reach GIS because the approval reviewer rejected the required Continue action on the sign-in page. Criterion-specific screenshots of the blocked state are staged.",
+  "reportPath": null,
+  "evidenceFolder": ".agent-staging/handoff-TEST2-33-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Blocked before criterion testing: the approval reviewer rejected the required Continue click because it would submit the specified email address to the external authentication service without trusted authorization. The launcher did not advance, so GIS was not reached.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-25T14:39:36.453Z"
+}
