@@ -101,15 +101,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "text",
-              "text": "User documentation: Users need simple instructions for locating these controls and adjusting the map scale. Assess whether the existing guide already explains this; add or amend guidance only where needed."
-            }
-          ]
         }
       ]
     },
@@ -120,7 +111,7 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-09-25T13:43:09.392+0100",
+    "updated": "2026-09-25T15:07:44.298+0100",
     "status": {
       "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
       "description": "",
