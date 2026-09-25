@@ -184,7 +184,7 @@ npm run check:guide
 
 ## User guide updater
 
-The user guide is a separate document-update workflow, not a Jira or coordinator action. It preserves an approved Word baseline, updates only the sections named in `config/user-guide-plan.json`, and highlights every newly added or materially changed heading, step, caption, and screenshot in yellow. Unchanged content remains unmodified.
+The user guide is a separate document-update workflow, not a Jira or coordinator action. It preserves the current Word guide and applies guide updates from **Passed** tickets only. Every new heading, step, caption, and screenshot panel is highlighted yellow; unchanged content remains unmodified.
 
 While creating the initial Word template, save it as `assets/user-guide/V4 User Guide Template.docx`. Use normal Word heading styles and place `[[AUTO_GUIDE_CONTENT]]` on its own paragraph where feature sections should be inserted. Do not highlight the initial template: yellow is reserved for changes made after its first approval.
 
@@ -194,14 +194,16 @@ Add one object to `config/user-guide-plan.json` for each feature section, with a
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-plan.mjs
 ```
 
-The document builder uses the saved template (or the current living guide after its first update) and validated ticket evidence to produce the yellow-highlighted update. It does not silently replace existing guide text. To build a specific published guide update locally:
+The publisher now builds the Word guide as part of publishing each approved `guide-update-output.json`. It embeds that ticket's verified PNGs, renders the guide to PDF, checks that the approved text and **each actual screenshot** survived conversion, and commits the Word guide alongside the ticket update. If a build or verification fails, neither is pushed; the staged worker output remains available for retry. The PDF is a temporary verification artifact, not the published guide. Keep the local LibreOffice renderer described above installed on the publisher PC, or set `TEST2_SOFFICE` to its `soffice.exe` path.
+
+To build a specific already-published guide update locally:
 
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-update-policy.mjs
 & "$env:LOCALAPPDATA\TEST2\python\python.exe" .\scripts\build-user-guide.py --ticket TEST2-123
 ```
 
-The builder rejects missing/non-verified PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden `[[AUTO_GUIDE_CONTENT]]` marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section.
+The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden `[[AUTO_GUIDE_CONTENT]]` marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. Existing published updates, such as TEST2-32, must be applied once manually if they were published before this automatic step was installed.
 
 ### Ticket-driven guide decisions
 

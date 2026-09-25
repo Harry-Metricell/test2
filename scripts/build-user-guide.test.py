@@ -4,12 +4,14 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+from zipfile import ZipFile
 
 from docx import Document
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILDER = ROOT / "scripts" / "build-user-guide.py"
+TEST_ROOT = ROOT / ".guide-staging" / "test-tmp"
 
 
 def write_json(path, value):
@@ -17,7 +19,8 @@ def write_json(path, value):
     path.write_text(json.dumps(value), encoding="utf-8")
 
 
-with tempfile.TemporaryDirectory() as temporary:
+TEST_ROOT.mkdir(parents=True, exist_ok=True)
+with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     repo = Path(temporary) / "repo"
     template = repo / "assets/user-guide/V4 User Guide Template.docx"
     template.parent.mkdir(parents=True)
@@ -44,6 +47,9 @@ with tempfile.TemporaryDirectory() as temporary:
     assert "[[AUTO_GUIDE_UPDATE:TEST2-99]]" in text
     assert text.count("[[AUTO_GUIDE_CONTENT]]") == 1
     assert "FFFF00" in result._element.xml, "new screenshot container must be yellow"
+    assert len(result.inline_shapes) == 1
+    with ZipFile(output) as package:
+        assert any(name.startswith("word/media/") for name in package.namelist()), "screenshot must be embedded in the DOCX package"
     second = subprocess.run(command, capture_output=True, text=True)
     assert second.returncode == 0, second.stderr or second.stdout
     repeat = Document(output)

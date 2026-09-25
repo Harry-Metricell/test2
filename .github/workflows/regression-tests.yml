@@ -54,6 +54,9 @@ jobs:
       - name: Run user-guide builder regression tests
         run: python scripts/build-user-guide.test.py
 
+      - name: Run user-guide evidence verifier regression tests
+        run: python scripts/verify-user-guide.test.py
+
       - name: Validate user-guide configuration
         run: |
           node scripts/check-user-guide-plan.mjs

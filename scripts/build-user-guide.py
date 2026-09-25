@@ -79,17 +79,20 @@ def yellow_paragraph(text: str, style: str | None = None, hidden: bool = False):
 def yellow_steps(steps: list[str]):
     temporary = Document()
     elements = []
-    for step in steps:
-        paragraph = temporary.add_paragraph(style="List Number")
-        run = paragraph.add_run(step)
+    for number, step in enumerate(steps, start=1):
+        # The baseline guide already contains numbered lists. A new Word list
+        # otherwise continues that old sequence instead of starting at 1.
+        paragraph = temporary.add_paragraph()
+        run = paragraph.add_run(f"{number}. {step}")
         run.font.highlight_color = WD_COLOR_INDEX.YELLOW
         elements.append(paragraph._p)
     return elements
 
 
-def yellow_screenshot(image: Path, caption: str):
-    temporary = Document()
-    table = temporary.add_table(rows=1, cols=1)
+def yellow_screenshot(document: Document, image: Path, caption: str):
+    # Add the image to the destination package, not a temporary document.
+    # Copying its XML from another package leaves a dangling relationship ID.
+    table = document.add_table(rows=1, cols=1)
     cell = table.cell(0, 0)
     tc_pr = cell._tc.get_or_add_tcPr()
     shade = OxmlElement("w:shd")
@@ -103,7 +106,7 @@ def yellow_screenshot(image: Path, caption: str):
     caption_paragraph = cell.add_paragraph()
     caption_run = caption_paragraph.add_run(caption)
     caption_run.font.highlight_color = WD_COLOR_INDEX.YELLOW
-    return table._tbl
+    return table
 
 
 def validate_update(update: dict, ticket: str) -> None:
@@ -169,21 +172,26 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
         shutil.copy2(source, output)
     document = Document(output)
     marker = marker_paragraph(document)
+    # The example baseline's closing note precedes the hidden marker. Keep
+    # generated guidance before that note so the document still ends properly.
+    anchor = next((p for p in document.paragraphs if p.text.startswith("End of example guide.")), marker)
     applied, skipped = [], []
     for ticket, update in updates:
         if has_update(document, ticket):
             skipped.append(ticket)
             continue
         label = "New feature" if update["changeType"] == "add" else "Updated guidance"
-        add_before(marker, yellow_paragraph(f"{label}: {update['title'].strip()}", "Heading 1")._p)
-        add_before(marker, yellow_paragraph(f"Section: {update['affectedSection'].strip()}")._p)
+        add_before(anchor, yellow_paragraph(f"{label}: {update['title'].strip()}", "Heading 1")._p)
+        add_before(anchor, yellow_paragraph(f"Section: {update['affectedSection'].strip()}")._p)
         for paragraph in yellow_steps([step.strip() for step in update["steps"]]):
-            add_before(marker, paragraph)
+            add_before(anchor, paragraph)
         for index, relative in enumerate(update["screenshots"], start=1):
             image = screenshot_path(evidence_root, ticket, relative)
-            add_before(marker, yellow_screenshot(image, f"Figure {index}: verified {ticket} evidence — {Path(relative).name}"))
+            caption = update["steps"][min(index - 1, len(update["steps"]) - 1)].strip()
+            table = yellow_screenshot(document, image, f"Figure {index}: {caption}")
+            anchor._p.addprevious(table._tbl)
         identity = yellow_paragraph(UPDATE_MARKER.format(ticket=ticket), hidden=True)
-        add_before(marker, identity._p)
+        add_before(anchor, identity._p)
         applied.append(ticket)
     set_hidden(marker)
     document.save(output)

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
 import os from 'node:os';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
 const sourceRepo = path.resolve(process.env.TEST2_REPO || path.join(path.dirname(fileURLToPath(import.meta.url)), '..'));
@@ -362,6 +362,37 @@ function buildVerifiedReport(key, run, screenshots) {
   return { docx, pdf };
 }
 
+function buildVerifiedUserGuide(key, run) {
+  const python = process.env.TEST2_PYTHON || 'C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe';
+  const soffice = process.env.TEST2_SOFFICE || path.join(process.env.LOCALAPPDATA || '', 'TEST2', 'libreoffice', 'program', 'soffice.exe');
+  if (!nonEmpty(soffice)) fail(`User-guide renderer is missing: ${soffice}`);
+  const docx = path.join(repo, 'assets', 'user-guide', 'V4 User Guide.docx');
+  const update = path.join(repo, 'tickets', key, 'guide-update.json');
+  const builder = path.join(repo, 'scripts', 'build-user-guide.py');
+  const verifier = path.join(repo, 'scripts', 'verify-user-guide.py');
+  const renderDir = path.join(run, `guide-render-${process.pid}`);
+  const profile = path.join(renderDir, 'lo-profile');
+  fs.mkdirSync(profile, { recursive: true });
+  const result = JSON.parse(execFileSync(python, [builder, '--repo', repo, '--output', docx, '--evidence-root', evidenceRoot, '--ticket', key], {
+    windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000
+  }));
+  if (!result.applied.includes(key)) return false;
+  try {
+    execFileSync(soffice, [`-env:UserInstallation=${pathToFileURL(profile).href}`, '--headless', '--norestore', '--convert-to', 'pdf', '--outdir', renderDir, docx], {
+      windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000
+    });
+  } catch (error) {
+    fail(`User-guide PDF conversion failed: ${String(error.stderr || error.message).trim()}`);
+  }
+  const pdf = path.join(renderDir, 'V4 User Guide.pdf');
+  if (!nonEmpty(pdf)) fail('User-guide renderer did not create a non-empty PDF');
+  const audit = execFileSync(python, [verifier, '--docx', docx, '--pdf', pdf, '--update', update, '--evidence-root', evidenceRoot], {
+    windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000
+  });
+  log('user_guide_verified', JSON.parse(audit));
+  return true;
+}
+
 if (!fs.existsSync(stagingRoot)) process.exit(0);
 pruneTransientStaging(stagingRoot);
 // Use a private temporary index so unrelated checkout changes and index locks do not block publishing.
@@ -552,6 +583,7 @@ if (outputType === 'criteria-output.json') {
   status.guideUpdate = guideUpdate;
   writeJson(statusFile, status);
   changed.push(`tickets/${key}/guide-update.json`, `tickets/${key}/status.json`);
+  if (buildVerifiedUserGuide(key, run)) changed.push('assets/user-guide/V4 User Guide.docx');
 } else {
   if (!Array.isArray(output.criterionOutcomes) || output.criterionOutcomes.length === 0) fail('criterionOutcomes is missing');
   if (output.criterionOutcomes.some((item) => !item || !['string', 'number'].includes(typeof item.criterion) || typeof item.outcome !== 'string' || typeof item.reason !== 'string')) {
@@ -611,6 +643,12 @@ function publishFromCleanWorktree() {
       if (!/^[0-9a-f]{40}$/.test(remoteSha)) fail('GitHub remote read-back returned no usable main SHA');
       worktree = path.join(base, `worktree-${attempt}`);
       runGit(['worktree', 'add', '--detach', worktree, remoteSha]);
+      if (changed.includes('assets/user-guide/V4 User Guide.docx')) {
+        const guideRef = 'HEAD:assets/user-guide/V4 User Guide.docx';
+        if (runGitAt(worktree, ['rev-parse', guideRef]) !== runGitAt(repo, ['rev-parse', guideRef])) {
+          fail('Living user guide changed during publication; retry the staged guide update against the latest guide');
+        }
+      }
       const cleanIndex = path.join(base, `index-${attempt}`);
       runGitAt(worktree, ['read-tree', 'HEAD'], cleanIndex);
       for (const relative of changed) {
