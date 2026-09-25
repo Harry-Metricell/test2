@@ -7,7 +7,7 @@
   "retryLimit": 3,
   "criteriaVerified": true,
   "blockedStage": null,
-  "qaOutcome": "Passed",
+  "qaOutcome": "Unverified",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "Create evidence review handoff"
+  "nextAction": "QA review complete"
 }

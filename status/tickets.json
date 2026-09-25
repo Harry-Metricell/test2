@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-25T13:43:09.392+0100",
   "counts": {
     "tickets": 32,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 16,
       "Ready": 15,
@@ -12,8 +12,8 @@
     "byQaOutcome": {
       "Blocked": 6,
       "Not Tested": 3,
-      "Passed": 19,
-      "Unverified": 4
+      "Passed": 18,
+      "Unverified": 5
     }
   },
   "policy": {
@@ -380,12 +380,12 @@
       "summary": "Use the GIS map zoom controls",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Passed",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create evidence review handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-25T13:43:09.392+0100",
       "retries": 0,
       "retryLimit": 3,
