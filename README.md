@@ -168,6 +168,14 @@ Restart the Codex desktop app after installation. New tester tasks should expose
 
 When the saved V4 session expires, refresh it through the dedicated private browser flow rather than an ordinary browser window:
 
+The TEST2 owner has approved entering `harry.piper@metricell.com` and selecting `Continue` on the V4 development sign-in page. If that step completes sign-in without further interaction, refresh the saved tester login automatically:
+
+```powershell
+& "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\refresh-test2-auth.mjs --email-continue
+```
+
+If the site instead needs a password, MFA, or other human action, use the existing interactive flow below. The automatic command keeps the old saved login if it cannot reach the launcher.
+
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\refresh-test2-auth.mjs
 ```
