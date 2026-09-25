@@ -33,7 +33,7 @@ The JSON must contain: `handoffId`, `handoffVersion`, `ticket`, `qaStatus`, `res
 
 For every `results[].criterion`, copy the exact checklist text from the selected handoff's `inputs.criteria` file. A one-based numeric criterion identifier is also accepted when copying the full text is impractical. Do not paraphrase criterion identifiers: the publisher must be able to map every result to exactly one canonical checklist item.
 
-Return one compact JSON object only with exactly those fields. No markdown or commentary.
+Keep the complete results and report in the staged output file. After writing it, return only a compact receipt containing `handoffId`, `ticket`, and `staged: true`. For a no-op or failure, return a compact reason. Do not repeat criterion outcomes, steps, screenshots, or the report in chat. Do not narrate routine tool calls; any host-required progress update must be one short sentence.
 
 
 

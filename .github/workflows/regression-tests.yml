@@ -45,6 +45,9 @@ jobs:
       - name: Run Jira rich-text criteria regression tests
         run: node --test scripts/jira-adf.test.mjs
 
+      - name: Preserve approved criteria during status generation
+        run: node --test scripts/generate-status.test.mjs
+
       - name: Run evidence report regression tests
         run: python scripts/build-evidence-report.test.py
 

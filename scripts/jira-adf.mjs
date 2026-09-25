@@ -26,9 +26,8 @@ export function acceptanceCriteria(descriptionText) {
       .split(/\n+/)
       .map((line) => line.replace(/\\n/g, '\n').replace(/^[-*]\s*/, '').trim())
       .filter(Boolean);
-    // Jira's flattened rich text contains all later sections. Criteria end at
-    // the object-change section; headings beyond that are not test criteria.
-    const end = afterMarker.findIndex((line) => /^Object Change List:/i.test(line));
+    // Later editorial/workflow sections are context, not product assertions.
+    const end = afterMarker.findIndex((line) => /^(?:#{1,6}\s*)?(?:Object Change List|User Documentation|Documentation(?: Notes)?|Guide(?: Update| Notes)?|Notes|Out of Scope|Implementation Notes)\s*:/i.test(line));
     return end === -1 ? afterMarker : afterMarker.slice(0, end);
   }
 

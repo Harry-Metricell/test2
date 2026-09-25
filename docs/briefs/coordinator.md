@@ -1,5 +1,11 @@
 # TEST2 Coordinator Brief
 
+## Communication and launch contract
+
+The launch message is only `[@GitHub](plugin://github@openai-curated-remote)read and follow: docs/briefs/coordinator.md`. Put durable operating instructions in this brief, never in added launch-message context.
+
+Keep user-visible output minimal. Do not narrate queue reads, routine polling, elapsed waits, lock reconciliation, or unchanged progress. Notify only on a meaningful stage change, completion, failure, or required user action; each notification is at most one short sentence. If the host requires periodic updates, use one short sentence without repeating prior details. Do not repeat worker payloads in chat; inspect staged files and remote publication gates. End with the existing compact structured summary.
+
 ## Cost-controlled worker model allocation
 
 When creating child tasks, use the lowest-cost model that can safely complete the stage:

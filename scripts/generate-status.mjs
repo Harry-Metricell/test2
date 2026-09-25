@@ -595,7 +595,9 @@ writeJson(path.join(outDir, 'handoffs.json'), { schema: 'v4-qa-handoffs.v1', gen
 for (const ticket of tickets) {
   writeJson(path.join(generatedDir, `${ticket.key}.json`), ticket);
   const criteriaFile = path.join('tickets', ticket.key, 'criteria.md');
-  if (ticket.acceptanceCriteria.length > 0 || !fs.existsSync(criteriaFile)) {
+  // Seed new tickets only. Once present, criteria belong to the criteria worker;
+  // polling Jira or bundling status must never replace the tester's checklist.
+  if (!fs.existsSync(criteriaFile)) {
     writeText(criteriaFile, criteriaMarkdown(ticket));
   }
   writeText(path.join('tickets', ticket.key, 'ticket.md'), markdown(ticket));

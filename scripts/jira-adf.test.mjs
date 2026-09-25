@@ -37,3 +37,16 @@ test('Jira rich-text inline nodes stay inside their acceptance criterion', () =>
   ]);
 });
 
+test('documentation workflow notes after acceptance criteria are not browser checks', () => {
+  const description = [
+    'Acceptance Criteria:',
+    'The GIS zoom controls are visible.',
+    'Selecting zoom in changes the map scale.',
+    'User documentation: Decide whether the guide needs new instructions.'
+  ].join('\n');
+  assert.deepEqual(acceptanceCriteria(description), [
+    'The GIS zoom controls are visible.',
+    'Selecting zoom in changes the map scale.'
+  ]);
+});
+

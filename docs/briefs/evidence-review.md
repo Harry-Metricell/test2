@@ -1,6 +1,6 @@
 # TEST2 Evidence Review Brief
 
-Execute immediately; return one compact JSON object only. Do not summarise this brief.
+Execute immediately. Keep the complete review in the staged file; return only a compact receipt with `handoffId`, `ticket`, and `staged: true`. For a no-op or failure, return a compact reason. Do not repeat criterion outcomes or narrate routine tool calls; any host-required progress update must be one short sentence.
 
 Use the GitHub connector to fetch the live `main` branch file `status/handoffs.json` before selecting work; do not use a local checkout copy for queue selection. Then fetch only the selected handoff's remote `inputs.results`, `inputs.generated`, `tickets/<KEY>/criteria.md`, and `tickets/<KEY>/report.md`; read the selected attempt's PNG screenshots only from `C:\Users\harry.piper\Documents\V4-QA-evidence\<KEY>\screenshots\attempt-NNN\`. Derive `attempt-NNN` from the `screenshots/attempt-NNN/<file>.png` evidence paths in the fetched results. If results contain no evidence path, use only the highest numbered existing `attempt-NNN` folder; never read the screenshot-folder root or combine attempts. Do not use Jira, the task prompt's ticket number, arbitrary ticket selection, or other repository files.
 

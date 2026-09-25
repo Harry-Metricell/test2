@@ -10,9 +10,11 @@ Read only the selected handoff inputs. For every selected ticket, read the entir
 
 Format `criteriaMarkdown` as a Markdown checklist. Every testable criterion must be its own unchecked bullet beginning exactly with `- [ ] `; do not use numbered lists, checked boxes, tables, or prose-only criteria. A short heading such as `# Acceptance Criteria` may precede the bullets.
 
+Separate product requirements from instructions to the QA/documentation pipeline. Notes asking an assessor to decide guide coverage, update a report, or amend the user guide are not browser acceptance criteria. Exclude them from the checklist unless the ticket explicitly requests a testable documentation feature within the application itself. The guide-impact stage owns guide-update decisions after a passed review.
+
 Write one temporary output file to:
 `.agent-staging/<handoffId>/criteria-output.json`
 
 The JSON must contain: `handoffId`, `handoffVersion`, `ticket`, `criteriaMarkdown`, `qaStatus`, `noOp`, `reason`. Copy `handoffVersion` exactly from the selected live handoff. Set `qaStatus` to `Ready for Testing` only when valid criteria are produced; set it to `Blocked` when valid criteria cannot be produced. Do not modify permanent ticket files, Jira, screenshots, reports, credentials, or authentication state.
 
-Return one JSON object only with exactly those six fields. No markdown or commentary.
+Keep the full payload in the staged file. After writing it, return only a compact receipt containing `handoffId`, `ticket`, and `staged: true`. For a no-op or failure, return a compact reason. Do not repeat the criteria in chat or narrate routine tool calls; any host-required progress update must be one short sentence.

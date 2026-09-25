@@ -1,6 +1,7 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] With GIS loaded, the map's zoom-in (+) and zoom-out (-) controls are visible and usable.
-- [ ] Selecting zoom-in (+) once increases the map zoom level, visibly showing a smaller geographic area without an application error.
-- [ ] Selecting zoom-out (-) once then decreases the map zoom level, visibly showing a larger geographic area without an application error.
-- [ ] User documentation: Users need simple instructions for locating these controls and adjusting the map scale. Assess whether the existing guide already explains this; add or amend guidance only where needed.
+# Acceptance Criteria
+
+- [ ] Starting at the V4 launcher, after signing in if prompted, opening GIS, and waiting for the base map to finish loading, the map displays visible zoom-in (+) and zoom-out (-) controls that can be selected.
+- [ ] With the loaded GIS map at its initial zoom level, selecting the zoom-in (+) control once increases the zoom level and visibly shows a smaller geographic area without an application error.
+- [ ] After zooming in once, selecting the zoom-out (-) control once decreases the zoom level and visibly shows a larger geographic area without an application error.
