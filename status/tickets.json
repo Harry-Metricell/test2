@@ -11,8 +11,8 @@
     },
     "byQaOutcome": {
       "Blocked": 6,
-      "Not Tested": 4,
-      "Passed": 16,
+      "Not Tested": 3,
+      "Passed": 17,
       "Unverified": 4
     }
   },
@@ -348,12 +348,12 @@
       "summary": "Open API Request Audit from the V4 launcher",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create evidence review handoff",
       "updatedAt": "2026-09-24T22:12:46.107+0100",
       "retries": 0,
       "retryLimit": 3,
