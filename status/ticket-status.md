@@ -26,7 +26,7 @@ Updated: 2026-09-25T13:43:09.392+0100
 | TEST2-30 | READY FOR TESTING | Evidence Reviewed |  | Open the GIS module from the V4 launcher |
 | TEST2-31 | READY FOR TESTING | Evidence Reviewed |  | Open API Request Audit from the V4 launcher |
 | TEST2-32 | READY FOR TESTING | Evidence Reviewed |  | Return to the V4 launcher from GIS |
-| TEST2-33 | READY FOR TESTING | Ready for Testing |  | Use the GIS map zoom controls |
+| TEST2-33 | READY FOR TESTING | Awaiting Evidence Review |  | Use the GIS map zoom controls |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/3 | Verify GIS layer and map view controls |
