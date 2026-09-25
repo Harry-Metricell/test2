@@ -3,10 +3,10 @@
 ## Current State
 
 - Jira status: READY FOR TESTING
-- QA outcome: Passed
-- Workflow state: Ready
+- QA outcome: Blocked
+- Workflow state: Blocked
 - Action owner: Coordinator
-- Next action: QA review complete
+- Next action: Manual review required after retry limit
 - Jira: https://metricell.atlassian.net/browse/TEST2-33
 
 ## Acceptance Criteria
