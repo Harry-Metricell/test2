@@ -32,18 +32,18 @@
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Ready",
-    "qaStatus": "Evidence Reviewed",
-    "qaOutcome": "Passed",
+    "workflowState": "Retry Queued",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Unverified",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "QA review complete",
+    "nextAction": "Retry 2/3 queued; coordinator will start tester",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 1,
+    "retries": 2,
     "blockedStage": null,
-    "updatedAt": "2026-09-25T14:31:17.288Z",
+    "updatedAt": "2026-09-25T14:38:49.278Z",
     "criteriaVerified": true
   }
 }

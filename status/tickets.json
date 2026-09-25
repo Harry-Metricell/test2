@@ -1,19 +1,20 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-25T14:31:17.288Z",
+  "generatedAt": "2026-09-25T14:38:49.278Z",
   "counts": {
     "tickets": 32,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 17,
-      "Ready": 14,
-      "Rejected": 1
+      "Blocked": 18,
+      "Ready": 11,
+      "Rejected": 1,
+      "Retry Queued": 2
     },
     "byQaOutcome": {
       "Blocked": 6,
       "Not Tested": 3,
-      "Passed": 21,
-      "Unverified": 2
+      "Passed": 18,
+      "Unverified": 5
     }
   },
   "policy": {
@@ -171,13 +172,13 @@
       "key": "TEST2-19",
       "summary": "Launcher controls evidence smoke test",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "QA review complete",
+      "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-09-25T14:31:17.282Z",
       "retries": 3,
       "retryLimit": 3,
@@ -283,17 +284,17 @@
       "key": "TEST2-27",
       "summary": "Verify returning to the V4 launcher from an opened module",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
+      "workflowState": "Retry Queued",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "QA review complete",
-      "updatedAt": "2026-09-25T14:31:17.286Z",
-      "retries": 2,
+      "nextAction": "Manual review required after retry limit",
+      "updatedAt": "2026-09-25T14:38:49.274Z",
+      "retries": 3,
       "retryLimit": 3,
-      "retryLabel": "Retry 2/3"
+      "retryLabel": "Retry 3/3"
     },
     {
       "key": "TEST2-28",
@@ -379,17 +380,17 @@
       "key": "TEST2-33",
       "summary": "Use the GIS map zoom controls",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
+      "workflowState": "Retry Queued",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "QA review complete",
-      "updatedAt": "2026-09-25T14:31:17.288Z",
-      "retries": 1,
+      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "updatedAt": "2026-09-25T14:38:49.278Z",
+      "retries": 2,
       "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retryLabel": "Retry 2/3"
     },
     {
       "key": "TEST2-2",
