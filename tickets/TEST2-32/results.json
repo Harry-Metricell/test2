@@ -1,0 +1,37 @@
+[
+  {
+    "criterion": "Starting on the signed-in V4 launcher at the stated launcher URL, select Open on the GIS card; the GIS module loads on the same V4 host and no application load error is displayed.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/ and completed the required email Continue step.",
+      "On the signed-in launcher at /launcher, captured criterion-1-initial.png.",
+      "Selected Open GIS; the page loaded at https://o2intelligence-v4-dev.metricell.com/gis.",
+      "Observed the GIS workspace controls and map with no application load error; browser reported 0 console errors.",
+      "Captured criterion-1-final.png."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserVersion": "Chrome 154.0.0.0",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "reason": "GIS module loaded on the same V4 host; GIS workspace rendered without an application load error."
+  },
+  {
+    "criterion": "After the GIS module has loaded from the V4 launcher, use the browser Back control; the V4 launcher is displayed again with the GIS card and its Open control visible.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Starting from the GIS module loaded in criterion 1, used the browser Back control.",
+      "The page returned to https://o2intelligence-v4-dev.metricell.com/launcher.",
+      "Verified the GIS card and its Open GIS control are visible.",
+      "Captured criterion-2-initial.png and criterion-2-final.png on the returned launcher state."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "browserVersion": "Chrome 154.0.0.0",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "reason": "Browser Back returned to the V4 launcher with the GIS card and Open control visible."
+  }
+]
