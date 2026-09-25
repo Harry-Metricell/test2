@@ -34,7 +34,7 @@
     "jiraStatus": "Rejected",
     "workflowState": "Blocked",
     "qaStatus": "Ready for Testing",
-    "qaOutcome": "Passed",
+    "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
     "nextAction": "Waiting for Jira status: READY FOR TESTING",
