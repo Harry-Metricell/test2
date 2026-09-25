@@ -1,0 +1,22 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-31-guide-update",
+  "handoffVersion": "TEST2-31:guide_update_authoring:1",
+  "ticket": "TEST2-31",
+  "title": "Open the API Request Audit module",
+  "affectedSection": "Using the API Request Audit module",
+  "changeType": "amend",
+  "steps": [
+    "Open the V4 launcher.",
+    "Find the API Request Audit card.",
+    "Select Open on the card.",
+    "Confirm that the API Request Audit module loads with its controls and data."
+  ],
+  "screenshots": [
+    "screenshots/attempt-001/criterion-1-final.png",
+    "screenshots/attempt-001/criterion-2-after-open.png"
+  ],
+  "reason": "Add the verified launcher path for opening the API Request Audit module and confirm its successful load.",
+  "noOp": false,
+  "authoredAt": "2026-09-25T09:03:36.818Z"
+}
