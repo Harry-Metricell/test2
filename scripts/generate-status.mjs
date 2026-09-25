@@ -147,7 +147,7 @@ function mergeStatus(ticket, localStatus) {
   const jiraReady = jiraReadyForTesting(ticket);
   const jiraGateBlocked = !jiraReady && ['Ready for Testing', 'Awaiting Evidence Review', 'Blocked'].includes(qaStatus);
   const projectedWorkflowState = jiraGateBlocked ? 'Blocked' : workflowState;
-  const retryExhausted = retries >= retryLimit && ['blocked', 'failed'].includes(String(localStatus.qaOutcome || localStatus.outcome || '').trim().toLowerCase());
+  const retryExhausted = retries >= retryLimit && ['blocked', 'failed', 'unverified'].includes(String(localStatus.qaOutcome || localStatus.outcome || '').trim().toLowerCase());
   const finalReviewPending = qaStatus === 'Awaiting Evidence Review' && localStatus.blockedStage === 'evidence_review';
   const nextAction = finalReviewPending
     ? 'Create final evidence review handoff'
@@ -313,16 +313,16 @@ function normalizeTicket(dirName) {
   const retryLimit = Number.isFinite(Number(localStatus.retryLimit)) ? Number(localStatus.retryLimit) : 3;
   // Failed attempts can be marked Evidence Reviewed, so retry from the
   // persisted outcome as well as from a blocked QA status.
-  const retryableOutcome = ['failed', 'blocked'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase());
+  const retryableOutcome = ['failed', 'blocked', 'unverified'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase());
   const qaStatusKey = String(localStatus.qaStatus || '').trim().toLowerCase();
   const retryableStatus = qaStatusKey === 'blocked';
   const newRetryableAttempt = retryableOutcome
     && !['ready for testing', 'retry queued'].includes(qaStatusKey)
     && !(latestAttempt && latestNumber > reviewNumber);
-  // A completed successful review is terminal. A reviewed Failed/Blocked
-  // result remains retryable until its retry limit is reached.
+  // Only a Passed review is terminal. An inconclusive evidence review needs
+  // another test attempt while the retry budget remains.
   const successfulReview = reviewHasReport
-    && !['blocked', 'failed'].includes(String(review?.overallOutcome || review?.qaStatus || '').trim().toLowerCase());
+    && String(review?.overallOutcome || '').trim().toLowerCase() === 'passed';
   if (!successfulReview) {
     if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
     localStatus = {
@@ -354,7 +354,7 @@ function normalizeTicket(dirName) {
   // A final blocked test is not terminal until evidence review has produced its
   // report.  Once that report exists, it is terminal for automatic testing.
   const exhaustedFinalBlock = retries >= retryLimit && (
-    ['blocked', 'failed'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase())
+    ['blocked', 'failed', 'unverified'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase())
     || String(latestAttempt?.qaStatus || '').trim().toLowerCase() === 'blocked'
   );
   if (exhaustedFinalBlock) {
