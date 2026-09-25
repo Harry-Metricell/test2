@@ -1,20 +1,20 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-25T14:38:49.278Z",
+  "generatedAt": "2026-09-25T14:39:59.850Z",
   "counts": {
     "tickets": 32,
     "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 18,
-      "Ready": 11,
+      "Blocked": 17,
+      "Ready": 13,
       "Rejected": 1,
-      "Retry Queued": 2
+      "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Blocked": 6,
+      "Blocked": 7,
       "Not Tested": 3,
-      "Passed": 18,
-      "Unverified": 5
+      "Passed": 20,
+      "Unverified": 2
     }
   },
   "policy": {
@@ -172,13 +172,13 @@
       "key": "TEST2-19",
       "summary": "Launcher controls evidence smoke test",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Unverified",
+      "workflowState": "Ready",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-25T14:31:17.282Z",
       "retries": 3,
       "retryLimit": 3,
@@ -284,13 +284,13 @@
       "key": "TEST2-27",
       "summary": "Verify returning to the V4 launcher from an opened module",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Unverified",
+      "workflowState": "Ready",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-25T14:38:49.274Z",
       "retries": 3,
       "retryLimit": 3,
@@ -382,15 +382,15 @@
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
       "qaStatus": "Ready for Testing",
-      "qaOutcome": "Unverified",
+      "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 2/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-25T14:38:49.278Z",
-      "retries": 2,
+      "nextAction": "Manual review required after retry limit",
+      "updatedAt": "2026-09-25T14:39:59.850Z",
+      "retries": 3,
       "retryLimit": 3,
-      "retryLabel": "Retry 2/3"
+      "retryLabel": "Retry 3/3"
     },
     {
       "key": "TEST2-2",
