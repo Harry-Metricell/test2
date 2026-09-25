@@ -1,0 +1,48 @@
+{
+  "handoffId": "handoff-TEST2-31-test-attempt-001",
+  "handoffVersion": "TEST2-31:test_ticket:1",
+  "ticket": "TEST2-31",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "The launcher displays an API Request Audit module card with an Open control.",
+      "status": "Passed",
+      "steps_taken": [
+        "Navigated to the V4 launcher URL and completed the required email Continue step.",
+        "Inspected the launcher accessibility snapshot for the API request audit module card and Open control."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "reason": "The launcher showed the API request audit card with an Open control.",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "Selecting Open on that card loads the API Request Audit module on the same V4 host without an application load error.",
+      "status": "Passed",
+      "steps_taken": [
+        "Returned to the V4 launcher and captured criterion-specific initial evidence.",
+        "Selected Open on the API request audit card.",
+        "Inspected the resulting module title, dashboard and request explorer; no application load error was visible."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-open.png",
+        "screenshots/attempt-001/criterion-2-after-open.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-25T08%3A52%3A33.734Z&startUtc=2026-09-24T08%3A52%3A33.734Z&live=true",
+      "reason": "The module loaded on o2intelligence-v4-dev.metricell.com and displayed API request audit controls and data without a visible application load error.",
+      "outcome": "Passed"
+    }
+  ],
+  "conciseReport": "## QA Test Results — TEST2-31\n\n- **Passed** — The V4 launcher displays the API request audit card with an Open control.\n- **Passed** — Selecting Open loads the API Request Audit module on the same V4 host without a visible application load error.\n\nQA status: Awaiting Evidence Review.",
+  "reportPath": "tickets/TEST2-31/reports/",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-31-test-attempt-001/screenshots/",
+  "noOp": false,
+  "reason": "",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-25T08:53:41.773Z"
+}
