@@ -13,14 +13,14 @@ Updated: 2026-09-25T14:39:59.850Z
 | TEST2-13 | Blocked | Awaiting Evidence Review | Retry 3/3 | Verify launcher displays available V4 modules |
 | TEST2-16 | READY FOR TESTING | Evidence Reviewed | Retry 2/3 | Clean pipeline test 3 |
 | TEST2-18 | READY FOR TESTING | Evidence Reviewed | Retry 2/3 | Launcher evidence smoke test |
-| TEST2-19 | READY FOR TESTING | Blocked | Retry 3/3 | Launcher controls evidence smoke test |
+| TEST2-19 | READY FOR TESTING | Evidence Reviewed | Retry 3/3 | Launcher controls evidence smoke test |
 | TEST2-20 | READY FOR TESTING | Evidence Reviewed | Retry 1/3 | Launcher URL evidence verification |
 | TEST2-21 | READY FOR TESTING | Blocked | Retry 3/3 | real ticket |
 | TEST2-22 | READY FOR TESTING | Evidence Reviewed |  | Confirm the V4 launcher page loads |
 | TEST2-23 | READY FOR TESTING | Evidence Reviewed | Retry 2/3 | Fresh coordinator and tester smoke test |
 | TEST2-25 | READY FOR TESTING | Evidence Reviewed |  | Verify V4 launcher displays available module cards |
 | TEST2-26 | READY FOR TESTING | Evidence Reviewed |  | Verify a V4 module opens from the launcher |
-| TEST2-27 | READY FOR TESTING | Blocked | Retry 3/3 | Verify returning to the V4 launcher from an opened module |
+| TEST2-27 | READY FOR TESTING | Evidence Reviewed | Retry 3/3 | Verify returning to the V4 launcher from an opened module |
 | TEST2-28 | READY FOR TESTING | Blocked | Retry 3/3 | Verify final browser URLs through Agentic AI navigation |
 | TEST2-29 | READY FOR TESTING | Evidence Reviewed |  | Confirm V4 launcher loads with usable module cards |
 | TEST2-30 | READY FOR TESTING | Evidence Reviewed |  | Open the GIS module from the V4 launcher |

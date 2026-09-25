@@ -32,17 +32,17 @@
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Blocked",
-    "qaStatus": "Blocked",
-    "qaOutcome": "Unverified",
+    "workflowState": "Ready",
+    "qaStatus": "Evidence Reviewed",
+    "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required after retry limit",
+    "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 3,
-    "blockedStage": "reviewed",
+    "blockedStage": null,
     "updatedAt": "2026-09-25T14:38:49.274Z",
     "criteriaVerified": true
   }
