@@ -1,0 +1,23 @@
+{
+  "handoffId": "handoff-TEST2-32-review-attempt-001",
+  "handoffVersion": "TEST2-32:evidence_review:1",
+  "ticket": "TEST2-32",
+  "criterionOutcomes": [
+    {
+      "criterion": "Selecting Open on the GIS card loads the GIS module on the same V4 host without an application load error.",
+      "outcome": "Passed",
+      "reason": "The initial screenshot shows the signed-in V4 launcher with the GIS card, and the final screenshot shows the GIS workspace and map. The fetched result reports browserUrl https://o2intelligence-v4-dev.metricell.com/gis, matching the expected V4 host; no application load error is visible."
+    },
+    {
+      "criterion": "Using the browser Back control returns to the V4 launcher, where the GIS card and its Open control are visible again.",
+      "outcome": "Passed",
+      "reason": "The criterion-2 screenshots show the V4 launcher again with the GIS card and its Open control visible. The fetched result reports browserUrl https://o2intelligence-v4-dev.metricell.com/launcher, matching the expected V4 host."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-32\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Evidence review completed for both criteria using all declared non-empty PNG screenshots from attempt-001 and the corresponding fetched browserUrl values."
+}
