@@ -3,12 +3,12 @@
   "jiraStatus": "Blocked",
   "qaStatus": "Ready for Testing",
   "status": "Blocked",
-  "retries": 3,
+  "retries": 2,
   "retryLimit": 3,
   "criteriaVerified": true,
   "blockedStage": null,
   "workflowState": "Retry Queued",
-  "nextAction": "Create retry handoff",
-  "updatedAt": "2026-09-26T15:00:12.510Z",
+  "nextAction": "Retry 2/3 queued; coordinator will start tester",
+  "updatedAt": "2026-09-26T15:12:10.640Z",
   "qaOutcome": "Blocked"
 }
