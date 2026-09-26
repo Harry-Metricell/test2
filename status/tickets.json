@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-26T10:48:09.696Z",
+  "generatedAt": "2026-09-26T10:50:19.526Z",
   "counts": {
     "tickets": 32,
     "handoffs": 3,
@@ -82,11 +82,11 @@
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-09-26T10:48:09.665Z",
-      "retries": 3,
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "updatedAt": "2026-09-26T10:50:19.502Z",
+      "retries": 2,
       "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retryLabel": "Retry 2/3"
     },
     {
       "key": "TEST2-11",
@@ -109,12 +109,12 @@
       "summary": "Basic screenshot evidence test",
       "jiraStatus": "Blocked",
       "workflowState": "Blocked",
-      "qaStatus": "Ready for Testing",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-26T10:48:09.668Z",
       "retries": 3,
       "retryLimit": 3,
@@ -130,11 +130,11 @@
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-09-26T10:48:09.670Z",
-      "retries": 3,
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "updatedAt": "2026-09-26T10:50:19.506Z",
+      "retries": 2,
       "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retryLabel": "Retry 2/3"
     },
     {
       "key": "TEST2-16",
@@ -179,7 +179,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-09-26T10:48:09.675Z",
+      "updatedAt": "2026-09-26T10:50:19.511Z",
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
@@ -211,7 +211,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-09-26T10:48:09.679Z",
+      "updatedAt": "2026-09-26T10:50:19.514Z",
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
@@ -291,7 +291,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Retry 2/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-26T10:48:09.684Z",
+      "updatedAt": "2026-09-26T10:50:19.518Z",
       "retries": 2,
       "retryLimit": 3,
       "retryLabel": "Retry 2/3"
@@ -307,7 +307,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Retry 2/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-26T10:48:09.686Z",
+      "updatedAt": "2026-09-26T10:50:19.519Z",
       "retries": 2,
       "retryLimit": 3,
       "retryLabel": "Retry 2/3"
@@ -387,7 +387,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Retry 2/3 queued; coordinator will start tester",
-      "updatedAt": "2026-09-26T10:48:09.691Z",
+      "updatedAt": "2026-09-26T10:50:19.522Z",
       "retries": 2,
       "retryLimit": 3,
       "retryLabel": "Retry 2/3"
@@ -467,7 +467,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-26T10:48:09.696Z",
+      "updatedAt": "2026-09-26T10:50:19.526Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
@@ -514,11 +514,11 @@
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-09-26T10:48:09.673Z",
-      "retries": 3,
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "updatedAt": "2026-09-26T10:50:19.510Z",
+      "retries": 2,
       "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retryLabel": "Retry 2/3"
     },
     {
       "key": "TEST2-24",
