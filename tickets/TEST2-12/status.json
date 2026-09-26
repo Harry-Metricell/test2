@@ -1,14 +1,14 @@
 {
   "ticket": "TEST2-12",
   "jiraStatus": "Blocked",
-  "qaStatus": "Awaiting Evidence Review",
+  "qaStatus": "Ready for Testing",
   "status": "Blocked",
   "retries": 3,
   "retryLimit": 3,
   "criteriaVerified": true,
-  "blockedStage": "evidence_review",
+  "blockedStage": null,
   "qaOutcome": "Blocked",
-  "workflowState": "Blocked",
-  "nextAction": "Create final evidence review handoff",
-  "updatedAt": "2026-09-26T16:55:28.338Z"
+  "workflowState": "Retry Queued",
+  "nextAction": "Create retry handoff",
+  "updatedAt": "2026-09-26T17:07:43.088Z"
 }
