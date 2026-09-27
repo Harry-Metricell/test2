@@ -39,13 +39,13 @@
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required after retry limit",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 3,
+    "retries": 2,
     "blockedStage": null,
-    "updatedAt": "2026-09-27T19:49:10.375Z",
+    "updatedAt": "2026-09-27T19:56:05.001Z",
     "criteriaVerified": true
   }
 }
