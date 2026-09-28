@@ -1,47 +1,47 @@
 {
-  "handoffId": "handoff-TEST2-38-review-attempt-002",
-  "handoffVersion": "TEST2-38:evidence_review:2",
+  "handoffId": "handoff-TEST2-38-review-attempt-003",
+  "handoffVersion": "TEST2-38:evidence_review:3",
   "ticket": "TEST2-38",
   "criterionOutcomes": [
     {
       "criterion": "Starting at `https://o2intelligence-v4-dev.metricell.com/launcher`, with the V4 launcher displayed and the user signed in if prompted, select the **API Request Audit** card.",
       "outcome": "Passed",
-      "reason": "Attempt-002 screenshots show the signed-in V4 launcher and API Request Audit card; the corresponding browserUrl is on the required o2intelligence-v4-dev.metricell.com host."
+      "reason": "Attempt-003 initial and before-select screenshots show the signed-in V4 launcher and API Request Audit card; the corresponding browserUrl is on the required V4 host."
     },
     {
       "criterion": "After the first card selection, verify that the API Request Audit module is displayed on the `o2intelligence-v4-dev.metricell.com` V4 host and no application load error is shown.",
       "outcome": "Passed",
-      "reason": "Attempt-002 screenshots show the API Request Audit module loaded with its dashboard and no application load error; browserUrl is on the required V4 host."
+      "reason": "Attempt-003 after-select and final screenshots show the API Request Audit dashboard without a visible load error; browserUrl uses the required V4 host."
     },
     {
       "criterion": "From the first API Request Audit module view, use the browser Back control and verify that the V4 launcher is displayed again.",
       "outcome": "Passed",
-      "reason": "Attempt-002 screenshots show the launcher restored after the first module view; the corresponding browserUrl is the V4 launcher URL."
+      "reason": "Attempt-003 after-back and final screenshots show the V4 launcher restored; browserUrl is the exact launcher route on the required host."
     },
     {
       "criterion": "From the restored V4 launcher, select the **API Request Audit** card a second time during the same browser session.",
       "outcome": "Passed",
-      "reason": "Attempt-002 screenshots show the restored launcher between openings and the second API Request Audit module view; browserUrl is on the same required V4 host."
+      "reason": "Attempt-003 before-select shows the launcher card and after-select/final show API Request Audit reopened; browserUrl uses the required V4 host."
     },
     {
       "criterion": "After the second card selection, verify that the API Request Audit module is displayed again on the `o2intelligence-v4-dev.metricell.com` V4 host and no application load error is shown.",
       "outcome": "Passed",
-      "reason": "Attempt-002 screenshots show the API Request Audit dashboard loaded again without an application load error; browserUrl is on the required V4 host."
+      "reason": "Attempt-003 after-select and final screenshots show the second API Request Audit dashboard view without a visible load error; browserUrl uses the required V4 host."
     },
     {
       "criterion": "Across the two module openings, verify that the browser URLs identify the same V4 host and that the intermediate launcher view is visible between the openings.",
       "outcome": "Passed",
-      "reason": "Attempt-002 screenshots show the intermediate launcher between module openings; the reported browserUrl for the openings is on the same required V4 host."
+      "reason": "Attempt-003 evidence shows the launcher between both dashboard views; results browserUrls for both openings and the intermediate launcher use the same required V4 host."
     },
     {
       "criterion": "During this flow, verify that no audit data is created or modified.",
       "outcome": "Unverified",
-      "reason": "The screenshots show live ingestion and changing request totals, while no mutation controls are used. The evidence cannot establish whether audit data was created or modified during the flow."
+      "reason": "Screenshots show the read-only dashboard flow, but cannot establish whether automatic backend auditing created records; results report only GET requests were observed and backend persistence was not observable."
     }
   ],
   "overallOutcome": "Unverified",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-38\\screenshots\\attempt-002",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-38\\screenshots\\attempt-003",
   "qaStatus": "Evidence Reviewed",
   "noOp": false,
   "reason": ""
