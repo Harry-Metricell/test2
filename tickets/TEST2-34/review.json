@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-34-review-attempt-001",
+  "handoffVersion": "TEST2-34:evidence_review:1",
+  "ticket": "TEST2-34",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting from the V4 launcher at https://o2intelligence-v4-dev.metricell.com/launcher, with sign-in completed if prompted, the page shows a GIS module card with an enabled Open GIS control.",
+      "reason": "The attempt screenshots show the launcher with the GIS module card and its enabled arrow control. The corresponding browserUrl is the expected V4 launcher URL.",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "Selecting the enabled Open GIS control navigates to https://o2intelligence-v4-dev.metricell.com/gis, and the GIS page loads without an application error.",
+      "reason": "The after-open and final screenshots show the GIS page with its map and controls loaded. The corresponding browserUrl is the expected V4 GIS URL.",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "From the loaded GIS page, using the browser Back button returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the GIS module card is visible again.",
+      "reason": "The screenshots show the loaded GIS page before Back and the launcher with the GIS card afterward. The corresponding browserUrl is the expected V4 launcher URL.",
+      "outcome": "Passed"
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-34\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
