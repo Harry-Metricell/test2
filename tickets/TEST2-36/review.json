@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-36-review-attempt-001",
+  "handoffVersion": "TEST2-36:evidence_review:1",
+  "ticket": "TEST2-36",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting on the GIS page with the base map loaded, visible map controls are present and no application error is displayed.",
+      "outcome": "Passed",
+      "reason": "The initial and final screenshots show the loaded GIS base map and visible controls without an application error. The result browserUrl is https://o2intelligence-v4-dev.metricell.com/gis, matching the expected V4 host."
+    },
+    {
+      "criterion": "Drag the base map to a different position; the visible geographic area changes while the GIS page remains open.",
+      "outcome": "Passed",
+      "reason": "The before-pan screenshot shows the UK and nearby Europe; the after-pan screenshot shows central Europe and the Mediterranean, with the GIS page still open."
+    },
+    {
+      "criterion": "After the pan completes, the map controls remain visible and can be used, and no application error is displayed.",
+      "outcome": "Passed",
+      "reason": "The post-pan zoom-in and zoom-out screenshots show the map changing scale and the controls remaining visible; the final screenshot shows the map at the restored zoom with no application error."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-36\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
