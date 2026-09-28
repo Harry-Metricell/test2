@@ -1,6 +1,7 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] The GIS page displays a usable base map and visible map controls without an application error.
-- [ ] Dragging the map changes the visible geographic area while the GIS page remains open.
-- [ ] After panning, the map controls remain visible and usable, and the page shows no application error.
-- [ ] Capture browser evidence before and after the pan, including the final browser URL.
+# Acceptance Criteria
+
+- [ ] Starting on the GIS page with the base map loaded, visible map controls are present and no application error is displayed.
+- [ ] Drag the base map to a different position; the visible geographic area changes while the GIS page remains open.
+- [ ] After the pan completes, the map controls remain visible and can be used, and no application error is displayed.
