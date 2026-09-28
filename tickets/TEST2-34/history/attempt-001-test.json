@@ -1,0 +1,63 @@
+{
+  "handoffId": "handoff-TEST2-34-test-attempt-001",
+  "handoffVersion": "TEST2-34:test_ticket:1",
+  "ticket": "TEST2-34",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Starting from the V4 launcher at https://o2intelligence-v4-dev.metricell.com/launcher, with sign-in completed if prompted, the page shows a GIS module card with an enabled Open GIS control.",
+      "outcome": "Passed",
+      "reason": "The launcher showed the GIS module card and Open GIS control. The control was enabled and was clickable in the following criterion.",
+      "steps_taken": [
+        "Opened the required launcher route.",
+        "Observed the GIS module card and Open GIS control."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ]
+    },
+    {
+      "criterion": "Selecting the enabled Open GIS control navigates to https://o2intelligence-v4-dev.metricell.com/gis, and the GIS page loads without an application error.",
+      "outcome": "Passed",
+      "reason": "Selecting Open GIS reached the exact GIS URL. The GIS page finished loading with its Map region visible and zero console errors.",
+      "steps_taken": [
+        "Started from the launcher and confirmed Open GIS was visible.",
+        "Selected Open GIS.",
+        "Waited for the map loading indicator to disappear and confirmed the Map region was present."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-after-open.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ]
+    },
+    {
+      "criterion": "From the loaded GIS page, using the browser Back button returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the GIS module card is visible again.",
+      "outcome": "Passed",
+      "reason": "Browser Back returned from the loaded GIS page to the exact launcher URL, where the GIS module card and Open GIS control were visible again.",
+      "steps_taken": [
+        "Started from the launcher.",
+        "Opened GIS and waited for the page to load.",
+        "Used the browser Back button.",
+        "Confirmed the launcher URL and GIS module card."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-after-open.png",
+        "screenshots/attempt-001/criterion-3-before-back.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ]
+    }
+  ],
+  "conciseReport": "## TEST2-34 — Passed\n- The launcher displayed the enabled Open GIS control.\n- Open GIS loaded the GIS page at the expected URL without console errors.\n- Browser Back returned to the launcher with the GIS card visible.",
+  "reportPath": "tickets/TEST2-34/report.md",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-34-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "All three criteria passed. Required criterion screenshots were saved and verified as non-empty PNG files. The browser was left on the launcher; no application data was changed.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-28T11:11:37.943Z"
+}
