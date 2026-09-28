@@ -31,11 +31,14 @@ const page = await context.newPage();
 const prompt = readline.createInterface({ input, output });
 
 try {
-  await page.goto(launcherUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+  // domcontentloaded can fire on /launcher just before the application sends
+  // an expired session to /authenticate. Wait for that redirect to settle.
+  await page.goto(launcherUrl, { waitUntil: 'networkidle', timeout: 60000 });
   if (emailContinue) {
     if (/authenticate|login|signin/i.test(page.url())) {
       await page.getByRole('textbox', { name: 'Email' }).fill(approvedEmail);
       await page.getByRole('button', { name: 'Continue' }).click();
+      await page.waitForLoadState('networkidle', { timeout: 30000 });
     }
     await page.waitForURL(url => url.origin === 'https://o2intelligence-v4-dev.metricell.com' && url.pathname === '/launcher', { timeout: 30000 });
   } else {
@@ -45,8 +48,10 @@ try {
   }
 
   const currentUrl = page.url();
-  if (/authenticate|login|signin|microsoftonline/i.test(currentUrl)) {
-    throw new Error(`The browser is still on an authentication page (${currentUrl}). The existing private login was left unchanged.`);
+  const launcher = new URL(currentUrl);
+  const launcherVisible = (await page.locator('body').innerText()).includes('Launcher');
+  if (launcher.origin !== 'https://o2intelligence-v4-dev.metricell.com' || launcher.pathname !== '/launcher' || !launcherVisible) {
+    throw new Error(`The V4 launcher was not fully loaded (${currentUrl}). The existing private login was left unchanged.`);
   }
 
   fs.mkdirSync(path.dirname(authPath), { recursive: true });
