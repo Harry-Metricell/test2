@@ -1,9 +1,9 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-28T09:18:01.395Z",
+  "generatedAt": "2026-09-28T09:22:56.453Z",
   "counts": {
     "tickets": 32,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 19,
       "Ready": 12,
@@ -303,7 +303,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Navigate from the V4 launcher to Agentic AI",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-28T08:53:45.644Z",
@@ -466,7 +466,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T09:18:01.395Z",
+      "updatedAt": "2026-09-28T09:22:56.453Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
