@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-35-review-attempt-001",
+  "handoffVersion": "TEST2-35:evidence_review:1",
+  "ticket": "TEST2-35",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting at the launcher URL, the launcher displays a Dashboards module card with an enabled control that opens Dashboards.",
+      "outcome": "Passed",
+      "reason": "The selected attempt's non-empty screenshot shows the Dashboards card and enabled open control. The result's browserUrl is https://o2intelligence-v4-dev.metricell.com/launcher, matching the required launcher host and route."
+    },
+    {
+      "criterion": "After selecting the Dashboards module control, the browser is at https://o2intelligence-v4-dev.metricell.com/dashboards and the page visibly shows the text \\\"Under construction\\\" and a \\\"Back to Launcher\\\" button, with no application error displayed.",
+      "outcome": "Passed",
+      "reason": "The selected attempt's non-empty screenshot shows the Dashboards placeholder, Under construction text, and Back to Launcher button, with no visible application error. The result's browserUrl is https://o2intelligence-v4-dev.metricell.com/dashboards, matching the required route."
+    },
+    {
+      "criterion": "While on the Dashboards page, selecting \\\"Back to Launcher\\\" navigates to https://o2intelligence-v4-dev.metricell.com/launcher and the Dashboards module card is visible again.",
+      "outcome": "Passed",
+      "reason": "The selected attempt's non-empty screenshot shows the Launcher with the Dashboards card visible after returning. The result's browserUrl is https://o2intelligence-v4-dev.metricell.com/launcher, matching the required route."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-35\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
