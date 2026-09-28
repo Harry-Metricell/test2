@@ -1,6 +1,7 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] The V4 launcher displays a GIS module card with an enabled Open GIS control.
-- [ ] Selecting Open GIS navigates to https://o2intelligence-v4-dev.metricell.com/gis and displays the GIS page without an application error.
-- [ ] Using the browser Back button returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the GIS card is visible again.
-- [ ] This ticket tests navigation only; it does not require map-layer or zoom functionality.
+# Acceptance Criteria
+
+- [ ] Starting from the V4 launcher at https://o2intelligence-v4-dev.metricell.com/launcher, with sign-in completed if prompted, the page shows a GIS module card with an enabled Open GIS control.
+- [ ] Selecting the enabled Open GIS control navigates to https://o2intelligence-v4-dev.metricell.com/gis, and the GIS page loads without an application error.
+- [ ] From the loaded GIS page, using the browser Back button returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the GIS module card is visible again.
