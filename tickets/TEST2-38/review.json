@@ -1,0 +1,48 @@
+{
+  "handoffId": "handoff-TEST2-38-review-attempt-001",
+  "handoffVersion": "TEST2-38:evidence_review:1",
+  "ticket": "TEST2-38",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting at `https://o2intelligence-v4-dev.metricell.com/launcher`, with the V4 launcher displayed and the user signed in if prompted, select the **API Request Audit** card.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshots show the signed-in V4 launcher with the API Request Audit card, followed by the audit module; the result browserUrl uses the expected V4 host."
+    },
+    {
+      "criterion": "After the first card selection, verify that the API Request Audit module is displayed on the `o2intelligence-v4-dev.metricell.com` V4 host and no application load error is shown.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshot shows the API Request Audit module loaded without an application load error; the result browserUrl uses the expected V4 host."
+    },
+    {
+      "criterion": "From the first API Request Audit module view, use the browser Back control and verify that the V4 launcher is displayed again.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshots show the audit module before browser Back and the V4 launcher restored afterward; the result browserUrl is the V4 launcher URL."
+    },
+    {
+      "criterion": "From the restored V4 launcher, select the **API Request Audit** card a second time during the same browser session.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshots show the restored launcher and the API Request Audit module after the second selection; the result browserUrl uses the expected V4 host."
+    },
+    {
+      "criterion": "After the second card selection, verify that the API Request Audit module is displayed again on the `o2intelligence-v4-dev.metricell.com` V4 host and no application load error is shown.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshot shows the API Request Audit module on its second opening without an application load error; the result browserUrl uses the expected V4 host."
+    },
+    {
+      "criterion": "Across the two module openings, verify that the browser URLs identify the same V4 host and that the intermediate launcher view is visible between the openings.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshots show both audit module views with the launcher between them; the result browserUrls for both module views and the intermediate launcher use the same expected V4 host."
+    },
+    {
+      "criterion": "During this flow, verify that no audit data is created or modified.",
+      "outcome": "Unverified",
+      "reason": "The screenshots show live request totals changing while ingestion is running. They cannot establish whether the changes came from this test or background traffic, so data immutability cannot be confirmed."
+    }
+  ],
+  "overallOutcome": "Unverified",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-38\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
