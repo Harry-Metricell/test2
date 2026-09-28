@@ -6,5 +6,8 @@
   "retries": 0,
   "retryLimit": 3,
   "criteriaVerified": true,
-  "blockedStage": null
+  "blockedStage": null,
+  "qaOutcome": "Passed",
+  "workflowState": "READY FOR TESTING",
+  "nextAction": "Create evidence review handoff"
 }

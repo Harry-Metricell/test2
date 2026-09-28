@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-28T13:03:28.045Z
+Updated: 2026-09-28T13:13:46.838Z
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -28,7 +28,7 @@ Updated: 2026-09-28T13:03:28.045Z
 | TEST2-32 | READY FOR TESTING | Evidence Reviewed |  | Return to the V4 launcher from GIS |
 | TEST2-33 | READY FOR TESTING | Blocked | Retry 3/3 | Use the GIS map zoom controls |
 | TEST2-34 | READY FOR TESTING | Evidence Reviewed |  | Verify V4 launcher opens GIS and browser Back returns to launcher |
-| TEST2-35 | READY FOR TESTING | Ready for Testing |  | Verify Dashboards placeholder and in-app return to launcher |
+| TEST2-35 | READY FOR TESTING | Awaiting Evidence Review |  | Verify Dashboards placeholder and in-app return to launcher |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 3/3 | Verify GIS layer and map view controls |
