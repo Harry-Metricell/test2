@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-28T11:35:33.981Z",
+  "generatedAt": "2026-09-28T12:35:23.479+0100",
   "counts": {
-    "tickets": 33,
-    "handoffs": 0,
+    "tickets": 34,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 19,
-      "Ready": 13,
+      "Ready": 14,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 11,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 16,
       "Unverified": 3
     }
@@ -408,6 +408,22 @@
       "retryLabel": ""
     },
     {
+      "key": "TEST2-35",
+      "summary": "Verify Dashboards placeholder and in-app return to launcher",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-28T12:35:23.479+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
       "key": "TEST2-2",
       "summary": "test",
       "jiraStatus": "Rejected",
@@ -482,7 +498,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T11:35:33.981Z",
+      "updatedAt": "2026-09-28T11:38:55.035Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"

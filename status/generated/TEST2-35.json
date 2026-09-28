@@ -1,0 +1,50 @@
+{
+  "key": "TEST2-35",
+  "id": "106262",
+  "summary": "Verify Dashboards placeholder and in-app return to launcher",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-35",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-28T12:35:07.730+0100",
+    "updated": "2026-09-28T12:35:23.479+0100"
+  },
+  "description": "Small V4 regression test for the Dashboards module's visible placeholder and its in-app return control.\nStart at https://o2intelligence-v4-dev.metricell.com/launcher. Sign in if prompted.\nAcceptance criteria:\nThe launcher displays a Dashboards module card with an enabled control to open Dashboards.\nSelecting the Dashboards card opens https://o2intelligence-v4-dev.metricell.com/dashboards and displays the \"Under construction\" message and a visible \"Back to Launcher\" button, without an application error.\nSelecting \"Back to Launcher\" returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the Dashboards card is visible again.\nThis checks navigation and the current placeholder only. It does not require dashboard creation or data.",
+  "acceptanceCriteria": [
+    "The launcher displays a Dashboards module card with an enabled control to open Dashboards.",
+    "Selecting the Dashboards card opens https://o2intelligence-v4-dev.metricell.com/dashboards and displays the \"Under construction\" message and a visible \"Back to Launcher\" button, without an application error.",
+    "Selecting \"Back to Launcher\" returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the Dashboards card is visible again.",
+    "This checks navigation and the current placeholder only. It does not require dashboard creation or data."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-35/ticket.json",
+    "criteria": "tickets/TEST2-35/criteria.md",
+    "status": "tickets/TEST2-35/status.json",
+    "screenshots": "tickets/TEST2-35/screenshots/",
+    "reports": "tickets/TEST2-35/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106262",
+    "importedAt": "2026-09-28T12:35:23.479+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-28T12:35:23.479+0100",
+    "criteriaVerified": false
+  }
+}
