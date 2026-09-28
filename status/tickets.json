@@ -11,9 +11,9 @@
     },
     "byQaOutcome": {
       "Blocked": 11,
-      "Not Tested": 4,
+      "Not Tested": 3,
       "Passed": 19,
-      "Unverified": 3
+      "Unverified": 4
     }
   },
   "policy": {
@@ -460,12 +460,12 @@
       "summary": "Open API Request Audit twice from the V4 launcher",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create evidence review handoff",
       "updatedAt": "2026-09-28T14:53:43.146+0100",
       "retries": 0,
       "retryLimit": 3,
@@ -546,7 +546,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T14:35:17.097Z",
+      "updatedAt": "2026-09-28T14:40:06.914Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"

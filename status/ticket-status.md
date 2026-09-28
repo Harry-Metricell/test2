@@ -31,7 +31,7 @@ Updated: 2026-09-28T14:53:43.146+0100
 | TEST2-35 | READY FOR TESTING | Evidence Reviewed |  | Verify Dashboards placeholder and in-app return to launcher |
 | TEST2-36 | READY FOR TESTING | Awaiting Evidence Review |  | Pan the V4 GIS base map and keep controls usable |
 | TEST2-37 | READY FOR TESTING | Awaiting Evidence Review |  | Reload the V4 Dashboards placeholder and return to launcher |
-| TEST2-38 | READY FOR TESTING | Ready for Testing |  | Open API Request Audit twice from the V4 launcher |
+| TEST2-38 | READY FOR TESTING | Awaiting Evidence Review |  | Open API Request Audit twice from the V4 launcher |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 3/3 | Verify GIS layer and map view controls |
