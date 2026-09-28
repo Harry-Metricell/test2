@@ -33,12 +33,12 @@
     "qaOutcome": "Unverified",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Waiting for Jira status: READY FOR TESTING",
+    "nextAction": "Create final evidence review handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 2,
-    "blockedStage": null,
+    "retries": 3,
+    "blockedStage": "evidence_review",
     "updatedAt": "2026-09-09T15:27:28.936Z",
     "criteriaVerified": true
   }

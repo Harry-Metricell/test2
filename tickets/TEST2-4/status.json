@@ -3,7 +3,7 @@
   "jiraStatus": "Blocked",
   "qaStatus": "Evidence Reviewed",
   "status": "Blocked",
-  "retries": 0,
+  "retries": 3,
   "retryLimit": 3,
   "criteriaVerified": true,
   "blockedStage": null,

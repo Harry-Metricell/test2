@@ -3,7 +3,7 @@
   "jiraStatus": "Rejected",
   "qaStatus": "Evidence Reviewed",
   "status": "Rejected",
-  "retries": 2,
+  "retries": 3,
   "retryLimit": 3,
   "blockedStage": null,
   "qaOutcome": "Passed",
