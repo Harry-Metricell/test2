@@ -1,0 +1,143 @@
+{
+  "handoffId": "handoff-TEST2-38-retry-attempt-002",
+  "handoffVersion": "TEST2-38:test_ticket:2",
+  "ticket": "TEST2-38",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Starting at `https://o2intelligence-v4-dev.metricell.com/launcher`, with the V4 launcher displayed and the user signed in if prompted, select the **API Request Audit** card.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened the required launcher URL and confirmed the signed-in launcher.",
+        "Selected the API Request Audit card."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-before-open.png",
+        "screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-28T14%3A49%3A10.798Z&startUtc=2026-09-27T14%3A49%3A10.798Z&live=true",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "After the first card selection, verify that the API Request Audit module is displayed on the `o2intelligence-v4-dev.metricell.com` V4 host and no application load error is shown.",
+      "status": "Passed",
+      "steps_taken": [
+        "Selected API Request Audit from the launcher.",
+        "Verified the module heading and loaded dashboard without an application load error."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-before-open.png",
+        "screenshots/attempt-002/criterion-2-after-open.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-28T14%3A50%3A35.521Z&startUtc=2026-09-27T14%3A50%3A35.521Z&live=true",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "From the first API Request Audit module view, use the browser Back control and verify that the V4 launcher is displayed again.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened API Request Audit from the launcher.",
+        "Used browser Back and confirmed the V4 launcher was restored."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-before-open.png",
+        "screenshots/attempt-002/criterion-3-after-open.png",
+        "screenshots/attempt-002/criterion-3-before-back.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "From the restored V4 launcher, select the **API Request Audit** card a second time during the same browser session.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened API Request Audit once from the launcher.",
+        "Used browser Back to restore the launcher.",
+        "Selected API Request Audit again in the same browser session."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-before-first-open.png",
+        "screenshots/attempt-002/criterion-4-after-first-open.png",
+        "screenshots/attempt-002/criterion-4-before-back.png",
+        "screenshots/attempt-002/criterion-4-intermediate-launcher.png",
+        "screenshots/attempt-002/criterion-4-before-second-open.png",
+        "screenshots/attempt-002/criterion-4-after-second-open.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-28T14%3A53%3A16.967Z&startUtc=2026-09-27T14%3A53%3A16.967Z&live=true",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "After the second card selection, verify that the API Request Audit module is displayed again on the `o2intelligence-v4-dev.metricell.com` V4 host and no application load error is shown.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened the module and captured its loaded first view.",
+        "Returned to the launcher with browser Back.",
+        "Reopened the card and confirmed the module heading and loaded dashboard."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-before-first-open.png",
+        "screenshots/attempt-002/criterion-5-after-first-open.png",
+        "screenshots/attempt-002/criterion-5-before-back.png",
+        "screenshots/attempt-002/criterion-5-intermediate-launcher.png",
+        "screenshots/attempt-002/criterion-5-before-second-open.png",
+        "screenshots/attempt-002/criterion-5-after-second-open.png",
+        "screenshots/attempt-002/criterion-5-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-28T15%3A00%3A51.590Z&startUtc=2026-09-27T15%3A00%3A51.590Z&live=true",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "Across the two module openings, verify that the browser URLs identify the same V4 host and that the intermediate launcher view is visible between the openings.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened API Request Audit, confirmed the V4 host in the browser URL.",
+        "Used browser Back and captured the visible launcher between openings.",
+        "Opened the same card again and confirmed the V4 host in the second browser URL."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-before-first-open.png",
+        "screenshots/attempt-002/criterion-6-after-first-open.png",
+        "screenshots/attempt-002/criterion-6-before-back.png",
+        "screenshots/attempt-002/criterion-6-intermediate-launcher.png",
+        "screenshots/attempt-002/criterion-6-before-second-open.png",
+        "screenshots/attempt-002/criterion-6-after-second-open.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-28T15%3A02%3A13.534Z&startUtc=2026-09-27T15%3A02%3A13.534Z&live=true",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "During this flow, verify that no audit data is created or modified.",
+      "status": "Unverified",
+      "steps_taken": [
+        "Opened API Request Audit and inspected its read-only dashboard.",
+        "Did not use any data creation or editing controls.",
+        "Observed that the dashboard reports live ingestion and changing request totals, so the UI did not establish whether audit data was created or modified during the flow."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-7-initial.png",
+        "screenshots/attempt-002/criterion-7-before-open.png",
+        "screenshots/attempt-002/criterion-7-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-28T15%3A02%3A56.292Z&startUtc=2026-09-27T15%3A02%3A56.292Z&live=true",
+      "reason": "Inconclusive: no data mutation controls were used, but the live dashboard showed ingestion running and request totals changed, so the UI alone cannot verify that no audit data was created or modified.",
+      "outcome": "Unverified"
+    }
+  ],
+  "conciseReport": "## QA report\n- Passed: 6 criteria.\n- Unverified: 1 criterion. The live audit dashboard was ingesting data and its request totals changed; no data editing controls were used, but the UI could not establish whether audit data changed during the flow.\n- The module opened twice on the V4 host with the launcher visible between openings.",
+  "reportPath": "tickets/TEST2-38/report.md",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-38-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": null,
+  "historyAttempt": 2,
+  "recordedAt": "2026-09-28T15:05:41.213Z"
+}
