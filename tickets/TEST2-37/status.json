@@ -20,5 +20,28 @@
     "reason": "The delivered behavior exposes a Dashboards destination from the launcher, a visible placeholder with reload-safe behavior, and a Back to Launcher navigation path. Users need guidance on finding Dashboards and returning to the launcher.",
     "noOp": false,
     "assessedAt": "2026-09-28T15:42:42.219Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-37-guide-update",
+    "handoffVersion": "TEST2-37:guide_update_authoring:1",
+    "ticket": "TEST2-37",
+    "title": "Open and reload the Dashboards placeholder",
+    "affectedSection": "Dashboards",
+    "changeType": "add",
+    "steps": [
+      "From the launcher, select the Dashboards card.",
+      "Confirm that the Dashboards page shows Under construction and Back to Launcher.",
+      "Reload the page and confirm that Under construction and Back to Launcher remain visible.",
+      "Select Back to Launcher to return to the launcher.",
+      "Confirm that the Dashboards card is visible."
+    ],
+    "screenshots": [
+      "screenshots/attempt-001/criterion-2-after-reload.png",
+      "screenshots/attempt-001/criterion-3-after-back.png"
+    ],
+    "reason": "Document the delivered Dashboards placeholder, its reload-safe state, and the route back to the launcher.",
+    "noOp": false,
+    "authoredAt": "2026-09-28T15:45:42.183Z"
   }
 }
