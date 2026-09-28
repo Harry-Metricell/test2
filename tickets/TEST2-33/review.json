@@ -1,28 +1,28 @@
 {
-  "handoffId": "handoff-TEST2-33-review-attempt-002",
-  "handoffVersion": "TEST2-33:evidence_review:2",
+  "handoffId": "handoff-TEST2-33-review-attempt-003",
+  "handoffVersion": "TEST2-33:evidence_review:3",
   "ticket": "TEST2-33",
   "criterionOutcomes": [
     {
-      "outcome": "Blocked",
-      "reason": "The required Continue action was rejected, leaving the browser on the sign-in page; GIS and its zoom controls were unavailable.",
-      "criterion": "Starting at the V4 launcher, after signing in if prompted, opening GIS, and waiting for the base map to finish loading, the map displays visible zoom-in (+) and zoom-out (-) controls that can be selected."
+      "reason": "The selected attempt screenshot shows the sign-in page, and the authorized Continue action was stopped by the browser approval review, so GIS controls could not be reached.",
+      "criterion": "Starting at the V4 launcher, after signing in if prompted, opening GIS, and waiting for the base map to finish loading, the map displays visible zoom-in (+) and zoom-out (-) controls that can be selected.",
+      "outcome": "Blocked"
     },
     {
-      "outcome": "Blocked",
-      "reason": "The required Continue action was rejected, leaving the browser on the sign-in page; the map could not be loaded or zoomed.",
-      "criterion": "With the loaded GIS map at its initial zoom level, selecting the zoom-in (+) control once increases the zoom level and visibly shows a smaller geographic area without an application error."
+      "reason": "Authentication was blocked before GIS could be reached; the selected attempt screenshot shows only the sign-in page.",
+      "criterion": "With the loaded GIS map at its initial zoom level, selecting the zoom-in (+) control once increases the zoom level and visibly shows a smaller geographic area without an application error.",
+      "outcome": "Blocked"
     },
     {
-      "outcome": "Blocked",
-      "reason": "The required Continue action was rejected, leaving the browser on the sign-in page; the map could not be loaded or zoomed.",
-      "criterion": "After zooming in once, selecting the zoom-out (-) control once decreases the zoom level and visibly shows a larger geographic area without an application error."
+      "reason": "Authentication was blocked before GIS could be reached; the selected attempt screenshot shows only the sign-in page.",
+      "criterion": "After zooming in once, selecting the zoom-out (-) control once decreases the zoom level and visibly shows a larger geographic area without an application error.",
+      "outcome": "Blocked"
     }
   ],
   "overallOutcome": "Blocked",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-33\\screenshots\\attempt-002",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-33\\screenshots\\attempt-003",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": ""
+  "reason": "All criteria are blocked because the required GIS session was unavailable after the browser approval review rejected the sign-in continuation. All three named PNG files exist and are non-empty in the selected attempt folder."
 }
