@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-37-review-attempt-001",
+  "handoffVersion": "TEST2-37:evidence_review:1",
+  "ticket": "TEST2-37",
+  "criterionOutcomes": [
+    {
+      "criterion": "When the user is signed in on the launcher and selects the Dashboards card, the application navigates to `https://o2intelligence-v4-dev.metricell.com/dashboards` and displays both the `Under construction` message and a `Back to Launcher` button.",
+      "outcome": "Passed",
+      "reason": "The selected attempt’s screenshot shows the Dashboards placeholder with Under construction and Back to Launcher. The corresponding browserUrl is https://o2intelligence-v4-dev.metricell.com/dashboards, on the expected V4 host."
+    },
+    {
+      "criterion": "When the Dashboards placeholder is displayed, reloading the page keeps the `Under construction` message and `Back to Launcher` button visible and does not display an application error.",
+      "outcome": "Passed",
+      "reason": "The selected attempt’s after-reload screenshot shows the placeholder, Under construction, and Back to Launcher with no visible application error. The corresponding browserUrl is https://o2intelligence-v4-dev.metricell.com/dashboards, on the expected V4 host."
+    },
+    {
+      "criterion": "When the user selects `Back to Launcher` from the Dashboards placeholder, the application navigates to `https://o2intelligence-v4-dev.metricell.com/launcher` and displays the Dashboards card.",
+      "outcome": "Passed",
+      "reason": "The selected attempt’s after-back screenshot shows the Launcher and Dashboards card. The corresponding browserUrl is https://o2intelligence-v4-dev.metricell.com/launcher, on the expected V4 host."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-37\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
