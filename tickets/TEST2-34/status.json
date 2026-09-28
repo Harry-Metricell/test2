@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-34-guide-impact",
+    "handoffVersion": "TEST2-34:guide_impact_assessment:1",
+    "ticket": "TEST2-34",
+    "decision": "update_required",
+    "affectedSection": "Opening GIS from the V4 launcher",
+    "reason": "The reviewed behavior adds user-facing navigation: users can open GIS from the launcher and return to the launcher with the browser Back button. The guide should explain this navigation and the visible GIS launcher card/control.",
+    "noOp": false,
+    "assessedAt": "2026-09-28T11:20:17.605Z"
+  }
 }
