@@ -1,0 +1,59 @@
+[
+  {
+    "criterion": "When the user is signed in on the launcher and selects the Dashboards card, the application navigates to `https://o2intelligence-v4-dev.metricell.com/dashboards` and displays both the `Under construction` message and a `Back to Launcher` button.",
+    "outcome": "Passed",
+    "reason": "The Dashboards card opened the exact /dashboards URL, and the page showed both the Under construction message and Back to Launcher button.",
+    "steps_taken": [
+      "Started at the V4 launcher.",
+      "Selected the Dashboards card.",
+      "Confirmed the resulting URL was https://o2intelligence-v4-dev.metricell.com/dashboards and the page displayed Under construction and Back to Launcher."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/dashboards",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-open.png",
+      "screenshots/attempt-001/criterion-1-after-open.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ]
+  },
+  {
+    "criterion": "When the Dashboards placeholder is displayed, reloading the page keeps the `Under construction` message and `Back to Launcher` button visible and does not display an application error.",
+    "outcome": "Passed",
+    "reason": "After a browser reload, the exact /dashboards URL remained and the page still showed Under construction and Back to Launcher without a visible application error.",
+    "steps_taken": [
+      "Returned to the launcher and saved the criterion's initial state.",
+      "Opened the Dashboards card and confirmed the placeholder.",
+      "Reloaded the page with Control+r.",
+      "Confirmed the URL and verified that Under construction and Back to Launcher remained visible with no application error."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/dashboards",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-open.png",
+      "screenshots/attempt-001/criterion-2-after-open-confirmed.png",
+      "screenshots/attempt-001/criterion-2-before-reload.png",
+      "screenshots/attempt-001/criterion-2-after-reload.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ]
+  },
+  {
+    "criterion": "When the user selects `Back to Launcher` from the Dashboards placeholder, the application navigates to `https://o2intelligence-v4-dev.metricell.com/launcher` and displays the Dashboards card.",
+    "outcome": "Passed",
+    "reason": "Selecting Back to Launcher returned to the exact /launcher URL, where the Dashboards card was visible.",
+    "steps_taken": [
+      "Returned to the launcher and saved the criterion's initial state.",
+      "Opened the Dashboards card.",
+      "Selected Back to Launcher.",
+      "Confirmed the URL was https://o2intelligence-v4-dev.metricell.com/launcher and the Dashboards card was visible."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-open.png",
+      "screenshots/attempt-001/criterion-3-after-open.png",
+      "screenshots/attempt-001/criterion-3-before-back.png",
+      "screenshots/attempt-001/criterion-3-after-back.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ]
+  }
+]
