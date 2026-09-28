@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-37-guide-impact",
+  "handoffVersion": "TEST2-37:guide_impact_assessment:1",
+  "ticket": "TEST2-37",
+  "decision": "update_required",
+  "affectedSection": "Dashboards",
+  "reason": "The delivered behavior exposes a Dashboards destination from the launcher, a visible placeholder with reload-safe behavior, and a Back to Launcher navigation path. Users need guidance on finding Dashboards and returning to the launcher.",
+  "noOp": false,
+  "assessedAt": "2026-09-28T15:42:42.219Z"
+}
