@@ -51,7 +51,29 @@
       "noOp": false,
       "assessedAt": "2026-09-28T11:20:17.605Z"
     },
-    "guideUpdate": null,
+    "guideUpdate": {
+      "schema": "v4-user-guide-update.v1",
+      "handoffId": "handoff-TEST2-34-guide-update",
+      "handoffVersion": "TEST2-34:guide_update_authoring:1",
+      "ticket": "TEST2-34",
+      "title": "Open GIS from the V4 launcher",
+      "affectedSection": "Opening GIS from the V4 launcher",
+      "changeType": "amend",
+      "steps": [
+        "Open the V4 launcher.",
+        "Select Open GIS on the GIS module card.",
+        "Wait for the GIS page and map to load.",
+        "Select the browser Back button to return to the launcher."
+      ],
+      "screenshots": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-2-after-open.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "reason": "Document the verified navigation from the V4 launcher to GIS and back to the launcher.",
+      "noOp": false,
+      "authoredAt": "2026-09-28T11:25:42.674Z"
+    },
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-28T11:30:15.708+0100",

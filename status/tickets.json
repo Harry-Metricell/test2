@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-28T11:30:15.708+0100",
   "counts": {
     "tickets": 33,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 19,
       "Ready": 13,
@@ -399,7 +399,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Open GIS from the V4 launcher",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-28T11:30:15.708+0100",
@@ -482,7 +482,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T11:22:18.647Z",
+      "updatedAt": "2026-09-28T11:27:15.175Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
