@@ -1,0 +1,50 @@
+{
+  "key": "TEST2-36",
+  "id": "106295",
+  "summary": "Pan the V4 GIS base map and keep controls usable",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-36",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-28T14:53:22.607+0100",
+    "updated": "2026-09-28T14:53:40.320+0100"
+  },
+  "description": "Small V4 interaction regression test. Start at https://o2intelligence-v4-dev.metricell.com/launcher and sign in if prompted. Open GIS. Do not change saved data or layers.\nAcceptance criteria:\nThe GIS page displays a usable base map and visible map controls without an application error.\nDragging the map changes the visible geographic area while the GIS page remains open.\nAfter panning, the map controls remain visible and usable, and the page shows no application error.\nCapture browser evidence before and after the pan, including the final browser URL.",
+  "acceptanceCriteria": [
+    "The GIS page displays a usable base map and visible map controls without an application error.",
+    "Dragging the map changes the visible geographic area while the GIS page remains open.",
+    "After panning, the map controls remain visible and usable, and the page shows no application error.",
+    "Capture browser evidence before and after the pan, including the final browser URL."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-36/ticket.json",
+    "criteria": "tickets/TEST2-36/criteria.md",
+    "status": "tickets/TEST2-36/status.json",
+    "screenshots": "tickets/TEST2-36/screenshots/",
+    "reports": "tickets/TEST2-36/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106295",
+    "importedAt": "2026-09-28T14:53:40.320+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-28T14:53:40.320+0100",
+    "criteriaVerified": false
+  }
+}

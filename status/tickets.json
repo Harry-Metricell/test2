@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-28T13:54:18.407Z",
+  "generatedAt": "2026-09-28T14:53:43.146+0100",
   "counts": {
-    "tickets": 34,
-    "handoffs": 0,
+    "tickets": 37,
+    "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 19,
-      "Ready": 14,
+      "Ready": 17,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 11,
-      "Not Tested": 3,
+      "Not Tested": 6,
       "Passed": 17,
       "Unverified": 3
     }
@@ -424,6 +424,54 @@
       "retryLabel": ""
     },
     {
+      "key": "TEST2-36",
+      "summary": "Pan the V4 GIS base map and keep controls usable",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-28T14:53:40.320+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-37",
+      "summary": "Reload the V4 Dashboards placeholder and return to launcher",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-28T14:53:41.797+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-38",
+      "summary": "Open API Request Audit twice from the V4 launcher",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-28T14:53:43.146+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
       "key": "TEST2-2",
       "summary": "test",
       "jiraStatus": "Rejected",
@@ -498,7 +546,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T13:54:18.407Z",
+      "updatedAt": "2026-09-28T13:56:09.217Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"

@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-38",
+  "id": "106297",
+  "summary": "Open API Request Audit twice from the V4 launcher",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-38",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-28T14:53:27.113+0100",
+    "updated": "2026-09-28T14:53:43.146+0100"
+  },
+  "description": "Verify that a user can return to the V4 launcher and reopen API Request Audit during the same browser session. Start at https://o2intelligence-v4-dev.metricell.com/launcher and sign in if prompted. Open the API Request Audit card, return to the launcher using the browser Back control, then open the same card again. Confirm both openings show the API Request Audit module on the same V4 host without an application load error, and that the launcher is visible between openings. Capture browser evidence with URLs for both openings and the intermediate launcher. Do not create or modify audit data.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-38/ticket.json",
+    "criteria": "tickets/TEST2-38/criteria.md",
+    "status": "tickets/TEST2-38/status.json",
+    "screenshots": "tickets/TEST2-38/screenshots/",
+    "reports": "tickets/TEST2-38/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106297",
+    "importedAt": "2026-09-28T14:53:43.146+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-28T14:53:43.146+0100",
+    "criteriaVerified": false
+  }
+}
