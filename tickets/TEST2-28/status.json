@@ -10,5 +10,16 @@
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
   "nextAction": "QA review complete",
-  "updatedAt": "2026-09-28T08:53:45.644Z"
+  "updatedAt": "2026-09-28T08:53:45.644Z",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-28-guide-impact",
+    "handoffVersion": "TEST2-28:guide_impact_assessment:3",
+    "ticket": "TEST2-28",
+    "decision": "update_required",
+    "affectedSection": "Navigating the V4 launcher and opening Agentic AI",
+    "reason": "The verified behaviour adds user-facing navigation instructions: users open Agentic AI from the V4 launcher, arrive at its dedicated URL, and use browser Back to return to the launcher.",
+    "noOp": false,
+    "assessedAt": "2026-09-28T09:17:41.703Z"
+  }
 }
