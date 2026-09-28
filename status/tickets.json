@@ -482,7 +482,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T11:12:02.815Z",
+      "updatedAt": "2026-09-28T11:15:12.236Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
