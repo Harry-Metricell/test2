@@ -1,0 +1,52 @@
+[
+  {
+    "criterion": "Starting at the launcher URL, the launcher displays a Dashboards module card with an enabled control that opens Dashboards.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Opened the required launcher URL.",
+      "Confirmed the Dashboards module card and its enabled Open Dashboards button in the page snapshot."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ]
+  },
+  {
+    "criterion": "After selecting the Dashboards module control, the browser is at https://o2intelligence-v4-dev.metricell.com/dashboards and the page visibly shows the text \\\"Under construction\\\" and a \\\"Back to Launcher\\\" button, with no application error displayed.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started at the launcher.",
+      "Selected Open Dashboards.",
+      "Confirmed the Dashboards URL, Under construction text, Back to Launcher button, and absence of a visible application error."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/dashboards",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-open.png",
+      "screenshots/attempt-001/criterion-2-after-open.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ]
+  },
+  {
+    "criterion": "While on the Dashboards page, selecting \\\"Back to Launcher\\\" navigates to https://o2intelligence-v4-dev.metricell.com/launcher and the Dashboards module card is visible again.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Returned to the launcher to begin the criterion.",
+      "Opened Dashboards as journey setup.",
+      "Selected Back to Launcher.",
+      "Confirmed the launcher URL and visible Dashboards module card."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-before-return-launcher.png",
+      "screenshots/attempt-001/criterion-3-after-return-launcher.png",
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-setup-open.png",
+      "screenshots/attempt-001/criterion-3-after-setup-open.png",
+      "screenshots/attempt-001/criterion-3-before-back.png",
+      "screenshots/attempt-001/criterion-3-after-back.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ]
+  }
+]
