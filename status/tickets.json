@@ -11,8 +11,8 @@
     },
     "byQaOutcome": {
       "Blocked": 11,
-      "Not Tested": 4,
-      "Passed": 15,
+      "Not Tested": 3,
+      "Passed": 16,
       "Unverified": 3
     }
   },
@@ -396,12 +396,12 @@
       "summary": "Verify V4 launcher opens GIS and browser Back returns to launcher",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create evidence review handoff",
       "updatedAt": "2026-09-28T11:30:15.708+0100",
       "retries": 0,
       "retryLimit": 3,
@@ -482,7 +482,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T11:04:21.420Z",
+      "updatedAt": "2026-09-28T11:12:02.815Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"

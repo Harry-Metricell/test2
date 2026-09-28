@@ -3,21 +3,20 @@
   "generatedAt": "2026-09-28T11:30:15.708+0100",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-34-test-attempt-001",
-      "handoffVersion": "TEST2-34:test_ticket:1",
+      "handoffId": "handoff-TEST2-34-review-attempt-001",
+      "handoffVersion": "TEST2-34:evidence_review:1",
       "attempt": 1,
-      "action": "test_ticket",
-      "brief": "docs/briefs/qa-testing.md",
-      "owner": "ticket-tester",
+      "action": "evidence_review",
+      "brief": "docs/briefs/evidence-review.md",
+      "owner": "evidence-reviewer",
       "ticket": "TEST2-34",
       "inputs": {
-        "criteria": "tickets/TEST2-34/criteria.md",
-        "ticketJson": "tickets/TEST2-34/ticket.json",
-        "status": "tickets/TEST2-34/status.json"
+        "results": "tickets/TEST2-34/results.json",
+        "generated": "status/generated/TEST2-34.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-34/results.json",
-        "schema": "v4-qa-test-result.v1"
+        "path": "tickets/TEST2-34/review.json",
+        "schema": "v4-qa-review.v1"
       }
     }
   ]
