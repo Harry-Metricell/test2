@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-28T13:14:38.962Z",
+  "generatedAt": "2026-09-28T13:17:28.844Z",
   "counts": {
     "tickets": 34,
     "handoffs": 1,
@@ -412,12 +412,12 @@
       "summary": "Verify Dashboards placeholder and in-app return to launcher",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create evidence review handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-28T12:35:23.479+0100",
       "retries": 0,
       "retryLimit": 3,
@@ -498,7 +498,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T13:14:38.962Z",
+      "updatedAt": "2026-09-28T13:17:28.844Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
