@@ -37,12 +37,12 @@
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create evidence review handoff",
+    "nextAction": "Create final evidence review handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 3,
-    "blockedStage": null,
+    "blockedStage": "evidence_review",
     "updatedAt": "2026-09-28T08:53:45.644Z",
     "criteriaVerified": true
   }
