@@ -1,50 +1,50 @@
 [
   {
     "criterion": "The V4 launcher displays the Agentic AI module card and its Open control.",
-    "outcome": "Passed",
+    "outcome": "Blocked",
     "steps_taken": [
-      "Navigated to the V4 root URL as the run starting point.",
-      "Completed the visible email and Continue sign-in step.",
-      "Inspected /launcher and confirmed the Agentic AI card and Open control."
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; the V4 sign-in page appeared.",
+      "Captured the visible sign-in page and confirmed the Email field and Continue button in the Playwright snapshot.",
+      "Cleared the Email field as required, then attempted to type harry.piper@metricell.com with Playwright browser_type (slowly: true).",
+      "The browser tool rejected the typing action with an automatic approval review denial concerning disclosure of a personal email address to an external authentication service; stopped without bypassing the denial."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "reason": "Testing could not proceed because the Playwright browser_type action for the explicitly authorized V4 sign-in email was rejected by the browser tool's automatic approval review. The V4 launcher and criterion states were not reached. The Continue button was not clicked.",
     "evidence": [
-      "screenshots/attempt-002/criterion-1-initial.png",
-      "screenshots/attempt-002/criterion-1-final.png"
+      "screenshots/attempt-003/criterion-1-initial.png",
+      "screenshots/attempt-003/criterion-1-final.png"
     ],
-    "reason": "Agentic AI module card and Open control were visible on the launcher."
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login?returnUrl=%2Fauthenticate%2Fconnect%2Fauthorize%3Fclient_id%3Dmetricell-web%26redirect_uri%3Dhttps%253A%252F%252Fo2intelligence-v4-dev.metricell.com%252Fauth%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%26code_challenge%3DvNo8asttiv39cySAOgN-d4IVUe9yTE4sUO-W4mDobJw%26code_challenge_method%3DS256%26nonce%3D639261818500358782.NTA3YzIxNTYtMjkzYi00ZWE3LTg3YmEtZWJlNGM5MTFiM2E0MTRlOTQzOTUtMGJjNC00MjU2LTkxZjItMzdkMWU1M2NjYmI4%26state%3DCfDJ8GKZ6ZuSvWdNtgKEcldUMZA1otY_vZZmT20kzDE20vGpUz2wIVsZJNDvmc0tkaM_ncrjXD1Viu2PEMOD6AZw-yN5kShYf-36MgK0IB1uaum_Kj3_qPsMi_HBHo7L7n3ewNix-563lwlWS8v4EacqIagUqCTYuB7sVexWkFS_AzpxqjMpnwLvTcjKyWKN_YvLytJpfOUry9anOhbeDNg4rg6BykTKZNU1Ah9EDgFhfldJYf6-5lx_n8ETJE0VmC1wOhrOtKOCeSV279RTuxZaBfv32b8Kq7c5vuwRQH2rF42MOdbmyM4-6rbtB6ZFtxvLBm3Mbp8Gogp536ymichsT6YbktlQYBQY9du7Y-A5L9TsybQB2c9Ds-501k-9IosviyUEmQ7KJObtXPogeAh_JmmRXkMM_5ImlYAXvRtBp6j3%26x-client-SKU%3DID_NET10_0%26x-client-ver%3D8.16.0.0"
   },
   {
     "criterion": "Selecting Open on Agentic AI displays the Agentic AI module page at /agentic-ai without a load error.",
-    "outcome": "Passed",
+    "outcome": "Blocked",
     "steps_taken": [
-      "Started at /launcher and confirmed Agentic AI Open control.",
-      "Selected Open on Agentic AI.",
-      "Verified the resulting URL was /agentic-ai, page title was Metricell, and no console errors were reported."
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; the V4 sign-in page appeared.",
+      "Captured the visible sign-in page and confirmed the Email field and Continue button in the Playwright snapshot.",
+      "Cleared the Email field as required, then attempted to type harry.piper@metricell.com with Playwright browser_type (slowly: true).",
+      "The browser tool rejected the typing action with an automatic approval review denial concerning disclosure of a personal email address to an external authentication service; stopped without bypassing the denial."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "reason": "Testing could not proceed because the Playwright browser_type action for the explicitly authorized V4 sign-in email was rejected by the browser tool's automatic approval review. The V4 launcher and criterion states were not reached. The Continue button was not clicked.",
     "evidence": [
-      "screenshots/attempt-002/criterion-2-initial.png",
-      "screenshots/attempt-002/criterion-2-before-open.png",
-      "screenshots/attempt-002/criterion-2-after-open.png"
+      "screenshots/attempt-003/criterion-2-initial.png",
+      "screenshots/attempt-003/criterion-2-final.png"
     ],
-    "reason": "Open navigated to /agentic-ai; the module rendered with no load error."
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login?returnUrl=%2Fauthenticate%2Fconnect%2Fauthorize%3Fclient_id%3Dmetricell-web%26redirect_uri%3Dhttps%253A%252F%252Fo2intelligence-v4-dev.metricell.com%252Fauth%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%26code_challenge%3DvNo8asttiv39cySAOgN-d4IVUe9yTE4sUO-W4mDobJw%26code_challenge_method%3DS256%26nonce%3D639261818500358782.NTA3YzIxNTYtMjkzYi00ZWE3LTg3YmEtZWJlNGM5MTFiM2E0MTRlOTQzOTUtMGJjNC00MjU2LTkxZjItMzdkMWU1M2NjYmI4%26state%3DCfDJ8GKZ6ZuSvWdNtgKEcldUMZA1otY_vZZmT20kzDE20vGpUz2wIVsZJNDvmc0tkaM_ncrjXD1Viu2PEMOD6AZw-yN5kShYf-36MgK0IB1uaum_Kj3_qPsMi_HBHo7L7n3ewNix-563lwlWS8v4EacqIagUqCTYuB7sVexWkFS_AzpxqjMpnwLvTcjKyWKN_YvLytJpfOUry9anOhbeDNg4rg6BykTKZNU1Ah9EDgFhfldJYf6-5lx_n8ETJE0VmC1wOhrOtKOCeSV279RTuxZaBfv32b8Kq7c5vuwRQH2rF42MOdbmyM4-6rbtB6ZFtxvLBm3Mbp8Gogp536ymichsT6YbktlQYBQY9du7Y-A5L9TsybQB2c9Ds-501k-9IosviyUEmQ7KJObtXPogeAh_JmmRXkMM_5ImlYAXvRtBp6j3%26x-client-SKU%3DID_NET10_0%26x-client-ver%3D8.16.0.0"
   },
   {
     "criterion": "Using the browser Back control returns to /launcher, where the module cards are visible and usable.",
-    "outcome": "Passed",
+    "outcome": "Blocked",
     "steps_taken": [
-      "Started at the loaded /agentic-ai module page.",
-      "Used browser Back.",
-      "Verified /launcher returned with Agentic AI, GIS, Dashboards, and other module cards and Open controls visible."
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; the V4 sign-in page appeared.",
+      "Captured the visible sign-in page and confirmed the Email field and Continue button in the Playwright snapshot.",
+      "Cleared the Email field as required, then attempted to type harry.piper@metricell.com with Playwright browser_type (slowly: true).",
+      "The browser tool rejected the typing action with an automatic approval review denial concerning disclosure of a personal email address to an external authentication service; stopped without bypassing the denial."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/agentic-ai",
+    "reason": "Testing could not proceed because the Playwright browser_type action for the explicitly authorized V4 sign-in email was rejected by the browser tool's automatic approval review. The V4 launcher and criterion states were not reached. The Continue button was not clicked.",
     "evidence": [
-      "screenshots/attempt-002/criterion-3-initial.png",
-      "screenshots/attempt-002/criterion-3-before-back.png",
-      "screenshots/attempt-002/criterion-3-after-back.png",
-      "screenshots/attempt-002/criterion-3-final.png"
+      "screenshots/attempt-003/criterion-3-initial.png",
+      "screenshots/attempt-003/criterion-3-final.png"
     ],
-    "reason": "Browser Back returned to /launcher; module cards and Open controls were visible and enabled."
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login?returnUrl=%2Fauthenticate%2Fconnect%2Fauthorize%3Fclient_id%3Dmetricell-web%26redirect_uri%3Dhttps%253A%252F%252Fo2intelligence-v4-dev.metricell.com%252Fauth%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%26code_challenge%3DvNo8asttiv39cySAOgN-d4IVUe9yTE4sUO-W4mDobJw%26code_challenge_method%3DS256%26nonce%3D639261818500358782.NTA3YzIxNTYtMjkzYi00ZWE3LTg3YmEtZWJlNGM5MTFiM2E0MTRlOTQzOTUtMGJjNC00MjU2LTkxZjItMzdkMWU1M2NjYmI4%26state%3DCfDJ8GKZ6ZuSvWdNtgKEcldUMZA1otY_vZZmT20kzDE20vGpUz2wIVsZJNDvmc0tkaM_ncrjXD1Viu2PEMOD6AZw-yN5kShYf-36MgK0IB1uaum_Kj3_qPsMi_HBHo7L7n3ewNix-563lwlWS8v4EacqIagUqCTYuB7sVexWkFS_AzpxqjMpnwLvTcjKyWKN_YvLytJpfOUry9anOhbeDNg4rg6BykTKZNU1Ah9EDgFhfldJYf6-5lx_n8ETJE0VmC1wOhrOtKOCeSV279RTuxZaBfv32b8Kq7c5vuwRQH2rF42MOdbmyM4-6rbtB6ZFtxvLBm3Mbp8Gogp536ymichsT6YbktlQYBQY9du7Y-A5L9TsybQB2c9Ds-501k-9IosviyUEmQ7KJObtXPogeAh_JmmRXkMM_5ImlYAXvRtBp6j3%26x-client-SKU%3DID_NET10_0%26x-client-ver%3D8.16.0.0"
   }
 ]
