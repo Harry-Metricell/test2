@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-28T09:12:22.399Z",
+  "generatedAt": "2026-09-28T09:14:22.211Z",
   "counts": {
     "tickets": 32,
     "handoffs": 1,
@@ -300,12 +300,12 @@
       "summary": "Verify final browser URLs through Agentic AI navigation",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-09-28T08:53:45.644Z",
       "retries": 3,
       "retryLimit": 3,
@@ -466,7 +466,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T09:12:22.399Z",
+      "updatedAt": "2026-09-28T09:14:22.211Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
