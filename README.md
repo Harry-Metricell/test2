@@ -164,7 +164,7 @@ Configure Codex using a private saved Playwright login. The installer copies it 
 powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.ps1 -ImportStorageState "C:\private-package\Framework\playwright\.auth\user.json"
 ```
 
-Restart the Codex desktop app after installation. New tester tasks should expose Playwright browser tools including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`. If those tools are absent, do not run a ticket: check the Codex MCP configuration and restart first.
+Restart the Codex desktop app after installation. New tester tasks should expose Playwright browser tools including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`. The TEST2 Playwright launcher refreshes the private login before each new isolated browser server starts, using the approved email-and-Continue step if needed. If refresh fails, the server stops with a clear error instead of asking a tester to repeat a click that the approval gate may reject. If the tools are absent, check the Codex MCP configuration and restart first.
 
 When the saved V4 session expires, refresh it through the dedicated private browser flow rather than an ordinary browser window:
 

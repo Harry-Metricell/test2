@@ -15,6 +15,7 @@ const authPath = process.env.TEST2_AUTH_STATE
 const launcherUrl = process.env.TEST2_LAUNCHER_URL || 'https://o2intelligence-v4-dev.metricell.com/launcher';
 const emailContinue = process.argv.includes('--email-continue');
 const approvedEmail = 'harry.piper@metricell.com';
+const pendingPath = `${authPath}.${process.pid}.pending`;
 
 if (!authPath || !path.isAbsolute(authPath)) {
   throw new Error('TEST2 auth-state path could not be determined. Set TEST2_AUTH_STATE to an absolute user.json path.');
@@ -49,7 +50,6 @@ try {
   }
 
   fs.mkdirSync(path.dirname(authPath), { recursive: true });
-  const pendingPath = `${authPath}.pending`;
   await context.storageState({ path: pendingPath });
   if (fs.existsSync(authPath)) fs.copyFileSync(authPath, `${authPath}.previous`);
   fs.renameSync(pendingPath, authPath);
@@ -57,4 +57,5 @@ try {
 } finally {
   prompt.close();
   await browser.close();
+  if (fs.existsSync(pendingPath)) fs.unlinkSync(pendingPath);
 }
