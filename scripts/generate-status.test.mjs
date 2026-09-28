@@ -75,6 +75,21 @@ test('an Unverified evidence review queues one retry and keeps its report', () =
     assert.equal(next.handoffs[0]?.handoffId, 'handoff-TEST2-99-retry-attempt-003');
     run();
     assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 2);
+
+    // The third published attempt is the limit. Its blocked review must be
+    // terminal for automatic testing, not a retry label with no handoff.
+    write('history/attempt-003-test.json', { historyAttempt: 3, qaStatus: 'Blocked', results: [{ criterion: 1, outcome: 'Blocked' }] });
+    write('review.json', { historyAttempt: 3, evidenceFolder: 'screenshots/attempt-003', overallOutcome: 'Blocked', qaStatus: 'Blocked', criterionOutcomes: [{ criterion: 1, outcome: 'Blocked', reason: 'Authentication stopped testing.' }] });
+    write('status.json', { ticket: 'TEST2-99', jiraStatus: 'READY FOR TESTING', qaStatus: 'Ready for Testing', workflowState: 'Retry Queued', qaOutcome: 'Blocked', criteriaVerified: true, retries: 3, retryLimit: 3 });
+    run();
+    const exhausted = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
+    const finalQueue = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8'));
+    assert.equal(exhausted.retries, 3);
+    assert.equal(exhausted.qaStatus, 'Blocked');
+    assert.match(exhausted.nextAction, /Manual review required/);
+    assert.equal(finalQueue.handoffs.length, 0);
+    run();
+    assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).qaStatus, 'Blocked');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

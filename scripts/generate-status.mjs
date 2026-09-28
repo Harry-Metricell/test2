@@ -306,8 +306,11 @@ function normalizeTicket(dirName) {
   const queuedRetry = localStatus.workflowState === 'Retry Queued' && localStatus.qaStatus === 'Ready for Testing';
   // A queued retry counts once; completed retry attempts come from history.
   // Repeated bundler runs cannot spend the limit again for the same attempt.
+  // The final published attempt consumes the limit even when an earlier
+  // queued-retry marker is cleared by its evidence review. Otherwise attempt
+  // 003 can be left labelled "Retry Queued" with no possible next handoff.
   const retries = latestAttempt
-    ? Math.min(retryLimit, recordedRetries + Number(queuedRetry))
+    ? Math.min(retryLimit, latestNumber >= retryLimit ? retryLimit : recordedRetries + Number(queuedRetry))
     : (Number.isFinite(Number(localStatus.retries)) ? Number(localStatus.retries) : 0);
   if (!checkOnly && retries !== Number(localStatus.retries || 0)) {
     localStatus = { ...localStatus, retries };
