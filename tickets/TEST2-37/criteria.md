@@ -1,6 +1,7 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] Opening Dashboards from the launcher displays the Dashboards page at https://o2intelligence-v4-dev.metricell.com/dashboards with its Under construction message and Back to Launcher button.
-- [ ] Reloading that page leaves the Dashboards placeholder usable: the Under construction message and Back to Launcher button remain visible without an application error.
-- [ ] Selecting Back to Launcher returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the Dashboards card is visible.
-- [ ] Capture browser evidence of the page after reload and after returning.
+# Acceptance Criteria
+
+- [ ] When the user is signed in on the launcher and selects the Dashboards card, the application navigates to `https://o2intelligence-v4-dev.metricell.com/dashboards` and displays both the `Under construction` message and a `Back to Launcher` button.
+- [ ] When the Dashboards placeholder is displayed, reloading the page keeps the `Under construction` message and `Back to Launcher` button visible and does not display an application error.
+- [ ] When the user selects `Back to Launcher` from the Dashboards placeholder, the application navigates to `https://o2intelligence-v4-dev.metricell.com/launcher` and displays the Dashboards card.
