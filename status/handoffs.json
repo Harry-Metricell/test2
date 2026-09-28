@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-09-28T15:35:40.705Z",
+  "generatedAt": "2026-09-28T15:39:44.760Z",
   "handoffs": [
     {
       "handoffId": "handoff-TEST2-36-guide-impact",
@@ -38,23 +38,6 @@
       "expectedOutput": {
         "path": "tickets/TEST2-37/guide-impact.json",
         "schema": "v4-user-guide-impact.v1"
-      }
-    },
-    {
-      "handoffId": "handoff-TEST2-38-review-attempt-003",
-      "handoffVersion": "TEST2-38:evidence_review:3",
-      "attempt": 3,
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-38",
-      "inputs": {
-        "results": "tickets/TEST2-38/results.json",
-        "generated": "status/generated/TEST2-38.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-38/review.json",
-        "schema": "v4-qa-review.v1"
       }
     }
   ]
