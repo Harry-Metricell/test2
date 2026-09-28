@@ -398,7 +398,7 @@
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
-      "guideImpact": null,
+      "guideImpact": "update_required",
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
@@ -482,7 +482,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T11:17:23.979Z",
+      "updatedAt": "2026-09-28T11:20:38.692Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
