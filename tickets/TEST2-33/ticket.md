@@ -6,7 +6,7 @@
 - QA outcome: Blocked
 - Workflow state: Retry Queued
 - Action owner: Coordinator
-- Next action: Retry 2/3 queued; coordinator will start tester
+- Next action: Manual review required after retry limit
 - Jira: https://metricell.atlassian.net/browse/TEST2-33
 
 ## Acceptance Criteria
