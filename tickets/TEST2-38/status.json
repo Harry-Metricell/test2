@@ -3,12 +3,12 @@
   "jiraStatus": "READY FOR TESTING",
   "qaStatus": "Awaiting Evidence Review",
   "status": "READY FOR TESTING",
-  "retries": 2,
+  "retries": 3,
   "retryLimit": 3,
   "criteriaVerified": true,
-  "blockedStage": null,
+  "blockedStage": "evidence_review",
   "qaOutcome": "Unverified",
-  "workflowState": "Retry Queued",
-  "nextAction": "Create retry handoff",
+  "workflowState": "READY FOR TESTING",
+  "nextAction": "Create final evidence review handoff",
   "updatedAt": "2026-09-28T15:24:33.160Z"
 }

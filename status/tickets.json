@@ -1,14 +1,13 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-28T15:24:33.164Z",
+  "generatedAt": "2026-09-28T15:30:11.921Z",
   "counts": {
     "tickets": 37,
     "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 19,
-      "Ready": 16,
-      "Rejected": 1,
-      "Retry Queued": 1
+      "Ready": 17,
+      "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 11,
@@ -460,17 +459,17 @@
       "key": "TEST2-38",
       "summary": "Open API Request Audit twice from the V4 launcher",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 2/3 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-28T15:24:33.160Z",
-      "retries": 2,
+      "retries": 3,
       "retryLimit": 3,
-      "retryLabel": "Retry 2/3"
+      "retryLabel": "Retry 3/3"
     },
     {
       "key": "TEST2-2",
@@ -547,7 +546,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T15:24:33.164Z",
+      "updatedAt": "2026-09-28T15:30:11.921Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
