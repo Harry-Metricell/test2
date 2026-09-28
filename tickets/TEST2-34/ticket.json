@@ -1,0 +1,139 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "106229",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/106229",
+  "key": "TEST2-34",
+  "fields": {
+    "summary": "Verify V4 launcher opens GIS and browser Back returns to launcher",
+    "subtasks": [],
+    "created": "2026-09-28T11:30:02.819+0100",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Small regression test for launcher-to-GIS navigation on the V4 development site."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Test from https://o2intelligence-v4-dev.metricell.com/launcher. Sign in if prompted."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance criteria:"
+            }
+          ]
+        },
+        {
+          "type": "orderedList",
+          "attrs": {
+            "order": 1
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The V4 launcher displays a GIS module card with an enabled Open GIS control."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Selecting Open GIS navigates to https://o2intelligence-v4-dev.metricell.com/gis and displays the GIS page without an application error."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Using the browser Back button returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the GIS card is visible again."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "This ticket tests navigation only; it does not require map-layer or zoom functionality."
+            }
+          ]
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-09-28T11:30:15.708+0100",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  }
+}

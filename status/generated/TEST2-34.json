@@ -1,0 +1,50 @@
+{
+  "key": "TEST2-34",
+  "id": "106229",
+  "summary": "Verify V4 launcher opens GIS and browser Back returns to launcher",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-34",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-28T11:30:02.819+0100",
+    "updated": "2026-09-28T11:30:15.708+0100"
+  },
+  "description": "Small regression test for launcher-to-GIS navigation on the V4 development site.\nTest from https://o2intelligence-v4-dev.metricell.com/launcher. Sign in if prompted.\nAcceptance criteria:\nThe V4 launcher displays a GIS module card with an enabled Open GIS control.\nSelecting Open GIS navigates to https://o2intelligence-v4-dev.metricell.com/gis and displays the GIS page without an application error.\nUsing the browser Back button returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the GIS card is visible again.\nThis ticket tests navigation only; it does not require map-layer or zoom functionality.",
+  "acceptanceCriteria": [
+    "The V4 launcher displays a GIS module card with an enabled Open GIS control.",
+    "Selecting Open GIS navigates to https://o2intelligence-v4-dev.metricell.com/gis and displays the GIS page without an application error.",
+    "Using the browser Back button returns to https://o2intelligence-v4-dev.metricell.com/launcher, where the GIS card is visible again.",
+    "This ticket tests navigation only; it does not require map-layer or zoom functionality."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-34/ticket.json",
+    "criteria": "tickets/TEST2-34/criteria.md",
+    "status": "tickets/TEST2-34/status.json",
+    "screenshots": "tickets/TEST2-34/screenshots/",
+    "reports": "tickets/TEST2-34/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106229",
+    "importedAt": "2026-09-28T11:30:15.708+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-28T11:30:15.708+0100",
+    "criteriaVerified": false
+  }
+}
