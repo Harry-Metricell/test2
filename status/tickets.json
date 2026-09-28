@@ -11,8 +11,8 @@
     },
     "byQaOutcome": {
       "Blocked": 11,
-      "Not Tested": 6,
-      "Passed": 17,
+      "Not Tested": 5,
+      "Passed": 18,
       "Unverified": 3
     }
   },
@@ -444,12 +444,12 @@
       "summary": "Reload the V4 Dashboards placeholder and return to launcher",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create evidence review handoff",
       "updatedAt": "2026-09-28T14:53:41.797+0100",
       "retries": 0,
       "retryLimit": 3,
@@ -546,7 +546,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T14:19:46.889Z",
+      "updatedAt": "2026-09-28T14:29:07.116Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
