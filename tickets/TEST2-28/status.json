@@ -21,5 +21,29 @@
     "reason": "The verified behaviour adds user-facing navigation instructions: users open Agentic AI from the V4 launcher, arrive at its dedicated URL, and use browser Back to return to the launcher.",
     "noOp": false,
     "assessedAt": "2026-09-28T09:17:41.703Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-28-guide-update",
+    "handoffVersion": "TEST2-28:guide_update_authoring:3",
+    "ticket": "TEST2-28",
+    "title": "Navigate from the V4 launcher to Agentic AI",
+    "affectedSection": "Navigating the V4 launcher and opening Agentic AI",
+    "changeType": "amend",
+    "steps": [
+      "Open the V4 launcher.",
+      "Select Open on the Agentic AI module card.",
+      "Confirm that the Agentic AI module opens at /agentic-ai.",
+      "Use your browser's Back button to return to the launcher.",
+      "Confirm that the launcher returns at /launcher with its module cards available."
+    ],
+    "screenshots": [
+      "screenshots/attempt-003/criterion-1-final.png",
+      "screenshots/attempt-003/criterion-2-final.png",
+      "screenshots/attempt-003/criterion-3-after-back.png"
+    ],
+    "reason": "Amend the existing section with verified instructions for opening Agentic AI from the V4 launcher, confirming its dedicated URL, and returning with browser Back.",
+    "noOp": false,
+    "authoredAt": "2026-09-28T09:21:41.602Z"
   }
 }
