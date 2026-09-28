@@ -1,0 +1,61 @@
+[
+  {
+    "criterion": "Starting on the GIS page with the base map loaded, visible map controls are present and no application error is displayed.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started at the required launcher URL.",
+      "Opened GIS from the launcher.",
+      "Confirmed the base map tiles rendered, visible map controls were present, and no application error appeared in the page or console."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-open-gis.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "reason": ""
+  },
+  {
+    "criterion": "Drag the base map to a different position; the visible geographic area changes while the GIS page remains open.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Returned to the launcher and opened GIS for this criterion.",
+      "Captured the initial map view, then dragged the map from its center toward the Search Map overlay.",
+      "Confirmed the visible geography changed from the UK and nearby Europe to central Europe and the Mediterranean while the GIS page stayed open."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-open-gis.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-before-pan.png",
+      "screenshots/attempt-001/criterion-2-after-pan.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "reason": "Cleanup returned the map to the UK region with its original zoom, but the original exact center could not be restored using the visible controls; no saved data or layers were changed."
+  },
+  {
+    "criterion": "After the pan completes, the map controls remain visible and can be used, and no application error is displayed.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Returned to the launcher and opened GIS for this criterion.",
+      "Dragged the map to pan it, then clicked Zoom in and Zoom out to verify the controls remained usable and restore the zoom level.",
+      "Confirmed map controls remained visible and no application error appeared in the page or console."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial-restored.png",
+      "screenshots/attempt-001/criterion-3-before-open-gis-restored.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis-restored.png",
+      "screenshots/attempt-001/criterion-3-before-pan-restored.png",
+      "screenshots/attempt-001/criterion-3-after-pan.png",
+      "screenshots/attempt-001/criterion-3-before-zoom-in.png",
+      "screenshots/attempt-001/criterion-3-after-zoom-in.png",
+      "screenshots/attempt-001/criterion-3-before-zoom-out.png",
+      "screenshots/attempt-001/criterion-3-after-zoom-out.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "reason": "Zoom returned to its original level. Cleanup returned the map to the UK region, but not its exact original center using the visible controls; no saved data or layers were changed."
+  }
+]
