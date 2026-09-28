@@ -1,28 +1,28 @@
 {
-  "handoffId": "handoff-TEST2-28-review-attempt-002",
-  "handoffVersion": "TEST2-28:evidence_review:2",
+  "handoffId": "handoff-TEST2-28-review-attempt-003",
+  "handoffVersion": "TEST2-28:evidence_review:3",
   "ticket": "TEST2-28",
   "criterionOutcomes": [
     {
-      "outcome": "Blocked",
       "criterion": "The V4 launcher displays the Agentic AI module card and its Open control.",
-      "reason": "The selected attempt screenshot shows the application bootstrap error and HTTP 403; the launcher card and Open control could not load."
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshots show the Agentic AI card and its arrow Open control on the launcher. The result records the expected V4 launcher browserUrl."
     },
     {
-      "outcome": "Blocked",
       "criterion": "Selecting Open on Agentic AI displays the Agentic AI module, and the final browser URL is https://o2intelligence-v4-dev.metricell.com/agentic-ai.",
-      "reason": "The selected attempt screenshot shows the application bootstrap error and HTTP 403. Results report the launcher URL, and the Agentic AI module could not be opened."
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshots show the Agentic AI module and map after Open. The result's final browserUrl matches the expected V4 agentic-ai URL."
     },
     {
-      "outcome": "Blocked",
       "criterion": "Using browser Back returns to the launcher, and the final browser URL is https://o2intelligence-v4-dev.metricell.com/launcher with module cards visible and usable.",
-      "reason": "The selected attempt screenshot shows the application bootstrap error and HTTP 403. Browser Back from the module could not be exercised and usable launcher cards are not available."
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshots show the launcher and module cards after browser Back. The result's final browserUrl matches the expected V4 launcher URL."
     }
   ],
-  "overallOutcome": "Blocked",
+  "overallOutcome": "Passed",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-28\\screenshots\\attempt-002",
-  "qaStatus": "Blocked",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-28\\screenshots\\attempt-003",
+  "qaStatus": "Evidence Reviewed",
   "noOp": false,
-  "reason": "The selected attempt evidence shows the V4 application bootstrap failing with HTTP 403, preventing the required launcher and Agentic AI navigation checks."
+  "reason": ""
 }
