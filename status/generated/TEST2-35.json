@@ -51,7 +51,28 @@
       "noOp": false,
       "assessedAt": "2026-09-28T13:19:41.268Z"
     },
-    "guideUpdate": null,
+    "guideUpdate": {
+      "schema": "v4-user-guide-update.v1",
+      "handoffId": "handoff-TEST2-35-guide-update",
+      "handoffVersion": "TEST2-35:guide_update_authoring:1",
+      "ticket": "TEST2-35",
+      "title": "Open Dashboards and return to the launcher",
+      "affectedSection": "Dashboards: accessing the module and returning to the launcher",
+      "changeType": "amend",
+      "steps": [
+        "Open the Dashboards module from the launcher.",
+        "Confirm that the Dashboards page shows the Under construction message.",
+        "Select Back to Launcher to return to the launcher."
+      ],
+      "screenshots": [
+        "screenshots/attempt-001/criterion-1-final.png",
+        "screenshots/attempt-001/criterion-2-final.png",
+        "screenshots/attempt-001/criterion-3-after-return-launcher.png"
+      ],
+      "reason": "The passed behavior adds a Dashboards launcher card, an Under construction placeholder, and a Back to Launcher control.",
+      "noOp": false,
+      "authoredAt": "2026-09-28T13:22:40.963Z"
+    },
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-28T12:35:23.479+0100",
