@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-35-guide-impact",
+    "handoffVersion": "TEST2-35:guide_impact_assessment:1",
+    "ticket": "TEST2-35",
+    "decision": "update_required",
+    "affectedSection": "Dashboards: accessing the module and returning to the launcher",
+    "reason": "The reviewed behavior adds a visible Dashboards module, a dedicated placeholder page, and a Back to Launcher navigation control. Users need instructions explaining how to open Dashboards and return to the launcher.",
+    "noOp": false,
+    "assessedAt": "2026-09-28T13:19:41.268Z"
+  }
 }
