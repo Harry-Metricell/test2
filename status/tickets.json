@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-28T15:42:05.468Z",
+  "generatedAt": "2026-09-28T15:43:03.193Z",
   "counts": {
     "tickets": 37,
     "handoffs": 1,
@@ -446,7 +446,7 @@
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
-      "guideImpact": null,
+      "guideImpact": "update_required",
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
@@ -546,7 +546,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-28T15:42:05.468Z",
+      "updatedAt": "2026-09-28T15:43:03.193Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
