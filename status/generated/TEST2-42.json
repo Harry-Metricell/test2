@@ -51,7 +51,28 @@
       "noOp": false,
       "assessedAt": "2026-09-29T14:14:38.569Z"
     },
-    "guideUpdate": null,
+    "guideUpdate": {
+      "schema": "v4-user-guide-update.v1",
+      "handoffId": "handoff-TEST2-42-guide-update",
+      "handoffVersion": "TEST2-42:guide_update_authoring:1",
+      "ticket": "TEST2-42",
+      "title": "Return from Agentic AI to the launcher and open GIS",
+      "affectedSection": "Returning to the launcher and opening GIS",
+      "changeType": "amend",
+      "steps": [
+        "Open Agentic AI from the V4 launcher.",
+        "Use your browser's Back button to return to the launcher.",
+        "Select Open GIS on the launcher.",
+        "Wait for the GIS map and its layer list, map style, reset, and zoom controls to appear."
+      ],
+      "screenshots": [
+        "screenshots/attempt-001/criterion-2-final.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "reason": "Document the verified navigation from Agentic AI back to the launcher and into GIS, including the visible GIS map controls.",
+      "noOp": false,
+      "authoredAt": "2026-09-29T14:19:40.924Z"
+    },
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-29T14:01:41.423+0100",
