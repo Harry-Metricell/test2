@@ -1,6 +1,7 @@
 # Publisher operation and diagnosis
 
 The Windows task `TEST2 Agent Publisher` invokes a hidden launcher every minute.
+The publisher, its logon repair task, and Desktop sync are installed to run on battery power. Windows Task Scheduler defaults to blocking battery starts unless the installers explicitly allow them. If publication stops while unplugged, inspect `DisallowStartIfOnBatteries`, `StopIfGoingOnBatteries`, and `NumberOfMissedRuns`; rerun the installers to restore these settings.
 Each invocation reads `.agent-staging/<handoffId>`, fetches GitHub, and processes
 ticket inputs in a temporary checkout of remote main. The Desktop checkout can
 be behind or contain local edits; publishing must not modify those edits.

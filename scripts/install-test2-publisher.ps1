@@ -23,14 +23,14 @@ if ($node -eq 'node.exe') { throw "A portable Node runtime is required for the h
  $launcher = Join-Path $repo 'scripts\run-test2-publisher-hidden.vbs'
  $action = New-ScheduledTaskAction -Execute 'wscript.exe' -Argument "`"$launcher`"" -WorkingDirectory $repo
 $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Seconds $intervalSeconds) -RepetitionDuration (New-TimeSpan -Days $durationDays)
-$settings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
+$settings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Minutes 10)
 $principal = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
 Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings -Principal $principal -Description $description -Force | Out-Null
 $repairTaskName = "$taskName Repair"
 $repairArgs = '-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + $PSCommandPath + '" -Repo "' + $repo + '"'
 $repairAction = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument $repairArgs -WorkingDirectory $repo
 $repairTrigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
-$repairSettings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Minutes 2)
+$repairSettings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Minutes 2)
 Register-ScheduledTask -TaskName $repairTaskName -Action $repairAction -Trigger $repairTrigger -Settings $repairSettings -Principal $principal -Description "Repairs the hidden TEST2 Agent Publisher task after login." -Force | Out-Null
 $startup = Join-Path $env:APPDATA 'Microsoft\\Windows\\Start Menu\\Programs\\Startup'
 New-Item -ItemType Directory -Force -Path $startup | Out-Null
