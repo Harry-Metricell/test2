@@ -40,7 +40,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-42-guide-impact",
+      "handoffVersion": "TEST2-42:guide_impact_assessment:1",
+      "ticket": "TEST2-42",
+      "decision": "update_required",
+      "affectedSection": "Returning to the launcher and opening GIS",
+      "reason": "The reviewed behaviour establishes user-facing navigation steps: returning from Agentic AI to the launcher with browser Back and selecting GIS to open its map view. These instructions and the visible map controls should be documented for users.",
+      "noOp": false,
+      "assessedAt": "2026-09-29T14:14:38.569Z"
+    },
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
