@@ -1,6 +1,7 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] Selecting the Agentic AI launcher card opens its module view without an application error.
-- [ ] Browser Back returns to the V4 launcher with the GIS card visible.
-- [ ] Selecting GIS from that launcher opens the GIS map view with visible map controls and no application error.
-- [ ] Capture browser evidence and the observed URL at each decisive state.
+# Acceptance Criteria
+
+- [ ] Starting on the V4 launcher at `/launcher`, selecting the Agentic AI launcher card opens the Agentic AI module view in the same browser session, with the module view rendered and no application error visible.
+- [ ] Starting from the open Agentic AI module view, using browser Back returns to the V4 launcher, and the GIS launcher card is visible.
+- [ ] Starting on the V4 launcher after returning from Agentic AI, selecting the GIS launcher card opens the GIS map view in the same browser session, with map controls visible and no application error visible.
