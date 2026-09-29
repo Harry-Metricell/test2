@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-29T14:01:41.423+0100",
   "counts": {
     "tickets": 41,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 20,
       "Ready": 20,
@@ -495,7 +495,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Navigate from GIS back to the launcher and into API Request Audit",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-29T14:01:38.256+0100",
