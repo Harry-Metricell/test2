@@ -6,48 +6,36 @@ The system keeps durable QA state in GitHub and uses Codex only for authenticate
 
 ## Flow
 
-1. Jira import reads Jira and stores `tickets/<KEY>/ticket.json`; Jira is read-only.
-2. Static generation creates canonical criteria, status data, and `status/handoffs.json`.
-3. The coordinator reads live GitHub state and creates fresh worker tasks using only the linked brief.
-4. Tester and reviewer workers write compact output to local `%LOCALAPPDATA%/TEST2/staging`.
-5. The publisher validates output, copies evidence/reports to the configured local evidence folders, and publishes only the relevant ticket files.
-6. Status Bundler owns generated status, handoffs, `retries`, and `retryLimit`.
+1. The scheduled importer reads Jira and saves ticket snapshots under `tickets/<KEY>/ticket.json`; it does not write to Jira.
+2. Status Bundler creates `status/handoffs.json` from the imported tickets and published QA artifacts. A criteria worker checks or rewrites the criteria for each eligible ticket before testing.
+3. A fresh coordinator chat reads the live GitHub brief and dispatches criteria, tester, evidence-review, and (after a Passed review) user-guide workers in stage order.
+4. Workers stage JSON and browser PNGs in the Desktop checkout's ignored `.agent-staging/<handoffId>/` folder. They do not publish permanent ticket files directly.
+5. The local publisher validates staged output, copies screenshots and reports to the private evidence folder, and pushes ticket-scoped results from a clean temporary Git worktree.
+6. Status Bundler regenerates status, handoffs, and the retry counter. The coordinator resumes from the live queue after publication; the scheduled publisher and Desktop sync do not launch it.
 
 ## Start the coordinator
 
 The complete, canonical coordinator brief is [`docs/briefs/coordinator.md`](docs/briefs/coordinator.md). Keep the rules in that file rather than duplicating them in the README, so the coordinator has one source of truth.
 
-Start each manual or scheduled coordinator cycle as a fresh Codex task in the saved Test2 project with this prompt:
+Start each manual coordinator cycle as a fresh Codex task in the saved Test2 project with exactly this prompt:
 
-> Fetch the live GitHub `docs/briefs/coordinator.md` before reading any other repository file, then execute that brief immediately. Do not use a cached local copy or previous task history.
+> [@GitHub](plugin://github@openai-curated-remote)read and follow: docs/briefs/coordinator.md
 
-The coordinator must continue through all actionable handoffs and required publisher/bundler propagation described by the live brief. The scheduled publisher and Desktop sync tasks do not start or replace the coordinator.
+Do not add instructions to that launch message. The brief requires a fresh live read and contains the worker-selection, lock, retry, and publication rules. A completed chat is not itself proof that output was published; check the live handoff queue and ticket files.
 
 ## Publishing safety
 
 The publisher must never push from the dirty Desktop checkout. It uses GitHub Desktop Git and a temporary clean worktree based on the exact live remote `main` SHA. Its private index is populated from that worktree's `HEAD` before staging, so publishing cannot replace the repository with a partial tree.
 
-The publisher requires:
+The publisher validates worker JSON and handoff identity, checks ticket-scoped paths and local PNG evidence, verifies rendered PDF evidence, and reads back its GitHub commit. Its temporary Git worktree keeps unrelated Desktop edits out of the push. A task exit code of zero may mean there was nothing to publish; check `%LOCALAPPDATA%\TEST2\publisher.log` for a `published` event and the resulting ticket files on GitHub.
 
-To keep the Desktop checkout current without overwrite prompts, install the safe sync task from this repository in an elevated PowerShell window:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-desktop-sync.ps1 -Repo "$PWD"
-```
-
-It runs every two minutes, fetches `origin/main`, and fast-forwards `main` without overwriting local work. Unrelated local files are preserved while syncing; if an incoming commit touches a locally changed file, the task skips and logs that conflict. It also skips a different branch or local-only commits. Review `%LOCALAPPDATA%\TEST2\desktop-sync.log` when a pull appears not to happen. The task does not start or control the coordinator.
-
-- validated JSON output;
-- ticket-scoped paths;
-- remote read-back after publication;
-- local PNG evidence before report generation;
-- a verified PDF for a completed evidence report.
-
-The Windows scheduled publisher runs hidden after installation. A successful task launch is not proof of publication: confirm the Node publisher exit code and remote read-back. Worker staging and coordinator runtime state must remain outside the Desktop repository.
+Desktop sync runs every two minutes. It fast-forwards `main` when safe, preserves unrelated local files, backs up overlapping generated projections, and skips conflicting source edits or local-only commits. Read `%LOCALAPPDATA%\TEST2\desktop-sync.log` if it does not update. Both background tasks and the publisher repair task are configured to start and continue on battery power.
 
 ## New PC setup
 
-Complete these steps in order before starting the coordinator. GitHub contains the code, the report template, and the package lock; your saved V4 login remains private and must be supplied separately.
+Complete these steps in order before starting the coordinator. First sign in to GitHub Desktop and clone this repository on the `main` branch into `C:\Users\<user>\Documents\ChatGPT\Test2-github`. The scheduled publisher relies on a Git installation with unattended GitHub push access; a successful Desktop sign-in alone should be verified with a normal push before relying on the publisher. GitHub contains the code, document templates, and package lock; your saved V4 login remains private and must be supplied separately.
+
+For a new GitHub repository, configure Actions secrets `JIRA_URL`, `JIRA_EMAIL`, and `JIRA_API_TOKEN`, and set the `JIRA_PROJECT_KEY` repository variable (or accept the TEST2 fallback). Keep the Import and Status Bundler workflows enabled. They use repository write permission; the local publisher also needs push access to `main`. No Jira credentials belong in this checkout.
 
 1. Open PowerShell and enter the repository folder:
 
@@ -55,9 +43,7 @@ Complete these steps in order before starting the coordinator. GitHub contains t
 cd "C:\Users\<user>\Documents\ChatGPT\Test2-github"
 ```
 
-2. Install portable Node locally. This avoids organisation policies that can block the MSI installer:
-
-The machine may block the Node.js MSI installer. Use the portable ZIP install instead:
+2. Install portable Node locally if it is not already present. This avoids organisation policies that can block the MSI installer:
 
 ```powershell
 $nodeDir="$env:LOCALAPPDATA\TEST2\node"
@@ -73,7 +59,7 @@ node --version
 3. Install the repository packages and Chromium with the portable runtime. Use these explicit paths even if `npm` and `npx` are not on PATH:
 
 ```powershell
-& "$env:LOCALAPPDATA\TEST2\node\npm.cmd" install
+& "$env:LOCALAPPDATA\TEST2\node\npm.cmd" ci
 & "$env:LOCALAPPDATA\TEST2\node\npx.cmd" playwright install chromium
 ```
 
@@ -85,13 +71,13 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.
 
 Restart the Codex desktop app after this step. A tester task must then show the Playwright browser tools, including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`.
 
-If a tester reaches a sign-in page, do not rely on logging in through an ordinary browser: isolated tester tasks cannot use that browser session. Refresh the private tester login instead. The command opens a browser; complete the usual sign-in yourself, wait until the V4 launcher is visible, then return to PowerShell and press Enter. It replaces only the local private login file and does not send credentials to GitHub:
+The configured Playwright MCP launcher checks the saved login before each isolated tester starts and can perform the approved email-and-Continue step on the V4 development site. Tester chats do not operate sign-in forms. If the automatic refresh cannot reach the launcher because password, MFA, or consent is needed, use the interactive command below. It opens a private browser; complete sign-in yourself, wait for the launcher, then press Enter. It replaces only the local login file and does not send credentials to GitHub:
 
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\refresh-test2-auth.mjs
 ```
 
-Restart the Codex desktop app after a successful refresh, then create a fresh tester task. This avoids the tester needing to submit an email/password or MFA form itself.
+Restart the Codex desktop app after changing MCP configuration; after a login refresh, start a fresh tester task so it loads the updated state. An existing isolated tester does not inherit a later refresh. A session can still expire during a test; a redirect to sign-in is an environment blocker, not an instruction for the tester to enter credentials.
 
 5. Install the two hidden background tasks. Run this in an elevated PowerShell window if task registration is denied:
 
@@ -105,7 +91,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-desktop-sync.ps
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" --version
 & "$env:LOCALAPPDATA\TEST2\node\npx.cmd" playwright --version
-Get-ScheduledTask -TaskName "TEST2 Agent Publisher","TEST2 Desktop GitHub Sync" | Select-Object TaskName,State
+Get-ScheduledTask -TaskName "TEST2 Agent Publisher","TEST2 Agent Publisher Repair","TEST2 Desktop GitHub Sync" | Select-Object TaskName,State,@{N='RunsOnBattery';E={-not $_.Settings.DisallowStartIfOnBatteries -and -not $_.Settings.StopIfGoingOnBatteries}}
 Test-Path "$env:LOCALAPPDATA\TEST2\auth\user.json"
 ```
 
@@ -125,7 +111,7 @@ python -m pip install -r .\requirements-reporting.txt
 
 ### User-guide document renderer
 
-Word guide updates are rendered to images for a visual check before they are published. Install the local-only LibreOffice renderer once; it is extracted under `%LOCALAPPDATA%\TEST2\libreoffice` and does not alter the shared Windows installation:
+Word guide updates are rendered to a temporary PDF and checked for the approved text and screenshots before publication. Install the local-only LibreOffice renderer once; it is extracted under `%LOCALAPPDATA%\TEST2\libreoffice` and does not alter the shared Windows installation:
 
 ```powershell
 $downloadDir = "$env:TEMP\TEST2-document-renderer"
@@ -135,24 +121,24 @@ if (-not (Test-Path -LiteralPath $msi)) {
   Invoke-WebRequest -Uri "https://download.documentfoundation.org/libreoffice/stable/26.8.0/win/x86_64/LibreOffice_26.8.0_Win_x86-64.msi" -OutFile $msi
 }
 New-Item -ItemType Directory -Force "$env:LOCALAPPDATA\TEST2\libreoffice" | Out-Null
-Start-Process msiexec.exe -ArgumentList @('/a', $msi, '/qn', "TARGETDIR=$env:LOCALAPPDATA\TEST2\libreoffice") -Wait
+Start-Process msiexec.exe -ArgumentList @('/a', $msi, '/qn', "TARGETDIR=$env:LOCALAPPDATA\TEST2\libreoffice") -WindowStyle Hidden -Wait
 & "$env:LOCALAPPDATA\TEST2\libreoffice\program\soffice.exe" --version
 ```
 
-The temporary guide baseline already has a hidden `[[AUTO_GUIDE_CONTENT]]` insertion marker. It remains visually unchanged, but the future updater can replace that exact paragraph with yellow-highlighted approved changes.
+The tracked guide template and living guide already contain the hidden `[[AUTO_GUIDE_CONTENT]]` marker. Approved ticket updates are inserted before that marker with yellow highlighting; the updater is active, not a future manual step.
 
-The same two hidden Windows tasks can be repaired or reinstalled at any time:
+The two hidden Windows tasks can be repaired or reinstalled at any time. The publisher installer also registers its logon repair task and Startup shortcut:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-publisher.ps1 -Repo "$PWD"
 powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-desktop-sync.ps1 -Repo "$PWD"
 ```
 
-Desktop sync runs every two minutes and skips safely when conflicting local changes exist. Worker staging and coordinator runtime state use the ignored `.agent-staging` directory. The publisher processes tickets in a fresh checkout of GitHub main, so it works even when Desktop is behind or has local edits. The coordinator itself is started manually as a fresh Codex task; these scheduled tasks do not start it.
+Desktop sync runs every two minutes and skips safely when conflicting local changes exist. Worker staging and coordinator runtime state use the ignored `.agent-staging` directory inside the Desktop checkout. The publisher processes tickets in a fresh checkout of GitHub main, so it works even when Desktop is behind or has local edits. The coordinator itself is started manually as a fresh Codex task; these scheduled tasks do not start it.
 
 ### Local retention
 
-The publisher automatically removes renderer/debug by-products from `.agent-staging` after 14 days, including generated draft reports, renderer page images, console logs, and page snapshots. It never automatically deletes worker output JSON, screenshot folders, `publisher-error.json`, the private Playwright login, installed browser/runtime files, or the permanent `%USERPROFILE%\Documents\V4-QA-evidence` folder. Those protected files are either required to retry a failed handoff or are the local copy of test evidence.
+The publisher removes a handoff's staging folder after successful publication, and archives stale worker output instead of publishing it. Pending or failed handoffs remain for retry. Separately, it prunes only old renderer/debug by-products from `.agent-staging` after 14 days, such as generated draft reports, console logs, and page snapshots. It does not prune the private Playwright login, installed browser/runtime files, or permanent `%USERPROFILE%\Documents\V4-QA-evidence` folder.
 
 For publisher errors, check `%LOCALAPPDATA%\TEST2\publisher.log` and follow [publisher diagnostics](docs/publisher-operations.md). Query Windows tasks outside the sandbox before concluding that registration is missing. A task exit code of zero is not sufficient evidence that a ticket published.
 
@@ -170,7 +156,7 @@ Restart the Codex desktop app after installation. New tester tasks should expose
 
 When the saved V4 session expires, refresh it through the dedicated private browser flow rather than an ordinary browser window:
 
-The TEST2 owner has approved entering `harry.piper@metricell.com` and selecting `Continue` on the V4 development sign-in page. If that step completes sign-in without further interaction, refresh the saved tester login automatically:
+The local preflight is limited to the V4 development host and the approved email-and-Continue action. To check or refresh it manually without opening a visible browser:
 
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\refresh-test2-auth.mjs --email-continue
@@ -186,25 +172,29 @@ Complete sign-in in the opened browser, press Enter only after the V4 launcher i
 
 ## Useful commands
 
-```bash
-npm run generate
-npm run check
-npm run check:guide
+Run these from the repository root. `generate` rewrites derived status files; use it only when intentionally rebuilding them, not as a Desktop sync command.
+
+```powershell
+& "$env:LOCALAPPDATA\TEST2\node\npm.cmd" run check
+& "$env:LOCALAPPDATA\TEST2\node\npm.cmd" run check:guide
+& "$env:LOCALAPPDATA\TEST2\node\npm.cmd" run check:guide-impact
+& "$env:LOCALAPPDATA\TEST2\node\npm.cmd" run check:guide-update
+& "$env:LOCALAPPDATA\TEST2\node\npm.cmd" run generate
 ```
+
+GitHub Actions runs the Node publisher/status/criteria/Jira regression tests and Python report/guide tests on relevant code changes. For local publisher regression tests, set `TEST2_GIT` to a Git executable first; the tests use a disposable local remote, not the live GitHub repository.
 
 ## User guide updater
 
-The user guide is a separate document-update workflow, not a Jira or coordinator action. It preserves the current Word guide and applies guide updates from **Passed** tickets only. Every new heading, step, caption, and screenshot panel is highlighted yellow; unchanged content remains unmodified.
+The user guide is integrated into the ticket pipeline after a **Passed** evidence review and verified PDF. The guide-impact worker decides `not_needed` or `update_required`. Only `update_required` creates an authoring handoff; that worker selects instructions and screenshots from the ticket's verified evidence. It does not run a separate browser capture. The publisher adds the approved ticket-specific guidance to `assets/user-guide/V4 User Guide.docx`, renders and verifies a temporary PDF, then publishes the Word file and ticket update together. New headings, steps, captions, and screenshot panels are highlighted yellow; unchanged content remains intact. An `amend` update currently appends highlighted guidance rather than replacing an older section in place.
 
-While creating the initial Word template, save it as `assets/user-guide/V4 User Guide Template.docx`. Use normal Word heading styles and place `[[AUTO_GUIDE_CONTENT]]` on its own paragraph where feature sections should be inserted. Do not highlight the initial template: yellow is reserved for changes made after its first approval.
-
-Add one object to `config/user-guide-plan.json` for each feature section, with an id, title, HTTPS starting URL, ordered steps, and required screenshot ids. Validate the plan before capture:
+The tracked baseline is `assets/user-guide/V4 User Guide Template.docx`; both it and the living guide contain a hidden `[[AUTO_GUIDE_CONTENT]]` marker. `config/user-guide-plan.json` currently has an empty `sections` list and defines the document paths and yellow-highlight rules. Its optional section plan is not a prerequisite for the ticket-driven guide-impact handoff. Validate guide configuration with:
 
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-plan.mjs
 ```
 
-The publisher now builds the Word guide as part of publishing each approved `guide-update-output.json`. It embeds that ticket's verified PNGs, renders the guide to PDF, checks that the approved text and **each actual screenshot** survived conversion, and commits the Word guide alongside the ticket update. If a build or verification fails, neither is pushed; the staged worker output remains available for retry. The PDF is a temporary verification artifact, not the published guide. Keep the local LibreOffice renderer described above installed on the publisher PC, or set `TEST2_SOFFICE` to its `soffice.exe` path.
+If guide build or verification fails, the staged worker output remains for retry and no partial guide update is pushed. The PDF is a temporary verification artifact, not the published guide. Keep the local LibreOffice renderer described above installed on the publisher PC, or set `TEST2_SOFFICE` to its `soffice.exe` path.
 
 To build a specific already-published guide update locally:
 
@@ -213,7 +203,7 @@ To build a specific already-published guide update locally:
 & "$env:LOCALAPPDATA\TEST2\python\python.exe" .\scripts\build-user-guide.py --ticket TEST2-123
 ```
 
-The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden `[[AUTO_GUIDE_CONTENT]]` marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. Existing published updates, such as TEST2-32, must be applied once manually if they were published before this automatic step was installed.
+The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. The local command above writes the tracked living guide; review the resulting Git diff before committing a manual rebuild.
 
 ### Ticket-driven guide decisions
 
@@ -239,4 +229,6 @@ Do not set `onlyForPassedEvidenceReviews` to `false`: validation rejects it so t
 ## Boundaries
 
 Do not upload credentials or authentication state. Do not change Jira from this repository. Do not change `criteria.md` during testing. Do not claim Passed without direct evidence. Keep the original GitHub report concise and record actual tester `steps_taken`.
+
+Current importer limitation: it requires a complete Jira search response (the workflow requests at most 100 issues). If Jira has more than 100 matching issues, import fails rather than silently importing a partial set. It also removes a local ticket folder when an issue is Done or absent from that complete response; that currently includes its QA history and reports. Do not use `tickets/` as the only archive for completed issues until retention is fixed.
 
