@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-29T05:19:08.644Z",
+  "generatedAt": "2026-09-29T05:34:30.325Z",
   "counts": {
     "tickets": 37,
     "handoffs": 0,
@@ -546,7 +546,7 @@
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-09-29T05:19:08.644Z",
+      "updatedAt": "2026-09-29T05:34:30.325Z",
       "retries": 1,
       "retryLimit": 3,
       "retryLabel": "Retry 1/3"
