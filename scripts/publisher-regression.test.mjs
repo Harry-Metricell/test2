@@ -50,9 +50,12 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', action: 'criteria_conversion' }] }));
     g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Ticket exists only remotely'); g(seed, 'push');
     const stage = path.join(desktop, '.agent-staging/handoff-TEST2-99-criteria');
-    write(path.join(stage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] Launcher is visible.', qaStatus: 'Ready for Testing', noOp: false }));
     const env = { ...process.env, TEST2_GIT: git, TEST2_REPO: desktop, TEST2_PUBLISHER_LOCK: path.join(root, 'publisher.lock'), TEST2_PUBLISHER_LOG: path.join(root, 'publisher.log'), TEST2_EVIDENCE: path.join(root, 'evidence') };
     const run = () => spawnSync(process.execPath, [publisher], { env, encoding: 'utf8', windowsHide: true });
+    write(path.join(stage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] During this flow, verify that no audit data is created or modified.', qaStatus: 'Ready for Testing', noOp: false }));
+    const badCriteria = run(); assert.equal(badCriteria.status, 1); assert.match(badCriteria.stderr, /not browser-testable/);
+    fs.rmSync(path.join(stage, 'publisher-error.json'), { force: true });
+    write(path.join(stage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] Launcher is visible.', qaStatus: 'Ready for Testing', noOp: false }));
     const first = run(); assert.equal(first.status, 0, first.stderr);
     g(seed, 'fetch');
     assert.equal(JSON.parse(g(seed, 'show', 'origin/main:tickets/TEST2-99/status.json')).criteriaVerified, true);
@@ -132,6 +135,17 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     write(path.join(numericReviewStage, 'review-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-review-numeric', handoffVersion: 'TEST2-99:evidence_review:1', ticket: 'TEST2-99', criterionOutcomes: [{ criterion: 1, outcome: 'Passed', reason: 'Visible.' }], overallOutcome: 'Passed', qaStatus: 'Evidence Reviewed', reportPath: '', evidenceFolder: '', noOp: false, reason: 'Numeric criterion fixture.' }));
     const numericReview = run(); assert.equal(numericReview.status, 1); assert.match(numericReview.stderr, /Cannot publish evidence review before tester results.json is present/);
     fs.rmSync(numericReviewStage, { recursive: true, force: true });
+
+    // The reviewer must name the same attempt as the live handoff and current
+    // results; a stale screenshot folder cannot be silently reported as current.
+    g(seed, 'fetch'); g(seed, 'reset', '--hard', 'origin/main');
+    write(path.join(seed, 'tickets/TEST2-99/results.json'), JSON.stringify([{ criterion: 'Launcher is visible.', outcome: 'Passed', evidence: ['screenshots/attempt-002/criterion-1-final.png'] }]));
+    write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-review-attempt-002', handoffVersion: 'TEST2-99:evidence_review:2', attempt: 2, ticket: 'TEST2-99', action: 'evidence_review' }] }));
+    g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue attempt-specific review'); g(seed, 'push');
+    const staleReviewStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-review-attempt-002');
+    write(path.join(staleReviewStage, 'review-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-review-attempt-002', handoffVersion: 'TEST2-99:evidence_review:2', ticket: 'TEST2-99', criterionOutcomes: [{ criterion: 1, outcome: 'Passed', reason: 'Visible.' }], overallOutcome: 'Passed', qaStatus: 'Evidence Reviewed', reportPath: '', evidenceFolder: path.join(root, 'evidence', 'TEST2-99', 'screenshots', 'attempt-001'), noOp: false, reason: '' }));
+    const staleReview = run(); assert.equal(staleReview.status, 1); assert.match(staleReview.stderr, /must identify the selected attempt-002 folder/);
+    fs.rmSync(staleReviewStage, { recursive: true, force: true });
 
     // Guide impact is accepted only after a passed evidence review with its PDF,
     // then becomes a durable, publishable ticket decision.

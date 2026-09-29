@@ -16,7 +16,7 @@ function Log([string]$Message) {
 function Resolve-Test2Git {
     $candidates = @()
     if ($env:TEST2_GIT) { $candidates += $env:TEST2_GIT }
-    $candidates += 'C:\Users\harry.piper\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd\git.exe'
+    $candidates += Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd\git.exe'
 
     $desktopRoot = Join-Path $env:LOCALAPPDATA 'GitHubDesktop'
     if (Test-Path -LiteralPath $desktopRoot) {

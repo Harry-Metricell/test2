@@ -94,3 +94,30 @@ test('an Unverified evidence review queues one retry and keeps its report', () =
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('a rejected ticket does not spend retries or churn status on polling', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-rejected-retry-'));
+  const dir = path.join(root, 'tickets', 'TEST2-99');
+  const write = (name, value) => {
+    const target = path.join(dir, name);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, JSON.stringify(value));
+  };
+  const run = () => execFileSync(process.execPath, [generator], { cwd: root, encoding: 'utf8' });
+  try {
+    write('ticket.json', { key: 'TEST2-99', fields: { summary: 'Rejected test', created: '2026-09-25T00:00:00Z', status: { name: 'Rejected' }, project: { key: 'TEST2' }, description: 'Acceptance Criteria:\nThe launcher is visible.' } });
+    write('status.json', { ticket: 'TEST2-99', jiraStatus: 'Rejected', qaStatus: 'Ready for Testing', workflowState: 'Retry Queued', qaOutcome: 'Blocked', retries: 1, retryLimit: 3, criteriaVerified: true });
+    write('history/attempt-002-test.json', { historyAttempt: 2, qaStatus: 'Blocked', results: [{ criterion: 1, outcome: 'Blocked' }] });
+    fs.writeFileSync(path.join(dir, 'criteria.md'), '- [ ] The launcher is visible.\n');
+    run();
+    const first = fs.readFileSync(path.join(dir, 'status.json'), 'utf8');
+    const generated = fs.readFileSync(path.join(root, 'status', 'tickets.json'), 'utf8');
+    run();
+    assert.equal(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'), first);
+    assert.equal(fs.readFileSync(path.join(root, 'status', 'tickets.json'), 'utf8'), generated);
+    assert.ok(JSON.parse(first).retries <= 1);
+    assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8')).handoffs.length, 0);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

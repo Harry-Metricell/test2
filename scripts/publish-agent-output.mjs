@@ -1,13 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
+import { criteriaQualityErrors } from './criteria-quality.mjs';
 import os from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
 const sourceRepo = path.resolve(process.env.TEST2_REPO || path.join(path.dirname(fileURLToPath(import.meta.url)), '..'));
 let repo = sourceRepo;
-const evidenceRoot = process.env.TEST2_EVIDENCE || 'C:\\Users\\harry.piper\\Documents\\V4-QA-evidence';
+const evidenceRoot = process.env.TEST2_EVIDENCE || path.join(os.homedir(), 'Documents', 'V4-QA-evidence');
 const stagingRoot = process.env.TEST2_STAGING_ROOT || path.join(repo, '.agent-staging');
 const publisherIndex = path.join(process.env.TEMP || '.', `test2-publisher-index-${process.pid}`);
 const publisherLock = process.env.TEST2_PUBLISHER_LOCK
@@ -89,7 +90,7 @@ function gitPath() {
   // Prefer GitHub Desktop's Git: its bundled credential manager is the one
   // authenticated by the user's Desktop sign-in and is available to the
   // unattended publisher task.
-  candidates.push('C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe');
+  candidates.push(path.join(os.homedir(), '.cache', 'codex-runtimes', 'codex-primary-runtime', 'dependencies', 'native', 'git', 'cmd', 'git.exe'));
   candidates.push('C:\\Program Files\\Git\\cmd\\git.exe', 'git');
   return candidates.find(candidate => candidate === 'git' || fs.existsSync(candidate)) || 'git';
 }
@@ -330,7 +331,7 @@ function validateTesterStatus(results, qaStatus) {
   }
 }
 function buildVerifiedReport(key, run, screenshots) {
-  const python = process.env.TEST2_PYTHON || 'C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe';
+  const python = process.env.TEST2_PYTHON || path.join(os.homedir(), '.cache', 'codex-runtimes', 'codex-primary-runtime', 'dependencies', 'python', 'python.exe');
   const template = process.env.TEST2_TEMPLATE || path.join(repo, 'assets', 'templates', 'Automated Test Case Template.docx');
   const builder = path.join(repo, 'scripts', 'build-evidence-report.py');
   const renderer = path.join(repo, 'scripts', 'render-docx-to-pdf.ps1');
@@ -363,7 +364,7 @@ function buildVerifiedReport(key, run, screenshots) {
 }
 
 function buildVerifiedUserGuide(key, run) {
-  const python = process.env.TEST2_PYTHON || 'C:\\Users\\harry.piper\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe';
+  const python = process.env.TEST2_PYTHON || path.join(os.homedir(), '.cache', 'codex-runtimes', 'codex-primary-runtime', 'dependencies', 'python', 'python.exe');
   const soffice = process.env.TEST2_SOFFICE || path.join(process.env.LOCALAPPDATA || '', 'TEST2', 'libreoffice', 'program', 'soffice.exe');
   if (!nonEmpty(soffice)) fail(`User-guide renderer is missing: ${soffice}`);
   const docx = path.join(repo, 'assets', 'user-guide', 'V4 User Guide.docx');
@@ -483,6 +484,8 @@ if (outputType === 'criteria-output.json') {
   }
   criteriaMarkdown = criteriaMarkdown.replace(/^-\s+(?!\[)/gm, '- [ ] ');
   if (!criteriaMarkdown.split(/\r?\n/).some((line) => line.startsWith('- [ ] '))) fail('criteriaMarkdown has no valid unchecked checklist bullets');
+  const qualityErrors = criteriaQualityErrors(criteriaMarkdown);
+  if (qualityErrors.length) fail(`criteriaMarkdown is not browser-testable: ${qualityErrors.join('; ')}`);
   ensurePath(path.join(ticketDir, 'criteria.md'));
   fs.writeFileSync(path.join(ticketDir, 'criteria.md'), criteriaMarkdown + '\n', 'utf8');
   status.qaStatus = output.qaStatus || 'Ready for Testing';
@@ -597,6 +600,20 @@ if (outputType === 'criteria-output.json') {
   let generatedDocx = path.join(run, 'report.docx');
   let generatedPdf = path.join(run, 'report.pdf');
   const results = readJson(path.join(ticketDir, 'results.json'));
+  const reviewedAttempt = Number(liveHandoff.attempt || output.handoffVersion.match(/:(\d+)$/)?.[1]);
+  if (!Number.isInteger(reviewedAttempt) || reviewedAttempt < 1) fail('Evidence review has no valid selected attempt');
+  const expectedAttemptName = `attempt-${String(reviewedAttempt).padStart(3, '0')}`;
+  const expectedEvidenceFolder = path.resolve(evidenceRoot, key, 'screenshots', expectedAttemptName);
+  if (path.resolve(String(output.evidenceFolder || '')) !== expectedEvidenceFolder) {
+    fail(`Evidence review must identify the selected ${expectedAttemptName} folder`);
+  }
+  const evidenceAttempts = new Set((Array.isArray(results) ? results : [])
+    .flatMap(item => Array.isArray(item?.evidence) ? item.evidence : [])
+    .map(file => String(file).match(/screenshots[\\/](attempt-\d+)[\\/]/i)?.[1])
+    .filter(Boolean));
+  if (evidenceAttempts.size && (evidenceAttempts.size !== 1 || !evidenceAttempts.has(expectedAttemptName))) {
+    fail('Evidence review results mix attempts or differ from the selected attempt');
+  }
   const evidencePath = (Array.isArray(results) ? results : [])
     .flatMap(item => Array.isArray(item?.evidence) ? item.evidence : [])
     .map(file => String(file))

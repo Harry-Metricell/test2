@@ -113,6 +113,8 @@ The Desktop sync task fast-forwards only `main` when it is not ahead of GitHub. 
 
 The report template is safely stored in Git at `assets/templates/Automated Test Case Template.docx`; the publisher uses it by default. Do not commit `.auth/user.json`, API keys, or other credentials.
 
+The evidence folder defaults to the current Windows user's `%USERPROFILE%\Documents\V4-QA-evidence`, not a named person's profile. Set `TEST2_EVIDENCE` on the publisher and reviewer host if evidence belongs elsewhere. The publisher likewise finds bundled Git and Python under the current user's profile; set `TEST2_GIT` or `TEST2_PYTHON` when using other installations. Reviewer tasks must use the same evidence root as the publisher.
+
 ### Reporting dependencies
 
 The publisher uses the pinned packages in `requirements-reporting.txt` to build evidence reports and verify their screenshots. The bundled Codex runtime already includes them. On another machine, install them into the Python selected by `TEST2_PYTHON` before enabling the publisher:

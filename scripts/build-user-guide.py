@@ -202,7 +202,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", default=".")
     parser.add_argument("--output")
-    parser.add_argument("--evidence-root", default=os.environ.get("TEST2_EVIDENCE", r"C:\Users\harry.piper\Documents\V4-QA-evidence"))
+    parser.add_argument("--evidence-root", default=os.environ.get("TEST2_EVIDENCE", str(Path.home() / "Documents" / "V4-QA-evidence")))
     parser.add_argument("--ticket", action="append", default=[])
     args = parser.parse_args()
     repo = Path(args.repo).resolve()

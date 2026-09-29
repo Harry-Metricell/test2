@@ -328,7 +328,9 @@ function normalizeTicket(dirName) {
   // another test attempt while the retry budget remains.
   const successfulReview = reviewHasReport
     && String(review?.overallOutcome || '').trim().toLowerCase() === 'passed';
-  if (!successfulReview) {
+  // Jira is the eligibility gate. A rejected ticket must not refresh its
+  // retry marker (and updatedAt) on every scheduled bundler run.
+  if (!successfulReview && jiraReadyForTesting(ticket)) {
     if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
     localStatus = {
       ...localStatus,
@@ -345,7 +347,7 @@ function normalizeTicket(dirName) {
   }
   // A previous publisher can leave blockedStage behind while a stale review status
   // remains. Treat that combination as a queued retry instead of suppressing work.
-  if (localStatus.blockedStage && localStatus.qaStatus !== 'Blocked' && retries < retryLimit) {
+  if (jiraReadyForTesting(ticket) && localStatus.blockedStage && localStatus.qaStatus !== 'Blocked' && retries < retryLimit) {
     localStatus = {
       ...localStatus,
       qaStatus: 'Ready for Testing',
