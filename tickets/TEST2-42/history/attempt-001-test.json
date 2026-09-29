@@ -1,0 +1,63 @@
+{
+  "handoffId": "handoff-TEST2-42-test-attempt-001",
+  "handoffVersion": "TEST2-42:test_ticket:1",
+  "ticket": "TEST2-42",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Starting on the V4 launcher at `/launcher`, selecting the Agentic AI launcher card opens the Agentic AI module view in the same browser session, with the module view rendered and no application error visible.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Opened the required V4 launcher route and waited for the launcher cards to render.",
+        "Selected the Open Agentic AI card.",
+        "Confirmed the Agentic AI module view rendered at /agentic-ai with map content and no application error visible."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/agentic-ai",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-before-open.png",
+        "screenshots/attempt-001/criterion-1-after-open.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ]
+    },
+    {
+      "criterion": "Starting from the open Agentic AI module view, using browser Back returns to the V4 launcher, and the GIS launcher card is visible.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Started from the rendered Agentic AI module view.",
+        "Used browser Back.",
+        "Confirmed the launcher returned and the Open GIS card was visible."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-back.png",
+        "screenshots/attempt-001/criterion-2-after-back.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ]
+    },
+    {
+      "criterion": "Starting on the V4 launcher after returning from Agentic AI, selecting the GIS launcher card opens the GIS map view in the same browser session, with map controls visible and no application error visible.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Started on the launcher after returning from Agentic AI.",
+        "Selected the Open GIS card.",
+        "Waited for the map to finish loading and confirmed the GIS map, layer list, map style, reset, and zoom controls were visible with no application error."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-open-gis.png",
+        "screenshots/attempt-001/criterion-3-after-open-gis.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ]
+    }
+  ],
+  "conciseReport": "## QA Test Results — TEST2-42\n\n- Agentic AI opened from the launcher in the same browser session.\n- Browser Back returned to the launcher with the GIS card visible.\n- GIS opened with the map and map controls visible.\n\nAll three acceptance criteria passed. Evidence is staged for review.",
+  "reportPath": "tickets/TEST2-42/results.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-42-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": null,
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-29T14:05:40.651Z"
+}
