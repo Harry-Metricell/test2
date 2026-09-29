@@ -40,7 +40,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-41-guide-impact",
+      "handoffVersion": "TEST2-41:guide_impact_assessment:1",
+      "ticket": "TEST2-41",
+      "decision": "update_required",
+      "affectedSection": "Launcher navigation to API Request Audit and Dashboards",
+      "reason": "The verified behavior introduces user-visible navigation from the launcher to API Request Audit and the Dashboards placeholder, including the available Back controls and the Dashboards under-construction state. Users need guidance for these navigation paths and visible states.",
+      "noOp": false,
+      "assessedAt": "2026-09-29T14:16:38.229Z"
+    },
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
