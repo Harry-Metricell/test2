@@ -1,0 +1,1 @@
+**TEST2-39 — Blocked.** The first API Request Audit view loaded without an application error. Subsequent launcher navigation redirected to the SmartTools Authenticate sign-in page, blocking the browser Back and second-visit checks. No sign-in interaction was attempted.
