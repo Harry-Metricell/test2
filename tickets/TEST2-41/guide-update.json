@@ -1,0 +1,23 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-41-guide-update",
+  "handoffVersion": "TEST2-41:guide_update_authoring:1",
+  "ticket": "TEST2-41",
+  "title": "Navigate from API Request Audit to the Dashboards placeholder",
+  "affectedSection": "Launcher navigation to API Request Audit and Dashboards",
+  "changeType": "add",
+  "steps": [
+    "Open the launcher and select API Request Audit.",
+    "Use the browser Back control to return to the launcher.",
+    "Select Dashboards from the launcher.",
+    "View the Under construction message and select Back to Launcher when you want to return."
+  ],
+  "screenshots": [
+    "screenshots/attempt-001/criterion-1-after-open.png",
+    "screenshots/attempt-001/criterion-2-after-back.png",
+    "screenshots/attempt-001/criterion-3-after-open.png"
+  ],
+  "reason": "Document the verified launcher paths to API Request Audit and the Dashboards placeholder, including the available return controls and under-construction state.",
+  "noOp": false,
+  "authoredAt": "2026-09-29T14:21:38.657Z"
+}
