@@ -1,0 +1,65 @@
+{
+  "handoffId": "handoff-TEST2-41-test-attempt-001",
+  "handoffVersion": "TEST2-41:test_ticket:1",
+  "ticket": "TEST2-41",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Starting on the launcher, select API Request Audit and verify that its dashboard or request explorer is displayed without an application error.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened the launcher and verified the API Request Audit card was visible.",
+        "Selected API Request Audit.",
+        "Verified the dashboard, request explorer, request summary metrics, and data table displayed without an application error."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-29T14%3A00%3A04.203Z&startUtc=2026-09-28T14%3A00%3A04.203Z&live=true",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-before-open.png",
+        "screenshots/attempt-001/criterion-1-after-open.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "Starting on the API Request Audit page, use the browser Back control and verify that the launcher is displayed with the Dashboards card visible.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened the launcher and verified the Dashboards card was visible.",
+        "Selected API Request Audit and verified its page loaded.",
+        "Used browser Back and verified the launcher returned with the Dashboards card visible."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-api-page.png",
+        "screenshots/attempt-001/criterion-2-before-back.png",
+        "screenshots/attempt-001/criterion-2-after-back.png"
+      ],
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "Starting on the launcher with the Dashboards card visible, select Dashboards and verify that the placeholder displays the \"Under construction\" message and a \"Back to Launcher\" control without an application error.",
+      "status": "Passed",
+      "steps_taken": [
+        "Opened the launcher and verified the Dashboards card was visible.",
+        "Selected Dashboards.",
+        "Verified the placeholder displayed \"Under construction\" and the \"Back to Launcher\" control without an application error."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/dashboards",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-after-open.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "outcome": "Passed"
+    }
+  ],
+  "conciseReport": "## Test results\n- **Passed:** API Request Audit opened from the launcher and displayed its dashboard and request explorer without an application error.\n- **Passed:** Browser Back returned to the launcher with the Dashboards card visible.\n- **Passed:** Dashboards displayed the Under construction message and Back to Launcher control without an application error.\n\nEvidence is staged for review.",
+  "reportPath": "tickets/TEST2-41/results.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-41-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-29T14:02:47.887Z"
+}
