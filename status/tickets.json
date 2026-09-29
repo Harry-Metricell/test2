@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-29T14:01:41.423+0100",
+  "generatedAt": "2026-09-29T16:20:09.454+0100",
   "counts": {
-    "tickets": 41,
-    "handoffs": 0,
+    "tickets": 42,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 20,
-      "Ready": 20,
+      "Ready": 21,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 11,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 23,
       "Unverified": 4
     }
@@ -531,6 +531,22 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-29T14:01:41.423+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-43",
+      "summary": "Open Dashboards from the V4 launcher and return",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-29T16:20:09.454+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""
