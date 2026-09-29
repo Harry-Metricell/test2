@@ -58,7 +58,7 @@ function readJson(file, fallback = REQUIRED_JSON) {
 function writeJson(file, value) {
   const body = `${JSON.stringify(value, null, 2)}\n`;
   if (checkOnly) {
-    if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== body) {
+    if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8').replace(/\r\n?/g, '\n') !== body) {
       throw new Error(`${path.relative(root, file)} is not up to date; run npm run generate`);
     }
     return;
@@ -70,7 +70,7 @@ function writeJson(file, value) {
 function writeText(file, value) {
   const body = value.endsWith('\n') ? value : `${value}\n`;
   if (checkOnly) {
-    if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== body) {
+    if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8').replace(/\r\n?/g, '\n') !== body) {
       throw new Error(`${path.relative(root, file)} is not up to date; run npm run generate`);
     }
     return;

@@ -35,7 +35,7 @@ jobs:
       - name: Validate generated criteria
         run: node scripts/check-criteria.mjs
 
-      - name: Commit status only
+      - name: Commit generated status and ticket summaries
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
@@ -44,7 +44,7 @@ jobs:
             git reset --hard origin/main
             node scripts/generate-status.mjs
             node scripts/check-criteria.mjs
-            git add status tickets/*/status.json
+            git add status tickets/*/status.json tickets/*/ticket.md
             if git diff --cached --quiet; then
               exit 0
             fi

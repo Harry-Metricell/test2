@@ -121,3 +121,37 @@ test('a rejected ticket does not spend retries or churn status on polling', () =
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('generated-status check accepts Windows CRLF checkout files', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-status-crlf-'));
+  const ticketDir = path.join(root, 'tickets', 'TEST2-99');
+  try {
+    fs.mkdirSync(ticketDir, { recursive: true });
+    fs.writeFileSync(path.join(ticketDir, 'ticket.json'), JSON.stringify({
+      key: 'TEST2-99', fields: {
+        summary: 'Check launcher', created: '2026-09-25T00:00:00Z',
+        status: { name: 'READY FOR TESTING' }, project: { key: 'TEST2' },
+        description: 'Acceptance Criteria:\nThe launcher is visible.'
+      }
+    }));
+    fs.writeFileSync(path.join(ticketDir, 'criteria.md'), '- [ ] The launcher is visible.\n');
+    fs.writeFileSync(path.join(ticketDir, 'status.json'), JSON.stringify({
+      ticket: 'TEST2-99', jiraStatus: 'READY FOR TESTING', qaStatus: 'Ready for Testing',
+      criteriaVerified: true, retries: 0, retryLimit: 3
+    }));
+    execFileSync(process.execPath, [generator], { cwd: root });
+    const generated = [
+      path.join(root, 'status', 'ticket-status.md'),
+      path.join(root, 'status', 'tickets.json'),
+      path.join(root, 'status', 'handoffs.json'),
+      path.join(root, 'status', 'generated', 'TEST2-99.json'),
+      path.join(ticketDir, 'ticket.md')
+    ];
+    for (const file of generated) {
+      fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace(/\n/g, '\r\n'));
+    }
+    assert.doesNotThrow(() => execFileSync(process.execPath, [generator, '--check'], { cwd: root }));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

@@ -25,4 +25,4 @@ jobs:
         run: node scripts/check-criteria.mjs
 
       - name: Check generated status
-        run: npm run check
+        run: node scripts/generate-status.mjs --check
