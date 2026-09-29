@@ -29,7 +29,7 @@
   "status": {
     "jiraStatus": "Rejected",
     "workflowState": "Blocked",
-    "qaStatus": "Ready for Testing",
+    "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
@@ -37,7 +37,7 @@
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 1,
+    "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-29T08:25:21.674Z",
     "criteriaVerified": true

@@ -36,7 +36,7 @@ Updated: 2026-09-29T08:25:21.674Z
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 3/3 | Verify GIS layer and map view controls |
 | TEST2-8 | Rejected | Awaiting Evidence Review | Retry 3/3 | Preserve map context when switching GIS panels |
-| TEST2-9 | Rejected | Ready for Testing | Retry 1/3 | Retain selected coverage after returning to the map |
+| TEST2-9 | Rejected | Blocked |  | Retain selected coverage after returning to the map |
 | TEST2-14 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 1 |
 | TEST2-15 | Rejected | Ready for Testing | Retry 1/3 | Clean pipeline test 2 |
 | TEST2-17 | Rejected | Awaiting Evidence Review | Retry 3/3 | Clean pipeline test 4 |
