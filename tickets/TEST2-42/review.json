@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-42-review-attempt-001",
+  "handoffVersion": "TEST2-42:evidence_review:1",
+  "ticket": "TEST2-42",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting on the V4 launcher at `/launcher`, selecting the Agentic AI launcher card opens the Agentic AI module view in the same browser session, with the module view rendered and no application error visible.",
+      "outcome": "Passed",
+      "reason": "The attempt-001 final screenshot shows the Agentic AI module view rendered with map content and no visible application error. The result's browserUrl is on the expected V4 host."
+    },
+    {
+      "criterion": "Starting from the open Agentic AI module view, using browser Back returns to the V4 launcher, and the GIS launcher card is visible.",
+      "outcome": "Passed",
+      "reason": "The attempt-001 final screenshot shows the V4 Launcher with the GIS card visible. The result's browserUrl is the V4 launcher URL."
+    },
+    {
+      "criterion": "Starting on the V4 launcher after returning from Agentic AI, selecting the GIS launcher card opens the GIS map view in the same browser session, with map controls visible and no application error visible.",
+      "outcome": "Passed",
+      "reason": "The attempt-001 final screenshot shows the GIS map view and layer list/map controls, with no visible application error. The result's browserUrl is on the expected V4 host."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-42\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
