@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-39",
+  "id": "106333",
+  "summary": "Reopen API Request Audit after returning to the V4 launcher",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-39",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-29T10:03:56.554+0100",
+    "updated": "2026-09-29T10:04:25.558+0100"
+  },
+  "description": "Small V4 navigation regression test. Start at https://o2intelligence-v4-dev.metricell.com/launcher and sign in if prompted. Open API Request Audit, use the browser Back control to return to the launcher, then open API Request Audit again in the same browser session. The page should load without an application error on both visits, and the launcher should be visible between them.\nTest scope: this is a read-only navigation check. Do not create or modify audit data while testing.\nCapture browser evidence of the first module view, the intermediate launcher, and the second module view, including the browser URL.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-39/ticket.json",
+    "criteria": "tickets/TEST2-39/criteria.md",
+    "status": "tickets/TEST2-39/status.json",
+    "screenshots": "tickets/TEST2-39/screenshots/",
+    "reports": "tickets/TEST2-39/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106333",
+    "importedAt": "2026-09-29T10:04:25.558+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-29T10:04:25.558+0100",
+    "criteriaVerified": false
+  }
+}

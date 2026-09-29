@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-29T08:25:21.674Z",
+  "generatedAt": "2026-09-29T10:04:25.558+0100",
   "counts": {
-    "tickets": 37,
-    "handoffs": 0,
+    "tickets": 38,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 20,
-      "Ready": 16,
+      "Ready": 17,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 11,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 19,
       "Unverified": 4
     }
@@ -470,6 +470,22 @@
       "retries": 3,
       "retryLimit": 3,
       "retryLabel": "Retry 3/3"
+    },
+    {
+      "key": "TEST2-39",
+      "summary": "Reopen API Request Audit after returning to the V4 launcher",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-29T10:04:25.558+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",
