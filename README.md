@@ -8,6 +8,8 @@ The system keeps durable QA state in GitHub and uses Codex only for authenticate
 
 1. The scheduled importer reads Jira and saves ticket snapshots under `tickets/<KEY>/ticket.json`; it does not write to Jira.
 2. Status Bundler creates `status/handoffs.json` from the imported tickets and published QA artifacts. A criteria worker checks or rewrites the criteria for each eligible ticket before testing.
+   Tickets marked Done or absent from a complete Jira import move to `archive/tickets/<KEY>/` with their history and reports intact. They disappear from active status/site projections and return to `tickets/<KEY>/` if reopened in Jira. A partial Jira response never triggers archiving.
+   If the complete Jira source is genuinely too ambiguous to make testable criteria, a Blocked criteria decision records the reason and holds the ticket for manual clarification. It does not consume a tester retry or dispatch the same criteria handoff again until Jira changes.
 3. A fresh coordinator chat reads the live GitHub brief and dispatches criteria, tester, evidence-review, and (after a Passed review) user-guide workers in stage order.
 4. Workers stage JSON and browser PNGs in the Desktop checkout's ignored `.agent-staging/<handoffId>/` folder. They do not publish permanent ticket files directly.
 5. The local publisher validates staged output, copies screenshots and reports to the private evidence folder, and pushes ticket-scoped results from a clean temporary Git worktree.
@@ -159,7 +161,7 @@ Configure Codex using a private saved Playwright login. The installer copies it 
 powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.ps1 -ImportStorageState "C:\path\to\private\user.json"
 ```
 
-Restart the Codex desktop app after installation. New tester tasks should expose Playwright browser tools including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`. The TEST2 Playwright launcher refreshes the private login before each new isolated browser server starts, using the approved email-and-Continue step if needed. If refresh fails, the server stops with a clear error instead of asking a tester to repeat a click that the approval gate may reject. If the tools are absent, check the Codex MCP configuration and restart first.
+Restart the Codex desktop app after installation. New tester tasks should expose Playwright browser tools including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`. The TEST2 Playwright launcher refreshes the private login before each new isolated browser server starts. A page hook also handles an approved V4 email-and-Continue redirect in the active tester browser and saves the refreshed session. Testers wait briefly and retry the launcher once; they never operate sign-in controls. External identity-provider or repeated redirects still require human sign-in. If startup refresh fails, the server stops with a clear error. If the tools are absent, check the Codex MCP configuration and restart first.
 
 When the saved V4 session expires, refresh it through the dedicated private browser flow rather than an ordinary browser window:
 
@@ -237,5 +239,5 @@ Do not set `onlyForPassedEvidenceReviews` to `false`: validation rejects it so t
 
 Do not upload credentials or authentication state. Do not change Jira from this repository. Do not change `criteria.md` during testing. Do not claim Passed without direct evidence. Keep the original GitHub report concise and record actual tester `steps_taken`.
 
-Current importer limitation: it requires a complete Jira search response (the workflow requests at most 100 issues). If Jira has more than 100 matching issues, import fails rather than silently importing a partial set. It also removes a local ticket folder when an issue is Done or absent from that complete response; that currently includes its QA history and reports. Do not use `tickets/` as the only archive for completed issues until retention is fixed.
+Current importer limitation: it requires a complete Jira search response (the workflow requests at most 100 issues). If Jira has more than 100 matching issues, import fails rather than silently importing a partial set. Done or absent tickets are retained under `archive/tickets/`, including their QA history and reports; the active tracker reads only `tickets/`.
 

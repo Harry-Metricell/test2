@@ -155,3 +155,45 @@ test('generated-status check accepts Windows CRLF checkout files', () => {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('blocked criteria require manual review until the Jira issue changes', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-criteria-block-'));
+  const dir = path.join(root, 'tickets', 'TEST2-99');
+  const ticket = updated => ({ key: 'TEST2-99', fields: {
+    summary: 'Ambiguous request', updated, status: { name: 'Ready for Testing' },
+    project: { key: 'TEST2' }, description: 'Unclear behaviour.'
+  } });
+  const run = () => execFileSync(process.execPath, [generator], { cwd: root });
+  try {
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify(ticket('v1')));
+    fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify({
+      ticket: 'TEST2-99', qaStatus: 'Blocked', criteriaVerified: false,
+      blockedStage: 'criteria', criteriaBlockReason: 'Which screen?',
+      criteriaBlockedForJiraUpdated: 'v1', retries: 0, retryLimit: 3
+    }));
+    run();
+    run();
+    const status = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
+    const summary = JSON.parse(fs.readFileSync(path.join(root, 'status', 'tickets.json'), 'utf8'));
+    assert.equal(status.retries, 0);
+    assert.equal(summary.tickets[0].qaStatus, 'Blocked');
+    assert.match(summary.tickets[0].nextAction, /Which screen/);
+    assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8')).handoffs.length, 0);
+    // Historical tester artifacts cannot override a newer criteria hold.
+    fs.mkdirSync(path.join(dir, 'history'));
+    fs.writeFileSync(path.join(dir, 'history', 'attempt-001-test.json'), JSON.stringify({ historyAttempt: 1, qaStatus: 'Blocked', results: [{ outcome: 'Blocked' }] }));
+    fs.writeFileSync(path.join(dir, 'review.json'), JSON.stringify({ historyAttempt: 1, overallOutcome: 'Blocked', qaStatus: 'Blocked' }));
+    fs.writeFileSync(path.join(dir, 'report.pdf'), 'prior report');
+    run();
+    assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'status', 'tickets.json'), 'utf8')).tickets[0].qaStatus, 'Blocked');
+    assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8')).handoffs.length, 0);
+    fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify(ticket('v2')));
+    run();
+    const handoffs = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8')).handoffs;
+    assert.equal(handoffs[0]?.action, 'criteria_conversion');
+    assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 0);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

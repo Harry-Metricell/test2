@@ -47,6 +47,7 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     g(desktop, 'config', 'user.name', 'Publisher Test'); g(desktop, 'config', 'user.email', 'test@example.invalid');
     write(path.join(desktop, 'README.md'), 'user edit must survive\n');
     write(path.join(seed, 'tickets/TEST2-99/status.json'), JSON.stringify({ ticket: 'TEST2-99', retries: 0, jiraStatus: 'READY FOR TESTING' }));
+    write(path.join(seed, 'tickets/TEST2-99/ticket.json'), JSON.stringify({ key: 'TEST2-99', fields: { updated: '2026-09-29T10:00:00Z' } }));
     write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', action: 'criteria_conversion' }] }));
     g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Ticket exists only remotely'); g(seed, 'push');
     const stage = path.join(desktop, '.agent-staging/handoff-TEST2-99-criteria');
@@ -55,6 +56,16 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     write(path.join(stage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] During this flow, verify that no audit data is created or modified.', qaStatus: 'Ready for Testing', noOp: false }));
     const badCriteria = run(); assert.equal(badCriteria.status, 1); assert.match(badCriteria.stderr, /not browser-testable/);
     fs.rmSync(path.join(stage, 'publisher-error.json'), { force: true });
+    write(path.join(stage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] Launcher is visible.', qaStatus: 'Evidence Reviewed', noOp: false }));
+    const invalidCriteriaStatus = run(); assert.equal(invalidCriteriaStatus.status, 1); assert.match(invalidCriteriaStatus.stderr, /Criteria qaStatus must be/);
+    fs.rmSync(path.join(stage, 'publisher-error.json'), { force: true });
+    write(path.join(stage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', criteriaMarkdown: '', qaStatus: 'Blocked', reason: 'Specify which screen should change.', noOp: false }));
+    const blockedCriteria = run(); assert.equal(blockedCriteria.status, 0, blockedCriteria.stderr);
+    g(seed, 'fetch');
+    const blockedStatus = JSON.parse(g(seed, 'show', 'origin/main:tickets/TEST2-99/status.json'));
+    assert.equal(blockedStatus.criteriaVerified, false);
+    assert.equal(blockedStatus.criteriaBlockedForJiraUpdated, '2026-09-29T10:00:00Z');
+    assert.match(blockedStatus.criteriaBlockReason, /which screen/i);
     write(path.join(stage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] Launcher is visible.', qaStatus: 'Ready for Testing', noOp: false }));
     const first = run(); assert.equal(first.status, 0, first.stderr);
     g(seed, 'fetch');

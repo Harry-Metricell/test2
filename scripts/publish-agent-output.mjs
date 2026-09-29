@@ -473,26 +473,41 @@ if (output.handoffId && !String(output.handoffId).startsWith(`handoff-${key}-`))
 
 const changed = [];
 if (outputType === 'criteria-output.json') {
-  if (typeof output.criteriaMarkdown !== 'string' || !output.criteriaMarkdown.trim()) fail('criteriaMarkdown is missing');
-  let criteriaMarkdown = output.criteriaMarkdown.trim();
-  criteriaMarkdown = criteriaMarkdown.replace(/\\n/g, '\n');
-  // Convert an unambiguous numbered list into the required unchecked
-  // checklist format. Prose that is not a list remains rejected below.
-  criteriaMarkdown = criteriaMarkdown.replace(/^\s*\d+[.)]\s+/gm, '- [ ] ');
-  if (!/Generated from Jira acceptance criteria|Generated from Jira description|Source: Jira description|Converted from the complete Jira ticket source|Generated from the Jira ticket source/i.test(criteriaMarkdown)) {
-    criteriaMarkdown = '<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->\n\n' + criteriaMarkdown;
+  if (!['Ready for Testing', 'Blocked'].includes(output.qaStatus)) fail('Criteria qaStatus must be Ready for Testing or Blocked');
+  if (output.qaStatus === 'Blocked') {
+    if (typeof output.reason !== 'string' || !output.reason.trim()) fail('Blocked criteria require a reason for manual review');
+    status.qaStatus = 'Blocked';
+    status.criteriaVerified = false;
+    status.blockedStage = 'criteria';
+    status.criteriaBlockReason = output.reason.trim();
+    status.criteriaBlockedForJiraUpdated = JSON.parse(fs.readFileSync(path.join(ticketDir, 'ticket.json'), 'utf8')).fields?.updated || null;
+    status.nextAction = 'Manual criteria review required: clarify Jira ticket, then update it';
+    writeJson(statusFile, status);
+    changed.push(`tickets/${key}/status.json`);
+  } else {
+    if (typeof output.criteriaMarkdown !== 'string' || !output.criteriaMarkdown.trim()) fail('criteriaMarkdown is missing');
+    let criteriaMarkdown = output.criteriaMarkdown.trim();
+    criteriaMarkdown = criteriaMarkdown.replace(/\\n/g, '\n');
+    // Convert an unambiguous numbered list into the required unchecked
+    // checklist format. Prose that is not a list remains rejected below.
+    criteriaMarkdown = criteriaMarkdown.replace(/^\s*\d+[.)]\s+/gm, '- [ ] ');
+    if (!/Generated from Jira acceptance criteria|Generated from Jira description|Source: Jira description|Converted from the complete Jira ticket source|Generated from the Jira ticket source/i.test(criteriaMarkdown)) {
+      criteriaMarkdown = '<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->\n\n' + criteriaMarkdown;
+    }
+    criteriaMarkdown = criteriaMarkdown.replace(/^-\s+(?!\[)/gm, '- [ ] ');
+    if (!criteriaMarkdown.split(/\r?\n/).some((line) => line.startsWith('- [ ] '))) fail('criteriaMarkdown has no valid unchecked checklist bullets');
+    const qualityErrors = criteriaQualityErrors(criteriaMarkdown);
+    if (qualityErrors.length) fail(`criteriaMarkdown is not browser-testable: ${qualityErrors.join('; ')}`);
+    ensurePath(path.join(ticketDir, 'criteria.md'));
+    fs.writeFileSync(path.join(ticketDir, 'criteria.md'), criteriaMarkdown + '\n', 'utf8');
+    status.qaStatus = 'Ready for Testing';
+    status.criteriaVerified = true;
+    status.blockedStage = null;
+    delete status.criteriaBlockReason;
+    delete status.criteriaBlockedForJiraUpdated;
+    writeJson(statusFile, status);
+    changed.push(`tickets/${key}/criteria.md`, `tickets/${key}/status.json`);
   }
-  criteriaMarkdown = criteriaMarkdown.replace(/^-\s+(?!\[)/gm, '- [ ] ');
-  if (!criteriaMarkdown.split(/\r?\n/).some((line) => line.startsWith('- [ ] '))) fail('criteriaMarkdown has no valid unchecked checklist bullets');
-  const qualityErrors = criteriaQualityErrors(criteriaMarkdown);
-  if (qualityErrors.length) fail(`criteriaMarkdown is not browser-testable: ${qualityErrors.join('; ')}`);
-  ensurePath(path.join(ticketDir, 'criteria.md'));
-  fs.writeFileSync(path.join(ticketDir, 'criteria.md'), criteriaMarkdown + '\n', 'utf8');
-  status.qaStatus = output.qaStatus || 'Ready for Testing';
-  status.criteriaVerified = output.qaStatus !== 'Blocked';
-  status.blockedStage = output.qaStatus === 'Blocked' ? 'criteria' : null;
-  writeJson(statusFile, status);
-  changed.push(`tickets/${key}/criteria.md`, `tickets/${key}/status.json`);
 } else if (outputType === 'test-output.json') {
   if (!output.results || typeof output.results !== 'object') fail('results is missing');
   if (typeof output.conciseReport !== 'string') fail('conciseReport is missing');

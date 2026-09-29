@@ -139,25 +139,30 @@ function mergeStatus(ticket, localStatus) {
   const workflowState = statusRank(localState) <= statusRank(jiraState) ? localState : jiraState;
   const retries = Number(localStatus.retries || 0);
   const retryLimit = Number(localStatus.retryLimit || 3);
+  const criteriaBlocked = localStatus.criteriaVerified !== true
+    && localStatus.blockedStage === 'criteria'
+    && (localStatus.criteriaBlockedForJiraUpdated || null) === (ticket.jira.updated || null);
   const qaStatus = localStatus.criteriaVerified !== true
-    ? 'Criteria Check Required'
+    ? (criteriaBlocked ? 'Blocked' : 'Criteria Check Required')
     : localStatus.qaStatus && localStatus.qaStatus !== 'Not Tested'
       ? localStatus.qaStatus
       : (criteriaReady(ticket) ? 'Ready for Testing' : (ticket.acceptanceCriteria.length ? 'Ready for Testing' : 'Criteria Review Required'));
   const jiraReady = jiraReadyForTesting(ticket);
   const jiraGateBlocked = !jiraReady && ['Ready for Testing', 'Awaiting Evidence Review', 'Blocked'].includes(qaStatus);
-  const projectedWorkflowState = jiraGateBlocked ? 'Blocked' : workflowState;
+  const projectedWorkflowState = criteriaBlocked || jiraGateBlocked ? 'Blocked' : workflowState;
   const retryExhausted = retries >= retryLimit && ['blocked', 'failed', 'unverified'].includes(String(localStatus.qaOutcome || localStatus.outcome || '').trim().toLowerCase());
   const finalReviewPending = qaStatus === 'Awaiting Evidence Review' && localStatus.blockedStage === 'evidence_review';
-  const nextAction = finalReviewPending
+  const nextAction = criteriaBlocked
+    ? `Manual criteria review required: ${localStatus.criteriaBlockReason || 'clarify the Jira ticket'}`
+    : (qaStatus === 'Criteria Check Required' || qaStatus === 'Criteria Review Required')
+      ? 'Create criteria conversion handoff'
+    : finalReviewPending
     ? 'Create final evidence review handoff'
     : retryExhausted
     ? 'Manual review required after retry limit'
     : qaStatus === 'Evidence Reviewed'
     ? 'QA review complete'
-    : (qaStatus === 'Criteria Check Required' || qaStatus === 'Criteria Review Required')
-      ? 'Create criteria conversion handoff'
-      : projectedWorkflowState === 'Retry Queued'
+    : projectedWorkflowState === 'Retry Queued'
       ? (jiraReady ? `Retry ${retries}/${retryLimit} queued; coordinator will start tester` : 'Waiting for Jira status: READY FOR TESTING')
       : jiraGateBlocked
         ? 'Waiting for Jira status: READY FOR TESTING'
@@ -178,7 +183,7 @@ function mergeStatus(ticket, localStatus) {
     guideImpact: localStatus.guideImpact || null,
     guideUpdate: localStatus.guideUpdate || null,
     retries,
-    blockedStage: localStatus.blockedStage || null,
+    blockedStage: criteriaBlocked ? 'criteria' : (localStatus.blockedStage === 'criteria' ? null : localStatus.blockedStage || null),
     updatedAt: localStatus.updatedAt || ticket.jira.updated || ticket.source.importedAt || null,
     criteriaVerified: localStatus.criteriaVerified === true
   };
@@ -248,6 +253,9 @@ function normalizeTicket(dirName) {
     localStatus = { ...localStatus, jiraStatus: importedJiraStatus, status: importedJiraStatus };
     if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
   }
+  const criteriaHold = localStatus.criteriaVerified !== true
+    && localStatus.blockedStage === 'criteria'
+    && (localStatus.criteriaBlockedForJiraUpdated || null) === (ticket.jira.updated || null);
   const derivedOutcome = artifactOutcome(dir, localStatus);
   if (derivedOutcome) localStatus = { ...localStatus, qaOutcome: derivedOutcome };
   const review = readJson(path.join(dir, 'review.json'), null);
@@ -263,7 +271,7 @@ function normalizeTicket(dirName) {
   const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\d+)/i)?.[1] || 0);
   // A newer published test supersedes an older review.  A blocked final
   // attempt still needs evidence review so the user receives a report.
-  if (latestAttempt && latestNumber > reviewNumber) {
+  if (!criteriaHold && latestAttempt && latestNumber > reviewNumber) {
     const exhausted = Number(localStatus.retries || 0) >= Number(localStatus.retryLimit || 3);
     const needsFinalReview = exhausted;
     localStatus = {
@@ -281,7 +289,7 @@ function normalizeTicket(dirName) {
     && reviewNumber >= latestNumber
     && fs.existsSync(path.join(dir, 'report.pdf'))
     && fs.statSync(path.join(dir, 'report.pdf')).size > 0;
-  if (reviewHasReport) {
+  if (!criteriaHold && reviewHasReport) {
     const reviewBlocked = ['blocked', 'failed'].includes(String(review.overallOutcome || review.qaStatus || '').trim().toLowerCase());
     localStatus = {
       ...localStatus,
@@ -330,7 +338,7 @@ function normalizeTicket(dirName) {
     && String(review?.overallOutcome || '').trim().toLowerCase() === 'passed';
   // Jira is the eligibility gate. A rejected ticket must not refresh its
   // retry marker (and updatedAt) on every scheduled bundler run.
-  if (!successfulReview && jiraReadyForTesting(ticket)) {
+  if (localStatus.criteriaVerified === true && !successfulReview && jiraReadyForTesting(ticket)) {
     if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
     localStatus = {
       ...localStatus,
@@ -347,7 +355,7 @@ function normalizeTicket(dirName) {
   }
   // A previous publisher can leave blockedStage behind while a stale review status
   // remains. Treat that combination as a queued retry instead of suppressing work.
-  if (jiraReadyForTesting(ticket) && localStatus.blockedStage && localStatus.qaStatus !== 'Blocked' && retries < retryLimit) {
+  if (localStatus.criteriaVerified === true && jiraReadyForTesting(ticket) && localStatus.blockedStage && localStatus.qaStatus !== 'Blocked' && retries < retryLimit) {
     localStatus = {
       ...localStatus,
       qaStatus: 'Ready for Testing',
@@ -364,7 +372,7 @@ function normalizeTicket(dirName) {
     ['blocked', 'failed', 'unverified'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase())
     || String(latestAttempt?.qaStatus || '').trim().toLowerCase() === 'blocked'
   );
-  if (exhaustedFinalBlock) {
+  if (!criteriaHold && exhaustedFinalBlock) {
     localStatus = reviewHasReport
       ? {
           ...localStatus,
@@ -437,6 +445,7 @@ function handoffFor(ticket) {
   const guideUpdatePolicy = readJson(guideUpdatePolicyPath, { enabled: false, onlyForPassedEvidenceReviews: true });
   const guideImpact = readJson(path.join(ticketsDir, ticket.key, 'guide-impact.json'), null);
   const guideUpdate = readJson(path.join(ticketsDir, ticket.key, 'guide-update.json'), null);
+  if (ticket.status.criteriaVerified !== true && ticket.status.blockedStage === 'criteria') return null;
   if (ticket.status.criteriaVerified !== true) {
     return {
       handoffId: `handoff-${ticket.key}-criteria`,

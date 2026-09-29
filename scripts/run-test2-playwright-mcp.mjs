@@ -12,6 +12,7 @@ const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const staging = process.env.TEST2_STAGING_ROOT || path.join(repo, '.agent-staging');
 const cli = path.join(repo, 'node_modules', '@playwright', 'mcp', 'cli.js');
 const cliArgs = process.argv.slice(2);
+const authPageHook = path.join(repo, 'scripts', 'test2-auth-page.cjs');
 const storageStateIndex = cliArgs.indexOf('--storage-state');
 const storageState = storageStateIndex >= 0 ? cliArgs[storageStateIndex + 1] : null;
 
@@ -36,9 +37,10 @@ if (refresh.error || refresh.status !== 0) {
 }
 
 mkdirSync(staging, { recursive: true });
-const child = spawn(process.execPath, [cli, ...cliArgs], {
+const child = spawn(process.execPath, [cli, ...cliArgs, '--init-page', authPageHook], {
   cwd: staging,
   stdio: 'inherit',
+  env: { ...process.env, TEST2_AUTH_STATE: storageState },
   windowsHide: true
 });
 

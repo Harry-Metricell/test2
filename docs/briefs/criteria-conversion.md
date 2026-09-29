@@ -17,6 +17,6 @@ Separate product requirements from instructions to the QA/documentation pipeline
 Write one temporary output file to:
 `.agent-staging/<handoffId>/criteria-output.json`
 
-The JSON must contain: `handoffId`, `handoffVersion`, `ticket`, `criteriaMarkdown`, `qaStatus`, `noOp`, `reason`. Copy `handoffVersion` exactly from the selected live handoff. Set `qaStatus` to `Ready for Testing` only when valid criteria are produced; set it to `Blocked` when valid criteria cannot be produced. Do not modify permanent ticket files, Jira, screenshots, reports, credentials, or authentication state.
+The JSON must contain: `handoffId`, `handoffVersion`, `ticket`, `criteriaMarkdown`, `qaStatus`, `noOp`, `reason`. Copy `handoffVersion` exactly from the selected live handoff. Set `qaStatus` to `Ready for Testing` only when valid criteria are produced; set it to `Blocked` when valid criteria cannot be produced, leave `criteriaMarkdown` empty, and explain the missing information in `reason`. A blocked criteria decision creates a manual-review hold, not another criteria or tester handoff, until the Jira ticket changes. Do not modify permanent ticket files, Jira, screenshots, reports, credentials, or authentication state.
 
 Keep the full payload in the staged file. After writing it, return only a compact receipt containing `handoffId`, `ticket`, and `staged: true`. For a no-op or failure, return a compact reason. Do not repeat the criteria in chat or narrate routine tool calls; any host-required progress update must be one short sentence.
