@@ -1,0 +1,22 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-40-guide-update",
+  "handoffVersion": "TEST2-40:guide_update_authoring:1",
+  "ticket": "TEST2-40",
+  "title": "Navigate from GIS back to the launcher and into API Request Audit",
+  "affectedSection": "Navigating between GIS, the launcher, and API Request Audit",
+  "changeType": "add",
+  "steps": [
+    "Open GIS from the V4 launcher.",
+    "Use the browser Back control to return to the V4 launcher.",
+    "Open API Request Audit from its launcher card."
+  ],
+  "screenshots": [
+    "screenshots/attempt-001/criterion-1-after-open-gis.png",
+    "screenshots/attempt-001/criterion-2-after-back.png",
+    "screenshots/attempt-001/criterion-3-after-open-audit.png"
+  ],
+  "reason": "Document the verified navigation from GIS back to the launcher and onward to the API Request Audit dashboard.",
+  "noOp": false,
+  "authoredAt": "2026-09-29T14:22:38.132Z"
+}
