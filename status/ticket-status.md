@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-29T10:04:25.558+0100
+Updated: 2026-09-29T12:20:10.096Z
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -32,7 +32,7 @@ Updated: 2026-09-29T10:04:25.558+0100
 | TEST2-36 | READY FOR TESTING | Evidence Reviewed |  | Pan the V4 GIS base map and keep controls usable |
 | TEST2-37 | READY FOR TESTING | Evidence Reviewed |  | Reload the V4 Dashboards placeholder and return to launcher |
 | TEST2-38 | READY FOR TESTING | Blocked | Retry 3/3 | Open API Request Audit twice from the V4 launcher |
-| TEST2-39 | READY FOR TESTING | Ready for Testing |  | Reopen API Request Audit after returning to the V4 launcher |
+| TEST2-39 | READY FOR TESTING | Ready for Testing | Retry 1/3 | Reopen API Request Audit after returning to the V4 launcher |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 3/3 | Verify GIS layer and map view controls |
