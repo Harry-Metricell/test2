@@ -66,7 +66,7 @@ node --version
 4. Install the saved V4 browser login and Playwright MCP. You must provide the private `user.json` source path; it is deliberately not stored in GitHub:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.ps1 -ImportStorageState "C:\private-package\Framework\playwright\.auth\user.json"
+powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.ps1 -ImportStorageState "C:\path\to\private\user.json"
 ```
 
 Restart the Codex desktop app after this step. A tester task must then show the Playwright browser tools, including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`.
@@ -103,10 +103,17 @@ The evidence folder defaults to the current Windows user's `%USERPROFILE%\Docume
 
 ### Reporting dependencies
 
-The publisher uses the pinned packages in `requirements-reporting.txt` to build evidence reports and verify their screenshots. The bundled Codex runtime already includes them. On another machine, install them into the Python selected by `TEST2_PYTHON` before enabling the publisher:
+The publisher uses the pinned packages in `requirements-reporting.txt` to build evidence reports and verify their screenshots. It defaults to Codex's bundled Python; verify that interpreter has the packages on the target PC. If it does not, install them into the Python selected by `TEST2_PYTHON` (or into the bundled interpreter) before enabling the publisher:
 
 ```powershell
-python -m pip install -r .\requirements-reporting.txt
+$reportPython = if ($env:TEST2_PYTHON) { $env:TEST2_PYTHON } else { "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" }
+& $reportPython -c "import docx, PIL, pypdf"
+```
+
+Only if that import check fails, install the pinned requirements into the selected interpreter:
+
+```powershell
+& $reportPython -m pip install -r .\requirements-reporting.txt
 ```
 
 ### User-guide document renderer
@@ -149,7 +156,7 @@ Tester tasks use Playwright MCP so the browser that performs each action also wr
 Configure Codex using a private saved Playwright login. The installer copies it to `%LOCALAPPDATA%\TEST2\auth\user.json`, updates `%USERPROFILE%\.codex\config.toml`, and keeps a backup of the previous configuration:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.ps1 -ImportStorageState "C:\private-package\Framework\playwright\.auth\user.json"
+powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.ps1 -ImportStorageState "C:\path\to\private\user.json"
 ```
 
 Restart the Codex desktop app after installation. New tester tasks should expose Playwright browser tools including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`. The TEST2 Playwright launcher refreshes the private login before each new isolated browser server starts, using the approved email-and-Continue step if needed. If refresh fails, the server stops with a clear error instead of asking a tester to repeat a click that the approval gate may reject. If the tools are absent, check the Codex MCP configuration and restart first.
