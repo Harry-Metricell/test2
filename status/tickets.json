@@ -11,8 +11,8 @@
     },
     "byQaOutcome": {
       "Blocked": 11,
-      "Not Tested": 6,
-      "Passed": 20,
+      "Not Tested": 5,
+      "Passed": 21,
       "Unverified": 4
     }
   },
@@ -508,12 +508,12 @@
       "summary": "Navigate from API Request Audit to the Dashboards placeholder",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create evidence review handoff",
       "updatedAt": "2026-09-29T14:01:39.912+0100",
       "retries": 0,
       "retryLimit": 3,
