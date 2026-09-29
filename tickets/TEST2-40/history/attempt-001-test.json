@@ -1,0 +1,65 @@
+{
+  "handoffId": "handoff-TEST2-40-test-attempt-001",
+  "handoffVersion": "TEST2-40:test_ticket:1",
+  "ticket": "TEST2-40",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Starting at the V4 launcher, opening GIS displays the GIS map view and its visible controls without an application error.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the V4 launcher and confirmed the GIS module card was visible.",
+        "Opened GIS from the launcher.",
+        "Confirmed the GIS workspace header, map view, and visible map controls were present; the browser reported no console errors."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-before-open-gis.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ]
+    },
+    {
+      "criterion": "From the GIS view, using the browser Back control returns to the V4 launcher and displays the launcher module cards.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the V4 launcher and opened GIS to establish the required starting view.",
+        "Used the browser Back control.",
+        "Confirmed the launcher URL and the visible module cards, including GIS and API request audit."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-open-gis.png",
+        "screenshots/attempt-001/criterion-2-after-open-gis.png",
+        "screenshots/attempt-001/criterion-2-before-back.png",
+        "screenshots/attempt-001/criterion-2-after-back.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ]
+    },
+    {
+      "criterion": "From the V4 launcher after returning from GIS, opening API Request Audit displays its dashboard or request explorer without an application error.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Started from the launcher reached by browser Back from GIS.",
+        "Opened API request audit from its launcher card.",
+        "Confirmed the dashboard loaded with request metrics, charts, filters, and no browser console errors."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-29T14%3A02%3A06.704Z&startUtc=2026-09-28T14%3A02%3A06.704Z&live=true",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-open-audit.png",
+        "screenshots/attempt-001/criterion-3-after-open-audit.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ]
+    }
+  ],
+  "conciseReport": "## QA test attempt 1\n\n- Passed: GIS opens from the V4 launcher with its map view and controls visible.\n- Passed: Browser Back from GIS returns to the launcher with module cards visible.\n- Passed: API Request Audit opens from that launcher and displays its dashboard.\n\nEvidence is staged for review.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-40-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-29T14:04:01.771Z"
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "criterion": "Starting at the V4 launcher, opening GIS displays the GIS map view and its visible controls without an application error.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Navigated to the V4 launcher and confirmed the GIS module card was visible.",
+      "Opened GIS from the launcher.",
+      "Confirmed the GIS workspace header, map view, and visible map controls were present; the browser reported no console errors."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-open-gis.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ]
+  },
+  {
+    "criterion": "From the GIS view, using the browser Back control returns to the V4 launcher and displays the launcher module cards.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Navigated to the V4 launcher and opened GIS to establish the required starting view.",
+      "Used the browser Back control.",
+      "Confirmed the launcher URL and the visible module cards, including GIS and API request audit."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-open-gis.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-before-back.png",
+      "screenshots/attempt-001/criterion-2-after-back.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ]
+  },
+  {
+    "criterion": "From the V4 launcher after returning from GIS, opening API Request Audit displays its dashboard or request explorer without an application error.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started from the launcher reached by browser Back from GIS.",
+      "Opened API request audit from its launcher card.",
+      "Confirmed the dashboard loaded with request metrics, charts, filters, and no browser console errors."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-29T14%3A02%3A06.704Z&startUtc=2026-09-28T14%3A02%3A06.704Z&live=true",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-open-audit.png",
+      "screenshots/attempt-001/criterion-3-after-open-audit.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ]
+  }
+]
