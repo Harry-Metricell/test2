@@ -40,7 +40,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-40-guide-impact",
+      "handoffVersion": "TEST2-40:guide_impact_assessment:1",
+      "ticket": "TEST2-40",
+      "decision": "update_required",
+      "affectedSection": "Navigating between GIS, the launcher, and API Request Audit",
+      "reason": "The verified behavior requires users to return from GIS to the launcher with the browser Back control and then open API Request Audit. These cross-module navigation steps and the API Request Audit destination should be documented for end users.",
+      "noOp": false,
+      "assessedAt": "2026-09-29T14:15:38.196Z"
+    },
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
