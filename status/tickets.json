@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-29T14:01:41.423+0100",
   "counts": {
     "tickets": 41,
-    "handoffs": 2,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 20,
       "Ready": 20,
@@ -511,7 +511,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Navigate from API Request Audit to the Dashboards placeholder",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-29T14:01:39.912+0100",

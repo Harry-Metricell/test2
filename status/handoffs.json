@@ -22,27 +22,6 @@
         "path": "tickets/TEST2-40/guide-update.json",
         "schema": "v4-user-guide-update.v1"
       }
-    },
-    {
-      "handoffId": "handoff-TEST2-41-guide-update",
-      "handoffVersion": "TEST2-41:guide_update_authoring:1",
-      "action": "guide_update_authoring",
-      "brief": "docs/briefs/user-guide-authoring.md",
-      "owner": "guide-update-author",
-      "ticket": "TEST2-41",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-41/ticket.json",
-        "generated": "status/generated/TEST2-41.json",
-        "review": "tickets/TEST2-41/review.json",
-        "report": "tickets/TEST2-41/report.md",
-        "results": "tickets/TEST2-41/results.json",
-        "impact": "tickets/TEST2-41/guide-impact.json",
-        "policy": "config/user-guide-update-policy.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-41/guide-update.json",
-        "schema": "v4-user-guide-update.v1"
-      }
     }
   ]
 }
