@@ -1,45 +1,45 @@
 [
   {
     "criterion": "From the V4 launcher, open API Request Audit and verify that the module view loads without an application error.",
-    "outcome": "Passed",
+    "status": "Passed",
     "steps_taken": [
-      "Started at the V4 launcher with the authenticated session visible.",
-      "Opened API Request Audit using its launcher card.",
-      "Verified the API Request Audit heading, filters, request metrics, charts, and request table rendered without an application error."
+      "Opened the V4 launcher and confirmed the API Request Audit tile was available.",
+      "Opened API Request Audit and confirmed its dashboard, request metrics, charts, and request explorer loaded without an application error."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-29T11%3A43%3A11.647Z&startUtc=2026-09-28T11%3A43%3A11.647Z&live=true",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-29T12%3A22%3A40.438Z&startUtc=2026-09-28T12%3A22%3A40.438Z&live=true",
     "evidence": [
-      "screenshots/attempt-001/criterion-1-initial.png",
-      "screenshots/attempt-001/criterion-1-before-open.png",
-      "screenshots/attempt-001/criterion-1-after-open.png",
-      "screenshots/attempt-001/criterion-1-final.png"
-    ]
+      "screenshots/attempt-002/criterion-1-initial.png",
+      "screenshots/attempt-002/criterion-1-final.png"
+    ],
+    "outcome": "Passed"
   },
   {
     "criterion": "From the first API Request Audit view, use the browser Back control and verify that the V4 launcher is visible.",
-    "outcome": "Blocked",
+    "status": "Passed",
     "steps_taken": [
-      "Navigated to the required launcher route to prepare this criterion.",
-      "The browser redirected to the SmartTools Authenticate sign-in page before the launcher was available.",
-      "Stopped without interacting with the sign-in form."
+      "Started from the V4 launcher, opened API Request Audit, and confirmed the module view loaded.",
+      "Used the browser Back control and confirmed the V4 launcher was visible at the launcher URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login?returnUrl=%2Fauthenticate%2Fconnect%2Fauthorize%3Fclient_id%3Dmetricell-web%26redirect_uri%3Dhttps%253A%252F%252Fo2intelligence-v4-dev.metricell.com%252Fauth%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%26code_challenge%3DO05JNtP7kbeXkL5z_LnLUTNmGdwSg_uQhZzx4RmMTlQ%26code_challenge_method%3DS256%26nonce%3D639262810083907417.N2MxMmE1NDctMjIxYi00NDRlLThmNmQtZGJhMDI3NjE1ZjU2YjUyYmU1NGUtNjcwMi00ZjNkLWJhZDktMWE3OWMzYjhjZDFl%26state%3DCfDJ8GKZ6ZuSvWdNtgKEcldUMZDq_48p8-lZTlio-1Am3Y7RW-YA0YR00YYPJzMyJri0wxQ-I6tYW9MuW1-m2mmFrTGh7xx61Dgo-AUfJZcqjC9IbNvsq7a8xPFWCEQmmmT6vqtCQJeAoSyKg1_u3WEnhW7ylXAGOx7wPM4cqToe_LhGR5mnvVAed1-EpPX46DxDPpBQ4N02f6uHxyL4v47ZAV6EVwEOUXpMjc2ED5kncoqPrp_ZpJX15ORWccxN4YziTzL3hvKVt-mx7abFUxf1OlVWEdXmKRkfAxXCOechf09aAs7OB5khdP9qC71uivw3NnmIrglsLNGuxSaQwcjX4xqaI5YMwKMZr9Get0dvFCztrqF-ejV1XIw0u9KnrewXnGfhjaF9ioEbarlRMy_-Lc1eOCqn_EMl3a6XvWsO-JBL%26x-client-SKU%3DID_NET10_0%26x-client-ver%3D8.16.0.0",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "evidence": [
-      "screenshots/attempt-001/criterion-2-blocked.png"
+      "screenshots/attempt-002/criterion-2-initial.png",
+      "screenshots/attempt-002/criterion-2-before-back.png",
+      "screenshots/attempt-002/criterion-2-final.png"
     ],
-    "reason": "Authentication preflight failed during navigation to the launcher: the visible page was “Sign in - SmartTools Authenticate” with “Sign in securely to access the platform.” The browser Back action could not be tested."
+    "outcome": "Passed"
   },
   {
     "criterion": "From the launcher reached by the browser Back control, open API Request Audit again in the same browser session and verify that the module view loads without an application error.",
-    "outcome": "Blocked",
+    "status": "Passed",
     "steps_taken": [
-      "No criterion interaction was possible after the authentication preflight failure on the preceding criterion.",
-      "Captured the still-visible authentication page and stopped without interacting with the sign-in form."
+      "Captured the V4 launcher reached by browser Back in the same browser session.",
+      "Opened API Request Audit again and confirmed the dashboard metrics and request explorer loaded without an application error."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login?returnUrl=%2Fauthenticate%2Fconnect%2Fauthorize%3Fclient_id%3Dmetricell-web%26redirect_uri%3Dhttps%253A%252F%252Fo2intelligence-v4-dev.metricell.com%252Fauth%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%26code_challenge%3DO05JNtP7kbeXkL5z_LnLUTNmGdwSg_uQhZzx4RmMTlQ%26code_challenge_method%3DS256%26nonce%3D639262810083907417.N2MxMmE1NDctMjIxYi00NDRlLThmNmQtZGJhMDI3NjE1ZjU2YjUyYmU1NGUtNjcwMi00ZjNkLWJhZDktMWE3OWMzYjhjZDFl%26state%3DCfDJ8GKZ6ZuSvWdNtgKEcldUMZDq_48p8-lZTlio-1Am3Y7RW-YA0YR00YYPJzMyJri0wxQ-I6tYW9MuW1-m2mmFrTGh7xx61Dgo-AUfJZcqjC9IbNvsq7a8xPFWCEQmmmT6vqtCQJeAoSyKg1_u3WEnhW7ylXAGOx7wPM4cqToe_LhGR5mnvVAed1-EpPX46DxDPpBQ4N02f6uHxyL4v47ZAV6EVwEOUXpMjc2ED5kncoqPrp_ZpJX15ORWccxN4YziTzL3hvKVt-mx7abFUxf1OlVWEdXmKRkfAxXCOechf09aAs7OB5khdP9qC71uivw3NnmIrglsLNGuxSaQwcjX4xqaI5YMwKMZr9Get0dvFCztrqF-ejV1XIw0u9KnrewXnGfhjaF9ioEbarlRMy_-Lc1eOCqn_EMl3a6XvWsO-JBL%26x-client-SKU%3DID_NET10_0%26x-client-ver%3D8.16.0.0",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-09-29T12%3A24%3A03.766Z&startUtc=2026-09-28T12%3A24%3A03.766Z&live=true",
     "evidence": [
-      "screenshots/attempt-001/criterion-3-blocked.png"
+      "screenshots/attempt-002/criterion-3-initial.png",
+      "screenshots/attempt-002/criterion-3-final.png"
     ],
-    "reason": "The required authenticated launcher could not be reached because the browser remained on the SmartTools Authenticate sign-in page. The second module visit was not attempted."
+    "outcome": "Passed"
   }
 ]
