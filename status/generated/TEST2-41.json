@@ -1,0 +1,50 @@
+{
+  "key": "TEST2-41",
+  "id": "106405",
+  "summary": "Navigate from API Request Audit to the Dashboards placeholder",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-41",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-29T14:01:20.736+0100",
+    "updated": "2026-09-29T14:01:39.912+0100"
+  },
+  "description": "V4 read-only cross-module navigation check. Start at https://o2intelligence-v4-dev.metricell.com/launcher. Open API Request Audit, use the browser Back control to return to the launcher, then open Dashboards in the same browser session. Do not create or modify data.\nAcceptance criteria:\nAPI Request Audit opens from the launcher and shows its dashboard or request explorer without an application error.\nBrowser Back returns to the launcher with the Dashboards card visible.\nOpening Dashboards shows the current placeholder with its Under construction message and Back to Launcher control, without an application error.\nCapture browser evidence and the observed URL at each decisive state.",
+  "acceptanceCriteria": [
+    "API Request Audit opens from the launcher and shows its dashboard or request explorer without an application error.",
+    "Browser Back returns to the launcher with the Dashboards card visible.",
+    "Opening Dashboards shows the current placeholder with its Under construction message and Back to Launcher control, without an application error.",
+    "Capture browser evidence and the observed URL at each decisive state."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-41/ticket.json",
+    "criteria": "tickets/TEST2-41/criteria.md",
+    "status": "tickets/TEST2-41/status.json",
+    "screenshots": "tickets/TEST2-41/screenshots/",
+    "reports": "tickets/TEST2-41/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106405",
+    "importedAt": "2026-09-29T14:01:39.912+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-29T14:01:39.912+0100",
+    "criteriaVerified": false
+  }
+}

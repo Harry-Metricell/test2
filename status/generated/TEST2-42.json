@@ -1,0 +1,50 @@
+{
+  "key": "TEST2-42",
+  "id": "106406",
+  "summary": "Return from Agentic AI to the launcher and open GIS",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-42",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-29T14:01:22.719+0100",
+    "updated": "2026-09-29T14:01:41.423+0100"
+  },
+  "description": "V4 read-only cross-module navigation check. Start at https://o2intelligence-v4-dev.metricell.com/launcher. Open the Agentic AI module, return to the launcher using browser Back, then open GIS in the same browser session. Do not submit prompts or alter saved map data.\nAcceptance criteria:\nSelecting the Agentic AI launcher card opens its module view without an application error.\nBrowser Back returns to the V4 launcher with the GIS card visible.\nSelecting GIS from that launcher opens the GIS map view with visible map controls and no application error.\nCapture browser evidence and the observed URL at each decisive state.",
+  "acceptanceCriteria": [
+    "Selecting the Agentic AI launcher card opens its module view without an application error.",
+    "Browser Back returns to the V4 launcher with the GIS card visible.",
+    "Selecting GIS from that launcher opens the GIS map view with visible map controls and no application error.",
+    "Capture browser evidence and the observed URL at each decisive state."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-42/ticket.json",
+    "criteria": "tickets/TEST2-42/criteria.md",
+    "status": "tickets/TEST2-42/status.json",
+    "screenshots": "tickets/TEST2-42/screenshots/",
+    "reports": "tickets/TEST2-42/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106406",
+    "importedAt": "2026-09-29T14:01:41.423+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-29T14:01:41.423+0100",
+    "criteriaVerified": false
+  }
+}
