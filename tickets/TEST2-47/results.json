@@ -1,0 +1,151 @@
+[
+  {
+    "criterion": "With a Surveyor layer loaded in V4 GIS, the layer's legend displays a `Display Settings` control directly beneath it.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started from the launcher and opened GIS.",
+      "Added the Surveyor layer using its default Service configuration.",
+      "Observed the Display Settings control directly under the Surveyor legend."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-before-add-layer.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "reason": ""
+  },
+  {
+    "criterion": "With a Surveyor layer loaded, the Display Settings control exposes the active legend/colouring option and the `Show Linked Sites` option.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started from the launcher and opened GIS with Surveyor loaded.",
+      "Opened Display Settings.",
+      "Observed Colour by set to Signal Strength and Show linked sites checked."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-before-open-settings.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "reason": ""
+  },
+  {
+    "criterion": "When linked sites are enabled and the zoom prerequisite is satisfied, the Display Settings control exposes `Show Linked Cells`; when either prerequisite is not satisfied, `Show Linked Cells` is unavailable.",
+    "outcome": "Unverified",
+    "steps_taken": [
+      "Started from the launcher and opened GIS with Surveyor loaded.",
+      "Opened Display Settings; Show linked sites was checked and Show linked cells was available at the displayed 100 km map scale.",
+      "Toggled Show linked cells on and then restored it to off."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-open-settings.png",
+      "screenshots/attempt-001/criterion-3-before-toggle-linked-cells.png",
+      "screenshots/attempt-001/criterion-3-final.png",
+      "screenshots/attempt-001/criterion-3-before-restore-cells.png",
+      "screenshots/attempt-001/criterion-3-after-restore-cells.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "reason": "The control was available and toggleable at 100 km, but the UI did not identify the zoom threshold, so the test could not determine whether the prerequisite was satisfied or verify the unavailable state."
+  },
+  {
+    "criterion": "When the active legend is `Band` and linked sites are shown, the Display Settings control exposes `Colour Point Links By Azimuth/Band`; for another legend or with linked sites hidden, that control is unavailable.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started from the launcher and opened GIS with Surveyor loaded.",
+      "Opened the Colour by list and selected Band while Show linked sites was checked.",
+      "Observed the Linked point colour control with Azimuth selected.",
+      "Restored Colour by to Signal Strength."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-after-open-gis.png",
+      "screenshots/attempt-001/criterion-4-before-open-colourby.png",
+      "screenshots/attempt-001/criterion-4-before-select-band.png",
+      "screenshots/attempt-001/criterion-4-final.png",
+      "screenshots/attempt-001/criterion-4-before-restore-colourby.png",
+      "screenshots/attempt-001/criterion-4-after-restore-colourby.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "reason": ""
+  },
+  {
+    "criterion": "When the active legend is `Building`, the Display Settings control exposes `Show Labels`; for another legend, `Show Labels` is unavailable.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Started from the launcher and opened GIS with the Surveyor Service layer loaded.",
+      "Opened Display Settings and inspected the Colour by choices."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-initial.png",
+      "screenshots/attempt-001/criterion-5-after-open-gis.png",
+      "screenshots/attempt-001/criterion-5-before-open-legends.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "reason": "The available Surveyor fixture was Service; its Colour by list contained Signal Strength, Signal Quality, SNR, Band, Technology, and Service State, with no Building option. The Building prerequisite could not be established with the live layer data."
+  },
+  {
+    "criterion": "The Surveyor Display Settings control does not expose a `Sector` option.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started from the launcher and opened GIS with Surveyor loaded.",
+      "Opened Display Settings and inspected the Colour by options and linked display controls.",
+      "Observed no Sector option."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-6-initial.png",
+      "screenshots/attempt-001/criterion-6-after-open-gis.png",
+      "screenshots/attempt-001/criterion-6-before-open-settings.png",
+      "screenshots/attempt-001/criterion-6-after-open-settings.png",
+      "screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "reason": ""
+  },
+  {
+    "criterion": "After changing an available presentation setting, the Surveyor layer's underlying filtered result set remains unchanged while the selected presentation setting is reflected in the layer display.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Started from the launcher and opened GIS with Surveyor loaded.",
+      "Opened Display Settings and inspected the visible layer display and available settings.",
+      "Could not compare the underlying filtered result set because the GIS view exposed no result count or record list."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-7-initial.png",
+      "screenshots/attempt-001/criterion-7-after-open-gis.png",
+      "screenshots/attempt-001/criterion-7-before-open-settings.png",
+      "screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "reason": "The current layer UI exposes a map and legend but no query result count or record list for the filtered set. Per ticket validation guidance, screenshots alone cannot establish unchanged query results, so this check was blocked by unavailable observable test data."
+  },
+  {
+    "criterion": "After changing Surveyor presentation settings, restoring the GIS to its normal saved/restored state retains those settings and their corresponding layer display.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started from the launcher and opened GIS with Surveyor loaded.",
+      "Opened Display Settings and changed Show linked sites from checked to unchecked.",
+      "Returned to the launcher, reopened GIS, and observed Show linked sites remained unchecked with Surveyor loaded.",
+      "Restored Show linked sites to its original checked state."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-8-initial.png",
+      "screenshots/attempt-001/criterion-8-after-open-gis.png",
+      "screenshots/attempt-001/criterion-8-before-open-settings.png",
+      "screenshots/attempt-001/criterion-8-before-toggle-sites.png",
+      "screenshots/attempt-001/criterion-8-after-toggle-sites.png",
+      "screenshots/attempt-001/criterion-8-before-restored-gis.png",
+      "screenshots/attempt-001/criterion-8-after-restored-gis.png",
+      "screenshots/attempt-001/criterion-8-final.png",
+      "screenshots/attempt-001/criterion-8-before-restore-sites.png",
+      "screenshots/attempt-001/criterion-8-after-restore-sites.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "reason": ""
+  }
+]
