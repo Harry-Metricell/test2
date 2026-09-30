@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-44-review-attempt-001",
+  "handoffVersion": "TEST2-44:evidence_review:1",
+  "ticket": "TEST2-44",
+  "criterionOutcomes": [
+    {
+      "criterion": "When the signed-in browser is opened at the V4 launcher, the Dashboards module card is visible and provides an Open module control.",
+      "outcome": "Passed",
+      "reason": "The initial and final screenshots show the signed-in launcher, Dashboards card, and Open control; the result's browserUrl is the expected V4 launcher host."
+    },
+    {
+      "criterion": "When the tester selects Open module on the Dashboards card, the browser opens the Dashboards page and displays the Under construction placeholder.",
+      "outcome": "Passed",
+      "reason": "The after-open and final screenshots show the Dashboards page and Under construction placeholder; the result's browserUrl is on the expected V4 host at /dashboards."
+    },
+    {
+      "criterion": "When the tester uses the browser Back control from the Dashboards page, the V4 launcher is shown again with the Dashboards module card visible.",
+      "outcome": "Passed",
+      "reason": "The before-back screenshot shows Dashboards; after-back and final screenshots show the launcher with the Dashboards card. The result's browserUrl is the expected V4 launcher host."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-44\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
