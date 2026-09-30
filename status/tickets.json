@@ -3,10 +3,10 @@
   "generatedAt": "2026-09-30T14:03:44.397Z",
   "counts": {
     "tickets": 46,
-    "handoffs": 2,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 21,
-      "Ready": 24,
+      "Blocked": 22,
+      "Ready": 23,
       "Rejected": 1
     },
     "byQaOutcome": {
@@ -572,13 +572,13 @@
       "key": "TEST2-45",
       "summary": "Verify Surveyor entries in the V4 GIS layer catalogue",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-09-30T14:03:44.396Z",
       "retries": 0,
       "retryLimit": 2,
