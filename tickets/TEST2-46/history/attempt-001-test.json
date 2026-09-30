@@ -1,0 +1,81 @@
+{
+  "handoffId": "handoff-TEST2-46-test-attempt-001",
+  "handoffVersion": "TEST2-46:test_ticket:1",
+  "ticket": "TEST2-46",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "With two supported Surveyor layers available in the V4 GIS layer panel, select the first layer and verify that its displayed configuration matches that layer's configured defaults.",
+      "status": "Unverified",
+      "steps_taken": [
+        "Opened the launcher and selected GIS.",
+        "Added the available Surveyor catalog layer, selected Service, and applied the configuration.",
+        "Observed Service, Last 30 days, the full technology selection, and the Service signal-strength legend."
+      ],
+      "reason": "The layer panel exposed one Surveyor catalog item. The UI showed Service defaults, but no independent configured-default reference was available to verify that they match the configured defaults.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-before-add-surveyor.png",
+        "screenshots/attempt-001/criterion-1-after-add-surveyor.png",
+        "screenshots/attempt-001/criterion-1-before-active-layer-options.png",
+        "screenshots/attempt-001/criterion-1-after-active-layer-options.png",
+        "screenshots/attempt-001/criterion-1-before-confirm-layer.png",
+        "screenshots/attempt-001/criterion-1-after-confirm-layer.png",
+        "screenshots/attempt-001/criterion-1-final-assertion.png"
+      ],
+      "outcome": "Unverified"
+    },
+    {
+      "criterion": "After selecting a second supported Surveyor layer, verify that it becomes the active layer and that the displayed configuration matches the second layer's configured defaults rather than the previously selected layer's configuration.",
+      "status": "Passed",
+      "steps_taken": [
+        "Returned to the launcher and opened GIS.",
+        "Opened the existing Surveyor - Service configuration.",
+        "Changed Active layer from Service to Download and applied it.",
+        "Verified the selected layer became Surveyor - Download and the legend changed from Colour by Signal Strength to Colour by Download Rate, with Download Rate bands."
+      ],
+      "reason": "The active layer and displayed configuration both changed from Service to Download after Apply.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-after-open-gis.png",
+        "screenshots/attempt-001/criterion-2-before-configure.png",
+        "screenshots/attempt-001/criterion-2-after-configure.png",
+        "screenshots/attempt-001/criterion-2-before-switch.png",
+        "screenshots/attempt-001/criterion-2-after-switch-options.png",
+        "screenshots/attempt-001/criterion-2-after-select-download.png",
+        "screenshots/attempt-001/criterion-2-before-apply.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "After saving or otherwise entering a valid GIS state with a Surveyor layer selected, restore or reload that GIS state and verify that the same Surveyor layer remains selected and its displayed options are restored without an invalid selection state.",
+      "status": "Failed",
+      "steps_taken": [
+        "After applying Surveyor - Download, returned to the launcher as required before the next criterion.",
+        "Reopened GIS and checked the active layer and displayed options.",
+        "Observed Surveyor - Service and its Signal Strength legend rather than the previously applied Surveyor - Download state.",
+        "Removed the temporary Surveyor layer to restore the initially empty map layer selection."
+      ],
+      "reason": "After returning to the launcher and reopening GIS, the applied Surveyor - Download state was not restored; the visible state was Surveyor - Service. Cleanup removed the temporary selected layer, and the map layer panel is empty.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-after-restore.png",
+        "screenshots/attempt-001/criterion-3-final.png",
+        "screenshots/attempt-001/criterion-3-after-cleanup.png"
+      ],
+      "outcome": "Failed"
+    }
+  ],
+  "conciseReport": "## QA run: TEST2-46\n\n- **Unverified:** Service configuration was visible, but there was no independent configured-default reference; the layer panel exposed one Surveyor catalog item.\n- **Passed:** Switching from Service to Download changed the active layer and displayed Download Rate configuration.\n- **Failed:** After returning to the launcher and reopening GIS, the applied Download state returned as Service.\n\nThe temporary Surveyor selection was removed and the map layer panel is empty.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-46-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "",
+  "historyAttempt": 1,
+  "recordedAt": "2026-09-30T12:48:08.914Z"
+}
