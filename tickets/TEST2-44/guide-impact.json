@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-44-guide-impact",
+  "handoffVersion": "TEST2-44:guide_impact_assessment:1",
+  "ticket": "TEST2-44",
+  "decision": "not_needed",
+  "affectedSection": "",
+  "reason": "The verified behaviour is a launcher navigation check that ends on an Under construction placeholder; it does not introduce an end-user instruction, navigation requirement, visible information, or user-facing terminology that needs documenting.",
+  "noOp": false,
+  "assessedAt": "2026-09-30T10:56:07.670Z"
+}
