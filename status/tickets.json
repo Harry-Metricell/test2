@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-30T11:04:57.948+0100",
   "counts": {
     "tickets": 43,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 20,
       "Ready": 22,
@@ -558,7 +558,7 @@
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
-      "guideImpact": null,
+      "guideImpact": "not_needed",
       "guideUpdate": null,
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
