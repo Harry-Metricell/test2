@@ -3,7 +3,7 @@
   "generatedAt": "2026-09-29T16:20:09.454+0100",
   "counts": {
     "tickets": 42,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 20,
       "Ready": 21,
@@ -543,7 +543,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Open Dashboards from the V4 launcher and return",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-29T16:20:09.454+0100",

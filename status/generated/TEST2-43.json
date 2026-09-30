@@ -50,7 +50,30 @@
       "noOp": false,
       "assessedAt": "2026-09-30T08:18:13.177Z"
     },
-    "guideUpdate": null,
+    "guideUpdate": {
+      "schema": "v4-user-guide-update.v1",
+      "handoffId": "handoff-TEST2-43-guide-update",
+      "handoffVersion": "TEST2-43:guide_update_authoring:1",
+      "ticket": "TEST2-43",
+      "title": "Open Dashboards from the V4 launcher and return",
+      "affectedSection": "Open Dashboards from the V4 launcher",
+      "changeType": "amend",
+      "steps": [
+        "Open the V4 launcher.",
+        "Select Open Dashboards on the Dashboards card.",
+        "View the Dashboards Under construction placeholder and explanatory content.",
+        "Use the browser Back control to return to the launcher.",
+        "Confirm that the Dashboards card is visible again."
+      ],
+      "screenshots": [
+        "screenshots/attempt-001/criterion-1-final.png",
+        "screenshots/attempt-001/criterion-2-after-open.png",
+        "screenshots/attempt-001/criterion-3-after-back.png"
+      ],
+      "reason": "Add the verified navigation steps for opening the Dashboards placeholder from the V4 launcher and returning to the launcher with browser Back.",
+      "noOp": false,
+      "authoredAt": "2026-09-30T08:39:05.465Z"
+    },
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-29T16:20:09.454+0100",
