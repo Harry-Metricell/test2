@@ -1,0 +1,73 @@
+{
+  "handoffId": "handoff-TEST2-45-review-attempt-001",
+  "handoffVersion": "TEST2-45:evidence_review:1",
+  "ticket": "TEST2-45",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting from the V4 GIS layer selector while signed in as an authorised user, expand the layer group list and verify that the Surveyor group is positioned immediately beneath Tests and Measurements.",
+      "outcome": "Unverified",
+      "reason": "Screenshot shows Surveyor within Tests and Measurements after Beacons and Crowd; it does not establish the required immediate group position."
+    },
+    {
+      "criterion": "With the Surveyor group expanded, verify that a Data Experience layer entry is displayed.",
+      "outcome": "Unverified",
+      "reason": "No screenshot shows Data Experience in the expanded Surveyor group."
+    },
+    {
+      "criterion": "With the Surveyor group expanded, verify that a Ping layer entry is displayed.",
+      "outcome": "Unverified",
+      "reason": "No screenshot shows Ping in the expanded Surveyor group."
+    },
+    {
+      "criterion": "With the Surveyor group expanded, verify that a Service layer entry is displayed.",
+      "outcome": "Unverified",
+      "reason": "The screenshots show Surveyor - Service selected, but the Surveyor group is not expanded as required to verify its catalogue entry."
+    },
+    {
+      "criterion": "With the Surveyor group expanded, verify that a Building layer entry is displayed.",
+      "outcome": "Unverified",
+      "reason": "No screenshot shows Building in the expanded Surveyor group."
+    },
+    {
+      "criterion": "With the Surveyor group expanded, verify that a Download layer entry is displayed.",
+      "outcome": "Unverified",
+      "reason": "No screenshot shows Download in the expanded Surveyor group."
+    },
+    {
+      "criterion": "With the Surveyor group expanded, verify that an Upload layer entry is displayed.",
+      "outcome": "Unverified",
+      "reason": "No screenshot shows Upload in the expanded Surveyor group."
+    },
+    {
+      "criterion": "With the Surveyor group expanded, verify that a Site Testing layer entry is displayed.",
+      "outcome": "Unverified",
+      "reason": "No screenshot shows Site Testing in the expanded Surveyor group."
+    },
+    {
+      "criterion": "With the Surveyor group expanded, verify that a Call layer entry is displayed.",
+      "outcome": "Unverified",
+      "reason": "No screenshot shows Call in the expanded Surveyor group."
+    },
+    {
+      "criterion": "For each displayed Surveyor layer entry, select the entry and verify that the GIS layer selector accepts the selection.",
+      "outcome": "Unverified",
+      "reason": "A Surveyor - Service selection is visible, but the evidence does not establish selector acceptance for every displayed Surveyor entry."
+    },
+    {
+      "criterion": "Using a signed-in account without access to a Surveyor layer, open the V4 GIS layer selector and verify that the unavailable layer is not displayed.",
+      "outcome": "Blocked",
+      "reason": "The run report says no signed-in account without access to a Surveyor layer was available, so the permission-negative check could not be performed."
+    },
+    {
+      "criterion": "With the Surveyor group expanded, verify that User, Browsing, and YouTube layer entries are not displayed.",
+      "outcome": "Unverified",
+      "reason": "Screenshots show the Surveyor group collapsed; absence of User, Browsing, and YouTube cannot be established."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-45\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "A suitable restricted account was unavailable for criterion 11."
+}
