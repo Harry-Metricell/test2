@@ -6,7 +6,7 @@
 - QA outcome: Not Tested
 - Workflow state: Ready
 - Action owner: Coordinator
-- Next action: Create criteria conversion handoff
+- Next action: Manual criteria review required: clarify Jira ticket, then update it
 - Jira: https://metricell.atlassian.net/browse/TEST2-44
 
 ## Acceptance Criteria
