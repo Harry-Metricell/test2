@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-43-guide-impact",
+    "handoffVersion": "TEST2-43:guide_impact_assessment:1",
+    "ticket": "TEST2-43",
+    "decision": "update_required",
+    "affectedSection": "Open Dashboards from the V4 launcher",
+    "reason": "Users need instructions for opening the Dashboards module from the V4 launcher and returning to the launcher with browser Back. The reviewed behaviour introduces a visible navigation path and a Dashboards placeholder that users may need explained.",
+    "noOp": false,
+    "assessedAt": "2026-09-30T08:18:13.177Z"
+  }
 }
