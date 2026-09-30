@@ -23,6 +23,6 @@ jobs:
 
       - name: Validate ticket folders and criteria
         run: node scripts/check-criteria.mjs
-
-      - name: Check generated status
-        run: node scripts/generate-status.mjs --check
+      # The import creates ticket data before later publisher/bundler commits.
+      # A projection equality check here races those commits; Status Bundler
+      # regenerates and validates projections after each ticket push.

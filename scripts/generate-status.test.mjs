@@ -8,6 +8,18 @@ import { fileURLToPath } from 'node:url';
 
 const generator = fileURLToPath(new URL('./generate-status.mjs', import.meta.url));
 
+test('post-import criteria check does not race the status bundler', () => {
+  const workflows = fileURLToPath(new URL('../.github/workflows/', import.meta.url));
+  const criteria = fs.readFileSync(path.join(workflows, 'check-criteria.yml'), 'utf8');
+  const bundler = fs.readFileSync(path.join(workflows, 'status-bundler.yml'), 'utf8');
+  const consistency = fs.readFileSync(path.join(workflows, 'status-consistency.yml'), 'utf8');
+  assert.match(criteria, /node scripts\/check-criteria\.mjs/);
+  assert.doesNotMatch(criteria, /node scripts\/generate-status\.mjs --check/);
+  assert.match(bundler, /run: node scripts\/generate-status\.mjs/);
+  assert.match(consistency, /run: node scripts\/generate-status\.mjs/);
+  assert.match(consistency, /git diff --exit-code -- status tickets/);
+});
+
 test('Jira imports and bundling preserve worker-approved criteria', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-criteria-preservation-'));
   const ticketDir = path.join(root, 'tickets', 'TEST2-99');
