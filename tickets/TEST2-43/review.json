@@ -1,0 +1,28 @@
+{
+  "handoffId": "handoff-TEST2-43-review-attempt-001",
+  "handoffVersion": "TEST2-43:evidence_review:1",
+  "ticket": "TEST2-43",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting on the authenticated V4 launcher, the Dashboards card and its Open module control are visible.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshot shows the authenticated launcher, Dashboards card, and its open control. The result browserUrl is https://o2intelligence-v4-dev.metricell.com/launcher, on the expected V4 host."
+    },
+    {
+      "criterion": "After selecting Open module on the Dashboards card, the Dashboards module or its current placeholder is displayed and no application error is shown.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshot shows the Dashboards Under construction placeholder and explanatory content without an application error. The result browserUrl is https://o2intelligence-v4-dev.metricell.com/dashboards, on the expected V4 host."
+    },
+    {
+      "criterion": "After using the browser Back control from the Dashboards module or placeholder, the V4 launcher is displayed and the Dashboards card is visible again.",
+      "outcome": "Passed",
+      "reason": "The selected attempt screenshot shows the launcher with the Dashboards card visible after the recorded browser Back action. The result browserUrl is https://o2intelligence-v4-dev.metricell.com/launcher, on the expected V4 host."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-43\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
