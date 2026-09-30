@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-30T10:37:30.759+0100",
+  "generatedAt": "2026-09-30T10:45:48.620+0100",
   "counts": {
-    "tickets": 42,
+    "tickets": 43,
     "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 21,
-      "Ready": 20,
+      "Ready": 21,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 11,
       "Not Tested": 4,
-      "Passed": 23,
+      "Passed": 24,
       "Unverified": 4
     }
   },
@@ -531,6 +531,22 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-29T14:01:41.423+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-43",
+      "summary": "Open Dashboards from the V4 launcher and return",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Passed",
+      "guideImpact": "update_required",
+      "guideUpdate": "Open Dashboards from the V4 launcher and return",
+      "actionOwner": "Coordinator",
+      "nextAction": "QA review complete",
+      "updatedAt": "2026-09-30T10:45:48.620+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""
