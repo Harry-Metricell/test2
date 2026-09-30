@@ -4,7 +4,7 @@
   "qaStatus": "Ready for Testing",
   "status": "Rejected",
   "retries": 0,
-  "retryLimit": 3,
+  "retryLimit": 2,
   "criteriaVerified": true,
   "blockedStage": null
 }

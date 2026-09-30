@@ -4,7 +4,7 @@
   "qaStatus": "Evidence Reviewed",
   "status": "READY FOR TESTING",
   "retries": 0,
-  "retryLimit": 3,
+  "retryLimit": 2,
   "criteriaVerified": true,
   "blockedStage": null,
   "nextAction": "QA review complete",

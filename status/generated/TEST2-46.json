@@ -38,12 +38,12 @@
     "qaOutcome": "Failed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create evidence review handoff",
+    "nextAction": "Create final evidence review handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
-    "blockedStage": null,
+    "blockedStage": "evidence_review",
     "updatedAt": "2026-09-30T12:12:05.834+0100",
     "criteriaVerified": true
   }

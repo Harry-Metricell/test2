@@ -6,9 +6,8 @@
     "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 20,
-      "Ready": 23,
-      "Rejected": 1,
-      "Retry Queued": 2
+      "Ready": 25,
+      "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 13,
@@ -38,7 +37,7 @@
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-14T15:25:26.699+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -53,9 +52,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-10T11:38:31.952Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-5",
@@ -70,7 +69,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-14T15:25:30.436+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -85,9 +84,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-28T08:50:30.664Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-11",
@@ -101,9 +100,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-10T13:54:29.147Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-12",
@@ -117,9 +116,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-28T08:50:30.667Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-13",
@@ -133,9 +132,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-28T08:50:30.668Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-16",
@@ -149,9 +148,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-16T08:20:46.996Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-18",
@@ -165,9 +164,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-16T14:03:50.290Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-19",
@@ -181,9 +180,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-09-28T08:50:30.672Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-20",
@@ -197,9 +196,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-16T14:55:45.192Z",
-      "retries": 1,
-      "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-21",
@@ -213,9 +212,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-09-28T08:50:30.676Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-22",
@@ -230,7 +229,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-18T11:44:51.679+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -245,9 +244,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-21T08:59:05.146Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-25",
@@ -262,7 +261,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-22T13:56:22.499+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -278,7 +277,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-22T15:54:16.090+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -293,9 +292,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-09-28T08:50:30.679Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-28",
@@ -309,9 +308,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-28T08:53:45.644Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-29",
@@ -326,7 +325,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-24T09:48:05.023+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -342,7 +341,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-24T15:28:15.754+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -358,7 +357,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-24T22:12:46.107+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -374,7 +373,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-25T10:25:21.390+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -389,9 +388,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-09-28T08:50:30.684Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-34",
@@ -406,7 +405,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-28T11:30:15.708+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -422,7 +421,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-28T12:35:23.479+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -438,7 +437,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-28T14:53:40.320+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -454,7 +453,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-28T14:53:41.797+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -469,9 +468,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-09-28T15:24:33.160Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-39",
@@ -485,9 +484,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-29T12:20:10.096Z",
-      "retries": 1,
-      "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-40",
@@ -502,7 +501,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-29T14:01:38.256+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -518,7 +517,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-29T14:01:39.912+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -534,7 +533,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-29T14:01:41.423+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -550,7 +549,7 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-30T10:45:48.620+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -566,24 +565,24 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-30T11:04:57.948+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
       "key": "TEST2-45",
       "summary": "Verify Surveyor entries in the V4 GIS layer catalogue",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/3 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-30T14:03:44.396Z",
-      "retries": 1,
-      "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-46",
@@ -595,27 +594,27 @@
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create evidence review handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-30T12:12:05.834+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
       "key": "TEST2-47",
       "summary": "Verify Surveyor Display Settings in V4 GIS",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/3 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-30T14:03:44.397Z",
-      "retries": 1,
-      "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",
@@ -630,7 +629,7 @@
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-10T11:03:10.834+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     },
     {
@@ -645,9 +644,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-10T08:37:52.778Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-7",
@@ -661,9 +660,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-10T09:54:08.882+0100",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-8",
@@ -677,25 +676,25 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-09T15:27:28.936Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-9",
       "summary": "Retain selected coverage after returning to the map",
       "jiraStatus": "Rejected",
       "workflowState": "Blocked",
-      "qaStatus": "Blocked",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-29T08:25:21.674Z",
-      "retries": 0,
-      "retryLimit": 3,
-      "retryLabel": ""
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-14",
@@ -709,9 +708,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-15T14:13:10.719Z",
-      "retries": 1,
-      "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-15",
@@ -725,9 +724,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-15T14:07:48.879Z",
-      "retries": 1,
-      "retryLimit": 3,
-      "retryLabel": "Retry 1/3"
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-17",
@@ -741,9 +740,9 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-09-28T08:50:30.671Z",
-      "retries": 3,
-      "retryLimit": 3,
-      "retryLabel": "Retry 3/3"
+      "retries": 2,
+      "retryLimit": 2,
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-24",
@@ -758,7 +757,7 @@
       "nextAction": "Waiting for Jira status: READY FOR TESTING",
       "updatedAt": "2026-09-22T15:23:16.070+0100",
       "retries": 0,
-      "retryLimit": 3,
+      "retryLimit": 2,
       "retryLabel": ""
     }
   ]

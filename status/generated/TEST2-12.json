@@ -40,7 +40,7 @@
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 3,
+    "retries": 2,
     "blockedStage": "evidence_review",
     "updatedAt": "2026-09-28T08:50:30.667Z",
     "criteriaVerified": true

@@ -75,7 +75,7 @@
       "noOp": false,
       "authoredAt": "2026-09-22T14:12:34.678Z"
     },
-    "retries": 3,
+    "retries": 2,
     "blockedStage": null,
     "updatedAt": "2026-09-10T09:54:08.882+0100",
     "criteriaVerified": true

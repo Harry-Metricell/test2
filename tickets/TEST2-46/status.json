@@ -4,10 +4,10 @@
   "qaStatus": "Awaiting Evidence Review",
   "status": "READY FOR TESTING",
   "retries": 0,
-  "retryLimit": 3,
+  "retryLimit": 2,
   "criteriaVerified": true,
-  "blockedStage": null,
+  "blockedStage": "evidence_review",
   "qaOutcome": "Failed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "Create evidence review handoff"
+  "nextAction": "Create final evidence review handoff"
 }

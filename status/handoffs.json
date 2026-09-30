@@ -3,21 +3,20 @@
   "generatedAt": "2026-09-30T14:03:44.397Z",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-45-retry-attempt-002",
-      "handoffVersion": "TEST2-45:test_ticket:2",
-      "attempt": 2,
-      "action": "test_ticket",
-      "brief": "docs/briefs/qa-testing.md",
-      "owner": "ticket-tester",
+      "handoffId": "handoff-TEST2-45-review-attempt-001",
+      "handoffVersion": "TEST2-45:evidence_review:1",
+      "attempt": 1,
+      "action": "evidence_review",
+      "brief": "docs/briefs/evidence-review.md",
+      "owner": "evidence-reviewer",
       "ticket": "TEST2-45",
       "inputs": {
-        "criteria": "tickets/TEST2-45/criteria.md",
-        "ticketJson": "tickets/TEST2-45/ticket.json",
-        "status": "tickets/TEST2-45/status.json"
+        "results": "tickets/TEST2-45/results.json",
+        "generated": "status/generated/TEST2-45.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-45/results.json",
-        "schema": "v4-qa-test-result.v1"
+        "path": "tickets/TEST2-45/review.json",
+        "schema": "v4-qa-review.v1"
       }
     },
     {
@@ -38,21 +37,20 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-47-retry-attempt-002",
-      "handoffVersion": "TEST2-47:test_ticket:2",
-      "attempt": 2,
-      "action": "test_ticket",
-      "brief": "docs/briefs/qa-testing.md",
-      "owner": "ticket-tester",
+      "handoffId": "handoff-TEST2-47-review-attempt-001",
+      "handoffVersion": "TEST2-47:evidence_review:1",
+      "attempt": 1,
+      "action": "evidence_review",
+      "brief": "docs/briefs/evidence-review.md",
+      "owner": "evidence-reviewer",
       "ticket": "TEST2-47",
       "inputs": {
-        "criteria": "tickets/TEST2-47/criteria.md",
-        "ticketJson": "tickets/TEST2-47/ticket.json",
-        "status": "tickets/TEST2-47/status.json"
+        "results": "tickets/TEST2-47/results.json",
+        "generated": "status/generated/TEST2-47.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-47/results.json",
-        "schema": "v4-qa-test-result.v1"
+        "path": "tickets/TEST2-47/review.json",
+        "schema": "v4-qa-review.v1"
       }
     }
   ]

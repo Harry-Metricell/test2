@@ -41,7 +41,7 @@
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 1,
+    "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-09-15T14:13:10.719Z",
     "criteriaVerified": true
