@@ -1,0 +1,51 @@
+[
+  {
+    "criterion": "When the signed-in browser is opened at the V4 launcher, the Dashboards module card is visible and provides an Open module control.",
+    "status": "Passed",
+    "steps_taken": [
+      "Opened the V4 launcher URL.",
+      "Confirmed the signed-in welcome and Dashboards card with its Open Dashboards control."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "outcome": "Passed"
+  },
+  {
+    "criterion": "When the tester selects Open module on the Dashboards card, the browser opens the Dashboards page and displays the Under construction placeholder.",
+    "status": "Passed",
+    "steps_taken": [
+      "Returned to the launcher and confirmed the Dashboards card.",
+      "Selected Open Dashboards.",
+      "Confirmed the Dashboards page shows the Under construction placeholder."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/dashboards",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-after-open.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "outcome": "Passed"
+  },
+  {
+    "criterion": "When the tester uses the browser Back control from the Dashboards page, the V4 launcher is shown again with the Dashboards module card visible.",
+    "status": "Passed",
+    "steps_taken": [
+      "Started from the launcher.",
+      "Opened Dashboards and confirmed its page.",
+      "Used the browser Back control.",
+      "Confirmed the launcher and Dashboards card are visible again."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-after-open.png",
+      "screenshots/attempt-001/criterion-3-before-back.png",
+      "screenshots/attempt-001/criterion-3-after-back.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "outcome": "Passed"
+  }
+]
