@@ -1,0 +1,50 @@
+[
+  {
+    "criterion": "Starting on the authenticated V4 launcher, the Dashboards card and its Open module control are visible.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Navigated to the V4 launcher and confirmed the authenticated welcome view.",
+      "Confirmed the Dashboards card is present with the visible Open Dashboards control."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher"
+  },
+  {
+    "criterion": "After selecting Open module on the Dashboards card, the Dashboards module or its current placeholder is displayed and no application error is shown.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started from the V4 launcher.",
+      "Selected Open Dashboards.",
+      "Confirmed the Dashboards page displayed its Under construction placeholder, heading, and explanatory copy with no application error."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-open.png",
+      "screenshots/attempt-001/criterion-2-after-open.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/dashboards"
+  },
+  {
+    "criterion": "After using the browser Back control from the Dashboards module or placeholder, the V4 launcher is displayed and the Dashboards card is visible again.",
+    "outcome": "Passed",
+    "steps_taken": [
+      "Started this criterion from the V4 launcher.",
+      "Opened Dashboards to establish the module state.",
+      "Used the browser Back control.",
+      "Confirmed the browser returned to the launcher and the Dashboards card was visible again."
+    ],
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-open.png",
+      "screenshots/attempt-001/criterion-3-after-open.png",
+      "screenshots/attempt-001/criterion-3-before-back.png",
+      "screenshots/attempt-001/criterion-3-after-back.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher"
+  }
+]
