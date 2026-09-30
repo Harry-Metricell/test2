@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-30T12:52:48.198Z
+Updated: 2026-09-30T12:57:30.318Z
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -40,7 +40,7 @@ Updated: 2026-09-30T12:52:48.198Z
 | TEST2-44 | READY FOR TESTING | Evidence Reviewed |  | Clarify unspecified V4 change before browser testing |
 | TEST2-45 | READY FOR TESTING | Ready for Testing | Retry 1/3 | Verify Surveyor entries in the V4 GIS layer catalogue |
 | TEST2-46 | READY FOR TESTING | Awaiting Evidence Review |  | Verify Surveyor layer defaults and switching in V4 GIS |
-| TEST2-47 | READY FOR TESTING | Ready for Testing |  | Verify Surveyor Display Settings in V4 GIS |
+| TEST2-47 | READY FOR TESTING | Ready for Testing | Retry 1/3 | Verify Surveyor Display Settings in V4 GIS |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 3/3 | Verify GIS layer and map view controls |
