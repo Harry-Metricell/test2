@@ -17,6 +17,8 @@ The system keeps durable QA state in GitHub and uses Codex only for authenticate
 
 Testing permits at most two total attempts (the first run plus one retry). The tester labels each non-passing criterion with an auditable `retryClass`. Only an all-transient result, or an inconclusive evidence review of an otherwise retryable result, receives the automatic retry. Missing accounts/data, flawed criteria, and observed product failures go straight to evidence review; a final report is required even when testing stops after the first attempt. Older results without a retry classification also go to review rather than being blindly retried. A report still requires valid evidence and successful publisher verification.
 
+The PDF report follows the approved template's binary pass/fail convention: an `Unverified` criterion is shown as `Failed`, while its explanation states that the evidence was inconclusive; the underlying review JSON retains `Unverified`. The report prints the overall review outcome, actual testing limitations, and browser-derived criterion final URLs (without query strings or fragments). Those URLs are not claimed to be the URL of every earlier screenshot. Criterion rows reference labelled screenshots in a deduplicated evidence appendix. Existing published PDFs are not silently rebuilt when the builder changes.
+
 ## Start the coordinator
 
 The complete, canonical coordinator brief is [`docs/briefs/coordinator.md`](docs/briefs/coordinator.md). Keep the rules in that file rather than duplicating them in the README, so the coordinator has one source of truth.

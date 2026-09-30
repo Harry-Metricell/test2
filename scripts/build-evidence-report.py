@@ -7,9 +7,12 @@ import hashlib
 from datetime import datetime
 from pathlib import Path
 import re
+from urllib.parse import urlsplit, urlunsplit
 
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml import OxmlElement
 from PIL import Image
 
 
@@ -29,23 +32,74 @@ def remove_rows(table):
         table._tbl.remove(table.rows[-1]._tr)
 
 
-def add_image_row(table, images):
+def add_image_row(table, image, evidence_id, browser_url):
     row = table.add_row()
     merged = row.cells[0]
     for cell in row.cells[1:]:
         merged = merged.merge(cell)
     merged.text = ""
-    paragraph = merged.paragraphs[0]
-    for image in images:
-        run = paragraph.add_run()
-        run.add_picture(str(image), width=Inches(4.0))
-        paragraph.add_run("  ")
+    caption = merged.paragraphs[0]
+    caption.add_run(f"{evidence_id} - {image.name}").bold = True
+    caption.add_run(f" | Criterion final URL: {browser_url or 'Not recorded'}")
+    for run in caption.runs:
+        run.font.size = Pt(8)
+    paragraph = merged.add_paragraph()
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    with Image.open(image) as source:
+        width = min(7.0, 4.5 * source.width / source.height)
+    paragraph.add_run().add_picture(str(image), width=Inches(width))
+    row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
 
 
 def screenshot_paths(item, all_screenshots):
     names = item.get("evidence", []) if isinstance(item, dict) else []
-    wanted = {Path(text(name)).name for name in names}
-    return [image for image in all_screenshots if image.name in wanted]
+    available = {image.name: image for image in all_screenshots}
+    ordered = []
+    for reference in names:
+        name = Path(text(reference)).name
+        if name not in available:
+            raise SystemExit(f"referenced screenshot is missing: {name}")
+        ordered.append(available[name])
+    return ordered
+
+
+def source_urls(results):
+    return list(dict.fromkeys(public_browser_url(item.get("browserUrl"))
+                              for item in results if isinstance(item, dict) and item.get("browserUrl")))
+
+
+def public_browser_url(value):
+    """Keep a traceable page URL without publishing query tokens or fragments."""
+    parsed = urlsplit(text(value).strip())
+    if parsed.scheme not in ("http", "https") or not parsed.hostname:
+        return "Not recorded"
+    host = parsed.hostname
+    if ":" in host:
+        host = f"[{host}]"
+    try:
+        if parsed.port:
+            host += f":{parsed.port}"
+    except ValueError:
+        return "Not recorded"
+    return urlunsplit((parsed.scheme, host, parsed.path, "", ""))
+
+
+def report_limitations(review, outcomes, results):
+    blocked = sum(text(item.get("outcome")).lower() == "blocked" for item in outcomes)
+    unverified = sum(text(item.get("outcome")).lower() == "unverified" for item in outcomes)
+    parts = []
+    if blocked or unverified:
+        parts.append(f"{blocked} blocked; {unverified} inconclusive criterion(s).")
+        summary_reason = text(review.get("reason")).strip()
+        reasons = [summary_reason] if summary_reason else [
+            text(item.get("reason")).strip() for item in outcomes
+            if text(item.get("outcome")).lower() == "blocked"
+        ]
+        parts.extend(list(dict.fromkeys(reason for reason in reasons if reason))[:3])
+    if any(public_browser_url(item.get("browserUrl")) == "Not recorded"
+           for item in results if isinstance(item, dict)):
+        parts.append("Some source URLs were not recorded.")
+    return " ".join(parts) if parts else "No testing limitations recorded."
 
 
 def result_for_outcome(outcome, results, result_by_criterion, criteria, position):
@@ -216,13 +270,21 @@ def main():
 
     cycle = doc.tables[2]
     browser_version = next((text(item.get("browserVersion")) for item in results if isinstance(item, dict) and item.get("browserVersion")), "version not recorded")
-    values = ["Automated", ticket, "Chrome", f"Chrome {browser_version}", datetime.now().strftime("%d/%m/%Y"), "None recorded"]
+    limitations = report_limitations(review, outcomes, results)
+    urls = source_urls(results)
+    displayed_outcome = "Failed (inconclusive evidence)" if text(review.get("overallOutcome")).lower() == "unverified" else text(review.get("overallOutcome"))
+    values = ["Automated", ticket, "Chrome", f"Chrome {browser_version}", datetime.now().strftime("%d/%m/%Y"), limitations]
     for index, value in enumerate(values):
         if index < len(cycle.rows): set_cell(cycle.cell(index, 1), value)
+    for label, value in (
+        ("Overall review outcome:", displayed_outcome),
+        ("Criterion final URL(s):", "; ".join(urls) or "Not recorded"),
+    ):
+        row = cycle.add_row().cells
+        set_cell(row[0], label)
+        set_cell(row[1], value)
 
     summary = doc.tables[3]
-    passed = sum(text(item.get("outcome")).lower() == "passed" for item in outcomes)
-    failed = sum(text(item.get("outcome")).lower() in ("failed", "unverified") for item in outcomes)
     while len(summary.rows) > 1:
         summary._tbl.remove(summary.rows[-1]._tr)
     for index, item in enumerate(outcomes, 1):
@@ -235,9 +297,9 @@ def main():
 
     context = doc.tables[4]
     context_values = [
-        "Not recorded in agent output.",
+        "Per-criterion prerequisites are stated in the acceptance criteria and test steps; no separate fixture inventory was supplied.",
         "Criteria from criteria.md.",
-        "Automated browser run; PNG evidence reviewed.",
+        "Automated browser run; uniquely identified PNG evidence appears in the appendix. Unverified is reported as Failed.",
     ]
     if context.rows:
         for cell_index, value in ((1, context_values[0]), (3, context_values[1]), (5, context_values[2])):
@@ -249,7 +311,8 @@ def main():
     column_count = len(cases.columns)
     if column_count not in (5, 6):
         raise SystemExit(f"template case table must have five or six columns, found {column_count}")
-    embedded_images = []
+    logical_images = []
+    unique_images = {}
     for number, item in enumerate(outcomes, 1):
         criterion_id = text(item.get("criterion"))
         criterion = display_criterion(criterion_id, criteria)
@@ -260,6 +323,19 @@ def main():
         actual = text(result.get("actual_result")) or text(item.get("reason")) or text(result.get("reason"))
         if steps:
             actual = f"{actual}\nSteps taken: {'; '.join(steps)}"
+        criterion_images = screenshot_paths(result, screenshots)
+        if not criterion_images and text(result.get("outcome")).lower() != "blocked":
+            raise SystemExit(f"criterion {number} has no embeddable screenshot evidence")
+        evidence_ids = []
+        for image in criterion_images:
+            digest = hashlib.sha256(image.read_bytes()).hexdigest()
+            if digest not in unique_images:
+                unique_images[digest] = (f"E{len(unique_images) + 1:02d}", image, public_browser_url(result.get("browserUrl")))
+            evidence_ids.append(unique_images[digest][0])
+            logical_images.append(image)
+        trace = f"Evidence: {', '.join(dict.fromkeys(evidence_ids)) if evidence_ids else 'Unavailable'}"
+        trace += f"\nCriterion final URL: {public_browser_url(result.get('browserUrl'))}"
+        actual += f"\n{trace}"
         report_outcome = "Failed" if text(item.get("outcome")).lower() == "unverified" else text(item.get("outcome"))
         expected_result = text(result.get("expected_result")) or criterion
         values = [
@@ -275,24 +351,30 @@ def main():
                 criterion,
                 "; ".join(steps),
                 expected_result,
-                text(item.get("reason")) or text(result.get("reason")),
+                f"{text(item.get('reason')) or text(result.get('reason'))}\n{trace}",
                 report_outcome,
             ]
         for index, value in enumerate(values):
             set_cell(row[index], value)
-        criterion_images = screenshot_paths(result, screenshots)
-        if not criterion_images and text(result.get("outcome")).lower() != "blocked":
-            raise SystemExit(f"criterion {number} has no embeddable screenshot evidence")
-        for image in criterion_images:
-            add_image_row(cases, [image])
-            embedded_images.append(image)
+    if unique_images:
+        heading = cases.add_row().cells
+        heading[0].merge(heading[-1]).text = "Evidence Appendix - unique source screenshots"
+        heading[0].paragraphs[0].paragraph_format.keep_with_next = True
+        for evidence_id, image, browser_url in unique_images.values():
+            add_image_row(cases, image, evidence_id, browser_url)
 
     doc.save(str(output))
     patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review", "[Version]": "1.0", "[dd/mm/yyyy]": datetime.now().strftime("%d/%m/%Y"), "[Author]": "TEST2 QA Automation", "[Initial automated-test template]": "Generated from TEST2 evidence review"})
-    embedded_count = verify_embedded_images(output, embedded_images)
-    manifest = evidence_manifest(embedded_images)
+    embedded_count = verify_embedded_images(output, logical_images)
+    manifest = evidence_manifest(logical_images)
     Path(args.image_manifest).write_text(json.dumps({
         "embeddedEvidenceImages": embedded_count,
+        "reportContent": {
+            "overallOutcome": displayed_outcome,
+            "limitations": limitations,
+            "sourceUrls": urls or ["Not recorded"],
+            "evidenceCaptions": [f"{evidence_id} - {image.name}" for evidence_id, image, _ in unique_images.values()],
+        },
         **manifest,
     }, indent=2) + "\n", encoding="utf-8")
 

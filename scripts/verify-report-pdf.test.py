@@ -3,6 +3,7 @@ import importlib.util
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
 
 from PIL import Image, ImageDraw
 
@@ -33,6 +34,17 @@ def observed(name, image, source_hash):
 
 
 class PdfEvidenceIdentityTests(unittest.TestCase):
+    def test_report_content_requires_outcome_limitations_url_and_caption(self):
+        class Page:
+            def extract_text(self):
+                return "Overall review outcome:\nBlocked\nLimitations during Testing:\n1 blocked.\nCriterion final URL(s): https://example.test/gis\nE01 - evidence.png"
+        contract = {"overallOutcome": "Blocked", "limitations": "1 blocked.",
+                    "sourceUrls": ["https://example.test/gis"], "evidenceCaptions": ["E01 - evidence.png"]}
+        with patch.object(VERIFY, "PdfReader", return_value=type("Reader", (), {"pages": [Page()]})()):
+            self.assertTrue(VERIFY.verify_report_content("ignored.pdf", contract))
+            with self.assertRaisesRegex(SystemExit, "missing report content"):
+                VERIFY.verify_report_content("ignored.pdf", {**contract, "sourceUrls": ["https://other.test/gis"]})
+
     def test_matches_expected_evidence_by_exact_source_hash(self):
         image = patterned_image((20, 40, 60))
         matched, missing = VERIFY.match_expected_images([expected("criterion-1.png", image, "source-a")], [observed("Image1.png", image, "source-a")])

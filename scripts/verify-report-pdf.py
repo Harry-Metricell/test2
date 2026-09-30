@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 
 from PIL import Image, ImageChops, ImageStat
 from pypdf import PdfReader
@@ -139,6 +140,23 @@ def match_expected_images(expected, observed):
     return matched, missing
 
 
+def verify_report_content(pdf_path, content):
+    """Reject a visually populated PDF that dropped its outcome or audit trail."""
+    if not isinstance(content, dict) or not content.get("overallOutcome") or not content.get("limitations"):
+        raise SystemExit("image manifest has no report-content contract")
+    rendered = re.sub(r"\s+", " ", " ".join(page.extract_text() or "" for page in PdfReader(pdf_path).pages)).strip()
+    required = [
+        "Overall review outcome:", content["overallOutcome"],
+        "Limitations during Testing:", content["limitations"],
+        "Criterion final URL(s):", *(content.get("sourceUrls") or []),
+        *(content.get("evidenceCaptions") or []),
+    ]
+    missing = [item for item in required if re.sub(r"\s+", " ", item).strip() not in rendered]
+    if missing:
+        raise SystemExit(f"converted PDF is missing report content: {missing}")
+    return True
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--pdf", required=True)
@@ -153,12 +171,14 @@ def main():
     load_expected_images(expected, args.screenshots)
     observed = pdf_images(args.pdf)
     matched, missing = match_expected_images(expected, observed)
+    content_verified = verify_report_content(args.pdf, manifest.get("reportContent"))
     audit = {"verificationMethod": "source_sha256_then_resized_rgb_pixels",
              "pixelMeanMax": MAX_MEAN_RGB_DIFFERENCE,
              "pixelHighDifferenceFractionMax": MAX_HIGH_DIFFERENCE_FRACTION,
              "pixelTileDifferenceMax": MAX_TILE_RGB_DIFFERENCE,
              "expected": [item["file"] for item in expected], "matched": matched,
-             "missing": missing, "observedPdfImages": len(observed)}
+             "missing": missing, "observedPdfImages": len(observed),
+             "reportContentVerified": content_verified}
     print(json.dumps(audit))
     if missing:
         raise SystemExit(f"converted PDF is missing browser evidence: {', '.join(missing)}")
