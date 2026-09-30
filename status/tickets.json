@@ -3,10 +3,10 @@
   "generatedAt": "2026-09-30T14:03:44.397Z",
   "counts": {
     "tickets": 46,
-    "handoffs": 3,
+    "handoffs": 2,
     "byWorkflowState": {
-      "Blocked": 20,
-      "Ready": 25,
+      "Blocked": 21,
+      "Ready": 24,
       "Rejected": 1
     },
     "byQaOutcome": {
@@ -604,13 +604,13 @@
       "key": "TEST2-47",
       "summary": "Verify Surveyor Display Settings in V4 GIS",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-09-30T14:03:44.397Z",
       "retries": 0,
       "retryLimit": 2,
