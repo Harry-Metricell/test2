@@ -1,8 +1,16 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] Supported Surveyor layers can be selected from the GIS layer panel.
-- [ ] A user without access does not see an unavailable layer.
-- [ ] The Surveyor group appears beneath Tests and Measurements.
-- [ ] The eight GIS layer entries are Data Experience, Ping, Service, Building, Download, Upload, Site Testing, and Call.
-- [ ] Retired User, Browsing, and YouTube layers are absent.
-- [ ] Validation: For an authorised signed-in user, inspect the GIS layer browser and select available Surveyor entries. The permission-negative check requires a suitable restricted account; do not infer that behaviour from one authorised account. This is a GIS layer catalogue check, not a launcher module or Survey Analyser check.
+# Acceptance Criteria
+
+- [ ] Starting from the V4 GIS layer selector while signed in as an authorised user, expand the layer group list and verify that the Surveyor group is positioned immediately beneath Tests and Measurements.
+- [ ] With the Surveyor group expanded, verify that a Data Experience layer entry is displayed.
+- [ ] With the Surveyor group expanded, verify that a Ping layer entry is displayed.
+- [ ] With the Surveyor group expanded, verify that a Service layer entry is displayed.
+- [ ] With the Surveyor group expanded, verify that a Building layer entry is displayed.
+- [ ] With the Surveyor group expanded, verify that a Download layer entry is displayed.
+- [ ] With the Surveyor group expanded, verify that an Upload layer entry is displayed.
+- [ ] With the Surveyor group expanded, verify that a Site Testing layer entry is displayed.
+- [ ] With the Surveyor group expanded, verify that a Call layer entry is displayed.
+- [ ] For each displayed Surveyor layer entry, select the entry and verify that the GIS layer selector accepts the selection.
+- [ ] Using a signed-in account without access to a Surveyor layer, open the V4 GIS layer selector and verify that the unavailable layer is not displayed.
+- [ ] With the Surveyor group expanded, verify that User, Browsing, and YouTube layer entries are not displayed.
