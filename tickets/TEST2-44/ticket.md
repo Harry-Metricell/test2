@@ -4,9 +4,9 @@
 
 - Jira status: READY FOR TESTING
 - QA outcome: Not Tested
-- Workflow state: Ready
+- Workflow state: Blocked
 - Action owner: Coordinator
-- Next action: Create criteria conversion handoff
+- Next action: Manual criteria review required: The Jira ticket does not identify an affected screen or entry point, a starting state, a user action, or an observable expected result. It explicitly says that no product behaviour can be faithfully inferred and that a human must clarify the requested behaviour before browser testing. Clarification of those details is required before any faithful, browser-testable acceptance criterion can be written.
 - Jira: https://metricell.atlassian.net/browse/TEST2-44
 
 ## Acceptance Criteria

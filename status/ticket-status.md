@@ -36,7 +36,7 @@ Updated: 2026-09-30T10:37:30.759+0100
 | TEST2-40 | READY FOR TESTING | Evidence Reviewed |  | Navigate from GIS back to the launcher and into API Request Audit |
 | TEST2-41 | READY FOR TESTING | Evidence Reviewed |  | Navigate from API Request Audit to the Dashboards placeholder |
 | TEST2-42 | READY FOR TESTING | Evidence Reviewed |  | Return from Agentic AI to the launcher and open GIS |
-| TEST2-44 | READY FOR TESTING | Criteria Check Required |  | Clarify unspecified V4 change before browser testing |
+| TEST2-44 | READY FOR TESTING | Blocked |  | Clarify unspecified V4 change before browser testing |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 3/3 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 3/3 | Verify GIS layer and map view controls |
