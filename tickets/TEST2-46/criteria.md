@@ -1,6 +1,7 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] Selecting a supported Surveyor layer loads it with that layer's configured defaults.
-- [ ] Switching between two Surveyor layers updates the active layer and does not retain the previous layer's configuration.
-- [ ] Valid selection state can be restored safely after normal GIS state restoration.
-- [ ] Validation: In the V4 GIS layer panel, add two available Surveyor layers, inspect their configurations, switch between them, then restore or reload the GIS state and check the selected layer and its options. This ticket does not require map-point retrieval, detailed filters, clusters, or event Details. It depends on the Surveyor catalogue from VM2ST-225; if it is not available in the test environment, report that dependency rather than claiming a product failure.
+# Acceptance Criteria
+
+- [ ] With two supported Surveyor layers available in the V4 GIS layer panel, select the first layer and verify that its displayed configuration matches that layer's configured defaults.
+- [ ] After selecting a second supported Surveyor layer, verify that it becomes the active layer and that the displayed configuration matches the second layer's configured defaults rather than the previously selected layer's configuration.
+- [ ] After saving or otherwise entering a valid GIS state with a Surveyor layer selected, restore or reload that GIS state and verify that the same Surveyor layer remains selected and its displayed options are restored without an invalid selection state.
