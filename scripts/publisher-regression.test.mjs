@@ -113,6 +113,9 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     write(path.join(invalidOutcomeStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-003', handoffVersion: 'TEST2-99:test_ticket:3', ticket: 'TEST2-99', qaStatus: 'Awaiting Evidence Review', results: [{ criterion: 'Launcher is visible.', outcome: 'Maybe', evidence: [] }], conciseReport: 'Invalid' }));
     const invalidOutcome = run(); assert.equal(invalidOutcome.status, 1); assert.match(invalidOutcome.stderr, /invalid outcome: Maybe/);
     fs.rmSync(invalidOutcomeStage, { recursive: true, force: true });
+    write(path.join(invalidOutcomeStage, 'test-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-test-attempt-003', handoffVersion: 'TEST2-99:test_ticket:3', ticket: 'TEST2-99', qaStatus: 'Blocked', results: [{ criterion: 'Launcher is visible.', outcome: 'Blocked', retryClass: 'product', evidence: [] }], conciseReport: 'Invalid retry class' }));
+    const invalidRetryClass = run(); assert.equal(invalidRetryClass.status, 1); assert.match(invalidRetryClass.stderr, /invalid retryClass/);
+    fs.rmSync(invalidOutcomeStage, { recursive: true, force: true });
     const staleStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-stale');
     write(path.join(staleStage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-stale', handoffVersion: 'TEST2-99:criteria_conversion:stale', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] Stale output.', qaStatus: 'Ready for Testing', noOp: false }));
     const stale = run(); assert.equal(stale.status, 0, stale.stderr);

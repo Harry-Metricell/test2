@@ -514,6 +514,18 @@ if (outputType === 'criteria-output.json') {
   const criteria = requiredCriteria(ticketDir);
   output.results = validateCriterionCoverage(output.results, criteria, 'Tester results');
   validateTesterStatus(output.results, output.qaStatus);
+  output.results = output.results.map((item, index) => {
+    if (item.outcome === 'Passed') return item;
+    const retryClass = item.retryClass || (item.outcome === 'Failed' ? 'product' : 'manual');
+    if (!['transient', 'prerequisite', 'criteria', 'product', 'manual'].includes(retryClass)
+        || (item.outcome === 'Failed' && retryClass !== 'product')
+        || (item.outcome !== 'Failed' && retryClass === 'product')) {
+      fail(`Tester result ${index + 1} has an invalid retryClass for ${item.outcome}`);
+    }
+    // Older in-flight workers have no retryClass. Treat those blocks as
+    // non-retryable, but do not reject otherwise valid evidence publication.
+    return { ...item, retryClass };
+  });
   const attempt = nextEvidenceAttempt(key, status, output.handoffId);
   const attemptName = `attempt-${String(attempt).padStart(3, '0')}`;
   const attemptEvidenceDir = path.join(evidenceRoot, key, 'screenshots', attemptName);

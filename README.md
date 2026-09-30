@@ -15,6 +15,8 @@ The system keeps durable QA state in GitHub and uses Codex only for authenticate
 5. The local publisher validates staged output, copies screenshots and reports to the private evidence folder, and pushes ticket-scoped results from a clean temporary Git worktree.
 6. Status Bundler regenerates status, handoffs, and the retry counter. The coordinator resumes from the live queue after publication; the scheduled publisher and Desktop sync do not launch it.
 
+Testing permits at most two total attempts (the first run plus one retry). The tester labels each non-passing criterion with an auditable `retryClass`. Only an all-transient result, or an inconclusive evidence review of an otherwise retryable result, receives the automatic retry. Missing accounts/data, flawed criteria, and observed product failures go straight to evidence review; a final report is required even when testing stops after the first attempt. Older results without a retry classification also go to review rather than being blindly retried. A report still requires valid evidence and successful publisher verification.
+
 ## Start the coordinator
 
 The complete, canonical coordinator brief is [`docs/briefs/coordinator.md`](docs/briefs/coordinator.md). Keep the rules in that file rather than duplicating them in the README, so the coordinator has one source of truth.

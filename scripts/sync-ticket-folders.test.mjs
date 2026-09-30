@@ -19,6 +19,7 @@ test('Done tickets are archived with history and restored when reopened', () => 
   const issue = (status, updated = '2026-09-29') => ({ key: 'TEST2-99', fields: { status: { name: status }, updated } });
   try {
     run([issue('Ready for Testing')]);
+    assert.equal(JSON.parse(fs.readFileSync(path.join(active, 'status.json'), 'utf8')).retryLimit, 2);
     fs.mkdirSync(path.join(active, 'history'));
     fs.writeFileSync(path.join(active, 'history', 'attempt-001-test.json'), '{"passed":true}');
     fs.writeFileSync(path.join(active, 'report.pdf'), 'report');
@@ -35,6 +36,7 @@ test('Done tickets are archived with history and restored when reopened', () => 
     assert.equal(fs.existsSync(path.join(active, 'archive.json')), false);
     assert.equal(fs.readFileSync(path.join(active, 'report.pdf'), 'utf8'), 'report');
     assert.equal(JSON.parse(fs.readFileSync(path.join(active, 'ticket.json'), 'utf8')).fields.updated, '2026-09-30');
+    assert.equal(JSON.parse(fs.readFileSync(path.join(active, 'status.json'), 'utf8')).retryLimit, 2);
     run([]);
     assert.equal(JSON.parse(fs.readFileSync(path.join(archived, 'archive.json'), 'utf8')).reason, 'Absent from complete Jira response');
   } finally {

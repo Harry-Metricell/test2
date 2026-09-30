@@ -42,7 +42,7 @@ for (const issue of issues) {
   }
   // Jira is read-only: refresh only Jira-owned fields and preserve QA workflow
   // state, retries, and block metadata.
-  const nextStatus = { ...existing, ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus, retries: Number(existing.retries || 0), retryLimit: Number(existing.retryLimit || 3) };
+  const nextStatus = { ...existing, ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus, retries: Number(existing.retries || 0), retryLimit: 2 };
   fs.writeFileSync(statusFile, JSON.stringify(nextStatus, null, 2) + '\n');
 }
 

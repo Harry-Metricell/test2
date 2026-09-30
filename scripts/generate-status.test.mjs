@@ -75,33 +75,91 @@ test('an Unverified evidence review queues one retry and keeps its report', () =
     run();
     assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 1);
 
-    // A later blocked second attempt with a stale 3/3 counter must recover
-    // the true 1/3 history count, then queue only the next retry (2/3).
-    write('history/attempt-002-test.json', { historyAttempt: 2, qaStatus: 'Blocked', results: [{ criterion: 1, outcome: 'Blocked' }] });
-    write('review.json', { historyAttempt: 2, evidenceFolder: 'screenshots/attempt-002', overallOutcome: 'Blocked', qaStatus: 'Blocked', criterionOutcomes: [{ criterion: 1, outcome: 'Blocked', reason: 'Authentication stopped testing.' }] });
+    // The second attempt is the limit even when its problem is transient.
+    write('history/attempt-002-test.json', { historyAttempt: 2, qaStatus: 'Blocked', results: [{ criterion: 1, outcome: 'Blocked', retryClass: 'transient' }] });
     write('status.json', { ticket: 'TEST2-99', jiraStatus: 'READY FOR TESTING', qaStatus: 'Blocked', workflowState: 'Blocked', qaOutcome: 'Blocked', criteriaVerified: true, retries: 3, retryLimit: 3 });
     run();
     const recovered = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
     const next = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8'));
     assert.equal(recovered.retries, 2);
-    assert.equal(next.handoffs[0]?.handoffId, 'handoff-TEST2-99-retry-attempt-003');
+    assert.equal(recovered.retryLimit, 2);
+    assert.equal(recovered.qaStatus, 'Awaiting Evidence Review');
+    assert.equal(next.handoffs[0]?.handoffId, 'handoff-TEST2-99-review-attempt-002');
     run();
     assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 2);
 
-    // The third published attempt is the limit. Its blocked review must be
-    // terminal for automatic testing, not a retry label with no handoff.
-    write('history/attempt-003-test.json', { historyAttempt: 3, qaStatus: 'Blocked', results: [{ criterion: 1, outcome: 'Blocked' }] });
-    write('review.json', { historyAttempt: 3, evidenceFolder: 'screenshots/attempt-003', overallOutcome: 'Blocked', qaStatus: 'Blocked', criterionOutcomes: [{ criterion: 1, outcome: 'Blocked', reason: 'Authentication stopped testing.' }] });
-    write('status.json', { ticket: 'TEST2-99', jiraStatus: 'READY FOR TESTING', qaStatus: 'Ready for Testing', workflowState: 'Retry Queued', qaOutcome: 'Blocked', criteriaVerified: true, retries: 3, retryLimit: 3 });
+    write('review.json', { historyAttempt: 2, evidenceFolder: 'screenshots/attempt-002', overallOutcome: 'Blocked', qaStatus: 'Blocked', criterionOutcomes: [{ criterion: 1, outcome: 'Blocked', reason: 'Authentication stopped testing.' }] });
     run();
     const exhausted = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
     const finalQueue = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8'));
-    assert.equal(exhausted.retries, 3);
+    assert.equal(exhausted.retries, 2);
     assert.equal(exhausted.qaStatus, 'Blocked');
     assert.match(exhausted.nextAction, /Manual review required/);
     assert.equal(finalQueue.handoffs.length, 0);
     run();
     assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).qaStatus, 'Blocked');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('missing prerequisites, product failures, and legacy blocks go to review without retry', () => {
+  for (const [name, result] of [
+    ['missing account', { outcome: 'Blocked', retryClass: 'prerequisite' }],
+    ['bad criterion', { outcome: 'Blocked', retryClass: 'criteria' }],
+    ['product failure', { outcome: 'Failed', retryClass: 'product' }],
+    ['legacy block', { outcome: 'Blocked' }]
+  ]) {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-manual-review-'));
+    const dir = path.join(root, 'tickets', 'TEST2-99');
+    try {
+      fs.mkdirSync(path.join(dir, 'history'), { recursive: true });
+      fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify({ key: 'TEST2-99', fields: { summary: name, status: { name: 'READY FOR TESTING' }, project: { key: 'TEST2' }, description: 'Acceptance Criteria:\nThe GIS layer is visible.' } }));
+      fs.writeFileSync(path.join(dir, 'criteria.md'), '- [ ] The GIS layer is visible.\n');
+      fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify({ ticket: 'TEST2-99', qaStatus: 'Ready for Testing', workflowState: 'Retry Queued', retries: 1, retryLimit: 3, criteriaVerified: true }));
+      fs.writeFileSync(path.join(dir, 'results.json'), JSON.stringify([{ criterion: 'The GIS layer is visible.', ...result }]));
+      fs.writeFileSync(path.join(dir, 'history', 'attempt-001-test.json'), JSON.stringify({ historyAttempt: 1, qaStatus: result.outcome === 'Blocked' ? 'Blocked' : 'Awaiting Evidence Review', results: [{ criterion: 1, ...result }] }));
+      const run = () => execFileSync(process.execPath, [generator], { cwd: root });
+      run();
+      const status = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
+      const queue = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8'));
+      assert.equal(status.retryLimit, 2, name);
+      assert.equal(status.retries, 0, name);
+      assert.equal(status.qaStatus, 'Awaiting Evidence Review', name);
+      assert.equal(queue.handoffs[0]?.action, 'evidence_review', name);
+      run();
+      assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 0, name);
+      fs.writeFileSync(path.join(dir, 'review.json'), JSON.stringify({ historyAttempt: 1, evidenceFolder: 'screenshots/attempt-001', overallOutcome: result.outcome, qaStatus: result.outcome === 'Blocked' ? 'Blocked' : 'Evidence Reviewed', criterionOutcomes: [{ criterion: 1, outcome: result.outcome, reason: name }] }));
+      fs.writeFileSync(path.join(dir, 'report.pdf'), 'verified report placeholder');
+      run();
+      const done = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
+      assert.equal(done.qaStatus, 'Blocked', name);
+      assert.match(done.nextAction, /Manual review required; final evidence report published/, name);
+      assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8')).handoffs.length, 0, name);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  }
+});
+
+test('only a transient first test attempt queues one retry', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-transient-retry-'));
+  const dir = path.join(root, 'tickets', 'TEST2-99');
+  try {
+    fs.mkdirSync(path.join(dir, 'history'), { recursive: true });
+    fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify({ key: 'TEST2-99', fields: { summary: 'Transient auth', status: { name: 'READY FOR TESTING' }, project: { key: 'TEST2' }, description: 'Acceptance Criteria:\nThe launcher is visible.' } }));
+    fs.writeFileSync(path.join(dir, 'criteria.md'), '- [ ] The launcher is visible.\n');
+    fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify({ ticket: 'TEST2-99', qaStatus: 'Blocked', retries: 0, retryLimit: 3, criteriaVerified: true }));
+    fs.writeFileSync(path.join(dir, 'results.json'), JSON.stringify([{ criterion: 'The launcher is visible.', outcome: 'Blocked', retryClass: 'transient' }]));
+    fs.writeFileSync(path.join(dir, 'history', 'attempt-001-test.json'), JSON.stringify({ historyAttempt: 1, qaStatus: 'Blocked', results: [{ criterion: 1, outcome: 'Blocked', retryClass: 'transient' }] }));
+    const run = () => execFileSync(process.execPath, [generator], { cwd: root });
+    run();
+    const first = fs.readFileSync(path.join(dir, 'status.json'), 'utf8');
+    assert.equal(JSON.parse(first).retries, 1);
+    assert.equal(JSON.parse(first).workflowState, 'Retry Queued');
+    assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8')).handoffs[0]?.handoffId, 'handoff-TEST2-99-retry-attempt-002');
+    run();
+    assert.equal(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'), first, 'polling must not spend the retry again');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
@@ -127,7 +185,7 @@ test('a rejected ticket does not spend retries or churn status on polling', () =
     run();
     assert.equal(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'), first);
     assert.equal(fs.readFileSync(path.join(root, 'status', 'tickets.json'), 'utf8'), generated);
-    assert.ok(JSON.parse(first).retries <= 1);
+    assert.ok(JSON.parse(first).retries <= 2);
     assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8')).handoffs.length, 0);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });

@@ -10,6 +10,21 @@ const outDir = path.join(root, 'status');
 const generatedDir = path.join(outDir, 'generated');
 const guideImpactPolicyPath = path.join(root, 'config', 'user-guide-impact-policy.json');
 const guideUpdatePolicyPath = path.join(root, 'config', 'user-guide-update-policy.json');
+// Two total test attempts: the first run and, only for transient problems, one retry.
+const MAX_TEST_ATTEMPTS = 2;
+
+function attemptDisposition(attempt) {
+  if (!attempt) return null;
+  const results = attempt.results;
+  if (!Array.isArray(results) || results.length === 0) return 'manual';
+  const nonPassed = results.filter(item => String(item?.outcome || item?.status || '').trim().toLowerCase() !== 'passed');
+  if (nonPassed.length === 0) return 'passed';
+  // Legacy results without an explicit retry class fail closed to review.
+  // A product failure, missing account/data, or flawed criterion cannot be
+  // cured by blindly repeating the same browser journey.
+  return nonPassed.every(item => ['blocked', 'unverified'].includes(String(item?.outcome || item?.status || '').trim().toLowerCase())
+    && item.retryClass === 'transient') ? 'transient' : 'manual';
+}
 
 const STATUS_LABELS = new Map([
   ['published', 'Published'],
@@ -138,7 +153,7 @@ function mergeStatus(ticket, localStatus) {
   const localState = canonicalState(localStatus.workflowState || localStatus.status, 'Imported');
   const workflowState = statusRank(localState) <= statusRank(jiraState) ? localState : jiraState;
   const retries = Number(localStatus.retries || 0);
-  const retryLimit = Number(localStatus.retryLimit || 3);
+  const retryLimit = MAX_TEST_ATTEMPTS;
   const criteriaBlocked = localStatus.criteriaVerified !== true
     && localStatus.blockedStage === 'criteria'
     && (localStatus.criteriaBlockedForJiraUpdated || null) === (ticket.jira.updated || null);
@@ -243,8 +258,12 @@ function normalizeTicket(dirName) {
     qaStatus: 'Not Tested',
     status: ticket.jira.status || 'Unknown',
     retries: 0,
-    retryLimit: 3
+    retryLimit: MAX_TEST_ATTEMPTS
   });
+  if (Number(localStatus.retryLimit) !== MAX_TEST_ATTEMPTS) {
+    localStatus = { ...localStatus, retryLimit: MAX_TEST_ATTEMPTS };
+    if (!checkOnly) writeJson(statusPath, localStatus);
+  }
   if (!fs.existsSync(statusPath) && !checkOnly) writeJson(statusPath, localStatus);
   // ticket.json is the authoritative imported Jira snapshot. Keep the small
   // Jira mirror in status.json synchronised while preserving QA-owned fields.
@@ -269,27 +288,33 @@ function normalizeTicket(dirName) {
   const latestAttempt = attempts.length ? readJson(path.join(dir, 'history', attempts.at(-1)), null) : null;
   const latestNumber = Number(latestAttempt?.historyAttempt || attempts.at(-1)?.match(/attempt-(\d+)-test/i)?.[1] || 0);
   const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\d+)/i)?.[1] || 0);
-  // A newer published test supersedes an older review.  A blocked final
-  // attempt still needs evidence review so the user receives a report.
-  if (!criteriaHold && latestAttempt && latestNumber > reviewNumber) {
-    const exhausted = Number(localStatus.retries || 0) >= Number(localStatus.retryLimit || 3);
-    const needsFinalReview = exhausted;
+  const disposition = attemptDisposition(latestAttempt);
+  const wasQueuedRetry = localStatus.workflowState === 'Retry Queued' && localStatus.qaStatus === 'Ready for Testing';
+  const reviewHasReport = review?.noOp !== true
+    && reviewNumber >= latestNumber
+    && fs.existsSync(path.join(dir, 'report.pdf'))
+    && fs.statSync(path.join(dir, 'report.pdf')).size > 0;
+  const reviewOutcome = String(review?.overallOutcome || '').trim().toLowerCase();
+  const successfulReview = reviewHasReport && reviewOutcome === 'passed';
+  const retryEligible = reviewHasReport
+    ? reviewOutcome === 'unverified' && ['passed', 'transient'].includes(disposition)
+    : disposition === 'transient';
+  // A newer test supersedes an older review. A permanent prerequisite or
+  // product failure goes to evidence review now, without wasting a retry.
+  if (!criteriaHold && latestAttempt && latestNumber > reviewNumber && !(wasQueuedRetry && retryEligible)) {
+    const needsReview = !retryEligible || latestNumber >= MAX_TEST_ATTEMPTS;
     localStatus = {
       ...localStatus,
-      qaStatus: needsFinalReview ? 'Awaiting Evidence Review' : (latestAttempt.qaStatus || 'Awaiting Evidence Review'),
+      qaStatus: needsReview ? 'Awaiting Evidence Review' : 'Blocked',
       workflowState: ticket.jira.status || localStatus.workflowState,
-      blockedStage: needsFinalReview ? 'evidence_review' : null,
-      nextAction: needsFinalReview ? 'Create final evidence review handoff' : 'Create evidence review handoff'
+      blockedStage: needsReview ? 'evidence_review' : null,
+      nextAction: needsReview ? 'Create final evidence review handoff' : 'Create retry handoff'
     };
     if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
   }
   // A published review is the authoritative completion signal for the review
   // stage. Reconcile stale publisher/bundler status before generating handoffs.
-  const reviewHasReport = review?.noOp !== true
-    && reviewNumber >= latestNumber
-    && fs.existsSync(path.join(dir, 'report.pdf'))
-    && fs.statSync(path.join(dir, 'report.pdf')).size > 0;
-  if (!criteriaHold && reviewHasReport) {
+  if (!criteriaHold && reviewHasReport && !(wasQueuedRetry && retryEligible)) {
     const reviewBlocked = ['blocked', 'failed'].includes(String(review.overallOutcome || review.qaStatus || '').trim().toLowerCase());
     localStatus = {
       ...localStatus,
@@ -300,9 +325,8 @@ function normalizeTicket(dirName) {
     };
     if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + '\n', 'utf8');
   }
-  // Any pipeline block is an operational retry signal. Convert it once per block
-  // into a retryable state and persist the counter in the ticket status file.
-  // This prevents repeated bundler runs from consuming all retries.
+  // Derive the count from published attempts, plus one already queued retry.
+  // A stale queue for a permanent block is deliberately cleared.
   const recordedAttempts = fs.existsSync(path.join(dir, 'history'))
     ? fs.readdirSync(path.join(dir, 'history')).filter((name) => /^attempt-\d+-test\.json$/i.test(name)).length
     : 0;
@@ -310,13 +334,12 @@ function normalizeTicket(dirName) {
   // test history. This repairs old state where blocked transitions were counted
   // but later failed/unverified attempts were not.
   const recordedRetries = Math.max(0, recordedAttempts - 1);
-  const retryLimit = Number.isFinite(Number(localStatus.retryLimit)) ? Number(localStatus.retryLimit) : 3;
-  const queuedRetry = localStatus.workflowState === 'Retry Queued' && localStatus.qaStatus === 'Ready for Testing';
+  const retryLimit = MAX_TEST_ATTEMPTS;
+  const queuedRetry = wasQueuedRetry && retryEligible && latestNumber < retryLimit;
   // A queued retry counts once; completed retry attempts come from history.
   // Repeated bundler runs cannot spend the limit again for the same attempt.
   // The final published attempt consumes the limit even when an earlier
-  // queued-retry marker is cleared by its evidence review. Otherwise attempt
-  // 003 can be left labelled "Retry Queued" with no possible next handoff.
+  // queued-retry marker is cleared by its evidence review.
   const retries = latestAttempt
     ? Math.min(retryLimit, latestNumber >= retryLimit ? retryLimit : recordedRetries + Number(queuedRetry))
     : (Number.isFinite(Number(localStatus.retries)) ? Number(localStatus.retries) : 0);
@@ -324,22 +347,10 @@ function normalizeTicket(dirName) {
     localStatus = { ...localStatus, retries };
     fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
   }
-  // Failed attempts can be marked Evidence Reviewed, so retry from the
-  // persisted outcome as well as from a blocked QA status.
-  const retryableOutcome = ['failed', 'blocked', 'unverified'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase());
-  const qaStatusKey = String(localStatus.qaStatus || '').trim().toLowerCase();
-  const retryableStatus = qaStatusKey === 'blocked';
-  const newRetryableAttempt = retryableOutcome
-    && !['ready for testing', 'retry queued'].includes(qaStatusKey)
-    && !(latestAttempt && latestNumber > reviewNumber);
-  // Only a Passed review is terminal. An inconclusive evidence review needs
-  // another test attempt while the retry budget remains.
-  const successfulReview = reviewHasReport
-    && String(review?.overallOutcome || '').trim().toLowerCase() === 'passed';
-  // Jira is the eligibility gate. A rejected ticket must not refresh its
-  // retry marker (and updatedAt) on every scheduled bundler run.
-  if (localStatus.criteriaVerified === true && !successfulReview && jiraReadyForTesting(ticket)) {
-    if ((retryableStatus || newRetryableAttempt) && retries < retryLimit) {
+  // Retry only a specifically classified transient failure, once. An
+  // inconclusive review of an otherwise passed attempt may also retry once.
+  if (localStatus.criteriaVerified === true && !successfulReview && retryEligible
+      && !queuedRetry && latestAttempt && retries < retryLimit && jiraReadyForTesting(ticket)) {
     localStatus = {
       ...localStatus,
       qaStatus: 'Ready for Testing',
@@ -351,28 +362,15 @@ function normalizeTicket(dirName) {
       updatedAt: new Date().toISOString()
     };
     if (!checkOnly) fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
-    }
   }
-  // A previous publisher can leave blockedStage behind while a stale review status
-  // remains. Treat that combination as a queued retry instead of suppressing work.
-  if (localStatus.criteriaVerified === true && jiraReadyForTesting(ticket) && localStatus.blockedStage && localStatus.qaStatus !== 'Blocked' && retries < retryLimit) {
-    localStatus = {
-      ...localStatus,
-      qaStatus: 'Ready for Testing',
-      workflowState: 'Retry Queued',
-      blockedStage: null,
-      nextAction: `Retry ${retries}/${retryLimit} queued; coordinator will start tester`,
-      updatedAt: new Date().toISOString()
-    };
-    if (!checkOnly) fs.writeFileSync(statusPath, JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
-  }
-  // A final blocked test is not terminal until evidence review has produced its
-  // report.  Once that report exists, it is terminal for automatic testing.
-  const exhaustedFinalBlock = retries >= retryLimit && (
-    ['blocked', 'failed', 'unverified'].includes(String(localStatus.qaOutcome || '').trim().toLowerCase())
-    || String(latestAttempt?.qaStatus || '').trim().toLowerCase() === 'blocked'
+  // Permanent blocks and exhausted transient attempts always get a final
+  // evidence review and report, including when stopped after attempt one.
+  const finalReviewRequired = latestAttempt && !successfulReview && (
+    disposition === 'manual'
+    || (reviewHasReport && ['failed', 'blocked'].includes(reviewOutcome))
+    || latestNumber >= retryLimit
   );
-  if (!criteriaHold && exhaustedFinalBlock) {
+  if (!criteriaHold && finalReviewRequired) {
     localStatus = reviewHasReport
       ? {
           ...localStatus,
@@ -429,7 +427,7 @@ function handoffFor(ticket) {
   const workflowState = String(ticket.status.workflowState || '').trim().toLowerCase();
   const nextAction = String(ticket.status.nextAction || '').trim().toLowerCase();
   const retries = Number(ticket.status.retries || 0);
-  const retryLimit = Number(ticket.status.retryLimit || 3);
+  const retryLimit = MAX_TEST_ATTEMPTS;
   const historyDir = path.join(ticketsDir, ticket.key, 'history');
   const attempts = fs.existsSync(historyDir)
     ? fs.readdirSync(historyDir).filter((name) => /^attempt-\d+-test\.json$/i.test(name)).sort()
@@ -617,12 +615,12 @@ const summary = {
     nextAction: t.status.nextAction,
     updatedAt: t.status.updatedAt,
     retries: t.status.retries,
-    retryLimit: 3,
-    retryLabel: t.status.retries > 0 ? `Retry ${t.status.retries}/3` : ''
+    retryLimit: MAX_TEST_ATTEMPTS,
+    retryLabel: t.status.retries > 0 ? `Retry ${t.status.retries}/${MAX_TEST_ATTEMPTS}` : ''
   }))
 };
 
-const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Retry | Summary |', '| --- | --- | --- | --- | --- |', ...displayTickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.status.retries > 0 ? `Retry ${t.status.retries}/3` : ''} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\n');
+const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Retry | Summary |', '| --- | --- | --- | --- |', ...displayTickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.status.retries > 0 ? `Retry ${t.status.retries}/${MAX_TEST_ATTEMPTS}` : ''} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\n');
 writeText(path.join(outDir, 'ticket-status.md'), report);
 
 writeJson(path.join(outDir, 'tickets.json'), summary);
