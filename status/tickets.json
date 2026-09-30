@@ -3,10 +3,10 @@
   "generatedAt": "2026-09-30T14:03:44.397Z",
   "counts": {
     "tickets": 46,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 22,
-      "Ready": 23,
+      "Blocked": 23,
+      "Ready": 22,
       "Rejected": 1
     },
     "byQaOutcome": {
@@ -588,13 +588,13 @@
       "key": "TEST2-46",
       "summary": "Verify Surveyor layer defaults and switching in V4 GIS",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Failed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-09-30T12:12:05.834+0100",
       "retries": 0,
       "retryLimit": 2,
