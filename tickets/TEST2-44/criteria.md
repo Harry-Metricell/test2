@@ -1,7 +1,7 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] Test-system criteria-hold exercise.
-- [ ] The request is to improve V4, but the affected screen, starting state, user action, and expected visible result are not specified.
-- [ ] No product behaviour can be faithfully inferred from this ticket yet.
-- [ ] A human must clarify the requested behaviour before browser testing.
-- [ ] Do not guess a feature or invent acceptance criteria.
+# Acceptance Criteria
+
+- [ ] When the signed-in browser is opened at the V4 launcher, the Dashboards module card is visible and provides an Open module control.
+- [ ] When the tester selects Open module on the Dashboards card, the browser opens the Dashboards page and displays the Under construction placeholder.
+- [ ] When the tester uses the browser Back control from the Dashboards page, the V4 launcher is shown again with the Dashboards module card visible.

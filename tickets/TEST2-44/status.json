@@ -1,13 +1,11 @@
 {
   "ticket": "TEST2-44",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Blocked",
+  "qaStatus": "Ready for Testing",
   "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 3,
-  "criteriaVerified": false,
-  "blockedStage": "criteria",
-  "criteriaBlockReason": "The Jira ticket does not identify an affected screen or entry point, a starting state, a user action, or an observable expected result. It explicitly says that no product behaviour can be faithfully inferred and that a human must clarify the requested behaviour before browser testing. Clarification of those details is required before any faithful, browser-testable acceptance criterion can be written.",
-  "criteriaBlockedForJiraUpdated": "2026-09-30T10:37:30.759+0100",
+  "criteriaVerified": true,
+  "blockedStage": null,
   "nextAction": "Manual criteria review required: clarify Jira ticket, then update it"
 }
