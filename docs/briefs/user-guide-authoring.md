@@ -2,13 +2,14 @@
 
 Create exactly one concise, evidence-backed guide update for the selected `guide_update_authoring` handoff. This is not browser testing and must not modify the Word document.
 
-Read live GitHub `status/handoffs.json` first. Confirm the supplied handoff ID, ticket, action, and `handoffVersion` are still live. Read only the listed `ticket.json`, generated ticket projection, passed `review.json`, `report.md`, `results.json`, `guide-impact.json`, and both user-guide policy files. If the handoff is absent or changed, return a no-op only in chat.
+Read live GitHub `status/handoffs.json` first. Confirm the supplied handoff ID, ticket, action, and `handoffVersion` are still live. Read only the listed `ticket.json`, generated ticket projection, passed `review.json`, `report.md`, `results.json`, `guide-impact.json`, `status/guide-updates.json`, and both user-guide policy files. If the handoff is absent or changed, return a no-op only in chat.
 
-Write clear end-user instructions for the delivered, passed behaviour. Do not invent screens, controls, or outcomes. Reuse one or more verified PNG paths from the ticket's `results.json`; the builder will only accept evidence from the reviewed ticket. Choose `add` for a new guide section and `amend` for an addition to an existing named section. Every step must be a short imperative sentence suitable for the guide.
+Write clear end-user instructions for the delivered, passed behaviour. Do not invent screens, controls, or outcomes. Reuse one or more verified PNG paths from the ticket's `results.json`; the builder will only accept evidence from the reviewed ticket. Choose `add` for a genuinely new guide section. Choose `amend` only when replacing one exact prior generated section from `status/guide-updates.json`; set `supersedesTicket` to that section's ticket key. If the correct prior section is unclear, stop with a concise failure instead of appending duplicate instructions. Every step must be a short imperative sentence suitable for the guide.
 
-Write exactly one file: `.agent-staging/<handoffId>/guide-update-output.json`. It must contain exactly `handoffId`, `handoffVersion`, `ticket`, `title`, `affectedSection`, `changeType`, `steps`, `screenshots`, `reason`, and `noOp`.
+Write exactly one file: `.agent-staging/<handoffId>/guide-update-output.json`. It must contain `handoffId`, `handoffVersion`, `ticket`, `title`, `affectedSection`, `changeType`, `steps`, `screenshots`, `reason`, and `noOp`; include `supersedesTicket` only for an amendment.
 
 - `changeType` is `add` or `amend`.
+- For `amend`, `supersedesTicket` must identify the exact generated guide block to replace. For `add`, omit it.
 - `steps` is a non-empty ordered array of plain strings.
 - `screenshots` is a non-empty array of distinct PNG paths taken verbatim from the selected ticket's `results.json` evidence.
 - `reason` briefly describes the user-facing change.

@@ -558,6 +558,25 @@ const ticketDirs = fs.existsSync(ticketsDir)
 
 const tickets = ticketDirs.map(normalizeTicket);
 const handoffs = tickets.map(handoffFor).filter(Boolean);
+// Compact, deterministic guide index for the authoring worker. Include
+// archived source tickets because their approved sections remain in the guide.
+const guideRecords = [];
+for (const base of [ticketsDir, path.join(root, 'archive', 'tickets')]) {
+  if (!fs.existsSync(base)) continue;
+  for (const entry of fs.readdirSync(base, { withFileTypes: true })) {
+    if (!entry.isDirectory() || !/^TEST2-\d+$/.test(entry.name)) continue;
+    const file = path.join(base, entry.name, 'guide-update.json');
+    if (!fs.existsSync(file)) continue;
+    const update = readJson(file);
+    guideRecords.push({ ticket: entry.name, title: update.title, affectedSection: update.affectedSection,
+      changeType: update.changeType, supersedesTicket: update.supersedesTicket || null });
+  }
+}
+const superseded = new Set(guideRecords.map(record => record.supersedesTicket).filter(Boolean));
+writeJson(path.join(outDir, 'guide-updates.json'), { schema: 'v4-guide-updates-index.v1',
+  sections: guideRecords.filter(record => !superseded.has(record.ticket))
+    .map(({ ticket, title, affectedSection }) => ({ ticket, title, affectedSection }))
+    .sort((a, b) => a.ticket.localeCompare(b.ticket, undefined, { numeric: true })) });
 // status/generated is a derived projection. Remove records for ticket folders
 // that the importer has deleted so stale tickets cannot remain in GitHub.
 if (!checkOnly && fs.existsSync(generatedDir)) {

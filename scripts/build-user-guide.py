@@ -53,6 +53,27 @@ def has_update(document: Document, ticket: str) -> bool:
     return any(token in paragraph.text for paragraph in document.paragraphs)
 
 
+def superseded_block(document: Document, ticket: str):
+    """Find one complete generated block; never remove manually written guide text."""
+    token = UPDATE_MARKER.format(ticket=ticket)
+    matches = [p for p in document.paragraphs if token in p.text]
+    if len(matches) != 1:
+        fail(f"amend target {ticket} must have exactly one guide marker; found {len(matches)}")
+    marker = matches[0]._p
+    elements = []
+    current = marker
+    while current is not None:
+        if current.tag == qn("w:p"):
+            text = "".join(current.itertext())
+            if current is not marker and (UPDATE_MARKER.split("{")[0] in text or MARKER in text):
+                fail(f"amend target {ticket} crosses another guide marker")
+            if text.startswith(("New feature: ", "Updated guidance: ")):
+                return current, elements + [current]
+        elements.append(current)
+        current = current.getprevious()
+    fail(f"amend target {ticket} has no generated heading")
+
+
 def set_hidden(paragraph) -> None:
     for run in paragraph.runs:
         run.font.hidden = True
@@ -116,6 +137,11 @@ def validate_update(update: dict, ticket: str) -> None:
         fail(f"{ticket} guide update names a different ticket")
     if update.get("changeType") not in {"add", "amend"}:
         fail(f"{ticket} has an invalid changeType")
+    target = update.get("supersedesTicket")
+    if update["changeType"] == "amend" and (not isinstance(target, str) or not KEY.fullmatch(target) or target == ticket):
+        fail(f"{ticket} amend requires a distinct supersedesTicket")
+    if update["changeType"] == "add" and target not in (None, ""):
+        fail(f"{ticket} add must not supersede another ticket")
     for field in ("title", "affectedSection", "reason"):
         if not isinstance(update.get(field), str) or not update[field].strip():
             fail(f"{ticket} {field} is missing")
@@ -153,6 +179,16 @@ def screenshot_path(evidence_root: Path, ticket: str, relative: str) -> Path:
     return candidate
 
 
+def superseded_tickets(repo: Path) -> set[str]:
+    targets = set()
+    for base in (repo / "tickets", repo / "archive" / "tickets"):
+        for record in base.glob("TEST2-*/guide-update.json"):
+            update = read_json(record)
+            if update.get("supersedesTicket"):
+                targets.add(update["supersedesTicket"])
+    return targets
+
+
 def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -> dict:
     plan = read_json(repo / "config" / "user-guide-plan.json")
     policy = read_json(repo / "config" / "user-guide-update-policy.json")
@@ -176,22 +212,34 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
     # generated guidance before that note so the document still ends properly.
     anchor = next((p for p in document.paragraphs if p.text.startswith("End of example guide.")), marker)
     applied, skipped = [], []
+    obsolete = superseded_tickets(repo)
     for ticket, update in updates:
+        if ticket in obsolete:
+            skipped.append(ticket)
+            continue
         if has_update(document, ticket):
             skipped.append(ticket)
             continue
+        old_elements = []
+        if update["changeType"] == "amend":
+            anchor_element, old_elements = superseded_block(document, update["supersedesTicket"])
+        else:
+            anchor_element = anchor._p
         label = "New feature" if update["changeType"] == "add" else "Updated guidance"
-        add_before(anchor, yellow_paragraph(f"{label}: {update['title'].strip()}", "Heading 1")._p)
-        add_before(anchor, yellow_paragraph(f"Section: {update['affectedSection'].strip()}")._p)
+        anchor_proxy = type("Anchor", (), {"_p": anchor_element})()
+        add_before(anchor_proxy, yellow_paragraph(f"{label}: {update['title'].strip()}", "Heading 1")._p)
+        add_before(anchor_proxy, yellow_paragraph(f"Section: {update['affectedSection'].strip()}")._p)
         for paragraph in yellow_steps([step.strip() for step in update["steps"]]):
-            add_before(anchor, paragraph)
+            add_before(anchor_proxy, paragraph)
         for index, relative in enumerate(update["screenshots"], start=1):
             image = screenshot_path(evidence_root, ticket, relative)
             caption = update["steps"][min(index - 1, len(update["steps"]) - 1)].strip()
             table = yellow_screenshot(document, image, f"Figure {index}: {caption}")
-            anchor._p.addprevious(table._tbl)
+            anchor_element.addprevious(table._tbl)
         identity = yellow_paragraph(UPDATE_MARKER.format(ticket=ticket), hidden=True)
-        add_before(anchor, identity._p)
+        add_before(anchor_proxy, identity._p)
+        for element in old_elements:
+            element.getparent().remove(element)
         applied.append(ticket)
     set_hidden(marker)
     document.save(output)

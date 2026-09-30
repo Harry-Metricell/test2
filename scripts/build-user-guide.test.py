@@ -55,4 +55,22 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     repeat = Document(output)
     assert "\n".join(paragraph.text for paragraph in repeat.paragraphs).count("New feature: Open the launcher") == 1
 
+    replacement = evidence / "TEST2-100/screenshots/attempt-001/criterion-1-final.png"
+    replacement.parent.mkdir(parents=True)
+    Image.new("RGB", (64, 32), "green").save(replacement)
+    write_json(repo / "tickets/TEST2-100/guide-update.json", {"schema": "v4-user-guide-update.v1", "ticket": "TEST2-100", "title": "Use the updated launcher", "affectedSection": "Getting started", "changeType": "amend", "supersedesTicket": "TEST2-99", "steps": ["Open the updated launcher."], "screenshots": ["screenshots/attempt-001/criterion-1-final.png"], "reason": "Replace obsolete launcher instructions."})
+    amend = subprocess.run([sys.executable, str(BUILDER), "--repo", str(repo), "--evidence-root", str(evidence), "--ticket", "TEST2-100"], capture_output=True, text=True)
+    assert amend.returncode == 0, amend.stderr or amend.stdout
+    amended = Document(output)
+    amended_text = "\n".join(paragraph.text for paragraph in amended.paragraphs)
+    assert "Existing guidance must stay unchanged." in amended_text
+    assert "Updated guidance: Use the updated launcher" in amended_text
+    assert "New feature: Open the launcher" not in amended_text
+    assert "[[AUTO_GUIDE_UPDATE:TEST2-99]]" not in amended_text
+    assert "[[AUTO_GUIDE_UPDATE:TEST2-100]]" in amended_text
+    assert len(amended.inline_shapes) == 1, "old evidence image must be removed"
+    assert "FFFF00" in amended._element.xml
+    invalid = subprocess.run([sys.executable, str(BUILDER), "--repo", str(repo), "--evidence-root", str(evidence), "--ticket", "TEST2-99"], capture_output=True, text=True)
+    assert invalid.returncode == 0, "historical update should be idempotent when explicitly rerun"
+
 print("build-user-guide regression test passed")

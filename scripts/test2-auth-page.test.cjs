@@ -31,3 +31,27 @@ test('mid-session redirect performs email Continue in the existing page', async 
     'launcher'
   ]);
 });
+
+test('OAuth navigation failure never logs its sensitive URL', async () => {
+  const page = new EventEmitter();
+  const frame = { url: () => 'https://o2intelligence-v4-dev.metricell.com/authenticate' };
+  page.url = frame.url;
+  page.mainFrame = () => frame;
+  page.getByRole = () => ({
+    fill: async () => {},
+    click: async () => {}
+  });
+  page.waitForURL = async () => { throw new Error('https://login.microsoftonline.com/?state=secret-token'); };
+  const messages = [];
+  const original = console.error;
+  console.error = message => messages.push(message);
+  try {
+    await attach({ page });
+    await new Promise(resolve => setImmediate(resolve));
+  } finally {
+    console.error = original;
+  }
+  assert.equal(messages.length, 1);
+  assert.match(messages[0], /human sign-in may be required/);
+  assert.doesNotMatch(messages[0], /secret-token|login\.microsoftonline/);
+});

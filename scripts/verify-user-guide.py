@@ -37,6 +37,8 @@ def verify(docx_path: Path, pdf_path: Path, update_path: Path, evidence_root: Pa
     text = "\n".join(paragraph.text for paragraph in document.paragraphs)
     if text.count(f"[[AUTO_GUIDE_UPDATE:{ticket}]]") != 1:
         raise ValueError(f"guide must contain exactly one marker for {ticket}")
+    if update.get("changeType") == "amend" and f"[[AUTO_GUIDE_UPDATE:{update['supersedesTicket']}]]" in text:
+        raise ValueError("guide still contains the superseded section")
     if text.count("[[AUTO_GUIDE_CONTENT]]") != 1:
         raise ValueError("guide insertion marker is missing or duplicated")
     if update["title"] not in text or any(step not in text for step in update["steps"]):

@@ -586,6 +586,12 @@ if (outputType === 'criteria-output.json') {
   if (typeof output.title !== 'string' || !output.title.trim()) fail('guide update title is missing');
   if (typeof output.affectedSection !== 'string' || !output.affectedSection.trim()) fail('guide update affectedSection is missing');
   if (!Array.isArray(policy.allowChangeTypes) || !policy.allowChangeTypes.includes(output.changeType)) fail('guide update changeType is invalid');
+  if (output.changeType === 'amend') {
+    if (typeof output.supersedesTicket !== 'string' || !/^TEST2-\d+$/.test(output.supersedesTicket) || output.supersedesTicket === key) fail('guide amendment needs a distinct supersedesTicket');
+    const oldKey = output.supersedesTicket;
+    const oldRecord = [path.join(repo, 'tickets', oldKey, 'guide-update.json'), path.join(repo, 'archive', 'tickets', oldKey, 'guide-update.json')].find(file => fs.existsSync(file));
+    if (!oldRecord) fail(`guide amendment target ${oldKey} has no published update`);
+  } else if (output.supersedesTicket != null) fail('new guide section must not supersede another ticket');
   if (!Array.isArray(output.steps) || output.steps.length === 0 || output.steps.some(step => typeof step !== 'string' || !step.trim())) fail('guide update steps are missing');
   if (!Array.isArray(output.screenshots) || output.screenshots.length === 0 || output.screenshots.some(file => typeof file !== 'string' || !/^screenshots[\\/].+\.png$/i.test(file) || file.includes('..'))) fail('guide update screenshots must be safe PNG evidence paths');
   if (new Set(output.screenshots).size !== output.screenshots.length) fail('guide update screenshots must be distinct');

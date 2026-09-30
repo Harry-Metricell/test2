@@ -195,7 +195,7 @@ GitHub Actions runs the Node publisher/status/criteria/Jira regression tests and
 
 ## User guide updater
 
-The user guide is integrated into the ticket pipeline after a **Passed** evidence review and verified PDF. The guide-impact worker decides `not_needed` or `update_required`. Only `update_required` creates an authoring handoff; that worker selects instructions and screenshots from the ticket's verified evidence. It does not run a separate browser capture. The publisher adds the approved ticket-specific guidance to `assets/user-guide/V4 User Guide.docx`, renders and verifies a temporary PDF, then publishes the Word file and ticket update together. New headings, steps, captions, and screenshot panels are highlighted yellow; unchanged content remains intact. **Known limitation to fix:** an `amend` update currently appends highlighted guidance rather than replacing an older section in place, so old and new instructions may coexist.
+The user guide is integrated into the ticket pipeline after a **Passed** evidence review and verified PDF. The guide-impact worker decides `not_needed` or `update_required`. Only `update_required` creates an authoring handoff; that worker selects instructions and screenshots from the ticket's verified evidence. It does not run a separate browser capture. The publisher adds the approved ticket-specific guidance to `assets/user-guide/V4 User Guide.docx`, renders and verifies a temporary PDF, then publishes the Word file and ticket update together. New headings, steps, captions, and screenshot panels are highlighted yellow; unchanged content remains intact. An `amend` update must name the exact prior generated section with `supersedesTicket`; the builder replaces that block and its old screenshots in place. It rejects ambiguous or missing targets instead of appending duplicates. Existing historical duplicates are not automatically removed.
 
 The tracked baseline is `assets/user-guide/V4 User Guide Template.docx`; both it and the living guide contain a hidden `[[AUTO_GUIDE_CONTENT]]` marker. `config/user-guide-plan.json` currently has an empty `sections` list and defines the document paths and yellow-highlight rules. Its optional section plan is not a prerequisite for the ticket-driven guide-impact handoff. Validate guide configuration with:
 
@@ -212,7 +212,7 @@ To build a specific already-published guide update locally:
 & "$env:LOCALAPPDATA\TEST2\python\python.exe" .\scripts\build-user-guide.py --ticket TEST2-123
 ```
 
-The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. The local command above writes the tracked living guide; review the resulting Git diff before committing a manual rebuild.
+The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. `status/guide-updates.json` is the compact index of currently active generated sections, including those sourced from archived tickets; the authoring worker uses it to select an amendment target. The local command above writes the tracked living guide; review the resulting Git diff before committing a manual rebuild.
 
 ### Ticket-driven guide decisions
 

@@ -1,0 +1,90 @@
+{
+  "schema": "v4-guide-updates-index.v1",
+  "sections": [
+    {
+      "ticket": "TEST2-4",
+      "title": "Open GIS from the Launcher",
+      "affectedSection": "Opening GIS from the Launcher"
+    },
+    {
+      "ticket": "TEST2-5",
+      "title": "Manage Beacon Favourites",
+      "affectedSection": "Manage Beacon Favourites"
+    },
+    {
+      "ticket": "TEST2-7",
+      "title": "Using GIS map controls",
+      "affectedSection": "Using GIS map controls"
+    },
+    {
+      "ticket": "TEST2-25",
+      "title": "Open a module from the V4 launcher",
+      "affectedSection": "V4 Launcher and Available Modules"
+    },
+    {
+      "ticket": "TEST2-26",
+      "title": "Open a module from the V4 launcher",
+      "affectedSection": "V4 Launcher and Available Modules"
+    },
+    {
+      "ticket": "TEST2-28",
+      "title": "Navigate from the V4 launcher to Agentic AI",
+      "affectedSection": "Navigating the V4 launcher and opening Agentic AI"
+    },
+    {
+      "ticket": "TEST2-29",
+      "title": "Open a module from the V4 launcher",
+      "affectedSection": "V4 launcher and module cards"
+    },
+    {
+      "ticket": "TEST2-30",
+      "title": "Open the GIS module from the V4 launcher",
+      "affectedSection": "GIS module"
+    },
+    {
+      "ticket": "TEST2-31",
+      "title": "Open the API Request Audit module",
+      "affectedSection": "Using the API Request Audit module"
+    },
+    {
+      "ticket": "TEST2-32",
+      "title": "Return to the V4 launcher from GIS",
+      "affectedSection": "Open GIS and return to the V4 launcher"
+    },
+    {
+      "ticket": "TEST2-34",
+      "title": "Open GIS from the V4 launcher",
+      "affectedSection": "Opening GIS from the V4 launcher"
+    },
+    {
+      "ticket": "TEST2-35",
+      "title": "Open Dashboards and return to the launcher",
+      "affectedSection": "Dashboards: accessing the module and returning to the launcher"
+    },
+    {
+      "ticket": "TEST2-37",
+      "title": "Open and reload the Dashboards placeholder",
+      "affectedSection": "Dashboards"
+    },
+    {
+      "ticket": "TEST2-40",
+      "title": "Navigate from GIS back to the launcher and into API Request Audit",
+      "affectedSection": "Navigating between GIS, the launcher, and API Request Audit"
+    },
+    {
+      "ticket": "TEST2-41",
+      "title": "Navigate from API Request Audit to the Dashboards placeholder",
+      "affectedSection": "Launcher navigation to API Request Audit and Dashboards"
+    },
+    {
+      "ticket": "TEST2-42",
+      "title": "Return from Agentic AI to the launcher and open GIS",
+      "affectedSection": "Returning to the launcher and opening GIS"
+    },
+    {
+      "ticket": "TEST2-43",
+      "title": "Open Dashboards from the V4 launcher and return",
+      "affectedSection": "Open Dashboards from the V4 launcher"
+    }
+  ]
+}

@@ -41,8 +41,10 @@ exports.default = async function attachAuthenticationRecovery({ page }) {
         }
       }
       console.error('TEST2 login recovered in the active browser; restart the affected criterion from the launcher.');
-    } catch (error) {
-      console.error(`TEST2 in-session login recovery failed: ${error.message}`);
+    } catch {
+      // Playwright navigation errors include full OAuth redirect URLs and
+      // transient state parameters. Never write those to task logs.
+      console.error('TEST2 in-session login recovery failed; human sign-in may be required.');
     } finally {
       recovering = false;
     }
