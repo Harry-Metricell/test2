@@ -1,0 +1,170 @@
+[
+  {
+    "criterion": "Starting from the V4 GIS layer selector while signed in as an authorised user, expand the layer group list and verify that the Surveyor group is positioned immediately beneath Tests and Measurements.",
+    "outcome": "Unverified",
+    "reason": "The GIS view shows Surveyor as an item nested within Tests and Measurements; available evidence does not establish that it is a separate group positioned immediately beneath that group.",
+    "actual_result": "The GIS view shows Surveyor as an item nested within Tests and Measurements; available evidence does not establish that it is a separate group positioned immediately beneath that group.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ]
+  },
+  {
+    "criterion": "With the Surveyor group expanded, verify that a Data Experience layer entry is displayed.",
+    "outcome": "Unverified",
+    "reason": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "actual_result": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ]
+  },
+  {
+    "criterion": "With the Surveyor group expanded, verify that a Ping layer entry is displayed.",
+    "outcome": "Unverified",
+    "reason": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "actual_result": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ]
+  },
+  {
+    "criterion": "With the Surveyor group expanded, verify that a Service layer entry is displayed.",
+    "outcome": "Unverified",
+    "reason": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "actual_result": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ]
+  },
+  {
+    "criterion": "With the Surveyor group expanded, verify that a Building layer entry is displayed.",
+    "outcome": "Unverified",
+    "reason": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "actual_result": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-initial.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ]
+  },
+  {
+    "criterion": "With the Surveyor group expanded, verify that a Download layer entry is displayed.",
+    "outcome": "Unverified",
+    "reason": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "actual_result": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-6-initial.png",
+      "screenshots/attempt-001/criterion-6-final.png"
+    ]
+  },
+  {
+    "criterion": "With the Surveyor group expanded, verify that an Upload layer entry is displayed.",
+    "outcome": "Unverified",
+    "reason": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "actual_result": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-7-initial.png",
+      "screenshots/attempt-001/criterion-7-final.png"
+    ]
+  },
+  {
+    "criterion": "With the Surveyor group expanded, verify that a Site Testing layer entry is displayed.",
+    "outcome": "Unverified",
+    "reason": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "actual_result": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-8-initial.png",
+      "screenshots/attempt-001/criterion-8-final.png"
+    ]
+  },
+  {
+    "criterion": "With the Surveyor group expanded, verify that a Call layer entry is displayed.",
+    "outcome": "Unverified",
+    "reason": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "actual_result": "The current signed-in GIS catalogue does not provide conclusive criterion-specific evidence with the Surveyor group expanded. The live test data/session may not match the requested catalogue; this is not evidence of a product failure.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-9-initial.png",
+      "screenshots/attempt-001/criterion-9-final.png"
+    ]
+  },
+  {
+    "criterion": "For each displayed Surveyor layer entry, select the entry and verify that the GIS layer selector accepts the selection.",
+    "outcome": "Unverified",
+    "reason": "A Surveyor - Service layer was visible as selected during the run, but the evidence does not establish selection acceptance for every displayed Surveyor entry. The temporary selection was removed during cleanup.",
+    "actual_result": "A Surveyor - Service layer was visible as selected during the run, but the evidence does not establish selection acceptance for every displayed Surveyor entry. The temporary selection was removed during cleanup.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-10-initial.png",
+      "screenshots/attempt-001/criterion-10-final.png"
+    ]
+  },
+  {
+    "criterion": "Using a signed-in account without access to a Surveyor layer, open the V4 GIS layer selector and verify that the unavailable layer is not displayed.",
+    "outcome": "Blocked",
+    "reason": "Testing was blocked because no signed-in account without access to a Surveyor layer was available. The account and permissions were not changed.",
+    "actual_result": "Testing was blocked because no signed-in account without access to a Surveyor layer was available. The account and permissions were not changed.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-11-initial.png",
+      "screenshots/attempt-001/criterion-11-final.png"
+    ]
+  },
+  {
+    "criterion": "With the Surveyor group expanded, verify that User, Browsing, and YouTube layer entries are not displayed.",
+    "outcome": "Unverified",
+    "reason": "Evidence from the current GIS catalogue is inconclusive for the retired entries because the Surveyor group was not independently expanded and verified.",
+    "actual_result": "Evidence from the current GIS catalogue is inconclusive for the retired entries because the Surveyor group was not independently expanded and verified.",
+    "steps_taken": [
+      "Navigated to the V4 launcher, opened GIS, and inspected the visible layer catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-12-initial.png",
+      "screenshots/attempt-001/criterion-12-final.png"
+    ]
+  }
+]
