@@ -1,18 +1,19 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-30T12:12:07.254+0100",
+  "generatedAt": "2026-09-30T12:51:58.505Z",
   "counts": {
     "tickets": 46,
     "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 20,
-      "Ready": 25,
-      "Rejected": 1
+      "Ready": 24,
+      "Rejected": 1,
+      "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Blocked": 11,
+      "Blocked": 12,
       "Failed": 1,
-      "Not Tested": 5,
+      "Not Tested": 4,
       "Passed": 25,
       "Unverified": 4
     }
@@ -572,17 +573,17 @@
       "key": "TEST2-45",
       "summary": "Verify Surveyor entries in the V4 GIS layer catalogue",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
+      "workflowState": "Retry Queued",
       "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
-      "updatedAt": "2026-09-30T12:12:03.916+0100",
-      "retries": 0,
+      "nextAction": "Retry 1/3 queued; coordinator will start tester",
+      "updatedAt": "2026-09-30T12:51:58.505Z",
+      "retries": 1,
       "retryLimit": 3,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/3"
     },
     {
       "key": "TEST2-46",

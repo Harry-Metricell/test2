@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-09-30T12:12:07.254+0100
+Updated: 2026-09-30T12:51:58.505Z
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- | --- |
@@ -38,7 +38,7 @@ Updated: 2026-09-30T12:12:07.254+0100
 | TEST2-42 | READY FOR TESTING | Evidence Reviewed |  | Return from Agentic AI to the launcher and open GIS |
 | TEST2-43 | READY FOR TESTING | Evidence Reviewed |  | Open Dashboards from the V4 launcher and return |
 | TEST2-44 | READY FOR TESTING | Evidence Reviewed |  | Clarify unspecified V4 change before browser testing |
-| TEST2-45 | READY FOR TESTING | Ready for Testing |  | Verify Surveyor entries in the V4 GIS layer catalogue |
+| TEST2-45 | READY FOR TESTING | Ready for Testing | Retry 1/3 | Verify Surveyor entries in the V4 GIS layer catalogue |
 | TEST2-46 | READY FOR TESTING | Awaiting Evidence Review |  | Verify Surveyor layer defaults and switching in V4 GIS |
 | TEST2-47 | READY FOR TESTING | Ready for Testing |  | Verify Surveyor Display Settings in V4 GIS |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
