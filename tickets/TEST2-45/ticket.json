@@ -1,0 +1,164 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "106480",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/106480",
+  "key": "TEST2-45",
+  "fields": {
+    "summary": "Verify Surveyor entries in the V4 GIS layer catalogue",
+    "subtasks": [],
+    "created": "2026-09-30T12:11:38.273+0100",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Source: https://metricell.atlassian.net/browse/VM2ST-225\nCopied from a Done VMO2 SmartTools subtask for TEST2 browser QA. The SmartTools issue remains unchanged."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Purpose: Expose Surveyor as individual entries in the existing V4 GIS layer selector."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance criteria:"
+            }
+          ]
+        },
+        {
+          "type": "bulletList",
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Supported Surveyor layers can be selected from the GIS layer panel."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "A user without access does not see an unavailable layer."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The Surveyor group appears beneath Tests and Measurements."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The eight GIS layer entries are Data Experience, Ping, Service, Building, Download, Upload, Site Testing, and Call."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Retired User, Browsing, and YouTube layers are absent."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Validation: For an authorised signed-in user, inspect the GIS layer browser and select available Surveyor entries. The permission-negative check requires a suitable restricted account; do not infer that behaviour from one authorised account. This is a GIS layer catalogue check, not a launcher module or Survey Analyser check."
+            }
+          ]
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-09-30T12:12:03.916+0100",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "106482",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/106482",
+  "key": "TEST2-47",
+  "fields": {
+    "summary": "Verify Surveyor Display Settings in V4 GIS",
+    "subtasks": [],
+    "created": "2026-09-30T12:11:42.299+0100",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Source: https://metricell.atlassian.net/browse/VM2ST-231\nCopied from a Done VMO2 SmartTools subtask for TEST2 browser QA. The SmartTools issue remains unchanged."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Purpose: Provide the Surveyor-owned Display Settings control beneath the V4 GIS legend."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance criteria:"
+            }
+          ]
+        },
+        {
+          "type": "bulletList",
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Presentation controls are available for a loaded Surveyor layer."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Changing presentation settings does not change the underlying filtered result set."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Display Settings appears beneath the Surveyor legend."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The available controls include active legend/colouring, Show Linked Sites, Show Linked Cells when linked sites and the zoom gate allow it, Colour Point Links By Azimuth/Band only for the Band legend with linked sites shown, and Show Labels only for Building."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "No Sector control is exposed."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Options persist across normal GIS state restoration."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Validation: Load a Surveyor layer in V4 GIS, inspect the layer-owned Display Settings, exercise controls whose prerequisites are available, and check persistence. Distinguish unavailable data or permissions from failed UI behaviour; do not infer unchanged query results from screenshots alone. This depends on the Surveyor catalogue and layer fixture/adapter and may need suitable account access and data."
+            }
+          ]
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-09-30T12:12:07.254+0100",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  }
+}

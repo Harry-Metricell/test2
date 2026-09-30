@@ -1,17 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-30T11:04:57.948+0100",
+  "generatedAt": "2026-09-30T12:12:07.254+0100",
   "counts": {
-    "tickets": 43,
-    "handoffs": 0,
+    "tickets": 46,
+    "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 20,
-      "Ready": 22,
+      "Ready": 25,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 11,
-      "Not Tested": 3,
+      "Not Tested": 6,
       "Passed": 25,
       "Unverified": 4
     }
@@ -563,6 +563,54 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-09-30T11:04:57.948+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-45",
+      "summary": "Verify Surveyor entries in the V4 GIS layer catalogue",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-30T12:12:03.916+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-46",
+      "summary": "Verify Surveyor layer defaults and switching in V4 GIS",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-30T12:12:05.834+0100",
+      "retries": 0,
+      "retryLimit": 3,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-47",
+      "summary": "Verify Surveyor Display Settings in V4 GIS",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-09-30T12:12:07.254+0100",
       "retries": 0,
       "retryLimit": 3,
       "retryLabel": ""

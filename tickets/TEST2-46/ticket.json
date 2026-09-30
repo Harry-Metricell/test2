@@ -1,0 +1,136 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "106481",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/106481",
+  "key": "TEST2-46",
+  "fields": {
+    "summary": "Verify Surveyor layer defaults and switching in V4 GIS",
+    "subtasks": [],
+    "created": "2026-09-30T12:11:40.501+0100",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Source: https://metricell.atlassian.net/browse/VM2ST-227\nCopied from a Done VMO2 SmartTools subtask for TEST2 browser QA. The SmartTools issue remains unchanged."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Purpose: Each Surveyor GIS layer should have its own persisted default configuration and selection behaviour."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance criteria:"
+            }
+          ]
+        },
+        {
+          "type": "bulletList",
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Selecting a supported Surveyor layer loads it with that layer's configured defaults."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Switching between two Surveyor layers updates the active layer and does not retain the previous layer's configuration."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Valid selection state can be restored safely after normal GIS state restoration."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Validation: In the V4 GIS layer panel, add two available Surveyor layers, inspect their configurations, switch between them, then restore or reload the GIS state and check the selected layer and its options. This ticket does not require map-point retrieval, detailed filters, clusters, or event Details. It depends on the Surveyor catalogue from VM2ST-225; if it is not available in the test environment, report that dependency rather than claiming a product failure."
+            }
+          ]
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-09-30T12:12:05.834+0100",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  }
+}

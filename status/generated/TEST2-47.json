@@ -1,0 +1,53 @@
+{
+  "key": "TEST2-47",
+  "id": "106482",
+  "summary": "Verify Surveyor Display Settings in V4 GIS",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-47",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-30T12:11:42.299+0100",
+    "updated": "2026-09-30T12:12:07.254+0100"
+  },
+  "description": "Source: https://metricell.atlassian.net/browse/VM2ST-231\nCopied from a Done VMO2 SmartTools subtask for TEST2 browser QA. The SmartTools issue remains unchanged.\nPurpose: Provide the Surveyor-owned Display Settings control beneath the V4 GIS legend.\nAcceptance criteria:\nPresentation controls are available for a loaded Surveyor layer.\nChanging presentation settings does not change the underlying filtered result set.\nDisplay Settings appears beneath the Surveyor legend.\nThe available controls include active legend/colouring, Show Linked Sites, Show Linked Cells when linked sites and the zoom gate allow it, Colour Point Links By Azimuth/Band only for the Band legend with linked sites shown, and Show Labels only for Building.\nNo Sector control is exposed.\nOptions persist across normal GIS state restoration.\nValidation: Load a Surveyor layer in V4 GIS, inspect the layer-owned Display Settings, exercise controls whose prerequisites are available, and check persistence. Distinguish unavailable data or permissions from failed UI behaviour; do not infer unchanged query results from screenshots alone. This depends on the Surveyor catalogue and layer fixture/adapter and may need suitable account access and data.",
+  "acceptanceCriteria": [
+    "Presentation controls are available for a loaded Surveyor layer.",
+    "Changing presentation settings does not change the underlying filtered result set.",
+    "Display Settings appears beneath the Surveyor legend.",
+    "The available controls include active legend/colouring, Show Linked Sites, Show Linked Cells when linked sites and the zoom gate allow it, Colour Point Links By Azimuth/Band only for the Band legend with linked sites shown, and Show Labels only for Building.",
+    "No Sector control is exposed.",
+    "Options persist across normal GIS state restoration.",
+    "Validation: Load a Surveyor layer in V4 GIS, inspect the layer-owned Display Settings, exercise controls whose prerequisites are available, and check persistence. Distinguish unavailable data or permissions from failed UI behaviour; do not infer unchanged query results from screenshots alone. This depends on the Surveyor catalogue and layer fixture/adapter and may need suitable account access and data."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-47/ticket.json",
+    "criteria": "tickets/TEST2-47/criteria.md",
+    "status": "tickets/TEST2-47/status.json",
+    "screenshots": "tickets/TEST2-47/screenshots/",
+    "reports": "tickets/TEST2-47/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106482",
+    "importedAt": "2026-09-30T12:12:07.254+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-30T12:12:07.254+0100",
+    "criteriaVerified": false
+  }
+}

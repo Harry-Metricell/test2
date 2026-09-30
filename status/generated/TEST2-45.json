@@ -1,0 +1,52 @@
+{
+  "key": "TEST2-45",
+  "id": "106480",
+  "summary": "Verify Surveyor entries in the V4 GIS layer catalogue",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-45",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-09-30T12:11:38.273+0100",
+    "updated": "2026-09-30T12:12:03.916+0100"
+  },
+  "description": "Source: https://metricell.atlassian.net/browse/VM2ST-225\nCopied from a Done VMO2 SmartTools subtask for TEST2 browser QA. The SmartTools issue remains unchanged.\nPurpose: Expose Surveyor as individual entries in the existing V4 GIS layer selector.\nAcceptance criteria:\nSupported Surveyor layers can be selected from the GIS layer panel.\nA user without access does not see an unavailable layer.\nThe Surveyor group appears beneath Tests and Measurements.\nThe eight GIS layer entries are Data Experience, Ping, Service, Building, Download, Upload, Site Testing, and Call.\nRetired User, Browsing, and YouTube layers are absent.\nValidation: For an authorised signed-in user, inspect the GIS layer browser and select available Surveyor entries. The permission-negative check requires a suitable restricted account; do not infer that behaviour from one authorised account. This is a GIS layer catalogue check, not a launcher module or Survey Analyser check.",
+  "acceptanceCriteria": [
+    "Supported Surveyor layers can be selected from the GIS layer panel.",
+    "A user without access does not see an unavailable layer.",
+    "The Surveyor group appears beneath Tests and Measurements.",
+    "The eight GIS layer entries are Data Experience, Ping, Service, Building, Download, Upload, Site Testing, and Call.",
+    "Retired User, Browsing, and YouTube layers are absent.",
+    "Validation: For an authorised signed-in user, inspect the GIS layer browser and select available Surveyor entries. The permission-negative check requires a suitable restricted account; do not infer that behaviour from one authorised account. This is a GIS layer catalogue check, not a launcher module or Survey Analyser check."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-45/ticket.json",
+    "criteria": "tickets/TEST2-45/criteria.md",
+    "status": "tickets/TEST2-45/status.json",
+    "screenshots": "tickets/TEST2-45/screenshots/",
+    "reports": "tickets/TEST2-45/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106480",
+    "importedAt": "2026-09-30T12:12:03.916+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-09-30T12:12:03.916+0100",
+    "criteriaVerified": false
+  }
+}
