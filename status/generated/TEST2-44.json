@@ -10,16 +10,10 @@
     "project": "TEST2",
     "parent": null,
     "created": "2026-09-30T10:37:09.841+0100",
-    "updated": "2026-09-30T10:37:30.759+0100"
+    "updated": "2026-09-30T11:04:57.948+0100"
   },
-  "description": "Test-system criteria-hold exercise. The request is to improve V4, but the affected screen, starting state, user action, and expected visible result are not specified. No product behaviour can be faithfully inferred from this ticket yet. A human must clarify the requested behaviour before browser testing. Do not guess a feature or invent acceptance criteria.",
-  "acceptanceCriteria": [
-    "Test-system criteria-hold exercise.",
-    "The request is to improve V4, but the affected screen, starting state, user action, and expected visible result are not specified.",
-    "No product behaviour can be faithfully inferred from this ticket yet.",
-    "A human must clarify the requested behaviour before browser testing.",
-    "Do not guess a feature or invent acceptance criteria."
-  ],
+  "description": "Test the V4 Dashboards card from the launcher. Start at https://o2intelligence-v4-dev.metricell.com/launcher while signed in. Locate the Dashboards module card and select its Open module control. Expected result: the browser opens the Dashboards page and displays its Under construction placeholder. Use browser Back; expected result: the launcher and Dashboards card are visible again. This is a simple TEST2 workflow exercise, not a production feature request.",
+  "acceptanceCriteria": [],
   "files": {
     "ticket": "tickets/TEST2-44/ticket.json",
     "criteria": "tickets/TEST2-44/criteria.md",
@@ -30,22 +24,22 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106478",
-    "importedAt": "2026-09-30T10:37:30.759+0100"
+    "importedAt": "2026-09-30T11:04:57.948+0100"
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Blocked",
-    "qaStatus": "Blocked",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual criteria review required: The Jira ticket does not identify an affected screen or entry point, a starting state, a user action, or an observable expected result. It explicitly says that no product behaviour can be faithfully inferred and that a human must clarify the requested behaviour before browser testing. Clarification of those details is required before any faithful, browser-testable acceptance criterion can be written.",
+    "nextAction": "Create criteria conversion handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
-    "blockedStage": "criteria",
-    "updatedAt": "2026-09-30T10:37:30.759+0100",
+    "blockedStage": null,
+    "updatedAt": "2026-09-30T11:04:57.948+0100",
     "criteriaVerified": false
   }
 }

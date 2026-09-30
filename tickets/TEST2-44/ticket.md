@@ -4,18 +4,14 @@
 
 - Jira status: READY FOR TESTING
 - QA outcome: Not Tested
-- Workflow state: Blocked
+- Workflow state: Ready
 - Action owner: Coordinator
-- Next action: Manual criteria review required: The Jira ticket does not identify an affected screen or entry point, a starting state, a user action, or an observable expected result. It explicitly says that no product behaviour can be faithfully inferred and that a human must clarify the requested behaviour before browser testing. Clarification of those details is required before any faithful, browser-testable acceptance criterion can be written.
+- Next action: Create criteria conversion handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-44
 
 ## Acceptance Criteria
 
-1. Test-system criteria-hold exercise.
-2. The request is to improve V4, but the affected screen, starting state, user action, and expected visible result are not specified.
-3. No product behaviour can be faithfully inferred from this ticket yet.
-4. A human must clarify the requested behaviour before browser testing.
-5. Do not guess a feature or invent acceptance criteria.
+No acceptance criteria extracted.
 
 ## Subtasks
 
@@ -23,4 +19,4 @@ No subtasks imported.
 
 ## Description
 
-Test-system criteria-hold exercise. The request is to improve V4, but the affected screen, starting state, user action, and expected visible result are not specified. No product behaviour can be faithfully inferred from this ticket yet. A human must clarify the requested behaviour before browser testing. Do not guess a feature or invent acceptance criteria.
+Test the V4 Dashboards card from the launcher. Start at https://o2intelligence-v4-dev.metricell.com/launcher while signed in. Locate the Dashboards module card and select its Open module control. Expected result: the browser opens the Dashboards page and displays its Under construction placeholder. Use browser Back; expected result: the launcher and Dashboards card are visible again. This is a simple TEST2 workflow exercise, not a production feature request.
