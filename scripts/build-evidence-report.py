@@ -7,12 +7,14 @@ import hashlib
 from datetime import datetime
 from pathlib import Path
 import re
+import textwrap
 from urllib.parse import urlsplit, urlunsplit
 
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
 from PIL import Image
 
 
@@ -40,7 +42,7 @@ def add_image_row(table, image, evidence_id, browser_url):
     merged.text = ""
     caption = merged.paragraphs[0]
     caption.add_run(f"{evidence_id} - {image.name}").bold = True
-    caption.add_run(f" | Criterion final URL: {browser_url or 'Not recorded'}")
+    caption.add_run(f" | Browser URL recorded after criterion: {browser_url or 'Not recorded'}")
     for run in caption.runs:
         run.font.size = Pt(8)
     paragraph = merged.add_paragraph()
@@ -61,6 +63,71 @@ def screenshot_paths(item, all_screenshots):
             raise SystemExit(f"referenced screenshot is missing: {name}")
         ordered.append(available[name])
     return ordered
+
+
+def report_exhibits(images, criterion):
+    """Keep decisive states in the PDF; retain every capture in local evidence.
+
+    The reviewer still checks the full evidence list. This only selects the
+    smaller, human-readable set of exhibits printed in the report.
+    """
+    if not images:
+        return []
+    # Tester captures after `final` are cleanup evidence, not proof of the
+    # criterion's asserted state; keep them in the local attempt, not the PDF.
+    final_index = next((index for index, image in enumerate(images)
+                        if image.stem.lower().endswith("-final")), None)
+    if final_index is not None:
+        images = images[:final_index + 1]
+    names = [image.stem.lower() for image in images]
+    lower = criterion.lower()
+    selected = []
+
+    def add_matching(fragment):
+        for image, name in zip(images, names):
+            if fragment in name and image not in selected:
+                selected.append(image)
+
+    if "launcher" in lower or "starting from" in lower:
+        add_matching("initial")
+    if "load" in lower and "layer" in lower:
+        add_matching("after-load")
+    if "display settings" in lower and "open" in lower:
+        add_matching("after-open-display-settings")
+    if "toggle" in lower or "opposite state" in lower or "changing" in lower:
+        add_matching("before-toggle")
+        add_matching("after-toggle")
+    if "restor" in lower:
+        add_matching("before-restore")
+        add_matching("after-restore")
+    if "reopen" in lower:
+        add_matching("before-close")
+        add_matching("after-close")
+        add_matching("after-reopen")
+    if not selected:
+        selected.append(images[0])
+    if len(selected) == 1:
+        add_matching("-final")
+    if len(selected) == 1:
+        for image in reversed(images):
+            if image != selected[0]:
+                selected.append(image)
+                break
+    return selected
+
+
+def concise_review_reason(value):
+    """Remove mechanical file/URL checks already shown elsewhere in the PDF."""
+    reason = text(value).strip()
+    reason = re.sub(r"\s*The result browserUrl is [^.]+\.metricell\.com/[^. ]+, an expected V4 host\.", "", reason)
+    reason = re.sub(r"\s*All named criterion screenshots exist and are non-empty\.", "", reason)
+    return reason.strip()
+
+
+def formatted_steps(value):
+    steps = [value] if isinstance(value, str) else [text(item) for item in value or []]
+    cleaned = [step.strip().rstrip(".; ") for step in steps if step.strip()]
+    return "; ".join(cleaned) + ("." if cleaned else "")
 
 
 def source_urls(results):
@@ -257,6 +324,16 @@ def main():
         if paragraph.text.strip() == "Test Example":
             for run in paragraph.runs:
                 run.text = run.text.replace("Test Example", f"{ticket} Evidence Review")
+        if paragraph.text.strip() == "Test Cases":
+            # The template has a page-break paragraph immediately before this
+            # heading. When the summary finishes near the page bottom, Word
+            # moves that paragraph first and creates an otherwise empty page.
+            previous = paragraph._p.getprevious()
+            if previous is not None and previous.tag == qn("w:p") and any(
+                node.get(qn("w:type")) == "page" for node in previous.iter(qn("w:br"))
+            ):
+                previous.getparent().remove(previous)
+            paragraph.paragraph_format.page_break_before = True
 
     metadata = doc.tables[0]
     if len(metadata.rows) >= 5:
@@ -278,7 +355,7 @@ def main():
         if index < len(cycle.rows): set_cell(cycle.cell(index, 1), value)
     for label, value in (
         ("Overall review outcome:", displayed_outcome),
-        ("Criterion final URL(s):", "; ".join(urls) or "Not recorded"),
+        ("Browser URL(s) recorded after criteria:", "; ".join(urls) or "Not recorded"),
     ):
         row = cycle.add_row().cells
         set_cell(row[0], label)
@@ -290,7 +367,10 @@ def main():
     for index, item in enumerate(outcomes, 1):
         row = summary.add_row().cells
         raw_outcome = text(item.get("outcome")).lower()
-        set_cell(row[0], f"{index}. {display_criterion(item.get('criterion'), criteria)}")
+        # The complete criterion remains in the test-case table. A short label
+        # keeps the four-row overview together instead of orphaning its last row.
+        label = textwrap.shorten(display_criterion(item.get("criterion"), criteria), width=48, placeholder="...")
+        set_cell(row[0], f"{index}. {label}")
         set_cell(row[1], "Y" if raw_outcome == "passed" else "N")
         set_cell(row[2], "Y" if raw_outcome in ("failed", "unverified") else "N")
         set_cell(row[3], "1" if raw_outcome in ("failed", "unverified") else "0")
@@ -298,8 +378,8 @@ def main():
     context = doc.tables[4]
     context_values = [
         "Per-criterion prerequisites are stated in the acceptance criteria and test steps; no separate fixture inventory was supplied.",
-        "Criteria from criteria.md.",
-        "Automated browser run; uniquely identified PNG evidence appears in the appendix. Unverified is reported as Failed.",
+        "Ticket acceptance criteria, listed in full below.",
+        "Automated browser run. The appendix contains selected decisive screenshots; the full attempt evidence remains in the local evidence folder. Inconclusive results are reported as Failed.",
     ]
     if context.rows:
         for cell_index, value in ((1, context_values[0]), (3, context_values[1]), (5, context_values[2])):
@@ -318,14 +398,14 @@ def main():
         criterion = display_criterion(criterion_id, criteria)
         result = result_for_outcome(item, results, result_by_criterion, criteria, number - 1)
         row = cases.add_row().cells
-        steps_value = result.get("steps_taken", [])
-        steps = [steps_value] if isinstance(steps_value, str) else [text(x) for x in steps_value]
-        actual = text(result.get("actual_result")) or text(item.get("reason")) or text(result.get("reason"))
+        steps = formatted_steps(result.get("steps_taken", []))
+        actual = text(result.get("actual_result")) or concise_review_reason(item.get("reason")) or text(result.get("reason"))
         if steps:
-            actual = f"{actual}\nSteps taken: {'; '.join(steps)}"
-        criterion_images = screenshot_paths(result, screenshots)
-        if not criterion_images and text(result.get("outcome")).lower() != "blocked":
+            actual = f"{actual}\nSteps taken: {steps}"
+        all_criterion_images = screenshot_paths(result, screenshots)
+        if not all_criterion_images and text(result.get("outcome")).lower() != "blocked":
             raise SystemExit(f"criterion {number} has no embeddable screenshot evidence")
+        criterion_images = report_exhibits(all_criterion_images, criterion)
         evidence_ids = []
         for image in criterion_images:
             digest = hashlib.sha256(image.read_bytes()).hexdigest()
@@ -334,7 +414,7 @@ def main():
             evidence_ids.append(unique_images[digest][0])
             logical_images.append(image)
         trace = f"Evidence: {', '.join(dict.fromkeys(evidence_ids)) if evidence_ids else 'Unavailable'}"
-        trace += f"\nCriterion final URL: {public_browser_url(result.get('browserUrl'))}"
+        trace += f"\nBrowser URL recorded after criterion: {public_browser_url(result.get('browserUrl'))}"
         actual += f"\n{trace}"
         report_outcome = "Failed" if text(item.get("outcome")).lower() == "unverified" else text(item.get("outcome"))
         expected_result = text(result.get("expected_result")) or criterion
@@ -349,16 +429,16 @@ def main():
             values = [
                 f"{number}.0.0",
                 criterion,
-                "; ".join(steps),
+                steps,
                 expected_result,
-                f"{text(item.get('reason')) or text(result.get('reason'))}\n{trace}",
+                f"{concise_review_reason(item.get('reason')) or text(result.get('reason'))}\n{trace}",
                 report_outcome,
             ]
         for index, value in enumerate(values):
             set_cell(row[index], value)
     if unique_images:
         heading = cases.add_row().cells
-        heading[0].merge(heading[-1]).text = "Evidence Appendix - unique source screenshots"
+        heading[0].merge(heading[-1]).text = "Evidence Appendix - selected decisive screenshots"
         heading[0].paragraphs[0].paragraph_format.keep_with_next = True
         for evidence_id, image, browser_url in unique_images.values():
             add_image_row(cases, image, evidence_id, browser_url)

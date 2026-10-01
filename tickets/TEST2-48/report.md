@@ -17,4 +17,4 @@
 4. **Passed:** After restoring `Show linked sites` to its original state, closing and reopening `Display Settings` shows the original state again.
    - Screenshots show the restored checked state before closing and the checked state after reopening Display Settings. The result browserUrl is https://o2intelligence-v4-dev.metricell.com/gis, an expected V4 host. All named criterion screenshots exist and are non-empty.
 
-**Review summary:** 
+**Review summary:** 4/4 criteria passed in the recorded review. The PDF now includes selected decisive screenshots; the full attempt evidence remains available locally. Criterion 4's restoration was captured in criterion 3 rather than repeated within criterion 4, so that part of the historical pass is less directly evidenced than the new reviewer standard requires.

@@ -28,6 +28,14 @@ test('review report markdown reflects the authoritative review rather than stale
   assert.doesNotMatch(markdown, /Passed all 3 acceptance criteria/);
 });
 
+test('review report always has a useful summary', () => {
+  const markdown = formatReviewReport('TEST2-48', 'Display Settings', {
+    qaStatus: 'Evidence Reviewed', overallOutcome: 'Passed', reason: '',
+    criterionOutcomes: [{ criterion: 'Toggle setting.', outcome: 'Passed', reason: 'Visible before and after.' }]
+  }, 'attempt-001');
+  assert.match(markdown, /Review summary:\*\* 1\/1 criteria passed/);
+});
+
 test('publishes new remote tickets from stale dirty Desktop; rejects incomplete evidence', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'publisher regression '));
   const remote = path.join(root, 'remote.git');

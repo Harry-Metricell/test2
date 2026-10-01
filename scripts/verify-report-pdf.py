@@ -148,7 +148,7 @@ def verify_report_content(pdf_path, content):
     required = [
         "Overall review outcome:", content["overallOutcome"],
         "Limitations during Testing:", content["limitations"],
-        "Criterion final URL(s):", *(content.get("sourceUrls") or []),
+        "Browser URL(s) recorded after criteria:", *(content.get("sourceUrls") or []),
         *(content.get("evidenceCaptions") or []),
     ]
     missing = [item for item in required if re.sub(r"\s+", " ", item).strip() not in rendered]

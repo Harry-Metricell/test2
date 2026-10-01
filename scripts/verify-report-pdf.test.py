@@ -37,7 +37,7 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
     def test_report_content_requires_outcome_limitations_url_and_caption(self):
         class Page:
             def extract_text(self):
-                return "Overall review outcome:\nBlocked\nLimitations during Testing:\n1 blocked.\nCriterion final URL(s): https://example.test/gis\nE01 - evidence.png"
+                return "Overall review outcome:\nBlocked\nLimitations during Testing:\n1 blocked.\nBrowser URL(s) recorded after criteria: https://example.test/gis\nE01 - evidence.png"
         contract = {"overallOutcome": "Blocked", "limitations": "1 blocked.",
                     "sourceUrls": ["https://example.test/gis"], "evidenceCaptions": ["E01 - evidence.png"]}
         with patch.object(VERIFY, "PdfReader", return_value=type("Reader", (), {"pages": [Page()]})()):

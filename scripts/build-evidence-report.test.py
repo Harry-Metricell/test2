@@ -11,6 +11,7 @@ from docx import Document
 from PIL import Image
 
 
+sys.dont_write_bytecode = True
 MODULE = Path(__file__).with_name("build-evidence-report.py")
 SPEC = importlib.util.spec_from_file_location("build_evidence_report", MODULE)
 REPORT = importlib.util.module_from_spec(SPEC)
@@ -43,6 +44,35 @@ class ResultMatchingTests(unittest.TestCase):
         self.assertEqual(REPORT.public_browser_url("https://user:secret@example.test/gis?token=secret#part"),
                          "https://example.test/gis")
 
+    def test_report_uses_decisive_exhibits_not_repeated_setup(self):
+        images = [Path(name) for name in (
+            "criterion-4-initial.png", "criterion-4-after-open-gis.png",
+            "criterion-4-before-restore.png", "criterion-4-after-restore.png",
+            "criterion-4-before-close.png", "criterion-4-after-close.png",
+            "criterion-4-after-reopen.png", "criterion-4-final.png", "criterion-4-after-cleanup.png")]
+        selected = REPORT.report_exhibits(images, "Restore the control, close and reopen settings.")
+        self.assertEqual([image.name for image in selected], [
+            "criterion-4-before-restore.png", "criterion-4-after-restore.png",
+            "criterion-4-before-close.png", "criterion-4-after-close.png",
+            "criterion-4-after-reopen.png"])
+
+    def test_cleanup_capture_is_not_a_decisive_exhibit(self):
+        images = [Path(name) for name in (
+            "criterion-4-before-close.png", "criterion-4-after-reopen.png",
+            "criterion-4-final.png", "criterion-4-after-restore.png")]
+        selected = REPORT.report_exhibits(images, "Restore, close and reopen settings.")
+        self.assertNotIn(images[-1], selected)
+
+    def test_report_reason_omits_file_presence_boilerplate(self):
+        reason = ("Before and after screenshots show the change. The result browserUrl is "
+                  "https://o2intelligence-v4-dev.metricell.com/gis, an expected V4 host. "
+                  "All named criterion screenshots exist and are non-empty.")
+        self.assertEqual(REPORT.concise_review_reason(reason), "Before and after screenshots show the change.")
+
+    def test_steps_have_clean_separators(self):
+        self.assertEqual(REPORT.formatted_steps(["Opened GIS.", "Changed the setting."]),
+                         "Opened GIS; Changed the setting.")
+
     def test_report_includes_outcome_limitations_urls_and_unique_evidence(self):
         with tempfile.TemporaryDirectory(prefix="test2-report-builder-") as temporary:
             root = Path(temporary)
@@ -73,15 +103,17 @@ class ResultMatchingTests(unittest.TestCase):
                             "--results", str(root / "results.json"), "--screenshots", str(screenshots),
                             "--output", str(output), "--image-manifest", str(manifest)], check=True)
             document = Document(output)
+            heading = next(paragraph for paragraph in document.paragraphs if paragraph.text.strip() == "Test Cases")
+            self.assertTrue(heading.paragraph_format.page_break_before)
             cycle = document.tables[2]
             self.assertIn("1 blocked; 1 inconclusive", cycle.cell(5, 1).text)
             self.assertEqual(cycle.cell(6, 1).text, "Blocked")
             self.assertEqual(cycle.cell(7, 1).text, "https://example.test/launcher")
             case_text = "\n".join(cell.text for row in document.tables[5].rows for cell in row.cells)
             self.assertIn("Evidence: E01", case_text)
-            self.assertIn("Criterion final URL: https://example.test/launcher", case_text)
+            self.assertIn("Browser URL recorded after criterion: https://example.test/launcher", case_text)
             self.assertIn("Failed", case_text)  # Unverified remains Failed in the PDF convention.
-            self.assertIn("Evidence Appendix - unique source screenshots", case_text)
+            self.assertIn("Evidence Appendix - selected decisive screenshots", case_text)
             images = json.loads(manifest.read_text(encoding="utf-8"))
             self.assertEqual(images["embeddedEvidenceImages"], 1)
             self.assertEqual(len(images["logicalEvidence"]), 2)
