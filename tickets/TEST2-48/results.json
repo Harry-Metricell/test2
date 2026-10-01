@@ -1,0 +1,92 @@
+[
+  {
+    "criterion": "Starting from the V4 launcher, the signed-in user opens GIS, loads an available Surveyor layer, and the layer legend displays a `Display Settings` control.",
+    "status": "Passed",
+    "steps_taken": [
+      "Navigated to the V4 launcher and confirmed the signed-in welcome screen.",
+      "Opened GIS, selected the available Surveyor layer with its default Service configuration, and added it to the map.",
+      "Observed the Surveyor - Service legend with the Display Settings control.",
+      "Removed the added layer to restore the map."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-after-add-surveyor.png",
+      "screenshots/attempt-001/criterion-1-before-load-surveyor.png",
+      "screenshots/attempt-001/criterion-1-after-load-surveyor.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-after-restore.png"
+    ],
+    "outcome": "Passed"
+  },
+  {
+    "criterion": "After opening `Display Settings`, the panel displays a `Show linked sites` control with a discernible current state.",
+    "status": "Passed",
+    "steps_taken": [
+      "Returned to the V4 launcher, opened GIS, and added the available Surveyor layer using its default configuration.",
+      "Opened Display Settings and observed Show linked sites checked.",
+      "Removed the added layer to restore the map."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-after-open-surveyor.png",
+      "screenshots/attempt-001/criterion-2-before-load-surveyor.png",
+      "screenshots/attempt-001/criterion-2-after-load-surveyor.png",
+      "screenshots/attempt-001/criterion-2-after-open-display-settings.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-after-restore.png"
+    ],
+    "outcome": "Passed"
+  },
+  {
+    "criterion": "After changing `Show linked sites` to the opposite state, the control visibly displays the new state.",
+    "status": "Passed",
+    "steps_taken": [
+      "Returned to the V4 launcher, opened GIS, and added the available Surveyor layer using its default configuration.",
+      "Opened Display Settings and observed Show linked sites initially checked.",
+      "Clicked Show linked sites once and observed that it was unchecked.",
+      "Restored Show linked sites to checked and removed the added layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis.png",
+      "screenshots/attempt-001/criterion-3-after-open-surveyor.png",
+      "screenshots/attempt-001/criterion-3-before-load-surveyor.png",
+      "screenshots/attempt-001/criterion-3-after-load-surveyor.png",
+      "screenshots/attempt-001/criterion-3-before-toggle.png",
+      "screenshots/attempt-001/criterion-3-after-toggle.png",
+      "screenshots/attempt-001/criterion-3-final.png",
+      "screenshots/attempt-001/criterion-3-after-restore-setting.png",
+      "screenshots/attempt-001/criterion-3-after-remove-layer.png"
+    ],
+    "outcome": "Passed"
+  },
+  {
+    "criterion": "After restoring `Show linked sites` to its original state, closing and reopening `Display Settings` shows the original state again.",
+    "status": "Passed",
+    "steps_taken": [
+      "Returned to the V4 launcher, opened GIS, and added the available Surveyor layer using its default configuration.",
+      "Opened Display Settings and observed Show linked sites checked.",
+      "Closed Display Settings, reopened it, and observed Show linked sites remained checked.",
+      "Removed the added layer to restore the map."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-after-open-gis.png",
+      "screenshots/attempt-001/criterion-4-after-open-surveyor.png",
+      "screenshots/attempt-001/criterion-4-before-load-surveyor.png",
+      "screenshots/attempt-001/criterion-4-after-load-surveyor.png",
+      "screenshots/attempt-001/criterion-4-before-close.png",
+      "screenshots/attempt-001/criterion-4-after-close.png",
+      "screenshots/attempt-001/criterion-4-after-reopen.png",
+      "screenshots/attempt-001/criterion-4-final.png",
+      "screenshots/attempt-001/criterion-4-after-restore.png"
+    ],
+    "outcome": "Passed"
+  }
+]
