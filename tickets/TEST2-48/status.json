@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-48-guide-impact",
+    "handoffVersion": "TEST2-48:guide_impact_assessment:1",
+    "ticket": "TEST2-48",
+    "decision": "update_required",
+    "affectedSection": "GIS Surveyor Display Settings",
+    "reason": "The delivered behaviour introduces a user-visible Display Settings control in a Surveyor layer and a Show linked sites toggle whose state can be changed and restored. Users need instructions for finding Display Settings and understanding or changing this visibility option.",
+    "noOp": false,
+    "assessedAt": "2026-10-01T09:05:23.615Z"
+  }
 }
