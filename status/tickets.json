@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-01T09:12:07.285+0100",
+  "generatedAt": "2026-10-01T15:33:33.551+0100",
   "counts": {
-    "tickets": 47,
-    "handoffs": 0,
+    "tickets": 48,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 23,
-      "Ready": 23,
+      "Ready": 24,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 13,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 26,
       "Unverified": 4
     }
@@ -628,6 +628,22 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-01T09:12:07.285+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-49",
+      "summary": "Verify reversible Show linked sites change in V4 GIS",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-01T15:33:33.551+0100",
       "retries": 0,
       "retryLimit": 2,
       "retryLabel": ""
