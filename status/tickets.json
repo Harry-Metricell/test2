@@ -12,8 +12,8 @@
     "byQaOutcome": {
       "Blocked": 13,
       "Failed": 1,
-      "Not Tested": 4,
-      "Passed": 25,
+      "Not Tested": 3,
+      "Passed": 26,
       "Unverified": 4
     }
   },
@@ -621,12 +621,12 @@
       "summary": "Toggle linked sites visibility in V4 GIS Surveyor Display Settings",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-01T09:12:07.285+0100",
       "retries": 0,
       "retryLimit": 2,

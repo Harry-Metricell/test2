@@ -41,7 +41,7 @@ Updated: 2026-10-01T09:12:07.285+0100
 | TEST2-45 | READY FOR TESTING | Blocked |  | Verify Surveyor entries in the V4 GIS layer catalogue |
 | TEST2-46 | READY FOR TESTING | Blocked |  | Verify Surveyor layer defaults and switching in V4 GIS |
 | TEST2-47 | READY FOR TESTING | Blocked |  | Verify Surveyor Display Settings in V4 GIS |
-| TEST2-48 | READY FOR TESTING | Ready for Testing |  | Toggle linked sites visibility in V4 GIS Surveyor Display Settings |
+| TEST2-48 | READY FOR TESTING | Awaiting Evidence Review |  | Toggle linked sites visibility in V4 GIS Surveyor Display Settings |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 2/2 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/2 | Verify GIS layer and map view controls |
