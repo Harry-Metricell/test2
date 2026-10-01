@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-48",
+  "id": "106496",
+  "summary": "Toggle linked sites visibility in V4 GIS Surveyor Display Settings",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-48",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-01T09:11:54.336+0100",
+    "updated": "2026-10-01T09:12:07.285+0100"
+  },
+  "description": "In V4 GIS, a signed-in user with access to an available Surveyor layer can change whether linked sites are shown. Verify the visible control and a reversible change without requiring a second account or a special data fixture.\nAcceptance Criteria\nStarting from the V4 launcher, open GIS, load an available Surveyor layer, and verify that its legend includes a Display Settings control.\nOpen Display Settings and verify that the Show linked sites control is visible with a discernible current state.\nChange Show linked sites to the opposite state and verify that the control displays the new state.\nRestore Show linked sites to its original state, reopen Display Settings, and verify that the original state is displayed.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-48/ticket.json",
+    "criteria": "tickets/TEST2-48/criteria.md",
+    "status": "tickets/TEST2-48/status.json",
+    "screenshots": "tickets/TEST2-48/screenshots/",
+    "reports": "tickets/TEST2-48/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106496",
+    "importedAt": "2026-10-01T09:12:07.285+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-01T09:12:07.285+0100",
+    "criteriaVerified": false
+  }
+}

@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-09-30T14:03:44.397Z",
+  "generatedAt": "2026-10-01T09:12:07.285+0100",
   "counts": {
-    "tickets": 46,
-    "handoffs": 0,
+    "tickets": 47,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 23,
-      "Ready": 22,
+      "Ready": 23,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 13,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 25,
       "Unverified": 4
     }
@@ -612,6 +612,22 @@
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-09-30T14:03:44.397Z",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-48",
+      "summary": "Toggle linked sites visibility in V4 GIS Surveyor Display Settings",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-01T09:12:07.285+0100",
       "retries": 0,
       "retryLimit": 2,
       "retryLabel": ""
