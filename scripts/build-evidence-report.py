@@ -34,23 +34,57 @@ def remove_rows(table):
         table._tbl.remove(table.rows[-1]._tr)
 
 
-def add_image_row(table, image, evidence_id, browser_url):
+def add_image_row(table, exhibits, *, supporting=False):
+    """Keep up to three labelled captures in one unsplittable evidence block."""
     row = table.add_row()
     merged = row.cells[0]
     for cell in row.cells[1:]:
         merged = merged.merge(cell)
     merged.text = ""
-    caption = merged.paragraphs[0]
-    caption.add_run(f"{evidence_id} - {image.name}").bold = True
-    caption.add_run(f" | Browser URL recorded after criterion: {browser_url or 'Not recorded'}")
-    for run in caption.runs:
-        run.font.size = Pt(8)
-    paragraph = merged.add_paragraph()
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    with Image.open(image) as source:
-        width = min(7.0, 4.5 * source.width / source.height)
-    paragraph.add_run().add_picture(str(image), width=Inches(width))
+    heading = merged.paragraphs[0]
+    heading.paragraph_format.space_after = Pt(2)
+    if not supporting:
+        heading.add_run(f"Browser URL recorded after criterion: {exhibits[0][2]}")
+        for run in heading.runs:
+            run.font.size = Pt(8)
+    grid = merged.add_table(rows=2 if len(exhibits) == 3 else 1,
+                            cols=2 if len(exhibits) > 1 else 1)
+    if len(exhibits) == 3:
+        grid.cell(1, 0).merge(grid.cell(1, 1))
+    for index, (evidence_id, image, _) in enumerate(exhibits):
+        cell = grid.cell(index // 2, index % 2) if index < 2 else grid.cell(1, 0)
+        caption = cell.paragraphs[0]
+        caption.paragraph_format.space_after = Pt(2)
+        caption.add_run(f"{evidence_id} - {image.name}").bold = True
+        for run in caption.runs:
+            run.font.size = Pt(7.5)
+        picture = cell.add_paragraph()
+        picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        picture.paragraph_format.space_after = Pt(0)
+        with Image.open(image) as source:
+            max_width = 3.65 if supporting else (2.0 if index == 2 else (4.0 if len(exhibits) > 1 else 5.0))
+            max_height = 1.25 if index == 2 else 2.8
+            width = min(max_width, max_height * source.width / source.height)
+        picture.add_run().add_picture(str(image), width=Inches(width))
+    merged.paragraphs[-1].paragraph_format.space_after = Pt(0)
     row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+
+
+def supporting_captures(candidates, displayed, limit=2):
+    """Choose a small, distinct setup appendix; retain all others locally."""
+    selected = []
+    seen = set(displayed)
+    for image, browser_url in candidates:
+        if not any(term in image.stem.lower() for term in ("after-open-gis", "before-load", "after-open-module")):
+            continue
+        digest = hashlib.sha256(image.read_bytes()).hexdigest()
+        if digest in seen:
+            continue
+        seen.add(digest)
+        selected.append((digest, image, browser_url))
+        if len(selected) == limit:
+            break
+    return selected
 
 
 def screenshot_paths(item, all_screenshots):
@@ -324,6 +358,8 @@ def main():
         if paragraph.text.strip() == "Test Example":
             for run in paragraph.runs:
                 run.text = run.text.replace("Test Example", f"{ticket} Evidence Review")
+        if paragraph.text.startswith("All automated tests must map to an approved criterion"):
+            paragraph.text = "Each test maps to a criterion and decisive browser evidence. Inconclusive results are reported as Failed."
         if paragraph.text.strip() == "Test Cases":
             # The template has a page-break paragraph immediately before this
             # heading. When the summary finishes near the page bottom, Word
@@ -333,7 +369,7 @@ def main():
                 node.get(qn("w:type")) == "page" for node in previous.iter(qn("w:br"))
             ):
                 previous.getparent().remove(previous)
-            paragraph.paragraph_format.page_break_before = True
+            paragraph.paragraph_format.page_break_before = False
 
     metadata = doc.tables[0]
     if len(metadata.rows) >= 5:
@@ -377,9 +413,9 @@ def main():
 
     context = doc.tables[4]
     context_values = [
-        "Per-criterion prerequisites are stated in the acceptance criteria and test steps; no separate fixture inventory was supplied.",
-        "Ticket acceptance criteria, listed in full below.",
-        "Automated browser run. The appendix contains selected decisive screenshots; the full attempt evidence remains in the local evidence folder. Inconclusive results are reported as Failed.",
+        "V4 access and ticket conditions.",
+        "Ticket criteria below.",
+        "Screenshots below each criterion; full log retained locally.",
     ]
     if context.rows:
         for cell_index, value in ((1, context_values[0]), (3, context_values[1]), (5, context_values[2])):
@@ -387,12 +423,23 @@ def main():
                 set_cell(context.cell(0, cell_index), value)
 
     cases = doc.tables[5]
+    # The template carries several empty spacer paragraphs between the context
+    # and the test table; they can strand the first criterion on the next page.
+    following = context._tbl.getnext()
+    while following is not None and following is not cases._tbl:
+        next_element = following.getnext()
+        if following.tag != qn("w:p") or any(node.text for node in following.iter(qn("w:t"))) or any(following.iter(qn("w:br"))):
+            break
+        following.getparent().remove(following)
+        following = next_element
     remove_rows(cases)
     column_count = len(cases.columns)
     if column_count not in (5, 6):
         raise SystemExit(f"template case table must have five or six columns, found {column_count}")
     logical_images = []
     unique_images = {}
+    captions = []
+    setup_candidates = []
     for number, item in enumerate(outcomes, 1):
         criterion_id = text(item.get("criterion"))
         criterion = display_criterion(criterion_id, criteria)
@@ -400,21 +447,26 @@ def main():
         row = cases.add_row().cells
         steps = formatted_steps(result.get("steps_taken", []))
         actual = text(result.get("actual_result")) or concise_review_reason(item.get("reason")) or text(result.get("reason"))
-        if steps:
-            actual = f"{actual}\nSteps taken: {steps}"
         all_criterion_images = screenshot_paths(result, screenshots)
         if not all_criterion_images and text(result.get("outcome")).lower() != "blocked":
             raise SystemExit(f"criterion {number} has no embeddable screenshot evidence")
         criterion_images = report_exhibits(all_criterion_images, criterion)
+        setup_candidates.extend((image, public_browser_url(result.get("browserUrl")))
+                                for image in all_criterion_images if image not in criterion_images)
         evidence_ids = []
+        exhibits = []
         for image in criterion_images:
             digest = hashlib.sha256(image.read_bytes()).hexdigest()
             if digest not in unique_images:
                 unique_images[digest] = (f"E{len(unique_images) + 1:02d}", image, public_browser_url(result.get("browserUrl")))
             evidence_ids.append(unique_images[digest][0])
+            if unique_images[digest] not in exhibits:
+                exhibits.append(unique_images[digest])
+            captions.append(f"{unique_images[digest][0]} - {unique_images[digest][1].name}")
             logical_images.append(image)
         trace = f"Evidence: {', '.join(dict.fromkeys(evidence_ids)) if evidence_ids else 'Unavailable'}"
-        trace += f"\nBrowser URL recorded after criterion: {public_browser_url(result.get('browserUrl'))}"
+        if not exhibits:
+            trace += f"\nBrowser URL recorded after criterion: {public_browser_url(result.get('browserUrl'))}"
         actual += f"\n{trace}"
         report_outcome = "Failed" if text(item.get("outcome")).lower() == "unverified" else text(item.get("outcome"))
         expected_result = text(result.get("expected_result")) or criterion
@@ -436,12 +488,27 @@ def main():
             ]
         for index, value in enumerate(values):
             set_cell(row[index], value)
-    if unique_images:
+        if exhibits:
+            for cell in row:
+                for paragraph in cell.paragraphs:
+                    paragraph.paragraph_format.keep_with_next = True
+            for start in range(0, len(exhibits), 3):
+                add_image_row(cases, exhibits[start:start + 3])
+
+    setup = supporting_captures(setup_candidates, unique_images)
+    if setup:
         heading = cases.add_row().cells
-        heading[0].merge(heading[-1]).text = "Evidence Appendix - selected decisive screenshots"
+        heading[0].merge(heading[-1]).text = "Supporting setup captures - full attempt evidence remains in the local evidence folder"
         heading[0].paragraphs[0].paragraph_format.keep_with_next = True
-        for evidence_id, image, browser_url in unique_images.values():
-            add_image_row(cases, image, evidence_id, browser_url)
+        appendix = []
+        for digest, image, browser_url in setup:
+            exhibit = (f"E{len(unique_images) + 1:02d}", image, browser_url)
+            unique_images[digest] = exhibit
+            appendix.append(exhibit)
+            captions.append(f"{exhibit[0]} - {image.name}")
+            logical_images.append(image)
+        for start in range(0, len(appendix), 2):
+            add_image_row(cases, appendix[start:start + 2], supporting=True)
 
     doc.save(str(output))
     patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review", "[Version]": "1.0", "[dd/mm/yyyy]": datetime.now().strftime("%d/%m/%Y"), "[Author]": "TEST2 QA Automation", "[Initial automated-test template]": "Generated from TEST2 evidence review"})
@@ -453,7 +520,7 @@ def main():
             "overallOutcome": displayed_outcome,
             "limitations": limitations,
             "sourceUrls": urls or ["Not recorded"],
-            "evidenceCaptions": [f"{evidence_id} - {image.name}" for evidence_id, image, _ in unique_images.values()],
+            "evidenceCaptions": list(dict.fromkeys(captions)),
         },
         **manifest,
     }, indent=2) + "\n", encoding="utf-8")

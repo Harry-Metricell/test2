@@ -73,6 +73,18 @@ class ResultMatchingTests(unittest.TestCase):
         self.assertEqual(REPORT.formatted_steps(["Opened GIS.", "Changed the setting."]),
                          "Opened GIS; Changed the setting.")
 
+    def test_setup_capture_selection_is_small_and_distinct(self):
+        with tempfile.TemporaryDirectory(prefix="test2-setup-captures-") as temporary:
+            folder = Path(temporary)
+            files = [folder / name for name in (
+                "criterion-1-after-open-gis.png", "criterion-2-after-open-gis.png",
+                "criterion-1-before-load.png", "criterion-1-after-cleanup.png")]
+            for index, file in enumerate(files):
+                Image.new("RGB", (40, 30), (index * 40, 10, 10)).save(file)
+            selected = REPORT.supporting_captures([(file, "https://example.test/gis") for file in files], {})
+            self.assertEqual(len(selected), 2)
+            self.assertEqual([item[1].name for item in selected], [files[0].name, files[1].name])
+
     def test_report_includes_outcome_limitations_urls_and_unique_evidence(self):
         with tempfile.TemporaryDirectory(prefix="test2-report-builder-") as temporary:
             root = Path(temporary)
@@ -104,7 +116,7 @@ class ResultMatchingTests(unittest.TestCase):
                             "--output", str(output), "--image-manifest", str(manifest)], check=True)
             document = Document(output)
             heading = next(paragraph for paragraph in document.paragraphs if paragraph.text.strip() == "Test Cases")
-            self.assertTrue(heading.paragraph_format.page_break_before)
+            self.assertFalse(heading.paragraph_format.page_break_before)
             cycle = document.tables[2]
             self.assertIn("1 blocked; 1 inconclusive", cycle.cell(5, 1).text)
             self.assertEqual(cycle.cell(6, 1).text, "Blocked")
@@ -113,7 +125,11 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("Evidence: E01", case_text)
             self.assertIn("Browser URL recorded after criterion: https://example.test/launcher", case_text)
             self.assertIn("Failed", case_text)  # Unverified remains Failed in the PDF convention.
-            self.assertIn("Evidence Appendix - selected decisive screenshots", case_text)
+            cases = document.tables[5]
+            self.assertIn("The launcher is displayed.", cases.rows[1].cells[1].text)
+            self.assertIn("E01 - criterion-1-initial.png", cases.rows[2].cells[0].tables[0].cell(0, 0).text)
+            self.assertIn("A restricted user", cases.rows[3].cells[1].text)
+            self.assertNotIn("Supporting setup captures", case_text)
             images = json.loads(manifest.read_text(encoding="utf-8"))
             self.assertEqual(images["embeddedEvidenceImages"], 1)
             self.assertEqual(len(images["logicalEvidence"]), 2)
