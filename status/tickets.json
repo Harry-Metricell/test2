@@ -12,8 +12,8 @@
     "byQaOutcome": {
       "Blocked": 13,
       "Failed": 1,
-      "Not Tested": 4,
-      "Passed": 27,
+      "Not Tested": 3,
+      "Passed": 28,
       "Unverified": 4
     }
   },
@@ -653,12 +653,12 @@
       "summary": "Confirm Show linked sites can be changed and restored in V4 GIS Display Settings",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-02T14:20:53.181+0100",
       "retries": 0,
       "retryLimit": 2,
