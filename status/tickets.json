@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-02T08:59:04.080Z",
   "counts": {
     "tickets": 48,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 23,
       "Ready": 24,
@@ -640,7 +640,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Manage linked-site visibility in a Surveyor layer",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-02T08:59:04.080Z",
