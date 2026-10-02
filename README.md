@@ -175,7 +175,7 @@ Check the actual MCP connection and its ability to reach the launcher and save a
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-test2-playwright-mcp.mjs --browser
 ```
 
-Without `--browser`, this checks only the handshake and required tool names. Health-check screenshots stay in `.agent-staging/mcp-health`; they are never ticket evidence or committed. The browser check waits for the Launcher before taking its screenshot.
+Without `--browser`, this checks only the handshake and required tool names. Health-check screenshots stay in `.agent-staging/mcp-health`; they are never ticket evidence or committed. The browser check waits for the launcher's GIS module card before taking its screenshot, allowing the approved authentication hook to finish if it interrupted the original navigation.
 
 When the saved V4 session expires, refresh it through the dedicated private browser flow rather than an ordinary browser window:
 

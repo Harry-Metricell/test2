@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
-const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repo = path.resolve(process.env.TEST2_REPO || path.join(path.dirname(fileURLToPath(import.meta.url)), '..'));
 const staging = path.join(repo, '.agent-staging');
 const state = process.env.TEST2_AUTH_STATE || path.join(process.env.LOCALAPPDATA || os.homedir(), 'TEST2', 'auth', 'user.json');
 fs.mkdirSync(path.join(staging, 'mcp-health'), { recursive: true });
@@ -31,6 +31,8 @@ const send = (method, params) => new Promise((resolve, reject) => {
   const id = ++sequence; pending.set(id, { resolve, reject });
   child.stdin.write(JSON.stringify({ jsonrpc: '2.0', id, method, params }) + '\n');
 });
+const diagnostic = result => (result.content || []).filter(item => item.type === 'text')
+  .map(item => item.text).join(' ').replace(/https?:\/\/[^\s]+/g, '[URL]').slice(0, 500);
 try {
   await send('initialize', { protocolVersion: '2024-11-05', capabilities: {}, clientInfo: { name: 'test2-health', version: '1.0' } });
   child.stdin.write(JSON.stringify({ jsonrpc: '2.0', method: 'notifications/initialized' }) + '\n');
@@ -39,9 +41,10 @@ try {
   if (!required.every(name => tools.some(tool => tool.name === name))) throw new Error('Required browser tools are absent.');
   if (process.argv.includes('--browser')) {
     const navigate = await send('tools/call', { name: 'browser_navigate', arguments: { url: 'https://o2intelligence-v4-dev.metricell.com/launcher' } });
-    if (navigate.isError) throw new Error('Launcher navigation failed.');
-    const ready = await send('tools/call', { name: 'browser_wait_for', arguments: { text: 'Launcher' } });
-    if (ready.isError) throw new Error('The launcher did not finish loading.');
+    // Login recovery may interrupt the original navigation. Wait for a real
+    // module card before judging the result or capturing a loading screen.
+    const ready = await send('tools/call', { name: 'browser_wait_for', arguments: { text: 'Open the GIS workspace' } });
+    if (ready.isError) throw new Error(`The launcher did not finish loading: ${diagnostic(navigate.isError ? navigate : ready)}`);
     const screenshot = await send('tools/call', { name: 'browser_take_screenshot', arguments: { type: 'png', scale: 'css', filename: 'mcp-health/launcher.png' } });
     if (screenshot.isError) throw new Error('Browser screenshot failed.');
     const file = path.join(staging, 'mcp-health/launcher.png');
