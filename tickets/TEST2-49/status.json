@@ -21,5 +21,29 @@
     "reason": "The verified behaviour exposes a user-facing Display Settings control for Surveyor layers and a new Show linked sites option that users may need to find and understand.",
     "noOp": false,
     "assessedAt": "2026-10-02T09:34:06.156Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-49-guide-update",
+    "handoffVersion": "TEST2-49:guide_update_authoring:2",
+    "ticket": "TEST2-49",
+    "title": "Manage linked-site visibility in a Surveyor layer",
+    "affectedSection": "GIS Surveyor Layer Display Settings",
+    "changeType": "amend",
+    "supersedesTicket": "TEST2-48",
+    "steps": [
+      "Open GIS and load a Surveyor layer.",
+      "Open Display Settings from the layer legend.",
+      "Select Show linked sites to change its checked or unchecked state.",
+      "Restore Show linked sites to its original state.",
+      "Close and reopen Display Settings to confirm the original state remains."
+    ],
+    "screenshots": [
+      "screenshots/attempt-002/criterion-3-final.png",
+      "screenshots/attempt-002/criterion-4-final.png"
+    ],
+    "reason": "Update the Surveyor layer display-settings instructions to document the verified Show linked sites toggle and its reversible state.",
+    "noOp": false,
+    "authoredAt": "2026-10-02T09:38:06.228Z"
   }
 }
