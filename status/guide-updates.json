@@ -87,9 +87,9 @@
       "affectedSection": "Open Dashboards from the V4 launcher"
     },
     {
-      "ticket": "TEST2-49",
+      "ticket": "TEST2-50",
       "title": "Manage linked-site visibility in a Surveyor layer",
-      "affectedSection": "GIS Surveyor Layer Display Settings"
+      "affectedSection": "GIS Display Settings: Show linked sites"
     }
   ]
 }
