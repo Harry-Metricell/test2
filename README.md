@@ -207,6 +207,10 @@ Run these from the repository root. `generate` rewrites derived status files; us
 
 GitHub Actions runs the Node publisher/status/criteria/Jira regression tests and Python report/guide tests on relevant code changes. For local publisher regression tests, set `TEST2_GIT` to a Git executable first; the tests use a disposable local remote, not the live GitHub repository.
 
+## Coordinator publication recovery
+
+Coordinator recovery checks publication before child-chat availability. If a tester chat cannot be looked up but its exact attempt history is remote and its old handoff has advanced, the coordinator retires that bookkeeping and proceeds to review. `node scripts/reconcile-coordinator-tests.mjs --apply` performs this check from a freshly fetched remote snapshot, backs up the local run-state file, and leaves unresolved tasks and all ticket status fields untouched. A failed task lookup alone must never trigger a duplicate tester.
+
 ## User guide updater
 
 Guide authoring must supply `screenshotCaptions`, one caption per verified screenshot in the same order, describing its actual visible state. The publisher rejects missing or incomplete captions. Historical records without captions remain buildable using neutral screenshot identifiers, never guessed step-to-picture mappings. Report builders always retain the asserted `-final` capture, show decisive images at readable width beneath their criteria, keep criterion-specific filenames even when image bytes are shared, and remove empty back-cover spacer pages.
