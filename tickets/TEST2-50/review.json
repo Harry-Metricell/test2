@@ -1,0 +1,33 @@
+{
+  "handoffId": "handoff-TEST2-50-review-attempt-001",
+  "handoffVersion": "TEST2-50:evidence_review:1",
+  "ticket": "TEST2-50",
+  "criterionOutcomes": [
+    {
+      "criterion": "In GIS, with an available Surveyor layer loaded, the layer legend exposes Display Settings; opening Display Settings shows the Show linked sites checkbox with an identifiable initial checked or unchecked state.",
+      "reason": "Screenshots show the Surveyor layer legend and Display Settings with Show linked sites checked.",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "Selecting the Show linked sites checkbox changes its displayed state to the opposite checked or unchecked state.",
+      "reason": "Screenshots show Show linked sites checked before selection and unchecked afterward.",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "After closing and reopening Display Settings, the Show linked sites checkbox displays the changed state.",
+      "reason": "Screenshots show the unchecked state, settings closed, then reopened with the checkbox still unchecked.",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "After restoring Show linked sites to its recorded initial state, closing and reopening Display Settings displays that original state.",
+      "reason": "Screenshots show checked initially, unchecked after change, restored to checked, then checked after closing and reopening.",
+      "outcome": "Passed"
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-50\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
