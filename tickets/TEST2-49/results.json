@@ -1,42 +1,90 @@
 [
   {
     "criterion": "After opening GIS and loading an available Surveyor layer, the layer legend displays a Display Settings control.",
-    "outcome": "Blocked",
+    "outcome": "Passed",
     "steps_taken": [
-      "Testing could not begin because the configured Playwright MCP browser tools were unavailable; no browser journey or assertion was performed."
+      "Started at the launcher and opened GIS.",
+      "Opened the available Surveyor layer setup and added the layer with its default options.",
+      "Confirmed the Surveyor layer legend displayed the Display Settings control."
     ],
-    "evidence": [],
-    "reason": "The configured Playwright MCP server was not available. No browser page was reachable, so no initial-state or blocked-state screenshot could be captured or verified.",
-    "retryClass": "prerequisite"
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-002/criterion-1-initial.png",
+      "screenshots/attempt-002/criterion-1-after-open-gis.png",
+      "screenshots/attempt-002/criterion-1-before-cancel-incorrect-layer-dialog.png",
+      "screenshots/attempt-002/criterion-1-after-cancel-incorrect-layer-dialog.png",
+      "screenshots/attempt-002/criterion-1-after-add-surveyor.png",
+      "screenshots/attempt-002/criterion-1-final.png"
+    ],
+    "reason": "The Surveyor - Service legend visibly included Display Settings. An accidentally opened Crowd setup dialog was cancelled without adding that layer."
   },
   {
     "criterion": "Opening Display Settings displays a Show linked sites control with an identifiable checked or unchecked initial state.",
-    "outcome": "Blocked",
+    "outcome": "Passed",
     "steps_taken": [
-      "Testing could not begin because the configured Playwright MCP browser tools were unavailable; no browser journey or assertion was performed."
+      "Returned to the launcher and captured the initial state.",
+      "Opened GIS, then opened Display Settings for Surveyor - Service.",
+      "Confirmed Show linked sites was visible and checked."
     ],
-    "evidence": [],
-    "reason": "The configured Playwright MCP server was not available. No browser page was reachable, so no initial-state or blocked-state screenshot could be captured or verified.",
-    "retryClass": "prerequisite"
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-002/criterion-2-initial.png",
+      "screenshots/attempt-002/criterion-2-after-open-gis.png",
+      "screenshots/attempt-002/criterion-2-before-open-display-settings.png",
+      "screenshots/attempt-002/criterion-2-final.png"
+    ],
+    "reason": "Display Settings showed Show linked sites in the checked state."
   },
   {
     "criterion": "Changing Show linked sites to the opposite state visibly changes the control to that new checked or unchecked state.",
-    "outcome": "Blocked",
+    "outcome": "Passed",
     "steps_taken": [
-      "Testing could not begin because the configured Playwright MCP browser tools were unavailable; no browser journey or assertion was performed."
+      "Returned to the launcher and opened GIS.",
+      "Opened Display Settings and confirmed Show linked sites was initially checked.",
+      "Clicked Show linked sites once and confirmed it became unchecked.",
+      "After capturing the decisive unchecked state, restored it to checked for cleanup."
     ],
-    "evidence": [],
-    "reason": "The configured Playwright MCP server was not available. No browser page was reachable, so no initial-state or blocked-state screenshot could be captured or verified.",
-    "retryClass": "prerequisite"
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-002/criterion-3-initial.png",
+      "screenshots/attempt-002/criterion-3-after-open-gis.png",
+      "screenshots/attempt-002/criterion-3-before-open-display-settings.png",
+      "screenshots/attempt-002/criterion-3-after-open-display-settings.png",
+      "screenshots/attempt-002/criterion-3-before-toggle.png",
+      "screenshots/attempt-002/criterion-3-final.png",
+      "screenshots/attempt-002/criterion-3-before-cleanup-restore.png",
+      "screenshots/attempt-002/criterion-3-cleanup-restored.png"
+    ],
+    "reason": "The control visibly changed from checked to unchecked. Cleanup restored the initial checked state."
   },
   {
     "criterion": "Restoring Show linked sites to its initial state, closing and reopening Display Settings, displays the same initial state.",
-    "outcome": "Blocked",
+    "outcome": "Passed",
     "steps_taken": [
-      "Testing could not begin because the configured Playwright MCP browser tools were unavailable; no browser journey or assertion was performed."
+      "Returned to the launcher and opened GIS for this criterion.",
+      "Opened Display Settings and confirmed Show linked sites was initially checked.",
+      "Changed it to unchecked, then restored it to checked.",
+      "Closed Display Settings with Escape and reopened it.",
+      "Confirmed Show linked sites remained checked after reopening.",
+      "After the decisive screenshot, closed the panel and removed the Surveyor layer added for testing."
     ],
-    "evidence": [],
-    "reason": "The configured Playwright MCP server was not available. No browser page was reachable, so no initial-state or blocked-state screenshot could be captured or verified.",
-    "retryClass": "prerequisite"
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-002/criterion-4-initial.png",
+      "screenshots/attempt-002/criterion-4-after-open-gis.png",
+      "screenshots/attempt-002/criterion-4-before-open-display-settings.png",
+      "screenshots/attempt-002/criterion-4-after-open-display-settings.png",
+      "screenshots/attempt-002/criterion-4-before-toggle-opposite.png",
+      "screenshots/attempt-002/criterion-4-after-toggle-opposite.png",
+      "screenshots/attempt-002/criterion-4-before-restore-original.png",
+      "screenshots/attempt-002/criterion-4-after-restore-original.png",
+      "screenshots/attempt-002/criterion-4-before-close-settings.png",
+      "screenshots/attempt-002/criterion-4-after-close-settings.png",
+      "screenshots/attempt-002/criterion-4-final.png",
+      "screenshots/attempt-002/criterion-4-cleanup-panel-closed.png",
+      "screenshots/attempt-002/criterion-4-before-remove-test-layer.png",
+      "screenshots/attempt-002/criterion-4-cleanup-layer-removed.png"
+    ],
+    "reason": "After restoring the initially checked state, closing and reopening Display Settings showed it still checked. The test-added Surveyor layer was removed during cleanup."
   }
 ]

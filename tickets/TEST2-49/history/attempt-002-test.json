@@ -1,0 +1,103 @@
+{
+  "handoffId": "handoff-TEST2-49-retry-attempt-002",
+  "handoffVersion": "TEST2-49:test_ticket:2",
+  "ticket": "TEST2-49",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "After opening GIS and loading an available Surveyor layer, the layer legend displays a Display Settings control.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Started at the launcher and opened GIS.",
+        "Opened the available Surveyor layer setup and added the layer with its default options.",
+        "Confirmed the Surveyor layer legend displayed the Display Settings control."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-after-open-gis.png",
+        "screenshots/attempt-002/criterion-1-before-cancel-incorrect-layer-dialog.png",
+        "screenshots/attempt-002/criterion-1-after-cancel-incorrect-layer-dialog.png",
+        "screenshots/attempt-002/criterion-1-after-add-surveyor.png",
+        "screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "reason": "The Surveyor - Service legend visibly included Display Settings. An accidentally opened Crowd setup dialog was cancelled without adding that layer."
+    },
+    {
+      "criterion": "Opening Display Settings displays a Show linked sites control with an identifiable checked or unchecked initial state.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Returned to the launcher and captured the initial state.",
+        "Opened GIS, then opened Display Settings for Surveyor - Service.",
+        "Confirmed Show linked sites was visible and checked."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-after-open-gis.png",
+        "screenshots/attempt-002/criterion-2-before-open-display-settings.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "reason": "Display Settings showed Show linked sites in the checked state."
+    },
+    {
+      "criterion": "Changing Show linked sites to the opposite state visibly changes the control to that new checked or unchecked state.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Returned to the launcher and opened GIS.",
+        "Opened Display Settings and confirmed Show linked sites was initially checked.",
+        "Clicked Show linked sites once and confirmed it became unchecked.",
+        "After capturing the decisive unchecked state, restored it to checked for cleanup."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-after-open-gis.png",
+        "screenshots/attempt-002/criterion-3-before-open-display-settings.png",
+        "screenshots/attempt-002/criterion-3-after-open-display-settings.png",
+        "screenshots/attempt-002/criterion-3-before-toggle.png",
+        "screenshots/attempt-002/criterion-3-final.png",
+        "screenshots/attempt-002/criterion-3-before-cleanup-restore.png",
+        "screenshots/attempt-002/criterion-3-cleanup-restored.png"
+      ],
+      "reason": "The control visibly changed from checked to unchecked. Cleanup restored the initial checked state."
+    },
+    {
+      "criterion": "Restoring Show linked sites to its initial state, closing and reopening Display Settings, displays the same initial state.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Returned to the launcher and opened GIS for this criterion.",
+        "Opened Display Settings and confirmed Show linked sites was initially checked.",
+        "Changed it to unchecked, then restored it to checked.",
+        "Closed Display Settings with Escape and reopened it.",
+        "Confirmed Show linked sites remained checked after reopening.",
+        "After the decisive screenshot, closed the panel and removed the Surveyor layer added for testing."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-after-open-gis.png",
+        "screenshots/attempt-002/criterion-4-before-open-display-settings.png",
+        "screenshots/attempt-002/criterion-4-after-open-display-settings.png",
+        "screenshots/attempt-002/criterion-4-before-toggle-opposite.png",
+        "screenshots/attempt-002/criterion-4-after-toggle-opposite.png",
+        "screenshots/attempt-002/criterion-4-before-restore-original.png",
+        "screenshots/attempt-002/criterion-4-after-restore-original.png",
+        "screenshots/attempt-002/criterion-4-before-close-settings.png",
+        "screenshots/attempt-002/criterion-4-after-close-settings.png",
+        "screenshots/attempt-002/criterion-4-final.png",
+        "screenshots/attempt-002/criterion-4-cleanup-panel-closed.png",
+        "screenshots/attempt-002/criterion-4-before-remove-test-layer.png",
+        "screenshots/attempt-002/criterion-4-cleanup-layer-removed.png"
+      ],
+      "reason": "After restoring the initially checked state, closing and reopening Display Settings showed it still checked. The test-added Surveyor layer was removed during cleanup."
+    }
+  ],
+  "conciseReport": "All four acceptance criteria passed. The Surveyor layer legend showed Display Settings; Show linked sites began checked, changed to unchecked, and was restored. Closing and reopening Display Settings retained the checked state. The test-added Surveyor layer was removed after testing.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-49-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Completed the selected live handoff and staged criterion-specific browser evidence.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-02T09:26:18.961Z"
+}

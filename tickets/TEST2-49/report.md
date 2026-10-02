@@ -1,5 +1,1 @@
-## QA report
-
-- QA status: Blocked
-- Testing could not begin because the configured Playwright MCP browser tools were unavailable.
-- No browser evidence was captured.
+All four acceptance criteria passed. The Surveyor layer legend showed Display Settings; Show linked sites began checked, changed to unchecked, and was restored. Closing and reopening Display Settings retained the checked state. The test-added Surveyor layer was removed after testing.
