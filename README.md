@@ -77,7 +77,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.
 
 Restart the Codex desktop app after this step. A tester task must then show the Playwright browser tools, including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`.
 
-The configured Playwright MCP launcher checks the saved login before each isolated tester starts and can perform the approved email-and-Continue step on the V4 development site. Tester chats do not operate sign-in forms. If the automatic refresh cannot reach the launcher because password, MFA, or consent is needed, use the interactive command below. It opens a private browser; complete sign-in yourself, wait for the launcher, then press Enter. It replaces only the local login file and does not send credentials to GitHub:
+The configured Playwright MCP launcher starts without a network login check, so a site or authentication outage cannot hide its browser tools. Its page hook performs the approved email-and-Continue recovery in the active V4 development browser and saves the refreshed session. Tester chats do not operate sign-in forms. If password, MFA, or consent is needed, use the interactive command below. It opens a private browser; complete sign-in yourself, wait for the launcher, then press Enter. It replaces only the local login file and does not send credentials to GitHub:
 
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\refresh-test2-auth.mjs
@@ -165,7 +165,17 @@ Configure Codex using a private saved Playwright login. The installer copies it 
 powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.ps1 -ImportStorageState "C:\path\to\private\user.json"
 ```
 
-Restart the Codex desktop app after installation. New tester tasks should expose Playwright browser tools including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`. The TEST2 Playwright launcher refreshes the private login before each new isolated browser server starts. A page hook also handles an approved V4 email-and-Continue redirect in the active tester browser and saves the refreshed session. Testers wait briefly and retry the launcher once; they never operate sign-in controls. External identity-provider or repeated redirects still require human sign-in. If startup refresh fails, the server stops with a clear error. If the tools are absent, check the Codex MCP configuration and restart first.
+Restart the Codex desktop app after installation or a launcher update. New tester tasks should expose Playwright browser tools including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`. The page hook handles an approved V4 email-and-Continue redirect in the active tester browser and saves the refreshed session. Testers wait briefly and retry the launcher once; they never operate sign-in controls. External identity-provider or repeated redirects still require human sign-in. Unavailable browser tools use `blockerCode: browser_tools_unavailable` and receive the one automatic retry in a fresh tester chat. The publisher and bundler also recognise the precise legacy Playwright-unavailable reason, so older misclassified runs are recoverable. If tools remain absent, check MCP configuration and restart the app.
+
+A wholly untested attempt where every criterion is Blocked, every evidence list is empty, and each blocker has a reason can receive a final PDF explicitly stating that no browser evidence was captured. This exception cannot pass a ticket or qualify it for guide updates. Passed, Failed, Unverified, and referenced-but-missing evidence retain the normal screenshot verification requirement.
+
+Check the actual MCP connection and its ability to reach the launcher and save a PNG:
+
+```powershell
+& "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-test2-playwright-mcp.mjs --browser
+```
+
+Without `--browser`, this checks only the handshake and required tool names. Health-check screenshots stay in `.agent-staging/mcp-health`; they are never ticket evidence or committed. The browser check waits for the Launcher before taking its screenshot.
 
 When the saved V4 session expires, refresh it through the dedicated private browser flow rather than an ordinary browser window:
 

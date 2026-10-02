@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import { acceptanceCriteria, flattenAdf } from './jira-adf.mjs';
+import { normalizeBrowserToolBlock } from './test-result-policy.mjs';
 
 const root = process.cwd();
 const checkOnly = process.argv.includes('--check');
@@ -15,7 +16,7 @@ const MAX_TEST_ATTEMPTS = 2;
 
 function attemptDisposition(attempt) {
   if (!attempt) return null;
-  const results = attempt.results;
+  const results = Array.isArray(attempt.results) ? attempt.results.map(normalizeBrowserToolBlock) : attempt.results;
   if (!Array.isArray(results) || results.length === 0) return 'manual';
   const nonPassed = results.filter(item => String(item?.outcome || item?.status || '').trim().toLowerCase() !== 'passed');
   if (nonPassed.length === 0) return 'passed';

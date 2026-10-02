@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
+import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
 import os from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -348,7 +349,8 @@ function buildVerifiedReport(key, run, screenshots) {
   execFileSync(python, [builder, '--template', template, '--review-output', reviewFile, '--criteria', path.join(repo, 'tickets', key, 'criteria.md'), '--results', path.join(repo, 'tickets', key, 'results.json'), '--screenshots', screenshots, '--output', docx, '--image-manifest', imageManifest], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(docx)) fail('Template report generation completed without a non-empty DOCX');
   const imageSummary = readJson(imageManifest);
-  if (!Number.isInteger(imageSummary.embeddedEvidenceImages) || imageSummary.embeddedEvidenceImages < 1 || !Array.isArray(imageSummary.expectedEvidence) || imageSummary.expectedEvidence.length !== imageSummary.embeddedEvidenceImages) {
+  const noEvidenceBlock = isNoEvidenceBlock(readJson(reviewFile), readJson(path.join(repo, 'tickets', key, 'results.json')));
+  if (!Number.isInteger(imageSummary.embeddedEvidenceImages) || imageSummary.embeddedEvidenceImages < 0 || (!noEvidenceBlock && imageSummary.embeddedEvidenceImages < 1) || !Array.isArray(imageSummary.expectedEvidence) || imageSummary.expectedEvidence.length !== imageSummary.embeddedEvidenceImages) {
     fail('Template report generation did not produce a complete evidence-identity manifest');
   }
   execFileSync('powershell.exe', ['-NoProfile', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
@@ -516,6 +518,7 @@ if (outputType === 'criteria-output.json') {
   validateTesterStatus(output.results, output.qaStatus);
   output.results = output.results.map((item, index) => {
     if (item.outcome === 'Passed') return item;
+    item = normalizeBrowserToolBlock(item);
     const retryClass = item.retryClass || (item.outcome === 'Failed' ? 'product' : 'manual');
     if (!['transient', 'prerequisite', 'criteria', 'product', 'manual'].includes(retryClass)
         || (item.outcome === 'Failed' && retryClass !== 'product')
@@ -657,7 +660,7 @@ if (outputType === 'criteria-output.json') {
     : String(output.evidenceFolder || '').match(/[\\/]attempt-[0-9]+(?:[\\/]|$)/i)
       ? String(output.evidenceFolder)
       : '';
-  if (!screenshots || !pngEvidence(screenshots)) fail('The selected evidence folder contains no non-empty PNG files');
+  if (!screenshots || (!pngEvidence(screenshots) && !isNoEvidenceBlock(review, results))) fail('The selected evidence folder contains no non-empty PNG files');
   writeJson(path.join(run, 'review-output.json'), review);
   const built = buildVerifiedReport(key, run, screenshots);
   generatedDocx = built.docx;

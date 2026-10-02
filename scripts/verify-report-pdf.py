@@ -166,13 +166,16 @@ def main():
 
     manifest = json.loads(Path(args.image_manifest).read_text(encoding="utf-8"))
     expected = manifest.get("expectedEvidence", [])
-    if not expected or any(not isinstance(item, dict) or not item.get("file") or not item.get("sourceSha256") or not item.get("visualFingerprint") for item in expected):
+    if not expected:
+        validate_no_evidence_block(manifest)
+    elif any(not isinstance(item, dict) or not item.get("file") or not item.get("sourceSha256") or not item.get("visualFingerprint") for item in expected):
         raise SystemExit("image manifest has no valid expected evidence identities")
-    load_expected_images(expected, args.screenshots)
+    if expected:
+        load_expected_images(expected, args.screenshots)
     observed = pdf_images(args.pdf)
     matched, missing = match_expected_images(expected, observed)
     content_verified = verify_report_content(args.pdf, manifest.get("reportContent"))
-    audit = {"verificationMethod": "source_sha256_then_resized_rgb_pixels",
+    audit = {"verificationMethod": "source_sha256_then_resized_rgb_pixels" if expected else "explicit_untested_block_content",
              "pixelMeanMax": MAX_MEAN_RGB_DIFFERENCE,
              "pixelHighDifferenceFractionMax": MAX_HIGH_DIFFERENCE_FRACTION,
              "pixelTileDifferenceMax": MAX_TILE_RGB_DIFFERENCE,
@@ -182,6 +185,20 @@ def main():
     print(json.dumps(audit))
     if missing:
         raise SystemExit(f"converted PDF is missing browser evidence: {', '.join(missing)}")
+
+
+def validate_no_evidence_block(manifest):
+    """No-image reports are allowed only for wholly blocked, untested attempts."""
+    block = manifest.get("noEvidenceBlock") or {}
+    reviewed, tested, reasons = (block.get(name) for name in ("reviewOutcomes", "testerOutcomes", "reasons"))
+    content = manifest.get("reportContent") or {}
+    if (not isinstance(reviewed, list) or not reviewed or not isinstance(tested, list)
+            or not isinstance(reasons, list) or len(reviewed) != len(tested) or len(tested) != len(reasons)
+            or any(value != "Blocked" for value in reviewed + tested)
+            or any(not isinstance(reason, str) or not reason.strip() for reason in reasons)
+            or content.get("overallOutcome") != "Blocked"
+            or "No browser evidence was captured" not in content.get("limitations", "")):
+        raise SystemExit("image manifest has no valid expected evidence identities or explicit untested block")
 
 
 if __name__ == "__main__":

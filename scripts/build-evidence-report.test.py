@@ -19,6 +19,25 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_untested_block_builds_but_missing_claimed_evidence_fails(self):
+        with tempfile.TemporaryDirectory(prefix="test2-no-browser-") as temporary:
+            root = Path(temporary)
+            template = MODULE.parent.parent / "assets/templates/Automated Test Case Template.docx"
+            review = {"ticket": "TEST2-99", "overallOutcome": "Blocked", "criterionOutcomes": [{"criterion": "Launcher is visible.", "outcome": "Blocked", "reason": "Browser tools unavailable."}]}
+            results = [{"criterion": "Launcher is visible.", "outcome": "Blocked", "evidence": [], "reason": "Browser tools unavailable."}]
+            (root / "review.json").write_text(json.dumps(review))
+            (root / "results.json").write_text(json.dumps(results))
+            (root / "criteria.md").write_text("- [ ] Launcher is visible.\n")
+            command = [sys.executable, str(MODULE), "--template", str(template), "--review-output", str(root / "review.json"), "--results", str(root / "results.json"), "--criteria", str(root / "criteria.md"), "--screenshots", str(root / "missing-folder"), "--output", str(root / "report.docx"), "--image-manifest", str(root / "manifest.json")]
+            subprocess.run(command, check=True, capture_output=True)
+            manifest = json.loads((root / "manifest.json").read_text())
+            self.assertEqual(manifest["expectedEvidence"], [])
+            self.assertIn("No browser evidence was captured", manifest["reportContent"]["limitations"])
+            results[0]["evidence"] = ["missing.png"]
+            (root / "results.json").write_text(json.dumps(results))
+            failed = subprocess.run(command, capture_output=True, text=True)
+            self.assertNotEqual(failed.returncode, 0)
+
     def test_uses_ordered_result_when_review_has_full_criterion_text(self):
         criteria = ["The launcher is displayed."]
         tester_result = {"criterion": 1, "evidence": ["criterion-1-initial.png", "criterion-1-final.png"]}

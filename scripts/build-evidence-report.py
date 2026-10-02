@@ -350,7 +350,14 @@ def main():
 
     result_by_criterion = {text(item.get("criterion")): item for item in results if isinstance(item, dict)}
     screenshots = sorted(Path(args.screenshots).glob("*.png"))
-    if not screenshots:
+    no_evidence_block = (
+        text(review.get("overallOutcome")) == "Blocked"
+        and len(results) == len(outcomes)
+        and all(item.get("outcome") == "Blocked" and text(item.get("reason")).strip() for item in outcomes)
+        and all(item.get("outcome") == "Blocked" and item.get("evidence") == []
+                and text(item.get("reason")).strip() for item in results)
+    )
+    if not screenshots and not no_evidence_block:
         raise SystemExit("at least one screenshot is required")
 
     # Preserve the template's layout, branding, footer and table structure.
@@ -384,6 +391,8 @@ def main():
     cycle = doc.tables[2]
     browser_version = next((text(item.get("browserVersion")) for item in results if isinstance(item, dict) and item.get("browserVersion")), "version not recorded")
     limitations = report_limitations(review, outcomes, results)
+    if no_evidence_block:
+        limitations = "No browser evidence was captured; testing could not be completed. " + limitations
     urls = source_urls(results)
     displayed_outcome = "Failed (inconclusive evidence)" if text(review.get("overallOutcome")).lower() == "unverified" else text(review.get("overallOutcome"))
     values = ["Automated", ticket, "Chrome", f"Chrome {browser_version}", datetime.now().strftime("%d/%m/%Y"), limitations]
@@ -516,6 +525,11 @@ def main():
     manifest = evidence_manifest(logical_images)
     Path(args.image_manifest).write_text(json.dumps({
         "embeddedEvidenceImages": embedded_count,
+        "noEvidenceBlock": {
+            "reviewOutcomes": [item["outcome"] for item in outcomes],
+            "testerOutcomes": [item["outcome"] for item in results],
+            "reasons": [item["reason"] for item in results],
+        } if not logical_images and no_evidence_block else None,
         "reportContent": {
             "overallOutcome": displayed_outcome,
             "limitations": limitations,

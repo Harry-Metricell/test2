@@ -3,7 +3,7 @@
  * the handoff folder. The MCP --output-dir option alone does not control the
  * current working directory used by page.screenshot in this Playwright build.
  */
-import { spawn, spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -21,20 +21,9 @@ if (!storageState || !path.isAbsolute(storageState)) {
   process.exit(1);
 }
 
-// An isolated MCP server reads the state only at startup. Refresh it first so
-// expired sessions never force a tester through the browser approval gate.
-const refresh = spawnSync(process.execPath, [path.join(repo, 'scripts', 'refresh-test2-auth.mjs'), '--email-continue'], {
-  cwd: repo,
-  env: { ...process.env, TEST2_AUTH_STATE: storageState },
-  encoding: 'utf8',
-  timeout: 110_000,
-  windowsHide: true
-});
-if (refresh.error || refresh.status !== 0) {
-  console.error('TEST2 saved browser login could not be refreshed. Run scripts/refresh-test2-auth.mjs interactively, then restart the tester.');
-  if (refresh.error) console.error(refresh.error.message);
-  process.exit(1);
-}
+// Expose the MCP tools without a network/login dependency. The page hook
+// refreshes an expired session in the actual browser after navigation, so an
+// auth/service outage remains observable and can be captured as evidence.
 
 mkdirSync(staging, { recursive: true });
 const child = spawn(process.execPath, [cli, ...cliArgs, '--init-page', authPageHook], {

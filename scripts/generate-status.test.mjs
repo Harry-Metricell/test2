@@ -151,7 +151,7 @@ test('only a transient first test attempt queues one retry', () => {
     fs.writeFileSync(path.join(dir, 'criteria.md'), '- [ ] The launcher is visible.\n');
     fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify({ ticket: 'TEST2-99', qaStatus: 'Blocked', retries: 0, retryLimit: 3, criteriaVerified: true }));
     fs.writeFileSync(path.join(dir, 'results.json'), JSON.stringify([{ criterion: 'The launcher is visible.', outcome: 'Blocked', retryClass: 'transient' }]));
-    fs.writeFileSync(path.join(dir, 'history', 'attempt-001-test.json'), JSON.stringify({ historyAttempt: 1, qaStatus: 'Blocked', results: [{ criterion: 1, outcome: 'Blocked', retryClass: 'transient' }] }));
+    fs.writeFileSync(path.join(dir, 'history', 'attempt-001-test.json'), JSON.stringify({ historyAttempt: 1, qaStatus: 'Blocked', results: [{ criterion: 1, outcome: 'Blocked', retryClass: 'prerequisite', evidence: [], reason: 'The configured Playwright MCP server was not available.' }] }));
     const run = () => execFileSync(process.execPath, [generator], { cwd: root });
     run();
     const first = fs.readFileSync(path.join(dir, 'status.json'), 'utf8');

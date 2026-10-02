@@ -34,6 +34,15 @@ def observed(name, image, source_hash):
 
 
 class PdfEvidenceIdentityTests(unittest.TestCase):
+    def test_only_explicit_wholly_blocked_report_can_have_no_images(self):
+        manifest = {"noEvidenceBlock": {"reviewOutcomes": ["Blocked"], "testerOutcomes": ["Blocked"], "reasons": ["Browser tools unavailable."]},
+                    "reportContent": {"overallOutcome": "Blocked", "limitations": "No browser evidence was captured; testing could not be completed."}}
+        VERIFY.validate_no_evidence_block(manifest)
+        with self.assertRaises(SystemExit):
+            VERIFY.validate_no_evidence_block({})
+        with self.assertRaises(SystemExit):
+            VERIFY.validate_no_evidence_block({**manifest, "noEvidenceBlock": {**manifest["noEvidenceBlock"], "testerOutcomes": ["Passed"]}})
+
     def test_report_content_requires_outcome_limitations_url_and_caption(self):
         class Page:
             def extract_text(self):
