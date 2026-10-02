@@ -1,0 +1,33 @@
+{
+  "handoffId": "handoff-TEST2-49-review-attempt-002",
+  "handoffVersion": "TEST2-49:evidence_review:2",
+  "ticket": "TEST2-49",
+  "criterionOutcomes": [
+    {
+      "outcome": "Passed",
+      "criterion": "After opening GIS and loading an available Surveyor layer, the layer legend displays a Display Settings control.",
+      "reason": "The Surveyor - Service legend shows the Display Settings control."
+    },
+    {
+      "outcome": "Passed",
+      "criterion": "Opening Display Settings displays a Show linked sites control with an identifiable checked or unchecked initial state.",
+      "reason": "Display Settings shows Show linked sites checked."
+    },
+    {
+      "outcome": "Passed",
+      "criterion": "Changing Show linked sites to the opposite state visibly changes the control to that new checked or unchecked state.",
+      "reason": "The criterion screenshots show Show linked sites checked before the toggle and unchecked after it."
+    },
+    {
+      "outcome": "Passed",
+      "criterion": "Restoring Show linked sites to its initial state, closing and reopening Display Settings, displays the same initial state.",
+      "reason": "The screenshots show checked, then unchecked, restored to checked, closed, and checked again after reopening."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-49\\screenshots\\attempt-002",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": ""
+}
