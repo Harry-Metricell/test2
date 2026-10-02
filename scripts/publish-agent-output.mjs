@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
+import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
 import os from 'node:os';
@@ -610,6 +611,7 @@ if (outputType === 'criteria-output.json') {
   if (!Array.isArray(output.steps) || output.steps.length === 0 || output.steps.some(step => typeof step !== 'string' || !step.trim())) fail('guide update steps are missing');
   if (!Array.isArray(output.screenshots) || output.screenshots.length === 0 || output.screenshots.some(file => typeof file !== 'string' || !/^screenshots[\\/].+\.png$/i.test(file) || file.includes('..'))) fail('guide update screenshots must be safe PNG evidence paths');
   if (new Set(output.screenshots).size !== output.screenshots.length) fail('guide update screenshots must be distinct');
+  if (!hasCompleteScreenshotCaptions(output)) fail('guide update screenshotCaptions must describe every screenshot in order');
   if (typeof output.reason !== 'string' || !output.reason.trim()) fail('guide update reason is missing');
   const impact = readJson(path.join(ticketDir, 'guide-impact.json'));
   const review = readJson(path.join(ticketDir, 'review.json'));

@@ -6,6 +6,15 @@ import os from 'node:os';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { formatReviewReport } from './format-review-report.mjs';
+import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
+
+test('guide publisher requires explicit non-empty captions for every selected screenshot', () => {
+  const screenshots = ['screenshots/attempt-002/criterion-3-final.png', 'screenshots/attempt-002/criterion-4-final.png'];
+  assert.equal(hasCompleteScreenshotCaptions({ screenshots, screenshotCaptions: ['Control unchecked.', 'Restored checked state after reopening.'] }), true);
+  for (const screenshotCaptions of [undefined, [], ['Only one'], ['Valid', ''], ['Valid', 2], ['One', 'Two', 'Extra']]) {
+    assert.equal(hasCompleteScreenshotCaptions({ screenshots, screenshotCaptions }), false);
+  }
+});
 
 const publisher = fileURLToPath(new URL('./publish-agent-output.mjs', import.meta.url));
 const git = process.env.TEST2_GIT;

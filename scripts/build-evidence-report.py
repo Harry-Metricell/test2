@@ -35,7 +35,7 @@ def remove_rows(table):
 
 
 def add_image_row(table, exhibits, *, supporting=False):
-    """Keep up to three labelled captures in one unsplittable evidence block."""
+    """Use equal-sized pairs, never shrink a third decisive capture to a thumbnail."""
     row = table.add_row()
     merged = row.cells[0]
     for cell in row.cells[1:]:
@@ -62,8 +62,8 @@ def add_image_row(table, exhibits, *, supporting=False):
         picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
         picture.paragraph_format.space_after = Pt(0)
         with Image.open(image) as source:
-            max_width = 3.65 if supporting else (2.0 if index == 2 else (4.0 if len(exhibits) > 1 else 5.0))
-            max_height = 1.25 if index == 2 else 2.8
+            max_width = 3.65 if supporting else (4.5 if len(exhibits) > 1 else 6.8)
+            max_height = 2.8 if len(exhibits) > 1 else 3.2
             width = min(max_width, max_height * source.width / source.height)
         picture.add_run().add_picture(str(image), width=Inches(width))
     merged.paragraphs[-1].paragraph_format.space_after = Pt(0)
@@ -147,7 +147,26 @@ def report_exhibits(images, criterion):
             if image != selected[0]:
                 selected.append(image)
                 break
+    # A tester may name the reopened/asserted state only `-final`. Always
+    # include it, even when other named transition captures were selected.
+    add_matching("-final")
     return selected
+
+
+def remove_back_cover_spacers(cases):
+    """Use one page-break-before, not a break plus a page of empty paragraphs."""
+    following = cases._tbl.getnext()
+    while following is not None and following.tag == qn("w:p"):
+        if any(node.text for node in following.iter(qn("w:t"))) or next(
+            following.iter(qn("w:drawing")), None
+        ) is not None or next(following.iter(qn("w:pict")), None) is not None:
+            break
+        next_element = following.getnext()
+        following.getparent().remove(following)
+        following = next_element
+    if following is not None and following.tag == qn("w:p"):
+        properties = following.get_or_add_pPr()
+        properties.append(OxmlElement("w:pageBreakBefore"))
 
 
 def concise_review_reason(value):
@@ -469,9 +488,11 @@ def main():
             if digest not in unique_images:
                 unique_images[digest] = (f"E{len(unique_images) + 1:02d}", image, public_browser_url(result.get("browserUrl")))
             evidence_ids.append(unique_images[digest][0])
-            if unique_images[digest] not in exhibits:
-                exhibits.append(unique_images[digest])
-            captions.append(f"{unique_images[digest][0]} - {unique_images[digest][1].name}")
+            # Share the physical image/ID, never another criterion's caption.
+            exhibit = (unique_images[digest][0], image, public_browser_url(result.get("browserUrl")))
+            if not any(hashlib.sha256(entry[1].read_bytes()).hexdigest() == digest for entry in exhibits) or image.stem.lower().endswith("-final"):
+                exhibits.append(exhibit)
+                captions.append(f"{exhibit[0]} - {image.name}")
             logical_images.append(image)
         trace = f"Evidence: {', '.join(dict.fromkeys(evidence_ids)) if evidence_ids else 'Unavailable'}"
         if not exhibits:
@@ -501,8 +522,8 @@ def main():
             for cell in row:
                 for paragraph in cell.paragraphs:
                     paragraph.paragraph_format.keep_with_next = True
-            for start in range(0, len(exhibits), 3):
-                add_image_row(cases, exhibits[start:start + 3])
+            for start in range(0, len(exhibits), 2):
+                add_image_row(cases, exhibits[start:start + 2])
 
     setup = supporting_captures(setup_candidates, unique_images)
     if setup:
@@ -519,6 +540,7 @@ def main():
         for start in range(0, len(appendix), 2):
             add_image_row(cases, appendix[start:start + 2], supporting=True)
 
+    remove_back_cover_spacers(cases)
     doc.save(str(output))
     patch_package_text(output, {"[Ticket ID]": ticket, "Test Example": f"{ticket} Evidence Review", "[Version]": "1.0", "[dd/mm/yyyy]": datetime.now().strftime("%d/%m/%Y"), "[Author]": "TEST2 QA Automation", "[Initial automated-test template]": "Generated from TEST2 evidence review"})
     embedded_count = verify_embedded_images(output, logical_images)

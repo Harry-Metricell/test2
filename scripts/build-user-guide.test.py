@@ -1,5 +1,6 @@
 """Regression test for the deterministic, yellow-highlighted guide builder."""
 import json
+import importlib.util
 import subprocess
 import sys
 import tempfile
@@ -11,6 +12,14 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILDER = ROOT / "scripts" / "build-user-guide.py"
+spec = importlib.util.spec_from_file_location("guide_builder", BUILDER)
+sys.dont_write_bytecode = True
+guide = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(guide)
+# Historical records must not invent step/image associations.
+legacy = {"title": "Change linked sites", "steps": ["Open GIS."], "screenshots": ["screenshots/attempt-001/criterion-3-final.png"]}
+assert "Open GIS" not in guide.screenshot_caption(legacy, 0)
+assert "criterion-3-final.png" in guide.screenshot_caption(legacy, 0)
 TEST_ROOT = ROOT / ".guide-staging" / "test-tmp"
 
 
@@ -58,7 +67,8 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     replacement = evidence / "TEST2-100/screenshots/attempt-001/criterion-1-final.png"
     replacement.parent.mkdir(parents=True)
     Image.new("RGB", (64, 32), "green").save(replacement)
-    write_json(repo / "tickets/TEST2-100/guide-update.json", {"schema": "v4-user-guide-update.v1", "ticket": "TEST2-100", "title": "Use the updated launcher", "affectedSection": "Getting started", "changeType": "amend", "supersedesTicket": "TEST2-99", "steps": ["Open the updated launcher."], "screenshots": ["screenshots/attempt-001/criterion-1-final.png"], "reason": "Replace obsolete launcher instructions."})
+    update = {"schema": "v4-user-guide-update.v1", "ticket": "TEST2-100", "title": "Use the updated launcher", "affectedSection": "Getting started", "changeType": "amend", "supersedesTicket": "TEST2-99", "steps": ["Open the updated launcher."], "screenshots": ["screenshots/attempt-001/criterion-1-final.png"], "screenshotCaptions": ["Updated module cards are visible."], "reason": "Replace obsolete launcher instructions."}
+    write_json(repo / "tickets/TEST2-100/guide-update.json", update)
     amend = subprocess.run([sys.executable, str(BUILDER), "--repo", str(repo), "--evidence-root", str(evidence), "--ticket", "TEST2-100"], capture_output=True, text=True)
     assert amend.returncode == 0, amend.stderr or amend.stdout
     amended = Document(output)
@@ -70,6 +80,14 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     assert "[[AUTO_GUIDE_UPDATE:TEST2-100]]" in amended_text
     assert len(amended.inline_shapes) == 1, "old evidence image must be removed"
     assert "FFFF00" in amended._element.xml
+    assert "Figure 1: Updated module cards are visible." in amended.tables[0].cell(0, 0).text
+    for bad_captions in ([], [""], ["One", "Extra"], "Not an array"):
+        try:
+            guide.validate_update({**update, "screenshotCaptions": bad_captions}, "TEST2-100")
+        except SystemExit:
+            pass
+        else:
+            raise AssertionError("invalid screenshot captions accepted")
     invalid = subprocess.run([sys.executable, str(BUILDER), "--repo", str(repo), "--evidence-root", str(evidence), "--ticket", "TEST2-99"], capture_output=True, text=True)
     assert invalid.returncode == 0, "historical update should be idempotent when explicitly rerun"
 

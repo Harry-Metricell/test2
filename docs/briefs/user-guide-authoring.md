@@ -6,12 +6,13 @@ Read live GitHub `status/handoffs.json` first. Confirm the supplied handoff ID, 
 
 Write clear end-user instructions for the delivered, passed behaviour. Do not invent screens, controls, or outcomes. Reuse one or more verified PNG paths from the ticket's `results.json`; the builder will only accept evidence from the reviewed ticket. Choose `add` for a genuinely new guide section. Choose `amend` only when replacing one exact prior generated section from `status/guide-updates.json`; set `supersedesTicket` to that section's ticket key. If the correct prior section is unclear, stop with a concise failure instead of appending duplicate instructions. Every step must be a short imperative sentence suitable for the guide.
 
-Write exactly one file: `.agent-staging/<handoffId>/guide-update-output.json`. It must contain `handoffId`, `handoffVersion`, `ticket`, `title`, `affectedSection`, `changeType`, `steps`, `screenshots`, `reason`, and `noOp`; include `supersedesTicket` only for an amendment.
+Write exactly one file: `.agent-staging/<handoffId>/guide-update-output.json`. It must contain `handoffId`, `handoffVersion`, `ticket`, `title`, `affectedSection`, `changeType`, `steps`, `screenshots`, `screenshotCaptions`, `reason`, and `noOp`; include `supersedesTicket` only for an amendment.
 
 - `changeType` is `add` or `amend`.
 - For `amend`, `supersedesTicket` must identify the exact generated guide block to replace. For `add`, omit it.
 - `steps` is a non-empty ordered array of plain strings.
 - `screenshots` is a non-empty array of distinct PNG paths taken verbatim from the selected ticket's `results.json` evidence.
+- `screenshotCaptions` has one non-empty caption per screenshot, in the same order. Describe the actual visible state using the verified result and its capture name; never assume screenshot N corresponds to instruction N. Distinguish changed and restored/reopened states. Use end-user instructions, not mandatory QA cleanup or verification rituals.
 - `reason` briefly describes the user-facing change.
 
 Keep the complete update in the staged file. Return only a compact receipt with `handoffId`, `ticket`, and `staged: true`; for a no-op or failure, return a compact reason. Do not repeat the update or narrate routine tool calls. Do not open a browser, take new screenshots, edit Jira, edit guide plans, edit ticket files, or create/edit the Word guide.

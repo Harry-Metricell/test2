@@ -73,7 +73,34 @@ class ResultMatchingTests(unittest.TestCase):
         self.assertEqual([image.name for image in selected], [
             "criterion-4-before-restore.png", "criterion-4-after-restore.png",
             "criterion-4-before-close.png", "criterion-4-after-close.png",
-            "criterion-4-after-reopen.png"])
+            "criterion-4-after-reopen.png", "criterion-4-final.png"])
+
+    def test_final_is_retained_when_reopened_state_has_no_named_capture(self):
+        images = [Path(name) for name in ("criterion-4-before-restore.png",
+                  "criterion-4-after-restore.png", "criterion-4-after-close.png",
+                  "criterion-4-final.png", "criterion-4-cleanup.png")]
+        selected = REPORT.report_exhibits(images, "Restore, close and reopen settings.")
+        self.assertIn(images[3], selected)
+        self.assertNotIn(images[4], selected)
+
+    def test_decisive_images_are_full_width_without_tiny_third_capture(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            image = Path(temporary) / "final.png"
+            Image.new("RGB", (1440, 900), "navy").save(image)
+            document = Document()
+            table = document.add_table(rows=1, cols=5)
+            REPORT.add_image_row(table, [("E01", image, "https://example.test/gis")])
+            self.assertGreater(document.inline_shapes[0].width.inches, 5)
+
+    def test_back_cover_has_one_break_and_no_empty_spacer_page(self):
+        document = Document()
+        cases = document.add_table(rows=1, cols=5)
+        document.add_page_break()
+        document.add_paragraph()
+        cover = document.add_paragraph("About Metricell")
+        REPORT.remove_back_cover_spacers(cases)
+        self.assertIs(cases._tbl.getnext(), cover._p)
+        self.assertTrue(cover.paragraph_format.page_break_before)
 
     def test_cleanup_capture_is_not_a_decisive_exhibit(self):
         images = [Path(name) for name in (
@@ -153,7 +180,7 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertEqual(images["embeddedEvidenceImages"], 1)
             self.assertEqual(len(images["logicalEvidence"]), 2)
             self.assertEqual(images["reportContent"]["overallOutcome"], "Blocked")
-            self.assertEqual(images["reportContent"]["evidenceCaptions"], ["E01 - criterion-1-initial.png"])
+            self.assertEqual(images["reportContent"]["evidenceCaptions"], ["E01 - criterion-1-initial.png", "E01 - criterion-1-final.png"])
 
 
 if __name__ == "__main__":

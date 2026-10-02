@@ -152,6 +152,21 @@ def validate_update(update: dict, ticket: str) -> None:
         fail(f"{ticket} needs distinct screenshots")
     if any(not isinstance(item, str) or not re.match(r"^screenshots[\\/].+\.png$", item, re.I) or ".." in Path(item).parts for item in screenshots):
         fail(f"{ticket} has an unsafe screenshot path")
+    captions = update.get("screenshotCaptions")
+    if captions is not None and (not isinstance(captions, list) or len(captions) != len(screenshots)
+                                or any(not isinstance(value, str) or not value.strip() for value in captions)):
+        fail(f"{ticket} screenshotCaptions must describe every screenshot in order")
+
+
+def screenshot_caption(update: dict, index: int) -> str:
+    """Never guess a step/image association from unrelated array positions."""
+    captions = update.get("screenshotCaptions")
+    if captions is not None:
+        return captions[index].strip()
+    # Historical records have no caption metadata. Use an honest identifier
+    # rather than claiming that image N proves step N.
+    name = Path(update["screenshots"][index].replace("\\", "/")).name
+    return f"Verified screenshot for {update['title'].strip()} ({name})"
 
 
 def ticket_updates(repo: Path, requested: list[str]) -> list[tuple[str, dict]]:
@@ -233,7 +248,7 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
             add_before(anchor_proxy, paragraph)
         for index, relative in enumerate(update["screenshots"], start=1):
             image = screenshot_path(evidence_root, ticket, relative)
-            caption = update["steps"][min(index - 1, len(update["steps"]) - 1)].strip()
+            caption = screenshot_caption(update, index - 1)
             table = yellow_screenshot(document, image, f"Figure {index}: {caption}")
             anchor_element.addprevious(table._tbl)
         identity = yellow_paragraph(UPDATE_MARKER.format(ticket=ticket), hidden=True)
