@@ -1,0 +1,42 @@
+[
+  {
+    "criterion": "After opening GIS and loading an available Surveyor layer, the layer legend displays a Display Settings control.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Testing could not begin because the configured Playwright MCP browser tools were unavailable; no browser journey or assertion was performed."
+    ],
+    "evidence": [],
+    "reason": "The configured Playwright MCP server was not available. No browser page was reachable, so no initial-state or blocked-state screenshot could be captured or verified.",
+    "retryClass": "prerequisite"
+  },
+  {
+    "criterion": "Opening Display Settings displays a Show linked sites control with an identifiable checked or unchecked initial state.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Testing could not begin because the configured Playwright MCP browser tools were unavailable; no browser journey or assertion was performed."
+    ],
+    "evidence": [],
+    "reason": "The configured Playwright MCP server was not available. No browser page was reachable, so no initial-state or blocked-state screenshot could be captured or verified.",
+    "retryClass": "prerequisite"
+  },
+  {
+    "criterion": "Changing Show linked sites to the opposite state visibly changes the control to that new checked or unchecked state.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Testing could not begin because the configured Playwright MCP browser tools were unavailable; no browser journey or assertion was performed."
+    ],
+    "evidence": [],
+    "reason": "The configured Playwright MCP server was not available. No browser page was reachable, so no initial-state or blocked-state screenshot could be captured or verified.",
+    "retryClass": "prerequisite"
+  },
+  {
+    "criterion": "Restoring Show linked sites to its initial state, closing and reopening Display Settings, displays the same initial state.",
+    "outcome": "Blocked",
+    "steps_taken": [
+      "Testing could not begin because the configured Playwright MCP browser tools were unavailable; no browser journey or assertion was performed."
+    ],
+    "evidence": [],
+    "reason": "The configured Playwright MCP server was not available. No browser page was reachable, so no initial-state or blocked-state screenshot could be captured or verified.",
+    "retryClass": "prerequisite"
+  }
+]
