@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-50-guide-impact",
+  "handoffVersion": "TEST2-50:guide_impact_assessment:1",
+  "ticket": "TEST2-50",
+  "decision": "update_required",
+  "affectedSection": "GIS Display Settings: Show linked sites",
+  "reason": "The delivered behavior adds a visible Show linked sites checkbox in Surveyor layer Display Settings, including how to change it and verify that the selected state is retained when the settings are reopened.",
+  "noOp": false,
+  "assessedAt": "2026-10-02T15:42:05.647Z"
+}
