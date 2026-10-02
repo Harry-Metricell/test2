@@ -1,0 +1,31 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-50-guide-update",
+  "handoffVersion": "TEST2-50:guide_update_authoring:1",
+  "ticket": "TEST2-50",
+  "title": "Manage linked-site visibility in a Surveyor layer",
+  "affectedSection": "GIS Display Settings: Show linked sites",
+  "changeType": "amend",
+  "supersedesTicket": "TEST2-49",
+  "steps": [
+    "Open Display Settings for a loaded Surveyor layer.",
+    "Note whether Show linked sites is checked or unchecked.",
+    "Select Show linked sites to switch its state.",
+    "Close and reopen Display Settings to confirm the selected state remains visible.",
+    "Select Show linked sites again to restore the recorded initial state.",
+    "Close and reopen Display Settings to confirm the original state is restored."
+  ],
+  "screenshots": [
+    "screenshots/attempt-001/criterion-1-final.png",
+    "screenshots/attempt-001/criterion-3-final.png",
+    "screenshots/attempt-001/criterion-4-final.png"
+  ],
+  "screenshotCaptions": [
+    "Display Settings shows Show linked sites checked for the loaded Surveyor layer.",
+    "After the setting is changed and Display Settings is reopened, Show linked sites remains unchecked.",
+    "After restoring the initial setting and reopening Display Settings, Show linked sites is checked again."
+  ],
+  "reason": "Update the Surveyor layer Display Settings guidance to describe changing Show linked sites and confirming the changed and restored states after reopening.",
+  "noOp": false,
+  "authoredAt": "2026-10-02T15:46:09.801Z"
+}
