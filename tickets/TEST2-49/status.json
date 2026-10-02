@@ -10,5 +10,16 @@
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
   "nextAction": "QA review complete",
-  "updatedAt": "2026-10-02T08:59:04.080Z"
+  "updatedAt": "2026-10-02T08:59:04.080Z",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-49-guide-impact",
+    "handoffVersion": "TEST2-49:guide_impact_assessment:2",
+    "ticket": "TEST2-49",
+    "decision": "update_required",
+    "affectedSection": "GIS Surveyor Layer Display Settings",
+    "reason": "The verified behaviour exposes a user-facing Display Settings control for Surveyor layers and a new Show linked sites option that users may need to find and understand.",
+    "noOp": false,
+    "assessedAt": "2026-10-02T09:34:06.156Z"
+  }
 }
