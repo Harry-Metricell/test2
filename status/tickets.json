@@ -6,15 +6,14 @@
     "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 23,
-      "Ready": 23,
-      "Rejected": 1,
-      "Retry Queued": 1
+      "Ready": 24,
+      "Rejected": 1
     },
     "byQaOutcome": {
-      "Blocked": 14,
+      "Blocked": 13,
       "Failed": 1,
       "Not Tested": 3,
-      "Passed": 26,
+      "Passed": 27,
       "Unverified": 4
     }
   },
@@ -637,17 +636,17 @@
       "key": "TEST2-49",
       "summary": "Verify reversible Show linked sites change in V4 GIS",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/2 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-02T08:59:04.080Z",
-      "retries": 1,
+      "retries": 2,
       "retryLimit": 2,
-      "retryLabel": "Retry 1/2"
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-2",
