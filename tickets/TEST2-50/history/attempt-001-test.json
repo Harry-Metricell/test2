@@ -1,0 +1,107 @@
+{
+  "handoffId": "handoff-TEST2-50-test-attempt-001",
+  "handoffVersion": "TEST2-50:test_ticket:1",
+  "ticket": "TEST2-50",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "In GIS, with an available Surveyor layer loaded, the layer legend exposes Display Settings; opening Display Settings shows the Show linked sites checkbox with an identifiable initial checked or unchecked state.",
+      "status": "Passed",
+      "steps_taken": [
+        "Started at the launcher, opened GIS, selected the available Surveyor layer, and accepted its default configuration.",
+        "Opened Display Settings and observed Show linked sites checked."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-before-add-surveyor.png",
+        "screenshots/attempt-001/criterion-1-after-add-surveyor.png",
+        "screenshots/attempt-001/criterion-1-before-confirm-add.png",
+        "screenshots/attempt-001/criterion-1-after-confirm-add.png",
+        "screenshots/attempt-001/criterion-1-before-display-settings.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "reason": "Display Settings exposed the checkbox with a clear checked initial state.",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "Selecting the Show linked sites checkbox changes its displayed state to the opposite checked or unchecked state.",
+      "status": "Passed",
+      "steps_taken": [
+        "Started from the launcher, opened GIS, loaded the available Surveyor layer, and opened Display Settings.",
+        "Observed the checkbox checked, selected it once, and observed it unchecked."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-after-open-gis.png",
+        "screenshots/attempt-001/criterion-2-before-add-surveyor.png",
+        "screenshots/attempt-001/criterion-2-after-open-surveyor-config.png",
+        "screenshots/attempt-001/criterion-2-before-confirm-add.png",
+        "screenshots/attempt-001/criterion-2-after-confirm-add.png",
+        "screenshots/attempt-001/criterion-2-before-display-settings.png",
+        "screenshots/attempt-001/criterion-2-after-display-settings.png",
+        "screenshots/attempt-001/criterion-2-before-toggle.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "reason": "The control changed from checked to unchecked after selection.",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "After closing and reopening Display Settings, the Show linked sites checkbox displays the changed state.",
+      "status": "Passed",
+      "steps_taken": [
+        "Started at the launcher, opened GIS, opened Display Settings, and recorded the checkbox as checked.",
+        "Selected the checkbox to change it to unchecked, closed Display Settings with Escape, and reopened Display Settings.",
+        "Observed the checkbox remained unchecked after reopening."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-after-open-gis.png",
+        "screenshots/attempt-001/criterion-3-before-display-settings.png",
+        "screenshots/attempt-001/criterion-3-after-display-settings.png",
+        "screenshots/attempt-001/criterion-3-before-toggle.png",
+        "screenshots/attempt-001/criterion-3-after-toggle.png",
+        "screenshots/attempt-001/criterion-3-after-close.png",
+        "screenshots/attempt-001/criterion-3-before-reopen.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "reason": "The changed unchecked state was retained when Display Settings was reopened.",
+      "outcome": "Passed"
+    },
+    {
+      "criterion": "After restoring Show linked sites to its recorded initial state, closing and reopening Display Settings displays that original state.",
+      "status": "Passed",
+      "steps_taken": [
+        "Started at the launcher, opened GIS and Display Settings, and recorded the checkbox as checked.",
+        "Changed it to unchecked, restored it to checked, closed Display Settings with Escape, and reopened it.",
+        "Observed the original checked state after reopening."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-after-open-gis.png",
+        "screenshots/attempt-001/criterion-4-before-display-settings.png",
+        "screenshots/attempt-001/criterion-4-after-display-settings.png",
+        "screenshots/attempt-001/criterion-4-before-change.png",
+        "screenshots/attempt-001/criterion-4-after-change.png",
+        "screenshots/attempt-001/criterion-4-before-restore.png",
+        "screenshots/attempt-001/criterion-4-after-restore.png",
+        "screenshots/attempt-001/criterion-4-after-close.png",
+        "screenshots/attempt-001/criterion-4-before-reopen.png",
+        "screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "reason": "The original checked state remained visible after restoring, closing, and reopening Display Settings.",
+      "outcome": "Passed"
+    }
+  ],
+  "conciseReport": "## QA Test Report — TEST2-50\n\n- **Status:** Passed; all four acceptance criteria verified in V4 GIS.\n- **Evidence:** Criterion-specific initial, transition, and final screenshots are staged for review.\n- **Cleanup:** Restored Show linked sites to checked and removed the Surveyor layer added for testing.",
+  "reportPath": "tickets/TEST2-50/results.json",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-50-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": null,
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-02T14:43:09.888Z"
+}
