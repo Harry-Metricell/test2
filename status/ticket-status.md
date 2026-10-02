@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-10-02T08:59:04.080Z
+Updated: 2026-10-02T14:20:53.181+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
@@ -43,6 +43,7 @@ Updated: 2026-10-02T08:59:04.080Z
 | TEST2-47 | READY FOR TESTING | Blocked |  | Verify Surveyor Display Settings in V4 GIS |
 | TEST2-48 | READY FOR TESTING | Evidence Reviewed |  | Toggle linked sites visibility in V4 GIS Surveyor Display Settings |
 | TEST2-49 | READY FOR TESTING | Evidence Reviewed | Retry 2/2 | Verify reversible Show linked sites change in V4 GIS |
+| TEST2-50 | READY FOR TESTING | Criteria Check Required |  | Confirm Show linked sites can be changed and restored in V4 GIS Display Settings |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 2/2 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/2 | Verify GIS layer and map view controls |

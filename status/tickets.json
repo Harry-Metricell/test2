@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-02T08:59:04.080Z",
+  "generatedAt": "2026-10-02T14:20:53.181+0100",
   "counts": {
-    "tickets": 48,
-    "handoffs": 0,
+    "tickets": 49,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 23,
-      "Ready": 24,
+      "Ready": 25,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 13,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 27,
       "Unverified": 4
     }
@@ -647,6 +647,22 @@
       "retries": 2,
       "retryLimit": 2,
       "retryLabel": "Retry 2/2"
+    },
+    {
+      "key": "TEST2-50",
+      "summary": "Confirm Show linked sites can be changed and restored in V4 GIS Display Settings",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-02T14:20:53.181+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",

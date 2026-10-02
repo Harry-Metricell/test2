@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-50",
+  "id": "106504",
+  "summary": "Confirm Show linked sites can be changed and restored in V4 GIS Display Settings",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-50",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-02T14:20:40.951+0100",
+    "updated": "2026-10-02T14:20:53.181+0100"
+  },
+  "description": "Users need to change the Show linked sites setting on a Surveyor layer and retain the selected control state when Display Settings is closed and reopened.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/ . Open GIS from the launcher using an authorised account and load an available Surveyor layer. This ticket concerns the displayed checkbox state; it does not claim that linked-site data is available or that a backend preference persists across a new session.\nAcceptance criteria\nThe loaded Surveyor layer legend exposes Display Settings, and opening it displays the Show linked sites control with an identifiable initial checked or unchecked state.\nSelecting Show linked sites changes the displayed control to the opposite checked or unchecked state.\nClosing and reopening Display Settings retains the changed state of Show linked sites.\nRestoring Show linked sites to its recorded initial state, then closing and reopening Display Settings, displays that original state again.\nLeave the original control state restored and remove any layer created only for this test. Use existing authorised access and available layer data; do not create or alter production records.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-50/ticket.json",
+    "criteria": "tickets/TEST2-50/criteria.md",
+    "status": "tickets/TEST2-50/status.json",
+    "screenshots": "tickets/TEST2-50/screenshots/",
+    "reports": "tickets/TEST2-50/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106504",
+    "importedAt": "2026-10-02T14:20:53.181+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-02T14:20:53.181+0100",
+    "criteriaVerified": false
+  }
+}
