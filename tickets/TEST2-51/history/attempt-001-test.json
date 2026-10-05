@@ -1,0 +1,116 @@
+{
+  "handoffId": "handoff-TEST2-51-test-attempt-001",
+  "handoffVersion": "TEST2-51:test_ticket:1",
+  "ticket": "TEST2-51",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "With an available Surveyor layer loaded in GIS using its default configuration, the layer legend shows the Surveyor layer name and a Display Settings control.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the exact launcher route and captured the loaded launcher before interaction.",
+        "Clicked Open GIS; scrolled Surveyor into view and captured the GIS state before adding the layer.",
+        "Clicked Surveyor to open configuration; captured default Service / Last 30 days configuration without changing any option.",
+        "Clicked Add layer and waited for the Surveyor - Service legend and Display Settings control.",
+        "Verified Surveyor - Service appears in the map layer list and legend, with Display Settings available; captured final screenshot and read current browser URL.",
+        "Removed the test-created layer and returned to launcher."
+      ],
+      "reason": "The default Surveyor - Service layer was listed and its legend displayed its name and Display Settings.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-before-add.png",
+        "screenshots/attempt-001/criterion-1-after-add-dialog.png",
+        "screenshots/attempt-001/criterion-1-before-confirm-add.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "blockers": [],
+      "browserVersion": null
+    },
+    {
+      "criterion": "When Display Settings is opened for the loaded Surveyor layer, the panel shows Show linked sites with a clearly identifiable checked or unchecked state.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the exact launcher route and captured the loaded launcher before interaction.",
+        "Clicked Open GIS; scrolled Surveyor into view and captured the GIS state before adding the layer.",
+        "Clicked Surveyor to open configuration; captured default Service / Last 30 days configuration without changing any option.",
+        "Clicked Add layer and waited for the Surveyor - Service legend and Display Settings control.",
+        "Captured the loaded layer, clicked Display Settings, and observed Show linked sites checked.",
+        "Captured the decisive open-panel screenshot and read current browser URL.",
+        "Pressed Escape, removed the test-created layer, and returned to launcher."
+      ],
+      "reason": "Show linked sites was visibly checked in Display Settings.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-add.png",
+        "screenshots/attempt-001/criterion-2-after-add-dialog.png",
+        "screenshots/attempt-001/criterion-2-before-open.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "blockers": [],
+      "browserVersion": null
+    },
+    {
+      "criterion": "When Display Settings is closed, the settings panel is dismissed while the same Surveyor layer remains in the layer list and its legend remains available.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the exact launcher route and captured the loaded launcher before interaction.",
+        "Clicked Open GIS; scrolled Surveyor into view and captured the GIS state before adding the layer.",
+        "Clicked Surveyor to open configuration; captured default Service / Last 30 days configuration without changing any option.",
+        "Clicked Add layer and waited for the Surveyor - Service legend and Display Settings control.",
+        "Captured the loaded layer and opened Display Settings; observed Show linked sites checked and captured the panel before closing.",
+        "Pressed Escape and waited until Show linked sites was hidden; verified Surveyor - Service remained twice in visible UI (layer list and legend) and Display Settings remained available.",
+        "Captured the decisive closed-panel screenshot and read current browser URL.",
+        "Removed the test-created layer and returned to launcher."
+      ],
+      "reason": "Escape dismissed Display Settings; the same Surveyor - Service layer remained listed with its legend and Display Settings control.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-add.png",
+        "screenshots/attempt-001/criterion-3-after-add-dialog.png",
+        "screenshots/attempt-001/criterion-3-before-open.png",
+        "screenshots/attempt-001/criterion-3-before-close.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "blockers": [],
+      "browserVersion": null
+    },
+    {
+      "criterion": "When Display Settings is reopened for the same Surveyor layer without adding the layer again, Show linked sites has the same checked or unchecked state observed before the panel was closed.",
+      "outcome": "Passed",
+      "steps_taken": [
+        "Navigated to the exact launcher route and captured the loaded launcher before interaction.",
+        "Clicked Open GIS; scrolled Surveyor into view and captured the GIS state before adding the layer.",
+        "Clicked Surveyor to open configuration; captured default Service / Last 30 days configuration without changing any option.",
+        "Clicked Add layer and waited for the Surveyor - Service legend and Display Settings control.",
+        "Captured the loaded layer, opened Display Settings, and observed Show linked sites checked; captured before-close state.",
+        "Pressed Escape, waited for the settings checkbox to become hidden, verified the same layer remained, and captured after-close state.",
+        "Clicked Display Settings on the existing layer without adding it again; observed Show linked sites still checked.",
+        "Captured the decisive reopened-panel screenshot and read current browser URL.",
+        "Pressed Escape. The first cleanup tool call timed out during automatic approval review; returning to GIS showed the test layer still present, so removed it using its visible Remove from selected control. Verified no layer-name or removal-control matches remained, then returned to launcher."
+      ],
+      "reason": "Show linked sites was checked both before closing and after reopening the same layer's panel in one uninterrupted criterion run; no checkbox change or layer re-add occurred.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-before-add.png",
+        "screenshots/attempt-001/criterion-4-after-add-dialog.png",
+        "screenshots/attempt-001/criterion-4-before-open.png",
+        "screenshots/attempt-001/criterion-4-before-close.png",
+        "screenshots/attempt-001/criterion-4-after-close.png",
+        "screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "blockers": [],
+      "browserVersion": null
+    }
+  ],
+  "conciseReport": "# TEST2-51 QA attempt 001\n\nAll four criteria passed with independent launcher-started journeys and dedicated PNG evidence. The default Surveyor - Service layer exposed Display Settings; Show linked sites was checked. Closing the panel retained the layer and legend, and reopening it retained the checked state without adding the layer again. Final browser URLs were read separately for each criterion: https://o2intelligence-v4-dev.metricell.com/gis.\n\nThe checkbox was never changed and backend data was not edited. Each test-created layer was removed and the browser returned to the launcher. One cleanup call timed out during automatic approval review; cleanup was subsequently completed and verified. Browser name/version was not exposed by visible browser information and was not inferred.\n\nAwaiting evidence review.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-51-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Testing completed; dedicated initial, transition, and decisive final screenshots were saved. Cleanup completed. Awaiting independent evidence review.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-05T11:00:11.643Z"
+}
