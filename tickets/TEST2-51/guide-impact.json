@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-51-guide-impact",
+  "handoffVersion": "TEST2-51:guide_impact_assessment:1",
+  "ticket": "TEST2-51",
+  "decision": "not_needed",
+  "affectedSection": "",
+  "reason": "The reviewed behavior preserves the existing Surveyor Display Settings panel, layer, and Show linked sites state when the panel is closed and reopened. It introduces no new user instruction, navigation, visible feature, or user-facing terminology that requires guide documentation.",
+  "noOp": false,
+  "assessedAt": "2026-10-05T11:07:17.831Z"
+}
