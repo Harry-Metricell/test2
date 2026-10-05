@@ -1,27 +1,5 @@
 {
   "schema": "v4-qa-handoffs.v1",
   "generatedAt": "2026-10-05T13:00:48.656+0100",
-  "handoffs": [
-    {
-      "handoffId": "handoff-TEST2-52-guide-update",
-      "handoffVersion": "TEST2-52:guide_update_authoring:1",
-      "action": "guide_update_authoring",
-      "brief": "docs/briefs/user-guide-authoring.md",
-      "owner": "guide-update-author",
-      "ticket": "TEST2-52",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-52/ticket.json",
-        "generated": "status/generated/TEST2-52.json",
-        "review": "tickets/TEST2-52/review.json",
-        "report": "tickets/TEST2-52/report.md",
-        "results": "tickets/TEST2-52/results.json",
-        "impact": "tickets/TEST2-52/guide-impact.json",
-        "policy": "config/user-guide-update-policy.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-52/guide-update.json",
-        "schema": "v4-user-guide-update.v1"
-      }
-    }
-  ]
+  "handoffs": []
 }
