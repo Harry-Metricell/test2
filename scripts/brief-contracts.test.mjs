@@ -57,6 +57,8 @@ test('tester and reviewer preserve independent evidence and derived outcome fiel
   assert.ok(tester.includes('criterion-N-initial.png'));
   assert.ok(tester.includes('criterion-N-final.png'));
   assert.ok(tester.includes('browser_tools_unavailable'));
+  assert.ok(tester.includes('wait for the expected visible transition to settle'));
+  assert.ok(brief('evidence-review').includes('Inspect actual visible states, not capture filenames'));
   assert.match(tester, /qaStatus "Blocked" if any result is Blocked; otherwise "Awaiting Evidence Review"/);
   const reviewer = brief('evidence-review');
   for (const field of ['criterionOutcomes', 'overallOutcome', 'qaStatus', 'reportPath', 'evidenceFolder']) assert.ok(reviewer.includes(field), field);

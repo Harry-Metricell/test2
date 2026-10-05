@@ -29,7 +29,7 @@ class ResultMatchingTests(unittest.TestCase):
         images = [Path(name) for name in ("criterion-1-initial.png", "criterion-1-before-add.png",
                   "criterion-1-after-add-dialog.png", "criterion-1-before-confirm-add.png",
                   "criterion-1-final.png")]
-        self.assertEqual(REPORT.report_exhibits(images, "A layer loaded using its default configuration shows a legend."), images[2:])
+        self.assertEqual(REPORT.report_exhibits(images, "A layer loaded using its default configuration shows a legend."), images[3:])
         unknown = [Path(name) for name in ("criterion-2-initial.png", "criterion-2-before-expand.png", "criterion-2-final.png")]
         self.assertEqual(REPORT.report_exhibits(unknown, "The settings panel opens."), unknown[1:])
 
@@ -122,7 +122,7 @@ class ResultMatchingTests(unittest.TestCase):
         self.assertEqual([image.name for image in selected], [
             "criterion-4-before-restore.png", "criterion-4-after-restore.png",
             "criterion-4-before-close.png", "criterion-4-after-close.png",
-            "criterion-4-after-reopen.png", "criterion-4-final.png"])
+            "criterion-4-final.png"])
 
     def test_final_is_retained_when_reopened_state_has_no_named_capture(self):
         images = [Path(name) for name in ("criterion-4-before-restore.png",
@@ -224,14 +224,102 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("Failed", case_text)  # Unverified remains Failed in the PDF convention.
             cases = document.tables[5]
             self.assertIn("The launcher is displayed.", cases.rows[1].cells[1].text)
-            self.assertIn("E01 - criterion-1-initial.png", cases.rows[2].cells[0].tables[0].cell(0, 0).text)
+            self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[2].cells[0].tables[0].cell(0, 0).text)
             self.assertIn("A restricted user", cases.rows[3].cells[1].text)
             self.assertNotIn("Supporting setup captures", case_text)
             images = json.loads(manifest.read_text(encoding="utf-8"))
             self.assertEqual(images["embeddedEvidenceImages"], 1)
-            self.assertEqual(len(images["logicalEvidence"]), 2)
+            self.assertEqual(len(images["logicalEvidence"]), 1)
             self.assertEqual(images["reportContent"]["overallOutcome"], "Blocked")
-            self.assertEqual(images["reportContent"]["evidenceCaptions"], ["E01 - criterion-1-initial.png", "E01 - criterion-1-final.png"])
+            self.assertEqual(images["reportContent"]["evidenceCaptions"], ["E01 - Final (criterion-1-final.png)"])
+
+    def test_adjacent_duplicate_final_is_printed_once(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            first, final = root / "after.png", root / "final.png"
+            Image.new("RGB", (50, 30), "blue").save(first)
+            shutil.copy2(first, final)
+            self.assertEqual(REPORT.distinct_states([first, final]), [final])
+
+    def test_one_changed_pixel_is_not_deduplicated(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            before, after = root / "before.png", root / "after.png"
+            image = Image.new("RGB", (50, 30), "white")
+            image.save(before)
+            image.putpixel((25, 15), (0, 0, 0))
+            image.save(after)
+            self.assertEqual(REPORT.distinct_states([before, after]), [before, after])
+
+    def test_return_to_original_state_is_not_deduplicated(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            before, changed, restored = [root / name for name in ("before.png", "changed.png", "restored.png")]
+            Image.new("RGB", (50, 30), "blue").save(before)
+            Image.new("RGB", (50, 30), "red").save(changed)
+            shutil.copy2(before, restored)
+            self.assertEqual(REPORT.distinct_states([before, changed, restored]), [before, changed, restored])
+
+    def test_reopen_without_adding_does_not_request_setup(self):
+        names = [Path(name) for name in ("criterion-3-after-add-surveyor.png", "criterion-3-before-confirm-defaults.png", "criterion-3-after-open-display-settings.png", "criterion-3-after-toggle.png", "criterion-3-after-close.png", "criterion-3-after-reopen.png")]
+        self.assertEqual(REPORT.report_exhibits(names, "Reopen settings without adding the layer again."), names[2:])
+
+    def test_setup_map_is_not_decisive_even_when_defaults_required(self):
+        names = [Path(name) for name in ("criterion-1-after-open-gis.png", "criterion-1-before-add-surveyor.png", "criterion-1-before-confirm-defaults.png", "criterion-1-after-confirm-defaults.png", "criterion-1-before-open-display-settings.png", "criterion-1-final.png")]
+        self.assertEqual(REPORT.report_exhibits(names, "Open settings on a layer with its default configuration."), names[2:])
+
+    def test_passed_recovered_errors_are_recorded_without_changing_outcome(self):
+        result = {"outcome": "Passed", "browserVersion": "1", "browserUrl": "https://example.test/gis", "reason": "Recovered add-layer tool timeout; cleanup removal reappeared and was completed."}
+        notes = REPORT.report_limitations({}, [{"outcome": "Passed"}], [result])
+        self.assertIn("Criterion 1: Recovered add-layer tool timeout", notes)
+        self.assertNotIn("blocked", notes)
+        self.assertEqual(result["outcome"], "Passed")
+
+    def test_recovered_problem_can_be_found_in_steps(self):
+        result = {"browserVersion": "1", "browserUrl": "https://example.test/gis", "reason": "Original state restored.", "steps_taken": ["Layer removal reappeared on return; removal was then verified."]}
+        self.assertIn("removal reappeared", REPORT.report_limitations({}, [{"outcome": "Passed"}], [result]))
+
+    def test_no_error_does_not_hide_real_recovered_timeout(self):
+        result = {"browserVersion": "1", "browserUrl": "https://example.test/gis", "reason": "Recovered a tool timeout without application errors."}
+        self.assertIn("Recovered a tool timeout", REPORT.report_limitations({}, [{"outcome": "Passed"}], [result]))
+        result["reason"] = "Opened GIS without application errors."
+        self.assertEqual(REPORT.report_limitations({}, [{"outcome": "Passed"}], [result]), "No testing limitations recorded.")
+
+    def test_descriptive_caption_keeps_original_filename(self):
+        self.assertEqual(REPORT.evidence_caption(Path("criterion-2-after-toggle.png")), "After toggle (criterion-2-after-toggle.png)")
+
+    def test_localized_change_has_safe_enlargement_with_context(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            before, after = root / "criterion-1-before-toggle.png", root / "criterion-1-after-toggle.png"
+            image = Image.new("RGB", (1440, 900), "white")
+            image.save(before)
+            from PIL import ImageDraw
+            ImageDraw.Draw(image).rectangle((1100, 250, 1115, 265), fill="blue")
+            image.save(after)
+            box = REPORT.localized_change_region([before, after])
+            self.assertIsNotNone(box)
+            self.assertLess(box[0], 1100)
+            self.assertGreater(box[2], 1115)
+            self.assertLessEqual(box[2], 1440)
+            document = Document()
+            table = document.add_table(rows=1, cols=5)
+            REPORT.add_image_row(table, [("E01", before, "https://example.test/gis"), ("E02", after, "https://example.test/gis")], focus_region=box)
+            self.assertEqual(len(document.inline_shapes), 4)
+            self.assertEqual(len(table._tbl.xpath('.//a:srcRect')), 2)
+            self.assertIn("full screenshot above", table.rows[1].cells[0].tables[0].cell(1, 0).text)
+
+    def test_broad_navigation_change_is_not_cropped(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            before, after = root / "criterion-1-before-open.png", root / "criterion-1-after-open.png"
+            Image.new("RGB", (1440, 900), "white").save(before)
+            Image.new("RGB", (1440, 900), "blue").save(after)
+            self.assertIsNone(REPORT.localized_change_region([before, after]))
+
+    def test_reopen_baseline_uses_settled_before_reopen_capture(self):
+        names = [Path(name) for name in ("criterion-3-before-toggle.png", "criterion-3-after-toggle.png", "criterion-3-after-close.png", "criterion-3-before-reopen.png", "criterion-3-after-reopen.png", "criterion-3-final.png")]
+        self.assertEqual(REPORT.report_exhibits(names, "Reopening settings retains the changed state."), [names[0], names[1], names[3], names[5]])
 
 
 if __name__ == "__main__":

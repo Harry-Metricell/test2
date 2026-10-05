@@ -39,6 +39,10 @@ Worker chat completion is a receipt, not proof of publication. Dependent stages 
 
 ### Report evidence
 
+Reports show decisive criterion states with descriptive captions. Redundant named setup steps and adjacent pixel-identical states are omitted from the printed report, not deleted from private evidence; a changed pixel or a later return to an earlier state is never removed by similarity matching. A small setup appendix retains context.
+
+Where a matched before/after capture shows a localized change, Word adds a clearly labelled detail enlargement beside the full-context evidence. These are display crops of the original embedded PNG, not retouched screenshots; broad changes fall back to complete screenshots. Recovered tool errors and cleanup difficulties are reported even when the criterion passed, without changing the reviewed outcome.
+
 The report builder preserves ordered criterion-specific transitions, including unfamiliar capture names, and retains configuration baselines for default checks. It excludes cleanup, removes redundant setup, labels continued image rows and preserves the Metricell format. Environment comes from recorded target hosts; browser identity comes from the running browser, with missing version metadata listed as a limitation.
 
 Image verification proves selected images survived DOCX/PDF conversion, not that they prove the requirement. The independent reviewer must assess the complete attempt. Existing published reports are not rebuilt silently when report code changes.

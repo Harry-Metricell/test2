@@ -15,7 +15,7 @@ from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from PIL import Image
+from PIL import Image, ImageChops
 
 
 def text(value):
@@ -34,8 +34,47 @@ def remove_rows(table):
         table._tbl.remove(table.rows[-1]._tr)
 
 
-def add_image_row(table, exhibits, *, supporting=False, criterion_label=""):
-    """Use equal-sized pairs, never shrink a third decisive capture to a thumbnail."""
+def evidence_caption(image):
+    """Describe the recorded state; retain the filename for the audit trail."""
+    state = re.sub(r"^criterion-\d+-", "", image.stem).replace("-", " ")
+    return f"{state.capitalize()} ({image.name})"
+
+
+def localized_change_region(images):
+    """Enlarge a small before/after change, without guessing where a UI lives.
+
+    Broad changes (navigation, a dimmed map, a whole dialog) have no safe focus
+    region. In that case the report shows the complete source screenshots only.
+    """
+    by_name = {image.name: image for image in images}
+    for before in images:
+        if "-before-" not in before.name:
+            continue
+        after = by_name.get(before.name.replace("-before-", "-after-", 1))
+        if after is None:
+            continue
+        with Image.open(before) as left, Image.open(after) as right:
+            if left.size != right.size:
+                continue
+            difference = ImageChops.difference(left.convert("RGB"), right.convert("RGB"))
+            channels = difference.split()
+            mask = ImageChops.lighter(ImageChops.lighter(channels[0], channels[1]), channels[2]).point(lambda pixel: 255 if pixel >= 64 else 0)
+            box = mask.getbbox()
+            width, height = left.size
+            if box is None or (box[2] - box[0]) < 8 or (box[3] - box[1]) < 8:
+                continue
+            if (box[2] - box[0]) * (box[3] - box[1]) > width * height * 0.12:
+                continue
+            # Include nearby labels and surrounding context, not just a pixel.
+            x1, y1, x2, y2 = box
+            return (max(0, x1 - 80), max(0, y1 - 60), min(width, max(x2 + 80, x1 + 380)), min(height, max(y2 + 60, y1 + 220)))
+    return None
+
+
+def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focus_region=None):
+    """Use readable pairs plus explicitly labelled, lossless Word detail views."""
+    if not 1 <= len(exhibits) <= 2:
+        raise ValueError("an evidence row requires one or two captures")
     row = table.add_row()
     merged = row.cells[0]
     for cell in row.cells[1:]:
@@ -49,26 +88,44 @@ def add_image_row(table, exhibits, *, supporting=False, criterion_label=""):
         heading.add_run(f"Browser URL recorded after criterion: {exhibits[0][2]}")
         for run in heading.runs:
             run.font.size = Pt(8)
-    grid = merged.add_table(rows=2 if len(exhibits) == 3 else 1,
-                            cols=2 if len(exhibits) > 1 else 1)
-    if len(exhibits) == 3:
-        grid.cell(1, 0).merge(grid.cell(1, 1))
+    grid = merged.add_table(rows=2 if focus_region else 1, cols=len(exhibits))
     for index, (evidence_id, image, _) in enumerate(exhibits):
-        cell = grid.cell(index // 2, index % 2) if index < 2 else grid.cell(1, 0)
+        cell = grid.cell(0, index)
         caption = cell.paragraphs[0]
         caption.paragraph_format.space_after = Pt(2)
-        caption.add_run(f"{evidence_id} - {image.name}").bold = True
+        caption.add_run(f"{evidence_id} - {evidence_caption(image)}").bold = True
         for run in caption.runs:
             run.font.size = Pt(7.5)
         picture = cell.add_paragraph()
         picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
         picture.paragraph_format.space_after = Pt(0)
         with Image.open(image) as source:
-            max_width = 3.65 if supporting else (4.5 if len(exhibits) > 1 else 6.8)
-            max_height = 2.45 if len(exhibits) > 1 else 3.2
+            max_width = 3.65 if supporting else (4.7 if len(exhibits) > 1 else 7.4)
+            max_height = 2.1 if supporting else (2.25 if len(exhibits) > 1 else 3.2)
             width = min(max_width, max_height * source.width / source.height)
         picture.add_run().add_picture(str(image), width=Inches(width))
+        picture.paragraph_format.keep_with_next = False
+        if focus_region and not supporting:
+            detail = grid.cell(1, index)
+            detail.paragraphs[0].text = f"{evidence_id} detail enlargement - full screenshot above"
+            for run in detail.paragraphs[0].runs:
+                run.font.size = Pt(8)
+            x1, y1, x2, y2 = focus_region
+            with Image.open(image) as source:
+                source_width, source_height = source.size
+            detail_width = min(4.7 if len(exhibits) > 1 else 7.4, 1.65 * (x2 - x1) / (y2 - y1))
+            shape = detail.add_paragraph().add_run().add_picture(str(image), width=Inches(detail_width), height=Inches(detail_width * (y2 - y1) / (x2 - x1)))
+            # A Word display crop preserves the original embedded PNG bytes.
+            # It supplements, never replaces, the verified full-context image.
+            crop = OxmlElement("a:srcRect")
+            for attribute, value in (("l", x1 / source_width), ("t", y1 / source_height), ("r", 1 - x2 / source_width), ("b", 1 - y2 / source_height)):
+                crop.set(attribute, str(round(value * 100000)))
+            fill = shape._inline.graphic.graphicData.pic.blipFill
+            fill.insert(1, crop)
+            detail.paragraphs[-1].paragraph_format.space_after = Pt(0)
+            detail.paragraphs[-1].paragraph_format.keep_with_next = False
     merged.paragraphs[-1].paragraph_format.space_after = Pt(0)
+    merged.paragraphs[-1].paragraph_format.keep_with_next = False
     row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
 
 
@@ -121,7 +178,9 @@ def report_exhibits(images, criterion):
     # silently discard a before/after state that the reviewer used to pass.
     setup_terms = ("after-open-gis", "before-load", "after-open-module",
                    "before-add", "after-add-dialog", "before-confirm-add")
-    needs_setup = "default" in lower or bool(re.search(r"\b(?:load|add)\b", lower))
+    # Setup is supporting context, not the decisive UI state. A default-
+    # configuration claim needs the configured dialog, not every loading step.
+    needs_setup = bool(re.search(r"\bdefaults?\b", lower))
     names = [image.stem.lower() for image in images]
     selected = []
     for image in images:
@@ -130,7 +189,10 @@ def report_exhibits(images, criterion):
             continue
         if name.endswith("-initial") and not any(term in lower for term in ("launcher", "starting from")):
             continue
-        if any(term in name for term in setup_terms) and not needs_setup:
+        if any(term in name for term in setup_terms):
+            if not (needs_setup and any(term in name for term in ("after-add-dialog", "before-confirm-add"))):
+                continue
+        if any(term in name for term in ("after-add-surveyor", "before-confirm-defaults")) and not needs_setup:
             continue
         # A configured dialog is a stronger setup baseline than the preceding
         # empty map. Likewise the open-panel state supersedes before-opening it
@@ -139,16 +201,62 @@ def report_exhibits(images, criterion):
             continue
         if "before-open" in name and any("before-close" in other for other in names):
             continue
+        if "before-open" in name and any("after-open" in other and "gis" not in other for other in names):
+            continue
+        if "after-confirm" in name and any("after-open-display-settings" in other for other in names):
+            continue
+        if "after-add-" in name and any("before-confirm" in other for other in names):
+            continue
+        if "after-open-display-settings" in name and any("before-toggle" in other for other in names):
+            continue
+        if "before-close" in name and any("after-toggle" in other for other in names):
+            continue
+        # Prefer the settled baseline immediately before reopening. A capture
+        # taken immediately after a close action can still show its animation.
+        if "after-close" in name and any("before-reopen" in other for other in names):
+            continue
+        if "after-reopen" in name and names[-1].endswith("-final"):
+            continue
+        if "after-close" in name and names[-1].endswith("-final") and "reopen" not in lower and not any("reopen" in other for other in names):
+            continue
+        if "after-open-display-settings" in name and names[-1].endswith("-final") and not any("toggle" in other or "close" in other for other in names):
+            continue
         selected.append(image)
     # A launcher-only/legacy attempt still needs its available evidence printed,
     # but cleanup must never become proof through the fallback path.
     if selected:
-        return selected
+        return distinct_states(selected)
     available = [image for image in images if not any(term in image.stem.lower()
                  for term in ("cleanup", "after-clean"))]
     if not available:
         raise SystemExit("criterion has only cleanup screenshots, not test evidence")
     return available
+
+
+def distinct_states(images):
+    """Remove exact pixel duplicates within this criterion only.
+
+    Never use perceptual similarity: even a single changed checkbox pixel may
+    be decisive evidence. Missing paths in selection-only tests stay distinct.
+    Collapse adjacent identical states only. A later return to an earlier state
+    must remain visible when an intervening change is part of the proof.
+    """
+    keyed = []
+    for image in images:
+        if image.is_file():
+            with Image.open(image) as source:
+                rgb = source.convert("RGB")
+                key = (rgb.size, hashlib.sha256(rgb.tobytes()).hexdigest())
+        else:
+            key = str(image)
+        keyed.append((key, image))
+    selected = []
+    for key, image in keyed:
+        if selected and selected[-1][0] == key:
+            selected[-1] = (key, image)
+        else:
+            selected.append((key, image))
+    return [image for _, image in selected]
 
 
 def make_body_headings_visible(document):
@@ -242,6 +350,21 @@ def report_limitations(review, outcomes, results):
         parts.append("Some source URLs were not recorded.")
     if any(not item.get("browserVersion") for item in results if isinstance(item, dict)):
         parts.append("Browser version was not recorded for some criteria.")
+    # Passed criteria can still have recovered automation or cleanup problems.
+    # Preserve source wording rather than turning a tool timeout into a defect.
+    notes = []
+    signal = re.compile(r"timeout|timed out|recover|reappear|\berror\b|\bfail(?:ed|ure)?\b|unavailable|denied|could not|unable", re.I)
+    for number, result in enumerate(results, 1):
+        reason = text(result.get("reason"))
+        steps = [result.get("steps_taken")] if isinstance(result.get("steps_taken"), str) else result.get("steps_taken", [])
+        values = [reason] if signal.search(reason) else steps
+        for value in values:
+            note = text(value).strip()
+            affirmative = re.sub(r"\b(?:no|without) (?:application )?(?:error|failure|timeout)s?\b", "", note, flags=re.I)
+            if signal.search(affirmative):
+                if note not in notes:
+                    notes.append(note)
+                    parts.append(f"Criterion {number}: {note}")
     return " ".join(parts) if parts else "No testing limitations recorded."
 
 
@@ -515,9 +638,9 @@ def main():
             evidence_ids.append(unique_images[digest][0])
             # Share the physical image/ID, never another criterion's caption.
             exhibit = (unique_images[digest][0], image, public_browser_url(result.get("browserUrl")))
-            if not any(hashlib.sha256(entry[1].read_bytes()).hexdigest() == digest for entry in exhibits) or image.stem.lower().endswith("-final"):
+            if not any(hashlib.sha256(entry[1].read_bytes()).hexdigest() == digest for entry in exhibits):
                 exhibits.append(exhibit)
-                captions.append(f"{exhibit[0]} - {image.name}")
+                captions.append(f"{exhibit[0]} - {evidence_caption(image)}")
             logical_images.append(image)
         trace = f"Evidence: {', '.join(dict.fromkeys(evidence_ids)) if evidence_ids else 'Unavailable'}"
         if not exhibits:
@@ -547,9 +670,10 @@ def main():
             for cell in row:
                 for paragraph in cell.paragraphs:
                     paragraph.paragraph_format.keep_with_next = True
+            focus = localized_change_region(all_criterion_images)
             for start in range(0, len(exhibits), 2):
                 label = f"Criterion {number}" + (" continued" if start else " evidence") + f": {criterion}"
-                add_image_row(cases, exhibits[start:start + 2], criterion_label=label)
+                add_image_row(cases, exhibits[start:start + 2], criterion_label=label, focus_region=focus if start == 0 else None)
 
     setup = supporting_captures(setup_candidates, unique_images)
     if setup:
@@ -561,7 +685,7 @@ def main():
             exhibit = (f"E{len(unique_images) + 1:02d}", image, browser_url)
             unique_images[digest] = exhibit
             appendix.append(exhibit)
-            captions.append(f"{exhibit[0]} - {image.name}")
+            captions.append(f"{exhibit[0]} - {evidence_caption(image)}")
             logical_images.append(image)
         for start in range(0, len(appendix), 2):
             add_image_row(cases, appendix[start:start + 2], supporting=True)
