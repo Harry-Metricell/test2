@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-52-guide-impact",
+    "handoffVersion": "TEST2-52:guide_impact_assessment:1",
+    "ticket": "TEST2-52",
+    "decision": "update_required",
+    "affectedSection": "GIS layer Display Settings",
+    "reason": "The reviewed behaviour exposes a Show linked sites control in a Surveyor layer's Display Settings and preserves the changed state when the dialog is reopened. Users need guidance on where to find and use this setting.",
+    "noOp": false,
+    "assessedAt": "2026-10-05T13:07:17.536Z"
+  }
 }
