@@ -61,6 +61,11 @@ jobs:
       - name: Generate normalized tracker data and handoffs
         run: npm run generate
 
+      # Refresh runs have unique names for safe dispatch correlation. Validate
+      # here too instead of relying on another workflow's name-based trigger.
+      - name: Validate imported tracker and criteria
+        run: node scripts/check-criteria.mjs
+
       - name: Synchronize checkout before commit
         run: |
           git stash push --include-untracked -m "import-generated-state"

@@ -111,7 +111,9 @@ test('coordinator brief and publisher wire the gate without altering the launch 
   const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
   const brief=fs.readFileSync(path.join(root,'docs/briefs/coordinator.md'),'utf8');
   const publisher=fs.readFileSync(path.join(root,'scripts/publish-agent-output.mjs'),'utf8');
+  const importer=fs.readFileSync(path.join(root,'.github/workflows/import-ready-for-testing.yml'),'utf8');
   assert.match(brief,/jira-import-refresh\.mjs --request --force/);
   assert.match(brief,/never.*complete.*stale.*import/i);
   assert.match(publisher,/await serviceImportRefresh/);
+  assert.match(importer,/run: node scripts\/check-criteria\.mjs/);
 });
