@@ -1,12 +1,18 @@
 # V4 User Guide Capture Brief
 
+Optional standalone capture contract, not an active coordinator stage. The ticket-driven guide updater reuses passed ticket evidence; the publisher does not automatically consume .guide-staging capture output. Use this brief only for an explicitly requested standalone section capture.
+
 Capture evidence for exactly one section from the live GitHub `config/user-guide-plan.json`. This is separate from TEST2 Jira testing: never read or write ticket folders, status files, Jira, reports, or coordinator state.
+
+## Select a planned section
 
 Select the section named in the task message. Fetch the live plan first and confirm the section exists. Use the configured Playwright browser for the complete journey, starting at that section's `startUrl`. The saved private browser login is required; do not enter passwords, MFA codes, or change authentication state.
 
 Follow the listed section steps exactly. Capture every listed `requiredScreenshots` state as a unique PNG in:
 
 `.guide-staging/<section-id>/screenshots/`
+
+## Stage output and finish
 
 Before returning, write one compact JSON object to:
 

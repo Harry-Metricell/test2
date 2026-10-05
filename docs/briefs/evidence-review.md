@@ -1,24 +1,39 @@
 # TEST2 Evidence Review Brief
 
-Execute immediately. Keep the complete review in the staged file; return only a compact receipt with `handoffId`, `ticket`, and `staged: true`. For a no-op or failure, return a compact reason. Do not repeat criterion outcomes or narrate routine tool calls; any host-required progress update must be one short sentence.
+## Select one live handoff
 
-Use the GitHub connector to fetch the live `main` branch file `status/handoffs.json` before selecting work; do not use a local checkout copy for queue selection. Then fetch only the selected handoff's remote `inputs.results`, `inputs.generated`, `tickets/<KEY>/criteria.md`, and `tickets/<KEY>/report.md`; read the selected attempt's PNG screenshots only from the local evidence root (`TEST2_EVIDENCE` when set, otherwise the current user's `%USERPROFILE%\Documents\V4-QA-evidence`) under `<KEY>\screenshots\attempt-NNN\`. Expand environment variables to an absolute path before reading or reporting it. Derive `attempt-NNN` from the `screenshots/attempt-NNN/<file>.png` evidence paths in the fetched results. If results contain no evidence path, use only the highest numbered existing `attempt-NNN` folder; never read the screenshot-folder root or combine attempts. Do not use Jira, the task prompt's ticket number, arbitrary ticket selection, or other repository files.
+Execute immediately; do not summarise this brief. Fetch live GitHub main `status/handoffs.json`. Verify the supplied handoff ID, ticket, evidence_review action and handoffVersion; do not select another ticket. Otherwise select the first eligible evidence_review by handoffId. If absent/changed or already Evidence Reviewed, return a compact chat-only no-op without staging output.
 
-If the coordinator message supplies a handoff ID and ticket, select that exact handoff after verifying it is live, matches the ticket, and has its declared `handoffVersion`; otherwise select the first eligible `evidence_review` handoff in deterministic `handoffId` order from the freshly fetched live GitHub queue. If a remote fetch fails, retry once after a short wait; never guess from stale local files. If none exists or the selected ticket is already `Evidence Reviewed`, return a compact no-op only in chat: do not create a staging folder or output file.
+Read only its remote inputs.results, inputs.generated, tickets/<KEY>/criteria.md and tickets/<KEY>/report.md. Retry failed fetches once after a short wait; never use Jira, arbitrary tickets, stale local inputs or conversation history.
 
-If the selected attempt folder is missing, empty, or contains no non-empty PNG, assess every criterion as `Blocked`, set `overallOutcome` and `qaStatus` to `Blocked`, set `reportPath` to ``, and write the output immediately. When every tester result is Blocked with an empty evidence list, preserve the tester's actual blocker reason and explicitly state that no browser evidence was captured and testing could not be completed; the publisher can generate a blocker report without images for that wholly untested attempt. Missing images from a run that claims to have tested or captured evidence remain a publication error. For each criterion, also check that every PNG named in that criterion's remote result exists and is non-empty in the selected local attempt folder; if any is missing, mark that criterion `Blocked` and name the missing file in its reason. A screenshot path in GitHub results is a relative reference to local evidence, not a GitHub file URL.
+## Locate the exact attempt
 
-Assess every criterion independently. Use `Passed` only with direct screenshot evidence, `Failed` only with direct contradictory evidence, `Unverified` when evidence is inconclusive, and `Blocked` when required evidence or the test environment was unavailable. For a criterion about the required starting or current URL, also require the corresponding result's browser-derived `browserUrl` value to be present and to match the expected V4 host; a page screenshot cannot prove the browser address on its own. Never infer `Passed` from text alone.
-For criteria that compare configured defaults, before/after states, persistence, or the absence of a control, require evidence of every side of the comparison and an independent baseline where the criterion names configured defaults. A changed visible value alone does not prove that the new value matches its configured default. If the baseline or one state is missing, mark the criterion `Unverified` rather than `Passed`, and name the missing evidence in the reason.
-For sequence or persistence criteria, verify that the selected criterion's own screenshots and steps show the complete ordered journey (for example toggle, restore, close, reopen). Do not combine separate criterion runs to manufacture a pass. If a transition is missing, mark that criterion `Unverified` and identify the gap. Keep each `reason` concise and state what the screenshots actually show; omit boilerplate that merely says files exist, are non-empty, or the host is expected. The report builder records the browser-derived URL separately from screenshot content.
+Read PNGs only from TEST2_EVIDENCE, or the current user's `%USERPROFILE%\Documents\V4-QA-evidence`, under <KEY>/screenshots/attempt-NNN/. Expand environment variables to absolute paths. Derive attempt-NNN from the remote results' screenshots/attempt-NNN/<file>.png references; if there are no evidence paths, use only the highest numbered existing attempt folder. Never combine attempts or read the screenshot-folder root.
 
-Do not create, render, inspect, or upload a DOCX/PDF. Do not modify criteria, ticket files, Jira, credentials, or authentication state. The local publisher builds and verifies the report after receiving this JSON. With valid PNG evidence, set `qaStatus` to `Evidence Reviewed` only if the review itself is complete; the publisher will change it to `Blocked` if report generation or verification fails.
+Verify each referenced PNG exists and is non-empty. Missing files block the affected criterion with its exact filename in reason. If the folder is missing/empty or has no non-empty PNG, assess every criterion Blocked and still stage output. For wholly untested runs with all tester outcomes Blocked and empty evidence lists, preserve the actual blocker reason and state that no browser evidence was captured/testing could not be completed. Only that case permits a no-image blocker PDF; claimed-but-missing captures remain publication errors.
 
+PNG references point to local evidence, not GitHub file URLs.
 
-Before returning, write that exact non-no-op JSON object to:
-`.agent-staging/<handoffId>/review-output.json`
-Create the folder if needed and verify the file exists and is non-empty. The local publisher consumes this file; returning JSON in chat alone is not a completed handoff.
+## Assess every criterion
 
-The JSON must contain exactly: `handoffId`, `handoffVersion`, `ticket`, `criterionOutcomes`, `overallOutcome`, `reportPath`, `evidenceFolder`, `qaStatus`, `noOp`, `reason`. Copy `handoffVersion` exactly from the selected live handoff. Set `evidenceFolder` to the exact selected, expanded absolute evidence folder for `<KEY>\screenshots\attempt-NNN` (respect `TEST2_EVIDENCE` if set). `criterionOutcomes` must contain one item per criterion with `criterion`, `outcome`, and `reason`; use either the complete criterion text or its one-based numeric identifier. `overallOutcome` is derived: `Blocked` if any criterion is Blocked, otherwise `Failed` if any is Failed, otherwise `Unverified` if any is Unverified, otherwise `Passed`. Set `qaStatus` to `Blocked` only for an overall Blocked result; otherwise set it to `Evidence Reviewed`. Never leave criterion outcomes empty for a non-no-op review. Set `reportPath` to `` because the publisher creates the report. Do not include markdown or commentary.
+Use Passed only with direct screenshot evidence, Failed with direct contradiction, Unverified when evidence is inconclusive, and Blocked when required evidence/environment is unavailable. Never infer Passed from notes alone.
+
+For URL requirements, also require the result's browser-derived browserUrl and verify the required host/destination; page screenshots cannot prove the browser address.
+
+Defaults, before/after comparisons, persistence and absence-of-control claims require evidence of each relevant state. Configured-default claims additionally require an independent baseline; a changed value alone is insufficient. Missing baseline/state makes the criterion Unverified, with the gap named.
+
+For sequences such as toggle, restore, close and reopen, require this criterion's own ordered screenshots and steps to show the complete journey. Never assemble a pass from separate criterion runs. Missing transitions are Unverified. Keep reasons concise and describe what evidence shows, not boilerplate about file presence or expected hosts.
+
+## Stage output and finish
+
+Write `.agent-staging/<handoffId>/review-output.json` and verify it exists/non-empty. Required fields: handoffId, handoffVersion, ticket, criterionOutcomes, overallOutcome, reportPath, evidenceFolder, qaStatus, noOp and reason. Copy live handoffVersion exactly; set noOp false for a completed assessment.
+
+criterionOutcomes contains exactly one item per criterion with criterion, outcome and reason. Use exact criterion text or a one-based numeric identifier. Never leave outcomes empty.
+
+Derive overallOutcome in this precedence: Blocked if any criterion is Blocked; otherwise Failed if any Failed; otherwise Unverified if any Unverified; otherwise Passed. qaStatus is "Blocked" only for overall Blocked; otherwise "Evidence Reviewed". Set reportPath to the empty string and evidenceFolder to the exact expanded absolute selected attempt folder.
+
+The publisher creates/verifies the report and rejects inconsistent or incomplete output. Do not create, render, inspect or upload Word/PDF documents, edit criteria/ticket files/Jira, or handle credentials/authentication state.
+
+Return only a compact receipt with handoffId, ticket and staged true; for no-op/failure, a compact reason. Never repeat outcomes or the payload, and do not narrate routine calls; host-required updates must be one short sentence.
 
 

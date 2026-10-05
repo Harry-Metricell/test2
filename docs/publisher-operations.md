@@ -1,10 +1,14 @@
 # Publisher operation and diagnosis
 
+## Execution and ownership
+
 The Windows task `TEST2 Agent Publisher` invokes a hidden launcher every minute.
 The publisher, its logon repair task, and Desktop sync are installed to run on battery power. Windows Task Scheduler defaults to blocking battery starts unless the installers explicitly allow them. If publication stops while unplugged, inspect `DisallowStartIfOnBatteries`, `StopIfGoingOnBatteries`, and `NumberOfMissedRuns`; rerun the installers to restore these settings.
 Each invocation reads `.agent-staging/<handoffId>`, fetches GitHub, and processes
 ticket inputs in a temporary checkout of remote main. The Desktop checkout can
 be behind or contain local edits; publishing must not modify those edits.
+
+## Diagnose stalled publication
 
 Logs: `%LOCALAPPDATA%\TEST2\publisher.log` (JSON lines, with one rotated backup).
 `published` identifies the ticket/handoff after remote commit verification.
@@ -30,5 +34,7 @@ All worker output and Playwright PNGs share `.agent-staging`. A test publication
 checks referenced PNGs and their permanent copies before publishing test status.
 Changing MCP configuration requires restarting the app to reload the browser server.
 
-Regression check (local disposable Git remote; no GitHub writes):
+## Regression check
+
+Local disposable Git remote; no GitHub writes. Set `TEST2_GIT` to an available Git executable first:
 `node --test scripts/publisher-regression.test.mjs`

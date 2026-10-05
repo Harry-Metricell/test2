@@ -1,10 +1,10 @@
-# V4-QA-V2
+# Metricell V4 QA Automation
 
-Repository-controlled QA workflow for Metricell Smart Network V4.
+Repository-controlled QA workflow for Metricell Smart Network V4. This is a working internal prototype, not a production readiness or security certification. Automated results depend on the supplied ticket, available test data, browser access and independently reviewed evidence.
 
 The system keeps durable QA state in GitHub and uses Codex only for authenticated browser testing, evidence review, criteria ambiguity, and other judgement that static code cannot safely perform.
 
-Report evidence selection preserves ordered criterion-specific transition captures, including unfamiliar state names. Known launcher/setup captures are omitted only when not relevant to the criterion; configuration/default criteria retain their setup baseline. Cleanup is excluded. Each image row repeats its criterion number and text so evidence remains traceable across page breaks. The builder corrects white-on-white body headings while preserving the branded cover. Environment is derived from the recorded target host, not an assumed browser; browser name/version comes from the running browser and missing version metadata is explicitly listed as a limitation. Image-embedding verification proves the selected images survived conversion, not that they semantically prove a pass: the evidence reviewer must still inspect the complete attempt.
+Start with the [workflow](#flow), [component responsibilities](#component-responsibilities), and [new PC setup](#new-pc-setup). Operational instructions live in [the coordinator brief](docs/briefs/coordinator.md) and [publisher diagnostics](docs/publisher-operations.md).
 
 ## Flow
 
@@ -19,7 +19,29 @@ Report evidence selection preserves ordered criterion-specific transition captur
 
 Testing permits at most two total attempts (the first run plus one retry). The tester labels each non-passing criterion with an auditable `retryClass`. Only an all-transient result, or an inconclusive evidence review of an otherwise retryable result, receives the automatic retry. Missing accounts/data, flawed criteria, and observed product failures go straight to evidence review; a final report is required even when testing stops after the first attempt. Older results without a retry classification also go to review rather than being blindly retried. A report still requires valid evidence and successful publisher verification.
 
-The PDF report follows the approved template's binary pass/fail convention: an `Unverified` criterion is shown as `Failed`, while its explanation states that the evidence was inconclusive; the underlying review JSON retains `Unverified`. The report prints the overall review outcome, actual testing limitations, and browser-derived URLs recorded after each criterion (without query strings or fragments). Those URLs are not claimed to be visible in the screenshots. Selected decisive before/after screenshots appear directly below each criterion; a compact appendix holds optional setup context, and the complete capture set remains in the private local evidence folder for audit. Stateful criteria must show their full ordered sequence within their own attempt. Existing published PDFs are not silently rebuilt when the builder changes unless a report correction is explicitly requested.
+The PDF follows the approved template's binary pass/fail convention: Unverified is displayed as Failed with an explanation that evidence was inconclusive; review JSON retains Unverified. See [report evidence](#report-evidence) for capture selection and verification.
+
+## Component responsibilities
+
+| Component | Owns | Does not do |
+| --- | --- | --- |
+| Jira importer | Read-only Jira snapshots; archive/reopen detection | Change Jira or test the application |
+| Status Bundler | Derived tracker state, handoffs and attempt/retry eligibility | Perform browser tests or judge evidence |
+| Coordinator | Child dispatch; ignored lock, run state and import requests | Write ticket status, inspect screenshots or build reports |
+| Criteria worker | Whole-ticket interpretation and staged checklist decision | Test the application or publish files |
+| Tester | One independent browser attempt and its staged results/PNGs | Write permanent reports, assign retries or handle credentials |
+| Evidence reviewer | Independent assessment of the selected attempt's local evidence | Change criteria or render documents |
+| Guide workers | Passed-only impact decision and concise proposed instructions | Capture new evidence or edit the Word guide |
+| Publisher | Validation, private evidence copies, verified documents and ticket-scoped Git commits | Include unrelated Desktop changes in a push |
+| Desktop sync | Safe fast-forward of the working checkout | Resolve conflicting human source edits automatically |
+
+Worker chat completion is a receipt, not proof of publication. Dependent stages require the exact remote output and successful bundler propagation. The five active handoff actions and their gates are defined in the coordinator brief; each worker brief is self-contained.
+
+### Report evidence
+
+The report builder preserves ordered criterion-specific transitions, including unfamiliar capture names, and retains configuration baselines for default checks. It excludes cleanup, removes redundant setup, labels continued image rows and preserves the Metricell format. Environment comes from recorded target hosts; browser identity comes from the running browser, with missing version metadata listed as a limitation.
+
+Image verification proves selected images survived DOCX/PDF conversion, not that they prove the requirement. The independent reviewer must assess the complete attempt. Existing published reports are not rebuilt silently when report code changes.
 
 ## Start the coordinator
 
@@ -87,7 +109,7 @@ The configured Playwright MCP launcher starts without a network login check, so 
 
 Restart the Codex desktop app after changing MCP configuration; after a login refresh, start a fresh tester task so it loads the updated state. An existing isolated tester does not inherit a later refresh. A session can still expire during a test; a redirect to sign-in is an environment blocker, not an instruction for the tester to enter credentials.
 
-5. Install the two hidden background tasks. Run this in an elevated PowerShell window if task registration is denied:
+5. Complete the [reporting dependency](#reporting-dependencies) and [guide-renderer](#user-guide-document-renderer) checks below, then install the two hidden background tasks. Run this in an elevated PowerShell window if task registration is denied:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-publisher.ps1 -Repo "$PWD"
@@ -110,6 +132,12 @@ The report template is safely stored in Git at `assets/templates/Automated Test 
 The evidence folder defaults to the current Windows user's `%USERPROFILE%\Documents\V4-QA-evidence`, not a named person's profile. Set `TEST2_EVIDENCE` on the publisher and reviewer host if evidence belongs elsewhere. The publisher likewise finds bundled Git and Python under the current user's profile; set `TEST2_GIT` or `TEST2_PYTHON` when using other installations. Reviewer tasks must use the same evidence root as the publisher.
 
 ### Reporting dependencies
+
+QA report PDF conversion currently requires Microsoft Word at `C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE`, with its COM automation available to the signed-in publisher user. The Python packages alone do not supply a PDF renderer. Confirm Word is installed, activated and has completed first-run setup before enabling publication:
+
+```powershell
+Test-Path 'C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE'
+```
 
 The publisher uses the pinned packages in `requirements-reporting.txt` to build evidence reports and verify their screenshots. It defaults to Codex's bundled Python; verify that interpreter has the packages on the target PC. If it does not, install them into the Python selected by `TEST2_PYTHON` (or into the bundled interpreter) before enabling the publisher:
 
@@ -142,14 +170,7 @@ Start-Process msiexec.exe -ArgumentList @('/a', $msi, '/qn', "TARGETDIR=$env:LOC
 
 The tracked guide template and living guide already contain the hidden `[[AUTO_GUIDE_CONTENT]]` marker. Approved ticket updates are inserted before that marker with yellow highlighting; the updater is active, not a future manual step.
 
-The two hidden Windows tasks can be repaired or reinstalled at any time. The publisher installer also registers its logon repair task and Startup shortcut:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-publisher.ps1 -Repo "$PWD"
-powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-desktop-sync.ps1 -Repo "$PWD"
-```
-
-Desktop sync runs every two minutes and skips safely when conflicting local changes exist. Worker staging and coordinator runtime state use the ignored `.agent-staging` directory inside the Desktop checkout. The publisher processes tickets in a fresh checkout of GitHub main, so it works even when Desktop is behind or has local edits. The coordinator itself is started manually as a fresh Codex task; these scheduled tasks do not start it.
+To repair or reinstall background task registration, repeat setup step 5. The publisher installer registers the logon repair task and Startup shortcut. Worker staging and coordinator state stay in the ignored .agent-staging directory; these background tasks do not launch the coordinator.
 
 ### Local retention
 
@@ -161,13 +182,7 @@ For publisher errors, check `%LOCALAPPDATA%\TEST2\publisher.log` and follow [pub
 
 Tester tasks use Playwright MCP so the browser that performs each action also writes the evidence PNG. The files go directly to the repository-local `.agent-staging\<handoffId>\screenshots`; login state remains local and is never committed.
 
-Configure Codex using a private saved Playwright login. The installer copies it to `%LOCALAPPDATA%\TEST2\auth\user.json`, updates `%USERPROFILE%\.codex\config.toml`, and keeps a backup of the previous configuration:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-test2-playwright-mcp.ps1 -ImportStorageState "C:\path\to\private\user.json"
-```
-
-Restart the Codex desktop app after installation or a launcher update. New tester tasks should expose Playwright browser tools including `browser_navigate`, `browser_snapshot`, and `browser_take_screenshot`. The page hook handles an approved V4 email-and-Continue redirect in the active tester browser and saves the refreshed session. Testers wait briefly and retry the launcher once; they never operate sign-in controls. External identity-provider or repeated redirects still require human sign-in. Unavailable browser tools use `blockerCode: browser_tools_unavailable` and receive the one automatic retry in a fresh tester chat. The publisher and bundler also recognise the precise legacy Playwright-unavailable reason, so older misclassified runs are recoverable. If tools remain absent, check MCP configuration and restart the app.
+For MCP installation or configuration changes, follow setup step 4 and restart the app. The page hook handles the approved email-and-Continue redirect; tester chats never operate sign-in controls. External identity-provider or repeated redirects require human sign-in. Missing browser tools use blockerCode browser_tools_unavailable and may receive the one fresh-chat retry; if still missing, verify MCP configuration and restart the app.
 
 A wholly untested attempt where every criterion is Blocked, every evidence list is empty, and each blocker has a reason can receive a final PDF explicitly stating that no browser evidence was captured. This exception cannot pass a ticket or qualify it for guide updates. Passed, Failed, Unverified, and referenced-but-missing evidence retain the normal screenshot verification requirement.
 
@@ -243,7 +258,8 @@ To build a specific already-published guide update locally:
 
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-update-policy.mjs
-& "$env:LOCALAPPDATA\TEST2\python\python.exe" .\scripts\build-user-guide.py --ticket TEST2-123
+$reportPython = if ($env:TEST2_PYTHON) { $env:TEST2_PYTHON } else { "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" }
+& $reportPython .\scripts\build-user-guide.py --ticket TEST2-123
 ```
 
 The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. `status/guide-updates.json` is the compact index of currently active generated sections, including those sourced from archived tickets; the authoring worker uses it to select an amendment target. The local command above writes the tracked living guide; review the resulting Git diff before committing a manual rebuild.
@@ -269,9 +285,23 @@ Do not set `onlyForPassedEvidenceReviews` to `false`: validation rejects it so t
 - `docs/briefs/`: complete worker and coordinator instructions.
 - `scripts/`: deterministic import, generation, validation, and publishing code.
 
-## Boundaries
+## Boundaries and known limitations
 
 Do not upload credentials or authentication state. Do not change Jira from this repository. Do not change `criteria.md` during testing. Do not claim Passed without direct evidence. Keep the original GitHub report concise and record actual tester `steps_taken`.
 
 Current importer limitation: it requires a complete Jira search response (the workflow requests at most 100 issues). If Jira has more than 100 matching issues, import fails rather than silently importing a partial set. Done or absent tickets are retained under `archive/tickets/`, including their QA history and reports; the active tracker reads only `tickets/`.
+
+- Machine migration requires the local runtimes, saved private browser state, document renderers, GitHub access and hidden tasks. Update the saved project ID in the coordinator brief for the destination Codex project; copying Git files alone does not transfer these capabilities.
+- The current implementation contains TEST2 ticket-key and V4 development-host assumptions. Changing the Jira repository variable alone is not a complete migration to another production platform.
+- Scheduled tasks use the signed-in Windows user's session. Battery operation is supported, but a powered-off/asleep/logged-out host cannot execute local work. GitHub schedule timing is not guaranteed; the import freshness gate compensates for delayed scheduled imports.
+- The coordinator lock uses a 15-minute age threshold, not a distributed lease. Long or overlapping coordinator runs still require care; runtime reconciliation does not prove an unobservable worker has stopped.
+- Guide amendments replace exact generated sections. Reorganising the baseline guide and improving editorial integration remain quality work; existing historical duplicates are not automatically removed.
+- `docs/briefs/user-guide-capture.md` describes an optional standalone section capture, not an active coordinator/publisher stage. The active guide pipeline reuses passed ticket screenshots.
+- Raw screenshots and login state stay local, but published PDFs embed selected screenshots. Repository access therefore governs report data visibility; a public repository does not make embedded test data private. Never publish production-sensitive evidence without an appropriate access review.
+
+## Review and maintenance
+
+Canonical operating rules are in `docs/briefs/`; installers and deterministic scripts are in `scripts/`; configurable policies are in `config/`. Keep launch messages minimal and change the canonical brief rather than layering instructions into coordinator chats.
+
+After changing a brief, check its required output fields and publication gates against the publisher and bundler contracts. CI validates prompt contracts and runs the existing regression suite. Those checks catch accidental contract drift, not every model interpretation or browser failure; a representative end-to-end run remains necessary after material prompt changes.
 

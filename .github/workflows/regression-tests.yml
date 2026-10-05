@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - 'scripts/**'
+      - 'docs/briefs/**'
+      - 'docs/publisher-operations.md'
+      - 'README.md'
       - 'config/user-guide-*.json'
       - 'package.json'
       - 'requirements-reporting.txt'
@@ -12,6 +15,9 @@ on:
   pull_request:
     paths:
       - 'scripts/**'
+      - 'docs/briefs/**'
+      - 'docs/publisher-operations.md'
+      - 'README.md'
       - 'config/user-guide-*.json'
       - 'package.json'
       - 'requirements-reporting.txt'
@@ -41,6 +47,9 @@ jobs:
         env:
           TEST2_GIT: /usr/bin/git
         run: node --test scripts/publisher-regression.test.mjs
+
+      - name: Validate canonical worker and coordinator brief contracts
+        run: node --test scripts/brief-contracts.test.mjs
 
       - name: Run Jira rich-text criteria regression tests
         run: node --test scripts/jira-adf.test.mjs
