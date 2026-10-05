@@ -1,0 +1,29 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-52-guide-update",
+  "handoffVersion": "TEST2-52:guide_update_authoring:1",
+  "ticket": "TEST2-52",
+  "title": "Manage linked-site visibility in a Surveyor layer",
+  "affectedSection": "GIS Display Settings: Show linked sites",
+  "changeType": "amend",
+  "supersedesTicket": "TEST2-50",
+  "steps": [
+    "Open Display Settings for a loaded Surveyor layer.",
+    "Select Show linked sites to check or uncheck it.",
+    "Close Display Settings to keep the Surveyor layer and its legend available.",
+    "Reopen Display Settings to see the selected Show linked sites state retained."
+  ],
+  "screenshots": [
+    "screenshots/attempt-001/criterion-1-after-open-display-settings.png",
+    "screenshots/attempt-001/criterion-2-after-close.png",
+    "screenshots/attempt-001/criterion-3-after-reopen.png"
+  ],
+  "screenshotCaptions": [
+    "Display Settings shows Show linked sites checked for the loaded Surveyor layer.",
+    "After Display Settings is closed, Surveyor - Service remains in Map layers with its expanded legend.",
+    "After reopening Display Settings for the same layer, Show linked sites remains unchecked."
+  ],
+  "reason": "Amend the Surveyor layer Display Settings guidance to explain changing Show linked sites while retaining the layer and legend and preserving the selected state when settings are reopened.",
+  "noOp": false,
+  "authoredAt": "2026-10-05T13:10:32.219Z"
+}
