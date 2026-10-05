@@ -1,0 +1,7 @@
+{
+  "repository": "Harry-Metricell/test2",
+  "branch": "main",
+  "workflow": "import-ready-for-testing.yml",
+  "freshnessMinutes": 5,
+  "timeoutMinutes": 15
+}

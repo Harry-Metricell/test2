@@ -4,6 +4,7 @@ import { formatReviewReport } from './format-review-report.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
 import { guideInstructionIssues } from './guide-instruction-policy.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
+import { serviceImportRefresh } from './jira-import-refresh.mjs';
 import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
 import os from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -399,6 +400,12 @@ function buildVerifiedUserGuide(key, run) {
 }
 
 if (!fs.existsSync(stagingRoot)) process.exit(0);
+// Refresh requests are serviced by the trusted hidden task, not a sandboxed chat.
+// Refresh failures must not prevent unrelated staged ticket output publication.
+try {
+  const refresh = await serviceImportRefresh({ repo: sourceRepo, stagingRoot, git });
+  if (refresh.status !== 'idle') log('import_refresh', { status: refresh.status, runId: refresh.runId, reason: refresh.reason });
+} catch { log('import_refresh', { status: 'blocked', reason: 'Invalid import refresh request or configuration' }); }
 pruneTransientStaging(stagingRoot);
 // Use a private temporary index so unrelated checkout changes and index locks do not block publishing.
 fs.rmSync(publisherIndex, { force: true });

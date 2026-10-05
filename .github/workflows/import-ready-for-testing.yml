@@ -1,7 +1,13 @@
 name: Import Ready For Testing Tickets
+run-name: ${{ github.event_name == 'workflow_dispatch' && inputs.refresh_request && format('Coordinator import {0}', inputs.refresh_request) || 'Import Ready For Testing Tickets' }}
 
 on:
   workflow_dispatch:
+    inputs:
+      refresh_request:
+        description: Private coordinator refresh request identifier
+        required: false
+        type: string
   schedule:
     # Jira polling safety net; status updates are push-triggered.
     - cron: '*/5 * * * *'

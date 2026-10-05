@@ -6,7 +6,7 @@ The system keeps durable QA state in GitHub and uses Codex only for authenticate
 
 ## Flow
 
-1. The scheduled importer reads Jira and saves ticket snapshots under `tickets/<KEY>/ticket.json`; it does not write to Jira.
+1. The importer reads Jira and saves ticket snapshots under `tickets/<KEY>/ticket.json`; it does not write to Jira. A coordinator requests a fresh import before its first queue decision; the five-minute GitHub schedule remains a safety net, not a guaranteed clock.
 2. Status Bundler creates `status/handoffs.json` from the imported tickets and published QA artifacts. A criteria worker checks or rewrites the criteria for each eligible ticket before testing.
    Tickets marked Done or absent from a complete Jira import move to `archive/tickets/<KEY>/` with their history and reports intact. They disappear from active status/site projections and return to `tickets/<KEY>/` if reopened in Jira. A partial Jira response never triggers archiving.
    If the complete Jira source is genuinely too ambiguous to make testable criteria, a Blocked criteria decision records the reason and holds the ticket for manual clarification. It does not consume a tester retry or dispatch the same criteria handoff again until Jira changes.
@@ -208,6 +208,14 @@ Run these from the repository root. `generate` rewrites derived status files; us
 GitHub Actions runs the Node publisher/status/criteria/Jira regression tests and Python report/guide tests on relevant code changes. For local publisher regression tests, set `TEST2_GIT` to a Git executable first; the tests use a disposable local remote, not the live GitHub repository.
 
 ## Coordinator publication recovery
+
+### Import freshness and missing Jira tickets
+
+GitHub scheduled events may be delayed or dropped. The coordinator therefore writes an ignored refresh request with `node scripts/jira-import-refresh.mjs --request --force` at startup. The existing hidden publisher services it once per normal tick, reuses Desktop's existing GitHub authentication without a sign-in window, and dispatches the importer with a unique request identifier. No extra AI worker, Jira credential, scheduled task or self-hosted runner is needed. Before reporting an empty queue, the coordinator requires successful import proof no older than five minutes and reads the queue again from GitHub. A successful no-change import is valid even if `status/handoffs.json` has an older `generatedAt`.
+
+Use `node scripts/jira-import-refresh.mjs --status` in the Desktop checkout to inspect progress. A dispatch acknowledgement, queued run, failed import or timeout never counts as success. Lost dispatch responses are correlated by the unique workflow run name rather than dispatched repeatedly. Failures stay in the ignored request file and the normal publisher log; they do not alter tester retries or stop publication of unrelated outputs. If refresh is blocked, check the referenced importer run and publisher authentication, then request a new refresh after correcting the cause.
+
+For a new machine, keep the existing publisher and Desktop sync tasks running and verify GitHub authentication. Dispatch requires a classic/OAuth token with `repo` access or a fine-grained token with repository **Actions: write** permission; Git push permission alone does not prove this. The task reuses the configured credential helper, or an already configured `GH_TOKEN`/`GITHUB_TOKEN` environment variable; never put tokens in the repository or chat. For another repository, update `config/jira-import-refresh.json` (`repository`, `branch`, `workflow`). Its default freshness limit is five minutes and its timeout is fifteen minutes. The canonical coordinator brief contains the full gate and the credential-free sandbox fallback. The coordinator launch prompt above stays unchanged.
 
 Coordinator recovery checks publication before child-chat availability. If a tester chat cannot be looked up but its exact attempt history is remote and its old handoff has advanced, the coordinator retires that bookkeeping and proceeds to review. `node scripts/reconcile-coordinator-tests.mjs --apply` performs this check from a freshly fetched remote snapshot, backs up the local run-state file, and leaves unresolved tasks and all ticket status fields untouched. A failed task lookup alone must never trigger a duplicate tester.
 

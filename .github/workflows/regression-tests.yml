@@ -57,6 +57,9 @@ jobs:
       - name: Recover published tests despite unavailable child-task lookups
         run: node --test scripts/reconcile-coordinator-tests.test.mjs
 
+      - name: Require fresh successful Jira imports before coordinator completion
+        run: node --test scripts/jira-import-refresh.test.mjs
+
       - name: Reject unobservable criteria regression cases
         run: node --test scripts/criteria-quality.test.mjs
 
