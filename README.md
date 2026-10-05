@@ -4,6 +4,8 @@ Repository-controlled QA workflow for Metricell Smart Network V4.
 
 The system keeps durable QA state in GitHub and uses Codex only for authenticated browser testing, evidence review, criteria ambiguity, and other judgement that static code cannot safely perform.
 
+Report evidence selection preserves ordered criterion-specific transition captures, including unfamiliar state names. Known launcher/setup captures are omitted only when not relevant to the criterion; configuration/default criteria retain their setup baseline. Cleanup is excluded. Each image row repeats its criterion number and text so evidence remains traceable across page breaks. The builder corrects white-on-white body headings while preserving the branded cover. Environment is derived from the recorded target host, not an assumed browser; browser name/version comes from the running browser and missing version metadata is explicitly listed as a limitation. Image-embedding verification proves the selected images survived conversion, not that they semantically prove a pass: the evidence reviewer must still inspect the complete attempt.
+
 ## Flow
 
 1. The importer reads Jira and saves ticket snapshots under `tickets/<KEY>/ticket.json`; it does not write to Jira. A coordinator requests a fresh import before its first queue decision; the five-minute GitHub schedule remains a safety net, not a guaranteed clock.

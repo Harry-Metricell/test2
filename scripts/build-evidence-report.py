@@ -34,7 +34,7 @@ def remove_rows(table):
         table._tbl.remove(table.rows[-1]._tr)
 
 
-def add_image_row(table, exhibits, *, supporting=False):
+def add_image_row(table, exhibits, *, supporting=False, criterion_label=""):
     """Use equal-sized pairs, never shrink a third decisive capture to a thumbnail."""
     row = table.add_row()
     merged = row.cells[0]
@@ -44,6 +44,8 @@ def add_image_row(table, exhibits, *, supporting=False):
     heading = merged.paragraphs[0]
     heading.paragraph_format.space_after = Pt(2)
     if not supporting:
+        if criterion_label:
+            heading.add_run(criterion_label + "\n").bold = True
         heading.add_run(f"Browser URL recorded after criterion: {exhibits[0][2]}")
         for run in heading.runs:
             run.font.size = Pt(8)
@@ -63,7 +65,7 @@ def add_image_row(table, exhibits, *, supporting=False):
         picture.paragraph_format.space_after = Pt(0)
         with Image.open(image) as source:
             max_width = 3.65 if supporting else (4.5 if len(exhibits) > 1 else 6.8)
-            max_height = 2.8 if len(exhibits) > 1 else 3.2
+            max_height = 2.45 if len(exhibits) > 1 else 3.2
             width = min(max_width, max_height * source.width / source.height)
         picture.add_run().add_picture(str(image), width=Inches(width))
     merged.paragraphs[-1].paragraph_format.space_after = Pt(0)
@@ -113,44 +115,63 @@ def report_exhibits(images, criterion):
                         if image.stem.lower().endswith("-final")), None)
     if final_index is not None:
         images = images[:final_index + 1]
-    names = [image.stem.lower() for image in images]
     lower = criterion.lower()
+    # Omit only known setup, rather than guessing the decisive action from a
+    # narrow vocabulary. Unknown names remain visible: compactness must never
+    # silently discard a before/after state that the reviewer used to pass.
+    setup_terms = ("after-open-gis", "before-load", "after-open-module",
+                   "before-add", "after-add-dialog", "before-confirm-add")
+    needs_setup = "default" in lower or bool(re.search(r"\b(?:load|add)\b", lower))
+    names = [image.stem.lower() for image in images]
     selected = []
+    for image in images:
+        name = image.stem.lower()
+        if any(term in name for term in ("cleanup", "after-clean")):
+            continue
+        if name.endswith("-initial") and not any(term in lower for term in ("launcher", "starting from")):
+            continue
+        if any(term in name for term in setup_terms) and not needs_setup:
+            continue
+        # A configured dialog is a stronger setup baseline than the preceding
+        # empty map. Likewise the open-panel state supersedes before-opening it
+        # for a close/reopen comparison. Keep all actual transition endpoints.
+        if "before-add" in name and any("after-add-dialog" in other for other in names):
+            continue
+        if "before-open" in name and any("before-close" in other for other in names):
+            continue
+        selected.append(image)
+    # A launcher-only/legacy attempt still needs its available evidence printed,
+    # but cleanup must never become proof through the fallback path.
+    if selected:
+        return selected
+    available = [image for image in images if not any(term in image.stem.lower()
+                 for term in ("cleanup", "after-clean"))]
+    if not available:
+        raise SystemExit("criterion has only cleanup screenshots, not test evidence")
+    return available
 
-    def add_matching(fragment):
-        for image, name in zip(images, names):
-            if fragment in name and image not in selected:
-                selected.append(image)
 
-    if "launcher" in lower or "starting from" in lower:
-        add_matching("initial")
-    if "load" in lower and "layer" in lower:
-        add_matching("after-load")
-    if "display settings" in lower and "open" in lower:
-        add_matching("after-open-display-settings")
-    if "toggle" in lower or "opposite state" in lower or "changing" in lower:
-        add_matching("before-toggle")
-        add_matching("after-toggle")
-    if "restor" in lower:
-        add_matching("before-restore")
-        add_matching("after-restore")
-    if "reopen" in lower:
-        add_matching("before-close")
-        add_matching("after-close")
-        add_matching("after-reopen")
-    if not selected:
-        selected.append(images[0])
-    if len(selected) == 1:
-        add_matching("-final")
-    if len(selected) == 1:
-        for image in reversed(images):
-            if image != selected[0]:
-                selected.append(image)
-                break
-    # A tester may name the reopened/asserted state only `-final`. Always
-    # include it, even when other named transition captures were selected.
-    add_matching("-final")
-    return selected
+def make_body_headings_visible(document):
+    """Correct white-on-white template headings without changing branded covers."""
+    document.styles["Heading 1"].font.color.rgb = RGBColor(0, 0, 0)
+    for paragraph in document.paragraphs:
+        if paragraph.style.name.startswith("Heading") and paragraph.text.strip():
+            color = RGBColor(255, 255, 255) if paragraph.text.strip() == "About Metricell" else RGBColor(0, 0, 0)
+            for run in paragraph.runs:
+                run.font.color.rgb = color
+                run.font.hidden = False
+
+
+def browser_details(results):
+    """Report observed identity only; never label an unknown browser Chrome."""
+    identities = []
+    for item in results:
+        name = text(item.get("browserName")).strip()
+        version = text(item.get("browserVersion")).strip()
+        identity = " ".join(part for part in (name, version) if part)
+        if identity and identity not in identities:
+            identities.append(identity)
+    return "; ".join(identities) or "Browser name/version not recorded"
 
 
 def remove_back_cover_spacers(cases):
@@ -219,6 +240,8 @@ def report_limitations(review, outcomes, results):
     if any(public_browser_url(item.get("browserUrl")) == "Not recorded"
            for item in results if isinstance(item, dict)):
         parts.append("Some source URLs were not recorded.")
+    if any(not item.get("browserVersion") for item in results if isinstance(item, dict)):
+        parts.append("Browser version was not recorded for some criteria.")
     return " ".join(parts) if parts else "No testing limitations recorded."
 
 
@@ -364,6 +387,7 @@ def main():
     output.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(template, output)
     doc = Document(str(output))
+    make_body_headings_visible(doc)
     if len(doc.tables) < 6:
         raise SystemExit("template does not contain the expected six tables")
 
@@ -408,13 +432,14 @@ def main():
                     run.font.color.rgb = RGBColor(255, 255, 255)
 
     cycle = doc.tables[2]
-    browser_version = next((text(item.get("browserVersion")) for item in results if isinstance(item, dict) and item.get("browserVersion")), "version not recorded")
     limitations = report_limitations(review, outcomes, results)
     if no_evidence_block:
         limitations = "No browser evidence was captured; testing could not be completed. " + limitations
     urls = source_urls(results)
     displayed_outcome = "Failed (inconclusive evidence)" if text(review.get("overallOutcome")).lower() == "unverified" else text(review.get("overallOutcome"))
-    values = ["Automated", ticket, "Chrome", f"Chrome {browser_version}", datetime.now().strftime("%d/%m/%Y"), limitations]
+    environment = "; ".join(dict.fromkeys(urlsplit(url).hostname for url in urls
+                                           if urlsplit(url).hostname)) or "Not recorded"
+    values = ["Automated", ticket, environment, browser_details(results), datetime.now().strftime("%d/%m/%Y"), limitations]
     for index, value in enumerate(values):
         if index < len(cycle.rows): set_cell(cycle.cell(index, 1), value)
     for label, value in (
@@ -523,7 +548,8 @@ def main():
                 for paragraph in cell.paragraphs:
                     paragraph.paragraph_format.keep_with_next = True
             for start in range(0, len(exhibits), 2):
-                add_image_row(cases, exhibits[start:start + 2])
+                label = f"Criterion {number}" + (" continued" if start else " evidence") + f": {criterion}"
+                add_image_row(cases, exhibits[start:start + 2], criterion_label=label)
 
     setup = supporting_captures(setup_candidates, unique_images)
     if setup:

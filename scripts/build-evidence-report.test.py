@@ -19,6 +19,55 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_close_uses_actual_before_state_not_launcher(self):
+        images = [Path(name) for name in ("criterion-3-initial.png", "criterion-3-before-add.png",
+                  "criterion-3-after-add-dialog.png", "criterion-3-before-open.png",
+                  "criterion-3-before-close.png", "criterion-3-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "When Display Settings is closed, the same layer remains."), images[4:])
+
+    def test_defaults_preserve_configuration_and_unknown_transition_names(self):
+        images = [Path(name) for name in ("criterion-1-initial.png", "criterion-1-before-add.png",
+                  "criterion-1-after-add-dialog.png", "criterion-1-before-confirm-add.png",
+                  "criterion-1-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "A layer loaded using its default configuration shows a legend."), images[2:])
+        unknown = [Path(name) for name in ("criterion-2-initial.png", "criterion-2-before-expand.png", "criterion-2-final.png")]
+        self.assertEqual(REPORT.report_exhibits(unknown, "The settings panel opens."), unknown[1:])
+
+    def test_reopen_without_adding_does_not_include_add_setup(self):
+        images = [Path(name) for name in ("criterion-4-initial.png", "criterion-4-before-add.png",
+                  "criterion-4-after-add-dialog.png", "criterion-4-before-close.png",
+                  "criterion-4-after-close.png", "criterion-4-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "Reopen the same layer without adding the layer again."), images[3:])
+
+    def test_body_headings_visible_and_back_cover_preserved(self):
+        document = Document(MODULE.parents[1] / "assets/templates/Automated Test Case Template.docx")
+        REPORT.make_body_headings_visible(document)
+        self.assertEqual(str(document.styles["Heading 1"].font.color.rgb), "000000")
+        for paragraph in document.paragraphs:
+            if paragraph.text.strip() == "Revision History":
+                self.assertTrue(all(str(run.font.color.rgb) == "000000" for run in paragraph.runs))
+            if paragraph.text.strip() == "About Metricell":
+                self.assertTrue(all(str(run.font.color.rgb) == "FFFFFF" for run in paragraph.runs))
+
+    def test_browser_details_are_observed_not_assumed(self):
+        self.assertEqual(REPORT.browser_details([{}]), "Browser name/version not recorded")
+        self.assertEqual(REPORT.browser_details([{"browserName": "Chromium", "browserVersion": "153.0.1.2"}]), "Chromium 153.0.1.2")
+
+    def test_cleanup_only_cannot_be_used_as_fallback_evidence(self):
+        with self.assertRaisesRegex(SystemExit, "only cleanup"):
+            REPORT.report_exhibits([Path("criterion-1-cleanup.png")], "Layer is visible.")
+        initial = [Path("criterion-1-initial.png")]
+        self.assertEqual(REPORT.report_exhibits(initial, "Layer is visible."), initial)
+
+    def test_continued_image_rows_keep_criterion_context(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            image = Path(temporary) / "final.png"
+            Image.new("RGB", (1440, 900), "navy").save(image)
+            document = Document()
+            table = document.add_table(rows=1, cols=5)
+            REPORT.add_image_row(table, [("E01", image, "https://example.test/gis")], criterion_label="Criterion 4 continued: Reopen settings.")
+            self.assertIn("Criterion 4 continued: Reopen settings.", table.rows[1].cells[0].text)
+
     def test_untested_block_builds_but_missing_claimed_evidence_fails(self):
         with tempfile.TemporaryDirectory(prefix="test2-no-browser-") as temporary:
             root = Path(temporary)
@@ -167,6 +216,8 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("1 blocked; 1 inconclusive", cycle.cell(5, 1).text)
             self.assertEqual(cycle.cell(6, 1).text, "Blocked")
             self.assertEqual(cycle.cell(7, 1).text, "https://example.test/launcher")
+            self.assertEqual(cycle.cell(2, 1).text, "example.test")
+            self.assertEqual(cycle.cell(3, 1).text, "Browser name/version not recorded")
             case_text = "\n".join(cell.text for row in document.tables[5].rows for cell in row.cells)
             self.assertIn("Evidence: E01", case_text)
             self.assertIn("Browser URL recorded after criterion: https://example.test/launcher", case_text)
