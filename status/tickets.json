@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-02T14:20:53.181+0100",
+  "generatedAt": "2026-10-05T10:23:17.197+0100",
   "counts": {
-    "tickets": 49,
-    "handoffs": 0,
+    "tickets": 50,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 23,
-      "Ready": 25,
+      "Ready": 26,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 13,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 28,
       "Unverified": 4
     }
@@ -660,6 +660,22 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-02T14:20:53.181+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-51",
+      "summary": "Reopen Surveyor Display Settings without losing the loaded V4 GIS layer",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-05T10:23:17.197+0100",
       "retries": 0,
       "retryLimit": 2,
       "retryLabel": ""

@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-51",
+  "id": "106506",
+  "summary": "Reopen Surveyor Display Settings without losing the loaded V4 GIS layer",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-51",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-05T10:22:59.672+0100",
+    "updated": "2026-10-05T10:23:17.197+0100"
+  },
+  "description": "Users should be able to close and reopen a Surveyor layer's Display Settings without removing the layer or changing the Show linked sites selection merely by opening or closing the panel.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/ . Open GIS from the launcher with existing authorised access and load an available Surveyor layer using its default configuration.\nAcceptance criteria\nAfter the Surveyor layer is loaded, its layer legend shows the layer name and a Display Settings control.\nOpening Display Settings displays Show linked sites with a clearly identifiable checked or unchecked state.\nClosing Display Settings dismisses the settings panel while the same Surveyor layer remains in the layer list and its legend remains available.\nReopening Display Settings for that same layer displays Show linked sites in the same state observed before closing it, without requiring the layer to be added again.\nScope: do not change the checkbox or assert persistence across a page reload or new login session. Do not edit backend data. If a layer was added solely for this test, remove it after evidence collection; this is test cleanup, not a user-guide step.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-51/ticket.json",
+    "criteria": "tickets/TEST2-51/criteria.md",
+    "status": "tickets/TEST2-51/status.json",
+    "screenshots": "tickets/TEST2-51/screenshots/",
+    "reports": "tickets/TEST2-51/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106506",
+    "importedAt": "2026-10-05T10:23:17.197+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-05T10:23:17.197+0100",
+    "criteriaVerified": false
+  }
+}
