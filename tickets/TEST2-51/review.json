@@ -1,0 +1,33 @@
+{
+  "handoffId": "handoff-TEST2-51-review-attempt-001",
+  "handoffVersion": "TEST2-51:evidence_review:1",
+  "ticket": "TEST2-51",
+  "criterionOutcomes": [
+    {
+      "criterion": "With an available Surveyor layer loaded in GIS using its default configuration, the layer legend shows the Surveyor layer name and a Display Settings control.",
+      "outcome": "Passed",
+      "reason": "The unchanged initial Surveyor configuration shows Service / Last 30 days; after adding it, Surveyor - Service appears in the layer list and legend with Display Settings."
+    },
+    {
+      "criterion": "When Display Settings is opened for the loaded Surveyor layer, the panel shows Show linked sites with a clearly identifiable checked or unchecked state.",
+      "outcome": "Passed",
+      "reason": "criterion-2-final.png shows the loaded Surveyor - Service layer and an open Display Settings panel with Show linked sites visibly checked."
+    },
+    {
+      "criterion": "When Display Settings is closed, the settings panel is dismissed while the same Surveyor layer remains in the layer list and its legend remains available.",
+      "outcome": "Passed",
+      "reason": "The criterion's before-close screenshot shows Display Settings open; its final screenshot shows the panel dismissed while Surveyor - Service remains in the layer list and legend."
+    },
+    {
+      "criterion": "When Display Settings is reopened for the same Surveyor layer without adding the layer again, Show linked sites has the same checked or unchecked state observed before the panel was closed.",
+      "outcome": "Passed",
+      "reason": "The criterion's ordered before-close, after-close, and reopened screenshots show Show linked sites checked before and after reopening, with the same Surveyor - Service layer retained; recorded steps contain no layer re-add."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-51\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Completed independent screenshot review of all four criteria for attempt-001."
+}
