@@ -1,0 +1,113 @@
+[
+  {
+    "criterion": "With an available Surveyor layer loaded using its default configuration, opening Display Settings shows Show linked sites with a visibly identifiable checked or unchecked state, and the same layer is identifiable in the layer list or legend.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-before-add-surveyor.png",
+      "screenshots/attempt-001/criterion-1-after-add-surveyor.png",
+      "screenshots/attempt-001/criterion-1-before-confirm-defaults.png",
+      "screenshots/attempt-001/criterion-1-after-confirm-defaults.png",
+      "screenshots/attempt-001/criterion-1-before-open-display-settings.png",
+      "screenshots/attempt-001/criterion-1-after-open-display-settings.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-cleanup-before-close.png",
+      "screenshots/attempt-001/criterion-1-cleanup-after-close.png",
+      "screenshots/attempt-001/criterion-1-cleanup-before-remove.png",
+      "screenshots/attempt-001/criterion-1-cleanup-after-remove.png"
+    ],
+    "steps_taken": [
+      "Navigated to exact launcher and captured initial state.",
+      "Opened GIS; no loaded layer was initially present.",
+      "Opened Surveyor add dialog; retained default Service, Last 30 days and filters; clicked Add layer.",
+      "Add-layer tool timed out awaiting tools/call after 120s, but subsequent screenshot and snapshot showed Surveyor - Service loaded with its legend.",
+      "Opened Display Settings; observed Show linked sites visibly checked and Surveyor - Service in map layers and legend.",
+      "Captured decisive final and read browser URL before cleanup.",
+      "Closed settings with Escape and removed test-added layer. It disappeared immediately but reappeared on the next GIS visit; removal was completed after criterion 2 with a wait."
+    ],
+    "observed": "Show linked sites is visibly checked; Surveyor - Service is identifiable in map layers and legend.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Recovered add-layer tool timeout; criterion was directly verified after recovery. Initial cleanup removal reappeared on return; subsequent cleanup completed removal."
+  },
+  {
+    "criterion": "Changing Show linked sites to the opposite state visibly changes the checkbox state; after closing Display Settings, the same Surveyor layer remains in the layer list and its legend remains available.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-before-open-display-settings.png",
+      "screenshots/attempt-001/criterion-2-after-open-display-settings.png",
+      "screenshots/attempt-001/criterion-2-before-toggle.png",
+      "screenshots/attempt-001/criterion-2-after-toggle.png",
+      "screenshots/attempt-001/criterion-2-before-close.png",
+      "screenshots/attempt-001/criterion-2-after-close.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-cleanup-before-reopen.png",
+      "screenshots/attempt-001/criterion-2-cleanup-after-reopen.png",
+      "screenshots/attempt-001/criterion-2-cleanup-before-restore.png",
+      "screenshots/attempt-001/criterion-2-cleanup-after-restore.png",
+      "screenshots/attempt-001/criterion-2-cleanup-after-close.png",
+      "screenshots/attempt-001/criterion-2-cleanup-after-remove.png"
+    ],
+    "steps_taken": [
+      "Navigated to exact launcher and captured own initial state.",
+      "Opened GIS; Surveyor - Service was present after the previous removal reappeared.",
+      "Opened its Display Settings and independently observed checked Show linked sites baseline.",
+      "Clicked Show linked sites; observed unchecked checkbox and disabled linked-cells checkbox.",
+      "Closed settings with Escape; observed same Surveyor - Service map-layer entry and expanded legend.",
+      "Captured decisive final and read browser URL.",
+      "Reopened settings for cleanup, restored original checked state, closed with Escape and removed test-added layer; waited 3 seconds. Next independent GIS visit showed no loaded Surveyor layer."
+    ],
+    "observed": "Show linked sites visibly changed from checked to unchecked. Closing Display Settings retained Surveyor - Service and its available expanded legend.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Original checkbox state restored and test-added layer removed."
+  },
+  {
+    "criterion": "Reopening Display Settings for the same Surveyor layer shows the changed Show linked sites checkbox state without adding the layer again.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis.png",
+      "screenshots/attempt-001/criterion-3-before-add-surveyor.png",
+      "screenshots/attempt-001/criterion-3-after-add-surveyor.png",
+      "screenshots/attempt-001/criterion-3-before-confirm-defaults.png",
+      "screenshots/attempt-001/criterion-3-after-confirm-defaults.png",
+      "screenshots/attempt-001/criterion-3-before-open-display-settings.png",
+      "screenshots/attempt-001/criterion-3-after-open-display-settings.png",
+      "screenshots/attempt-001/criterion-3-before-toggle.png",
+      "screenshots/attempt-001/criterion-3-after-toggle.png",
+      "screenshots/attempt-001/criterion-3-before-close.png",
+      "screenshots/attempt-001/criterion-3-after-close.png",
+      "screenshots/attempt-001/criterion-3-before-reopen.png",
+      "screenshots/attempt-001/criterion-3-after-reopen.png",
+      "screenshots/attempt-001/criterion-3-final.png",
+      "screenshots/attempt-001/criterion-3-cleanup-before-restore.png",
+      "screenshots/attempt-001/criterion-3-cleanup-after-restore.png",
+      "screenshots/attempt-001/criterion-3-cleanup-before-close.png",
+      "screenshots/attempt-001/criterion-3-cleanup-after-close.png",
+      "screenshots/attempt-001/criterion-3-cleanup-before-remove.png",
+      "screenshots/attempt-001/criterion-3-cleanup-after-remove.png"
+    ],
+    "steps_taken": [
+      "Navigated to exact launcher and captured own initial state.",
+      "Opened GIS; no Surveyor layer loaded.",
+      "Opened Surveyor add dialog and added layer with default configuration.",
+      "Opened Display Settings; independently observed Show linked sites checked.",
+      "Clicked Show linked sites and observed unchecked state.",
+      "Closed with Escape; same layer and legend remained.",
+      "Reopened Display Settings without adding layer again; Show linked sites remained unchecked.",
+      "Captured decisive final and read browser URL and checkbox state.",
+      "Restored Show linked sites to checked; verified checked snapshot; closed with Escape and removed test-added layer. After 3 seconds no Surveyor - Service entry or legend remained."
+    ],
+    "observed": "Reopening Display Settings for the same Surveyor - Service layer retained unchecked Show linked sites without any intervening add-layer action.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Original checkbox state restored and test-added layer removed."
+  }
+]
