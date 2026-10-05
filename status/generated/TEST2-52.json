@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-52",
+  "id": "106508",
+  "summary": "Keep the Surveyor layer available while changing Show linked sites in V4 GIS",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-52",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-05T13:00:30.225+0100",
+    "updated": "2026-10-05T13:00:48.656+0100"
+  },
+  "description": "A signed-in V4 user should be able to change Show linked sites in a Surveyor layer's Display Settings without removing the loaded layer or losing access to its legend.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/launcher. Use existing authorised access, open GIS and load an available Surveyor layer with its default configuration.\nAcceptance criteria\nOpening Display Settings for the loaded Surveyor layer shows Show linked sites with an identifiable checked or unchecked state, and the layer is identifiable in the layer list or legend.\nChanging Show linked sites to the opposite state changes the visible checkbox state. After closing Display Settings, the same Surveyor layer remains in the layer list and its legend is available.\nReopening Display Settings for that same layer shows the changed checkbox state without needing to add the layer again.\nScope: verify the visible UI state only; do not claim that linked-site data exists, query results remain unchanged, or settings persist across a reload or a new login. Do not edit saved records. Restore the original checkbox state after testing and remove any layer added solely for this test.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-52/ticket.json",
+    "criteria": "tickets/TEST2-52/criteria.md",
+    "status": "tickets/TEST2-52/status.json",
+    "screenshots": "tickets/TEST2-52/screenshots/",
+    "reports": "tickets/TEST2-52/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106508",
+    "importedAt": "2026-10-05T13:00:48.656+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-05T13:00:48.656+0100",
+    "criteriaVerified": false
+  }
+}
