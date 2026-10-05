@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
+import { guideInstructionIssues } from './guide-instruction-policy.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
 import os from 'node:os';
@@ -609,6 +610,8 @@ if (outputType === 'criteria-output.json') {
     if (!oldRecord) fail(`guide amendment target ${oldKey} has no published update`);
   } else if (output.supersedesTicket != null) fail('new guide section must not supersede another ticket');
   if (!Array.isArray(output.steps) || output.steps.length === 0 || output.steps.some(step => typeof step !== 'string' || !step.trim())) fail('guide update steps are missing');
+  const instructionIssues = guideInstructionIssues(output.steps);
+  if (instructionIssues.length) fail(instructionIssues.join('; '));
   if (!Array.isArray(output.screenshots) || output.screenshots.length === 0 || output.screenshots.some(file => typeof file !== 'string' || !/^screenshots[\\/].+\.png$/i.test(file) || file.includes('..'))) fail('guide update screenshots must be safe PNG evidence paths');
   if (new Set(output.screenshots).size !== output.screenshots.length) fail('guide update screenshots must be distinct');
   if (!hasCompleteScreenshotCaptions(output)) fail('guide update screenshotCaptions must describe every screenshot in order');

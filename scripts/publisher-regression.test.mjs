@@ -7,6 +7,14 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { formatReviewReport } from './format-review-report.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
+import { guideInstructionIssues } from './guide-instruction-policy.mjs';
+
+test('guide instructions exclude QA restoration rituals but permit useful end-user undo and reset actions', () => {
+  assert.deepEqual(guideInstructionIssues(['Open Display Settings for your Surveyor layer.', 'Select Show linked sites to check or uncheck it.', 'To undo your change, select the checkbox again.', 'Use Reset to restore default preferences.']), []);
+  for (const step of ['Restore Show linked sites to its recorded initial state.', 'Restore the original setting.', 'Remove the layer created for this test.', 'Capture a screenshot for the acceptance criterion.']) {
+    assert.equal(guideInstructionIssues([step]).length, 1);
+  }
+});
 
 test('guide publisher requires explicit non-empty captions for every selected screenshot', () => {
   const screenshots = ['screenshots/attempt-002/criterion-3-final.png', 'screenshots/attempt-002/criterion-4-final.png'];
