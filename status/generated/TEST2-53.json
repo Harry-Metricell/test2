@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-53",
+  "id": "106523",
+  "summary": "Restore Show linked sites after two changes in V4 GIS",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-53",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-06T10:08:41.125+0100",
+    "updated": "2026-10-06T10:08:54.831+0100"
+  },
+  "description": "A signed-in V4 user should be able to change Show linked sites and return it to its original state without removing the Surveyor layer.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/launcher. Use existing authorised access, open GIS and load an available Surveyor layer with its default configuration.\nAcceptance criteria\nOpening Display Settings for the loaded Surveyor layer displays Show linked sites with an identifiable checked or unchecked state, and the layer is identifiable in the layer list or legend.\nChanging Show linked sites to the opposite state visibly changes the checkbox; changing it again visibly restores the recorded original state without adding the layer again.\nAfter changing Show linked sites to the opposite state and restoring it, closing and reopening Display Settings for that same layer displays the original checkbox state; the layer remains available without being added again.\nScope: check the visible control state within the current session only. Do not claim linked-site data is available, query results are unchanged, or the setting persists across a reload or a new login. Do not edit saved records. Leave the original control state restored and remove any layer added solely for this test.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-53/ticket.json",
+    "criteria": "tickets/TEST2-53/criteria.md",
+    "status": "tickets/TEST2-53/status.json",
+    "screenshots": "tickets/TEST2-53/screenshots/",
+    "reports": "tickets/TEST2-53/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106523",
+    "importedAt": "2026-10-06T10:08:54.831+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-06T10:08:54.831+0100",
+    "criteriaVerified": false
+  }
+}
