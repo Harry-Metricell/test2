@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-55-guide-impact",
+    "handoffVersion": "TEST2-55:guide_impact_assessment:1",
+    "ticket": "TEST2-55",
+    "decision": "update_required",
+    "affectedSection": "API Request Audit",
+    "reason": "The reviewed behaviour adds a user-facing API Request Audit module to the launcher, with new navigation into the audit dashboard and browser Back navigation to the launcher. Users need instructions for opening the module and returning to the launcher.",
+    "noOp": false,
+    "assessedAt": "2026-10-06T12:25:30.710Z"
+  }
 }
