@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-54",
+  "id": "106534",
+  "summary": "Zoom and reset the V4 GIS map",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-54",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-06T13:04:23.325+0100",
+    "updated": "2026-10-06T13:04:56.680+0100"
+  },
+  "description": "A user should be able to zoom the GIS map and return to its starting view using the map controls.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/launcher. Start from the launcher using existing authorised access. Check visible in-session behaviour only; do not edit saved records or change account permissions.\nAcceptance Criteria\nOpening GIS from the launcher displays a settled map with visible zoom-in and reset-map-view controls.\nWith the initial map view recorded, selecting zoom-in once produces a visibly closer map view after it settles; the GIS workspace and map controls remain available.\nSelecting reset map view after zooming returns to the initial default map extent, demonstrated by the visible geographic coverage and scale, with the GIS controls still available.\nScope: use the map controls only. Do not add layers, query data or modify saved records. Leave the map at its default view. Do not require exact pixel equality between animated maps.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-54/ticket.json",
+    "criteria": "tickets/TEST2-54/criteria.md",
+    "status": "tickets/TEST2-54/status.json",
+    "screenshots": "tickets/TEST2-54/screenshots/",
+    "reports": "tickets/TEST2-54/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106534",
+    "importedAt": "2026-10-06T13:04:56.680+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-06T13:04:56.680+0100",
+    "criteriaVerified": false
+  }
+}

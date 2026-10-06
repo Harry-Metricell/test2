@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-56",
+  "id": "106536",
+  "summary": "Cancel adding a Surveyor layer without changing the GIS layer list",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-56",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-06T13:04:27.104+0100",
+    "updated": "2026-10-06T13:04:59.549+0100"
+  },
+  "description": "A user should be able to inspect the Surveyor add-layer dialog and cancel without adding a layer.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/launcher. Start from the launcher using existing authorised access. Check visible in-session behaviour only; do not edit saved records or change account permissions.\nAcceptance Criteria\nIn the settled GIS workspace, record the visible current Map layers list or empty-layer state. Selecting Add layer for Surveyor opens its configuration dialog with identifiable controls and a Cancel action.\nSelecting Cancel closes that dialog and returns to the GIS map. The Map layers list retains its recorded entries or empty state, and no new Surveyor layer is added.\nOpening the Surveyor add-layer dialog again displays the configuration controls and Cancel action, and cancelling again returns to the map without adding a layer.\nScope: use Cancel, never the dialog's confirmation/Add layer action. Do not remove pre-existing layers, edit saved records or change filter values. The unchanged-layer assertion must be evidenced by visible before/after layer-list states, not an inferred backend claim.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-56/ticket.json",
+    "criteria": "tickets/TEST2-56/criteria.md",
+    "status": "tickets/TEST2-56/status.json",
+    "screenshots": "tickets/TEST2-56/screenshots/",
+    "reports": "tickets/TEST2-56/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106536",
+    "importedAt": "2026-10-06T13:04:59.549+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-06T13:04:59.549+0100",
+    "criteriaVerified": false
+  }
+}
