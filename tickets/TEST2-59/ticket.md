@@ -6,7 +6,7 @@
 - QA outcome: Passed
 - Workflow state: Ready
 - Action owner: Coordinator
-- Next action: Create final evidence review handoff
+- Next action: QA review complete
 - Jira: https://metricell.atlassian.net/browse/TEST2-59
 
 ## Acceptance Criteria
