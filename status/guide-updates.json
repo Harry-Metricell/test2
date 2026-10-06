@@ -90,6 +90,11 @@
       "ticket": "TEST2-53",
       "title": "Restore Show linked sites after two changes in V4 GIS",
       "affectedSection": "GIS layer Display Settings — Show linked sites"
+    },
+    {
+      "ticket": "TEST2-59",
+      "title": "Filter and clear the GIS layer catalogue while preserving a loaded Surveyor layer",
+      "affectedSection": "GIS layer catalogue search and loaded layers"
     }
   ]
 }
