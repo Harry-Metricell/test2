@@ -1,0 +1,30 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-57-guide-update",
+  "handoffVersion": "TEST2-57:guide_update_authoring:1",
+  "ticket": "TEST2-57",
+  "title": "Zoom the GIS map without losing a loaded Surveyor layer or its display setting",
+  "affectedSection": "GIS map navigation and layer display settings",
+  "changeType": "add",
+  "steps": [
+    "Open GIS and load a Surveyor layer.",
+    "Select Zoom in to view a closer map scale while keeping the Surveyor layer loaded.",
+    "Select Zoom out to return to the previous map scale without adding the layer again.",
+    "Open Display Settings for the Surveyor layer to view its Show linked sites setting."
+  ],
+  "screenshots": [
+    "screenshots/attempt-001/criterion-2-before-zoom-in.png",
+    "screenshots/attempt-001/criterion-2-final.png",
+    "screenshots/attempt-001/criterion-3-final.png",
+    "screenshots/attempt-001/criterion-4-final.png"
+  ],
+  "screenshotCaptions": [
+    "Surveyor - Service is loaded at the settled 100 km map scale before zooming in.",
+    "After one zoom-in, the map is at the closer 50 km scale and Surveyor - Service remains visible in Map layers and the legend.",
+    "After zooming back out, the map returns to the 100 km scale and the same Surveyor - Service layer remains loaded.",
+    "After the zoom journey, Display Settings for Surveyor - Service shows Show linked sites checked."
+  ],
+  "reason": "Add instructions for zooming the GIS map while retaining a loaded Surveyor layer and its Show linked sites display setting.",
+  "noOp": false,
+  "authoredAt": "2026-10-06T15:39:25.527Z"
+}
