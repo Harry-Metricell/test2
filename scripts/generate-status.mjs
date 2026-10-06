@@ -3,6 +3,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { acceptanceCriteria, flattenAdf } from './jira-adf.mjs';
 import { normalizeBrowserToolBlock } from './test-result-policy.mjs';
+import { guideMarkerCounts } from './guide-document-index.mjs';
 
 const root = process.cwd();
 const checkOnly = process.argv.includes('--check');
@@ -571,9 +572,12 @@ for (const base of [ticketsDir, path.join(root, 'archive', 'tickets')]) {
       changeType: update.changeType, supersedesTicket: update.supersedesTicket || null });
   }
 }
-const superseded = new Set(guideRecords.map(record => record.supersedesTicket).filter(Boolean));
+const guidePlanFile = path.join(root, 'config', 'user-guide-plan.json');
+const guidePlan = fs.existsSync(guidePlanFile) ? readJson(guidePlanFile) : {};
+const guideMarkers = guideMarkerCounts(path.join(root, guidePlan.publishedGuide || 'assets/user-guide/V4 User Guide.docx'));
+const superseded = new Set(guideRecords.filter(record => guideMarkers.get(record.ticket) === 1).map(record => record.supersedesTicket).filter(Boolean));
 writeJson(path.join(outDir, 'guide-updates.json'), { schema: 'v4-guide-updates-index.v1',
-  sections: guideRecords.filter(record => !superseded.has(record.ticket))
+  sections: guideRecords.filter(record => guideMarkers.get(record.ticket) === 1 && !superseded.has(record.ticket))
     .map(({ ticket, title, affectedSection }) => ({ ticket, title, affectedSection }))
     .sort((a, b) => a.ticket.localeCompare(b.ticket, undefined, { numeric: true })) });
 // status/generated is a derived projection. Remove records for ticket folders

@@ -2,49 +2,9 @@
   "schema": "v4-guide-updates-index.v1",
   "sections": [
     {
-      "ticket": "TEST2-4",
-      "title": "Open GIS from the Launcher",
-      "affectedSection": "Opening GIS from the Launcher"
-    },
-    {
-      "ticket": "TEST2-5",
-      "title": "Manage Beacon Favourites",
-      "affectedSection": "Manage Beacon Favourites"
-    },
-    {
-      "ticket": "TEST2-7",
-      "title": "Using GIS map controls",
-      "affectedSection": "Using GIS map controls"
-    },
-    {
-      "ticket": "TEST2-25",
-      "title": "Open a module from the V4 launcher",
-      "affectedSection": "V4 Launcher and Available Modules"
-    },
-    {
-      "ticket": "TEST2-26",
-      "title": "Open a module from the V4 launcher",
-      "affectedSection": "V4 Launcher and Available Modules"
-    },
-    {
       "ticket": "TEST2-28",
       "title": "Navigate from the V4 launcher to Agentic AI",
       "affectedSection": "Navigating the V4 launcher and opening Agentic AI"
-    },
-    {
-      "ticket": "TEST2-29",
-      "title": "Open a module from the V4 launcher",
-      "affectedSection": "V4 launcher and module cards"
-    },
-    {
-      "ticket": "TEST2-30",
-      "title": "Open the GIS module from the V4 launcher",
-      "affectedSection": "GIS module"
-    },
-    {
-      "ticket": "TEST2-31",
-      "title": "Open the API Request Audit module",
-      "affectedSection": "Using the API Request Audit module"
     },
     {
       "ticket": "TEST2-32",

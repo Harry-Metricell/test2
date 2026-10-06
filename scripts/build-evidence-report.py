@@ -184,6 +184,19 @@ def report_exhibits(images, criterion):
     if final_index is not None:
         images = images[:final_index + 1]
     lower = criterion.lower()
+    # Begin familiar multi-step assertions at their own relevant baseline.
+    # Earlier layer creation is setup, not proof of zoom/cancel persistence.
+    # Unknown journeys remain untouched; never discard state by ticket number.
+    baseline_terms = ()
+    checks_settings = "linked sites" in lower or "checkbox" in lower
+    if "zoom" in lower:
+        baseline_terms = ("settings-baseline", "display-settings-before-zoom") if checks_settings else ("before-zoom-in",)
+    elif "second" in lower and "configuration" in lower:
+        baseline_terms = ("baseline-linked-sites", "before-close-baseline-settings") if checks_settings else ("before-second-configuration",)
+    start = next((i for i, image in enumerate(images)
+                  if any(term in image.stem.lower() for term in baseline_terms)), None)
+    if start is not None:
+        images = images[start:]
     # Omit only known setup, rather than guessing the decisive action from a
     # narrow vocabulary. Unknown names remain visible: compactness must never
     # silently discard a before/after state that the reviewer used to pass.
@@ -199,6 +212,20 @@ def report_exhibits(images, criterion):
     for image in images:
         name = image.stem.lower()
         if any(term in name for term in ("cleanup", "after-clean")):
+            continue
+        # A default claim must retain the untouched configuration, even when
+        # the tester calls it after-open-surveyor-before-add rather than dialog.
+        default_configuration = needs_setup and (
+            "before-confirm-defaults" in name
+            or ("after-open" in name and "before-add" in name
+                and any(term in name for term in ("surveyor", "layer", "dialog")))
+        )
+        if default_configuration:
+            selected.append(image)
+            continue
+        if "after-open-surveyor" in name and not checks_configuration and any(
+            term in other for other in names for term in ("before-display-settings", "before-settings", "settings-baseline")
+        ):
             continue
         if name.endswith("-initial") and not any(term in lower for term in ("launcher", "starting from")):
             continue

@@ -3,6 +3,7 @@ import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
 import { guideInstructionIssues } from './guide-instruction-policy.mjs';
+import { guideMarkerCounts } from './guide-document-index.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { serviceImportRefresh } from './jira-import-refresh.mjs';
 import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
@@ -615,6 +616,9 @@ if (outputType === 'criteria-output.json') {
     const oldKey = output.supersedesTicket;
     const oldRecord = [path.join(repo, 'tickets', oldKey, 'guide-update.json'), path.join(repo, 'archive', 'tickets', oldKey, 'guide-update.json')].find(file => fs.existsSync(file));
     if (!oldRecord) fail(`guide amendment target ${oldKey} has no published update`);
+    const guidePlan = readJson(path.join(repo, 'config', 'user-guide-plan.json'));
+    const markerCount = guideMarkerCounts(path.join(repo, guidePlan.publishedGuide)).get(oldKey) || 0;
+    if (markerCount !== 1) fail(`guide amendment target ${oldKey} is not present exactly once in the living guide (found ${markerCount}); select a current indexed section`);
   } else if (output.supersedesTicket != null) fail('new guide section must not supersede another ticket');
   if (!Array.isArray(output.steps) || output.steps.length === 0 || output.steps.some(step => typeof step !== 'string' || !step.trim())) fail('guide update steps are missing');
   const instructionIssues = guideInstructionIssues(output.steps);

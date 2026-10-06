@@ -248,6 +248,8 @@ Guide authoring must supply `screenshotCaptions`, one caption per verified scree
 
 Report selection prefers recovered captures over same-named superseded captures and treats `-final-recovered` as the end of assertion evidence. Cancel checks show the dialog-before-Cancel and returned map; required initial layer-list baselines are retained. Browser Back checks show the destination-before-Back and returned launcher, rather than redundant earlier launcher setup. All original captures stay in the private attempt folder. These rules do not change page layout or screenshot sizes.
 
+Zoom journeys start at their map baseline, or the settings baseline when testing a checkbox across zooming. Second-configuration cancellation journeys start at their own list/settings baseline rather than the initial layer-creation dialog. Default-configuration assertions retain untouched pre-add configuration captures, including `after-open-surveyor-before-add` names. Unknown capture journeys are preserved rather than guessed away.
+
 Inconclusive (`Unverified`) evidence is displayed as **Failed** in reports but contributes **zero** to `Defects (No.)`, as do blockers. Only a review's directly contradicted (`Failed`) criteria contribute to that column. The report states this distinction explicitly: these are criterion-level defect counts, not deduplicated Jira bug counts. Reviewers must continue using `Unverified` for evidence gaps rather than claiming an application contradiction.
 
 New guide instructions describe user goals, not mandatory QA cleanup. The authoring brief explains how to turn test evidence into useful instructions; the publisher rejects explicit test bookkeeping, evidence capture, and recorded-initial-state restoration rituals. Legitimate undo and reset-to-default actions remain permitted. Existing published guide sections are not automatically rewritten by this policy change.
@@ -270,7 +272,7 @@ $reportPython = if ($env:TEST2_PYTHON) { $env:TEST2_PYTHON } else { "$env:USERPR
 & $reportPython .\scripts\build-user-guide.py --ticket TEST2-123
 ```
 
-The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. `status/guide-updates.json` is the compact index of currently active generated sections, including those sourced from archived tickets; the authoring worker uses it to select an amendment target. The local command above writes the tracked living guide; review the resulting Git diff before committing a manual rebuild.
+The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. `status/guide-updates.json` is the compact index of currently active generated sections, including those sourced from archived tickets; the authoring worker uses it to select an amendment target. The index verifies each section has exactly one marker in the actual living DOCX, and the publisher rechecks that condition before an amendment. Historical records whose markers are absent or duplicated are not offered as targets; a missing future amendment marker fails safely, without silently appending duplicate guidance. The local command above writes the tracked living guide; review the resulting Git diff before committing a manual rebuild.
 
 ### Ticket-driven guide decisions
 

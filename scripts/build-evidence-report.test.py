@@ -19,6 +19,20 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_default_configuration_with_before_add_name_is_not_lost(self):
+        images = [Path(name) for name in ("criterion-1-after-open-gis.png", "criterion-1-after-open-surveyor-before-add.png", "criterion-1-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "A layer loaded with its default configuration is visible."), images[1:])
+
+    def test_zoom_starts_at_its_recorded_map_baseline(self):
+        images = [Path(name) for name in ("criterion-2-after-open-surveyor.png", "criterion-2-after-add.png", "criterion-2-settings-baseline.png", "criterion-2-before-zoom-in.png", "criterion-2-after-zoom-in.png", "criterion-2-before-zoom-out.png", "criterion-2-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "Zoom in and zoom out restore the original scale with the same layer."), images[3:])
+        self.assertEqual(REPORT.report_exhibits(images, "After zooming, Show linked sites has its recorded checkbox state."), images[2:])
+
+    def test_second_configuration_keeps_list_or_checkbox_baseline_not_first_add(self):
+        images = [Path(name) for name in ("criterion-4-before-first-configuration.png", "criterion-4-after-first-configuration.png", "criterion-4-baseline-linked-sites-checked.png", "criterion-4-before-second-configuration.png", "criterion-4-before-cancel.png", "criterion-4-after-cancel.png", "criterion-4-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "Cancelling the second configuration leaves the Map layers list unchanged."), images[3:])
+        self.assertEqual(REPORT.report_exhibits(images, "After cancelling the second configuration Show linked sites retains its checkbox state."), images[2:])
+
     def test_recovered_cancel_shows_decisive_pair_not_superseded_setup(self):
         images = [Path(name) for name in ("criterion-2-before-open.png", "criterion-2-final.png",
                   "criterion-2-before-open-recovered.png", "criterion-2-before-cancel-recovered.png",

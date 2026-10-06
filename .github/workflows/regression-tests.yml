@@ -75,6 +75,9 @@ jobs:
       - name: Preserve approved criteria during status generation
         run: node --test scripts/generate-status.test.mjs
 
+      - name: Verify amendment targets exist in the living guide
+        run: node --test scripts/guide-document-index.test.mjs
+
       - name: Run evidence report regression tests
         run: python scripts/build-evidence-report.test.py
 
