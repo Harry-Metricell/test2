@@ -1,0 +1,81 @@
+{
+  "handoffId": "handoff-TEST2-55-test-attempt-001",
+  "handoffVersion": "TEST2-55:test_ticket:1",
+  "ticket": "TEST2-55",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Starting from the V4 launcher with existing authorised access, the launcher displays an API Request Audit module card with an available control to open it.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-after-hover.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher cards.",
+        "Captured criterion-1-initial.png before interacting.",
+        "Observed the API request audit card and verified its Open API request audit button was visible and enabled.",
+        "Hovered the open control and captured its state, then captured the separate final assertion."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "observedResult": "The launcher displayed an API request audit card with an enabled open control.",
+      "reason": "Read-only visibility criterion; no selection or persistent state was changed."
+    },
+    {
+      "criterion": "After the user opens the API Request Audit module card, an API Request Audit dashboard or request explorer is displayed with identifiable module content, and the user is not left on the launcher, a login screen, or an application error page.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-after-open.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL and waited for the API request audit card.",
+        "Captured criterion-2-initial.png before opening the card.",
+        "Clicked Open API request audit.",
+        "Verified the API request audit module header, dashboard metrics and Requests and errors over time chart; the page also contained Request explorer.",
+        "Captured the loaded dashboard transition and separate final assertion, then read the current browser URL.",
+        "Returned to the launcher before beginning criterion 3."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-10-06T12%3A16%3A03.776Z&startUtc=2026-10-05T12%3A16%3A03.776Z&live=true",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "observedResult": "The card opened the identifiable API request audit dashboard with metrics and a populated requests/errors chart, rather than the launcher, login or application error page.",
+      "reason": "Live rolling mode automatically advances time query parameters. No filters, records or settings were changed."
+    },
+    {
+      "criterion": "After the API Request Audit module has loaded, using the browser Back control returns to the V4 launcher and displays its module cards again.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-after-open-before-back.png",
+        "screenshots/attempt-001/criterion-3-after-back.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL and waited for its module cards.",
+        "Captured criterion-3-initial.png before opening the card.",
+        "Clicked Open API request audit and waited for Requests and errors over time.",
+        "Verified the loaded audit dashboard and captured criterion-3-after-open-before-back.png before using Back.",
+        "Used the browser Back control through browser_navigate_back.",
+        "Waited for the launcher heading and verified its module cards, including API request audit, were visible again.",
+        "Captured the after-Back and separate final screenshots and read the exact current URL."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "observedResult": "Browser Back returned to exactly https://o2intelligence-v4-dev.metricell.com/launcher and displayed all 12 module cards again.",
+      "reason": "Finished at the launcher. No audit records, filters or settings were changed."
+    }
+  ],
+  "conciseReport": "All 3 criteria passed with independent launcher starts and criterion-specific PNG evidence. The API request audit card was visible and enabled, opened the identifiable dashboard, and browser Back returned to the exact launcher URL with its module cards. Browser observed: Google Chrome 154.0.8037.98. No saved records, filters or settings were changed; testing ended at the launcher.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-55-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Completed the live TEST2-55:test_ticket:1 handoff using existing authorised access.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-06T12:18:26.122Z"
+}
