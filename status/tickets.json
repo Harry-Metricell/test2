@@ -3,10 +3,10 @@
   "generatedAt": "2026-10-06T13:04:59.549+0100",
   "counts": {
     "tickets": 55,
-    "handoffs": 3,
+    "handoffs": 2,
     "byWorkflowState": {
-      "Blocked": 23,
-      "Ready": 31,
+      "Blocked": 24,
+      "Ready": 30,
       "Rejected": 1
     },
     "byQaOutcome": {
@@ -716,13 +716,13 @@
       "key": "TEST2-54",
       "summary": "Zoom and reset the V4 GIS map",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-06T13:04:56.680+0100",
       "retries": 0,
       "retryLimit": 2,
