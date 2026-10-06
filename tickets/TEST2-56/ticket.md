@@ -4,9 +4,9 @@
 
 - Jira status: READY FOR TESTING
 - QA outcome: Unverified
-- Workflow state: Ready
+- Workflow state: Blocked
 - Action owner: Coordinator
-- Next action: Create final evidence review handoff
+- Next action: Manual review required; final evidence report published
 - Jira: https://metricell.atlassian.net/browse/TEST2-56
 
 ## Acceptance Criteria

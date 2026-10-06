@@ -3,10 +3,10 @@
   "generatedAt": "2026-10-06T13:04:59.549+0100",
   "counts": {
     "tickets": 55,
-    "handoffs": 2,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 24,
-      "Ready": 30,
+      "Blocked": 25,
+      "Ready": 29,
       "Rejected": 1
     },
     "byQaOutcome": {
@@ -748,13 +748,13 @@
       "key": "TEST2-56",
       "summary": "Cancel adding a Surveyor layer without changing the GIS layer list",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-06T13:04:59.549+0100",
       "retries": 0,
       "retryLimit": 2,

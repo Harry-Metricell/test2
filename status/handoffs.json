@@ -20,23 +20,6 @@
         "path": "tickets/TEST2-55/guide-impact.json",
         "schema": "v4-user-guide-impact.v1"
       }
-    },
-    {
-      "handoffId": "handoff-TEST2-56-review-attempt-001",
-      "handoffVersion": "TEST2-56:evidence_review:1",
-      "attempt": 1,
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-56",
-      "inputs": {
-        "results": "tickets/TEST2-56/results.json",
-        "generated": "status/generated/TEST2-56.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-56/review.json",
-        "schema": "v4-qa-review.v1"
-      }
     }
   ]
 }
