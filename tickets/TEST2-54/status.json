@@ -1,10 +1,10 @@
 {
   "ticket": "TEST2-54",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Blocked",
   "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 2,
   "criteriaVerified": true,
-  "blockedStage": null
+  "blockedStage": "testing"
 }

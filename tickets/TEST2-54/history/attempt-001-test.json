@@ -1,0 +1,86 @@
+{
+  "handoffId": "handoff-TEST2-54-test-attempt-001",
+  "handoffVersion": "TEST2-54:test_ticket:1",
+  "ticket": "TEST2-54",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Starting from the launcher with authorised access, opening GIS displays a settled map with visible zoom-in and reset-map-view controls.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher URL and waited for the visible authenticated launcher.",
+        "Captured criterion 1 initial launcher PNG; first save returned ENOENT because the staging screenshot folder did not exist. Created the folder and successfully retried the save before interacting.",
+        "Selected Open GIS and waited for Loading map to disappear.",
+        "Observed a settled map covering Ireland, Great Britain and part of northern France, with a 100 km scale.",
+        "Inspected the visible map controls and accessible button names: Reset north and flatten map, Map style, Zoom in, Zoom out. Captured final GIS state and read current URL."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "GIS and zoom-in are available, but no visible control for resetting the geographic extent/default zoom is exposed. The only reset is labelled 'Reset north and flatten map', which describes orientation. The required reset-map-view feature is unavailable for this criterion; its behavior was not assumed or substituted.",
+      "blockerCode": "reset_map_view_control_unavailable",
+      "retryClass": "prerequisite"
+    },
+    {
+      "criterion": "From the recorded initial map view, selecting zoom-in once produces a visibly closer settled map view while the GIS workspace and map controls remain available.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-zoom.png",
+        "screenshots/attempt-001/criterion-2-after-zoom.png",
+        "screenshots/attempt-001/criterion-2-final.png",
+        "screenshots/attempt-001/criterion-2-cleanup-default.png",
+        "screenshots/attempt-001/criterion-2-cleanup-restored.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and captured criterion 2 initial PNG.",
+        "Selected Open GIS, waited for Loading map to disappear and captured the initial GIS map before zoom.",
+        "Selected Zoom in exactly once, waited two seconds and verified the settled map scale changed from 100 km to 50 km; Ireland and the Irish Sea occupied a larger share of the view with more detailed place and road labels.",
+        "Captured the zoomed transition and a separate final PNG before cleanup; GIS workspace, Zoom in, Zoom out, Map style and orientation reset remained visible. Read current URL at final state.",
+        "Attempted cleanup with Zoom out; tool timed out because the Zoom in tooltip intercepted pointer events. The file named criterion-2-cleanup-default.png records this unsuccessful cleanup and still shows 50 km, not a restored default.",
+        "Moved pointer to Search Map, waited one second, selected Zoom out once successfully and verified 100 km returned. Captured criterion-2-cleanup-restored.png showing the default geographic coverage."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "Direct before/after PNG evidence shows a visibly closer settled map after one zoom-in. Cleanup recovered successfully after the tooltip interception; the map was restored."
+    },
+    {
+      "criterion": "After zooming, selecting reset map view returns the map to its initial default geographic extent and scale as visibly demonstrated, while the GIS controls remain available.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-zoom.png",
+        "screenshots/attempt-001/criterion-3-after-zoom.png",
+        "screenshots/attempt-001/criterion-3-final.png",
+        "screenshots/attempt-001/criterion-3-cleanup-restored.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and captured criterion 3 initial PNG.",
+        "Selected Open GIS, waited for Loading map to disappear and recorded this criterion's default geographic coverage and 100 km scale before zoom.",
+        "Selected Zoom in once, waited two seconds and verified the settled 50 km scale.",
+        "Inspected available controls and hovered the orientation reset. Its visible tooltip and accessible name were 'Reset north and flatten map'; no extent/default-view reset control was present.",
+        "Captured separate final PNG at the zoomed blocker state and read current URL. Did not substitute orientation reset for the unavailable extent-reset action.",
+        "Moved pointer to Search Map, waited one second, selected Zoom out once and verified 100 km and the initial default geographic coverage returned. Captured cleanup separately."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "Cannot perform the required geographic-extent reset action because no matching visible control is available. The orientation reset label does not establish an extent-reset feature. No test data was needed; this is a missing control prerequisite, not a data or authentication failure. The map was restored to its initial default coverage using Zoom out for cleanup only.",
+      "blockerCode": "reset_map_view_control_unavailable",
+      "retryClass": "prerequisite"
+    }
+  ],
+  "conciseReport": "TEST2-54: criterion 2 Passed; criteria 1 and 3 Blocked because no visible geographic-extent reset control is available. The exposed reset is labelled “Reset north and flatten map”. Independent launcher starts and criterion-specific PNGs were captured. Zoom-in changed the settled scale from 100 km to 50 km. Map restored to default coverage and 100 km scale using Zoom out; no layers, data or saved records changed.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-54-test-attempt-001/screenshots/",
+  "noOp": false,
+  "reason": "Required geographic-extent reset control is unavailable in the visible GIS workspace. Blocked results require prerequisite review; this is not an all-transient run.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-06T12:20:35.781Z"
+}
