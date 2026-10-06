@@ -12,9 +12,9 @@
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 4,
+      "Not Tested": 3,
       "Passed": 32,
-      "Unverified": 4
+      "Unverified": 5
     }
   },
   "policy": {
@@ -749,12 +749,12 @@
       "summary": "Cancel adding a Surveyor layer without changing the GIS layer list",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-06T13:04:59.549+0100",
       "retries": 0,
       "retryLimit": 2,
