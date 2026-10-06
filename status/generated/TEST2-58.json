@@ -35,7 +35,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-58-guide-impact",
+      "handoffVersion": "TEST2-58:guide_impact_assessment:1",
+      "ticket": "TEST2-58",
+      "decision": "not_needed",
+      "affectedSection": "",
+      "reason": "The reviewed behavior only ensures that cancelling a second Surveyor layer configuration preserves the existing layer and settings; it does not introduce a new user workflow, navigation path, visible information, or terminology that requires guide documentation.",
+      "noOp": false,
+      "assessedAt": "2026-10-06T15:27:26.218Z"
+    },
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,

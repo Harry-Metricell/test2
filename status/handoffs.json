@@ -43,25 +43,6 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-58-guide-impact",
-      "handoffVersion": "TEST2-58:guide_impact_assessment:1",
-      "action": "guide_impact_assessment",
-      "brief": "docs/briefs/user-guide-impact.md",
-      "owner": "guide-impact-assessor",
-      "ticket": "TEST2-58",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-58/ticket.json",
-        "generated": "status/generated/TEST2-58.json",
-        "review": "tickets/TEST2-58/review.json",
-        "report": "tickets/TEST2-58/report.md",
-        "policy": "config/user-guide-impact-policy.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-58/guide-impact.json",
-        "schema": "v4-user-guide-impact.v1"
-      }
-    },
-    {
       "handoffId": "handoff-TEST2-59-guide-update",
       "handoffVersion": "TEST2-59:guide_update_authoring:1",
       "action": "guide_update_authoring",
