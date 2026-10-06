@@ -1,1 +1,20 @@
-Surveyor configuration opens with identifiable controls and Cancel. Criterion 2 Passed: Cancel closes the dialog and returns to the GIS map. Criteria 1, 3 and 4 Unverified: the workspace exposes the layer catalogue and map, but no explicit current Map layers list or empty-layer message; the required baseline and unchanged-layer assertion cannot be established. Reopening and cancelling twice was observed. No confirmation action or filter edits were performed. Dialogs were closed after testing. Recovered browser interaction errors are recorded in steps; superseded captures are excluded.
+# TEST2-56 Evidence Review
+
+- **Ticket:** TEST2-56 — Cancel adding a Surveyor layer without changing the GIS layer list
+- **QA status:** Evidence Reviewed
+- **Overall outcome:** Unverified
+- **Evidence reviewed:** attempt-001
+- **Report:** [Evidence report](report.pdf)
+
+## Criterion results
+
+1. **Unverified:** In the settled GIS workspace, record the visible Map layers list or empty-layer state, then select Add layer for Surveyor and verify that its configuration dialog opens with identifiable controls and a visible Cancel action.
+   - Settled GIS shows the available-layer catalogue and base map; Surveyor opens with Active layer, Date range, Select survey, filters and Cancel. No current Map layers list or explicit empty-layer state is visible, so the required baseline is unverified.
+2. **Passed:** Select Cancel in the Surveyor add-layer dialog and verify that the dialog closes and the GIS map is displayed again.
+   - Criterion-owned recovered screenshots show Surveyor with Cancel, followed by the unobscured GIS map with the dialog closed; final-recovered confirms the returned map. The recorded steps identify the recovered Cancel action and exclude the unsuccessful earlier interaction.
+3. **Unverified:** After cancelling, verify that the visible Map layers list matches the recorded before state and contains no newly added Surveyor layer.
+   - Before and after cancellation show the available-layer catalogue and base map, with the Surveyor dialog closed afterward. Neither state exposes a current Map layers list or explicit empty state, so unchanged entries and absence of a new Surveyor layer cannot be verified.
+4. **Unverified:** Open the Surveyor add-layer dialog again, verify the configuration controls and Cancel action are visible, select Cancel, and verify that the GIS map returns without changing the visible Map layers list.
+   - Criterion-owned ordered captures show the first dialog, returned map, reopened Surveyor controls and Cancel, then the returned map after the second cancellation. The current Map layers baseline and after-state are not visible, leaving the unchanged-layer assertion unverified.
+
+**Review summary:** Cancellation and reopening are evidenced; the required current Map layers baseline and before/after list states are not visible.

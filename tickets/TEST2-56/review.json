@@ -1,0 +1,33 @@
+{
+  "handoffId": "handoff-TEST2-56-review-attempt-001",
+  "handoffVersion": "TEST2-56:evidence_review:1",
+  "ticket": "TEST2-56",
+  "criterionOutcomes": [
+    {
+      "criterion": "In the settled GIS workspace, record the visible Map layers list or empty-layer state, then select Add layer for Surveyor and verify that its configuration dialog opens with identifiable controls and a visible Cancel action.",
+      "outcome": "Unverified",
+      "reason": "Settled GIS shows the available-layer catalogue and base map; Surveyor opens with Active layer, Date range, Select survey, filters and Cancel. No current Map layers list or explicit empty-layer state is visible, so the required baseline is unverified."
+    },
+    {
+      "criterion": "Select Cancel in the Surveyor add-layer dialog and verify that the dialog closes and the GIS map is displayed again.",
+      "outcome": "Passed",
+      "reason": "Criterion-owned recovered screenshots show Surveyor with Cancel, followed by the unobscured GIS map with the dialog closed; final-recovered confirms the returned map. The recorded steps identify the recovered Cancel action and exclude the unsuccessful earlier interaction."
+    },
+    {
+      "criterion": "After cancelling, verify that the visible Map layers list matches the recorded before state and contains no newly added Surveyor layer.",
+      "outcome": "Unverified",
+      "reason": "Before and after cancellation show the available-layer catalogue and base map, with the Surveyor dialog closed afterward. Neither state exposes a current Map layers list or explicit empty state, so unchanged entries and absence of a new Surveyor layer cannot be verified."
+    },
+    {
+      "criterion": "Open the Surveyor add-layer dialog again, verify the configuration controls and Cancel action are visible, select Cancel, and verify that the GIS map returns without changing the visible Map layers list.",
+      "outcome": "Unverified",
+      "reason": "Criterion-owned ordered captures show the first dialog, returned map, reopened Surveyor controls and Cancel, then the returned map after the second cancellation. The current Map layers baseline and after-state are not visible, leaving the unchanged-layer assertion unverified."
+    }
+  ],
+  "overallOutcome": "Unverified",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-56\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Cancellation and reopening are evidenced; the required current Map layers baseline and before/after list states are not visible."
+}
