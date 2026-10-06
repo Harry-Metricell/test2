@@ -1,0 +1,168 @@
+{
+  "handoffId": "handoff-TEST2-53-test-attempt-001",
+  "handoffVersion": "TEST2-53:test_ticket:1",
+  "ticket": "TEST2-53",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "With an authorised user signed in, GIS open, and an available Surveyor layer loaded with its default configuration, the Surveyor layer is identifiable in the layer list or legend.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-after-open-layer-dialog.png",
+        "screenshots/attempt-001/criterion-1-final.png",
+        "screenshots/attempt-001/criterion-1-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the signed-in Welcome, Harry launcher; saved this criterion's initial PNG.",
+        "Opened GIS and waited for Loading map to disappear; saved the settled GIS state before selecting Surveyor.",
+        "Clicked Add layer for Surveyor, captured the configuration dialog, left Active layer Service and Date range Last 30 days and all other defaults unchanged, then clicked Add layer once.",
+        "Verified Surveyor - Service appeared in Map layers and the legend.",
+        "Captured final evidence and recorded the current browser URL while Surveyor - Service was visible.",
+        "Removed the test-created layer; verified Surveyor returned to an unselected catalogue entry and captured cleanup."
+      ],
+      "observed_results": "Surveyor - Service is identifiable in Map layers and the legend with Surveyor (1) in the catalogue.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "Direct checkbox/layer evidence within the current session. Test-created layer removed after the decisive final capture; original checked state restored where changed.",
+      "blockers": [],
+      "evidenceNotes": "Ordered captures are exclusive to this criterion. Each preceding after-state capture also records the before-state of the next action. Cleanup captures occur after final and are not assertion evidence."
+    },
+    {
+      "criterion": "Opening Display Settings for the loaded Surveyor layer shows the Show linked sites control with a visibly identifiable checked or unchecked state.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-after-open-gis.png",
+        "screenshots/attempt-001/criterion-2-after-open-layer-dialog.png",
+        "screenshots/attempt-001/criterion-2-after-add-layer.png",
+        "screenshots/attempt-001/criterion-2-final.png",
+        "screenshots/attempt-001/criterion-2-cleanup-close-settings.png",
+        "screenshots/attempt-001/criterion-2-cleanup-remove-layer.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the signed-in Welcome, Harry launcher; saved this criterion's initial PNG.",
+        "Opened GIS and waited for Loading map to disappear; saved the settled GIS state before selecting Surveyor.",
+        "Clicked Add layer for Surveyor, captured the configuration dialog, left Active layer Service and Date range Last 30 days and all other defaults unchanged, then clicked Add layer once.",
+        "Verified Surveyor - Service appeared in Map layers and the legend.",
+        "Opened Display Settings for Surveyor - Service; observed Show linked sites checked and captured final evidence and the current URL.",
+        "Closed Display Settings with Escape and removed the test-created layer; captured cleanup separately."
+      ],
+      "observed_results": "Show linked sites has a visibly checked checkbox in the loaded Surveyor - Service layer's Display Settings.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "Direct checkbox/layer evidence within the current session. Test-created layer removed after the decisive final capture; original checked state restored where changed.",
+      "blockers": [],
+      "evidenceNotes": "Ordered captures are exclusive to this criterion. Each preceding after-state capture also records the before-state of the next action. Cleanup captures occur after final and are not assertion evidence."
+    },
+    {
+      "criterion": "After recording the initial Show linked sites state, changing the control to the opposite state visibly changes its checked or unchecked state without adding the Surveyor layer again.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-after-open-gis.png",
+        "screenshots/attempt-001/criterion-3-after-open-layer-dialog.png",
+        "screenshots/attempt-001/criterion-3-after-add-layer.png",
+        "screenshots/attempt-001/criterion-3-before-toggle.png",
+        "screenshots/attempt-001/criterion-3-final.png",
+        "screenshots/attempt-001/criterion-3-cleanup-restore.png",
+        "screenshots/attempt-001/criterion-3-cleanup-close-settings.png",
+        "screenshots/attempt-001/criterion-3-cleanup-remove-layer.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the signed-in Welcome, Harry launcher; saved this criterion's initial PNG.",
+        "Opened GIS and waited for Loading map to disappear; saved the settled GIS state before selecting Surveyor.",
+        "Clicked Add layer for Surveyor, captured the configuration dialog, left Active layer Service and Date range Last 30 days and all other defaults unchanged, then clicked Add layer once.",
+        "Verified Surveyor - Service appeared in Map layers and the legend.",
+        "Opened Display Settings and recorded Show linked sites checked; captured the state before the toggle.",
+        "Clicked Show linked sites once; observed it unchecked with the same Surveyor - Service layer still listed; captured final evidence and current URL.",
+        "Restored Show linked sites to checked, closed settings with Escape, removed the test-created layer and captured each cleanup state separately."
+      ],
+      "observed_results": "The checkbox visibly changed from checked to unchecked; the same Surveyor - Service layer remained loaded.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "Direct checkbox/layer evidence within the current session. Test-created layer removed after the decisive final capture; original checked state restored where changed.",
+      "blockers": [],
+      "evidenceNotes": "Ordered captures are exclusive to this criterion. Each preceding after-state capture also records the before-state of the next action. Cleanup captures occur after final and are not assertion evidence."
+    },
+    {
+      "criterion": "Changing Show linked sites a second time restores the recorded initial checked or unchecked state without adding the Surveyor layer again.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-after-open-gis.png",
+        "screenshots/attempt-001/criterion-4-after-open-layer-dialog.png",
+        "screenshots/attempt-001/criterion-4-after-add-layer.png",
+        "screenshots/attempt-001/criterion-4-before-toggle.png",
+        "screenshots/attempt-001/criterion-4-after-toggle.png",
+        "screenshots/attempt-001/criterion-4-final.png",
+        "screenshots/attempt-001/criterion-4-cleanup-close-settings.png",
+        "screenshots/attempt-001/criterion-4-cleanup-remove-layer.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the signed-in Welcome, Harry launcher; saved this criterion's initial PNG.",
+        "Opened GIS and waited for Loading map to disappear; saved the settled GIS state before selecting Surveyor.",
+        "Clicked Add layer for Surveyor, captured the configuration dialog, left Active layer Service and Date range Last 30 days and all other defaults unchanged, then clicked Add layer once.",
+        "Verified Surveyor - Service appeared in Map layers and the legend.",
+        "Opened Display Settings and recorded Show linked sites checked; captured the state before the toggle.",
+        "Clicked Show linked sites once; observed unchecked and captured the transition.",
+        "Clicked Show linked sites a second time; observed checked again with the same layer still present and no further Add layer action; captured final evidence and current URL.",
+        "Closed settings with Escape, removed the test-created layer and captured cleanup separately."
+      ],
+      "observed_results": "The second checkbox click visibly restored the originally checked state without adding Surveyor again.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "Direct checkbox/layer evidence within the current session. Test-created layer removed after the decisive final capture; original checked state restored where changed.",
+      "blockers": [],
+      "evidenceNotes": "Ordered captures are exclusive to this criterion. Each preceding after-state capture also records the before-state of the next action. Cleanup captures occur after final and are not assertion evidence."
+    },
+    {
+      "criterion": "After the state is changed and restored, closing and reopening Display Settings for the same Surveyor layer shows the recorded initial Show linked sites state, and the layer remains available without being added again.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-5-initial.png",
+        "screenshots/attempt-001/criterion-5-after-open-gis.png",
+        "screenshots/attempt-001/criterion-5-after-open-layer-dialog.png",
+        "screenshots/attempt-001/criterion-5-after-add-layer.png",
+        "screenshots/attempt-001/criterion-5-before-toggle.png",
+        "screenshots/attempt-001/criterion-5-after-toggle.png",
+        "screenshots/attempt-001/criterion-5-after-restore.png",
+        "screenshots/attempt-001/criterion-5-after-close.png",
+        "screenshots/attempt-001/criterion-5-final.png",
+        "screenshots/attempt-001/criterion-5-cleanup-close-settings.png",
+        "screenshots/attempt-001/criterion-5-cleanup-remove-layer.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the signed-in Welcome, Harry launcher; saved this criterion's initial PNG.",
+        "Opened GIS and waited for Loading map to disappear; saved the settled GIS state before selecting Surveyor.",
+        "Clicked Add layer for Surveyor, captured the configuration dialog, left Active layer Service and Date range Last 30 days and all other defaults unchanged, then clicked Add layer once.",
+        "Verified Surveyor - Service appeared in Map layers and the legend.",
+        "Opened Display Settings and recorded Show linked sites checked; captured baseline.",
+        "Clicked Show linked sites once and verified unchecked; captured transition.",
+        "Clicked it a second time and verified checked; captured restored state without removing or adding the layer.",
+        "Closed Display Settings using Escape, waited until Show linked sites was hidden, and captured the closed state with Surveyor - Service remaining in Map layers and the legend.",
+        "Reopened Display Settings on that same layer; verified Show linked sites checked, Surveyor - Service still listed and no intervening Add layer action; captured final evidence and current URL.",
+        "Closed settings with Escape and removed the test-created layer; captured cleanup separately."
+      ],
+      "observed_results": "After checked → unchecked → checked → close → reopen, the checkbox remained checked and the same Surveyor - Service layer remained available without being added again.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "Direct checkbox/layer evidence within the current session. Test-created layer removed after the decisive final capture; original checked state restored where changed.",
+      "blockers": [],
+      "evidenceNotes": "Ordered captures are exclusive to this criterion. Each preceding after-state capture also records the before-state of the next action. Cleanup captures occur after final and are not assertion evidence."
+    }
+  ],
+  "conciseReport": "All five canonical criteria passed in independent launcher-started checks. Surveyor - Service loaded with defaults; Show linked sites started checked, changed to unchecked, restored to checked, and remained checked when Display Settings was reopened on the same layer. Each test-created layer was removed; changed checkbox states were restored. Scope is visible control state in the current session only; no linked-site data, query-result or reload/login persistence claims.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-53-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Completed all five criteria with saved PNG evidence and final browser-derived GIS URLs; no blockers.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-06T09:54:30.666Z"
+}
