@@ -1,0 +1,113 @@
+[
+  {
+    "criterion": "With the GIS layer catalogue unfiltered and a test-created Surveyor layer loaded with its default configuration, Surveyor and the recorded visible non-Surveyor catalogue entry are both visible, and the loaded Surveyor layer is identifiable in Map layers or the legend.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-after-open-surveyor-before-add.png",
+      "screenshots/attempt-001/criterion-1-after-add.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher URL, waited for the visible launcher, and captured this criterion's initial PNG.",
+      "Opened GIS; recorded empty Search layers and one existing Surveyor - Service Map layers row. Preserved it.",
+      "Opened Surveyor and added one current-session layer with unchanged defaults: Service, Last 30 days, All teams, default technologies, No network filter. The test-created layer was the second Map layers row and its legend became active.",
+      "Recorded Beacons as the non-Surveyor catalogue entry and the complete pre-search Map layers list: [Surveyor - Service (existing first row), Surveyor - Service (test-created second row)].",
+      "Verified unfiltered Beacons and Surveyor (2), and the new second Map layers row. Captured final and recorded actual /gis URL.",
+      "Removed only the second test-created row and verified the original one-row list remained."
+    ],
+    "observedResult": "Unfiltered catalogue showed Beacons and Surveyor (2). The new Surveyor - Service was identifiable as the second Map layers row.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98"
+  },
+  {
+    "criterion": "After entering `Surveyor` in the visible Search layers field, at least one matching Surveyor catalogue entry remains visible and the recorded non-Surveyor entry is absent from the filtered catalogue, while the previously loaded Surveyor layer remains identifiable in Map layers or the legend without a duplicate.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis-before-open-surveyor.png",
+      "screenshots/attempt-001/criterion-2-surveyor-defaults-before-add.png",
+      "screenshots/attempt-001/criterion-2-loaded-before-search.png",
+      "screenshots/attempt-001/criterion-2-after-search.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-cleanup-search.png",
+      "screenshots/attempt-001/criterion-2-cleanup-layer.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher URL, waited for the visible launcher, and captured this criterion's initial PNG.",
+      "Opened GIS; recorded empty Search layers and one existing Surveyor - Service Map layers row. Preserved it.",
+      "Opened Surveyor and added one current-session layer with unchanged defaults: Service, Last 30 days, All teams, default technologies, No network filter. The test-created layer was the second Map layers row and its legend became active.",
+      "Recorded Beacons as the non-Surveyor catalogue entry and the complete pre-search Map layers list: [Surveyor - Service (existing first row), Surveyor - Service (test-created second row)].",
+      "Before loading, an incorrect parent locator timed out and an unscoped Add layer selector was ambiguous; neither changed the UI. Recovered using the observed Surveyor reference and scoped dialog Add layer button.",
+      "Entered Surveyor in Search layers; verified Surveyor (2) remained, Beacons was absent, and the complete Map layers list still contained the same two rows. Captured final and recorded actual /gis URL.",
+      "Cleanup: cleared search, verified Beacons returned, removed only the second test-created row, and verified the original one-row list remained."
+    ],
+    "observedResult": "Surveyor search excluded Beacons and retained Surveyor (2). Map layers retained exactly the two pre-search rows; search added no duplicate.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98"
+  },
+  {
+    "criterion": "After clearing the Search layers field, the recorded non-Surveyor catalogue entry is visible again, and the current Map layers entries match the recorded pre-search list with no duplicate or removed layer.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis-before-surveyor.png",
+      "screenshots/attempt-001/criterion-3-defaults-before-add.png",
+      "screenshots/attempt-001/criterion-3-loaded-before-search.png",
+      "screenshots/attempt-001/criterion-3-filtered-before-clear.png",
+      "screenshots/attempt-001/criterion-3-after-clear.png",
+      "screenshots/attempt-001/criterion-3-final.png",
+      "screenshots/attempt-001/criterion-3-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher URL, waited for the visible launcher, and captured this criterion's initial PNG.",
+      "Opened GIS; recorded empty Search layers and one existing Surveyor - Service Map layers row. Preserved it.",
+      "Opened Surveyor and added one current-session layer with unchanged defaults: Service, Last 30 days, All teams, default technologies, No network filter. The test-created layer was the second Map layers row and its legend became active.",
+      "Recorded Beacons as the non-Surveyor catalogue entry and the complete pre-search Map layers list: [Surveyor - Service (existing first row), Surveyor - Service (test-created second row)].",
+      "Entered Surveyor in Search layers and verified the settled filtered catalogue and unchanged complete two-row list.",
+      "Cleared Search layers and verified Beacons returned and the complete two-row list matched pre-search order and count. Captured final and recorded actual /gis URL.",
+      "Removed only the second test-created row and verified the original one-row list remained."
+    ],
+    "observedResult": "Clearing search restored Beacons. The complete two-row Map layers list matched pre-search order and count, without search-created duplicates or removals.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98"
+  },
+  {
+    "criterion": "After filtering and clearing the catalogue, Display Settings for the same loaded Surveyor layer remains accessible and its Show linked sites state matches the state recorded before the search journey.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-after-open-gis-before-surveyor.png",
+      "screenshots/attempt-001/criterion-4-defaults-before-add.png",
+      "screenshots/attempt-001/criterion-4-loaded-before-search.png",
+      "screenshots/attempt-001/criterion-4-display-settings-before-search.png",
+      "screenshots/attempt-001/criterion-4-settings-closed-before-filter.png",
+      "screenshots/attempt-001/criterion-4-filtered-before-clear.png",
+      "screenshots/attempt-001/criterion-4-cleared-before-reopen-settings.png",
+      "screenshots/attempt-001/criterion-4-after-reopen-settings.png",
+      "screenshots/attempt-001/criterion-4-final.png",
+      "screenshots/attempt-001/criterion-4-cleanup-settings.png",
+      "screenshots/attempt-001/criterion-4-cleanup-layer.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher URL, waited for the visible launcher, and captured this criterion's initial PNG.",
+      "Opened GIS; recorded empty Search layers and one existing Surveyor - Service Map layers row. Preserved it.",
+      "Opened Surveyor and added one current-session layer with unchanged defaults: Service, Last 30 days, All teams, default technologies, No network filter. The test-created layer was the second Map layers row and its legend became active.",
+      "Recorded Beacons as the non-Surveyor catalogue entry and the complete pre-search Map layers list: [Surveyor - Service (existing first row), Surveyor - Service (test-created second row)].",
+      "Opened the active test-created layer's Display Settings; Show linked sites was checked and Show linked cells unchecked.",
+      "Dismissed settings with Escape. The immediate snapshot briefly included disappearing controls; the subsequent filtered screenshot confirmed settings were closed.",
+      "Entered Surveyor in Search layers; verified filtered Surveyor catalogue and unchanged two-row Map layers list. Cleared search and verified Beacons returned.",
+      "Reopened Display Settings for the same active test-created layer. Verified Show linked sites still checked and Show linked cells unchecked. Captured final and recorded actual /gis URL plus DOM checkbox states.",
+      "Cleanup: dismissed settings and waited for Show linked sites to disappear; removed only the second test-created layer and verified the original one-row list remained. No checkbox state was changed."
+    ],
+    "observedResult": "Display Settings for the same test-created layer remained accessible after filtering and clearing. Show linked sites was checked before and after.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98"
+  }
+]
