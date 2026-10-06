@@ -51,7 +51,7 @@ Updated: 2026-10-06T15:47:25.828+0100
 | TEST2-55 | READY FOR TESTING | Evidence Reviewed |  | Open API Request Audit and return to the V4 launcher |
 | TEST2-56 | READY FOR TESTING | Blocked |  | Cancel adding a Surveyor layer without changing the GIS layer list |
 | TEST2-57 | READY FOR TESTING | Awaiting Evidence Review |  | Zoom the GIS map without losing a loaded Surveyor layer or its display setting |
-| TEST2-58 | READY FOR TESTING | Awaiting Evidence Review |  | Cancel a second Surveyor layer configuration without disturbing an existing loaded layer |
+| TEST2-58 | READY FOR TESTING | Evidence Reviewed |  | Cancel a second Surveyor layer configuration without disturbing an existing loaded layer |
 | TEST2-59 | READY FOR TESTING | Awaiting Evidence Review |  | Filter and clear the GIS layer catalogue while preserving a loaded Surveyor layer |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 2/2 | Verify GIS map search and marker interaction |
