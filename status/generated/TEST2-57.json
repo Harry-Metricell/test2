@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-57",
+  "id": "106542",
+  "summary": "Zoom the GIS map without losing a loaded Surveyor layer or its display setting",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-57",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-06T15:46:57.575+0100",
+    "updated": "2026-10-06T15:47:20.963+0100"
+  },
+  "description": "Exercise map navigation while a real layer is loaded, rather than testing an empty map.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/launcher. Use existing authorised access. Open GIS and add one test-created Surveyor layer using the default configuration. Record its visible identity, Map layers entry/legend and the current Show linked sites checkbox state in Display Settings. Close Display Settings before zooming. Do not modify or remove layers belonging to other users.\nAcceptance criteria\nThe test-created Surveyor layer is visibly identifiable in Map layers or the legend, and its Display Settings shows an identifiable Show linked sites state.\nFrom a recorded settled map scale with that layer loaded, selecting zoom-in once produces a closer settled map scale; the same Surveyor layer remains visible in Map layers or the legend.\nAfter that zoom-in, selecting zoom-out once returns to the recorded initial map scale, and the same loaded layer remains available without adding it again.\nOpening Display Settings for the same layer after the zoom-in/zoom-out journey shows the originally recorded Show linked sites state.\nEvidence: each comparison must show its own before and after states, including scale and layer identity. No claim about linked-site data completeness or persistence across reload/login. If prerequisite data is unavailable, identify it rather than substitute another feature. Restore the original checkbox and remove only the layer created for this test.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-57/ticket.json",
+    "criteria": "tickets/TEST2-57/criteria.md",
+    "status": "tickets/TEST2-57/status.json",
+    "screenshots": "tickets/TEST2-57/screenshots/",
+    "reports": "tickets/TEST2-57/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106542",
+    "importedAt": "2026-10-06T15:47:20.963+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-06T15:47:20.963+0100",
+    "criteriaVerified": false
+  }
+}

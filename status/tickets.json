@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-06T13:04:59.549+0100",
+  "generatedAt": "2026-10-06T15:47:25.828+0100",
   "counts": {
-    "tickets": 55,
-    "handoffs": 1,
+    "tickets": 58,
+    "handoffs": 4,
     "byWorkflowState": {
       "Blocked": 25,
-      "Ready": 29,
+      "Ready": 32,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 6,
       "Passed": 32,
       "Unverified": 5
     }
@@ -756,6 +756,54 @@
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-06T13:04:59.549+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-57",
+      "summary": "Zoom the GIS map without losing a loaded Surveyor layer or its display setting",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-06T15:47:20.963+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-58",
+      "summary": "Cancel a second Surveyor layer configuration without disturbing an existing loaded layer",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-06T15:47:23.544+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-59",
+      "summary": "Filter and clear the GIS layer catalogue while preserving a loaded Surveyor layer",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-06T15:47:25.828+0100",
       "retries": 0,
       "retryLimit": 2,
       "retryLabel": ""

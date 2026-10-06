@@ -1,0 +1,153 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "106544",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/106544",
+  "key": "TEST2-59",
+  "fields": {
+    "summary": "Filter and clear the GIS layer catalogue while preserving a loaded Surveyor layer",
+    "subtasks": [],
+    "created": "2026-10-06T15:47:01.245+0100",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Test that catalogue search is independent of the layers already loaded on the map."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Environment: https://o2intelligence-v4-dev.metricell.com/launcher. Use existing authorised access, open GIS, and load one test-created Surveyor layer with its default configuration. Use the visible Search layers catalogue field, not Search Map. Record the initial catalogue and current Map layers entries. Identify a visible non-Surveyor catalogue entry (for example Beacons) for the search comparison."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance criteria"
+            }
+          ]
+        },
+        {
+          "type": "orderedList",
+          "attrs": {
+            "order": 1
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The unfiltered catalogue shows Surveyor and the recorded non-Surveyor entry; the loaded test-created Surveyor layer is identifiable in Map layers or the legend."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Entering Surveyor in Search layers leaves a matching Surveyor catalogue entry visible and excludes the recorded non-matching entry from the filtered catalogue. The previously loaded layer remains in Map layers or the legend without being added again."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Clearing Search layers restores the recorded non-Surveyor catalogue entry. The current Map layers entries match the recorded pre-search list, with no duplicate or removed layer."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Display Settings for the same loaded Surveyor layer remains accessible after filtering and clearing; its Show linked sites state matches the state recorded before the search journey."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Capture the search text, catalogue results and loaded-layer context for each decisive state; capture full before/after lists for unchanged-list assertions. Scope is current-session visible UI behaviour only, not server-query correctness or reload persistence. Do not alter saved records or other users' layers. Restore the initial search text and checkbox state; remove only the layer created for this test."
+            }
+          ]
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-10-06T15:47:25.828+0100",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  }
+}

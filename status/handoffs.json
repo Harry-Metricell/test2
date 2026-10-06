@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-10-06T13:04:59.549+0100",
+  "generatedAt": "2026-10-06T15:47:25.828+0100",
   "handoffs": [
     {
       "handoffId": "handoff-TEST2-55-guide-update",
@@ -21,6 +21,54 @@
       "expectedOutput": {
         "path": "tickets/TEST2-55/guide-update.json",
         "schema": "v4-user-guide-update.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-57-criteria",
+      "handoffVersion": "TEST2-57:criteria_conversion:2026-10-06T15:47:20.963+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-57",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-57/ticket.json",
+        "generated": "status/generated/TEST2-57.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-57/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-58-criteria",
+      "handoffVersion": "TEST2-58:criteria_conversion:2026-10-06T15:47:23.544+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-58",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-58/ticket.json",
+        "generated": "status/generated/TEST2-58.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-58/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-59-criteria",
+      "handoffVersion": "TEST2-59:criteria_conversion:2026-10-06T15:47:25.828+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-59",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-59/ticket.json",
+        "generated": "status/generated/TEST2-59.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-59/criteria.md",
+        "schema": "v4-qa-criteria.v1"
       }
     }
   ]

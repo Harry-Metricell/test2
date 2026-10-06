@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-59",
+  "id": "106544",
+  "summary": "Filter and clear the GIS layer catalogue while preserving a loaded Surveyor layer",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-59",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-06T15:47:01.245+0100",
+    "updated": "2026-10-06T15:47:25.828+0100"
+  },
+  "description": "Test that catalogue search is independent of the layers already loaded on the map.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/launcher. Use existing authorised access, open GIS, and load one test-created Surveyor layer with its default configuration. Use the visible Search layers catalogue field, not Search Map. Record the initial catalogue and current Map layers entries. Identify a visible non-Surveyor catalogue entry (for example Beacons) for the search comparison.\nAcceptance criteria\nThe unfiltered catalogue shows Surveyor and the recorded non-Surveyor entry; the loaded test-created Surveyor layer is identifiable in Map layers or the legend.\nEntering Surveyor in Search layers leaves a matching Surveyor catalogue entry visible and excludes the recorded non-matching entry from the filtered catalogue. The previously loaded layer remains in Map layers or the legend without being added again.\nClearing Search layers restores the recorded non-Surveyor catalogue entry. The current Map layers entries match the recorded pre-search list, with no duplicate or removed layer.\nDisplay Settings for the same loaded Surveyor layer remains accessible after filtering and clearing; its Show linked sites state matches the state recorded before the search journey.\nCapture the search text, catalogue results and loaded-layer context for each decisive state; capture full before/after lists for unchanged-list assertions. Scope is current-session visible UI behaviour only, not server-query correctness or reload persistence. Do not alter saved records or other users' layers. Restore the initial search text and checkbox state; remove only the layer created for this test.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-59/ticket.json",
+    "criteria": "tickets/TEST2-59/criteria.md",
+    "status": "tickets/TEST2-59/status.json",
+    "screenshots": "tickets/TEST2-59/screenshots/",
+    "reports": "tickets/TEST2-59/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106544",
+    "importedAt": "2026-10-06T15:47:25.828+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-06T15:47:25.828+0100",
+    "criteriaVerified": false
+  }
+}
