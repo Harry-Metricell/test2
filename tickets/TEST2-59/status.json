@@ -20,5 +20,35 @@
     "reason": "The delivered behaviour introduces visible user instructions for filtering the GIS layer catalogue and clearing the filter while preserving existing Map layers. Users also need to know that Display Settings remains available after this search journey.",
     "noOp": false,
     "assessedAt": "2026-10-06T15:25:26.839Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-59-guide-update",
+    "handoffVersion": "TEST2-59:guide_update_authoring:1",
+    "ticket": "TEST2-59",
+    "title": "Filter and clear the GIS layer catalogue while preserving a loaded Surveyor layer",
+    "affectedSection": "GIS layer catalogue search and loaded layers",
+    "changeType": "add",
+    "steps": [
+      "In GIS, enter a layer name such as Surveyor in Search layers to filter the catalogue.",
+      "Select the matching catalogue entry when it appears; existing Map layers remain loaded and are not added again by the search.",
+      "Clear Search layers to show the full catalogue again, including entries such as Beacons.",
+      "Open Display Settings for the loaded layer when needed; its Show linked sites setting remains available after filtering and clearing."
+    ],
+    "screenshots": [
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-2-after-search.png",
+      "screenshots/attempt-001/criterion-3-after-clear.png",
+      "screenshots/attempt-001/criterion-4-after-reopen-settings.png"
+    ],
+    "screenshotCaptions": [
+      "The unfiltered catalogue shows Beacons and Surveyor (2), with the loaded Surveyor layer visible in Map layers and the legend.",
+      "Search layers contains Surveyor; only Surveyor (2) remains in the catalogue while the same two Map layers remain loaded.",
+      "After Search layers is cleared, Beacons returns and the two loaded Surveyor - Service rows remain in their original order.",
+      "Display Settings is reopened for the same loaded layer after filtering and clearing; Show linked sites remains checked."
+    ],
+    "reason": "Adds user instructions for filtering and clearing the GIS layer catalogue while preserving loaded Map layers and access to Display Settings.",
+    "noOp": false,
+    "authoredAt": "2026-10-06T15:31:25.697Z"
   }
 }
