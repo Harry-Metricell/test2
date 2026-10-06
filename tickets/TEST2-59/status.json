@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-59-guide-impact",
+    "handoffVersion": "TEST2-59:guide_impact_assessment:1",
+    "ticket": "TEST2-59",
+    "decision": "update_required",
+    "affectedSection": "GIS layer catalogue search and loaded layers",
+    "reason": "The delivered behaviour introduces visible user instructions for filtering the GIS layer catalogue and clearing the filter while preserving existing Map layers. Users also need to know that Display Settings remains available after this search journey.",
+    "noOp": false,
+    "assessedAt": "2026-10-06T15:25:26.839Z"
+  }
 }
