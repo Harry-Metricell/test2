@@ -47,7 +47,7 @@ Updated: 2026-10-06T13:04:59.549+0100
 | TEST2-51 | READY FOR TESTING | Evidence Reviewed |  | Reopen Surveyor Display Settings without losing the loaded V4 GIS layer |
 | TEST2-52 | READY FOR TESTING | Evidence Reviewed |  | Keep the Surveyor layer available while changing Show linked sites in V4 GIS |
 | TEST2-53 | READY FOR TESTING | Evidence Reviewed |  | Restore Show linked sites after two changes in V4 GIS |
-| TEST2-54 | READY FOR TESTING | Criteria Check Required |  | Zoom and reset the V4 GIS map |
+| TEST2-54 | READY FOR TESTING | Ready for Testing |  | Zoom and reset the V4 GIS map |
 | TEST2-55 | READY FOR TESTING | Ready for Testing |  | Open API Request Audit and return to the V4 launcher |
 | TEST2-56 | READY FOR TESTING | Ready for Testing |  | Cancel adding a Surveyor layer without changing the GIS layer list |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
