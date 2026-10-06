@@ -1,0 +1,116 @@
+{
+  "handoffId": "handoff-TEST2-56-test-attempt-001",
+  "handoffVersion": "TEST2-56:test_ticket:1",
+  "ticket": "TEST2-56",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "In the settled GIS workspace, record the visible Map layers list or empty-layer state, then select Add layer for Surveyor and verify that its configuration dialog opens with identifiable controls and a visible Cancel action.",
+      "outcome": "Unverified",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-before-open.png",
+        "screenshots/attempt-001/criterion-1-after-open.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured its visible initial state.",
+        "Opened GIS, waited until Loading map disappeared, and captured the baseline map and layer catalogue. No Map layers list or explicit empty-layer message was visible.",
+        "Selected the Surveyor catalogue Add layer control.",
+        "Verified the Surveyor dialog displayed Active layer, Date range, Select survey, filters and Cancel; captured the final state and browser URL.",
+        "Cancelled the dialog after final evidence for cleanup."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "observedResult": "Surveyor configuration and cancellation were observed. The workspace showed a layer catalogue and base map, but no explicit current Map layers list or empty-layer state was visible.",
+      "reason": "The required current Map layers baseline is not explicitly observable in this session. Catalogue entries and a base map alone cannot prove an empty current layer list or an unchanged list after cancellation.",
+      "retryClass": "criteria"
+    },
+    {
+      "criterion": "Select Cancel in the Surveyor add-layer dialog and verify that the dialog closes and the GIS map is displayed again.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-open.png",
+        "screenshots/attempt-001/criterion-2-before-open-recovered.png",
+        "screenshots/attempt-001/criterion-2-before-cancel-recovered.png",
+        "screenshots/attempt-001/criterion-2-after-cancel-recovered.png",
+        "screenshots/attempt-001/criterion-2-final-recovered.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured its visible initial state.",
+        "Opened GIS and captured the settled workspace.",
+        "An attempted Playwright locator click timed out without opening the Surveyor dialog; a subsequent Cancel lookup also found no element. Early captures named before-cancel/after-cancel/final are excluded because no successful transition occurred.",
+        "Read fresh browser references, captured a recovered baseline and selected Surveyor Add layer.",
+        "Verified the Surveyor dialog and Cancel action, then captured before-cancel-recovered.",
+        "Selected Cancel using the observed browser reference; confirmed Cancel was absent and the GIS map visible.",
+        "Captured after-cancel-recovered and final-recovered and read the browser URL."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "observedResult": "Cancel closed the Surveyor configuration dialog and the GIS map was displayed again.",
+      "reason": "The failed locator interaction was recovered before the decisive assertion; only recovered dialog and cancellation captures support this result."
+    },
+    {
+      "criterion": "After cancelling, verify that the visible Map layers list matches the recorded before state and contains no newly added Surveyor layer.",
+      "outcome": "Unverified",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-open.png",
+        "screenshots/attempt-001/criterion-3-before-cancel.png",
+        "screenshots/attempt-001/criterion-3-after-cancel.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the map and captured the baseline. The visible sidebar showed the available layer catalogue; no current Map layers list or explicit empty-layer state was visible.",
+        "Opened Surveyor configuration and captured the dialog with Cancel.",
+        "Selected Cancel; confirmed the dialog was no longer visible and the GIS map returned.",
+        "Captured the after and final workspace and read the browser URL. The catalogue remained visible, but this does not establish the current Map layers list."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "observedResult": "Surveyor configuration and cancellation were observed. The workspace showed a layer catalogue and base map, but no explicit current Map layers list or empty-layer state was visible.",
+      "reason": "The required current Map layers baseline is not explicitly observable in this session. Catalogue entries and a base map alone cannot prove an empty current layer list or an unchanged list after cancellation.",
+      "retryClass": "criteria"
+    },
+    {
+      "criterion": "Open the Surveyor add-layer dialog again, verify the configuration controls and Cancel action are visible, select Cancel, and verify that the GIS map returns without changing the visible Map layers list.",
+      "outcome": "Unverified",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-before-first-open.png",
+        "screenshots/attempt-001/criterion-4-before-first-cancel.png",
+        "screenshots/attempt-001/criterion-4-after-first-cancel.png",
+        "screenshots/attempt-001/criterion-4-before-second-cancel.png",
+        "screenshots/attempt-001/criterion-4-after-second-cancel.png",
+        "screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the map and captured the baseline with catalogue visible; no current Map layers list or explicit empty-layer message was visible.",
+        "Opened Surveyor configuration, verified Cancel and captured the dialog.",
+        "Selected Cancel, confirmed the dialog closed and captured the returned map.",
+        "One stale-reference reopen attempt was rejected with Ref f3e748 not found and caused no visible change; used the freshly observed Surveyor Add layer reference f3e885 to reopen.",
+        "Verified the reopened dialog contained Active layer, Date range, Select survey, filters and Cancel; captured before-second-cancel.",
+        "Selected Cancel again, confirmed no Cancel dialog remained, captured the returned map as after and final, and read the browser URL."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "observedResult": "Surveyor configuration and cancellation were observed. The workspace showed a layer catalogue and base map, but no explicit current Map layers list or empty-layer state was visible.",
+      "reason": "The required current Map layers baseline is not explicitly observable in this session. Catalogue entries and a base map alone cannot prove an empty current layer list or an unchanged list after cancellation.",
+      "retryClass": "criteria"
+    }
+  ],
+  "conciseReport": "Surveyor configuration opens with identifiable controls and Cancel. Criterion 2 Passed: Cancel closes the dialog and returns to the GIS map. Criteria 1, 3 and 4 Unverified: the workspace exposes the layer catalogue and map, but no explicit current Map layers list or empty-layer message; the required baseline and unchanged-layer assertion cannot be established. Reopening and cancelling twice was observed. No confirmation action or filter edits were performed. Dialogs were closed after testing. Recovered browser interaction errors are recorded in steps; superseded captures are excluded.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-56-test-attempt-001/screenshots/",
+  "noOp": false,
+  "reason": "Visible current-layer evidence is inconclusive; requires evidence review. No test fixtures were needed for opening/cancelling, and no data or filters were modified.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-06T12:21:26.321Z"
+}
