@@ -1,0 +1,138 @@
+[
+  {
+    "criterion": "With one test-created Surveyor layer already loaded, a settled GIS map visibly shows that layer in the Map layers list or legend, and the visible list and layer identity are recorded before opening a second Surveyor layer configuration.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-before-first-surveyor.png",
+      "screenshots/attempt-001/criterion-1-after-first-configuration.png",
+      "screenshots/attempt-001/criterion-1-before-add-first-layer.png",
+      "screenshots/attempt-001/criterion-1-after-add-first-layer.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-cleanup-before-remove.png",
+      "screenshots/attempt-001/criterion-1-cleanup-after-remove.png"
+    ],
+    "steps_taken": [
+      "Navigate to launcher and verify visible launcher",
+      "Open GIS and wait for map",
+      "Open first Surveyor configuration",
+      "Add first Surveyor layer with defaults",
+      "Record Map layers: Surveyor - Service only; Surveyor catalogue count 1 and matching legend are visible before any second configuration",
+      "Cleanup: remove test-created layer; Map layers panel disappears"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Settled GIS shows one test-created default Surveyor - Service layer in Map layers and legend. Cleanup removed the created layer and visibly returned to no Map layers entries."
+  },
+  {
+    "criterion": "Opening Add layer for Surveyor a second time displays identifiable Surveyor configuration controls and a Cancel action while the original layer remains visibly loaded.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-before-first-configuration.png",
+      "screenshots/attempt-001/criterion-2-after-first-configuration.png",
+      "screenshots/attempt-001/criterion-2-before-add-first-layer.png",
+      "screenshots/attempt-001/criterion-2-after-add-first-layer.png",
+      "screenshots/attempt-001/criterion-2-before-second-configuration.png",
+      "screenshots/attempt-001/criterion-2-after-second-configuration.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-cleanup-before-cancel.png",
+      "screenshots/attempt-001/criterion-2-cleanup-after-cancel.png",
+      "screenshots/attempt-001/criterion-2-cleanup-before-remove.png",
+      "screenshots/attempt-001/criterion-2-cleanup-after-remove.png"
+    ],
+    "steps_taken": [
+      "Navigate to launcher and verify visible launcher",
+      "Open GIS",
+      "Open first Surveyor configuration",
+      "Add first Surveyor layer with defaults",
+      "Open second Surveyor Add layer configuration without adding it",
+      "Observe Surveyor controls: Active layer Service, Date range Last 30 days, filters and Cancel; original Surveyor - Service remains behind configuration",
+      "Cleanup: Cancel configuration; remove test-created layer; Map layers panel disappears in current page"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Second Surveyor configuration displays identifiable controls and Cancel while original Surveyor - Service remains visible. Cleanup removed the created layer in the current page, but one Surveyor - Service was present on the next criterion's fresh GIS navigation; persistence/origin of that entry is not established. It was retained as an existing entry in subsequent criteria."
+  },
+  {
+    "criterion": "After selecting Cancel in the second Surveyor configuration, the configuration closes and the map returns with a visible Map layers list containing the same entries as the recorded pre-configuration list; no additional Surveyor layer is present and the original layer remains present.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis.png",
+      "screenshots/attempt-001/criterion-3-before-first-configuration.png",
+      "screenshots/attempt-001/criterion-3-after-first-configuration.png",
+      "screenshots/attempt-001/criterion-3-before-add-first-layer.png",
+      "screenshots/attempt-001/criterion-3-after-add-first-layer.png",
+      "screenshots/attempt-001/criterion-3-baseline-before-second-configuration.png",
+      "screenshots/attempt-001/criterion-3-after-second-configuration.png",
+      "screenshots/attempt-001/criterion-3-before-cancel.png",
+      "screenshots/attempt-001/criterion-3-after-cancel.png",
+      "screenshots/attempt-001/criterion-3-final.png",
+      "screenshots/attempt-001/criterion-3-cleanup-before-remove.png",
+      "screenshots/attempt-001/criterion-3-cleanup-after-remove.png"
+    ],
+    "steps_taken": [
+      "Navigate to exactly https://o2intelligence-v4-dev.metricell.com/launcher and verify visible launcher",
+      "Open GIS and wait for map to settle; observe one existing Surveyor - Service entry, preserve it",
+      "Open Surveyor configuration and add one default Surveyor - Service layer; new layer is second Map layers entry",
+      "Record separate baseline Map layers list [Surveyor - Service, Surveyor - Service] in that order and catalogue count 2",
+      "Open next Surveyor Add layer configuration; observe Active layer Service, Last 30 days and Cancel; do not press Add layer",
+      "Select Cancel and verify configuration closed; settled map has identical two-entry list and catalogue count 2",
+      "Capture decisive final state and read current browser URL",
+      "Cleanup: remove only newly added second entry; verify single existing entry remains"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Independent baseline has two Surveyor - Service entries (one existing and one added for this criterion). Cancel leaves the same entries, including the test-created second entry, and count 2. Cleanup removed only the newly added second entry and visibly restored the existing single-entry baseline."
+  },
+  {
+    "criterion": "After cancelling the second Surveyor configuration, Display Settings can be opened for the original layer and Show linked sites visibly has the same state as its separately recorded pre-cancellation baseline.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-after-open-gis.png",
+      "screenshots/attempt-001/criterion-4-before-first-configuration.png",
+      "screenshots/attempt-001/criterion-4-after-first-configuration.png",
+      "screenshots/attempt-001/criterion-4-before-add-first-layer.png",
+      "screenshots/attempt-001/criterion-4-after-add-first-layer.png",
+      "screenshots/attempt-001/criterion-4-before-baseline-display-settings.png",
+      "screenshots/attempt-001/criterion-4-baseline-linked-sites-checked.png",
+      "screenshots/attempt-001/criterion-4-before-close-baseline-settings.png",
+      "screenshots/attempt-001/criterion-4-after-close-baseline-settings.png",
+      "screenshots/attempt-001/criterion-4-before-second-configuration.png",
+      "screenshots/attempt-001/criterion-4-after-second-configuration.png",
+      "screenshots/attempt-001/criterion-4-before-cancel.png",
+      "screenshots/attempt-001/criterion-4-after-cancel.png",
+      "screenshots/attempt-001/criterion-4-before-reopen-display-settings.png",
+      "screenshots/attempt-001/criterion-4-after-reopen-display-settings.png",
+      "screenshots/attempt-001/criterion-4-final.png",
+      "screenshots/attempt-001/criterion-4-cleanup-before-close-settings.png",
+      "screenshots/attempt-001/criterion-4-cleanup-after-close-settings.png",
+      "screenshots/attempt-001/criterion-4-cleanup-before-remove.png",
+      "screenshots/attempt-001/criterion-4-cleanup-after-remove.png"
+    ],
+    "steps_taken": [
+      "Navigate to launcher and verify visible launcher",
+      "Open GIS",
+      "Open first test-created Surveyor configuration preserving existing layer",
+      "Add own default Surveyor layer as second Map layers entry",
+      "Open Display Settings for newly added Surveyor layer",
+      "Record Show linked sites checked; close baseline Display Settings with Escape without changing it",
+      "Open next Surveyor configuration without adding layer",
+      "Cancel second test configuration",
+      "Reopen Display Settings for original test-created layer",
+      "Compare own baseline and final: Show linked sites checked both before and after cancellation; Display Settings reopened",
+      "Cleanup: close Display Settings with Escape; remove only newly added second entry; verify single existing entry remains"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Show linked sites is checked in separately recorded baseline and reopened Display Settings after cancellation. No settings changed; pre-existing first layer preserved. Cleanup closed Display Settings and removed only newly added second entry; existing single-entry baseline retained."
+  }
+]
