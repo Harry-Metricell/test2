@@ -35,7 +35,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-53-guide-impact",
+      "handoffVersion": "TEST2-53:guide_impact_assessment:1",
+      "ticket": "TEST2-53",
+      "decision": "update_required",
+      "affectedSection": "GIS layer Display Settings — Show linked sites",
+      "reason": "The delivered behavior includes a user-facing Show linked sites control in Display Settings whose checked state can be changed and restored for a loaded Surveyor layer. The guide should explain where to find this control and how its state behaves when settings are reopened.",
+      "noOp": false,
+      "assessedAt": "2026-10-06T10:01:25.876Z"
+    },
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
