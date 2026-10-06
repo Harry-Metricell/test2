@@ -46,11 +46,17 @@ def localized_change_region(images):
     Broad changes (navigation, a dimmed map, a whole dialog) have no safe focus
     region. In that case the report shows the complete source screenshots only.
     """
+    # Only compare the captures displayed in this row. A region discovered in
+    # a later toggle must never be applied to an earlier setup/map screenshot.
     by_name = {image.name: image for image in images}
     for before in images:
         if "-before-" not in before.name:
             continue
         after = by_name.get(before.name.replace("-before-", "-after-", 1))
+        if after is None and len(images) == 2 and images[-1].stem.lower().endswith("-final"):
+            # Exact-state deduplication may retain `final` instead of `after`.
+            # Comparing this row's actual pixels remains the safety gate.
+            after = images[-1]
         if after is None:
             continue
         with Image.open(before) as left, Image.open(after) as right:
@@ -181,6 +187,7 @@ def report_exhibits(images, criterion):
     # Setup is supporting context, not the decisive UI state. A default-
     # configuration claim needs the configured dialog, not every loading step.
     needs_setup = bool(re.search(r"\bdefaults?\b", lower))
+    checks_configuration = needs_setup or bool(re.search(r"\b(configuration|configure|dialog)\b", lower))
     names = [image.stem.lower() for image in images]
     selected = []
     for image in images:
@@ -193,6 +200,12 @@ def report_exhibits(images, criterion):
             if not (needs_setup and any(term in name for term in ("after-add-dialog", "before-confirm-add"))):
                 continue
         if any(term in name for term in ("after-add-surveyor", "before-confirm-defaults")) and not needs_setup:
+            continue
+        if "after-open-layer-dialog" in name and not checks_configuration:
+            continue
+        # Loading a layer is setup for its settings/control checks. Preserve
+        # it for layer-loading assertions and unfamiliar action names.
+        if "after-add-layer" in name and not needs_setup and ("display settings" in lower or any("before-toggle" in other for other in names)):
             continue
         # A configured dialog is a stronger setup baseline than the preceding
         # empty map. Likewise the open-panel state supersedes before-opening it
@@ -638,9 +651,10 @@ def main():
             evidence_ids.append(unique_images[digest][0])
             # Share the physical image/ID, never another criterion's caption.
             exhibit = (unique_images[digest][0], image, public_browser_url(result.get("browserUrl")))
-            if not any(hashlib.sha256(entry[1].read_bytes()).hexdigest() == digest for entry in exhibits):
-                exhibits.append(exhibit)
-                captions.append(f"{exhibit[0]} - {evidence_caption(image)}")
+            # A restored state can reuse the original bytes but must still be
+            # shown after its intervening change. Physical IDs stay shared.
+            exhibits.append(exhibit)
+            captions.append(f"{exhibit[0]} - {evidence_caption(image)}")
             logical_images.append(image)
         trace = f"Evidence: {', '.join(dict.fromkeys(evidence_ids)) if evidence_ids else 'Unavailable'}"
         if not exhibits:
@@ -670,10 +684,11 @@ def main():
             for cell in row:
                 for paragraph in cell.paragraphs:
                     paragraph.paragraph_format.keep_with_next = True
-            focus = localized_change_region(all_criterion_images)
             for start in range(0, len(exhibits), 2):
                 label = f"Criterion {number}" + (" continued" if start else " evidence") + f": {criterion}"
-                add_image_row(cases, exhibits[start:start + 2], criterion_label=label, focus_region=focus if start == 0 else None)
+                row_exhibits = exhibits[start:start + 2]
+                focus = localized_change_region([exhibit[1] for exhibit in row_exhibits])
+                add_image_row(cases, row_exhibits, criterion_label=label, focus_region=focus)
 
     setup = supporting_captures(setup_candidates, unique_images)
     if setup:

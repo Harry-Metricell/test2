@@ -317,6 +317,56 @@ class ResultMatchingTests(unittest.TestCase):
             Image.new("RGB", (1440, 900), "blue").save(after)
             self.assertIsNone(REPORT.localized_change_region([before, after]))
 
+    def test_settings_exhibits_exclude_repeated_layer_setup(self):
+        names = [Path(name) for name in (
+            "criterion-1-after-open-layer-dialog.png", "criterion-1-after-add-layer.png",
+            "criterion-1-before-toggle.png", "criterion-1-after-toggle.png", "criterion-1-final.png")]
+        self.assertEqual(REPORT.report_exhibits(names, "Changing the control restores its original state."), names[2:])
+        self.assertEqual(REPORT.report_exhibits(names[:2] + [names[-1]], "Opening Display Settings shows the control."), [names[-1]])
+
+    def test_layer_setup_is_retained_when_it_is_the_assertion(self):
+        names = [Path(name) for name in (
+            "criterion-1-after-open-layer-dialog.png", "criterion-1-after-add-layer.png", "criterion-1-final.png")]
+        self.assertEqual(REPORT.report_exhibits(names, "The layer is loaded with its default configuration."), names)
+        self.assertEqual(REPORT.report_exhibits(names, "Opening the configuration dialog displays its controls."), names)
+        self.assertEqual(REPORT.report_exhibits(names, "Adding a layer shows it in the layer list."), names[1:])
+
+    def test_crop_is_bound_to_the_displayed_pair_not_setup(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            names = [root / name for name in (
+                "criterion-1-after-open-layer-dialog.png", "criterion-1-after-add-layer.png",
+                "criterion-1-before-toggle.png", "criterion-1-after-toggle.png", "criterion-1-final.png")]
+            for file in names:
+                Image.new("RGB", (1440, 900), "white").save(file)
+            from PIL import ImageDraw
+            changed = Image.open(names[3])
+            ImageDraw.Draw(changed).rectangle((1100, 250, 1115, 265), fill="blue")
+            changed.save(names[3])
+            changed.save(names[4])
+            self.assertIsNone(REPORT.localized_change_region(names[:2]))
+            self.assertIsNotNone(REPORT.localized_change_region(names[2:4]))
+            self.assertIsNotNone(REPORT.localized_change_region([names[2], names[4]]))
+            self.assertIsNone(REPORT.localized_change_region([names[4]]))
+
+    def test_restored_identical_state_is_printed_after_change(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            names = [root / name for name in ("criterion-1-before-toggle.png", "criterion-1-after-toggle.png", "criterion-1-final.png")]
+            Image.new("RGB", (1440, 900), "white").save(names[0])
+            Image.new("RGB", (1440, 900), "blue").save(names[1])
+            shutil.copy2(names[0], names[2])
+            (root / "criteria.md").write_text("- [ ] Restore the control.\n")
+            (root / "results.json").write_text(json.dumps([{"criterion": 1, "outcome": "Passed", "evidence": [p.name for p in names], "browserUrl": "https://example.test/gis"}]))
+            (root / "review.json").write_text(json.dumps({"ticket": "TEST2-99", "overallOutcome": "Passed", "criterionOutcomes": [{"criterion": "Restore the control.", "outcome": "Passed"}]}))
+            output = root / "report.docx"
+            subprocess.run([sys.executable, str(MODULE), "--template", str(MODULE.parents[1] / "assets/templates/Automated Test Case Template.docx"), "--review-output", str(root / "review.json"), "--criteria", str(root / "criteria.md"), "--results", str(root / "results.json"), "--screenshots", str(root), "--output", str(output), "--image-manifest", str(root / "manifest.json")], check=True)
+            document = Document(output)
+            self.assertEqual(len(document.inline_shapes), 3)
+            manifest = json.loads((root / "manifest.json").read_text())
+            self.assertEqual(manifest["embeddedEvidenceImages"], 2)
+            self.assertEqual(len(manifest["logicalEvidence"]), 3)
+
     def test_reopen_baseline_uses_settled_before_reopen_capture(self):
         names = [Path(name) for name in ("criterion-3-before-toggle.png", "criterion-3-after-toggle.png", "criterion-3-after-close.png", "criterion-3-before-reopen.png", "criterion-3-after-reopen.png", "criterion-3-final.png")]
         self.assertEqual(REPORT.report_exhibits(names, "Reopening settings retains the changed state."), [names[0], names[1], names[3], names[5]])
