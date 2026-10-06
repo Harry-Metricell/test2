@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-06T10:08:54.831+0100",
   "counts": {
     "tickets": 52,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 23,
       "Ready": 28,
@@ -704,7 +704,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Restore Show linked sites after two changes in V4 GIS",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-06T10:08:54.831+0100",
