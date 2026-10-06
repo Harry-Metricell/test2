@@ -12,8 +12,8 @@
     "byQaOutcome": {
       "Blocked": 13,
       "Failed": 1,
-      "Not Tested": 4,
-      "Passed": 30,
+      "Not Tested": 3,
+      "Passed": 31,
       "Unverified": 4
     }
   },
@@ -701,12 +701,12 @@
       "summary": "Restore Show linked sites after two changes in V4 GIS",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-06T10:08:54.831+0100",
       "retries": 0,
       "retryLimit": 2,

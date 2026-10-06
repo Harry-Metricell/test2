@@ -46,7 +46,7 @@ Updated: 2026-10-06T10:08:54.831+0100
 | TEST2-50 | READY FOR TESTING | Evidence Reviewed |  | Confirm Show linked sites can be changed and restored in V4 GIS Display Settings |
 | TEST2-51 | READY FOR TESTING | Evidence Reviewed |  | Reopen Surveyor Display Settings without losing the loaded V4 GIS layer |
 | TEST2-52 | READY FOR TESTING | Evidence Reviewed |  | Keep the Surveyor layer available while changing Show linked sites in V4 GIS |
-| TEST2-53 | READY FOR TESTING | Ready for Testing |  | Restore Show linked sites after two changes in V4 GIS |
+| TEST2-53 | READY FOR TESTING | Awaiting Evidence Review |  | Restore Show linked sites after two changes in V4 GIS |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 2/2 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/2 | Verify GIS layer and map view controls |
