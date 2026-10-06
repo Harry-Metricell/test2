@@ -18,6 +18,8 @@ PNG references point to local evidence, not GitHub file URLs.
 
 Use Passed only with direct screenshot evidence, Failed with direct contradiction, Unverified when evidence is inconclusive, and Blocked when required evidence/environment is unavailable. Never infer Passed from notes alone.
 
+An automation interaction error or missing comparison baseline is not proof of an application defect. Assess the recovered criterion-owned sequence if available; otherwise use Unverified or Blocked as above. The report displays Unverified as Failed but excludes it from confirmed-defect counts.
+
 Inspect actual visible states, not capture filenames or claimed tool success. An after-action image may still show an unsettled transition. Identify the later criterion-owned image that proves the required state, and note any discrepancy; if none proves it, mark Unverified rather than trusting the filename.
 
 For URL requirements, also require the result's browser-derived browserUrl and verify the required host/destination; page screenshots cannot prove the browser address.

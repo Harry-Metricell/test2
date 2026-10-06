@@ -19,6 +19,25 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_recovered_cancel_shows_decisive_pair_not_superseded_setup(self):
+        images = [Path(name) for name in ("criterion-2-before-open.png", "criterion-2-final.png",
+                  "criterion-2-before-open-recovered.png", "criterion-2-before-cancel-recovered.png",
+                  "criterion-2-final-recovered.png", "criterion-2-cleanup.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "Select Cancel and verify the dialog closes."), images[3:5])
+
+    def test_cancel_preserves_required_layer_list_baseline(self):
+        images = [Path(name) for name in ("criterion-3-before-open.png", "criterion-3-before-cancel.png", "criterion-3-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "After cancelling the Map layers list matches the initial baseline."), images)
+
+    def test_back_keeps_destination_and_return_not_launcher_setup(self):
+        images = [Path(name) for name in ("criterion-3-initial.png", "criterion-3-after-open-before-back.png", "criterion-3-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "Using the browser Back control returns to the launcher."), images[1:])
+
+    def test_only_direct_contradictions_count_as_defects(self):
+        self.assertEqual(REPORT.confirmed_defect_count("Failed"), 1)
+        for outcome in ("Passed", "Blocked", "Unverified"):
+            self.assertEqual(REPORT.confirmed_defect_count(outcome), 0)
+
     def test_close_uses_actual_before_state_not_launcher(self):
         images = [Path(name) for name in ("criterion-3-initial.png", "criterion-3-before-add.png",
                   "criterion-3-after-add-dialog.png", "criterion-3-before-open.png",
@@ -214,6 +233,9 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertFalse(heading.paragraph_format.page_break_before)
             cycle = document.tables[2]
             self.assertIn("1 blocked; 1 inconclusive", cycle.cell(5, 1).text)
+            self.assertIn("not a confirmed application defect", cycle.cell(5, 1).text)
+            self.assertEqual(document.tables[3].cell(1, 2).text, "Y")
+            self.assertEqual(document.tables[3].cell(1, 3).text, "0")
             self.assertEqual(cycle.cell(6, 1).text, "Blocked")
             self.assertEqual(cycle.cell(7, 1).text, "https://example.test/launcher")
             self.assertEqual(cycle.cell(2, 1).text, "example.test")

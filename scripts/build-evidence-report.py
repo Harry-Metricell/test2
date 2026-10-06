@@ -174,8 +174,13 @@ def report_exhibits(images, criterion):
         return []
     # Tester captures after `final` are cleanup evidence, not proof of the
     # criterion's asserted state; keep them in the local attempt, not the PDF.
+    # A completed recovery supersedes the unsuccessful interaction. Keep its
+    # criterion-owned states, not the old final or post-final cleanup captures.
+    recovered = {image.stem.lower().removesuffix("-recovered") for image in images
+                 if image.stem.lower().endswith("-recovered")}
+    images = [image for image in images if image.stem.lower() not in recovered]
     final_index = next((index for index, image in enumerate(images)
-                        if image.stem.lower().endswith("-final")), None)
+                        if re.search(r"-final(?:-recovered)?$", image.stem.lower())), None)
     if final_index is not None:
         images = images[:final_index + 1]
     lower = criterion.lower()
@@ -189,6 +194,7 @@ def report_exhibits(images, criterion):
     needs_setup = bool(re.search(r"\bdefaults?\b", lower))
     checks_configuration = needs_setup or bool(re.search(r"\b(configuration|configure|dialog)\b", lower))
     names = [image.stem.lower() for image in images]
+    checks_baseline = bool(re.search(r"\b(baseline|unchanged|matches|list|empty|initial|original)\b", lower))
     selected = []
     for image in images:
         name = image.stem.lower()
@@ -215,6 +221,14 @@ def report_exhibits(images, criterion):
         if "before-open" in name and any("before-close" in other for other in names):
             continue
         if "before-open" in name and any("after-open" in other and "gis" not in other for other in names):
+            continue
+        # A Cancel assertion needs the open dialog and returned map, not a
+        # redundant map capture preceding opening. Preserve list baselines.
+        if "before-open" in name and not checks_baseline and "cancel" in lower and any("before-cancel" in other for other in names):
+            continue
+        # Back navigation starts at the destination, not its earlier launcher
+        # setup. Keep destination-before-Back and returned-launcher evidence.
+        if name.endswith("-initial") and "browser back" in lower and any("before-back" in other for other in names):
             continue
         if "after-confirm" in name and any("after-open-display-settings" in other for other in names):
             continue
@@ -464,6 +478,17 @@ def outcome_text(outcome):
     }.get(text(outcome).lower(), "The criterion outcome was recorded from the evidence review.")
 
 
+def confirmed_defect_count(outcome):
+    """Count direct reviewed contradictions, never evidence gaps or blockers.
+
+    The review contract reserves Failed for direct contradiction and Unverified
+    for inconclusive evidence. The PDF displays both as Failed, but that display
+    mapping must not turn an evidence gap into a confirmed application defect.
+    Counts are criterion failures, not a deduplicated number of Jira bugs.
+    """
+    return int(text(outcome).lower() == "failed")
+
+
 def criteria_from_markdown(path):
     """Return the ordered human-readable criteria from canonical criteria.md."""
     values = []
@@ -569,6 +594,9 @@ def main():
 
     cycle = doc.tables[2]
     limitations = report_limitations(review, outcomes, results)
+    if any(text(item.get("outcome")).lower() == "unverified" for item in outcomes):
+        limitations += " Inconclusive evidence is reported as Failed, but is not a confirmed application defect."
+    limitations += " Defects (No.) counts directly contradicted criteria, not unique Jira bugs; blockers and inconclusive evidence count as zero."
     if no_evidence_block:
         limitations = "No browser evidence was captured; testing could not be completed. " + limitations
     urls = source_urls(results)
@@ -598,7 +626,7 @@ def main():
         set_cell(row[0], f"{index}. {label}")
         set_cell(row[1], "Y" if raw_outcome == "passed" else "N")
         set_cell(row[2], "Y" if raw_outcome in ("failed", "unverified") else "N")
-        set_cell(row[3], "1" if raw_outcome in ("failed", "unverified") else "0")
+        set_cell(row[3], str(confirmed_defect_count(raw_outcome)))
 
     context = doc.tables[4]
     context_values = [
