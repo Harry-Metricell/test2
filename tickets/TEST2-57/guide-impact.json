@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-57-guide-impact",
+  "handoffVersion": "TEST2-57:guide_impact_assessment:1",
+  "ticket": "TEST2-57",
+  "decision": "update_required",
+  "affectedSection": "GIS map navigation and layer display settings",
+  "reason": "Users need instructions for zooming the GIS map while retaining a loaded Surveyor layer and its Show linked sites display setting. This is a visible navigation and feature-persistence behavior that should be explained in the guide.",
+  "noOp": false,
+  "assessedAt": "2026-10-06T15:33:25.990Z"
+}
