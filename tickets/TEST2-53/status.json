@@ -20,5 +20,34 @@
     "reason": "The delivered behavior includes a user-facing Show linked sites control in Display Settings whose checked state can be changed and restored for a loaded Surveyor layer. The guide should explain where to find this control and how its state behaves when settings are reopened.",
     "noOp": false,
     "assessedAt": "2026-10-06T10:01:25.876Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-53-guide-update",
+    "handoffVersion": "TEST2-53:guide_update_authoring:1",
+    "ticket": "TEST2-53",
+    "title": "Restore Show linked sites after two changes in V4 GIS",
+    "affectedSection": "GIS layer Display Settings — Show linked sites",
+    "changeType": "amend",
+    "supersedesTicket": "TEST2-52",
+    "steps": [
+      "Open Display Settings for a loaded Surveyor layer.",
+      "Select Show linked sites to check or uncheck it.",
+      "Select Show linked sites again to restore the previous state without adding the layer again.",
+      "Close and reopen Display Settings to see the restored Show linked sites state on the same layer."
+    ],
+    "screenshots": [
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-4-final.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "screenshotCaptions": [
+      "Display Settings shows Show linked sites checked for the loaded Surveyor - Service layer.",
+      "After the second selection, Show linked sites is checked again while Surveyor - Service remains loaded.",
+      "After closing and reopening Display Settings, Show linked sites is checked for the same Surveyor - Service layer."
+    ],
+    "reason": "Amend the existing Show linked sites guidance to explain changing and restoring the setting without re-adding the Surveyor layer and confirming the restored state when Display Settings is reopened.",
+    "noOp": false,
+    "authoredAt": "2026-10-06T10:08:30.299Z"
   }
 }
