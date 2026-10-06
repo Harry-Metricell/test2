@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-60",
+  "id": "106546",
+  "summary": "Keep a changed Show linked sites state when closing and reopening GIS Display Settings",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-60",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-06T17:52:26.710+0100",
+    "updated": "2026-10-06T17:52:45.577+0100"
+  },
+  "description": "Verify persistence of a deliberately changed setting within the current session, not merely persistence of the default.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/launcher. Use existing authorised access, open GIS and load one test-created Surveyor layer using its defaults. Record the layer identity and Show linked sites initial state. Do not change saved records or other users' layers.\nAcceptance criteria\nDisplay Settings for the test-created Surveyor layer shows an identifiable initial Show linked sites checkbox state.\nChanging Show linked sites once visibly changes it to the opposite state, without adding another layer.\nAfter changing it to the opposite state, closing and reopening Display Settings for the same layer shows the changed state, not the original; the layer remains loaded.\nChanging it back to the recorded original state and closing/reopening Display Settings again shows the original state, with the same layer still loaded.\nEach comparison must have its own ordered before/change/reopen evidence and identify the same layer. Scope is checkbox state in one browser session, not linked-site data correctness or reload/login persistence. Restore the original checkbox and remove only the test-created layer during cleanup.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-60/ticket.json",
+    "criteria": "tickets/TEST2-60/criteria.md",
+    "status": "tickets/TEST2-60/status.json",
+    "screenshots": "tickets/TEST2-60/screenshots/",
+    "reports": "tickets/TEST2-60/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106546",
+    "importedAt": "2026-10-06T17:52:45.577+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-06T17:52:45.577+0100",
+    "criteriaVerified": false
+  }
+}

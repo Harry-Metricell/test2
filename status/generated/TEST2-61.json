@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-61",
+  "id": "106547",
+  "summary": "Recover the GIS layer catalogue from a no-match search without changing loaded layers",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-61",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-06T17:52:28.529+0100",
+    "updated": "2026-10-06T17:52:48.771+0100"
+  },
+  "description": "Exercise a negative search result followed by recovery while real map content is loaded.\nEnvironment: https://o2intelligence-v4-dev.metricell.com/launcher. Use existing authorised access, open GIS and load one test-created Surveyor layer using defaults. Record the visible Map layers list, layer identity, empty Search layers field, Surveyor and a non-Surveyor catalogue entry such as Beacons. Use Search layers, not Search Map.\nAcceptance criteria\nBefore filtering, the unfiltered catalogue shows Surveyor and the recorded non-Surveyor entry; the test-created layer is identifiable in Map layers or the legend.\nEntering the deliberately non-matching text TEST2_NO_SUCH_LAYER_20261006 in Search layers makes both recorded catalogue entries absent from the filtered catalogue. The entered search text remains visible and the existing Map layers list is unchanged.\nClearing Search layers restores both recorded catalogue entries and leaves the original Map layers list unchanged, without adding or removing any layer.\nA subsequent search for Surveyor shows the matching entry; clearing it again restores the original catalogue and the same loaded layers. No error page or sign-in screen interrupts the search journey.\nDo not require a specific no-results message or invent an empty-state label: evidence must show the actual filtered catalogue, search text and complete loaded-layer list. Capture each criterion's own before/after states. Restore the initial search text and remove only the layer created for this test; preserve existing layers.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-61/ticket.json",
+    "criteria": "tickets/TEST2-61/criteria.md",
+    "status": "tickets/TEST2-61/status.json",
+    "screenshots": "tickets/TEST2-61/screenshots/",
+    "reports": "tickets/TEST2-61/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106547",
+    "importedAt": "2026-10-06T17:52:48.771+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-06T17:52:48.771+0100",
+    "criteriaVerified": false
+  }
+}

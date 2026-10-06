@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-06T15:47:25.828+0100",
+  "generatedAt": "2026-10-06T17:52:51.783+0100",
   "counts": {
-    "tickets": 58,
-    "handoffs": 1,
+    "tickets": 61,
+    "handoffs": 4,
     "byWorkflowState": {
       "Blocked": 25,
-      "Ready": 32,
+      "Ready": 35,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 6,
       "Passed": 35,
       "Unverified": 5
     }
@@ -804,6 +804,54 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-06T15:47:25.828+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-60",
+      "summary": "Keep a changed Show linked sites state when closing and reopening GIS Display Settings",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-06T17:52:45.577+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-61",
+      "summary": "Recover the GIS layer catalogue from a no-match search without changing loaded layers",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-06T17:52:48.771+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-62",
+      "summary": "Navigate from the V4 launcher through GIS and API Request Audit and back",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-06T17:52:51.783+0100",
       "retries": 0,
       "retryLimit": 2,
       "retryLabel": ""
