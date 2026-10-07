@@ -1,0 +1,106 @@
+[
+  {
+    "criterion": "With GIS open and Search layers empty, the layer catalogue visibly contains a Surveyor entry, and the currently loaded Map layers list is recorded as the baseline.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher URL and waited for the authenticated launcher.",
+      "Captured criterion-1-initial.png before clicking Open GIS.",
+      "Clicked Open GIS and waited for Surveyor and the map to settle.",
+      "Observed empty Search layers and a visible Surveyor catalogue entry. Inspected the full accessibility snapshot and rendered page; no Map layers list or loaded-layer controls were displayed.",
+      "Captured destination transition and final evidence and read the current GIS URL. No test-created state required restoration."
+    ],
+    "observedResult": "Search layers was empty; Surveyor was visible and the map rendered. The required Map layers list was not displayed, so its entries/order could not be recorded as a supported baseline.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "The existing authorised GIS configuration did not display the required Map layers list. No supported loaded-layer baseline or before/after comparison was available. Adding a layer to manufacture a baseline was outside the prescribed workflow.",
+    "blockerCode": "map_layers_baseline_unavailable",
+    "retryClass": "prerequisite"
+  },
+  {
+    "criterion": "After entering Surveyor in Search layers, the entered text remains visible and the filtered catalogue visibly contains a Surveyor entry, without loading or removing a map layer.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-before-search.png",
+      "screenshots/attempt-001/criterion-2-after-search.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-before-cleanup-clear.png",
+      "screenshots/attempt-001/criterion-2-cleanup-after-clear.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL, waited for the launcher, and saved initial evidence.",
+      "Clicked Open GIS, waited for the map and Surveyor, and recorded the empty search and original catalogue; no Map layers list was displayed.",
+      "Saved before-search evidence and filled Search layers with Surveyor.",
+      "Verified Search layers retained Surveyor and the catalogue filtered to Tests and Measurements / Surveyor. No Add layer or Remove layer control was operated.",
+      "Captured after-search and final evidence and read the current GIS URL.",
+      "After the decisive final capture, cleared the search, waited for Network Information to return, and captured separate cleanup evidence."
+    ],
+    "observedResult": "Surveyor remained in Search layers and was the sole catalogue entry under Tests and Measurements. The map remained visible and no layer action was taken; the missing Map layers list prevented direct verification of loaded-layer invariance.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "The existing authorised GIS configuration did not display the required Map layers list. No supported loaded-layer baseline or before/after comparison was available. Adding a layer to manufacture a baseline was outside the prescribed workflow.",
+    "blockerCode": "map_layers_baseline_unavailable",
+    "retryClass": "prerequisite"
+  },
+  {
+    "criterion": "After clearing Search layers, the original catalogue entries are visible again, and the loaded Map layers list contains the same entries in the same order as the recorded baseline.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis.png",
+      "screenshots/attempt-001/criterion-3-before-search.png",
+      "screenshots/attempt-001/criterion-3-after-search.png",
+      "screenshots/attempt-001/criterion-3-before-clear.png",
+      "screenshots/attempt-001/criterion-3-after-clear.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL, waited for the launcher, and saved initial evidence.",
+      "Opened GIS and waited for Surveyor and the map. Recorded the original catalogue text with Search layers empty; no Map layers list was displayed.",
+      "Saved before-search evidence, entered Surveyor, waited for Network Information to disappear, and verified the filtered Surveyor entry.",
+      "Saved after-search and before-clear evidence, then cleared Search layers.",
+      "Waited for Network Information to return. Compared the restored page's catalogue text against this criterion's pre-search text: identical entries and order. Search layers was empty.",
+      "Read the current GIS URL and captured after-clear and final evidence. The search was restored; no layers or other configuration were changed."
+    ],
+    "observedResult": "Clearing the search restored the same catalogue entries and order as this criterion's pre-search baseline. The Map layers list was absent before and after, preventing comparison of loaded-layer entries/order.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "The existing authorised GIS configuration did not display the required Map layers list. No supported loaded-layer baseline or before/after comparison was available. Adding a layer to manufacture a baseline was outside the prescribed workflow.",
+    "blockerCode": "map_layers_baseline_unavailable",
+    "retryClass": "prerequisite"
+  },
+  {
+    "criterion": "After the catalogue is restored, the application remains in GIS with the map visible and no application-error page or sign-in screen has interrupted the search-and-clear journey.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-after-open-gis.png",
+      "screenshots/attempt-001/criterion-4-before-search.png",
+      "screenshots/attempt-001/criterion-4-after-search.png",
+      "screenshots/attempt-001/criterion-4-before-clear.png",
+      "screenshots/attempt-001/criterion-4-after-clear.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL, waited for the launcher, and saved initial evidence.",
+      "Opened GIS, waited for the map and Surveyor, and captured the original catalogue with Search layers empty.",
+      "Saved before-search evidence, entered Surveyor, waited for the filtered catalogue, and verified Surveyor remained visible.",
+      "Saved after-search and before-clear evidence, then cleared Search layers and waited for Network Information to return.",
+      "Compared the restored catalogue text with this criterion's own pre-search baseline: identical. Verified the Map region was visible and the page remained GIS at the exact /gis URL. No application-error page or sign-in screen interrupted the journey.",
+      "Saved after-clear and final PNGs before any cleanup. The search was already restored and no other test-created state remained."
+    ],
+    "observedResult": "The catalogue was restored, Search layers was empty, and the map remained visible in GIS at https://o2intelligence-v4-dev.metricell.com/gis. No application-error page or sign-in interruption was observed throughout this independent search-and-clear journey.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98"
+  }
+]
