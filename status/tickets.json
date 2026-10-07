@@ -3,16 +3,16 @@
   "generatedAt": "2026-10-07T12:33:42.965+0100",
   "counts": {
     "tickets": 62,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 26,
-      "Ready": 35,
+      "Blocked": 25,
+      "Ready": 36,
       "Rejected": 1
     },
     "byQaOutcome": {
-      "Blocked": 15,
+      "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 38,
       "Unverified": 5
     }
@@ -860,13 +860,13 @@
       "key": "TEST2-63",
       "summary": "Filter the V4 GIS layer catalogue for Surveyor and restore the original view",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required; final evidence report published",
+      "nextAction": "Create criteria conversion handoff",
       "updatedAt": "2026-10-07T12:33:42.965+0100",
       "retries": 0,
       "retryLimit": 2,

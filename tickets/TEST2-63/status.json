@@ -1,13 +1,13 @@
 {
   "ticket": "TEST2-63",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Blocked",
+  "qaStatus": "Not Tested",
   "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 2,
-  "criteriaVerified": true,
-  "blockedStage": "reviewed",
-  "qaOutcome": "Blocked",
-  "workflowState": "Blocked",
-  "nextAction": "Manual review required; final evidence report published"
+  "criteriaVerified": false,
+  "blockedStage": null,
+  "qaOutcome": "Not Tested",
+  "workflowState": "READY FOR TESTING",
+  "nextAction": "Create criteria conversion handoff"
 }

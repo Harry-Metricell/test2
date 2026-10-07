@@ -1,0 +1,14 @@
+{
+  "ticket": "TEST2-63",
+  "archivedOn": "2026-10-07",
+  "reason": "User approved reopening after correcting the Jira setup to permit an identifiable temporary Surveyor layer and safe cleanup. The old run remains Blocked; it is not reclassified as a pass.",
+  "previousOutcome": "Blocked",
+  "previousAttempts": 1,
+  "scopeChanged": true,
+  "newCycle": true,
+  "privateEvidenceArchive": "C:/Users/harry.piper/Documents/V4-QA-evidence/TEST2-63/previous-runs/2026-10-07-original-setup",
+  "evidencePathMapping": {
+    "screenshots/attempt-001": "previous-runs/2026-10-07-original-setup/screenshots/attempt-001",
+    "reports": "previous-runs/2026-10-07-original-setup/reports"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "ticket": "TEST2-63",
+  "jiraStatus": "READY FOR TESTING",
+  "qaStatus": "Blocked",
+  "status": "READY FOR TESTING",
+  "retries": 0,
+  "retryLimit": 2,
+  "criteriaVerified": true,
+  "blockedStage": "reviewed",
+  "qaOutcome": "Blocked",
+  "workflowState": "Blocked",
+  "nextAction": "Manual review required; final evidence report published"
+}
