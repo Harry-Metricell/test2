@@ -20,5 +20,32 @@
     "reason": "The delivered behavior changes a visible GIS Display Settings interaction: a user's changed Show linked sites choice is retained when Display Settings is closed and reopened for the same layer. The guide should explain this setting and its session behavior.",
     "noOp": false,
     "assessedAt": "2026-10-07T09:09:09.607Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-60-guide-update",
+    "handoffVersion": "TEST2-60:guide_update_authoring:1",
+    "ticket": "TEST2-60",
+    "title": "Keep the Show linked sites choice when reopening Display Settings",
+    "affectedSection": "GIS Display Settings: Show linked sites",
+    "changeType": "add",
+    "steps": [
+      "Open Display Settings for the loaded Surveyor layer.",
+      "Select Show linked sites to check or uncheck the setting.",
+      "Close Display Settings; the loaded layer remains available.",
+      "Reopen Display Settings for the same layer to see your Show linked sites choice retained.",
+      "Select Show linked sites again when you want to change the setting back."
+    ],
+    "screenshots": [
+      "screenshots/attempt-001/criterion-3-after-reopen.png",
+      "screenshots/attempt-001/criterion-4-after-second-reopen.png"
+    ],
+    "screenshotCaptions": [
+      "Display Settings is reopened for the same selected Surveyor - Service layer, and Show linked sites remains unchecked after the changed setting was closed and reopened.",
+      "Display Settings is reopened for the same selected Surveyor - Service layer, and Show linked sites is checked after the setting was changed back and reopened."
+    ],
+    "reason": "Adds instructions for changing Show linked sites and retaining the selected state when Display Settings is closed and reopened for the same loaded Surveyor layer.",
+    "noOp": false,
+    "authoredAt": "2026-10-07T09:12:09.355Z"
   }
 }
