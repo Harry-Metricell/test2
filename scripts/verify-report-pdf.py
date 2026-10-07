@@ -15,6 +15,7 @@ MAX_COARSE_RGB_DIFFERENCE = 12
 MAX_MEAN_RGB_DIFFERENCE = 6
 MAX_HIGH_DIFFERENCE_FRACTION = 0.03
 MAX_TILE_RGB_DIFFERENCE = 24
+COMPARISON_LONG_EDGE = 512
 
 
 def image_fingerprint(image):
@@ -75,11 +76,19 @@ def pixel_difference(source, embedded):
     )
     if sum(ImageStat.Stat(coarse).mean) / 3 > MAX_COARSE_RGB_DIFFERENCE:
         return None
+    # Normalize BOTH images. Comparing a Lanczos-resized source directly with
+    # Word's differently sampled JPEG mistakes dense map edges for missing
+    # evidence. A common bounded resolution removes sampling noise without
+    # increasing the mean, changed-pixel, or localized-change thresholds.
+    scale = min(1, COMPARISON_LONG_EDGE / max(source.size),
+                max(embedded.size) / max(source.size))
+    comparison_size = (max(1, round(source.width * scale)), max(1, round(source.height * scale)))
     difference = ImageChops.difference(
-        source.resize(embedded.size, Image.Resampling.LANCZOS), embedded
+        source.resize(comparison_size, Image.Resampling.LANCZOS),
+        embedded.resize(comparison_size, Image.Resampling.LANCZOS),
     )
     mean = sum(ImageStat.Stat(difference).mean) / 3
-    high_fraction = sum(difference.convert("L").histogram()[21:]) / (embedded.width * embedded.height)
+    high_fraction = sum(difference.convert("L").histogram()[21:]) / (comparison_size[0] * comparison_size[1])
     tiles = difference.resize((16, 10), Image.Resampling.BOX)
     max_tile = max(sum(rgb) / 3 for rgb in tiles.get_flattened_data())
     if (mean > MAX_MEAN_RGB_DIFFERENCE or high_fraction > MAX_HIGH_DIFFERENCE_FRACTION
@@ -92,6 +101,16 @@ def match_expected_images(expected, observed):
     """Find a distinct PDF image for each source, even when similar pages repeat."""
     candidates = []
     comparison_cache = {}
+    normalized = {}
+
+    def comparison_image(record):
+        digest = record["sourceSha256"]
+        if digest not in normalized:
+            image = record["image"]
+            scale = min(1, COMPARISON_LONG_EDGE / max(image.size))
+            size = (max(1, round(image.width * scale)), max(1, round(image.height * scale)))
+            normalized[digest] = image.resize(size, Image.Resampling.LANCZOS) if size != image.size else image
+        return normalized[digest]
     for item in expected:
         ranked = []
         for index, image in enumerate(observed):
@@ -100,11 +119,13 @@ def match_expected_images(expected, observed):
             else:
                 key = (item["sourceSha256"], image["sourceSha256"])
                 if key not in comparison_cache:
-                    comparison_cache[key] = pixel_difference(item["image"], image["image"])
+                    # Decode/normalize each unique picture once, not once for
+                    # every source/PDF candidate in a long report.
+                    comparison_cache[key] = pixel_difference(comparison_image(item), comparison_image(image))
                 metrics = comparison_cache[key]
                 if metrics is None:
                     continue
-                method, rank = "resized_rgb_pixels", 1
+                method, rank = "normalized_rgb_pixels", 1
             ranked.append((rank, metrics[0], metrics[1], index, method))
         candidates.append(sorted(ranked))
 
@@ -136,6 +157,7 @@ def match_expected_images(expected, observed):
         matched.append({"file": item["file"], "page": image["page"], "pdfImage": image["name"],
                         "method": method, "meanRgbDifference": mean,
                         "highDifferenceFraction": high_fraction,
+                        "sourceSize": list(item["image"].size), "pdfImageSize": list(image["image"].size),
                         "fingerprintDistance": fingerprint_distance(item["visualFingerprint"], image["visualFingerprint"])})
     return matched, missing
 
@@ -175,7 +197,8 @@ def main():
     observed = pdf_images(args.pdf)
     matched, missing = match_expected_images(expected, observed)
     content_verified = verify_report_content(args.pdf, manifest.get("reportContent"))
-    audit = {"verificationMethod": "source_sha256_then_resized_rgb_pixels" if expected else "explicit_untested_block_content",
+    audit = {"verificationMethod": "source_sha256_then_normalized_rgb_pixels" if expected else "explicit_untested_block_content",
+             "comparisonLongEdgeMax": COMPARISON_LONG_EDGE,
              "pixelMeanMax": MAX_MEAN_RGB_DIFFERENCE,
              "pixelHighDifferenceFractionMax": MAX_HIGH_DIFFERENCE_FRACTION,
              "pixelTileDifferenceMax": MAX_TILE_RGB_DIFFERENCE,
@@ -184,7 +207,7 @@ def main():
              "reportContentVerified": content_verified}
     print(json.dumps(audit))
     if missing:
-        raise SystemExit(f"converted PDF is missing browser evidence: {', '.join(missing)}")
+        raise SystemExit(f"could not verify browser evidence identity after PDF conversion: {', '.join(missing)}")
 
 
 def validate_no_evidence_block(manifest):

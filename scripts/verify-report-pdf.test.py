@@ -2,6 +2,8 @@
 import importlib.util
 from pathlib import Path
 import sys
+import io
+import random
 import unittest
 from unittest.mock import patch
 
@@ -34,6 +36,33 @@ def observed(name, image, source_hash):
 
 
 class PdfEvidenceIdentityTests(unittest.TestCase):
+    def test_dense_map_survives_word_downsampling_and_jpeg_compression(self):
+        screenshot = Image.new("RGB", (1440, 900), (156, 221, 246))
+        draw = ImageDraw.Draw(screenshot)
+        rng = random.Random(61)
+        for _ in range(18000):
+            x, y = rng.randrange(1440), rng.randrange(900)
+            draw.ellipse((x, y, x + 3, y + 3), fill=rng.choice([(160, 80, 170), (80, 160, 90), (250, 220, 50)]))
+        buffer = io.BytesIO()
+        screenshot.resize((719, 449), Image.Resampling.BICUBIC).save(buffer, format="JPEG", quality=85, subsampling=0)
+        converted = Image.open(io.BytesIO(buffer.getvalue())).convert("RGB")
+        _, missing = VERIFY.match_expected_images(
+            [expected("map.png", screenshot, "source")],
+            [observed("map.jpg", converted, "converted")],
+        )
+        self.assertEqual(missing, [])
+
+    def test_normalization_still_rejects_a_local_control_state_change(self):
+        screenshot = Image.new("RGB", (1440, 900), (240, 243, 250))
+        changed = screenshot.copy()
+        ImageDraw.Draw(changed).rectangle((620, 320, 670, 370), fill=(20, 40, 80))
+        converted = changed.resize((719, 449), Image.Resampling.BICUBIC)
+        _, missing = VERIFY.match_expected_images(
+            [expected("control.png", screenshot, "source")],
+            [observed("control.jpg", converted, "changed")],
+        )
+        self.assertEqual(missing, ["control.png"])
+
     def test_only_explicit_wholly_blocked_report_can_have_no_images(self):
         manifest = {"noEvidenceBlock": {"reviewOutcomes": ["Blocked"], "testerOutcomes": ["Blocked"], "reasons": ["Browser tools unavailable."]},
                     "reportContent": {"overallOutcome": "Blocked", "limitations": "No browser evidence was captured; testing could not be completed."}}
@@ -92,7 +121,7 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
         resized = image.resize((720, 450), Image.Resampling.LANCZOS)
         matched, missing = VERIFY.match_expected_images([expected("criterion-1.png", image, "source-a")], [observed("Image1.png", resized, "converted")])
         self.assertEqual(missing, [])
-        self.assertEqual(matched[0]["method"], "resized_rgb_pixels")
+        self.assertEqual(matched[0]["method"], "normalized_rgb_pixels")
 
     def test_accepts_word_pdf_recompressed_screenshot(self):
         # Reproduce the source -> PDF image conversion seen in production:
@@ -110,7 +139,7 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
             [observed("Image72.jpg", converted_image, "converted")],
         )
         self.assertEqual(missing, [])
-        self.assertEqual(matched[0]["method"], "resized_rgb_pixels")
+        self.assertEqual(matched[0]["method"], "normalized_rgb_pixels")
 
     def test_fingerprint_changes_do_not_hide_a_matching_converted_screenshot(self):
         image = patterned_image((20, 40, 60))
@@ -121,7 +150,7 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
             [expected("criterion-1.png", image, "source-a")], [converted]
         )
         self.assertEqual(missing, [])
-        self.assertEqual(matched[0]["method"], "resized_rgb_pixels")
+        self.assertEqual(matched[0]["method"], "normalized_rgb_pixels")
         self.assertGreater(matched[0]["fingerprintDistance"], 12)
 
 
