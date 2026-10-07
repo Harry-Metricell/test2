@@ -46,7 +46,33 @@
       "noOp": false,
       "assessedAt": "2026-10-06T12:25:30.710Z"
     },
-    "guideUpdate": null,
+    "guideUpdate": {
+      "schema": "v4-user-guide-update.v1",
+      "handoffId": "handoff-TEST2-55-guide-update",
+      "handoffVersion": "TEST2-55:guide_update_authoring:1",
+      "ticket": "TEST2-55",
+      "title": "Open API Request Audit and return to the V4 launcher",
+      "affectedSection": "API Request Audit",
+      "changeType": "add",
+      "steps": [
+        "From the V4 launcher, select Open API request audit on the API Request Audit card.",
+        "Use the API Request Audit dashboard to view request metrics, the Requests and errors over time chart, and Request explorer.",
+        "Use the browser Back control to return to the V4 launcher and display its module cards again."
+      ],
+      "screenshots": [
+        "screenshots/attempt-001/criterion-1-after-hover.png",
+        "screenshots/attempt-001/criterion-2-after-open.png",
+        "screenshots/attempt-001/criterion-3-after-back.png"
+      ],
+      "screenshotCaptions": [
+        "The V4 launcher shows the API Request Audit card with its active open control.",
+        "The API Request Audit dashboard shows identifiable module content, including request metrics and the Requests and errors over time chart.",
+        "The browser Back control has returned to the V4 launcher, where the module cards are visible again."
+      ],
+      "reason": "Add a generated opening-and-return workflow using the passed evidence. The historical TEST2-31 record has no section marker in the living guide and cannot be amended; preserve existing manually authored guidance.",
+      "noOp": false,
+      "authoredAt": "2026-10-07T09:24:09.762Z"
+    },
     "retries": 0,
     "blockedStage": null,
     "updatedAt": "2026-10-06T13:04:58.206+0100",

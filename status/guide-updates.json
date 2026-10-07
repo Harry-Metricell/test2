@@ -52,6 +52,11 @@
       "affectedSection": "GIS layer Display Settings — Show linked sites"
     },
     {
+      "ticket": "TEST2-55",
+      "title": "Open API Request Audit and return to the V4 launcher",
+      "affectedSection": "API Request Audit"
+    },
+    {
       "ticket": "TEST2-57",
       "title": "Zoom the GIS map without losing a loaded Surveyor layer or its display setting",
       "affectedSection": "GIS map navigation and layer display settings"
