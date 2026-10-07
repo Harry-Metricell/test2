@@ -254,7 +254,7 @@ class ResultMatchingTests(unittest.TestCase):
             first = screenshots / "criterion-1-initial.png"
             Image.new("RGB", (1440, 900), "blue").save(first)
             shutil.copy2(first, screenshots / "criterion-1-final.png")
-            criteria = ["The launcher is displayed.", "A restricted user cannot open Surveyor."]
+            criteria = ["The launcher is displayed with all available module cards and each card has its own Open module control.", "A restricted user cannot open Surveyor."]
             (root / "criteria.md").write_text("".join(f"- [ ] {item}\n" for item in criteria), encoding="utf-8")
             (root / "results.json").write_text(json.dumps([
                 {"criterion": 1, "outcome": "Unverified", "browserUrl": "https://example.test/launcher",
@@ -277,7 +277,19 @@ class ResultMatchingTests(unittest.TestCase):
                             "--output", str(output), "--image-manifest", str(manifest)], check=True)
             document = Document(output)
             heading = next(paragraph for paragraph in document.paragraphs if paragraph.text.strip() == "Test Cases")
-            self.assertFalse(heading.paragraph_format.page_break_before)
+            self.assertTrue(heading.paragraph_format.page_break_before)
+            self.assertEqual(document.tables[3].cell(1, 0).text, f"1. {criteria[0]}")
+            self.assertNotIn("...", document.tables[3].cell(1, 0).text)
+            self.assertIsNotNone(document.tables[3].rows[1]._tr.trPr.find(REPORT.qn("w:cantSplit")))
+            opening = heading._p
+            while opening is not document.tables[5]._tbl:
+                paragraphs = [opening] if opening.tag == REPORT.qn("w:p") else list(opening.iter(REPORT.qn("w:p")))
+                for paragraph in paragraphs:
+                    self.assertIsNotNone(paragraph.pPr.find(REPORT.qn("w:keepNext")))
+                opening = opening.getnext()
+                self.assertIsNotNone(opening)
+            self.assertEqual(document.tables[5].cell(1, 0).text, "1.0.0")
+            self.assertEqual(document.tables[5].cell(1, 1).text, criteria[0])
             cycle = document.tables[2]
             self.assertIn("1 blocked; 1 inconclusive", cycle.cell(5, 1).text)
             self.assertIn("not a confirmed application defect", cycle.cell(5, 1).text)
@@ -292,7 +304,7 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("Browser URL recorded after criterion: https://example.test/launcher", case_text)
             self.assertIn("Failed", case_text)  # Unverified remains Failed in the PDF convention.
             cases = document.tables[5]
-            self.assertIn("The launcher is displayed.", cases.rows[1].cells[1].text)
+            self.assertEqual(criteria[0], cases.rows[1].cells[1].text)
             self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[2].cells[0].tables[0].cell(0, 0).text)
             self.assertIn("A restricted user", cases.rows[3].cells[1].text)
             self.assertNotIn("Supporting setup captures", case_text)

@@ -7,7 +7,6 @@ import hashlib
 from datetime import datetime
 from pathlib import Path
 import re
-import textwrap
 from urllib.parse import urlsplit, urlunsplit
 
 from docx import Document
@@ -641,7 +640,8 @@ def main():
                 node.get(qn("w:type")) == "page" for node in previous.iter(qn("w:br"))
             ):
                 previous.getparent().remove(previous)
-            paragraph.paragraph_format.page_break_before = False
+            # Break on the heading itself, never on an empty spacer paragraph.
+            paragraph.paragraph_format.page_break_before = True
 
     metadata = doc.tables[0]
     if len(metadata.rows) >= 5:
@@ -680,11 +680,14 @@ def main():
     while len(summary.rows) > 1:
         summary._tbl.remove(summary.rows[-1]._tr)
     for index, item in enumerate(outcomes, 1):
-        row = summary.add_row().cells
+        summary_row = summary.add_row()
+        # Keep each full criterion together when the summary spans pages.
+        summary_row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+        row = summary_row.cells
         raw_outcome = text(item.get("outcome")).lower()
-        # The complete criterion remains in the test-case table. A short label
-        # keeps the four-row overview together instead of orphaning its last row.
-        label = textwrap.shorten(display_criterion(item.get("criterion"), criteria), width=48, placeholder="...")
+        # Preserve the complete requirement; wrapping is preferable to hiding
+        # the distinguishing part of a criterion behind an ellipsis.
+        label = display_criterion(item.get("criterion"), criteria)
         set_cell(row[0], f"{index}. {label}")
         set_cell(row[1], "Y" if raw_outcome == "passed" else "N")
         set_cell(row[2], "Y" if raw_outcome in ("failed", "unverified") else "N")
@@ -713,6 +716,21 @@ def main():
         following = next_element
     remove_rows(cases)
     repeat_table_header(cases)
+    # Keep the opening headings, explanation and preconditions with the first
+    # criterion rather than leaving a section opening without any test case.
+    opening = next(p for p in doc.paragraphs if p.text.strip() == "Test Cases")
+    element = opening._p
+    while element is not None and element is not cases._tbl:
+        if element.tag == qn("w:p"):
+            properties = element.get_or_add_pPr()
+            if properties.find(qn("w:keepNext")) is None:
+                properties.append(OxmlElement("w:keepNext"))
+        elif element.tag == qn("w:tbl"):
+            for paragraph in element.iter(qn("w:p")):
+                properties = paragraph.get_or_add_pPr()
+                if properties.find(qn("w:keepNext")) is None:
+                    properties.append(OxmlElement("w:keepNext"))
+        element = element.getnext()
     column_count = len(cases.columns)
     if column_count not in (5, 6):
         raise SystemExit(f"template case table must have five or six columns, found {column_count}")
