@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-06T17:52:51.783+0100",
   "counts": {
     "tickets": 61,
-    "handoffs": 4,
+    "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 25,
       "Ready": 35,
@@ -816,7 +816,7 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Keep the Show linked sites choice when reopening Display Settings",
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-06T17:52:45.577+0100",

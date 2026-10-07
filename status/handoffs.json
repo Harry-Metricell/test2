@@ -24,27 +24,6 @@
       }
     },
     {
-      "handoffId": "handoff-TEST2-60-guide-update",
-      "handoffVersion": "TEST2-60:guide_update_authoring:1",
-      "action": "guide_update_authoring",
-      "brief": "docs/briefs/user-guide-authoring.md",
-      "owner": "guide-update-author",
-      "ticket": "TEST2-60",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-60/ticket.json",
-        "generated": "status/generated/TEST2-60.json",
-        "review": "tickets/TEST2-60/review.json",
-        "report": "tickets/TEST2-60/report.md",
-        "results": "tickets/TEST2-60/results.json",
-        "impact": "tickets/TEST2-60/guide-impact.json",
-        "policy": "config/user-guide-update-policy.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-60/guide-update.json",
-        "schema": "v4-user-guide-update.v1"
-      }
-    },
-    {
       "handoffId": "handoff-TEST2-61-review-attempt-001",
       "handoffVersion": "TEST2-61:evidence_review:1",
       "attempt": 1,
