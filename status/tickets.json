@@ -12,8 +12,8 @@
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 4,
-      "Passed": 37,
+      "Not Tested": 3,
+      "Passed": 38,
       "Unverified": 5
     }
   },
@@ -845,12 +845,12 @@
       "summary": "Navigate from the V4 launcher through GIS and API Request Audit and back",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-06T17:52:51.783+0100",
       "retries": 0,
       "retryLimit": 2,
