@@ -9,5 +9,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-61-guide-impact",
+    "handoffVersion": "TEST2-61:guide_impact_assessment:1",
+    "ticket": "TEST2-61",
+    "decision": "update_required",
+    "affectedSection": "GIS layer catalogue search and filtering",
+    "reason": "The delivered behavior changes the user-facing GIS workflow: users can search the layer catalogue, recover from a no-match result by clearing the search, and keep the loaded map layers unchanged. The guide should explain this search-and-clear interaction and its effect on the catalogue versus loaded layers.",
+    "noOp": false,
+    "assessedAt": "2026-10-07T09:48:11.103Z"
+  }
 }
