@@ -19,6 +19,39 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_long_tables_repeat_column_header_and_keep_it_with_first_row(self):
+        document = Document()
+        table = document.add_table(rows=1, cols=5)
+        REPORT.repeat_table_header(table)
+        REPORT.repeat_table_header(table)
+        self.assertEqual(len(table.rows[0]._tr.trPr.findall(REPORT.qn("w:tblHeader"))), 1)
+        self.assertTrue(all(p.paragraph_format.keep_with_next for cell in table.rows[0].cells for p in cell.paragraphs))
+
+    def test_reviewed_complete_recheck_replaces_incomplete_earlier_journey(self):
+        images = [Path(name) for name in ("criterion-3-baseline-layers-0.png", "criterion-3-final.png",
+                  "criterion-3-cleanup.png", "criterion-3-recheck-initial.png",
+                  "criterion-3-recheck-baseline-layers-0.png", "criterion-3-recheck-baseline-layers-8.png",
+                  "criterion-3-recheck-before-no-match.png", "criterion-3-recheck-asserted-layers-0.png",
+                  "criterion-3-recheck-asserted-layers-8.png", "criterion-3-recheck-final.png", "criterion-3-recheck-cleanup.png")]
+        selected = REPORT.report_exhibits(images, "The search leaves the Map layers list unchanged.",
+                                         "The complete recheck supersedes earlier incomplete coverage.")
+        self.assertEqual(selected, images[4:10])
+        both = REPORT.report_exhibits(images, "The search leaves the Map layers list unchanged.")
+        self.assertIn(images[0], both)
+        self.assertIn(images[9], both)
+
+    def test_search_keeps_assertion_not_unrelated_configuration(self):
+        images = [Path(name) for name in ("criterion-2-after-open-surveyor-retry.png",
+                  "criterion-2-after-add-defaults.png", "criterion-2-before-no-match.png",
+                  "criterion-2-after-no-match.png", "criterion-2-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "After entering a value in Search layers, no entries are visible."), images[2:])
+
+    def test_returned_launcher_audit_starts_at_own_launch_baseline(self):
+        images = [Path(name) for name in ("criterion-3-initial.png", "criterion-3-before-back.png",
+                  "criterion-3-after-back.png", "criterion-3-before-open-audit.png",
+                  "criterion-3-after-open-audit.png", "criterion-3-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "Starting from the returned launcher, open API Request Audit."), images[3:])
+
     def test_default_configuration_with_before_add_name_is_not_lost(self):
         images = [Path(name) for name in ("criterion-1-after-open-gis.png", "criterion-1-after-open-surveyor-before-add.png", "criterion-1-final.png")]
         self.assertEqual(REPORT.report_exhibits(images, "A layer loaded with its default configuration is visible."), images[1:])

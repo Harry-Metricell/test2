@@ -24,6 +24,31 @@ if (plan.updatePolicy?.preserveUnchangedContent !== true || plan.updatePolicy?.r
 }
 if (!Array.isArray(plan.sections)) fail('sections must be an array');
 
+if (plan.editorial !== undefined) {
+  const { retiredUpdates, sectionRoutes } = plan.editorial;
+  if (plan.editorial.restartBaselineNumbering !== undefined && typeof plan.editorial.restartBaselineNumbering !== 'boolean') fail('editorial.restartBaselineNumbering must be boolean');
+  for (const [ticket, captions] of Object.entries(plan.editorial.captionOverrides || {})) {
+    if (!/^TEST2-\d+$/.test(ticket) || !Array.isArray(captions) || !captions.length
+        || captions.some(caption => typeof caption !== 'string' || !caption.trim())) fail(`invalid editorial captions: ${ticket}`);
+  }
+  if (!retiredUpdates || typeof retiredUpdates !== 'object' || Array.isArray(retiredUpdates)) fail('editorial.retiredUpdates must be an object');
+  for (const [ticket, decision] of Object.entries(retiredUpdates)) {
+    if (!/^TEST2-\d+$/.test(ticket) || !/^TEST2-\d+$/.test(decision?.coveredBy || '') || ticket === decision.coveredBy
+        || typeof decision.reason !== 'string' || !decision.reason.trim()) fail(`invalid editorial retirement: ${ticket}`);
+    if (retiredUpdates[decision.coveredBy]) fail(`retirement ${ticket} must name a retained replacement`);
+  }
+  if (!Array.isArray(sectionRoutes)) fail('editorial.sectionRoutes must be an array');
+  const prefixes = new Set();
+  for (const route of sectionRoutes) {
+    if (typeof route.beforeHeading !== 'string' || !route.beforeHeading.trim()
+        || !Array.isArray(route.prefixes) || !route.prefixes.length) fail('editorial route needs prefixes and a destination heading');
+    for (const prefix of route.prefixes) {
+      if (typeof prefix !== 'string' || !prefix.trim() || prefixes.has(prefix.toLowerCase())) fail('editorial prefixes must be distinct non-empty strings');
+      prefixes.add(prefix.toLowerCase());
+    }
+  }
+}
+
 const ids = new Set();
 for (const [index, section] of plan.sections.entries()) {
   if (!section || typeof section !== 'object') fail(`section ${index + 1} must be an object`);

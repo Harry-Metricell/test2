@@ -9,5 +9,30 @@
     "preserveUnchangedContent": true,
     "requireScreenshotForChangedFeature": true
   },
-  "sections": []
+  "sections": [],
+  "editorial": {
+    "restartBaselineNumbering": true,
+    "captionOverrides": {
+      "TEST2-28": ["The V4 launcher shows the Agentic AI module card.", "Agentic AI is open with its map and investigation controls.", "The launcher is visible again after returning from Agentic AI."],
+      "TEST2-43": ["The V4 launcher shows the Dashboards module card.", "Dashboards displays the Under construction placeholder and Back to Launcher control.", "The launcher is visible again after returning from Dashboards."]
+    },
+    "retiredUpdates": {
+      "TEST2-32": {"coveredBy": "TEST2-62", "reason": "GIS launch and return are covered by the combined module-navigation instructions."},
+      "TEST2-34": {"coveredBy": "TEST2-62", "reason": "Duplicate GIS opening and browser Back instructions."},
+      "TEST2-35": {"coveredBy": "TEST2-43", "reason": "Duplicate Dashboards placeholder navigation."},
+      "TEST2-37": {"coveredBy": "TEST2-43", "reason": "Placeholder reload verification is QA procedure, not a separate user task."},
+      "TEST2-40": {"coveredBy": "TEST2-62", "reason": "Duplicate GIS-to-launcher-to-audit journey."},
+      "TEST2-41": {"coveredBy": "TEST2-55", "reason": "Audit opening is covered here; Dashboards opening is covered by TEST2-43."},
+      "TEST2-42": {"coveredBy": "TEST2-28", "reason": "Agentic AI return is covered here; GIS navigation is covered by TEST2-62."},
+      "TEST2-53": {"coveredBy": "TEST2-60", "reason": "Changing, reopening and optionally undoing Show linked sites are already covered."}
+    },
+    "sectionRoutes": [
+      {"prefixes": ["V4 launcher", "Launcher navigation", "Navigating between", "Opening GIS", "Open GIS", "Returning to the launcher"], "beforeHeading": "3. GIS workspace"},
+      {"prefixes": ["GIS layer catalogue", "GIS map navigation"], "beforeHeading": "3.2 Surveyor and map dialogs"},
+      {"prefixes": ["GIS Display Settings", "GIS layer Display Settings"], "beforeHeading": "3.3 Planning layers"},
+      {"prefixes": ["Navigating the V4 launcher and opening Agentic AI", "Agentic AI"], "beforeHeading": "5. RPO"},
+      {"prefixes": ["Open Dashboards", "Dashboards"], "beforeHeading": "8. API Request Audit"},
+      {"prefixes": ["API Request Audit"], "beforeHeading": "9. Troubleshooting"}
+    ]
+  }
 }

@@ -6,6 +6,7 @@ $ErrorActionPreference = 'Stop'
 $wordPath = 'C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE'
 if (!(Test-Path -LiteralPath $wordPath)) { throw "Microsoft Word not found: $wordPath" }
 if (!(Test-Path -LiteralPath $InputDocx)) { throw "DOCX not found: $InputDocx" }
+$InputDocx = (Resolve-Path -LiteralPath $InputDocx).Path
 $outDir = Split-Path -Parent $OutputPdf
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 $OutputPdf = [IO.Path]::GetFullPath($OutputPdf)
@@ -23,8 +24,16 @@ try {
   $word.Quit()
   $word = $null
 } finally {
-  if ($doc) { [Runtime.InteropServices.Marshal]::ReleaseComObject($doc) | Out-Null }
-  if ($word) { [Runtime.InteropServices.Marshal]::ReleaseComObject($word) | Out-Null }
+  # A failed open/export must not leave this automation instance behind.
+  # Close only our own COM objects; never stop unrelated Word processes.
+  if ($doc) {
+    try { $doc.Close($false) } catch { Write-Warning "Could not close rendered document: $_" }
+    [Runtime.InteropServices.Marshal]::ReleaseComObject($doc) | Out-Null
+  }
+  if ($word) {
+    try { $word.Quit() } catch { Write-Warning "Could not close renderer instance: $_" }
+    [Runtime.InteropServices.Marshal]::ReleaseComObject($word) | Out-Null
+  }
 }
 if (!(Test-Path -LiteralPath $OutputPdf) -or (Get-Item -LiteralPath $OutputPdf).Length -eq 0) {
   throw "Word did not create a non-empty PDF: $OutputPdf"

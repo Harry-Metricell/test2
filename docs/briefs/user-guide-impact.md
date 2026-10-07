@@ -4,7 +4,7 @@ Assess exactly one selected `guide_impact_assessment` handoff. This is a small c
 
 ## Select and verify
 
-Read the live GitHub `status/handoffs.json` first. If the coordinator message supplies a handoff ID and ticket, select that exact live handoff and verify its ticket, action, and `handoffVersion`; otherwise return a no-op in chat. Read only that handoff's listed `ticket.json`, generated ticket projection, `review.json`, `report.md`, and `config/user-guide-impact-policy.json`.
+Read the live GitHub `status/handoffs.json` first. If the coordinator message supplies a handoff ID and ticket, select that exact live handoff and verify its ticket, action, and `handoffVersion`; otherwise return a no-op in chat. Read only that handoff's listed `ticket.json`, generated ticket projection, `review.json`, `report.md`, `status/guide-updates.json`, and `config/user-guide-impact-policy.json`.
 
 Only assess a ticket whose completed evidence review has the overall outcome `Passed`. Never assess failed, blocked, unreviewed, or report-less tickets. Do not use Jira, open a browser, take screenshots, edit the Word guide, edit the guide plan, edit ticket files, or change ticket/Jira status.
 
@@ -14,6 +14,8 @@ Decide whether the verified user-facing behaviour needs a user-guide addition or
 
 - `not_needed`: no end-user instruction, navigation, visible behaviour, or user-facing terminology needs documenting.
 - `update_required`: a user needs new or changed instructions, navigation, visible information, or a new feature explanation.
+
+Compare the verified user task with the current guide index. Read the indexed `guide-update.json` only for a plausibly overlapping section. A repeated QA test of already documented behaviour is `not_needed`; do not request another guide section simply because a new ticket passed. Choose `update_required` only for a material gap or change, naming the existing section when it needs amendment. This is a semantic judgement, not an exact-title comparison.
 
 For `update_required`, give the existing guide section ID if known, or a concise proposed section title if it is new. Base the decision on the delivered, reviewed behaviour, not speculation in the Jira wording. Keep the reason to one or two sentences.
 

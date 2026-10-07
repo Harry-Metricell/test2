@@ -34,6 +34,16 @@ def remove_rows(table):
         table._tbl.remove(table.rows[-1]._tr)
 
 
+def repeat_table_header(table):
+    """Keep column meanings visible when an evidence table spans pages."""
+    properties = table.rows[0]._tr.get_or_add_trPr()
+    if properties.find(qn("w:tblHeader")) is None:
+        properties.append(OxmlElement("w:tblHeader"))
+    for cell in table.rows[0].cells:
+        for paragraph in cell.paragraphs:
+            paragraph.paragraph_format.keep_with_next = True
+
+
 def evidence_caption(image):
     """Describe the recorded state; retain the filename for the audit trail."""
     state = re.sub(r"^criterion-\d+-", "", image.stem).replace("-", " ")
@@ -164,7 +174,7 @@ def screenshot_paths(item, all_screenshots):
     return ordered
 
 
-def report_exhibits(images, criterion):
+def report_exhibits(images, criterion, review_reason=""):
     """Keep decisive states in the PDF; retain every capture in local evidence.
 
     The reviewer still checks the full evidence list. This only selects the
@@ -172,6 +182,15 @@ def report_exhibits(images, criterion):
     """
     if not images:
         return []
+    # A reviewer may explicitly accept a complete recheck instead of an earlier
+    # incomplete journey. Never print the rejected journey as the passed proof.
+    # Without that review decision, preserve both journeys for transparency.
+    recheck = [image for image in images if "-recheck-" in image.stem.lower()]
+    accepted_recheck = ("recheck" in review_reason.lower()
+                        and "supersedes" in review_reason.lower()
+                        and any(re.search(r"-final(?:-recovered)?$", image.stem.lower()) for image in recheck))
+    if accepted_recheck:
+        images = recheck
     # Tester captures after `final` are cleanup evidence, not proof of the
     # criterion's asserted state; keep them in the local attempt, not the PDF.
     # A completed recovery supersedes the unsuccessful interaction. Keep its
@@ -179,8 +198,8 @@ def report_exhibits(images, criterion):
     recovered = {image.stem.lower().removesuffix("-recovered") for image in images
                  if image.stem.lower().endswith("-recovered")}
     images = [image for image in images if image.stem.lower() not in recovered]
-    final_index = next((index for index, image in enumerate(images)
-                        if re.search(r"-final(?:-recovered)?$", image.stem.lower())), None)
+    final_index = next((index for index in range(len(images) - 1, -1, -1)
+                        if re.search(r"-final(?:-recovered)?$", images[index].stem.lower())), None)
     if final_index is not None:
         images = images[:final_index + 1]
     lower = criterion.lower()
@@ -197,6 +216,18 @@ def report_exhibits(images, criterion):
                   if any(term in image.stem.lower() for term in baseline_terms)), None)
     if start is not None:
         images = images[start:]
+    # Search assertions start at their settled search/list baseline, not at
+    # unrelated module loading or Surveyor configuration. Keep every scroll
+    # capture when an unchanged complete list is part of the claim.
+    if "search" in lower and not re.search(r"\bdefaults?\b", lower):
+        start = next((i for i, image in enumerate(images) if any(term in image.stem.lower()
+                     for term in ("baseline-layers", "before-no-match", "before-search-surveyor"))), None)
+        if start is not None:
+            images = images[start:]
+    if "returned" in lower and "launcher" in lower and "api request audit" in lower:
+        start = next((i for i, image in enumerate(images) if "before-open-audit" in image.stem.lower()), None)
+        if start is not None:
+            images = images[start:]
     # Omit only known setup, rather than guessing the decisive action from a
     # narrow vocabulary. Unknown names remain visible: compactness must never
     # silently discard a before/after state that the reviewer used to pass.
@@ -221,6 +252,9 @@ def report_exhibits(images, criterion):
                 and any(term in name for term in ("surveyor", "layer", "dialog")))
         )
         if default_configuration:
+            selected.append(image)
+            continue
+        if "before-open-audit" in name and "returned" in lower and "launcher" in lower:
             selected.append(image)
             continue
         if "after-open-surveyor" in name and not checks_configuration and any(
@@ -642,6 +676,7 @@ def main():
         set_cell(row[1], value)
 
     summary = doc.tables[3]
+    repeat_table_header(summary)
     while len(summary.rows) > 1:
         summary._tbl.remove(summary.rows[-1]._tr)
     for index, item in enumerate(outcomes, 1):
@@ -677,6 +712,7 @@ def main():
         following.getparent().remove(following)
         following = next_element
     remove_rows(cases)
+    repeat_table_header(cases)
     column_count = len(cases.columns)
     if column_count not in (5, 6):
         raise SystemExit(f"template case table must have five or six columns, found {column_count}")
@@ -694,7 +730,7 @@ def main():
         all_criterion_images = screenshot_paths(result, screenshots)
         if not all_criterion_images and text(result.get("outcome")).lower() != "blocked":
             raise SystemExit(f"criterion {number} has no embeddable screenshot evidence")
-        criterion_images = report_exhibits(all_criterion_images, criterion)
+        criterion_images = report_exhibits(all_criterion_images, criterion, text(item.get("reason")))
         setup_candidates.extend((image, public_browser_url(result.get("browserUrl")))
                                 for image in all_criterion_images if image not in criterion_images)
         evidence_ids = []

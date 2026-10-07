@@ -30,6 +30,24 @@ For a failed publication, fix the logged cause and retain the staged output for
 the next scheduled run. Do not rerun the criteria worker just because publication
 is pending. Require remote `criteriaVerified: true` and a new handoff before testing.
 
+## Recovery decision table
+
+| Symptom | Check | Safe next action |
+| --- | --- | --- |
+| Child completed, queue unchanged | Staged output, `publisher-error.json`, publisher log, exact remote handoff/attempt history | Repair the logged publisher cause; reuse the output, not another child |
+| Remote output exists, handoff unchanged | Status Bundler run and the fresh default-branch queue | Repair/rerun bundling; never manually advance ticket status |
+| Desktop behind remote | `desktop-sync.log`, local source edits and commits | Fast-forward a clean checkout; preserve overlapping source edits for reconciliation |
+| Tester sees authentication | Saved private browser state and MCP browser health check | Refresh the private login; start a fresh tester only if the live queue permits it |
+| Coordinator reports a lock | Lock age plus observable active run state | A fresh lock means wait; use the brief's stale-lock/reconciliation procedure, not blanket deletion |
+| PDF identity verification fails | Named unmatched evidence and selected manifest | Repair conversion/selection; retain staged review and never bypass verification |
+
+Completion has three separate proofs: the exact output was read back from GitHub,
+Status Bundler succeeded, and the live handoff advanced. A worker receipt,
+successful Git command, empty staging directory or zero task exit code alone is
+not enough. Local original screenshots are retained even when the PDF omits
+redundant setup images. Do not clear retries or delete pending evidence to make
+the dashboard look complete.
+
 All worker output and Playwright PNGs share `.agent-staging`. A test publication
 checks referenced PNGs and their permanent copies before publishing test status.
 Changing MCP configuration requires restarting the app to reload the browser server.

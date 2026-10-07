@@ -47,6 +47,14 @@ The report builder preserves ordered criterion-specific transitions, including u
 
 Image verification proves selected images survived DOCX/PDF conversion, not that they prove the requirement. The independent reviewer must assess the complete attempt. Existing published reports are not rebuilt silently when report code changes.
 
+A complete recheck explicitly accepted by the reviewer as superseding earlier evidence replaces that earlier journey in the printed report. Without an explicit supersession decision, both journeys remain visible. Search checks begin at their settled search or complete layer-list baseline; all required list scroll captures remain. Returned-launcher checks retain their own launcher-to-destination baseline. Image sizes and the Metricell template are unchanged.
+
+PDF verification checks each selected image's identity, not dimensions alone. It first compares exact image identity, then original and exported RGB pixels at a common resolution capped at 512 pixels on the long edge, with mean, changed-pixel and localized-change limits. Every expected image requires a distinct matching PDF image; the audit names matches and missing evidence. A verification failure means identity could not be proved, not necessarily that an image was physically removed.
+
+Inconclusive (`Unverified`) evidence is displayed as **Failed** in reports but contributes **zero** to `Defects (No.)`, as do blockers. Only directly contradicted (`Failed`) criteria contribute to that column. These are criterion-level counts, not deduplicated Jira bug counts. Reviewers retain `Unverified` for evidence gaps rather than claiming an application contradiction.
+
+Recovered captures supersede same-named originals. Zoom checks retain their map/settings baseline; second-configuration cancellation retains its own list/settings baseline. Default assertions retain untouched configuration captures, including `after-open-surveyor-before-add`. Cancel and browser Back checks retain their decisive before/after states. Original captures remain private, unknown journeys remain visible, and continued tables repeat their column headers.
+
 ## Start the coordinator
 
 The complete, canonical coordinator brief is [`docs/briefs/coordinator.md`](docs/briefs/coordinator.md). Keep the rules in that file rather than duplicating them in the README, so the coordinator has one source of truth.
@@ -244,15 +252,7 @@ No active tester entries means no Git subprocess is needed. If the sandbox denie
 
 ## User guide updater
 
-Guide authoring must supply `screenshotCaptions`, one caption per verified screenshot in the same order, describing its actual visible state. The publisher rejects missing or incomplete captions. Historical records without captions remain buildable using neutral screenshot identifiers, never guessed step-to-picture mappings. Report builders always retain the asserted `-final` capture, show decisive images at readable width beneath their criteria, keep criterion-specific filenames even when image bytes are shared, and remove empty back-cover spacer pages.
-
-Report selection prefers recovered captures over same-named superseded captures and treats `-final-recovered` as the end of assertion evidence. Cancel checks show the dialog-before-Cancel and returned map; required initial layer-list baselines are retained. Browser Back checks show the destination-before-Back and returned launcher, rather than redundant earlier launcher setup. All original captures stay in the private attempt folder. These rules do not change page layout or screenshot sizes.
-
-Zoom journeys start at their map baseline, or the settings baseline when testing a checkbox across zooming. Second-configuration cancellation journeys start at their own list/settings baseline rather than the initial layer-creation dialog. Default-configuration assertions retain untouched pre-add configuration captures, including `after-open-surveyor-before-add` names. Unknown capture journeys are preserved rather than guessed away.
-
-PDF evidence verification first checks exact image identity, then compares both the original and converted image at a common resolution capped at 512 pixels on the long edge. This avoids false missing-image failures from Word's differing resize/JPEG sampling of dense maps. Mean, changed-pixel-fraction and localized-change limits remain enforced; dimensions or perceptual hashes alone never prove identity. Every expected image still needs a distinct matching PDF occurrence. Audit output names the comparison method, source/export sizes, matches and unmatched evidence. A verification failure means identity could not be proved, not necessarily that the screenshot was physically removed. Regression tests cover dense recompressed maps and changed local controls.
-
-Inconclusive (`Unverified`) evidence is displayed as **Failed** in reports but contributes **zero** to `Defects (No.)`, as do blockers. Only a review's directly contradicted (`Failed`) criteria contribute to that column. The report states this distinction explicitly: these are criterion-level defect counts, not deduplicated Jira bug counts. Reviewers must continue using `Unverified` for evidence gaps rather than claiming an application contradiction.
+Guide authoring must supply `screenshotCaptions`, one caption per verified screenshot in the same order, describing its actual visible state. The publisher rejects missing or incomplete captions. Historical records without captions remain buildable using neutral screenshot identifiers, never guessed step-to-picture mappings.
 
 New guide instructions describe user goals, not mandatory QA cleanup. The authoring brief explains how to turn test evidence into useful instructions; the publisher rejects explicit test bookkeeping, evidence capture, and recorded-initial-state restoration rituals. Legitimate undo and reset-to-default actions remain permitted. Existing published guide sections are not automatically rewritten by this policy change.
 
@@ -277,6 +277,16 @@ $reportPython = if ($env:TEST2_PYTHON) { $env:TEST2_PYTHON } else { "$env:USERPR
 ```
 
 The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. `status/guide-updates.json` is the compact index of currently active generated sections, including those sourced from archived tickets; the authoring worker uses it to select an amendment target. The index verifies each section has exactly one marker in the actual living DOCX, and the publisher rechecks that condition before an amendment. Historical records whose markers are absent or duplicated are not offered as targets; a missing future amendment marker fails safely, without silently appending duplicate guidance. The local command above writes the tracked living guide; review the resulting Git diff before committing a manual rebuild.
+
+### Editorial integration
+
+The living document keeps the example baseline and places verified generated instructions beside the relevant module chapter. New and changed content stays yellow. `config/user-guide-plan.json` contains optional `editorial.sectionRoutes`: match an `affectedSection` prefix and insert the intact block before an exact chapter heading. Unknown sections stay at their existing insertion location; a configured missing/ambiguous heading fails safely. Retained hidden markers remain amendable after relocation.
+
+`editorial.retiredUpdates` records explicitly consolidated duplicate sections, their replacement ticket and the editorial reason. This is not an automatic similarity-based deletion: historical ticket records, reports and original screenshots remain stored. Retired sections cannot be recreated by rebuilding old ticket records. Removed screenshot relationships are pruned from the Word package, while cover/header artwork and remaining images are preserved. Screenshots and captions stay together; pictures are not shrunk to reduce page count.
+
+Optional `editorial.captionOverrides` corrects known historical caption-to-image mismatches without changing the original ticket records. Each override must describe every screenshot in its block in order. `restartBaselineNumbering` restarts each baseline procedure at 1 while preserving instruction text. Short generated introductions and instructions stay with their first illustration.
+
+The impact assessor compares the delivered user task with the current index and relevant indexed instructions. Another test of already documented behaviour is `not_needed`; a material instruction change amends the existing block. The example baseline is still illustrative, not a claim that every described module has been tested. Editorial decisions are maintained in configuration, not hidden in chat history.
 
 ### Ticket-driven guide decisions
 
@@ -309,7 +319,7 @@ Current importer limitation: it requires a complete Jira search response (the wo
 - The current implementation contains TEST2 ticket-key and V4 development-host assumptions. Changing the Jira repository variable alone is not a complete migration to another production platform.
 - Scheduled tasks use the signed-in Windows user's session. Battery operation is supported, but a powered-off/asleep/logged-out host cannot execute local work. GitHub schedule timing is not guaranteed; the import freshness gate compensates for delayed scheduled imports.
 - The coordinator lock uses a 15-minute age threshold, not a distributed lease. Long or overlapping coordinator runs still require care; runtime reconciliation does not prove an unobservable worker has stopped.
-- Guide amendments replace exact generated sections. Reorganising the baseline guide and improving editorial integration remain quality work; existing historical duplicates are not automatically removed.
+- Guide amendments replace exact generated sections. Known duplicate updates are explicitly retired and retained sections are routed beside their chapters; this is not a semantic merge engine for arbitrary manual content. New baseline chapters or deployment terminology may need route configuration and editorial review.
 - `docs/briefs/user-guide-capture.md` describes an optional standalone section capture, not an active coordinator/publisher stage. The active guide pipeline reuses passed ticket screenshots.
 - Raw screenshots and login state stay local, but published PDFs embed selected screenshots. Repository access therefore governs report data visibility; a public repository does not make embedded test data private. Never publish production-sensitive evidence without an appropriate access review.
 
@@ -318,4 +328,21 @@ Current importer limitation: it requires a complete Jira search response (the wo
 Canonical operating rules are in `docs/briefs/`; installers and deterministic scripts are in `scripts/`; configurable policies are in `config/`. Keep launch messages minimal and change the canonical brief rather than layering instructions into coordinator chats.
 
 After changing a brief, check its required output fields and publication gates against the publisher and bundler contracts. CI validates prompt contracts and runs the existing regression suite. Those checks catch accidental contract drift, not every model interpretation or browser failure; a representative end-to-end run remains necessary after material prompt changes.
+
+### Developer handover
+
+| Source | Authority and change owner |
+| --- | --- |
+| Jira | Requirements and Jira lifecycle; importer reads it, this pipeline does not edit it |
+| `tickets/`, `archive/tickets/` and remote attempt history | Durable published QA inputs/outputs; publisher writes selected ticket artifacts |
+| `status/` and generated ticket projections | Rebuildable views owned by Status Bundler; never hand-edit to force progress |
+| `.agent-staging/` | Ignored local outbox, lock and run bookkeeping; not evidence of remote publication |
+| Private evidence and auth folders | Original PNGs and browser session; migrate securely, never commit credentials |
+| Tracker site | Presentation of published state; not a workflow authority |
+
+Policies are intentionally separate from prompts and code. `config/jira-import-refresh.json` selects import dispatch/freshness; `config/test2-publisher-task.json` selects task registration settings; `config/user-guide-impact-policy.json` controls passed-only guide decisions; `config/user-guide-update-policy.json` controls update validation; `config/user-guide-plan.json` owns document paths, highlighting and editorial placement. Use the matching validators after changing configuration. Retry eligibility is implemented in `scripts/test-result-policy.mjs` and `scripts/generate-status.mjs`, not an editable policy file. The coordinator's saved project ID is machine-specific and must match the destination project.
+
+Before handover, run the complete regression workflow, verify background tasks and unattended GitHub access, exercise the MCP browser check, and put one representative ticket through import, criteria, testing, review/PDF and guide impact. Confirm exact remote output, successful bundling and an advanced/empty live queue—not just completed chats. Use the recovery table in [publisher operations](docs/publisher-operations.md) for faults; do not reset retries or discard output to conceal them.
+
+Static Playwright baseline integration is not part of the active pipeline yet. GitLab migration also requires replacing GitHub workflow dispatch, connector reads and publication verification, not merely changing the Git remote. For production, review repository visibility, data handling, account permissions and always-on host operation before reusing this test deployment.
 

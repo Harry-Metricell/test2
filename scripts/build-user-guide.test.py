@@ -79,6 +79,8 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     assert "[[AUTO_GUIDE_UPDATE:TEST2-99]]" not in amended_text
     assert "[[AUTO_GUIDE_UPDATE:TEST2-100]]" in amended_text
     assert len(amended.inline_shapes) == 1, "old evidence image must be removed"
+    with ZipFile(output) as package:
+        assert len([name for name in package.namelist() if name.startswith("word/media/")]) == 1, "retired screenshot bytes must not linger in the document"
     assert "FFFF00" in amended._element.xml
     assert "Figure 1: Updated module cards are visible." in amended.tables[0].cell(0, 0).text
     for bad_captions in ([], [""], ["One", "Extra"], "Not an array"):
@@ -90,5 +92,53 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
             raise AssertionError("invalid screenshot captions accepted")
     invalid = subprocess.run([sys.executable, str(BUILDER), "--repo", str(repo), "--evidence-root", str(evidence), "--ticket", "TEST2-99"], capture_output=True, text=True)
     assert invalid.returncode == 0, "historical update should be idempotent when explicitly rerun"
+
+    # Editorial placement preserves block markers and manual chapter text.
+    amended.add_heading("Next chapter", 1)
+    plan = {"editorial": {"retiredUpdates": {}, "sectionRoutes": [{"prefixes": ["Getting started"], "beforeHeading": "Next chapter"}]}}
+    layout = guide.editorial_layout(amended, plan)
+    assert layout["moved"] == ["TEST2-100"]
+    assert amended.paragraphs[-1].text == "Next chapter"
+    guide.editorial_layout(amended, plan)
+    assert sum(p.text == "[[AUTO_GUIDE_UPDATE:TEST2-100]]" for p in amended.paragraphs) == 1
+    assert "Existing guidance must stay unchanged." in "\n".join(p.text for p in amended.paragraphs)
+
+    lists = Document()
+    lists.add_heading("First procedure", 1)
+    first = lists.add_paragraph("First action", style="List Number")
+    second = lists.add_paragraph("Second action", style="List Number")
+    lists.add_heading("Second procedure", 1)
+    third = lists.add_paragraph("Other action", style="List Number")
+    guide.restart_baseline_numbering(lists)
+    assert first._p.pPr.numPr.numId.val == second._p.pPr.numPr.numId.val
+    assert first._p.pPr.numPr.numId.val != third._p.pPr.numPr.numId.val
+    assert third.text == "Other action"
+    numbered_lists = len(lists.part.numbering_part.element.num_lst)
+    guide.restart_baseline_numbering(lists)
+    assert len(lists.part.numbering_part.element.num_lst) == numbered_lists, "repeat builds must not accumulate numbering definitions"
+    caption_plan = {"editorial": {"retiredUpdates": {}, "sectionRoutes": [], "captionOverrides": {"TEST2-100": ["The updated launcher is displayed."]}}}
+    guide.editorial_layout(amended, caption_plan)
+    assert "Figure 1: The updated launcher is displayed." in amended.tables[0].cell(0, 0).text
+    assert amended.tables[0].rows[0]._tr.trPr.find(guide.qn("w:cantSplit")) is not None
+    heading, block = guide.superseded_block(amended, "TEST2-100")
+    assert "Use the updated launcher" in "".join(heading.itertext()), "moved sections remain amendable"
+    try:
+        guide.editorial_layout(amended, {"editorial": {"sectionRoutes": [{"prefixes": ["Getting started"], "beforeHeading": "Missing chapter"}]}})
+    except SystemExit:
+        pass
+    else:
+        raise AssertionError("missing placement destination must fail safely")
+    retirement = {"editorial": {"retiredUpdates": {"TEST2-100": {"coveredBy": "TEST2-101", "reason": "Explicit duplicate consolidation"}}, "sectionRoutes": []}}
+    try:
+        guide.editorial_layout(amended, retirement)
+    except SystemExit:
+        pass
+    else:
+        raise AssertionError("missing replacement must not delete an existing block")
+    amended.add_paragraph("New feature: Replacement instructions")
+    amended.add_paragraph("[[AUTO_GUIDE_UPDATE:TEST2-101]]")
+    assert guide.editorial_layout(amended, retirement)["retired"] == ["TEST2-100"]
+    assert len(amended.inline_shapes) == 0
+    assert "Existing guidance must stay unchanged." in "\n".join(p.text for p in amended.paragraphs)
 
 print("build-user-guide regression test passed")

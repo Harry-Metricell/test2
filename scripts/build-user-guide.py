@@ -2,8 +2,9 @@
 
 The script never invents content: every section comes from a published
 ``tickets/<KEY>/guide-update.json`` record and embeds only that ticket's
-verified test PNGs.  It preserves all existing guide content and keeps a
-hidden insertion marker after the generated updates for the next run.
+verified test PNGs. It preserves manual guide content, places generated blocks
+beside configured chapters, and retires only explicitly configured duplicates.
+Hidden markers preserve amendment identity and the next insertion location.
 """
 
 from __future__ import annotations
@@ -20,7 +21,8 @@ from docx import Document
 from docx.enum.text import WD_COLOR_INDEX
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Inches
+from docx.shared import Inches, RGBColor
+from docx.table import Table
 
 MARKER = "[[AUTO_GUIDE_CONTENT]]"
 UPDATE_MARKER = "[[AUTO_GUIDE_UPDATE:{ticket}]]"
@@ -114,6 +116,8 @@ def yellow_screenshot(document: Document, image: Path, caption: str):
     # Add the image to the destination package, not a temporary document.
     # Copying its XML from another package leaves a dangling relationship ID.
     table = document.add_table(rows=1, cols=1)
+    # Keep the caption with its screenshot instead of leaving it on another page.
+    table.rows[0]._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
     cell = table.cell(0, 0)
     tc_pr = cell._tc.get_or_add_tcPr()
     shade = OxmlElement("w:shd")
@@ -204,6 +208,126 @@ def superseded_tickets(repo: Path) -> set[str]:
     return targets
 
 
+def editorial_layout(document: Document, plan: dict) -> dict:
+    """Place intact generated blocks beside the relevant manual chapter.
+
+    Editorial retirement is explicit configuration, never a similarity guess.
+    Original ticket records/screenshots remain available for audit. Markers of
+    retained blocks stay intact, so subsequent amendments still work in place.
+    Unknown section names retain their original location.
+    """
+    editorial = plan.get("editorial", {})
+    retired = editorial.get("retiredUpdates", {})
+    routes = editorial.get("sectionRoutes", [])
+    captions = editorial.get("captionOverrides", {})
+    if not isinstance(retired, dict) or not isinstance(routes, list):
+        fail("editorial retirement and routes must be an object and array")
+    for key, value in retired.items():
+        if not KEY.fullmatch(key) or not isinstance(value, dict) or not value.get("reason"):
+            fail("each retired update requires a valid key and editorial reason")
+    moved, removed = [], []
+    for paragraph in list(document.paragraphs):
+        match = re.fullmatch(r"\[\[AUTO_GUIDE_UPDATE:(TEST2-\d+)\]\]", paragraph.text.strip())
+        if not match:
+            continue
+        ticket = match[1]
+        heading, reverse_elements = superseded_block(document, ticket)
+        elements = list(reversed(reverse_elements))
+        if ticket in retired:
+            replacement = retired[ticket].get("coveredBy")
+            if not replacement or replacement in retired or not has_update(document, replacement):
+                fail(f"cannot retire {ticket}: retained replacement {replacement} is not present")
+            for element in elements:
+                element.getparent().remove(element)
+            removed.append(ticket)
+            continue
+        tables = [element for element in elements if element.tag == qn("w:tbl")]
+        if ticket in captions:
+            if not isinstance(captions[ticket], list) or len(captions[ticket]) != len(tables):
+                fail(f"editorial captions must match every screenshot for {ticket}")
+            for index, (table_xml, caption) in enumerate(zip(tables, captions[ticket]), 1):
+                if not isinstance(caption, str) or not caption.strip():
+                    fail(f"empty editorial caption for {ticket}")
+                paragraph = Table(table_xml, document._body).cell(0, 0).paragraphs[-1]
+                paragraph.clear()
+                run = paragraph.add_run(f"Figure {index}: {caption}")
+                run.font.highlight_color = WD_COLOR_INDEX.YELLOW
+        # Keep introductory text and short instructions with their first figure.
+        # Long future sections remain breakable rather than creating huge gaps.
+        intro = []
+        for element in elements:
+            if element.tag == qn("w:tbl"):
+                break
+            if element.tag == qn("w:p"):
+                intro.append(element)
+        if sum(len("".join(p.itertext())) for p in intro) < 2200:
+            for paragraph in intro:
+                paragraph.get_or_add_pPr().get_or_add_keepNext().val = True
+        for table in tables:
+            for row in table.iter(qn("w:tr")):
+                if row.get_or_add_trPr().find(qn("w:cantSplit")) is None:
+                    row.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+        # itertext includes duplicates in python-docx XML; use w:t nodes only.
+        section = next(("".join(node.text or "" for node in element.iter(qn("w:t")))[9:]
+                        for element in elements if element.tag == qn("w:p")
+                        and "".join(node.text or "" for node in element.iter(qn("w:t"))).startswith("Section: ")), "")
+        route = next((item for item in routes if any(section.casefold().startswith(prefix.casefold())
+                       for prefix in item.get("prefixes", []))), None)
+        if not route:
+            continue
+        anchors = [p for p in document.paragraphs if p.text == route.get("beforeHeading")]
+        if len(anchors) != 1:
+            fail(f"editorial destination must have one heading: {route.get('beforeHeading')}")
+        # All destination checks happen before reparenting; never guess a chapter.
+        for element in elements:
+            anchors[0]._p.addprevious(element)
+        heading.get_or_add_pPr().get_or_add_pStyle().val = "Heading2"
+        for run in heading.iter(qn("w:r")):
+            properties = run.get_or_add_rPr()
+            properties.get_or_add_color().val = RGBColor(0, 0, 0)
+        moved.append(ticket)
+    if editorial.get("restartBaselineNumbering"):
+        restart_baseline_numbering(document)
+    return {"moved": moved, "retired": removed}
+
+
+def restart_baseline_numbering(document: Document) -> None:
+    """Restart each manual numbered instruction list without changing its text."""
+    numbering = document.part.numbering_part.element
+    current = None
+    for paragraph in document.paragraphs:
+        if not paragraph.style.name.startswith("List Number"):
+            current = None
+            continue
+        if current is None:
+            source = paragraph.style.element.pPr.numPr.numId.val
+            original = next(num for num in numbering.num_lst if num.numId == source)
+            existing_id = paragraph._p.pPr.numPr.numId.val if paragraph._p.pPr is not None and paragraph._p.pPr.numPr is not None else None
+            existing = next((num for num in numbering.num_lst if num.numId == existing_id), None)
+            if (existing is not None and existing.abstractNumId.val == original.abstractNumId.val
+                    and any(level.startOverride is not None and level.startOverride.val == 1 for level in existing.lvlOverride_lst)):
+                current = existing
+            else:
+                current = numbering.add_num(original.abstractNumId.val)
+                current.add_lvlOverride(0).add_startOverride(1)
+        properties = paragraph._p.get_or_add_pPr().get_or_add_numPr()
+        properties.get_or_add_ilvl().val = 0
+        properties.get_or_add_numId().val = current.numId
+
+
+def prune_unused_images(document: Document) -> None:
+    """Drop orphaned body-image relationships after an amendment/retirement.
+
+    Word packages otherwise retain screenshots from deleted generated blocks.
+    Header/footer image relationships belong to separate parts and are untouched.
+    """
+    referenced = {node.get(qn(attribute)) for node in document._element.iter()
+                  for attribute in ("r:embed", "r:link", "r:id") if node.get(qn(attribute))}
+    for relationship_id, relationship in list(document.part.rels.items()):
+        if relationship.reltype.endswith("/image") and relationship_id not in referenced:
+            document.part.drop_rel(relationship_id)
+
+
 def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -> dict:
     plan = read_json(repo / "config" / "user-guide-plan.json")
     policy = read_json(repo / "config" / "user-guide-update-policy.json")
@@ -227,7 +351,7 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
     # generated guidance before that note so the document still ends properly.
     anchor = next((p for p in document.paragraphs if p.text.startswith("End of example guide.")), marker)
     applied, skipped = [], []
-    obsolete = superseded_tickets(repo)
+    obsolete = superseded_tickets(repo) | set(plan.get("editorial", {}).get("retiredUpdates", {}))
     for ticket, update in updates:
         if ticket in obsolete:
             skipped.append(ticket)
@@ -257,8 +381,10 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
             element.getparent().remove(element)
         applied.append(ticket)
     set_hidden(marker)
+    layout = editorial_layout(document, plan)
+    prune_unused_images(document)
     document.save(output)
-    return {"source": str(source.relative_to(repo)), "output": str(output.relative_to(repo)), "applied": applied, "skipped": skipped}
+    return {"source": str(source.relative_to(repo)), "output": str(output.relative_to(repo)), "applied": applied, "skipped": skipped, "editorial": layout}
 
 
 def main() -> None:
