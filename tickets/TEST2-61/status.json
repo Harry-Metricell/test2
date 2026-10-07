@@ -20,5 +20,36 @@
     "reason": "The delivered behavior changes the user-facing GIS workflow: users can search the layer catalogue, recover from a no-match result by clearing the search, and keep the loaded map layers unchanged. The guide should explain this search-and-clear interaction and its effect on the catalogue versus loaded layers.",
     "noOp": false,
     "assessedAt": "2026-10-07T09:48:11.103Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-61-guide-update",
+    "handoffVersion": "TEST2-61:guide_update_authoring:1",
+    "ticket": "TEST2-61",
+    "title": "Recover the GIS layer catalogue after a no-match search",
+    "affectedSection": "GIS layer catalogue search and filtering",
+    "changeType": "amend",
+    "supersedesTicket": "TEST2-59",
+    "steps": [
+      "In GIS, enter a layer name in Search layers to filter the catalogue.",
+      "If no catalogue entries match, clear Search layers to show the full catalogue again.",
+      "Search for Surveyor when you need to find the Surveyor catalogue entry.",
+      "Clear Search layers to restore the complete catalogue; the loaded Map layers remain unchanged throughout."
+    ],
+    "screenshots": [
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-4-final.png",
+      "screenshots/attempt-001/criterion-6-final.png",
+      "screenshots/attempt-001/criterion-7-recheck-final.png"
+    ],
+    "screenshotCaptions": [
+      "A deliberately non-matching value remains visible in Search layers while the catalogue shows no entries.",
+      "After the non-matching search is cleared, Beacons and Surveyor (2) are visible again.",
+      "Searching for Surveyor filters the catalogue to the Surveyor (2) entry.",
+      "After the Surveyor search is cleared, the original catalogue and the same loaded Map layers are restored."
+    ],
+    "reason": "Amends the GIS catalogue search guidance to explain recovery from a no-match search and confirm that clearing the search restores the catalogue without changing loaded Map layers.",
+    "noOp": false,
+    "authoredAt": "2026-10-07T09:55:16.703Z"
   }
 }
