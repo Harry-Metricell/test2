@@ -35,7 +35,17 @@
     "actionOwner": "Coordinator",
     "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
-    "guideImpact": null,
+    "guideImpact": {
+      "schema": "v4-user-guide-impact.v1",
+      "handoffId": "handoff-TEST2-60-guide-impact",
+      "handoffVersion": "TEST2-60:guide_impact_assessment:1",
+      "ticket": "TEST2-60",
+      "decision": "update_required",
+      "affectedSection": "GIS Display Settings: Show linked sites",
+      "reason": "The delivered behavior changes a visible GIS Display Settings interaction: a user's changed Show linked sites choice is retained when Display Settings is closed and reopened for the same layer. The guide should explain this setting and its session behavior.",
+      "noOp": false,
+      "assessedAt": "2026-10-07T09:09:09.607Z"
+    },
     "guideUpdate": null,
     "retries": 0,
     "blockedStage": null,
