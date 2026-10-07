@@ -1,0 +1,97 @@
+[
+  {
+    "criterion": "Starting from the authorised V4 launcher with its module cards visible, open GIS and verify that the GIS destination settles on a map with visible map controls, rather than a login or application-error page.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-open-gis.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and verified authorised launcher module cards; captured initial and before-open PNGs.",
+      "Clicked Open GIS and waited for the map loading overlay to disappear.",
+      "Observed a rendered UK/Ireland map with Search Map, Map style, north reset and zoom controls at https://o2intelligence-v4-dev.metricell.com/gis; captured after-open and separate final PNGs.",
+      "After final assertion, navigated to the launcher for the next independent criterion; no layer or map control was changed."
+    ],
+    "observed_result": "GIS settled on a rendered map with visible map controls. No login or application-error page replaced the destination.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Direct criterion-specific initial, transition and decisive final PNG evidence supports the observed navigation. No test-created selection or filter changes required restoration."
+  },
+  {
+    "criterion": "Starting from the authorised V4 launcher, open GIS, wait for the GIS map to load, then use browser Back and verify that the launcher returns with its module cards visible, including API Request Audit.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-open-gis.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-before-back.png",
+      "screenshots/attempt-001/criterion-2-after-back.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and verified authorised module cards; captured independent initial and before-open PNGs.",
+      "Clicked Open GIS; waited for the loading overlay to disappear and verified the visible map canvas and zoom control at https://o2intelligence-v4-dev.metricell.com/gis.",
+      "Captured after-open and before-Back PNGs, then used browser Back.",
+      "Waited for launcher welcome text; verified GIS and API request audit cards and exact URL https://o2intelligence-v4-dev.metricell.com/launcher. Captured after-Back and separate final PNGs."
+    ],
+    "observed_result": "Browser Back from the settled GIS destination returned to the exact launcher URL with GIS and API request audit module cards visible.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Direct criterion-specific initial, transition and decisive final PNG evidence supports the observed navigation. No test-created selection or filter changes required restoration."
+  },
+  {
+    "criterion": "Starting from the returned authorised V4 launcher with its module cards visible, open API Request Audit and verify that the audit destination shows identifiable audit content, such as request metrics or the Requests and errors over time chart, rather than a login or application-error page.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-open-gis.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis.png",
+      "screenshots/attempt-001/criterion-3-before-back.png",
+      "screenshots/attempt-001/criterion-3-after-back.png",
+      "screenshots/attempt-001/criterion-3-before-open-audit.png",
+      "screenshots/attempt-001/criterion-3-after-open-audit.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher with authorised module cards; captured independent initial and before-open-GIS PNGs.",
+      "Clicked Open GIS, waited for its loading overlay to disappear and verified visible map and zoom controls at https://o2intelligence-v4-dev.metricell.com/gis; captured after-open-GIS and before-Back PNGs.",
+      "Used browser Back and verified returned launcher with GIS and API request audit cards at exact URL https://o2intelligence-v4-dev.metricell.com/launcher; captured after-Back and before-open-audit PNGs.",
+      "Clicked Open API request audit; waited for Requests and errors over time, and observed populated Requests, Error rate, Callers, Median latency and P95 latency metrics and chart.",
+      "Captured after-open-audit and separate final PNGs; read the current full browser URL at the final audit state. The live rolling time query updates automatically.",
+      "After the decisive assertion, navigated to launcher for the next independent criterion; no audit filters or controls were changed."
+    ],
+    "observed_result": "Opening API request audit from this criterion's returned launcher displayed populated request metrics and Requests and errors over time chart at the audit destination. No login or application-error page replaced the destination.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-10-07T09%3A11%3A05.886Z&startUtc=2026-10-06T09%3A11%3A05.886Z&live=true",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Direct criterion-specific initial, transition and decisive final PNG evidence supports the observed navigation. No test-created selection or filter changes required restoration."
+  },
+  {
+    "criterion": "Starting from the authorised V4 launcher, open API Request Audit, wait for the audit content to load, then use browser Back and verify that the launcher returns with both GIS and API Request Audit cards available.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-before-open-audit.png",
+      "screenshots/attempt-001/criterion-4-after-open-audit.png",
+      "screenshots/attempt-001/criterion-4-before-back.png",
+      "screenshots/attempt-001/criterion-4-after-back.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher with authorised module cards; captured independent initial and before-open-audit PNGs.",
+      "Clicked Open API request audit and waited for Requests and errors over time; verified populated request metrics and chart. Observed destination URL https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-10-07T09%3A11%3A45.104Z&startUtc=2026-10-06T09%3A11%3A45.104Z&live=true.",
+      "Captured after-open-audit and before-Back PNGs, then used browser Back.",
+      "Waited for the launcher welcome text and verified both GIS and API request audit cards at exact URL https://o2intelligence-v4-dev.metricell.com/launcher; captured after-Back and separate final PNGs.",
+      "Left the browser on the launcher; no filters, records, layers or administrative controls were changed."
+    ],
+    "observed_result": "Browser Back from loaded API request audit returned to the exact launcher URL with both required cards available.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "browserName": "Google Chrome",
+    "browserVersion": "154.0.8037.98",
+    "reason": "Direct criterion-specific initial, transition and decisive final PNG evidence supports the observed navigation. No test-created selection or filter changes required restoration."
+  }
+]
