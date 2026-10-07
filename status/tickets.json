@@ -3,10 +3,10 @@
   "generatedAt": "2026-10-07T12:33:42.965+0100",
   "counts": {
     "tickets": 62,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 25,
-      "Ready": 36,
+      "Blocked": 26,
+      "Ready": 35,
       "Rejected": 1
     },
     "byQaOutcome": {
@@ -860,13 +860,13 @@
       "key": "TEST2-63",
       "summary": "Filter the V4 GIS layer catalogue for Surveyor and restore the original view",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-07T12:33:42.965+0100",
       "retries": 0,
       "retryLimit": 2,
