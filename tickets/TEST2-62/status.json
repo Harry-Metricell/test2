@@ -20,5 +20,37 @@
     "reason": "The reviewed behavior confirms user-facing navigation from the V4 launcher into GIS and API Request Audit and back, including visible module cards and destination content. Users need guidance on these module destinations and navigation paths.",
     "noOp": false,
     "assessedAt": "2026-10-07T09:49:11.272Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-62-guide-update",
+    "handoffVersion": "TEST2-62:guide_update_authoring:1",
+    "ticket": "TEST2-62",
+    "title": "Navigate between the V4 launcher, GIS, and API Request Audit",
+    "affectedSection": "V4 launcher module navigation",
+    "changeType": "add",
+    "steps": [
+      "From the V4 launcher, select Open GIS.",
+      "Wait for the map and its map controls to appear.",
+      "Use your browser's Back button to return to the launcher.",
+      "Select Open API Request Audit.",
+      "Wait for the request metrics and Requests and errors over time chart to appear.",
+      "Use your browser's Back button to return to the launcher."
+    ],
+    "screenshots": [
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-after-back.png",
+      "screenshots/attempt-001/criterion-3-after-open-audit.png",
+      "screenshots/attempt-001/criterion-4-after-back.png"
+    ],
+    "screenshotCaptions": [
+      "GIS is open with a settled UK/Ireland map and visible Search Map, Map style, north reset, and zoom controls.",
+      "The launcher is restored after returning from GIS, with the GIS and API Request Audit module cards visible.",
+      "API Request Audit is open with populated request metrics and the Requests and errors over time chart.",
+      "The launcher is restored after returning from API Request Audit, with both GIS and API Request Audit cards available."
+    ],
+    "reason": "Add concise instructions for opening GIS and API Request Audit from the V4 launcher and returning with browser Back, based on the passed navigation evidence.",
+    "noOp": false,
+    "authoredAt": "2026-10-07T09:52:26.848Z"
   }
 }
