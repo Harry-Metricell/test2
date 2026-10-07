@@ -258,6 +258,8 @@ New guide instructions describe user goals, not mandatory QA cleanup. The author
 
 The user guide is integrated into the ticket pipeline after a **Passed** evidence review and verified PDF. The guide-impact worker decides `not_needed` or `update_required`. Only `update_required` creates an authoring handoff; that worker selects instructions and screenshots from the ticket's verified evidence. It does not run a separate browser capture. The publisher adds the approved ticket-specific guidance to `assets/user-guide/V4 User Guide.docx`, renders and verifies a temporary PDF, then publishes the Word file and ticket update together. New headings, steps, captions, and screenshot panels are highlighted yellow; unchanged content remains intact. An `amend` update must name the exact prior generated section with `supersedesTicket`; the builder replaces that block and its old screenshots in place. It rejects ambiguous or missing targets instead of appending duplicates. Existing historical duplicates are not automatically removed.
 
+The generated next-action field follows queued guide work: it names the impact-assessment or authoring handoff instead of saying only `QA review complete`. The successful QA outcome remains Passed while those downstream guide stages are pending.
+
 The tracked baseline is `assets/user-guide/V4 User Guide Template.docx`; both it and the living guide contain a hidden `[[AUTO_GUIDE_CONTENT]]` marker. `config/user-guide-plan.json` currently has an empty `sections` list and defines the document paths and yellow-highlight rules. Its optional section plan is not a prerequisite for the ticket-driven guide-impact handoff. Validate guide configuration with:
 
 ```powershell

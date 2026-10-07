@@ -558,6 +558,15 @@ const ticketDirs = fs.existsSync(ticketsDir)
 
 const tickets = ticketDirs.map(normalizeTicket);
 const handoffs = tickets.map(handoffFor).filter(Boolean);
+// The QA stage may be complete while guide work is still queued. Project the
+// actual guide handoff rather than displaying a misleading terminal action.
+const guideActions = { guide_impact_assessment: 'Create user-guide impact assessment handoff',
+  guide_update_authoring: 'Create user-guide update authoring handoff' };
+for (const handoff of handoffs) {
+  if (!guideActions[handoff.action]) continue;
+  const ticket = tickets.find(item => item.key === handoff.ticket);
+  ticket.status.nextAction = guideActions[handoff.action];
+}
 // Compact, deterministic guide index for the authoring worker. Include
 // archived source tickets because their approved sections remain in the guide.
 const guideRecords = [];

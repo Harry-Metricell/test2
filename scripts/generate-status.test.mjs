@@ -226,6 +226,40 @@ test('generated-status check accepts Windows CRLF checkout files', () => {
   }
 });
 
+test('passed-ticket next action follows pending guide handoffs until the guide decision is complete', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-guide-next-action-'));
+  const dir = path.join(root, 'tickets', 'TEST2-99');
+  const write = (relative, value) => {
+    const target = path.join(root, relative);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, JSON.stringify(value));
+  };
+  const run = () => {
+    execFileSync(process.execPath, [generator], { cwd: root });
+    return JSON.parse(fs.readFileSync(path.join(root, 'status/generated/TEST2-99.json'), 'utf8')).status.nextAction;
+  };
+  try {
+    write('tickets/TEST2-99/ticket.json', { key: 'TEST2-99', fields: { summary: 'Launcher', status: { name: 'READY FOR TESTING' }, project: { key: 'TEST2' }, description: 'The launcher is visible.' } });
+    fs.writeFileSync(path.join(dir, 'criteria.md'), '- [ ] The launcher is visible.\n');
+    write('tickets/TEST2-99/status.json', { qaStatus: 'Evidence Reviewed', criteriaVerified: true });
+    write('tickets/TEST2-99/results.json', [{ criterion: 1, outcome: 'Passed' }]);
+    write('tickets/TEST2-99/history/attempt-001-test.json', { historyAttempt: 1, results: [{ criterion: 1, outcome: 'Passed' }] });
+    write('tickets/TEST2-99/review.json', { historyAttempt: 1, overallOutcome: 'Passed', evidenceFolder: 'screenshots/attempt-001' });
+    fs.writeFileSync(path.join(dir, 'report.pdf'), 'verified report fixture');
+    for (const name of ['impact', 'update']) write(`config/user-guide-${name}-policy.json`, { enabled: true, onlyForPassedEvidenceReviews: true });
+    assert.equal(run(), 'Create user-guide impact assessment handoff');
+    write('tickets/TEST2-99/guide-impact.json', { decision: 'update_required' });
+    assert.equal(run(), 'Create user-guide update authoring handoff');
+    write('tickets/TEST2-99/guide-update.json', { title: 'Open launcher' });
+    assert.equal(run(), 'QA review complete');
+    fs.rmSync(path.join(dir, 'guide-update.json'));
+    write('tickets/TEST2-99/guide-impact.json', { decision: 'not_needed' });
+    assert.equal(run(), 'QA review complete');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('blocked criteria require manual review until the Jira issue changes', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-criteria-block-'));
   const dir = path.join(root, 'tickets', 'TEST2-99');
