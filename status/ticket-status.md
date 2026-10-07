@@ -53,7 +53,7 @@ Updated: 2026-10-06T17:52:51.783+0100
 | TEST2-57 | READY FOR TESTING | Evidence Reviewed |  | Zoom the GIS map without losing a loaded Surveyor layer or its display setting |
 | TEST2-58 | READY FOR TESTING | Evidence Reviewed |  | Cancel a second Surveyor layer configuration without disturbing an existing loaded layer |
 | TEST2-59 | READY FOR TESTING | Evidence Reviewed |  | Filter and clear the GIS layer catalogue while preserving a loaded Surveyor layer |
-| TEST2-60 | READY FOR TESTING | Criteria Check Required |  | Keep a changed Show linked sites state when closing and reopening GIS Display Settings |
+| TEST2-60 | READY FOR TESTING | Ready for Testing |  | Keep a changed Show linked sites state when closing and reopening GIS Display Settings |
 | TEST2-61 | READY FOR TESTING | Criteria Check Required |  | Recover the GIS layer catalogue from a no-match search without changing loaded layers |
 | TEST2-62 | READY FOR TESTING | Criteria Check Required |  | Navigate from the V4 launcher through GIS and API Request Audit and back |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
