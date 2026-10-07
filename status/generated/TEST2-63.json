@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-63",
+  "id": "106552",
+  "summary": "Filter the V4 GIS layer catalogue for Surveyor and restore the original view",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-63",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-07T12:33:28.844+0100",
+    "updated": "2026-10-07T12:33:42.965+0100"
+  },
+  "description": "Description\nA V4 user should be able to find Surveyor in the GIS layer catalogue using Search layers, then clear the search and return to the original catalogue without changing the map's loaded layers.\nPreconditions\nUse the authorised V4 test account at https://o2intelligence-v4-dev.metricell.com/launcher and open GIS. Wait for the map and layer catalogue to settle. Record the original catalogue and loaded Map layers list before searching. Use the existing configuration; adding or removing a layer is not needed.\nAcceptance criteria\nWith GIS open and Search layers empty, the layer catalogue includes a visible Surveyor entry, and the currently loaded Map layers list can be recorded as the baseline for this journey.\nAfter entering Surveyor in Search layers, the entered text remains visible and a Surveyor catalogue entry is visible in the filtered catalogue without loading or removing a map layer.\nAfter clearing Search layers, the original catalogue entries return and the loaded Map layers list has the same entries in the same order as the recorded pre-search baseline.\nThe search-and-clear journey remains in GIS without an application-error page or sign-in screen interrupting it, and the map remains visible after the original catalogue has been restored.\nUser documentation relevance\nThis is an existing user-facing catalogue-search workflow. Assess whether the living guide already describes it accurately; amend the existing instructions only if needed rather than adding a duplicate section.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-63/ticket.json",
+    "criteria": "tickets/TEST2-63/criteria.md",
+    "status": "tickets/TEST2-63/status.json",
+    "screenshots": "tickets/TEST2-63/screenshots/",
+    "reports": "tickets/TEST2-63/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106552",
+    "importedAt": "2026-10-07T12:33:42.965+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-07T12:33:42.965+0100",
+    "criteriaVerified": false
+  }
+}
