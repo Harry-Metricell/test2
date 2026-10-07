@@ -1,0 +1,33 @@
+{
+  "handoffId": "handoff-TEST2-63-review-attempt-001",
+  "handoffVersion": "TEST2-63:evidence_review:1",
+  "ticket": "TEST2-63",
+  "criterionOutcomes": [
+    {
+      "criterion": "With GIS open and Search layers empty, the layer catalogue visibly contains a Surveyor entry, and the currently loaded Map layers list is recorded as the baseline.",
+      "outcome": "Blocked",
+      "reason": "Empty Search layers, Surveyor and the map are visible in criterion-1-final.png. The required Map layers list is unavailable, so loaded-layer entries and order cannot be recorded as a baseline."
+    },
+    {
+      "criterion": "After entering Surveyor in Search layers, the entered text remains visible and the filtered catalogue visibly contains a Surveyor entry, without loading or removing a map layer.",
+      "outcome": "Blocked",
+      "reason": "Criterion 2 shows Surveyor retained in the search and a filtered Surveyor entry. The required Map layers list is unavailable before and after searching, preventing direct verification that loaded layers remain unchanged."
+    },
+    {
+      "criterion": "After clearing Search layers, the original catalogue entries are visible again, and the loaded Map layers list contains the same entries in the same order as the recorded baseline.",
+      "outcome": "Blocked",
+      "reason": "Criterion 3 shows the search cleared and the visible original catalogue entries restored in their original order. The required Map layers list and loaded-layer baseline are unavailable, preventing comparison of loaded entries and order."
+    },
+    {
+      "criterion": "After the catalogue is restored, the application remains in GIS with the map visible and no application-error page or sign-in screen has interrupted the search-and-clear journey.",
+      "outcome": "Passed",
+      "reason": "Criterion 4's own ordered search-and-clear captures show GIS throughout, the catalogue restored with empty search, and the map visible in the final state; no error or sign-in screen appears in the captured journey. The browser-derived URL confirms the GIS destination."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-63\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "The required Map layers list is unavailable in the existing GIS configuration, blocking loaded-layer baseline and invariance checks."
+}
