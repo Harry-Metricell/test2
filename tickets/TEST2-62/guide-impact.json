@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-62-guide-impact",
+  "handoffVersion": "TEST2-62:guide_impact_assessment:1",
+  "ticket": "TEST2-62",
+  "decision": "update_required",
+  "affectedSection": "V4 launcher module navigation",
+  "reason": "The reviewed behavior confirms user-facing navigation from the V4 launcher into GIS and API Request Audit and back, including visible module cards and destination content. Users need guidance on these module destinations and navigation paths.",
+  "noOp": false,
+  "assessedAt": "2026-10-07T09:49:11.272Z"
+}
