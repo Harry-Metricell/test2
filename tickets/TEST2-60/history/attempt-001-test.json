@@ -1,0 +1,144 @@
+{
+  "handoffId": "handoff-TEST2-60-test-attempt-001",
+  "handoffVersion": "TEST2-60:test_ticket:1",
+  "ticket": "TEST2-60",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "With one test-created Surveyor layer loaded in GIS using its defaults, open Display Settings for that same layer and capture the layer identity and the initial Show linked sites checkbox state.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-before-add-surveyor.png",
+        "screenshots/attempt-001/criterion-1-after-open-surveyor-defaults.png",
+        "screenshots/attempt-001/criterion-1-after-add-test-layer.png",
+        "screenshots/attempt-001/criterion-1-final.png",
+        "screenshots/attempt-001/criterion-1-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and saved independent initial PNG.",
+        "Opened GIS; observed one pre-existing Surveyor - Service layer and left it untouched.",
+        "Opened Surveyor and added one test-created Surveyor - Service layer using Service / Last 30 days defaults. The new layer was the second map-layer row and was selected.",
+        "Opened Display Settings for the new selected layer; recorded Show linked sites checked.",
+        "Captured identifiable Surveyor - Service layer and checked checkbox in final PNG.",
+        "Closed Display Settings with Escape and removed only the second, test-created layer; one original layer remained."
+      ],
+      "observedResult": "Initial Show linked sites was visibly checked for the newly added Surveyor - Service layer.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "One independent test-created layer was added per criterion, tracked as the selected second Surveyor - Service row, and removed afterwards. The pre-existing same-named layer was preserved; no further layer was added during checkbox comparisons.",
+      "blockers": []
+    },
+    {
+      "criterion": "With the same Surveyor layer remaining loaded and no additional layer added, change Show linked sites once and verify the checkbox visibly changes to the opposite state.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-after-open-gis.png",
+        "screenshots/attempt-001/criterion-2-before-open-surveyor.png",
+        "screenshots/attempt-001/criterion-2-before-add-default-layer.png",
+        "screenshots/attempt-001/criterion-2-after-add-default-layer.png",
+        "screenshots/attempt-001/criterion-2-before-change.png",
+        "screenshots/attempt-001/criterion-2-after-change.png",
+        "screenshots/attempt-001/criterion-2-final.png",
+        "screenshots/attempt-001/criterion-2-cleanup-restored.png",
+        "screenshots/attempt-001/criterion-2-cleanup-removed-layer.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and saved independent initial PNG.",
+        "Opened GIS; observed one pre-existing Surveyor - Service layer and left it untouched.",
+        "Opened Surveyor and added one test-created Surveyor - Service layer using Service / Last 30 days defaults. The new layer was the second map-layer row and was selected.",
+        "Opened Display Settings for the new selected layer; recorded Show linked sites checked.",
+        "Clicked Show linked sites once; it became unchecked without adding another layer.",
+        "Captured unchecked final state and browser URL.",
+        "Restored checkbox to checked, closed Display Settings, and removed only the test-created second layer; one original layer remained."
+      ],
+      "observedResult": "Show linked sites visibly changed from checked to unchecked after one click.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "One independent test-created layer was added per criterion, tracked as the selected second Surveyor - Service row, and removed afterwards. The pre-existing same-named layer was preserved; no further layer was added during checkbox comparisons.",
+      "blockers": []
+    },
+    {
+      "criterion": "With the same layer still loaded after the change, close and reopen Display Settings and verify Show linked sites remains in the changed state rather than returning to the recorded original state.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-open-surveyor.png",
+        "screenshots/attempt-001/criterion-3-retry-before-open-surveyor.png",
+        "screenshots/attempt-001/criterion-3-retry-before-add-default-layer.png",
+        "screenshots/attempt-001/criterion-3-retry-after-add-default-layer.png",
+        "screenshots/attempt-001/criterion-3-retry-before-change.png",
+        "screenshots/attempt-001/criterion-3-after-change-before-close.png",
+        "screenshots/attempt-001/criterion-3-after-close-before-reopen.png",
+        "screenshots/attempt-001/criterion-3-after-reopen.png",
+        "screenshots/attempt-001/criterion-3-final.png",
+        "screenshots/attempt-001/criterion-3-cleanup-restored.png",
+        "screenshots/attempt-001/criterion-3-cleanup-removed-layer.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and saved independent initial PNG.",
+        "Opened GIS; observed one pre-existing Surveyor - Service layer and left it untouched.",
+        "During setup, a parent-scoped Add layer locator timed out and an unscoped Add layer click was rejected as ambiguous; neither added a layer. Display Settings on the pre-existing layer was opened read-only and dismissed without changes. Located the actual Surveyor Add layer reference, then completed the test-layer setup.",
+        "Opened Surveyor and added one test-created Surveyor - Service layer using Service / Last 30 days defaults. The new layer was the second map-layer row and was selected.",
+        "Opened Display Settings for the new selected layer; recorded Show linked sites checked.",
+        "Clicked Show linked sites once; it became unchecked.",
+        "Pressed Escape to close Display Settings; both map-layer rows remained.",
+        "Reopened Display Settings for the same selected test-created second layer; Show linked sites remained unchecked. Captured final state and browser URL.",
+        "Restored checkbox to checked, closed Display Settings, and removed only the second test-created layer; one original layer remained."
+      ],
+      "observedResult": "Show linked sites remained unchecked after closing and reopening Display Settings for the same test-created layer.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "One independent test-created layer was added per criterion, tracked as the selected second Surveyor - Service row, and removed afterwards. The pre-existing same-named layer was preserved; no further layer was added during checkbox comparisons.",
+      "blockers": []
+    },
+    {
+      "criterion": "With the same layer still loaded, change Show linked sites back to the recorded original state, close and reopen Display Settings, and verify the checkbox shows the original state.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-before-open-surveyor.png",
+        "screenshots/attempt-001/criterion-4-before-add-default-layer.png",
+        "screenshots/attempt-001/criterion-4-after-add-default-layer.png",
+        "screenshots/attempt-001/criterion-4-before-change.png",
+        "screenshots/attempt-001/criterion-4-after-change.png",
+        "screenshots/attempt-001/criterion-4-after-first-close.png",
+        "screenshots/attempt-001/criterion-4-after-first-reopen-before-restore.png",
+        "screenshots/attempt-001/criterion-4-after-restore-before-close.png",
+        "screenshots/attempt-001/criterion-4-after-second-close-before-reopen.png",
+        "screenshots/attempt-001/criterion-4-after-second-reopen.png",
+        "screenshots/attempt-001/criterion-4-final.png",
+        "screenshots/attempt-001/criterion-4-cleanup-removed-layer.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and saved independent initial PNG.",
+        "Opened GIS; observed one pre-existing Surveyor - Service layer and left it untouched.",
+        "Opened Surveyor and added one test-created Surveyor - Service layer using Service / Last 30 days defaults. The new layer was the second map-layer row and was selected.",
+        "Opened Display Settings for the new selected layer; recorded Show linked sites checked.",
+        "Clicked Show linked sites once; it became unchecked.",
+        "Closed with Escape and reopened Display Settings for the same layer; checkbox remained unchecked.",
+        "Clicked Show linked sites back to checked, the recorded original state.",
+        "Closed with Escape; both map-layer rows remained. Reopened for the same selected second layer; checkbox remained checked. Captured final state and browser URL.",
+        "Closed Display Settings and removed only the test-created second layer; one original layer remained."
+      ],
+      "observedResult": "Show linked sites remained checked after restoring the original checked state and closing/reopening Display Settings.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "154.0.8037.98",
+      "reason": "One independent test-created layer was added per criterion, tracked as the selected second Surveyor - Service row, and removed afterwards. The pre-existing same-named layer was preserved; no further layer was added during checkbox comparisons.",
+      "blockers": []
+    }
+  ],
+  "conciseReport": "All 4 criteria passed with independent launcher, transition and final PNG evidence. Surveyor - Service defaults showed Show linked sites checked; it changed to unchecked and remained unchecked after reopening. Restoring checked persisted through a second reopen. Each test-created layer was removed, preserving the pre-existing Surveyor layer. Criterion 3 setup locator errors were recovered before checkbox testing; no unrelated settings changed.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-60-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Completed independent tests and cleanup; staged evidence for review.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-07T08:28:12.369Z"
+}
