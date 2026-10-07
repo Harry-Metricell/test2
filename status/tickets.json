@@ -12,8 +12,8 @@
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 4,
-      "Passed": 38,
+      "Not Tested": 3,
+      "Passed": 39,
       "Unverified": 5
     }
   },
@@ -861,12 +861,12 @@
       "summary": "Filter the V4 GIS layer catalogue for Surveyor and restore the original view",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create criteria conversion handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-07T15:47:44.186+0100",
       "retries": 0,
       "retryLimit": 2,
