@@ -70,6 +70,11 @@
       "ticket": "TEST2-60",
       "title": "Keep the Show linked sites choice when reopening Display Settings",
       "affectedSection": "GIS Display Settings: Show linked sites"
+    },
+    {
+      "ticket": "TEST2-62",
+      "title": "Navigate between the V4 launcher, GIS, and API Request Audit",
+      "affectedSection": "V4 launcher module navigation"
     }
   ]
 }
