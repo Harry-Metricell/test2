@@ -1,11 +1,11 @@
 {
   "ticket": "TEST2-63",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Not Tested",
+  "qaStatus": "Ready for Testing",
   "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 2,
-  "criteriaVerified": false,
+  "criteriaVerified": true,
   "blockedStage": null,
   "qaOutcome": "Not Tested",
   "workflowState": "READY FOR TESTING",
