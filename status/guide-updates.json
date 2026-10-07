@@ -62,14 +62,14 @@
       "affectedSection": "GIS map navigation and layer display settings"
     },
     {
-      "ticket": "TEST2-59",
-      "title": "Filter and clear the GIS layer catalogue while preserving a loaded Surveyor layer",
-      "affectedSection": "GIS layer catalogue search and loaded layers"
-    },
-    {
       "ticket": "TEST2-60",
       "title": "Keep the Show linked sites choice when reopening Display Settings",
       "affectedSection": "GIS Display Settings: Show linked sites"
+    },
+    {
+      "ticket": "TEST2-61",
+      "title": "Recover the GIS layer catalogue after a no-match search",
+      "affectedSection": "GIS layer catalogue search and filtering"
     },
     {
       "ticket": "TEST2-62",
