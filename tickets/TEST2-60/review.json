@@ -1,0 +1,33 @@
+{
+  "handoffId": "handoff-TEST2-60-review-attempt-001",
+  "handoffVersion": "TEST2-60:evidence_review:1",
+  "ticket": "TEST2-60",
+  "criterionOutcomes": [
+    {
+      "criterion": "With one test-created Surveyor layer loaded in GIS using its defaults, open Display Settings for that same layer and capture the layer identity and the initial Show linked sites checkbox state.",
+      "outcome": "Passed",
+      "reason": "Independent setup captures show Service / Last 30 days and the addition of a selected second Surveyor - Service row; criterion-1-final.png shows its initial Show linked sites checkbox checked."
+    },
+    {
+      "criterion": "With the same Surveyor layer remaining loaded and no additional layer added, change Show linked sites once and verify the checkbox visibly changes to the opposite state.",
+      "outcome": "Passed",
+      "reason": "The criterion-owned before-change and after-change captures show checked then unchecked for the selected second Surveyor - Service row, with both existing map-layer rows retained."
+    },
+    {
+      "criterion": "With the same layer still loaded after the change, close and reopen Display Settings and verify Show linked sites remains in the changed state rather than returning to the recorded original state.",
+      "outcome": "Passed",
+      "reason": "The recovered criterion-owned sequence shows checked, unchecked, Display Settings closed with both rows retained, then reopened unchecked for the same selected second row. Setup locator errors preceded the recovered sequence and do not establish an application defect."
+    },
+    {
+      "criterion": "With the same layer still loaded, change Show linked sites back to the recorded original state, close and reopen Display Settings, and verify the checkbox shows the original state.",
+      "outcome": "Passed",
+      "reason": "The criterion-owned sequence records checked, changes to unchecked, closes/reopens unchecked, restores checked, then closes/reopens checked with the same selected second Surveyor - Service row and both rows retained."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-60\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Reviewed all four criterion-owned screenshot sequences from attempt-001; the recorded browser URL is the required development host at /gis."
+}
