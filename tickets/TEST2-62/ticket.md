@@ -6,7 +6,7 @@
 - QA outcome: Passed
 - Workflow state: Ready
 - Action owner: Coordinator
-- Next action: Create user-guide impact assessment handoff
+- Next action: Create user-guide update authoring handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-62
 
 ## Acceptance Criteria
