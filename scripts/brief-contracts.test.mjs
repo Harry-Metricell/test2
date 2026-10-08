@@ -90,6 +90,17 @@ test('guide workers retain passed-only policy, replacement identity and captions
   assert.ok(brief('user-guide-capture').includes('not an active coordinator stage'));
 });
 
+test('guide impact never substitutes a stale Desktop queue for live input', () => {
+  const impact = brief('user-guide-impact');
+  for (const rule of ['Resolve the current main commit', 'at the same commit',
+    'Local checkout files are not authoritative', 'never use `Get-Content`',
+    'Before an absent/changed-handoff no-op, refetch', 'live_read_unavailable',
+    'Do not stage an assessment without verified live inputs']) {
+    assert.ok(impact.includes(rule), rule);
+  }
+  assert.ok(brief('coordinator').includes('Local queue absence never proves live handoff absence'));
+});
+
 test('README distinguishes required renderers, migration and privacy limitations', () => {
   const readme = read('README.md');
   assert.ok(readme.includes('WINWORD.EXE'));

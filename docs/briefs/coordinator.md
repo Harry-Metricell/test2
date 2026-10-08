@@ -85,7 +85,7 @@ Create children in the saved Test2 project using its synchronised local environm
 }
 ```
 
-The projectId belongs inside target. Add no summaries or other instructions. Each child rereads its live brief and verifies handoff ID, ticket, action and handoffVersion. An absent/changed handoff produces a chat-only no-op, not staged output.
+The projectId belongs inside target. Add no summaries or other instructions. Each child rereads its live brief and verifies handoff ID, ticket, action and handoffVersion through the GitHub connector, not the local checkout. Local queue absence never proves live handoff absence. An absent/changed handoff confirmed by a current connector read produces a chat-only no-op, not staged output.
 
 Preserve cost allocation: set model "gpt-5.6-luna" and thinking "low" for criteria, guide-impact and guide-authoring children. Tester/reviewer children retain their configured stronger browser/review-capable model; omit overrides for those stages. Model choices never relax evidence, safety or publication gates. Importer, publisher and bundler are deterministic, not model tasks.
 

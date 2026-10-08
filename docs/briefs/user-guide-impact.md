@@ -4,7 +4,11 @@ Assess exactly one selected `guide_impact_assessment` handoff. This is a small c
 
 ## Select and verify
 
-Read the live GitHub `status/handoffs.json` first. If the coordinator message supplies a handoff ID and ticket, select that exact live handoff and verify its ticket, action, and `handoffVersion`; otherwise return a no-op in chat. Read only that handoff's listed `ticket.json`, generated ticket projection, `review.json`, `report.md`, `status/guide-updates.json`, and `config/user-guide-impact-policy.json`.
+Fetch this brief from live GitHub main using the GitHub connector. Resolve the current main commit, then fetch `status/handoffs.json` at that commit using the connector. Local checkout files are not authoritative: never use `Get-Content`, filesystem reads, or a cached queue to decide that a handoff is absent. Desktop sync can lag behind publication even when the coordinator has verified the live handoff.
+
+If the coordinator message supplies a handoff ID and ticket, select that exact live handoff and verify its ticket, action, and `handoffVersion`; otherwise return a no-op in chat. Read only that handoff's listed `ticket.json`, generated ticket projection, `review.json`, `report.md`, `status/guide-updates.json`, and `config/user-guide-impact-policy.json`, using the connector at the same commit. Read an overlapping indexed `guide-update.json` at that commit too. Local reads/writes are allowed only for this worker's staging output, not queue selection or assessment inputs.
+
+Before an absent/changed-handoff no-op, refetch `status/handoffs.json` from current main through the connector and verify it is still absent/changed. If live reads fail, return a compact blocked reason `live_read_unavailable`; never substitute local data or call an unreadable queue empty. Do not stage an assessment without verified live inputs.
 
 Only assess a ticket whose completed evidence review has the overall outcome `Passed`. Never assess failed, blocked, unreviewed, or report-less tickets. Do not use Jira, open a browser, take screenshots, edit the Word guide, edit the guide plan, edit ticket files, or change ticket/Jira status.
 
