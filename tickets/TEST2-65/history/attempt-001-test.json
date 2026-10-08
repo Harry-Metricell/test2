@@ -1,0 +1,141 @@
+{
+  "handoffId": "handoff-TEST2-65-test-attempt-001",
+  "handoffVersion": "TEST2-65:test_ticket:1",
+  "ticket": "TEST2-65",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "With the GIS catalogue visible and the pre-dialog Map layers list recorded, opening Surveyor configuration displays the Surveyor configuration dialog with visible Cancel and Add layer controls, without adding a layer.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-before-open-gis.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-before-open-surveyor.png",
+        "screenshots/attempt-001/criterion-1-after-open-surveyor.png",
+        "screenshots/attempt-001/criterion-1-final.png",
+        "screenshots/attempt-001/criterion-1-before-cleanup-cancel.png",
+        "screenshots/attempt-001/criterion-1-after-cleanup-cancel.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; confirmed authenticated visible launcher and saved this criterion's initial PNG.",
+        "Captured before Open GIS, clicked Open GIS, waited for the GIS map and catalogue to settle, and captured after Open GIS.",
+        "Recorded pre-dialog baseline: Map layers list absent, no loaded entries or order; Search layers empty. Map view showed Brighton and Hove at 300 m scale.",
+        "Captured before Surveyor configuration, clicked the Surveyor catalogue's Add layer/configuration control, verified the Surveyor dialog with visible Cancel and Add layer controls, and captured after opening. Did not press the dialog's Add layer or change filters.",
+        "Captured criterion-specific final PNG at the decisive assertion and recorded current browserUrl https://o2intelligence-v4-dev.metricell.com/gis before cleanup.",
+        "Captured cleanup separately before selecting Cancel and after verifying the dialog closed; left GIS with Search layers empty, Map layers absent and original map view intact."
+      ],
+      "observed_result": "Surveyor configuration opened with visible Cancel and Add layer controls. Opening did not create a loaded layer: the Map layers list remained absent.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "Absent Map layers list was the valid observed baseline; no loaded-layer fixture was required. No layer, filter, saved setting, map position or zoom was changed.",
+      "blockers": []
+    },
+    {
+      "criterion": "Selecting Cancel closes the Surveyor configuration dialog and returns to GIS with the map and layer catalogue visible; the Map layers entries and their order match the recorded pre-dialog baseline, including remaining absent when initially absent.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-open-gis.png",
+        "screenshots/attempt-001/criterion-2-after-open-gis.png",
+        "screenshots/attempt-001/criterion-2-before-open-surveyor.png",
+        "screenshots/attempt-001/criterion-2-after-open-surveyor.png",
+        "screenshots/attempt-001/criterion-2-before-cancel.png",
+        "screenshots/attempt-001/criterion-2-after-cancel.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; confirmed authenticated visible launcher and saved this criterion's initial PNG.",
+        "Captured before Open GIS, clicked Open GIS, waited for the GIS map and catalogue to settle, and captured after Open GIS.",
+        "Recorded pre-dialog baseline: Map layers list absent, no loaded entries or order; Search layers empty. Map view showed Brighton and Hove at 300 m scale.",
+        "Captured before Surveyor configuration, clicked the Surveyor catalogue's Add layer/configuration control, verified the Surveyor dialog with visible Cancel and Add layer controls, and captured after opening. Did not press the dialog's Add layer or change filters.",
+        "Captured before Cancel, selected Cancel, verified that the Surveyor dialog was no longer in the accessibility snapshot and the GIS map and catalogue were visible, then captured after Cancel. Map layers remained absent.",
+        "Captured criterion-specific final PNG at the decisive assertion and recorded current browserUrl https://o2intelligence-v4-dev.metricell.com/gis before cleanup.",
+        "Final asserted state already satisfied cleanup: dialog closed, Search layers empty, Map layers absent and original map view intact."
+      ],
+      "observed_result": "Cancel closed Surveyor configuration and returned to the visible GIS map and catalogue. Map layers remained absent, matching this criterion's pre-dialog baseline; there were no entries to reorder.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "Absent Map layers list was the valid observed baseline; no loaded-layer fixture was required. No layer, filter, saved setting, map position or zoom was changed.",
+      "blockers": []
+    },
+    {
+      "criterion": "After cancelling, opening Surveyor configuration again displays the dialog with its Cancel and Add layer controls available.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-open-gis.png",
+        "screenshots/attempt-001/criterion-3-after-open-gis.png",
+        "screenshots/attempt-001/criterion-3-before-open-surveyor.png",
+        "screenshots/attempt-001/criterion-3-after-open-surveyor.png",
+        "screenshots/attempt-001/criterion-3-before-first-cancel.png",
+        "screenshots/attempt-001/criterion-3-after-first-cancel.png",
+        "screenshots/attempt-001/criterion-3-before-reopen.png",
+        "screenshots/attempt-001/criterion-3-after-reopen.png",
+        "screenshots/attempt-001/criterion-3-final.png",
+        "screenshots/attempt-001/criterion-3-before-cleanup-cancel.png",
+        "screenshots/attempt-001/criterion-3-after-cleanup-cancel.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; confirmed authenticated visible launcher and saved this criterion's initial PNG.",
+        "Captured before Open GIS, clicked Open GIS, waited for the GIS map and catalogue to settle, and captured after Open GIS.",
+        "Recorded pre-dialog baseline: Map layers list absent, no loaded entries or order; Search layers empty. Map view showed Brighton and Hove at 300 m scale.",
+        "Captured before Surveyor configuration, clicked the Surveyor catalogue's Add layer/configuration control, verified the Surveyor dialog with visible Cancel and Add layer controls, and captured after opening. Did not press the dialog's Add layer or change filters.",
+        "Captured before Cancel, selected Cancel, verified that the Surveyor dialog was no longer in the accessibility snapshot and the GIS map and catalogue were visible, then captured after Cancel. Map layers remained absent.",
+        "Captured before reopening, selected Surveyor's catalogue configuration control again, verified the reopened Surveyor dialog with available Cancel and Add layer controls, then captured after reopening.",
+        "Captured criterion-specific final PNG at the decisive assertion and recorded current browserUrl https://o2intelligence-v4-dev.metricell.com/gis before cleanup.",
+        "Captured cleanup separately before selecting Cancel and after verifying the dialog closed; left GIS with Search layers empty, Map layers absent and original map view intact."
+      ],
+      "observed_result": "After a complete open-cancel sequence in this criterion, Surveyor configuration reopened with visible, available Cancel and Add layer controls. No layer was added.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "Absent Map layers list was the valid observed baseline; no loaded-layer fixture was required. No layer, filter, saved setting, map position or zoom was changed.",
+      "blockers": []
+    },
+    {
+      "criterion": "Selecting Cancel in the reopened dialog returns to GIS with the original Map layers state intact and without an application-error page or sign-in screen interrupting the flow.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-before-open-gis.png",
+        "screenshots/attempt-001/criterion-4-after-open-gis.png",
+        "screenshots/attempt-001/criterion-4-before-open-surveyor.png",
+        "screenshots/attempt-001/criterion-4-after-open-surveyor.png",
+        "screenshots/attempt-001/criterion-4-before-first-cancel.png",
+        "screenshots/attempt-001/criterion-4-after-first-cancel.png",
+        "screenshots/attempt-001/criterion-4-before-reopen.png",
+        "screenshots/attempt-001/criterion-4-after-reopen.png",
+        "screenshots/attempt-001/criterion-4-before-second-cancel.png",
+        "screenshots/attempt-001/criterion-4-after-second-cancel.png",
+        "screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; confirmed authenticated visible launcher and saved this criterion's initial PNG.",
+        "Captured before Open GIS, clicked Open GIS, waited for the GIS map and catalogue to settle, and captured after Open GIS.",
+        "Recorded pre-dialog baseline: Map layers list absent, no loaded entries or order; Search layers empty. Map view showed Brighton and Hove at 300 m scale.",
+        "Captured before Surveyor configuration, clicked the Surveyor catalogue's Add layer/configuration control, verified the Surveyor dialog with visible Cancel and Add layer controls, and captured after opening. Did not press the dialog's Add layer or change filters.",
+        "Captured before Cancel, selected Cancel, verified that the Surveyor dialog was no longer in the accessibility snapshot and the GIS map and catalogue were visible, then captured after Cancel. Map layers remained absent.",
+        "Captured before reopening, selected Surveyor's catalogue configuration control again, verified the reopened Surveyor dialog with available Cancel and Add layer controls, then captured after reopening.",
+        "Captured before second Cancel, selected Cancel in the reopened dialog, verified GIS map and catalogue visible with no Cancel in the accessibility snapshot, no visible Cancel button, no sign-in screen or application-error page, and Map layers still absent; captured after second Cancel.",
+        "Captured criterion-specific final PNG at the decisive assertion and recorded current browserUrl https://o2intelligence-v4-dev.metricell.com/gis before cleanup.",
+        "Final asserted state already satisfied cleanup: dialog closed, Search layers empty, Map layers absent and original map view intact."
+      ],
+      "observed_result": "After this criterion's continuous open-cancel-reopen-cancel sequence, GIS map and catalogue were visible. The original absent Map layers state and map view were preserved. No application-error page or sign-in screen interrupted the sequence.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "Absent Map layers list was the valid observed baseline; no loaded-layer fixture was required. No layer, filter, saved setting, map position or zoom was changed.",
+      "blockers": []
+    }
+  ],
+  "conciseReport": "All four criteria passed with independent launcher starts and criterion-owned initial, transition and final PNGs. Surveyor configuration opened, cancelled and reopened; cancelling preserved the absent Map layers baseline and GIS map view. No Add layer submission, application-error page or sign-in interruption occurred. Cleanup left the dialog closed and Search layers empty. Browser: Google Chrome 155.0.8059.40. Evidence is staged for publisher review.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-65-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Completed the live TEST2-65:test_ticket:1 handoff. All evidence files were verified non-empty and readable. An initial wait for literal text 'Open GIS' timed out because that is the accessible button name; the subsequent snapshot confirmed the launcher before any criterion interaction, so no criterion was blocked.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-08T10:18:15.839Z"
+}
