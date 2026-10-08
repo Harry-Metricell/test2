@@ -23,6 +23,7 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, RGBColor
 from docx.table import Table
+from docx.text.paragraph import Paragraph
 
 MARKER = "[[AUTO_GUIDE_CONTENT]]"
 UPDATE_MARKER = "[[AUTO_GUIDE_UPDATE:{ticket}]]"
@@ -131,7 +132,25 @@ def yellow_screenshot(document: Document, image: Path, caption: str):
     caption_paragraph = cell.add_paragraph()
     caption_run = caption_paragraph.add_run(caption)
     caption_run.font.highlight_color = WD_COLOR_INDEX.YELLOW
+    keep_figure_together(table)
     return table
+
+
+def keep_figure_together(table: Table) -> None:
+    """Keep the image/caption paragraphs together in Word as well as the row.
+
+    Word PDF export can paginate paragraphs inside an otherwise non-splitting
+    row. Explicit paragraph chaining prevents an orphaned caption; the final
+    paragraph must not chain into the next figure or closing guide text.
+    """
+    for row in table.rows:
+        properties = row._tr.get_or_add_trPr()
+        if properties.find(qn("w:cantSplit")) is None:
+            properties.append(OxmlElement("w:cantSplit"))
+        for cell in row.cells:
+            for index, paragraph in enumerate(cell.paragraphs):
+                paragraph.paragraph_format.keep_together = True
+                paragraph.paragraph_format.keep_with_next = index < len(cell.paragraphs) - 1
 
 
 def validate_update(update: dict, ticket: str) -> None:
@@ -226,6 +245,7 @@ def editorial_layout(document: Document, plan: dict) -> dict:
         if not KEY.fullmatch(key) or not isinstance(value, dict) or not value.get("reason"):
             fail("each retired update requires a valid key and editorial reason")
     moved, removed = [], []
+    generated_tables = []
     for paragraph in list(document.paragraphs):
         match = re.fullmatch(r"\[\[AUTO_GUIDE_UPDATE:(TEST2-\d+)\]\]", paragraph.text.strip())
         if not match:
@@ -242,31 +262,45 @@ def editorial_layout(document: Document, plan: dict) -> dict:
             removed.append(ticket)
             continue
         tables = [element for element in elements if element.tag == qn("w:tbl")]
+        generated_tables.extend(tables)
+        for element in elements:
+            if element.tag != qn('w:p'):
+                continue
+            paragraph = Paragraph(element, document._body)
+            if element.xpath('.//w:drawing') or paragraph.text.startswith('Figure '):
+                paragraph.paragraph_format.keep_together = True
+                paragraph.paragraph_format.keep_with_next = bool(element.xpath('.//w:drawing'))
+        figure_captions = []
+        for element in elements:
+            if element.tag == qn('w:tbl'):
+                figure_captions.append(Table(element, document._body).cell(0, 0).paragraphs[-1])
+            elif element.tag == qn('w:p'):
+                paragraph = Paragraph(element, document._body)
+                if paragraph.text.startswith('Figure '):
+                    figure_captions.append(paragraph)
         if ticket in captions:
-            if not isinstance(captions[ticket], list) or len(captions[ticket]) != len(tables):
+            if not isinstance(captions[ticket], list) or len(captions[ticket]) != len(figure_captions):
                 fail(f"editorial captions must match every screenshot for {ticket}")
-            for index, (table_xml, caption) in enumerate(zip(tables, captions[ticket]), 1):
+            for index, (paragraph, caption) in enumerate(zip(figure_captions, captions[ticket]), 1):
                 if not isinstance(caption, str) or not caption.strip():
                     fail(f"empty editorial caption for {ticket}")
-                paragraph = Table(table_xml, document._body).cell(0, 0).paragraphs[-1]
                 paragraph.clear()
                 run = paragraph.add_run(f"Figure {index}: {caption}")
                 run.font.highlight_color = WD_COLOR_INDEX.YELLOW
-        # Keep introductory text and short instructions with their first figure.
-        # Long future sections remain breakable rather than creating huge gaps.
+        # Keep short instructions together, but do not chain them into the
+        # figure row: Word can otherwise insert a blank page when both move.
         intro = []
         for element in elements:
-            if element.tag == qn("w:tbl"):
+            if element.tag == qn("w:tbl") or element.xpath('.//w:drawing'):
                 break
             if element.tag == qn("w:p"):
                 intro.append(element)
         if sum(len("".join(p.itertext())) for p in intro) < 2200:
-            for paragraph in intro:
-                paragraph.get_or_add_pPr().get_or_add_keepNext().val = True
+            for index, paragraph in enumerate(intro):
+                paragraph.get_or_add_pPr().get_or_add_keepNext().val = index < len(intro) - 1
         for table in tables:
-            for row in table.iter(qn("w:tr")):
-                if row.get_or_add_trPr().find(qn("w:cantSplit")) is None:
-                    row.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+            # Also repair existing living-guide figures on idempotent builds.
+            keep_figure_together(Table(table, document._body))
         # itertext includes duplicates in python-docx XML; use w:t nodes only.
         section = next(("".join(node.text or "" for node in element.iter(qn("w:t")))[9:]
                         for element in elements if element.tag == qn("w:p")
@@ -288,6 +322,24 @@ def editorial_layout(document: Document, plan: dict) -> dict:
         moved.append(ticket)
     if editorial.get("restartBaselineNumbering"):
         restart_baseline_numbering(document)
+    # Word can merge adjacent one-cell figure tables and split their images.
+    # Normalize only generated yellow figures to image/caption paragraphs.
+    # Relationships remain in the same package and manual tables stay intact.
+    for table_xml in generated_tables:
+        table = Table(table_xml, document._body)
+        if (len(table.rows) != 1 or len(table.columns) != 1
+                or not table._tbl.xpath('.//w:drawing')
+                or not table._tbl.xpath('.//w:shd[@w:fill="FFFF00"]')):
+            continue
+        paragraphs = table.cell(0, 0).paragraphs
+        for index, paragraph in enumerate(paragraphs):
+            paragraph.paragraph_format.keep_together = True
+            paragraph.paragraph_format.keep_with_next = index < len(paragraphs) - 1
+            shade = OxmlElement('w:shd')
+            shade.set(qn('w:fill'), 'FFFF00')
+            paragraph._p.get_or_add_pPr().append(shade)
+            table._tbl.addprevious(copy.deepcopy(paragraph._p))
+        table._tbl.getparent().remove(table._tbl)
     return {"moved": moved, "retired": removed}
 
 

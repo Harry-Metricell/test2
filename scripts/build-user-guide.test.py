@@ -57,6 +57,29 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     assert text.count("[[AUTO_GUIDE_CONTENT]]") == 1
     assert "FFFF00" in result._element.xml, "new screenshot container must be yellow"
     assert len(result.inline_shapes) == 1
+    figure = [p for p in result.paragraphs if p._p.xpath('.//w:drawing') or p.text.startswith('Figure ')]
+    assert figure[0].paragraph_format.keep_with_next is True
+    assert figure[-1].paragraph_format.keep_with_next is False
+    boundary_doc = Document()
+    boundary_doc.add_paragraph('New feature: Figure boundary test')
+    boundary_doc.add_paragraph('Section: Example')
+    for _ in range(2):
+        guide.yellow_screenshot(boundary_doc, image_path, 'Screenshot caption')
+    boundary_doc.add_paragraph('[[AUTO_GUIDE_UPDATE:TEST2-99]]')
+    guide.editorial_layout(boundary_doc, {})
+    assert not boundary_doc.tables, 'generated figures must not be mergeable Word tables'
+    assert len(boundary_doc.inline_shapes) == 2
+    count = len(boundary_doc.paragraphs)
+    guide.editorial_layout(boundary_doc, {})
+    assert len(boundary_doc.paragraphs) == count, 'separator normalization must be idempotent'
+    assert all(p.paragraph_format.keep_together for p in figure)
+    # An existing guide can predate the paragraph pagination fix.
+    for paragraph in figure:
+        paragraph.paragraph_format.keep_with_next = None
+        paragraph.paragraph_format.keep_together = None
+    guide.editorial_layout(result, {})
+    assert figure[0].paragraph_format.keep_with_next is True
+    assert figure[-1].paragraph_format.keep_with_next is False
     with ZipFile(output) as package:
         assert any(name.startswith("word/media/") for name in package.namelist()), "screenshot must be embedded in the DOCX package"
     second = subprocess.run(command, capture_output=True, text=True)
@@ -82,7 +105,7 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     with ZipFile(output) as package:
         assert len([name for name in package.namelist() if name.startswith("word/media/")]) == 1, "retired screenshot bytes must not linger in the document"
     assert "FFFF00" in amended._element.xml
-    assert "Figure 1: Updated module cards are visible." in amended.tables[0].cell(0, 0).text
+    assert "Figure 1: Updated module cards are visible." in amended_text
     for bad_captions in ([], [""], ["One", "Extra"], "Not an array"):
         try:
             guide.validate_update({**update, "screenshotCaptions": bad_captions}, "TEST2-100")
@@ -118,8 +141,8 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     assert len(lists.part.numbering_part.element.num_lst) == numbered_lists, "repeat builds must not accumulate numbering definitions"
     caption_plan = {"editorial": {"retiredUpdates": {}, "sectionRoutes": [], "captionOverrides": {"TEST2-100": ["The updated launcher is displayed."]}}}
     guide.editorial_layout(amended, caption_plan)
-    assert "Figure 1: The updated launcher is displayed." in amended.tables[0].cell(0, 0).text
-    assert amended.tables[0].rows[0]._tr.trPr.find(guide.qn("w:cantSplit")) is not None
+    assert any(p.text == "Figure 1: The updated launcher is displayed." for p in amended.paragraphs)
+    assert all(p.paragraph_format.keep_with_next for p in amended.paragraphs if p._p.xpath('.//w:drawing'))
     heading, block = guide.superseded_block(amended, "TEST2-100")
     assert "Use the updated launcher" in "".join(heading.itertext()), "moved sections remain amendable"
     try:
