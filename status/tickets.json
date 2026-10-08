@@ -6,16 +6,15 @@
     "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 25,
-      "Ready": 35,
-      "Rejected": 1,
-      "Retry Queued": 1
+      "Ready": 36,
+      "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
       "Not Tested": 3,
-      "Passed": 38,
-      "Unverified": 6
+      "Passed": 39,
+      "Unverified": 5
     }
   },
   "policy": {
@@ -861,17 +860,17 @@
       "key": "TEST2-63",
       "summary": "Filter the V4 GIS layer catalogue for Surveyor and restore the original view",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Unverified",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/2 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-08T08:17:09.673Z",
-      "retries": 1,
+      "retries": 2,
       "retryLimit": 2,
-      "retryLabel": "Retry 1/2"
+      "retryLabel": "Retry 2/2"
     },
     {
       "key": "TEST2-2",
