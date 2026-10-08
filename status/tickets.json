@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-08T12:54:48.878+0100",
   "counts": {
     "tickets": 65,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 25,
       "Ready": 39,
@@ -912,9 +912,9 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Cancel an edited Surveyor configuration without applying it",
       "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide update authoring handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-10-08T12:54:48.878+0100",
       "retries": 0,
       "retryLimit": 2,

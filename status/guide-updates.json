@@ -37,8 +37,8 @@
       "affectedSection": "V4 launcher module navigation"
     },
     {
-      "ticket": "TEST2-65",
-      "title": "Open, cancel, and reopen Surveyor configuration in V4 GIS",
+      "ticket": "TEST2-66",
+      "title": "Cancel an edited Surveyor configuration without applying it",
       "affectedSection": "Opening and cancelling Surveyor configuration in V4 GIS"
     }
   ]
