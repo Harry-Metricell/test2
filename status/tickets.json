@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-08T08:17:09.673Z",
+  "generatedAt": "2026-10-08T10:04:20.355+0100",
   "counts": {
-    "tickets": 62,
-    "handoffs": 0,
+    "tickets": 63,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 25,
-      "Ready": 36,
+      "Ready": 37,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 39,
       "Unverified": 5
     }
@@ -871,6 +871,22 @@
       "retries": 2,
       "retryLimit": 2,
       "retryLabel": "Retry 2/2"
+    },
+    {
+      "key": "TEST2-64",
+      "summary": "Recover the V4 GIS layer catalogue after a search with no matching layers",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-08T10:04:20.355+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-2",
