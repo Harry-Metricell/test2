@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-65-guide-impact",
+  "handoffVersion": "TEST2-65:guide_impact_assessment:1",
+  "ticket": "TEST2-65",
+  "decision": "update_required",
+  "affectedSection": "Opening and cancelling Surveyor configuration in V4 GIS",
+  "reason": "The passed evidence verifies a user-facing Surveyor configuration flow with visible Cancel and Add layer controls, including reopening after cancellation. The current guide index has no section documenting this flow, so a new section is needed.",
+  "noOp": false,
+  "assessedAt": "2026-10-08T10:25:09.247Z"
+}
