@@ -1,0 +1,32 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-66-guide-update",
+  "handoffVersion": "TEST2-66:guide_update_authoring:1",
+  "ticket": "TEST2-66",
+  "title": "Cancel an edited Surveyor configuration without applying it",
+  "affectedSection": "Opening and cancelling Surveyor configuration in V4 GIS",
+  "changeType": "amend",
+  "supersedesTicket": "TEST2-65",
+  "steps": [
+    "In the GIS layer catalogue, select the Surveyor configuration control to open its configuration dialog.",
+    "Enter the required value in Username if you want to edit the configuration.",
+    "Select Cancel to discard the edit and return to GIS without adding a Surveyor layer.",
+    "To open the configuration again, select the Surveyor configuration control once more.",
+    "Confirm that Username is empty when the dialog reopens, then select Cancel to return to GIS with the existing map and layer state unchanged."
+  ],
+  "screenshots": [
+    "screenshots/attempt-001/criterion-2-after-edit.png",
+    "screenshots/attempt-001/criterion-3-after-cancel.png",
+    "screenshots/attempt-001/criterion-4-after-reopen.png",
+    "screenshots/attempt-001/criterion-5-after-second-cancel.png"
+  ],
+  "screenshotCaptions": [
+    "The Surveyor configuration dialog visibly contains TEST2-cancel-check in Username before cancellation.",
+    "After cancelling the edited dialog, GIS shows the unchanged map and Map layers state with no Surveyor layer added.",
+    "Surveyor configuration has reopened with an empty Username field and Cancel and Add layer controls available.",
+    "After cancelling again, GIS retains the original map and Map layers state without a Surveyor layer."
+  ],
+  "reason": "Amends the existing Surveyor instructions to explain discarding an entered Username, the empty Username shown on reopening, and preservation of the existing GIS map and layer state.",
+  "noOp": false,
+  "authoredAt": "2026-10-08T15:25:08.952Z"
+}
