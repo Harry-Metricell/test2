@@ -10,5 +10,16 @@
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
   "nextAction": "QA review complete",
-  "updatedAt": "2026-10-08T08:17:09.673Z"
+  "updatedAt": "2026-10-08T08:17:09.673Z",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-63-guide-impact",
+    "handoffVersion": "TEST2-63:guide_impact_assessment:2",
+    "ticket": "TEST2-63",
+    "decision": "not_needed",
+    "affectedSection": "",
+    "reason": "The verified Surveyor search-and-clear workflow is already covered by the existing GIS layer catalogue search and filtering guidance, so this passed ticket adds no material documentation gap.",
+    "noOp": false,
+    "assessedAt": "2026-10-08T08:35:09.545Z"
+  }
 }
