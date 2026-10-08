@@ -57,7 +57,7 @@ Updated: 2026-10-08T10:04:20.355+0100
 | TEST2-61 | READY FOR TESTING | Evidence Reviewed |  | Recover the GIS layer catalogue from a no-match search without changing loaded layers |
 | TEST2-62 | READY FOR TESTING | Evidence Reviewed |  | Navigate from the V4 launcher through GIS and API Request Audit and back |
 | TEST2-63 | READY FOR TESTING | Evidence Reviewed | Retry 2/2 | Filter the V4 GIS layer catalogue for Surveyor and restore the original view |
-| TEST2-64 | READY FOR TESTING | Awaiting Evidence Review |  | Recover the V4 GIS layer catalogue after a search with no matching layers |
+| TEST2-64 | READY FOR TESTING | Evidence Reviewed |  | Recover the V4 GIS layer catalogue after a search with no matching layers |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 2/2 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/2 | Verify GIS layer and map view controls |
