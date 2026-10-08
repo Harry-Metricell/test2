@@ -19,6 +19,53 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_single_opening_image_has_same_height_as_readable_paired_images(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            image = Path(temporary) / "criterion-1-final.png"
+            Image.new("RGB", (1440, 900), "navy").save(image)
+            document = Document()
+            table = document.add_table(rows=1, cols=5)
+            REPORT.add_image_row(table, [("E01", image, "https://example.test/gis")], opening=True)
+            self.assertAlmostEqual(document.inline_shapes[0].height.inches, 2.25)
+
+    def test_report_text_removes_code_markers_without_changing_criteria(self):
+        criterion = "Enter `Surveyor` and retain ``Map layers``."
+        document = Document()
+        cell = document.add_table(rows=1, cols=1).cell(0, 0)
+        REPORT.set_cell(cell, criterion)
+        self.assertEqual(cell.text, "Enter Surveyor and retain Map layers.")
+        self.assertEqual(REPORT.display_criterion(1, [criterion]), criterion)
+
+    def test_search_baseline_excludes_configuration_and_keeps_full_journey(self):
+        images = [Path(name) for name in (
+            "criterion-2-after-open-gis.png", "criterion-2-after-open-surveyor-config.png",
+            "criterion-2-before-confirm-add.png", "criterion-2-after-add-surveyor.png",
+            "criterion-2-before-search.png", "criterion-2-before-search-layers-8.png",
+            "criterion-2-after-search.png", "criterion-2-before-clear.png",
+            "criterion-2-after-clear.png", "criterion-2-final.png",
+            "criterion-2-cleanup.png",
+        )]
+        for criterion in (
+            "After entering Surveyor in Search layers the list is unchanged.",
+            "After clearing Search layers the original catalogue returns.",
+            "After the search-and-clear journey no application-error page appears.",
+        ):
+            self.assertEqual(REPORT.report_exhibits(images, criterion), images[4:10])
+
+    def test_setup_configuration_still_printed_when_it_is_the_assertion(self):
+        images = [Path(name) for name in (
+            "criterion-1-after-open-surveyor-config.png", "criterion-1-final.png",
+        )]
+        self.assertEqual(REPORT.report_exhibits(images, "The configuration dialog shows default values."), images)
+
+    def test_negated_error_list_is_not_a_testing_limitation(self):
+        result = {"browserVersion": "1", "browserUrl": "https://example.test/gis",
+                  "reason": "No error or sign-in interruption.",
+                  "steps_taken": ["GIS remained visible; no sign-in or application-error page appeared."]}
+        self.assertEqual(REPORT.report_limitations({}, [{"outcome": "Passed"}], [result]), "No testing limitations recorded.")
+        result["steps_taken"].append("Recovered a tool timeout without an error or sign-in interruption.")
+        self.assertIn("Recovered a tool timeout", REPORT.report_limitations({}, [{"outcome": "Passed"}], [result]))
+
     def test_long_tables_repeat_column_header_and_keep_it_with_first_row(self):
         document = Document()
         table = document.add_table(rows=1, cols=5)

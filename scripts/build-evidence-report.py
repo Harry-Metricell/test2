@@ -22,10 +22,15 @@ def text(value):
 
 
 def set_cell(cell, value):
-    cell.text = text(value)
+    cell.text = report_text(value)
     for paragraph in cell.paragraphs:
         for run in paragraph.runs:
             run.font.size = Pt(9)
+
+
+def report_text(value):
+    """Display Markdown code spans as plain text without altering source data."""
+    return re.sub(r"(`+)([^`\n]+)\1", lambda match: match.group(2), text(value))
 
 
 def remove_rows(table):
@@ -86,7 +91,7 @@ def localized_change_region(images):
     return None
 
 
-def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focus_region=None):
+def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focus_region=None, opening=False):
     """Use readable pairs plus explicitly labelled, lossless Word detail views."""
     if not 1 <= len(exhibits) <= 2:
         raise ValueError("an evidence row requires one or two captures")
@@ -116,7 +121,9 @@ def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focu
         picture.paragraph_format.space_after = Pt(0)
         with Image.open(image) as source:
             max_width = 3.65 if supporting else (4.7 if len(exhibits) > 1 else 7.4)
-            max_height = 2.1 if supporting else (2.25 if len(exhibits) > 1 else 3.2)
+            # A single opening image uses the same readable height as paired
+            # images, so the section heading and first criterion fit together.
+            max_height = 2.1 if supporting else (2.25 if len(exhibits) > 1 or opening else 3.2)
             width = min(max_width, max_height * source.width / source.height)
         picture.add_run().add_picture(str(image), width=Inches(width))
         picture.paragraph_format.keep_with_next = False
@@ -149,7 +156,10 @@ def supporting_captures(candidates, displayed, limit=2):
     selected = []
     seen = set(displayed)
     for image, browser_url in candidates:
-        if not any(term in image.stem.lower() for term in ("after-open-gis", "before-load", "after-open-module")):
+        if not any(term in image.stem.lower() for term in (
+            "after-open-gis", "before-load", "after-open-module",
+            "after-open-surveyor-config", "after-open-layer-dialog", "before-confirm-add",
+        )):
             continue
         digest = hashlib.sha256(image.read_bytes()).hexdigest()
         if digest in seen:
@@ -220,7 +230,7 @@ def report_exhibits(images, criterion, review_reason=""):
     # capture when an unchanged complete list is part of the claim.
     if "search" in lower and not re.search(r"\bdefaults?\b", lower):
         start = next((i for i, image in enumerate(images) if any(term in image.stem.lower()
-                     for term in ("baseline-layers", "before-no-match", "before-search-surveyor"))), None)
+                     for term in ("baseline-layers", "before-no-match", "before-search"))), None)
         if start is not None:
             images = images[start:]
     if "returned" in lower and "launcher" in lower and "api request audit" in lower:
@@ -268,6 +278,8 @@ def report_exhibits(images, criterion, review_reason=""):
         if any(term in name for term in ("after-add-surveyor", "before-confirm-defaults")) and not needs_setup:
             continue
         if "after-open-layer-dialog" in name and not checks_configuration:
+            continue
+        if "after-open-surveyor-config" in name and not checks_configuration:
             continue
         # Loading a layer is setup for its settings/control checks. Preserve
         # it for layer-loading assertions and unfamiliar action names.
@@ -444,10 +456,19 @@ def report_limitations(review, outcomes, results):
     for number, result in enumerate(results, 1):
         reason = text(result.get("reason"))
         steps = [result.get("steps_taken")] if isinstance(result.get("steps_taken"), str) else result.get("steps_taken", [])
-        values = [reason] if signal.search(reason) else steps
+        # Inspect both fields: a harmless negative statement in reason must
+        # not hide a real timeout recorded only in the steps.
+        values = [reason, *steps]
         for value in values:
             note = text(value).strip()
-            affirmative = re.sub(r"\b(?:no|without) (?:application )?(?:error|failure|timeout)s?\b", "", note, flags=re.I)
+            # Remove only explicitly negated problem nouns, including a list
+            # such as 'no sign-in or application-error page'. Keep any real
+            # recovery/timeout elsewhere in the same sentence visible.
+            problem = r"(?:(?:application|tool)[- ])?(?:errors?|failures?|timeouts?|sign[- ]in)(?:\s+(?:page|screen|interruption)s?)?"
+            affirmative = re.sub(
+                rf"\b(?:no|without)\s+(?:an?\s+)?{problem}(?:\s*(?:,|or|and)\s+(?:an?\s+)?{problem})*",
+                "", note, flags=re.I,
+            )
             if signal.search(affirmative):
                 if note not in notes:
                     notes.append(note)
@@ -687,7 +708,7 @@ def main():
         raw_outcome = text(item.get("outcome")).lower()
         # Preserve the complete requirement; wrapping is preferable to hiding
         # the distinguishing part of a criterion behind an ellipsis.
-        label = display_criterion(item.get("criterion"), criteria)
+        label = report_text(display_criterion(item.get("criterion"), criteria))
         set_cell(row[0], f"{index}. {label}")
         set_cell(row[1], "Y" if raw_outcome == "passed" else "N")
         set_cell(row[2], "Y" if raw_outcome in ("failed", "unverified") else "N")
@@ -740,7 +761,7 @@ def main():
     setup_candidates = []
     for number, item in enumerate(outcomes, 1):
         criterion_id = text(item.get("criterion"))
-        criterion = display_criterion(criterion_id, criteria)
+        criterion = report_text(display_criterion(criterion_id, criteria))
         result = result_for_outcome(item, results, result_by_criterion, criteria, number - 1)
         row = cases.add_row().cells
         steps = formatted_steps(result.get("steps_taken", []))
@@ -797,7 +818,8 @@ def main():
                 label = f"Criterion {number}" + (" continued" if start else " evidence") + f": {criterion}"
                 row_exhibits = exhibits[start:start + 2]
                 focus = localized_change_region([exhibit[1] for exhibit in row_exhibits])
-                add_image_row(cases, row_exhibits, criterion_label=label, focus_region=focus)
+                add_image_row(cases, row_exhibits, criterion_label=label, focus_region=focus,
+                              opening=number == 1 and start == 0)
 
     setup = supporting_captures(setup_candidates, unique_images)
     if setup:
