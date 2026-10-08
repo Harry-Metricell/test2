@@ -1,0 +1,144 @@
+[
+  {
+    "criterion": "Starting in GIS with the initial visible map and Map layers state recorded, open Surveyor configuration from the Surveyor layer-catalogue control and verify that the dialog displays Username, Cancel, and Add layer controls.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-open.png",
+      "screenshots/attempt-001/criterion-1-after-open.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher, and saved this criterion's initial PNG.",
+      "Opened GIS and waited for Loading map to disappear.",
+      "Recorded the visible Hangleton/West Hove map at 300 m scale, Single layout, Map layers containing only ALL Coverage Gap Candidate Areas, and its existing Unable to load coverage gap candidate areas alert.",
+      "Opened Surveyor using its layer-catalogue control; verified Username, Cancel and Add layer are visible.",
+      "Captured the open dialog as final evidence and read its current URL.",
+      "Cancelled the dialog after final evidence; verified it closed and captured cleanup."
+    ],
+    "observedResult": "Surveyor configuration displays Username, Cancel and Add layer.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Direct criterion-specific evidence supports the assertion. The pre-existing coverage gap candidate data load alert remained unchanged and did not prevent this configuration workflow.",
+    "blockers": []
+  },
+  {
+    "criterion": "Enter `TEST2-cancel-check` in Username and verify that the value is visibly present in the Surveyor configuration dialog before cancellation.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-open.png",
+      "screenshots/attempt-001/criterion-2-before-edit.png",
+      "screenshots/attempt-001/criterion-2-after-edit.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher, and saved this criterion's initial PNG.",
+      "Opened GIS and waited for Loading map to disappear.",
+      "Recorded the visible Hangleton/West Hove map at 300 m scale, Single layout, Map layers containing only ALL Coverage Gap Candidate Areas, and its existing Unable to load coverage gap candidate areas alert.",
+      "Opened Surveyor configuration and captured the empty Username before editing.",
+      "Entered TEST2-cancel-check in Username; the accessibility snapshot and PNG showed that exact value.",
+      "Captured the edited dialog as final evidence and read its current URL.",
+      "Cancelled after final evidence; verified the dialog closed and captured cleanup."
+    ],
+    "observedResult": "Username visibly displays TEST2-cancel-check before cancellation.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Direct criterion-specific evidence supports the assertion. The pre-existing coverage gap candidate data load alert remained unchanged and did not prevent this configuration workflow.",
+    "blockers": []
+  },
+  {
+    "criterion": "Select Cancel and verify that the dialog closes, GIS returns to the recorded map and Map layers state, and no Surveyor layer is added.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-open.png",
+      "screenshots/attempt-001/criterion-3-before-edit.png",
+      "screenshots/attempt-001/criterion-3-before-cancel.png",
+      "screenshots/attempt-001/criterion-3-after-cancel.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher, and saved this criterion's initial PNG.",
+      "Opened GIS and waited for Loading map to disappear.",
+      "Recorded the visible Hangleton/West Hove map at 300 m scale, Single layout, Map layers containing only ALL Coverage Gap Candidate Areas, and its existing Unable to load coverage gap candidate areas alert.",
+      "The first scoped locator attempt timed out without changing the page: TimeoutError: locator.click: Timeout 30000ms exceeded while waiting for getByText('Surveyor', { exact: true }).locator('..').getByRole('button', { name: 'Add layer', exact: true }).",
+      "Refreshed the Surveyor accessibility reference and opened configuration successfully using its catalogue control.",
+      "Entered TEST2-cancel-check; verified it visibly present and captured before-cancel evidence.",
+      "Selected Cancel; waited for Username to disappear and verified the dialog closed.",
+      "Compared the restored map and Map layers with this criterion's baseline: same visible map, scale, layout, sole existing layer and existing alert; no Surveyor layer.",
+      "Captured decisive final evidence before any navigation and read its current URL."
+    ],
+    "observedResult": "Cancel closes the edited dialog; the visible map and existing Map layers state are unchanged and no Surveyor layer is added.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Direct criterion-specific evidence supports the assertion. The pre-existing coverage gap candidate data load alert remained unchanged and did not prevent this configuration workflow.",
+    "blockers": []
+  },
+  {
+    "criterion": "Reopen Surveyor configuration and verify that the dialog is usable with Username, Cancel, and Add layer controls available.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-before-open.png",
+      "screenshots/attempt-001/criterion-4-before-edit.png",
+      "screenshots/attempt-001/criterion-4-before-cancel.png",
+      "screenshots/attempt-001/criterion-4-before-reopen.png",
+      "screenshots/attempt-001/criterion-4-after-reopen.png",
+      "screenshots/attempt-001/criterion-4-final.png",
+      "screenshots/attempt-001/criterion-4-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher, and saved this criterion's initial PNG.",
+      "Opened GIS and waited for Loading map to disappear.",
+      "Recorded the visible Hangleton/West Hove map at 300 m scale, Single layout, Map layers containing only ALL Coverage Gap Candidate Areas, and its existing Unable to load coverage gap candidate areas alert.",
+      "Opened Surveyor, entered TEST2-cancel-check and verified the edited field visibly present.",
+      "Selected Cancel and verified the dialog closed before reopening.",
+      "Reopened Surveyor continuously within this criterion; Username was empty and available, with Cancel and Add layer visible and enabled in the snapshot.",
+      "Captured the reopened dialog as final evidence and read its current URL.",
+      "Selected Cancel after final evidence, verified closure and captured cleanup."
+    ],
+    "observedResult": "Reopened Surveyor configuration is usable; Username is empty and Username, Cancel and Add layer are available.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Direct criterion-specific evidence supports the assertion. The pre-existing coverage gap candidate data load alert remained unchanged and did not prevent this configuration workflow.",
+    "blockers": []
+  },
+  {
+    "criterion": "Select Cancel again and verify that the dialog closes without adding a Surveyor layer and the recorded map and Map layers state remains unchanged.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-initial.png",
+      "screenshots/attempt-001/criterion-5-before-open.png",
+      "screenshots/attempt-001/criterion-5-before-edit.png",
+      "screenshots/attempt-001/criterion-5-before-first-cancel.png",
+      "screenshots/attempt-001/criterion-5-before-reopen.png",
+      "screenshots/attempt-001/criterion-5-before-second-cancel.png",
+      "screenshots/attempt-001/criterion-5-after-second-cancel.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher, and saved this criterion's initial PNG.",
+      "Opened GIS and waited for Loading map to disappear.",
+      "Recorded the visible Hangleton/West Hove map at 300 m scale, Single layout, Map layers containing only ALL Coverage Gap Candidate Areas, and its existing Unable to load coverage gap candidate areas alert.",
+      "Opened Surveyor, entered TEST2-cancel-check and verified the edited field visibly present.",
+      "Selected Cancel and verified closure.",
+      "Reopened Surveyor continuously within this criterion; Username was empty with Cancel and Add layer available.",
+      "Selected Cancel again; verified Username disappeared and the dialog closed.",
+      "Compared against this criterion's baseline: unchanged visible map, 300 m scale, Single layout, sole ALL Coverage Gap Candidate Areas layer and existing alert; no Surveyor layer.",
+      "Captured decisive final evidence and read its current URL. No additional cleanup was necessary."
+    ],
+    "observedResult": "Second Cancel closes the reopened dialog, adds no Surveyor layer, and preserves the recorded map and Map layers state.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Direct criterion-specific evidence supports the assertion. The pre-existing coverage gap candidate data load alert remained unchanged and did not prevent this configuration workflow.",
+    "blockers": []
+  }
+]
