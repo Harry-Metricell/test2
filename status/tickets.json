@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-08T10:46:04.011+0100",
+  "generatedAt": "2026-10-08T12:54:48.878+0100",
   "counts": {
-    "tickets": 64,
-    "handoffs": 0,
+    "tickets": 65,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 25,
-      "Ready": 38,
+      "Ready": 39,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 41,
       "Unverified": 5
     }
@@ -900,6 +900,22 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-08T10:46:04.011+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-66",
+      "summary": "Cancel edited Surveyor configuration without applying it to the GIS map",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-08T12:54:48.878+0100",
       "retries": 0,
       "retryLimit": 2,
       "retryLabel": ""
