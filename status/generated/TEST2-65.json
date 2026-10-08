@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-65",
+  "id": "106556",
+  "summary": "Cancel and reopen Surveyor configuration in V4 GIS without adding a layer",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-65",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-08T10:45:48.644+0100",
+    "updated": "2026-10-08T10:46:04.011+0100"
+  },
+  "description": "Description\nA V4 user should be able to inspect Surveyor configuration, cancel without adding a layer, and reopen the configuration when needed. Cancelling must preserve the existing loaded-layer state.\nPreconditions and scope\nStart at https://o2intelligence-v4-dev.metricell.com/launcher using the authorised V4 test account. Open GIS and wait for the map and catalogue to settle. Clear Search layers if necessary. Record the complete existing Map layers entries and their order and the current map view before opening Surveyor configuration. An absent Map layers list is a valid baseline; no loaded layer is required. Use the Surveyor entry's normal add/configuration control to open its configuration dialog. Do not press Add layer or change filters, saved settings, map position, zoom, or existing layers.\nAcceptance criteria\nOpening Surveyor configuration from the GIS catalogue displays the Surveyor configuration dialog with a visible Cancel control and an Add layer control. No layer has been added merely by opening the dialog.\nSelecting Cancel closes the dialog and returns to GIS with the map and layer catalogue visible. The loaded Map layers entries and their order match the recorded pre-dialog baseline; if the list was absent initially, it remains absent.\nOpening Surveyor configuration again after cancelling displays the configuration dialog with its Cancel and Add layer controls available, showing that cancelling has not prevented reopening it.\nCancelling the reopened dialog returns to GIS with the original loaded-layer state still intact and without an application-error page or sign-in screen interrupting the journey.\nCleanup\nLeave the configuration dialog closed and Search layers empty. Do not add or remove any layer. Preserve all pre-existing loaded layers and saved settings.\nUser documentation relevance\nAssess whether the living guide already explains opening and cancelling Surveyor configuration. Amend an existing section only for a genuine missing or inaccurate instruction, not simply because another QA test passed.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-65/ticket.json",
+    "criteria": "tickets/TEST2-65/criteria.md",
+    "status": "tickets/TEST2-65/status.json",
+    "screenshots": "tickets/TEST2-65/screenshots/",
+    "reports": "tickets/TEST2-65/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106556",
+    "importedAt": "2026-10-08T10:46:04.011+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-08T10:46:04.011+0100",
+    "criteriaVerified": false
+  }
+}

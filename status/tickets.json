@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-08T10:04:20.355+0100",
+  "generatedAt": "2026-10-08T10:46:04.011+0100",
   "counts": {
-    "tickets": 63,
-    "handoffs": 0,
+    "tickets": 64,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 25,
-      "Ready": 37,
+      "Ready": 38,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 4,
       "Passed": 40,
       "Unverified": 5
     }
@@ -884,6 +884,22 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-08T10:04:20.355+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-65",
+      "summary": "Cancel and reopen Surveyor configuration in V4 GIS without adding a layer",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-08T10:46:04.011+0100",
       "retries": 0,
       "retryLimit": 2,
       "retryLabel": ""

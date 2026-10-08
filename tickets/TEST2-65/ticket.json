@@ -1,0 +1,209 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "106556",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/106556",
+  "key": "TEST2-65",
+  "fields": {
+    "summary": "Cancel and reopen Surveyor configuration in V4 GIS without adding a layer",
+    "subtasks": [],
+    "created": "2026-10-08T10:45:48.644+0100",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Description"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "A V4 user should be able to inspect Surveyor configuration, cancel without adding a layer, and reopen the configuration when needed. Cancelling must preserve the existing loaded-layer state."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Preconditions and scope"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Start at https://o2intelligence-v4-dev.metricell.com/launcher using the authorised V4 test account. Open GIS and wait for the map and catalogue to settle. Clear Search layers if necessary. Record the complete existing Map layers entries and their order and the current map view before opening Surveyor configuration. An absent Map layers list is a valid baseline; no loaded layer is required. Use the Surveyor entry's normal add/configuration control to open its configuration dialog. Do not press Add layer or change filters, saved settings, map position, zoom, or existing layers."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance criteria"
+            }
+          ]
+        },
+        {
+          "type": "taskList",
+          "content": [
+            {
+              "type": "taskItem",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Opening Surveyor configuration from the GIS catalogue displays the Surveyor configuration dialog with a visible Cancel control and an Add layer control. No layer has been added merely by opening the dialog."
+                }
+              ],
+              "attrs": {
+                "localId": "ed06dd22-e507-4456-9fda-838a37436101",
+                "state": "TODO"
+              }
+            },
+            {
+              "type": "taskItem",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Selecting Cancel closes the dialog and returns to GIS with the map and layer catalogue visible. The loaded Map layers entries and their order match the recorded pre-dialog baseline; if the list was absent initially, it remains absent."
+                }
+              ],
+              "attrs": {
+                "localId": "a1cf3e8c-520a-42ec-a504-3628ae6060b3",
+                "state": "TODO"
+              }
+            },
+            {
+              "type": "taskItem",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Opening Surveyor configuration again after cancelling displays the configuration dialog with its Cancel and Add layer controls available, showing that cancelling has not prevented reopening it."
+                }
+              ],
+              "attrs": {
+                "localId": "e4fc0e84-3354-4cf5-b436-f9d006ce53fa",
+                "state": "TODO"
+              }
+            },
+            {
+              "type": "taskItem",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Cancelling the reopened dialog returns to GIS with the original loaded-layer state still intact and without an application-error page or sign-in screen interrupting the journey."
+                }
+              ],
+              "attrs": {
+                "localId": "73f62fa4-ac72-49d7-89f4-479cc9bd3ade",
+                "state": "TODO"
+              }
+            }
+          ],
+          "attrs": {
+            "localId": "2d6f518b-d8cf-4684-a493-902c9dc1c5fc"
+          }
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Cleanup"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Leave the configuration dialog closed and Search layers empty. Do not add or remove any layer. Preserve all pre-existing loaded layers and saved settings."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "User documentation relevance"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Assess whether the living guide already explains opening and cancelling Surveyor configuration. Amend an existing section only for a genuine missing or inaccurate instruction, not simply because another QA test passed."
+            }
+          ]
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-10-08T10:46:04.011+0100",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  }
+}
