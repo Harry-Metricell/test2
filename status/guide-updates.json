@@ -35,6 +35,11 @@
       "ticket": "TEST2-62",
       "title": "Navigate between the V4 launcher, GIS, and API Request Audit",
       "affectedSection": "V4 launcher module navigation"
+    },
+    {
+      "ticket": "TEST2-65",
+      "title": "Open, cancel, and reopen Surveyor configuration in V4 GIS",
+      "affectedSection": "Opening and cancelling Surveyor configuration in V4 GIS"
     }
   ]
 }

@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-08T10:46:04.011+0100",
   "counts": {
     "tickets": 64,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 25,
       "Ready": 38,
@@ -896,9 +896,9 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Open, cancel, and reopen Surveyor configuration in V4 GIS",
       "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide update authoring handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-10-08T10:46:04.011+0100",
       "retries": 0,
       "retryLimit": 2,
