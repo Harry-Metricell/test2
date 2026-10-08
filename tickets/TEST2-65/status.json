@@ -20,5 +20,35 @@
     "reason": "The passed evidence verifies a user-facing Surveyor configuration flow with visible Cancel and Add layer controls, including reopening after cancellation. The current guide index has no section documenting this flow, so a new section is needed.",
     "noOp": false,
     "assessedAt": "2026-10-08T10:25:09.247Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-65-guide-update",
+    "handoffVersion": "TEST2-65:guide_update_authoring:1",
+    "ticket": "TEST2-65",
+    "title": "Open, cancel, and reopen Surveyor configuration in V4 GIS",
+    "affectedSection": "Opening and cancelling Surveyor configuration in V4 GIS",
+    "changeType": "add",
+    "steps": [
+      "In the GIS layer catalogue, select the Surveyor configuration control to open its configuration dialog.",
+      "Select Cancel to close the dialog and return to the GIS map and layer catalogue without adding a layer.",
+      "To open the configuration again, select the Surveyor configuration control once more.",
+      "Select Cancel in the reopened dialog to return to GIS with the existing map and layer state unchanged."
+    ],
+    "screenshots": [
+      "screenshots/attempt-001/criterion-1-after-open-surveyor.png",
+      "screenshots/attempt-001/criterion-2-after-cancel.png",
+      "screenshots/attempt-001/criterion-3-after-reopen.png",
+      "screenshots/attempt-001/criterion-4-after-second-cancel.png"
+    ],
+    "screenshotCaptions": [
+      "Surveyor configuration is open with Cancel and Add layer controls visible; no layer has been added.",
+      "The Surveyor dialog is closed and the GIS map and layer catalogue are visible with Map layers still absent.",
+      "Surveyor configuration has reopened with Cancel and Add layer controls available.",
+      "After cancelling again, GIS is visible with the original absent Map layers state preserved."
+    ],
+    "reason": "Adds the missing end-user instructions for opening, cancelling, and reopening Surveyor configuration without adding a layer or changing the existing GIS state.",
+    "noOp": false,
+    "authoredAt": "2026-10-08T10:27:09.538Z"
   }
 }
