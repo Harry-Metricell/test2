@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-08T08:17:09.673Z",
   "counts": {
     "tickets": 62,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 25,
       "Ready": 36,
@@ -863,10 +863,10 @@
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
-      "guideImpact": null,
+      "guideImpact": "not_needed",
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide impact assessment handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-10-08T08:17:09.673Z",
       "retries": 2,
       "retryLimit": 2,
