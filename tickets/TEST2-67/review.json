@@ -1,0 +1,33 @@
+{
+  "handoffId": "handoff-TEST2-67-review-attempt-001",
+  "handoffVersion": "TEST2-67:evidence_review:1",
+  "ticket": "TEST2-67",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting from the authorised V4 launcher, the page displays GIS and API Request Audit cards, each with an Open module control.",
+      "outcome": "Passed",
+      "reason": "Initial and final launcher images show GIS and API request audit cards with arrow Open controls; the browser-derived URL is the authorised /launcher address."
+    },
+    {
+      "criterion": "After selecting Open for API Request Audit, the module displays identifiable audit content, such as request metrics or the Requests and errors over time chart, rather than a sign-in or application error page; specific metric values are not required.",
+      "outcome": "Passed",
+      "reason": "The criterion-owned sequence shows the launcher followed by API request audit metrics and the Requests and errors over time chart, with the browser-derived URL on the authorised /api-request-audit destination."
+    },
+    {
+      "criterion": "After viewing API Request Audit, using browser Back returns to the launcher and GIS remains available.",
+      "outcome": "Passed",
+      "reason": "The criterion-owned sequence shows launcher, populated audit content, and the launcher after browser Back, with GIS and its Open control visible; the final browser-derived URL is the exact authorised /launcher address."
+    },
+    {
+      "criterion": "From the returned launcher, selecting Open for GIS displays the settled map and map controls rather than a sign-in or application error page.",
+      "outcome": "Passed",
+      "reason": "The criterion-owned sequence shows launcher, audit, returned launcher, then a settled GIS basemap with streets, labels and map controls at the browser-derived /gis destination. The coverage-gap layer panel reports a data load error, but the map and controls render."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-67\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Completed assessment of all four criteria using attempt-001 screenshots and browser-derived URL records."
+}
