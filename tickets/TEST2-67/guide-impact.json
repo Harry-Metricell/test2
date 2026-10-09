@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-67-guide-impact",
+  "handoffVersion": "TEST2-67:guide_impact_assessment:1",
+  "ticket": "TEST2-67",
+  "decision": "not_needed",
+  "affectedSection": "",
+  "reason": "The passed navigation evidence repeats behavior already documented in the existing API Request Audit and V4 launcher module navigation sections; no new end-user instruction or material guide change is needed.",
+  "noOp": false,
+  "assessedAt": "2026-10-09T10:10:10.903Z"
+}
