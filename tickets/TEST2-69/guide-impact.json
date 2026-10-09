@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-69-guide-impact",
+  "handoffVersion": "TEST2-69:guide_impact_assessment:1",
+  "ticket": "TEST2-69",
+  "decision": "not_needed",
+  "affectedSection": "",
+  "reason": "The passed evidence verifies two repetitions of the existing Surveyor cancel-and-reopen workflow. The indexed guide update for the existing section already documents discarding the Username edit, reopening with an empty Username, and preserving the GIS map and layer state, so no material documentation gap remains.",
+  "noOp": false,
+  "assessedAt": "2026-10-09T10:08:10.411Z"
+}
