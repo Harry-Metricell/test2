@@ -1,0 +1,105 @@
+[
+  {
+    "criterion": "Starting in GIS with Search layers empty and the recorded baseline visible, enter `zzqa_no_match_batch_20261009` in Search layers; the entered text remains visible, no matching catalogue entries are displayed, and the GIS map remains available.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-no-match.png",
+      "screenshots/attempt-001/criterion-1-after-no-match.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher URL and captured the visible launcher.",
+      "Opened GIS; waited for map loading to finish and recorded empty Search layers, catalogue entries and the existing ALL Coverage Gap Candidate Areas layer.",
+      "Entered zzqa_no_match_batch_20261009 in Search layers and verified the entered text, empty catalogue and available map.",
+      "Captured final state and browser URL, then cleared the search and verified catalogue restoration."
+    ],
+    "observedResult": "The no-match text remained visible; catalogue showed No layers match this search.; the rendered GIS map remained available.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Direct criterion-specific screenshots and browser observations support this result. The pre-existing coverage-gap data panel displayed Unable to load coverage gap candidate areas throughout; it did not prevent catalogue search, Surveyor configuration or baseline restoration.",
+    "blockers": []
+  },
+  {
+    "criterion": "Replace the no-match Search layers text with `Surveyor` without reloading GIS; a matching Surveyor catalogue entry becomes visible.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-baseline-before-no-match.png",
+      "screenshots/attempt-001/criterion-2-after-no-match-before-replace.png",
+      "screenshots/attempt-001/criterion-2-after-replace.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-cleanup.png"
+    ],
+    "steps_taken": [
+      "Started independently at the launcher and captured initial state.",
+      "Opened GIS and recorded its empty-search baseline.",
+      "Entered zzqa_no_match_batch_20261009 and verified no matching layers.",
+      "Replaced the text with Surveyor without navigating or reloading GIS; verified the Surveyor catalogue entry.",
+      "Captured final state and URL, then cleared Search layers."
+    ],
+    "observedResult": "Surveyor became the sole matching catalogue entry without a GIS reload.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Direct criterion-specific screenshots and browser observations support this result. The pre-existing coverage-gap data panel displayed Unable to load coverage gap candidate areas throughout; it did not prevent catalogue search, Surveyor configuration or baseline restoration.",
+    "blockers": []
+  },
+  {
+    "criterion": "With the filtered Surveyor catalogue entry visible, open its configuration control; the Surveyor configuration displays Username, Cancel, and Add layer controls.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-baseline-before-no-match.png",
+      "screenshots/attempt-001/criterion-3-after-no-match-before-replace.png",
+      "screenshots/attempt-001/criterion-3-after-replace-before-open.png",
+      "screenshots/attempt-001/criterion-3-after-open.png",
+      "screenshots/attempt-001/criterion-3-final.png",
+      "screenshots/attempt-001/criterion-3-cleanup-after-cancel.png",
+      "screenshots/attempt-001/criterion-3-cleanup-after-clear.png"
+    ],
+    "steps_taken": [
+      "Started independently at the launcher, opened GIS and recorded the empty-search baseline.",
+      "Entered zzqa_no_match_batch_20261009, verified no matches, then replaced it with Surveyor.",
+      "Clicked the Add layer configuration control beside the sole filtered Surveyor entry.",
+      "Verified the Surveyor dialog displayed Username, Cancel and Add layer; captured final state and URL.",
+      "Selected Cancel, verified Username was hidden, then cleared Search layers and verified catalogue restoration."
+    ],
+    "observedResult": "Surveyor configuration visibly displayed Username, Cancel and Add layer controls.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Direct criterion-specific screenshots and browser observations support this result. The pre-existing coverage-gap data panel displayed Unable to load coverage gap candidate areas throughout; it did not prevent catalogue search, Surveyor configuration or baseline restoration.",
+    "blockers": []
+  },
+  {
+    "criterion": "Select Cancel and clear Search layers; the original catalogue entries return, the existing Map layers entries and order and the map view match the recorded baseline, and no new layer is present.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-baseline-before-no-match.png",
+      "screenshots/attempt-001/criterion-4-after-no-match-before-replace.png",
+      "screenshots/attempt-001/criterion-4-after-replace-before-open.png",
+      "screenshots/attempt-001/criterion-4-after-open-before-cancel.png",
+      "screenshots/attempt-001/criterion-4-after-cancel-before-clear.png",
+      "screenshots/attempt-001/criterion-4-after-clear.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Started independently at the launcher, opened GIS and recorded the empty-search catalogue, sole existing Map layers entry and map view.",
+      "Entered zzqa_no_match_batch_20261009; verified no matches, then replaced it with Surveyor.",
+      "Opened Surveyor configuration using its catalogue Add layer control.",
+      "Selected Cancel; verified the configuration was hidden while Surveyor remained filtered.",
+      "Cleared Search layers and verified original catalogue text returned, sole ALL Coverage Gap Candidate Areas map layer remained in order, no Surveyor map layer appeared and map view matched baseline.",
+      "Captured the restored decisive final state and its browser URL; confirmed zero visible dialogs."
+    ],
+    "observedResult": "Search layers was empty, the original catalogue returned, and ALL Coverage Gap Candidate Areas remained the sole map layer. Map landmarks and 300 m scale matched baseline; browser-derived map view remained -0.19456/50.85221/13.67. No visible configuration dialog or new layer remained.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Direct criterion-specific screenshots and browser observations support this result. The pre-existing coverage-gap data panel displayed Unable to load coverage gap candidate areas throughout; it did not prevent catalogue search, Surveyor configuration or baseline restoration.",
+    "blockers": []
+  }
+]
