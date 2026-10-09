@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-68-guide-impact",
+  "handoffVersion": "TEST2-68:guide_impact_assessment:1",
+  "ticket": "TEST2-68",
+  "decision": "not_needed",
+  "affectedSection": "",
+  "reason": "The passed behavior is already covered by the existing GIS layer catalogue search and filtering guidance and the existing Surveyor configuration guidance. This ticket verifies recovery and opening configuration after recovery without introducing a new user-facing instruction or material change.",
+  "noOp": false,
+  "assessedAt": "2026-10-09T10:09:09.661Z"
+}
