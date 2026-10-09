@@ -1,0 +1,93 @@
+{
+  "handoffId": "handoff-TEST2-67-test-attempt-001",
+  "handoffVersion": "TEST2-67:test_ticket:1",
+  "ticket": "TEST2-67",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "Starting from the authorised V4 launcher, the page displays GIS and API Request Audit cards, each with an Open module control.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact authorised launcher URL and waited for visible launcher content.",
+        "Captured the initial state; inspected GIS and API request audit cards and their Open controls.",
+        "Captured a separate final launcher image and read location.href. No state-changing action was required for this display criterion."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "Both module cards and Open controls were visible. Observation-only criterion; no transition action required. Initial screenshot save first returned ENOENT because the staging subfolder did not exist; created the folder and successfully recaptured before any interaction."
+    },
+    {
+      "criterion": "After selecting Open for API Request Audit, the module displays identifiable audit content, such as request metrics or the Requests and errors over time chart, rather than a sign-in or application error page; specific metric values are not required.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-after-open-audit.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the launcher and waited for visible launcher content.",
+        "Captured initial launcher state before opening API request audit.",
+        "Clicked Open API request audit and verified populated request metrics and Requests and errors over time chart.",
+        "Captured after-open and separate final audit images, then read location.href. Audit filters were not changed."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-10-09T09%3A47%3A18.843Z&startUtc=2026-10-08T09%3A47%3A18.843Z&live=true",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "Identifiable audit metrics and chart rendered; no sign-in or application error page appeared. Rolling audit URL timestamps update automatically; browserUrl was read at the final audit state."
+    },
+    {
+      "criterion": "After viewing API Request Audit, using browser Back returns to the launcher and GIS remains available.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-after-open-audit-before-back.png",
+        "screenshots/attempt-001/criterion-3-after-back.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state before opening the audit module.",
+        "Clicked Open API request audit; waited for Requests and errors over time and captured the audit state before Back.",
+        "Used browser Back; waited for the launcher and verified Open GIS remained available.",
+        "Captured after-Back and separate final launcher images; read location.href and verified the exact launcher URL."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "Browser Back returned to the exact launcher URL with the GIS card and Open control visible."
+    },
+    {
+      "criterion": "From the returned launcher, selecting Open for GIS displays the settled map and map controls rather than a sign-in or application error page.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-after-open-audit-before-back.png",
+        "screenshots/attempt-001/criterion-4-after-back-before-open-gis.png",
+        "screenshots/attempt-001/criterion-4-after-open-gis.png",
+        "screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the launcher; waited for visible content and captured initial state.",
+        "Opened API request audit; verified the visible chart and captured audit state before Back.",
+        "Used browser Back; verified the exact launcher URL and captured returned launcher before opening GIS.",
+        "Clicked Open GIS; waited for map settling, verified rendered streets/labels and map controls, then captured after-open and separate final GIS images and read location.href.",
+        "Returned to the exact launcher URL after final evidence; captured cleanup separately. No layers, settings, filters, selections or application data were changed."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "Settled GIS basemap and controls rendered at /gis. A pre-existing ALL Coverage Gap Candidate Areas layer/panel displayed 'Unable to load coverage gap candidate areas.' This ancillary layer data error did not prevent the map/navigation assertion; no layer was added or changed. Existing GIS state was preserved and cleanup ended on launcher."
+    }
+  ],
+  "conciseReport": "All four navigation criteria passed with independent launcher starts, criterion-owned PNG evidence and browser-derived final URLs. API Request Audit showed metrics/chart; Back returned to the launcher; GIS displayed a settled map and controls. Existing coverage-gap layer data showed a load error, recorded as an ancillary observation. No application data or saved settings were changed; finished on launcher.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-67-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Completed the exact live test_ticket handoff. Evidence staged for review; permanent reports and attempt numbering remain publisher-owned.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-09T09:50:09.205Z"
+}
