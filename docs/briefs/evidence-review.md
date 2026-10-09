@@ -28,6 +28,8 @@ Defaults, before/after comparisons, persistence and absence-of-control claims re
 
 For sequences such as toggle, restore, close and reopen, require this criterion's own ordered screenshots and steps to show the complete journey. Never assemble a pass from separate criterion runs. Missing transitions are Unverified. Keep reasons concise and describe what evidence shows, not boilerplate about file presence or expected hosts.
 
+For unchanged map/layer claims, inspect the original unobscured baseline and restored final state, including every list-scroll capture needed to see the complete list. Name the decisive baseline/action/final filenames in the criterion reason. For repeated edits, distinguish the specific first/second/final sequence being asserted from earlier setup; describe that decisive sequence rather than reciting all setup. The publisher must retain comparison baselines beneath their criterion; unrelated setup belongs in the compact supporting appendix or full local attempt, not in place of the proof.
+
 ## Stage output and finish
 
 Write `.agent-staging/<handoffId>/review-output.json` and verify it exists/non-empty. Required fields: handoffId, handoffVersion, ticket, criterionOutcomes, overallOutcome, reportPath, evidenceFolder, qaStatus, noOp and reason. Copy live handoffVersion exactly; set noOp false for a completed assessment.

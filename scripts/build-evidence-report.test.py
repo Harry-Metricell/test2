@@ -19,6 +19,52 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_returned_launcher_is_navigation_baseline_not_earlier_audit(self):
+        images = [Path(name) for name in (
+            "criterion-4-initial.png", "criterion-4-after-open-audit-before-back.png",
+            "criterion-4-after-back-before-open-gis.png", "criterion-4-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "From the returned launcher, open GIS and view the map."), images[2:])
+
+    def test_filtered_configuration_omits_no_match_setup(self):
+        images = [Path(name) for name in (
+            "criterion-3-baseline-before-no-match.png", "criterion-3-after-no-match-before-replace.png",
+            "criterion-3-after-replace-before-open.png", "criterion-3-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "With the filtered entry visible, open its configuration."), images[2:])
+
+    def test_cancel_clear_keeps_original_catalogue_not_setup_search(self):
+        images = [Path(name) for name in (
+            "criterion-4-baseline-before-no-match.png", "criterion-4-after-no-match-before-replace.png",
+            "criterion-4-after-replace-before-open.png", "criterion-4-after-open-before-cancel.png",
+            "criterion-4-after-cancel-before-clear.png", "criterion-4-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "Cancel and clear Search layers; the original catalogue and map remain unchanged."), [images[0], *images[3:]])
+
+    def test_open_dialog_does_not_replace_unchanged_map_baseline(self):
+        images = [Path(name) for name in (
+            "criterion-6-before-open-surveyor.png", "criterion-6-after-open-surveyor.png",
+            "criterion-6-before-enter-first.png", "criterion-6-before-cancel-first.png",
+            "criterion-6-before-enter-second.png", "criterion-6-before-cancel-second.png",
+            "criterion-6-before-final-cancel.png", "criterion-6-final.png")]
+        selected = REPORT.report_exhibits(images, "After cancelling the final reopened dialog, the original map view and Map layers entries/order are unchanged.")
+        self.assertEqual(selected, [images[0], images[-1]])
+
+    def test_second_edit_keeps_its_own_journey_not_first_edit_setup(self):
+        images = [Path(name) for name in (
+            "criterion-4-before-enter-first.png", "criterion-4-before-cancel-first.png",
+            "criterion-4-before-reopen-first.png", "criterion-4-before-enter-second.png",
+            "criterion-4-before-cancel-second.png", "criterion-4-before-reopen-second.png",
+            "criterion-4-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "Reopening configuration after the second cancellation shows an empty Username field."), images[3:])
+        self.assertEqual(REPORT.report_exhibits(images, "Reopening configuration after the second cancellation shows an empty Username field with both Cancel and Add layer available."), images[3:])
+        self.assertEqual(REPORT.report_exhibits(images, "Both first and second cancellations discard their edits."), images)
+
+    def test_identical_baseline_and_final_remain_a_visible_comparison(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            baseline = Path(temporary) / "criterion-1-before-open-dialog.png"
+            final = Path(temporary) / "criterion-1-final.png"
+            Image.new("RGB", (80, 60), "navy").save(baseline)
+            shutil.copyfile(baseline, final)
+            self.assertEqual(REPORT.report_exhibits([baseline, final], "The original map remains unchanged."), [baseline, final])
+
     def test_single_opening_image_has_same_height_as_readable_paired_images(self):
         with tempfile.TemporaryDirectory() as temporary:
             image = Path(temporary) / "criterion-1-final.png"

@@ -212,6 +212,60 @@ def report_exhibits(images, criterion, review_reason=""):
     if final_index is not None:
         images = images[:final_index + 1]
     lower = criterion.lower()
+    # A module opened from a returned launcher starts at that returned state;
+    # the preceding audit visit only establishes setup for this assertion.
+    if "returned" in lower and "launcher" in lower:
+        start = next((i for i, image in enumerate(images)
+                      if "after-back-before-open" in image.stem.lower()), None)
+        if start is not None:
+            images = images[start:]
+    # Search replacement and opening a filtered configuration have explicit
+    # before-action captures. Earlier creation of the no-match state is setup.
+    if "replace" in lower and "search" in lower and "no-match" in lower:
+        start = next((i for i, image in enumerate(images)
+                      if "before-replace" in image.stem.lower()), None)
+        if start is not None:
+            images = images[start:]
+    if "filtered" in lower and "configuration" in lower and "open" in lower:
+        start = next((i for i, image in enumerate(images)
+                      if "after-replace-before-open" in image.stem.lower()), None)
+        if start is not None:
+            images = images[start:]
+    if "cancel" in lower and "clear" in lower and "search" in lower:
+        start = next((i for i, image in enumerate(images)
+                      if "after-open-before-cancel" in image.stem.lower()), None)
+        if start is not None:
+            baselines = [image for image in images[:start]
+                         if any(term in image.stem.lower() for term in
+                                ("baseline-", "before-search", "before-no-match"))]
+            if baselines:
+                images = baselines + images[start:]
+    # Repeated edits can require replaying an earlier sequence as setup. Keep
+    # only the named assertion's own edit/cancel/reopen journey in the PDF;
+    # never shorten unfamiliar sequences or remove their source evidence.
+    if "second" in lower and not re.search(r"\b(first|twice)\b|\bboth\s+(edits|cancellations|sequences)\b", lower):
+        start = next((i for i, image in enumerate(images)
+                      if "before-enter-second" in image.stem.lower()), None)
+        if start is not None:
+            images = images[start:]
+    # A final restoration assertion needs its original unobscured baseline,
+    # not all the earlier edits. Retain every baseline/list-scroll capture.
+    restores_original = "original" in lower and "unchanged" in lower
+    final_cancel = next((i for i, image in enumerate(images)
+                         if "before-final-cancel" in image.stem.lower()), None)
+    if restores_original and final_cancel is not None:
+        baselines = [image for image in images[:final_cancel]
+                     if any(term in image.stem.lower() for term in
+                            ("before-open-", "baseline-layers", "baseline-map"))
+                     and "gis" not in image.stem.lower()]
+        if baselines:
+            # The assertion compares the original map/list with the restored
+            # map/list. Dialog-closing setup stays in the reviewed full attempt.
+            final_states = [image for image in images[final_cancel:]
+                            if "after-final-cancel" in image.stem.lower()
+                            or re.search(r"-final(?:-recovered)?$", image.stem.lower())]
+            if final_states:
+                images = baselines + final_states
     # Begin familiar multi-step assertions at their own relevant baseline.
     # Earlier layer creation is setup, not proof of zoom/cancel persistence.
     # Unknown journeys remain untouched; never discard state by ticket number.
@@ -228,7 +282,7 @@ def report_exhibits(images, criterion, review_reason=""):
     # Search assertions start at their settled search/list baseline, not at
     # unrelated module loading or Surveyor configuration. Keep every scroll
     # capture when an unchanged complete list is part of the claim.
-    if "search" in lower and not re.search(r"\bdefaults?\b", lower):
+    if "search" in lower and not re.search(r"\bdefaults?\b", lower) and not ("replace" in lower and "no-match" in lower):
         start = next((i for i, image in enumerate(images) if any(term in image.stem.lower()
                      for term in ("baseline-layers", "before-no-match", "before-search"))), None)
         if start is not None:
@@ -248,6 +302,8 @@ def report_exhibits(images, criterion, review_reason=""):
     checks_configuration = needs_setup or bool(re.search(r"\b(configuration|configure|dialog)\b", lower))
     names = [image.stem.lower() for image in images]
     checks_baseline = bool(re.search(r"\b(baseline|unchanged|matches|list|empty|initial|original)\b", lower))
+    comparison_baseline = bool(re.search(r"\b(map|layers?|catalogue|list)\b", lower)) and (
+        checks_baseline or "record" in lower)
     selected = []
     for image in images:
         name = image.stem.lower()
@@ -261,6 +317,15 @@ def report_exhibits(images, criterion, review_reason=""):
                 and any(term in name for term in ("surveyor", "layer", "dialog")))
         )
         if default_configuration:
+            selected.append(image)
+            continue
+        if "after-replace-before-open" in name and "filtered" in lower and "configuration" in lower:
+            selected.append(image)
+            continue
+        # A before-open map/list can be the independent comparison baseline.
+        # The later open dialog must never supersede it for unchanged-state
+        # claims, even when both files happen to contain identical pixels.
+        if comparison_baseline and "before-open" in name and "gis" not in name:
             selected.append(image)
             continue
         if "before-open-audit" in name and "returned" in lower and "launcher" in lower:
@@ -324,7 +389,9 @@ def report_exhibits(images, criterion, review_reason=""):
     # A launcher-only/legacy attempt still needs its available evidence printed,
     # but cleanup must never become proof through the fallback path.
     if selected:
-        return distinct_states(selected)
+        protected = [image for image in selected if comparison_baseline and any(
+            term in image.stem.lower() for term in ("before-open", "baseline-layers", "baseline-map"))]
+        return distinct_states(selected, protected=protected)
     available = [image for image in images if not any(term in image.stem.lower()
                  for term in ("cleanup", "after-clean"))]
     if not available:
@@ -332,7 +399,7 @@ def report_exhibits(images, criterion, review_reason=""):
     return available
 
 
-def distinct_states(images):
+def distinct_states(images, protected=()):
     """Remove exact pixel duplicates within this criterion only.
 
     Never use perceptual similarity: even a single changed checkbox pixel may
@@ -351,7 +418,7 @@ def distinct_states(images):
         keyed.append((key, image))
     selected = []
     for key, image in keyed:
-        if selected and selected[-1][0] == key:
+        if selected and selected[-1][0] == key and image not in protected and selected[-1][1] not in protected:
             selected[-1] = (key, image)
         else:
             selected.append((key, image))
