@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-68",
+  "id": "106564",
+  "summary": "Recover GIS catalogue search from no matches and open Surveyor configuration",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-68",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-09T10:28:35.000+0100",
+    "updated": "2026-10-09T10:29:00.026+0100"
+  },
+  "description": "Purpose\nVerify that a negative catalogue search does not prevent subsequent configuration access.\nSetup and scope\nStart at https://o2intelligence-v4-dev.metricell.com/launcher using authorised test access. Open GIS, clear Search layers, and record visible catalogue entries, map view and all existing Map layers entries/order. An absent Map layers list is a valid baseline. Do not add/remove layers, move/zoom the map or change saved settings. Use Search layers, not Search Map.\nAcceptance criteria\nEnter zzqa_no_match_batch_20261009 in Search layers. The entered text stays visible and no matching catalogue entries are displayed, while the GIS map remains available. No specific empty-state wording is required.\nReplace that text with Surveyor. The matching Surveyor catalogue entry becomes visible again without reloading GIS.\nOpen the configuration control beside the filtered Surveyor entry. Surveyor configuration displays Username, Cancel and Add layer controls.\nSelect Cancel and clear Search layers. The original catalogue entries return and the existing Map layers entries/order and map view match the recorded baseline, with no new layer added.\nEvidence and cleanup\nCapture the baseline, no-match state, recovered Surveyor entry, open dialog and final restored state with URL records. Leave search empty and dialog closed; preserve all pre-existing layers.\nDocumentation relevance\nAssess whether existing search recovery instructions cover opening configuration after recovery. Amend an existing section only if a real documentation gap is demonstrated.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-68/ticket.json",
+    "criteria": "tickets/TEST2-68/criteria.md",
+    "status": "tickets/TEST2-68/status.json",
+    "screenshots": "tickets/TEST2-68/screenshots/",
+    "reports": "tickets/TEST2-68/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106564",
+    "importedAt": "2026-10-09T10:29:00.026+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-09T10:29:00.026+0100",
+    "criteriaVerified": false
+  }
+}

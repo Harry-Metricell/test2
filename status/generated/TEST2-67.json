@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-67",
+  "id": "106563",
+  "summary": "Open API Request Audit from V4 launcher and return to GIS",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-67",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-09T10:28:32.935+0100",
+    "updated": "2026-10-09T10:28:58.443+0100"
+  },
+  "description": "Purpose\nVerify navigation between real V4 modules without modifying application data.\nSetup and scope\nStart at https://o2intelligence-v4-dev.metricell.com/launcher using authorised test access. Navigation only: do not edit records, change audit filters, add layers or change saved settings.\nAcceptance criteria\nThe authorised launcher displays GIS and API Request Audit cards with their Open module controls.\nOpening API Request Audit displays identifiable audit content (request metrics or the Requests and errors over time chart), not a sign-in or application error page. Do not require specific metric values.\nBrowser Back returns to the launcher with GIS available.\nOpening GIS from the returned launcher displays the settled map and map controls, not a sign-in or application error page.\nEvidence and cleanup\nCapture each navigation's actual before/after state with browser-derived URL records. Finish on the launcher. Do not infer module success from URL alone.\nDocumentation relevance\nCheck existing navigation instructions; amend only a genuine missing or inaccurate step, avoiding duplicate sections.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-67/ticket.json",
+    "criteria": "tickets/TEST2-67/criteria.md",
+    "status": "tickets/TEST2-67/status.json",
+    "screenshots": "tickets/TEST2-67/screenshots/",
+    "reports": "tickets/TEST2-67/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106563",
+    "importedAt": "2026-10-09T10:28:58.443+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-09T10:28:58.443+0100",
+    "criteriaVerified": false
+  }
+}

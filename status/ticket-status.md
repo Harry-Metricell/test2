@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-10-08T12:54:48.878+0100
+Updated: 2026-10-09T10:29:01.388+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
@@ -60,6 +60,9 @@ Updated: 2026-10-08T12:54:48.878+0100
 | TEST2-64 | READY FOR TESTING | Evidence Reviewed |  | Recover the V4 GIS layer catalogue after a search with no matching layers |
 | TEST2-65 | READY FOR TESTING | Evidence Reviewed |  | Cancel and reopen Surveyor configuration in V4 GIS without adding a layer |
 | TEST2-66 | READY FOR TESTING | Evidence Reviewed |  | Cancel edited Surveyor configuration without applying it to the GIS map |
+| TEST2-67 | READY FOR TESTING | Criteria Check Required |  | Open API Request Audit from V4 launcher and return to GIS |
+| TEST2-68 | READY FOR TESTING | Criteria Check Required |  | Recover GIS catalogue search from no matches and open Surveyor configuration |
+| TEST2-69 | READY FOR TESTING | Criteria Check Required |  | Cancel two different unsaved Surveyor usernames and reopen a clean configuration |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 2/2 | Verify GIS map search and marker interaction |
 | TEST2-7 | Rejected | Evidence Reviewed | Retry 2/2 | Verify GIS layer and map view controls |

@@ -1,18 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-08T12:54:48.878+0100",
+  "generatedAt": "2026-10-09T10:29:01.388+0100",
   "counts": {
-    "tickets": 65,
-    "handoffs": 0,
+    "tickets": 68,
+    "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 25,
-      "Ready": 39,
+      "Ready": 42,
       "Rejected": 1
     },
     "byQaOutcome": {
       "Blocked": 14,
       "Failed": 1,
-      "Not Tested": 3,
+      "Not Tested": 6,
       "Passed": 42,
       "Unverified": 5
     }
@@ -916,6 +916,54 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-08T12:54:48.878+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-67",
+      "summary": "Open API Request Audit from V4 launcher and return to GIS",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-09T10:28:58.443+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-68",
+      "summary": "Recover GIS catalogue search from no matches and open Surveyor configuration",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-09T10:29:00.026+0100",
+      "retries": 0,
+      "retryLimit": 2,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-69",
+      "summary": "Cancel two different unsaved Surveyor usernames and reopen a clean configuration",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-09T10:29:01.388+0100",
       "retries": 0,
       "retryLimit": 2,
       "retryLabel": ""
