@@ -61,7 +61,7 @@ Updated: 2026-10-09T10:29:01.388+0100
 | TEST2-65 | READY FOR TESTING | Evidence Reviewed |  | Cancel and reopen Surveyor configuration in V4 GIS without adding a layer |
 | TEST2-66 | READY FOR TESTING | Evidence Reviewed |  | Cancel edited Surveyor configuration without applying it to the GIS map |
 | TEST2-67 | READY FOR TESTING | Criteria Check Required |  | Open API Request Audit from V4 launcher and return to GIS |
-| TEST2-68 | READY FOR TESTING | Criteria Check Required |  | Recover GIS catalogue search from no matches and open Surveyor configuration |
+| TEST2-68 | READY FOR TESTING | Ready for Testing |  | Recover GIS catalogue search from no matches and open Surveyor configuration |
 | TEST2-69 | READY FOR TESTING | Criteria Check Required |  | Cancel two different unsaved Surveyor usernames and reopen a clean configuration |
 | TEST2-2 | Rejected | Ready for Testing |  | test |
 | TEST2-6 | Rejected | Awaiting Evidence Review | Retry 2/2 | Verify GIS map search and marker interaction |
