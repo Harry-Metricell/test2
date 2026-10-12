@@ -28,6 +28,15 @@ test('coordinator suppresses repeated unchanged-status narration', () => {
   assert.match(coordinator, /Quiet communication must never end a wait or bypass a publication gate/);
 });
 
+test('coordinator preserves economical worker allocation without restarting work', () => {
+  const coordinator = brief('coordinator');
+  assert.match(coordinator, /set model "gpt-6-luna" and thinking "low" for criteria, guide-impact and guide-authoring children/);
+  assert.match(coordinator, /Tester\/reviewer children retain their configured stronger browser\/review-capable model; omit overrides/);
+  assert.match(coordinator, /Keep the coordinator's own model unchanged/);
+  assert.match(coordinator, /do not restart or repeat existing work to change its model/);
+  assert.doesNotMatch(coordinator, /gpt-5\.6-luna/);
+});
+
 test('coordinator example matches the exact handoff-scoped local launch contract', () => {
   const coordinator = brief('coordinator');
   const example = coordinator.match(/```json\s*([\s\S]*?)```/);

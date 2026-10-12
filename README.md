@@ -71,6 +71,8 @@ Start each manual coordinator cycle as a fresh Codex task in the saved Test2 pro
 
 Do not add instructions to that launch message. The brief requires a fresh live read and contains the worker-selection, lock, retry, and publication rules. A completed chat is not itself proof that output was published; check the live handoff queue and ticket files.
 
+New criteria, guide-impact and guide-authoring chats use `gpt-6-luna` with `low` reasoning. Tester and evidence-review chats retain their configured stronger model without overrides; the current showcase setup uses `gpt-6.1-sol` with `medium` reasoning for those jobs and the coordinator. The coordinator does not change its own model or restart existing work for a model change. Import, publishing and status bundling are scripts, not model jobs. Validate the new model on the next fresh ticket; contract tests verify the allocation instructions, not model output quality.
+
 ## Publishing safety
 
 The publisher must never push from the dirty Desktop checkout. It uses GitHub Desktop Git and a temporary clean worktree based on the exact live remote `main` SHA. Its private index is populated from that worktree's `HEAD` before staging, so publishing cannot replace the repository with a partial tree.
