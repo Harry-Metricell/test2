@@ -1,0 +1,83 @@
+[
+  {
+    "criterion": "With Surveyor configuration open and Username, Cancel, and Add layer visible, enter `TEST2-showcase-unsaved` and verify the complete value is visibly present in Username before cancelling.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-open-surveyor.png",
+      "screenshots/attempt-001/criterion-1-before-edit.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to the launcher and captured initial state.",
+      "Opened GIS, then Surveyor configuration using the catalogue control.",
+      "Verified Username, Cancel and Add layer were visible.",
+      "Entered TEST2-showcase-unsaved and verified the complete value was visible; captured final assertion and current URL.",
+      "Selected Cancel for cleanup and verified the dialog closed."
+    ],
+    "observedResult": "The entire TEST2-showcase-unsaved value was visibly present in Username, with Cancel and Add layer visible.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "",
+    "blockers": []
+  },
+  {
+    "criterion": "After selecting Cancel and reopening Surveyor configuration, verify Username is empty while Cancel and Add layer remain available.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-first-open.png",
+      "screenshots/attempt-001/criterion-2-before-first-edit.png",
+      "screenshots/attempt-001/criterion-2-first-edited-before-cancel.png",
+      "screenshots/attempt-001/criterion-2-after-first-cancel-before-reopen.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to the launcher and captured initial state.",
+      "Opened GIS, then Surveyor configuration; captured before edit.",
+      "Entered TEST2-showcase-unsaved and verified the visible complete value.",
+      "Selected Cancel, verified the dialog closed and captured the closed state.",
+      "Reopened Surveyor configuration and verified Username was empty with Cancel and Add layer available; captured final assertion and current URL.",
+      "Cancelled the reopened dialog and captured cleanup."
+    ],
+    "observedResult": "Reopened Username was empty; Cancel and Add layer remained available.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "",
+    "blockers": []
+  },
+  {
+    "criterion": "After cancelling the reopened dialog, verify the unobscured map view and complete Map layers entries and order match the original pre-dialog baseline, with no new Surveyor layer.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-baseline-map.png",
+      "screenshots/attempt-001/criterion-3-baseline-layers.png",
+      "screenshots/attempt-001/criterion-3-first-open-before-edit.png",
+      "screenshots/attempt-001/criterion-3-first-edit-before-cancel.png",
+      "screenshots/attempt-001/criterion-3-first-closed-before-reopen.png",
+      "screenshots/attempt-001/criterion-3-final-reopened-empty-before-cancel.png",
+      "screenshots/attempt-001/criterion-3-final-restored-layers.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the launcher and captured initial state.",
+      "Opened GIS and waited for the settled map; captured the unobscured map and complete one-entry Map layers baseline: ALL Coverage Gap Candidate Areas.",
+      "A stale element reference failed without changing state; subsequent edit/cancel calls found no dialog. Refreshed the snapshot and opened Surveyor successfully. Unchanged-state captures from unsuccessful calls are excluded.",
+      "Captured the first open dialog, entered TEST2-showcase-unsaved and verified the complete visible value.",
+      "Cancelled the edited dialog and captured the closed map state.",
+      "Reopened Surveyor configuration, verified Username was empty and captured the state before final Cancel.",
+      "Cancelled the reopened dialog, verified the unobscured map and complete Map layers list matched the original baseline, captured final evidence and current URL."
+    ],
+    "observedResult": "Map extent, scale and visible content matched the pre-dialog baseline (Mapbox feedback location /-0.19456/50.85221/13.67). Complete layer list remained the single ALL Coverage Gap Candidate Areas entry; no Surveyor layer was added. The pre-existing coverage gap load alert was unchanged.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "",
+    "blockers": []
+  }
+]
