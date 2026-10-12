@@ -5,7 +5,10 @@
   "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 1,
-  "testAttempts": 0,
+  "testAttempts": 1,
   "criteriaVerified": true,
-  "blockedStage": null
+  "blockedStage": "evidence_review",
+  "qaOutcome": "Passed",
+  "workflowState": "READY FOR TESTING",
+  "nextAction": "Create final evidence review handoff"
 }

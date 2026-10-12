@@ -8,8 +8,7 @@
       "Ready": 6
     },
     "byQaOutcome": {
-      "Not Tested": 1,
-      "Passed": 5
+      "Passed": 6
     }
   },
   "policy": {
@@ -109,16 +108,16 @@
       "summary": "V4 GIS catalogue: find Surveyor and clear the search without changing the map",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-12T14:47:55.939+0100",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 0,
+      "testAttempts": 1,
       "retryLabel": ""
     }
   ]
