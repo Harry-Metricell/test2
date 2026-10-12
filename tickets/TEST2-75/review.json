@@ -1,0 +1,33 @@
+{
+  "handoffId": "handoff-TEST2-75-review-attempt-001",
+  "handoffVersion": "TEST2-75:evidence_review:1",
+  "ticket": "TEST2-75",
+  "criterionOutcomes": [
+    {
+      "criterion": "With the GIS layer catalogue open, entering `Surveyor` in the Search layers control keeps the query visible and shows the Surveyor catalogue entry as a matching result.",
+      "outcome": "Passed",
+      "reason": "criterion-1-before-search.png shows the open catalogue; criterion-1-final.png shows Surveyor retained in Search layers and a matching Surveyor entry under Tests and Measurements."
+    },
+    {
+      "criterion": "Clearing the search query leaves the search field empty and restores the original catalogue entries and browsing controls at the recorded catalogue position.",
+      "outcome": "Passed",
+      "reason": "criterion-2-before-search.png, criterion-2-before-clear.png and criterion-2-final.png show the original top-position catalogue, Surveyor query, then an empty query with the same entries, browsing controls and scrollbar position restored."
+    },
+    {
+      "criterion": "The visible map remains the same as its recorded initial state while searching and after the query is cleared.",
+      "outcome": "Passed",
+      "reason": "criterion-3-baseline-map.png, criterion-3-search-map-before-clear.png and criterion-3-final.png show the same unobscured visible map extent, landmarks, orientation and 300 m scale before search, during search and after clearing."
+    },
+    {
+      "criterion": "The complete active-layer list remains the same as its recorded initial state while searching and after the query is cleared.",
+      "outcome": "Passed",
+      "reason": "criterion-4-baseline-layers.png, criterion-4-search-layers-before-clear.png and criterion-4-final.png show the complete one-entry ALL Coverage Gap Candidate Areas list with identical controls throughout search and clearing; no list scrolling is needed."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-75\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Criterion-owned screenshots directly support all four criteria. Results record https://o2intelligence-v4-dev.metricell.com/gis. The pre-existing coverage gap candidate areas loading warning remains visible and does not obstruct the assessed search, map or active-layer evidence."
+}
