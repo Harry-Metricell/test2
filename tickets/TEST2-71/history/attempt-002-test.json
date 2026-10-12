@@ -1,0 +1,93 @@
+{
+  "handoffId": "handoff-TEST2-71-retry-attempt-002",
+  "handoffVersion": "TEST2-71:test_ticket:2",
+  "ticket": "TEST2-71",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "With GIS open and Search layers initially empty, entering `zzqa_showcase_no_match_20261012` leaves the entered text visible, shows no matching catalogue entries, and keeps the GIS map available.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-before-no-match.png",
+        "screenshots/attempt-002/criterion-1-after-no-match.png",
+        "screenshots/attempt-002/criterion-1-final.png",
+        "screenshots/attempt-002/criterion-1-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher URL and verified the visible authenticated launcher; saved the criterion's initial PNG.",
+        "Opened GIS and waited until Loading map disappeared. Verified Search layers was empty, the catalogue was populated and the map was rendered; saved the pre-search state.",
+        "Entered zzqa_showcase_no_match_20261012 in Search layers. Observed the exact text retained, 'No layers match this search.', no catalogue entries and the rendered map.",
+        "Captured the no-match transition and a separate final assertion PNG; read the current browser URL at that state.",
+        "Cleared Search layers, verified Network Information and Surveyor returned, and saved a separate cleanup PNG."
+      ],
+      "observed_result": "Exact no-match text remained visible, no matching catalogue entries were shown, and the GIS basemap and controls remained available.",
+      "reason": "The pre-existing ALL Coverage Gap Candidate Areas panel displayed 'Unable to load coverage gap candidate areas.' The basemap remained rendered and available; this unrelated data error did not prevent the catalogue-search assertions. Existing layer, panel, map extent and settings were preserved."
+    },
+    {
+      "criterion": "Replacing the no-match text with `Surveyor` without reloading GIS shows Surveyor in the filtered catalogue while keeping the GIS map available.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-before-no-match.png",
+        "screenshots/attempt-002/criterion-2-after-no-match-before-recovery.png",
+        "screenshots/attempt-002/criterion-2-after-recovery.png",
+        "screenshots/attempt-002/criterion-2-final.png",
+        "screenshots/attempt-002/criterion-2-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL and verified its visible state; saved the initial PNG.",
+        "An initial selector click returned 'does not match any elements' without changing the launcher. Refreshed the accessibility snapshot and clicked its actual Open GIS reference successfully.",
+        "Waited for the map to finish loading; verified empty Search layers and saved the populated catalogue/map baseline.",
+        "Entered zzqa_showcase_no_match_20261012, waited for 'No layers match this search.' and saved the no-match state before replacement.",
+        "Replaced the text with Surveyor without navigation or reload. Verified Surveyor appeared as the sole catalogue entry under Tests and Measurements while the basemap remained rendered.",
+        "Saved the recovery transition and separate final PNG, and read the current browser URL.",
+        "Cleared Search layers; verified the original catalogue returned and saved a separate cleanup PNG."
+      ],
+      "observed_result": "Replacing the no-match query with Surveyor recovered the catalogue without reloading GIS. Surveyor was visible and the map remained available.",
+      "reason": "The pre-existing ALL Coverage Gap Candidate Areas panel displayed 'Unable to load coverage gap candidate areas.' The basemap remained rendered and available; this unrelated data error did not prevent the catalogue-search assertions. Existing layer, panel, map extent and settings were preserved."
+    },
+    {
+      "criterion": "Clearing Search layers restores the original catalogue and leaves the complete Map layers entries and order and the map view matching the recorded pre-search baseline, with no layer added or removed.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-baseline-map.png",
+        "screenshots/attempt-002/criterion-3-baseline-layers.png",
+        "screenshots/attempt-002/criterion-3-after-no-match-before-recovery.png",
+        "screenshots/attempt-002/criterion-3-after-recovery-before-clear.png",
+        "screenshots/attempt-002/criterion-3-after-clear-restored-map.png",
+        "screenshots/attempt-002/criterion-3-after-clear-restored-layers.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, verified the visible launcher and saved the initial PNG.",
+        "Opened GIS and waited for the rendered map. Verified Search layers empty; captured this criterion's original map and complete Map layers list. The sole existing entry was ALL Coverage Gap Candidate Areas.",
+        "Recorded the complete unfiltered catalogue from the accessibility snapshot and the original map view around West Hove Golf Club/Hangleton, with a 300 m scale.",
+        "Entered zzqa_showcase_no_match_20261012, verified the no-match state and saved its transition PNG.",
+        "Replaced the query with Surveyor, verified the filtered Surveyor entry and saved the state before clearing.",
+        "Cleared Search layers and waited for Network Information to return. Compared the complete catalogue names/order and Map layers names/order in the original and restored snapshots; they matched.",
+        "Captured restored map and complete layer list plus a separate final PNG. Visually compared original/restored map extent, roads, landmarks, scale and layer controls; they matched. Read the current browser URL at the final state.",
+        "Left Search layers empty; no layers were added, removed, hidden or reordered and no map movement or saved-setting changes occurred."
+      ],
+      "observed_result": "Clearing the search restored the original catalogue. The complete Map layers list remained the single ALL Coverage Gap Candidate Areas entry in the same order, and the rendered map view matched the pre-search baseline.",
+      "reason": "The pre-existing ALL Coverage Gap Candidate Areas panel displayed 'Unable to load coverage gap candidate areas.' The basemap remained rendered and available; this unrelated data error did not prevent the catalogue-search assertions. Existing layer, panel, map extent and settings were preserved."
+    }
+  ],
+  "conciseReport": "All three criteria passed with independent launcher starts and criterion-owned PNG evidence. No-match search retained its query, Surveyor recovery worked without reload, and clearing restored the catalogue with unchanged map/layer state. Search was left empty. The pre-existing coverage-gap data-load error remained unchanged and did not obstruct these assertions. Browser: Google Chrome 155.0.8059.40.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-71-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Completed the supplied live retry handoff against main inputs. The pre-existing ALL Coverage Gap Candidate Areas panel displayed 'Unable to load coverage gap candidate areas.' The basemap remained rendered and available; this unrelated data error did not prevent the catalogue-search assertions. Existing layer, panel, map extent and settings were preserved.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-12T09:24:40.262Z"
+}
