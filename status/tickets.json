@@ -5,10 +5,12 @@
     "tickets": 3,
     "handoffs": 3,
     "byWorkflowState": {
-      "Ready": 3
+      "Ready": 2,
+      "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Passed": 3
+      "Passed": 2,
+      "Unverified": 1
     }
   },
   "policy": {
@@ -38,17 +40,17 @@
       "key": "TEST2-71",
       "summary": "V4 GIS catalogue search: recover from no matching layers",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Passed",
+      "workflowState": "Retry Queued",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
-      "updatedAt": "2026-10-12T09:40:09.086+0100",
-      "retries": 0,
+      "nextAction": "Retry 1/2 queued; coordinator will start tester",
+      "updatedAt": "2026-10-12T09:17:41.106Z",
+      "retries": 1,
       "retryLimit": 2,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/2"
     },
     {
       "key": "TEST2-72",
