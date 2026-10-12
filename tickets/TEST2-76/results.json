@@ -1,0 +1,198 @@
+[
+  {
+    "criterion": "With the GIS catalogue open, entering `TEST2-no-match-showcase-20261012` leaves the query visible and shows no matching catalogue entries, including no Surveyor result.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-before-unmatched-search.png",
+      "screenshots/attempt-001/criterion-1-after-unmatched-search.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-before-cleanup-clear-query.png",
+      "screenshots/attempt-001/criterion-1-after-cleanup-clear-query.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS.",
+      "Entered TEST2-no-match-showcase-20261012; query remained visible and catalogue showed no entries, including Surveyor.",
+      "Cleared test query to restore catalogue."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "observed": "Unique query remained visible; No layers match this search appeared, with no Surveyor entry.",
+    "reason": ""
+  },
+  {
+    "criterion": "Replacing that query with `Surveyor` without reloading shows the Surveyor matching entry.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-before-unmatched-search.png",
+      "screenshots/attempt-001/criterion-2-after-unmatched-search.png",
+      "screenshots/attempt-001/criterion-2-before-replace-query.png",
+      "screenshots/attempt-001/criterion-2-after-replace-query.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-before-cleanup-clear-query.png",
+      "screenshots/attempt-001/criterion-2-after-cleanup-clear-query.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS and waited for map loading to finish.",
+      "Entered unmatched query and observed no catalogue matches.",
+      "Replaced query with Surveyor without reloading; observed Surveyor catalogue entry.",
+      "Cleared test query."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "observed": "Replacing the unmatched query with Surveyor without reload displayed the Surveyor catalogue entry.",
+    "reason": ""
+  },
+  {
+    "criterion": "Opening the Surveyor configuration displays an editable Username field and Cancel and Add layer controls.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis.png",
+      "screenshots/attempt-001/criterion-3-before-search-surveyor.png",
+      "screenshots/attempt-001/criterion-3-after-search-surveyor.png",
+      "screenshots/attempt-001/criterion-3-before-open-configuration.png",
+      "screenshots/attempt-001/criterion-3-after-open-configuration.png",
+      "screenshots/attempt-001/criterion-3-final.png",
+      "screenshots/attempt-001/criterion-3-before-cleanup-cancel.png",
+      "screenshots/attempt-001/criterion-3-after-cleanup-cancel.png",
+      "screenshots/attempt-001/criterion-3-before-cleanup-clear-query.png",
+      "screenshots/attempt-001/criterion-3-after-cleanup-clear-query.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS and waited for map loading to finish.",
+      "Searched Surveyor.",
+      "Opened Surveyor configuration.",
+      "Cancelled configuration and cleared query."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "observed": "Surveyor configuration showed Username (empty, enabled and not read-only), Cancel and Add layer.",
+    "reason": ""
+  },
+  {
+    "criterion": "Entering `TEST2-showcase-unsaved-20261012` in Username and selecting Cancel without Add layer closes the configuration; reopening the same configuration shows an empty Username field.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-after-open-gis.png",
+      "screenshots/attempt-001/criterion-4-before-search-surveyor.png",
+      "screenshots/attempt-001/criterion-4-after-search-surveyor.png",
+      "screenshots/attempt-001/criterion-4-before-first-open-configuration.png",
+      "screenshots/attempt-001/criterion-4-after-first-open-configuration.png",
+      "screenshots/attempt-001/criterion-4-before-first-edit-username.png",
+      "screenshots/attempt-001/criterion-4-after-first-edit-username.png",
+      "screenshots/attempt-001/criterion-4-before-first-cancel-confirmed.png",
+      "screenshots/attempt-001/criterion-4-after-first-cancel-confirmed.png",
+      "screenshots/attempt-001/criterion-4-before-final-reopen.png",
+      "screenshots/attempt-001/criterion-4-after-final-reopen.png",
+      "screenshots/attempt-001/criterion-4-final.png",
+      "screenshots/attempt-001/criterion-4-before-cleanup-cancel.png",
+      "screenshots/attempt-001/criterion-4-after-cleanup-cancel.png",
+      "screenshots/attempt-001/criterion-4-before-cleanup-clear-query.png",
+      "screenshots/attempt-001/criterion-4-after-cleanup-clear-query.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS and waited for map loading to finish.",
+      "Searched Surveyor and opened its configuration.",
+      "Entered TEST2-showcase-unsaved-20261012 into Username.",
+      "Selected Cancel; configuration closed without adding a layer.",
+      "Reopened same Surveyor configuration; Username was empty.",
+      "Cancelled reopened configuration and cleared query."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "observed": "Cancel closed the configuration without adding a layer; reopening the same configuration showed empty Username.",
+    "reason": ""
+  },
+  {
+    "criterion": "After cancelling the reopened configuration and clearing the catalogue query, the search field is empty and the original catalogue entries and browsing position are restored.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-initial.png",
+      "screenshots/attempt-001/criterion-5-after-open-gis.png",
+      "screenshots/attempt-001/criterion-5-baseline-catalogue.png",
+      "screenshots/attempt-001/criterion-5-before-unmatched-search.png",
+      "screenshots/attempt-001/criterion-5-after-unmatched-search.png",
+      "screenshots/attempt-001/criterion-5-before-replace-query.png",
+      "screenshots/attempt-001/criterion-5-after-replace-query.png",
+      "screenshots/attempt-001/criterion-5-before-first-open-configuration.png",
+      "screenshots/attempt-001/criterion-5-after-first-open-configuration.png",
+      "screenshots/attempt-001/criterion-5-before-first-edit-username.png",
+      "screenshots/attempt-001/criterion-5-after-first-edit-username.png",
+      "screenshots/attempt-001/criterion-5-before-first-cancel.png",
+      "screenshots/attempt-001/criterion-5-after-first-cancel.png",
+      "screenshots/attempt-001/criterion-5-before-reopen-configuration.png",
+      "screenshots/attempt-001/criterion-5-after-reopen-configuration.png",
+      "screenshots/attempt-001/criterion-5-before-final-cancel.png",
+      "screenshots/attempt-001/criterion-5-after-final-cancel.png",
+      "screenshots/attempt-001/criterion-5-before-final-clear-query.png",
+      "screenshots/attempt-001/criterion-5-after-final-clear-query.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS and waited for map loading to finish.",
+      "Recorded original catalogue; entered unmatched query, replaced with Surveyor, and opened its configuration.",
+      "Entered synthetic Username, cancelled, and reopened with empty Username.",
+      "Cancelled reopened configuration and cleared query."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "observed": "After cancelling the reopened configuration and clearing query, search was empty. Original catalogue text and scroll position (0) matched the baseline; screenshot comparison confirmed restored visible entries.",
+    "reason": ""
+  },
+  {
+    "criterion": "After these actions, the visible map and complete active-layer list match their recorded initial states, with no Surveyor layer added.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-6-initial.png",
+      "screenshots/attempt-001/criterion-6-after-open-gis.png",
+      "screenshots/attempt-001/criterion-6-baseline-map.png",
+      "screenshots/attempt-001/criterion-6-baseline-layers.png",
+      "screenshots/attempt-001/criterion-6-before-unmatched-search.png",
+      "screenshots/attempt-001/criterion-6-after-unmatched-search.png",
+      "screenshots/attempt-001/criterion-6-before-replace-query.png",
+      "screenshots/attempt-001/criterion-6-after-replace-query.png",
+      "screenshots/attempt-001/criterion-6-before-first-open-configuration.png",
+      "screenshots/attempt-001/criterion-6-after-first-open-configuration.png",
+      "screenshots/attempt-001/criterion-6-before-first-edit-username.png",
+      "screenshots/attempt-001/criterion-6-after-first-edit-username.png",
+      "screenshots/attempt-001/criterion-6-before-first-cancel.png",
+      "screenshots/attempt-001/criterion-6-after-first-cancel.png",
+      "screenshots/attempt-001/criterion-6-before-reopen-configuration.png",
+      "screenshots/attempt-001/criterion-6-after-reopen-configuration.png",
+      "screenshots/attempt-001/criterion-6-before-final-cancel.png",
+      "screenshots/attempt-001/criterion-6-after-final-cancel.png",
+      "screenshots/attempt-001/criterion-6-before-final-clear-query.png",
+      "screenshots/attempt-001/criterion-6-after-final-clear-query.png",
+      "screenshots/attempt-001/criterion-6-final-map.png",
+      "screenshots/attempt-001/criterion-6-final-layers.png",
+      "screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS and waited for map loading to finish.",
+      "Recorded original map and complete active-layer list, then searched unmatched query, replaced with Surveyor and opened its configuration.",
+      "Entered synthetic Username, cancelled, and reopened with an empty Username.",
+      "Cancelled reopened configuration and cleared query without selecting Add layer in the dialog."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "observed": "Original and final map extent and visible features matched. Complete active-layer list contained only ALL Coverage Gap Candidate Areas before and after; no Surveyor layer was added. The pre-existing coverage gap load error remained unchanged.",
+    "reason": ""
+  }
+]
