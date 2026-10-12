@@ -1,0 +1,46 @@
+{
+  "key": "TEST2-76",
+  "id": "106573",
+  "summary": "V4 GIS: recover from an unmatched catalogue search and cancel Surveyor configuration",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-76",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-12T16:09:17.636+0100",
+    "updated": "2026-10-12T16:09:46.708+0100"
+  },
+  "description": "User story\nAs a V4 GIS user, I want to recover from a layer search with no matching result, find Surveyor, and inspect its configuration without adding a layer or changing my map.\nEnvironment\nDevelopment V4: https://o2intelligence-v4-dev.metricell.com/launcher\nUse the existing authenticated test account. Open GIS from the launcher and use the Search layers control in its catalogue.\nAcceptance criteria\nWith the GIS catalogue open, entering the unique query TEST2-no-match-showcase-20261012 leaves that query visible and shows no matching catalogue entries, including no Surveyor result.\nReplacing that query with Surveyor, without reloading the page, shows the Surveyor matching entry. Opening its configuration displays an editable Username field and Cancel and Add layer controls.\nEntering the synthetic Username TEST2-showcase-unsaved-20261012, selecting Cancel without Add layer, and reopening the same configuration shows an empty Username field.\nAfter cancelling the reopened configuration and clearing the catalogue query, the search field is empty and the original catalogue entries and browsing position are restored. The visible map and complete active-layer list remain the same as their recorded initial states, with no Surveyor layer added.\nScope\nCatalogue search and unsaved configuration only. No saved changes, layer creation, real customer identifiers, or unrelated module checks. An already-present map-layer error is outside this ticket unless these actions change it. This is a normal functional rehearsal ticket; assess guide relevance against the existing guide rather than forcing an amendment.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-76/ticket.json",
+    "criteria": "tickets/TEST2-76/criteria.md",
+    "status": "tickets/TEST2-76/status.json",
+    "screenshots": "tickets/TEST2-76/screenshots/",
+    "reports": "tickets/TEST2-76/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106573",
+    "importedAt": "2026-10-12T16:09:46.708+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "testAttempts": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-12T16:09:46.708+0100",
+    "criteriaVerified": false
+  }
+}

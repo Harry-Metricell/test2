@@ -1,13 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-12T14:47:55.939+0100",
+  "generatedAt": "2026-10-12T16:09:46.708+0100",
   "counts": {
-    "tickets": 6,
-    "handoffs": 0,
+    "tickets": 7,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Ready": 6
+      "Ready": 7
     },
     "byQaOutcome": {
+      "Not Tested": 1,
       "Passed": 6
     }
   },
@@ -118,6 +119,23 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-76",
+      "summary": "V4 GIS: recover from an unmatched catalogue search and cancel Surveyor configuration",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-12T16:09:46.708+0100",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 0,
       "retryLabel": ""
     }
   ]
