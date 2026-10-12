@@ -151,6 +151,19 @@ def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focu
     row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
 
 
+def preserves_recorded_state(criterion):
+    """Recognise equivalent preservation wording without changing QA meaning."""
+    return bool(re.search(
+        r"\bunchanged\b|\bdoes not change\b|\bremain(?:s)?\s+(?:the\s+)?same\b|\brestored\b.*\binitial\b",
+        criterion.lower()))
+
+
+def restores_catalogue_state(criterion):
+    lower = criterion.lower()
+    return "catalogue" in lower and bool(re.search(r"\b(original|initial)\b", lower)) and bool(
+        re.search(r"\b(clear(?:ed|ing|s)?|restor(?:e|ed|es|ing))\b", lower))
+
+
 def criterion_focus_region(images, criterion, outcome):
     """Do not enlarge cursor/focus noise in a passed restoration comparison.
 
@@ -159,8 +172,7 @@ def criterion_focus_region(images, criterion, outcome):
     or reviewed outcome is changed by this display decision.
     """
     lower = criterion.lower()
-    preservation = bool(re.search(r"\b(unchanged|restored)\b|\bdoes not change\b", lower)) or (
-        "catalogue" in lower and "original" in lower and "cleared" in lower)
+    preservation = preserves_recorded_state(lower) or "restored" in lower or restores_catalogue_state(lower)
     original = any("baseline-" in image.stem.lower() or "before-search" in image.stem.lower()
                    for image in images)
     final = any(re.search(r"-final(?:-recovered)?$", image.stem.lower()) for image in images)
@@ -230,10 +242,21 @@ def report_exhibits(images, criterion, review_reason=""):
     if final_index is not None:
         images = images[:final_index + 1]
     lower = criterion.lower()
+    # A single unsaved-field cancellation is proved by the entered value and
+    # the reopened empty field. Pair these first, not empty-map/dialog setup.
+    # Multiple edits or unfamiliar capture names keep their complete journey.
+    if ("username" in lower and "cancel" in lower and "reopen" in lower and "empty" in lower
+            and not re.search(r"\b(second|twice|both)\b|not\s+empty", lower)):
+        edited = [image for image in images if "after-edit" in image.stem.lower()
+                  and "before" in image.stem.lower() and "cancel" in image.stem.lower()]
+        reopened = [image for image in images if "after-reopen" in image.stem.lower()]
+        if (len(edited) == 1 and len(reopened) == 1 and final_index is not None
+                and images.index(edited[0]) < images.index(reopened[0])):
+            return [edited[0], images[-1]]
     # Keep independent original/restored map and complete-list captures paired.
     # Intervening dialog/search setup remains in the full reviewed attempt.
-    compares_map = bool(re.search(r"\b(map|layers?)\b", lower)) and bool(
-        re.search(r"\b(unchanged|original|baseline)\b|\bdoes not change\b|\brestored\b.*\binitial\b|\bmatch(?:es|ing)?\s+(?:the\s+)?(?:recorded|original|baseline)", lower))
+    compares_map = bool(re.search(r"\b(map|layers?)\b", lower)) and (preserves_recorded_state(lower) or bool(
+        re.search(r"\b(original|baseline)\b|\bmatch(?:es|ing)?\s+(?:the\s+)?(?:recorded|original|baseline)", lower)))
     if compares_map:
         pairs = []
         baselines = []
@@ -259,8 +282,9 @@ def report_exhibits(images, criterion, review_reason=""):
             # A preservation claim applies during the search as well as after
             # clearing. Print the original/restored comparison first, then
             # retain the explicitly named intermediate asserted state.
-            if "does not change" in lower:
-                pairs.extend(image for image in images if "after-search" in image.stem.lower())
+            if "search" in lower and preserves_recorded_state(lower):
+                pairs.extend(image for image in images if "after-search" in image.stem.lower()
+                             or re.search(r"search-(?:map|layers)-before-clear", image.stem.lower()))
             if images[-1] not in pairs:
                 pairs.append(images[-1])
             return distinct_states(pairs, protected=baselines)
@@ -268,8 +292,7 @@ def report_exhibits(images, criterion, review_reason=""):
     # unmatched query's full sequence remains in the reviewed attempt. Apply
     # only to an explicit restoration assertion, never a filtering assertion
     # or an unfamiliar multi-action journey.
-    restores_catalogue = "catalogue" in lower and bool(re.search(
-        r"\b(original|initial)\b", lower)) and bool(re.search(r"\b(cleared|restored)\b", lower))
+    restores_catalogue = restores_catalogue_state(lower)
     if restores_catalogue:
         before = [image for image in images if "before-search" in image.stem.lower()]
         final = [image for image in images if re.search(r"-final(?:-recovered)?$", image.stem.lower())]

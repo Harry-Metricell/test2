@@ -19,6 +19,39 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_remains_same_pairs_each_recorded_state_and_search_state(self):
+        images = [Path(name) for name in (
+            "criterion-3-baseline-map.png", "criterion-3-baseline-layers.png",
+            "criterion-3-before-search.png", "criterion-3-search-map-before-clear.png",
+            "criterion-3-search-layers-before-clear.png", "criterion-3-final.png")]
+        for role, baseline in (("map", images[0]), ("active-layer list", images[1])):
+            with self.subTest(role=role):
+                selected = REPORT.report_exhibits(images,
+                    f"The visible {role} remains the same as its recorded initial state while searching and after the query is cleared.")
+                self.assertEqual(selected[:2], [baseline, images[-1]])
+                self.assertIn(images[3], selected)
+                self.assertIn(images[4], selected)
+
+    def test_clearing_restores_catalogue_pairs_original_and_final(self):
+        images = [Path(name) for name in (
+            "criterion-2-before-search.png", "criterion-2-before-clear.png", "criterion-2-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images,
+            "Clearing the search restores the original catalogue controls and position."), [images[0], images[-1]])
+
+    def test_single_unsaved_username_pairs_edit_and_reopened_empty_field(self):
+        images = [Path(name) for name in (
+            "criterion-2-before-open.png", "criterion-2-after-open.png",
+            "criterion-2-after-edit-before-cancel.png", "criterion-2-after-cancel.png",
+            "criterion-2-after-reopen.png", "criterion-2-final.png")]
+        claim = "Enter an unsaved Username, cancel without adding, and reopen with an empty Username field."
+        self.assertEqual(REPORT.report_exhibits(images, claim), [images[2], images[-1]])
+        multiple = [*images[:3], Path("criterion-2-second-after-edit-before-cancel.png"), *images[3:]]
+        self.assertIn(multiple[2], REPORT.report_exhibits(multiple, claim))
+        self.assertIn(multiple[3], REPORT.report_exhibits(multiple, claim))
+        unknown = [Path("step-a.png"), Path("step-b.png"), Path("criterion-2-final.png")]
+        self.assertEqual(REPORT.report_exhibits(unknown, claim), unknown)
+        self.assertNotEqual(REPORT.report_exhibits(images, claim.replace("empty", "not empty")), [images[2], images[-1]])
+
     def test_passed_restoration_does_not_enlarge_incidental_focus_changes(self):
         with tempfile.TemporaryDirectory() as temporary:
             before = Path(temporary) / "criterion-2-before-search.png"
@@ -30,6 +63,7 @@ class ResultMatchingTests(unittest.TestCase):
             claim = "After the query is cleared, the original catalogue is restored."
             self.assertIsNotNone(REPORT.localized_change_region([before, final]))
             self.assertIsNone(REPORT.criterion_focus_region([before, final], claim, "Passed"))
+            self.assertIsNone(REPORT.criterion_focus_region([before, final], "The map remains the same as its recorded initial state.", "Passed"))
             self.assertIsNotNone(REPORT.criterion_focus_region([before, final], claim, "Failed"))
             self.assertIsNotNone(REPORT.criterion_focus_region([before, final], "Changing the checkbox updates the setting.", "Passed"))
 

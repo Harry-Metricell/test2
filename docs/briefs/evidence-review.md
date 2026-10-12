@@ -30,6 +30,8 @@ For sequences such as toggle, restore, close and reopen, require this criterion'
 
 For unchanged map/layer claims, inspect the original unobscured baseline and restored final state, including every list-scroll capture needed to see the complete list. Name the decisive baseline/action/final filenames in the criterion reason. For repeated edits, distinguish the specific first/second/final sequence being asserted from earlier setup; describe that decisive sequence rather than reciting all setup. The publisher must retain comparison baselines beneath their criterion; unrelated setup belongs in the compact supporting appendix or full local attempt, not in place of the proof.
 
+Treat “remains the same” and “clearing restores the original” as preservation/restoration comparisons, not just final-state assertions. When preservation applies during searching, inspect the intermediate search state too. For a single unsaved Username cancellation, identify both the entered-value capture and the reopened empty-field capture; the publisher pairs the decisive states beneath the criterion. Do not shorten repeated edits or omit any state required by the assertion.
+
 ## Stage output and finish
 
 Write `.agent-staging/<handoffId>/review-output.json` and verify it exists/non-empty. Required fields: handoffId, handoffVersion, ticket, criterionOutcomes, overallOutcome, reportPath, evidenceFolder, qaStatus, noOp and reason. Copy live handoffVersion exactly; set noOp false for a completed assessment.
