@@ -1,0 +1,148 @@
+{
+  "handoffId": "handoff-TEST2-73-test-attempt-001",
+  "handoffVersion": "TEST2-73:test_ticket:1",
+  "ticket": "TEST2-73",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "With a distinctive unmatched query entered in the GIS layer catalogue search, the query remains visible and the catalogue shows no unrelated layer entries as matches.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-before-search.png",
+        "screenshots/attempt-001/criterion-1-after-search.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; verified visible authenticated launcher and saved this criterion's initial PNG.",
+        "Opened GIS; verified the catalogue and recorded its original visible state before searching.",
+        "Entered TEST2-showcase-no-match-20261012 in Search layers; waited for visible 'No layers match this search.' and saved transition evidence.",
+        "Captured criterion-1-final.png with the visible query and no-match assertion; recorded current browser URL.",
+        "Cleared the query using its clear icon; verified catalogue returned and captured cleanup separately."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "observedResult": "Query TEST2-showcase-no-match-20261012 remained visible; catalogue displayed 'No layers match this search.' with no unrelated entries.",
+      "reason": "The existing ALL Coverage Gap Candidate Areas layer showed 'Unable to load coverage gap candidate areas.' before and after testing. Its selection and the rendered basemap were observable, so catalogue search and preservation assertions could be tested. No data, layers or map settings were altered; the query was cleared."
+    },
+    {
+      "criterion": "After the search query is cleared, the GIS layer catalogue shows the original catalogue contents and browsing controls at the same catalogue position recorded before searching.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-search.png",
+        "screenshots/attempt-001/criterion-2-after-search.png",
+        "screenshots/attempt-001/criterion-2-before-clear.png",
+        "screenshots/attempt-001/criterion-2-after-clear.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; verified visible authenticated launcher and saved this criterion's initial PNG.",
+        "Opened GIS; verified the catalogue and recorded its original visible state before searching.",
+        "Entered TEST2-showcase-no-match-20261012 in Search layers; waited for visible 'No layers match this search.' and saved transition evidence.",
+        "A text-only wait for placeholder text timed out; direct input inspection and visible catalogue snapshot confirmed the GIS was ready, then testing continued.",
+        "Captured before-clear evidence; clicked the catalogue search clear icon and waited for Network Information to return.",
+        "Compared restored catalogue text and position with this criterion's initial state; verified empty query and unchanged visible map and complete active-layer list.",
+        "Captured after-clear and separate final assertion PNGs; read the actual current browser URL at final state."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "observedResult": "Clearing via the search clear icon restored the original catalogue text, category controls and top position (scrollTop 0). Network Information, RPO, Tests and Measurements, Improvement Areas and Planning returned.",
+      "reason": "The existing ALL Coverage Gap Candidate Areas layer showed 'Unable to load coverage gap candidate areas.' before and after testing. Its selection and the rendered basemap were observable, so catalogue search and preservation assertions could be tested. No data, layers or map settings were altered; the query was cleared."
+    },
+    {
+      "criterion": "Searching and clearing the catalogue does not change the active layers that were present before searching.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-baseline-map.png",
+        "screenshots/attempt-001/criterion-3-baseline-layers.png",
+        "screenshots/attempt-001/criterion-3-before-search.png",
+        "screenshots/attempt-001/criterion-3-after-search.png",
+        "screenshots/attempt-001/criterion-3-before-clear.png",
+        "screenshots/attempt-001/criterion-3-after-clear.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; verified visible authenticated launcher and saved this criterion's initial PNG.",
+        "An initial text selector for Open GIS found no element and made no change; retried with its observed accessible button name.",
+        "Opened GIS; verified the catalogue and recorded its original visible state before searching.",
+        "Captured this criterion's unobscured baseline map and complete one-item active-layer list.",
+        "Entered TEST2-showcase-no-match-20261012 in Search layers; waited for visible 'No layers match this search.' and saved transition evidence.",
+        "Captured before-clear evidence; clicked the catalogue search clear icon and waited for Network Information to return.",
+        "Compared restored catalogue text and position with this criterion's initial state; verified empty query and unchanged visible map and complete active-layer list.",
+        "Captured after-clear and separate final assertion PNGs; read the actual current browser URL at final state."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "observedResult": "The complete active-layer list remained the single visible ALL Coverage Gap Candidate Areas layer through search and clearing. Saved map/active-list regions matched baseline pixels.",
+      "reason": "The existing ALL Coverage Gap Candidate Areas layer showed 'Unable to load coverage gap candidate areas.' before and after testing. Its selection and the rendered basemap were observable, so catalogue search and preservation assertions could be tested. No data, layers or map settings were altered; the query was cleared."
+    },
+    {
+      "criterion": "Searching and clearing the catalogue does not change the visible map state that was present before searching.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-baseline-map.png",
+        "screenshots/attempt-001/criterion-4-baseline-layers.png",
+        "screenshots/attempt-001/criterion-4-before-search.png",
+        "screenshots/attempt-001/criterion-4-after-search.png",
+        "screenshots/attempt-001/criterion-4-before-clear.png",
+        "screenshots/attempt-001/criterion-4-after-clear.png",
+        "screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; verified visible authenticated launcher and saved this criterion's initial PNG.",
+        "Opened GIS; verified the catalogue and recorded its original visible state before searching.",
+        "Captured this criterion's unobscured baseline map and complete one-item active-layer list.",
+        "Entered TEST2-showcase-no-match-20261012 in Search layers; waited for visible 'No layers match this search.' and saved transition evidence.",
+        "Captured before-clear evidence; clicked the catalogue search clear icon and waited for Network Information to return.",
+        "Compared restored catalogue text and position with this criterion's initial state; verified empty query and unchanged visible map and complete active-layer list.",
+        "Captured after-clear and separate final assertion PNGs; read the actual current browser URL at final state."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "observedResult": "The visible map remained at Hangleton / West Hove Golf Club, north-up, scale 300 m; browser-derived map attribution coordinates stayed /-0.19456/50.85221/13.67. The full visible map region matched baseline pixels during search and after clearing.",
+      "reason": "The existing ALL Coverage Gap Candidate Areas layer showed 'Unable to load coverage gap candidate areas.' before and after testing. Its selection and the rendered basemap were observable, so catalogue search and preservation assertions could be tested. No data, layers or map settings were altered; the query was cleared."
+    },
+    {
+      "criterion": "After clearing, the catalogue search field is empty and the GIS page is restored to its recorded initial catalogue, map, and active-layer state.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-5-initial.png",
+        "screenshots/attempt-001/criterion-5-baseline-map.png",
+        "screenshots/attempt-001/criterion-5-baseline-layers.png",
+        "screenshots/attempt-001/criterion-5-before-search.png",
+        "screenshots/attempt-001/criterion-5-after-search.png",
+        "screenshots/attempt-001/criterion-5-before-clear.png",
+        "screenshots/attempt-001/criterion-5-after-clear.png",
+        "screenshots/attempt-001/criterion-5-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; verified visible authenticated launcher and saved this criterion's initial PNG.",
+        "Opened GIS; verified the catalogue and recorded its original visible state before searching.",
+        "Captured this criterion's unobscured baseline map and complete one-item active-layer list.",
+        "Entered TEST2-showcase-no-match-20261012 in Search layers; waited for visible 'No layers match this search.' and saved transition evidence.",
+        "Captured before-clear evidence; clicked the catalogue search clear icon and waited for Network Information to return.",
+        "Compared restored catalogue text and position with this criterion's initial state; verified empty query and unchanged visible map and complete active-layer list.",
+        "Captured after-clear and separate final assertion PNGs; read the actual current browser URL at final state."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "observedResult": "Search field was empty after clearing. Initial catalogue text and top position, complete active-layer list and visible map were restored. Final map/active-list regions matched baseline pixels.",
+      "reason": "The existing ALL Coverage Gap Candidate Areas layer showed 'Unable to load coverage gap candidate areas.' before and after testing. Its selection and the rendered basemap were observable, so catalogue search and preservation assertions could be tested. No data, layers or map settings were altered; the query was cleared."
+    }
+  ],
+  "conciseReport": "All five canonical criteria passed in independent launcher-started tests. The unmatched query remained visible with no matches; clearing restored the original catalogue at scrollTop 0, empty search, existing active-layer selection and visible map. Map and active-list PNG regions matched their own baselines during search and after clearing. Existing coverage-gap data-load alert persisted unchanged. Search cleanup completed; 35 saved PNGs verified readable.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-73-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Testing completed; evidence is ready for review.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-12T10:49:44.476Z"
+}
