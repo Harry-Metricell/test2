@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-73-guide-impact",
+  "handoffVersion": "TEST2-73:guide_impact_assessment:1",
+  "ticket": "TEST2-73",
+  "decision": "not_needed",
+  "affectedSection": "",
+  "reason": "The passed evidence verifies clearing an unmatched GIS layer-catalogue search restores the original catalogue, map, and active-layer state. This behavior is already covered by the existing GIS layer catalogue search and filtering guidance, so this ticket does not require another guide addition or material change.",
+  "noOp": false,
+  "assessedAt": "2026-10-12T11:03:47.255Z"
+}
