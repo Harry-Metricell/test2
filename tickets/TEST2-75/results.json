@@ -1,0 +1,97 @@
+[
+  {
+    "criterion": "With the GIS layer catalogue open, entering `Surveyor` in the Search layers control keeps the query visible and shows the Surveyor catalogue entry as a matching result.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-search.png",
+      "screenshots/attempt-001/criterion-1-after-search.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher URL and captured the visible authenticated launcher.",
+      "Clicked Open GIS; waited for Loading map to disappear; recorded the original catalogue.",
+      "Entered Surveyor in Search layers; verified the query and matching Surveyor catalogue entry were visible.",
+      "Captured the decisive final search state and read its current browser URL.",
+      "Clicked the search clear icon; verified Network Information returned and captured cleanup with an empty query."
+    ],
+    "observedResult": "Surveyor remained visible in Search layers and the Surveyor result appeared under Tests and Measurements.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Pre-existing ALL Coverage Gap Candidate Areas panel displayed Unable to load coverage gap candidate areas before and throughout testing. This did not prevent catalogue search verification. Search restored; no layers or saved data changed."
+  },
+  {
+    "criterion": "Clearing the search query leaves the search field empty and restores the original catalogue entries and browsing controls at the recorded catalogue position.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-search.png",
+      "screenshots/attempt-001/criterion-2-before-clear.png",
+      "screenshots/attempt-001/criterion-2-after-clear.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Independently navigated to the exact launcher URL and captured the visible launcher.",
+      "Opened GIS and waited for Loading map to disappear; recorded empty query, catalogue browsing controls and catalogue scrollTop 0, clientHeight 730 and scrollHeight 934.",
+      "Entered Surveyor and verified the visible query and matching entry; captured the state before clearing.",
+      "Clicked the search clear icon; verified empty query and restored original catalogue and browsing controls at scrollTop 0 with unchanged catalogue dimensions.",
+      "Captured the restored decisive final state and read its current browser URL."
+    ],
+    "observedResult": "Clearing restored the original Network, Tests and Measurements, Improvement Areas and Planning catalogue view, browsing controls and empty search at the recorded top position.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Pre-existing coverage gap candidate areas loading alert persisted. Query was cleared and original catalogue position restored; no layers or saved data changed."
+  },
+  {
+    "criterion": "The visible map remains the same as its recorded initial state while searching and after the query is cleared.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-baseline-map.png",
+      "screenshots/attempt-001/criterion-3-baseline-layers.png",
+      "screenshots/attempt-001/criterion-3-search-map-before-clear.png",
+      "screenshots/attempt-001/criterion-3-after-clear-map.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Independently navigated to the exact launcher URL and captured the visible launcher.",
+      "Opened GIS, waited for the map loading indicator to disappear and captured its visible map and complete one-entry active-layer baseline.",
+      "Entered Surveyor; verified the query and matching result; captured the visible map during search.",
+      "Clicked the search clear icon and verified catalogue restoration; captured the restored map and decisive final state.",
+      "Read the current browser URL at that final state and visually compared this criterion's own baseline, search and final PNGs."
+    ],
+    "observedResult": "Map remained centered on West Hove Golf Club, Brighton and Hove Bypass and Hangleton with the same scale of 300 m, landmarks, orientation and extent during search and after clearing.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Pre-existing coverage gap candidate areas loading alert persisted without preventing the visible basemap comparison. Query cleared; no map controls, layers or saved data changed."
+  },
+  {
+    "criterion": "The complete active-layer list remains the same as its recorded initial state while searching and after the query is cleared.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-baseline-map.png",
+      "screenshots/attempt-001/criterion-4-baseline-layers.png",
+      "screenshots/attempt-001/criterion-4-search-layers-before-clear.png",
+      "screenshots/attempt-001/criterion-4-after-clear-layers.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Independently navigated to the exact launcher URL and captured the visible launcher.",
+      "Opened GIS and waited for map loading to finish; captured baseline map and complete active-layer list.",
+      "Read the visible Map layers list: one ALL Coverage Gap Candidate Areas entry, Hide layer control, clientHeight and scrollHeight both 57, scrollTop 0; no list scrolling was required.",
+      "Entered Surveyor, verified the match and captured the searching state; re-read the complete active-layer list and dimensions with the same result.",
+      "Clicked the search clear icon and verified catalogue restoration; re-read the complete active-layer list with identical text and dimensions.",
+      "Captured the restored decisive final state, read its current browser URL and visually compared this criterion's own baseline, search and final PNGs."
+    ],
+    "observedResult": "Complete active-layer list retained its single visible ALL Coverage Gap Candidate Areas entry and controls throughout search and clearing, with no added, removed or reordered entries.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Pre-existing coverage gap candidate areas loading alert persisted. The active list itself was fully observable and unchanged. Query cleared; no layer configuration, selections or saved data changed."
+  }
+]
