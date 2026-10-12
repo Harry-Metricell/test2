@@ -8,7 +8,8 @@
       "Ready": 3
     },
     "byQaOutcome": {
-      "Not Tested": 3
+      "Not Tested": 2,
+      "Passed": 1
     }
   },
   "policy": {
@@ -23,12 +24,12 @@
       "summary": "V4 launcher navigation: open API Request Audit and return to GIS",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-12T09:40:07.625+0100",
       "retries": 0,
       "retryLimit": 2,
