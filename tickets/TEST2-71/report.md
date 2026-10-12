@@ -1,1 +1,18 @@
-All three catalogue-search criteria passed with independent launcher starts and criterion-owned PNG evidence. No-match text persisted; replacing it with Surveyor recovered the catalogue without reload; clearing restored all 38 catalogue entries, the single existing map layer, and the original map view. Search was left empty. An existing Coverage Gap Candidate Areas data-load alert remained unchanged and did not obstruct these checks. Browser observed: Google Chrome 155.0.8059.40. Awaiting evidence review.
+# TEST2-71 Evidence Review
+
+- **Ticket:** TEST2-71 — V4 GIS catalogue search: recover from no matching layers
+- **QA status:** Evidence Reviewed
+- **Overall outcome:** Unverified
+- **Evidence reviewed:** attempt-001
+- **Report:** [Evidence report](report.pdf)
+
+## Criterion results
+
+1. **Passed:** With GIS open and Search layers initially empty, entering `zzqa_showcase_no_match_20261012` leaves the entered text visible, shows no matching catalogue entries, and keeps the GIS map available.
+   - criterion-1-before-no-match.png shows empty Search layers and the catalogue; criterion-1-after-no-match.png shows zzqa_showcase_no_match_20261012 retained, no matching entries, and the rendered GIS map still available.
+2. **Passed:** Replacing the no-match text with `Surveyor` without reloading GIS shows Surveyor in the filtered catalogue while keeping the GIS map available.
+   - The criterion-owned sequence from criterion-2-before-surveyor.png to criterion-2-after-surveyor.png and criterion-2-final.png shows no-match text replaced by Surveyor, the Surveyor catalogue entry returned, and the map retained. Recorded steps show replacement without navigation or reload; the recovered launcher selector error does not contradict this sequence.
+3. **Unverified:** Clearing Search layers restores the original catalogue and leaves the complete Map layers entries and order and the map view matching the recorded pre-search baseline, with no layer added or removed.
+   - criterion-3-baseline-map.png and criterion-3-baseline-layers.png, followed by criterion-3-after-no-match.png, criterion-3-after-surveyor.png, criterion-3-before-clear.png and criterion-3-after-clear.png, show clearing restores the visible catalogue. criterion-3-restored-map.png and criterion-3-restored-layers.png match the original map extent and complete single-entry ALL Coverage Gap Candidate Areas list. However, criterion-3-baseline-catalogue-network-bottom.png has no matching restored scroll capture, and screenshots do not cover the full original/restored catalogue. The claimed 38-entry DOM comparison in notes cannot independently prove complete catalogue restoration.
+
+**Review summary:** Reviewed the live remote inputs and non-empty attempt-001 PNG evidence; complete catalogue restoration lacks full screenshot comparison.
