@@ -1,0 +1,96 @@
+{
+  "handoffId": "handoff-TEST2-74-test-attempt-001",
+  "handoffVersion": "TEST2-74:test_ticket:1",
+  "ticket": "TEST2-74",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "With GIS open and the existing Surveyor layer configuration opened from the catalogue, the configuration presents an editable Username field plus Cancel and Add layer controls.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-before-open-surveyor.png",
+        "screenshots/attempt-001/criterion-1-after-open-surveyor.png",
+        "screenshots/attempt-001/criterion-1-final.png",
+        "screenshots/attempt-001/criterion-1-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and waited for the visible launcher; saved criterion-specific initial PNG.",
+        "Opened GIS and verified the map workspace.",
+        "Opened Surveyor from the catalogue.",
+        "Observed the empty, enabled, non-read-only Username textbox and Cancel and Add layer controls; saved final evidence at /gis.",
+        "Cancelled the configuration and captured cleanup."
+      ],
+      "observedResult": "Surveyor presents an editable Username textbox with Cancel and Add layer controls.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "The pre-existing ALL Coverage Gap Candidate Areas panel shows 'Unable to load coverage gap candidate areas.' This was present before and after the sequence and did not prevent observing the required controls, cancellation, rendered base map or complete active-layer list. No test layer or data was saved; cleanup completed."
+    },
+    {
+      "criterion": "After entering `TEST2-rehearsal-unsaved-20261012` in the Username field and selecting Cancel without selecting Add layer, reopening the same Surveyor configuration shows the Username field empty.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-first-open.png",
+        "screenshots/attempt-001/criterion-2-after-first-open-before-edit.png",
+        "screenshots/attempt-001/criterion-2-after-edit-before-first-cancel.png",
+        "screenshots/attempt-001/criterion-2-after-first-cancel-before-reopen.png",
+        "screenshots/attempt-001/criterion-2-after-reopen.png",
+        "screenshots/attempt-001/criterion-2-final.png",
+        "screenshots/attempt-001/criterion-2-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the launcher; waited for it and saved initial PNG.",
+        "Opened GIS and the Surveyor catalogue configuration.",
+        "Entered TEST2-rehearsal-unsaved-20261012 in Username; captured the displayed input.",
+        "Selected Cancel without selecting Add layer; verified the configuration disappeared.",
+        "Reopened the same Surveyor configuration; observed an empty Username field and captured final evidence at /gis.",
+        "Cancelled the reopened configuration and captured cleanup. A tool-host response timeout occurred during the sequence; recovered with a fresh snapshot and verified the saved files and current state before proceeding."
+      ],
+      "observedResult": "Reopening after cancelling the synthetic Username shows an empty Username field.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "The pre-existing ALL Coverage Gap Candidate Areas panel shows 'Unable to load coverage gap candidate areas.' This was present before and after the sequence and did not prevent observing the required controls, cancellation, rendered base map or complete active-layer list. No test layer or data was saved; cleanup completed."
+    },
+    {
+      "criterion": "After cancelling the reopened Surveyor configuration, the visible map and complete active-layer list match the recorded initial state, and no Surveyor layer has been added.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-baseline-map.png",
+        "screenshots/attempt-001/criterion-3-baseline-layers.png",
+        "screenshots/attempt-001/criterion-3-after-first-open-before-edit.png",
+        "screenshots/attempt-001/criterion-3-after-edit-before-first-cancel.png",
+        "screenshots/attempt-001/criterion-3-after-first-cancel-before-reopen.png",
+        "screenshots/attempt-001/criterion-3-after-reopen-before-final-cancel.png",
+        "screenshots/attempt-001/criterion-3-restored-map.png",
+        "screenshots/attempt-001/criterion-3-restored-layers.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the launcher; waited for it and saved initial PNG.",
+        "Opened GIS and recorded the unobscured map and complete active-layer list: ALL Coverage Gap Candidate Areas (one existing visible layer). The complete list fits without scrolling.",
+        "Opened Surveyor from the catalogue; entered TEST2-rehearsal-unsaved-20261012 and captured the input.",
+        "Selected Cancel without selecting Add layer; verified the configuration disappeared.",
+        "Reopened Surveyor and verified the Username field was empty; captured the reopened state.",
+        "Cancelled the reopened configuration; verified the map and complete layer list were restored, with no Surveyor layer added.",
+        "Captured restored map, restored layers, and separate final PNG at /gis before any further navigation. Compared baseline-map with restored-map and baseline-layers with restored-layers; baseline-map and final have identical SHA-256 hashes."
+      ],
+      "observedResult": "The restored visible map and complete active-layer list match the initial state. Only the existing ALL Coverage Gap Candidate Areas layer is active; no Surveyor layer was added.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.40",
+      "reason": "The pre-existing ALL Coverage Gap Candidate Areas panel shows 'Unable to load coverage gap candidate areas.' This was present before and after the sequence and did not prevent observing the required controls, cancellation, rendered base map or complete active-layer list. No test layer or data was saved; cleanup completed."
+    }
+  ],
+  "conciseReport": "All 3 canonical criteria Passed; awaiting evidence review. Username was editable, cancelled synthetic input was discarded, and the map and sole existing active layer remained unchanged. Compare criterion-3-baseline-map.png with criterion-3-restored-map.png and criterion-3-baseline-layers.png with criterion-3-restored-layers.png; the baseline and final page PNGs are byte-identical. Development URL: https://o2intelligence-v4-dev.metricell.com/gis. Existing coverage-gap loading error is disclosed in each result. All 24 PNGs were verified non-empty and decoded successfully; criterion evidence is independent.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-74-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-12T12:54:40.279Z"
+}
