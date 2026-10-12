@@ -1,0 +1,45 @@
+{
+  "key": "TEST2-72",
+  "id": "106568",
+  "summary": "V4 Surveyor configuration: discard an unsaved Username edit",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-72",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-12T09:39:47.432+0100",
+    "updated": "2026-10-12T09:40:11.381+0100"
+  },
+  "description": "User story\nAs a GIS user, I want Cancel to discard an unsaved Surveyor filter edit without adding a layer or changing the map.\nScope and setup\nStart at https://o2intelligence-v4-dev.metricell.com/launcher using authorised V4 access. Use only normal UI controls. Open GIS and record the unobscured settled map view and complete existing Map layers entries/order. An absent list is a valid baseline. Open Surveyor configuration from its catalogue control. Use only the synthetic value TEST2-showcase-unsaved. Do not select Add layer, save data, change existing layers or modify saved settings.\nAcceptance criteria\nSurveyor configuration displays Username, Cancel and Add layer controls. Enter TEST2-showcase-unsaved; the entire value is visibly present in Username before cancellation.\nSelect Cancel, then reopen Surveyor configuration. The reopened Username field is empty, with Cancel and Add layer available.\nCancel the reopened dialog to finish. The unobscured map view and complete Map layers entries/order match the original pre-dialog baseline, with no new Surveyor layer.\nEvidence and cleanup\nCapture the edited value, closed dialog, reopened empty field and final restored map. Put the original/final comparison states in the evidence for the unchanged-state criterion, using that criterion's own journey. Record actual browser-derived final URLs. Leave the dialog closed and preserve all pre-existing state.\nUser-guide relevance\nUse the existing “Opening and cancelling Surveyor configuration in V4 GIS” section. Amend it only if passing evidence establishes a genuine missing instruction; otherwise no guide change is needed. Preserve existing useful guidance and highlight any new/changed content in yellow.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-72/ticket.json",
+    "criteria": "tickets/TEST2-72/criteria.md",
+    "status": "tickets/TEST2-72/status.json",
+    "screenshots": "tickets/TEST2-72/screenshots/",
+    "reports": "tickets/TEST2-72/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106568",
+    "importedAt": "2026-10-12T09:40:11.381+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-12T09:40:11.381+0100",
+    "criteriaVerified": false
+  }
+}
