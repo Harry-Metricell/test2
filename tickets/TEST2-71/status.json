@@ -10,5 +10,16 @@
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
   "nextAction": "QA review complete",
-  "updatedAt": "2026-10-12T09:17:41.106Z"
+  "updatedAt": "2026-10-12T09:17:41.106Z",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-71-guide-impact",
+    "handoffVersion": "TEST2-71:guide_impact_assessment:2",
+    "ticket": "TEST2-71",
+    "decision": "not_needed",
+    "affectedSection": "",
+    "reason": "The passed evidence verifies recovery from a no-match GIS layer search, which is already covered by the indexed guide section \"GIS layer catalogue search and filtering\" from TEST2-61. This is a repeated QA verification of documented behaviour, with no material user-facing gap or change.",
+    "noOp": false,
+    "assessedAt": "2026-10-12T09:31:42.265Z"
+  }
 }
