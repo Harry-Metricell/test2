@@ -5,11 +5,11 @@
   "status": "READY FOR TESTING",
   "retries": 1,
   "retryLimit": 1,
-  "testAttempts": 1,
+  "testAttempts": 2,
   "criteriaVerified": true,
-  "blockedStage": null,
-  "qaOutcome": "Unverified",
-  "workflowState": "Retry Queued",
-  "nextAction": "Create retry handoff",
+  "blockedStage": "evidence_review",
+  "qaOutcome": "Passed",
+  "workflowState": "READY FOR TESTING",
+  "nextAction": "Create final evidence review handoff",
   "updatedAt": "2026-10-12T15:37:39.069Z"
 }
