@@ -22,6 +22,10 @@ test('coordinator suppresses repeated unchanged-status narration', () => {
   assert.match(coordinator, /Announce each stage transition at most once per batch/);
   assert.match(coordinator, /Record polling observations in ignored run state, not chat/);
   assert.match(coordinator, /no optional updates between those required intervals/);
+  assert.match(coordinator, /Use an event whitelist, not a running narrative/);
+  assert.match(coordinator, /batch:<stage>:started/);
+  assert.match(coordinator, /staged receipts, publisher pickup, push success, bundler start/);
+  assert.match(coordinator, /Quiet communication must never end a wait or bypass a publication gate/);
 });
 
 test('coordinator example matches the exact handoff-scoped local launch contract', () => {

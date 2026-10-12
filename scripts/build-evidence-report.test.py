@@ -19,6 +19,71 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_passed_restoration_does_not_enlarge_incidental_focus_changes(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            before = Path(temporary) / "criterion-2-before-search.png"
+            final = Path(temporary) / "criterion-2-final.png"
+            Image.new("RGB", (1440, 900), "white").save(before)
+            changed = Image.new("RGB", (1440, 900), "white")
+            changed.paste("navy", (100, 100, 125, 125))
+            changed.save(final)
+            claim = "After the query is cleared, the original catalogue is restored."
+            self.assertIsNotNone(REPORT.localized_change_region([before, final]))
+            self.assertIsNone(REPORT.criterion_focus_region([before, final], claim, "Passed"))
+            self.assertIsNotNone(REPORT.criterion_focus_region([before, final], claim, "Failed"))
+            self.assertIsNotNone(REPORT.criterion_focus_region([before, final], "Changing the checkbox updates the setting.", "Passed"))
+
+    def test_catalogue_clear_pairs_original_with_restored_view(self):
+        images = [Path(name) for name in (
+            "criterion-2-before-search.png", "criterion-2-after-search.png",
+            "criterion-2-before-clear.png", "criterion-2-after-clear.png", "criterion-2-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images,
+            "After the search query is cleared, the GIS layer catalogue shows the original contents at the same position."),
+            [images[0], images[-1]])
+        self.assertEqual(REPORT.report_exhibits(images,
+            "The unmatched search shows no unrelated catalogue entries."), images)
+
+    def test_unchanged_during_search_pairs_baseline_and_final_first(self):
+        images = [Path(name) for name in (
+            "criterion-4-baseline-map.png", "criterion-4-baseline-layers.png",
+            "criterion-4-before-search.png", "criterion-4-after-search.png",
+            "criterion-4-before-clear.png", "criterion-4-after-clear.png", "criterion-4-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images,
+            "Searching and clearing the catalogue does not change the visible map state."),
+            [images[0], images[-1], images[3]])
+        self.assertEqual(REPORT.report_exhibits(images,
+            "Searching and clearing the catalogue does not change the active layers."),
+            [images[1], images[-1], images[3]])
+
+    def test_recorded_initial_restoration_pairs_map_and_layers(self):
+        images = [Path(name) for name in (
+            "criterion-5-baseline-map.png", "criterion-5-baseline-layers.png",
+            "criterion-5-before-search.png", "criterion-5-after-search.png", "criterion-5-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images,
+            "After clearing the page is restored to its recorded initial catalogue, map, and active-layer state."),
+            [images[0], images[-1], images[1], images[-1]])
+
+    def test_multiple_layer_baselines_are_not_replaced_by_one_final(self):
+        images = [Path(name) for name in (
+            "criterion-3-baseline-layers-top.png", "criterion-3-baseline-layers-bottom.png",
+            "criterion-3-after-search.png", "criterion-3-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images,
+            "The complete original active layers remain unchanged."), images)
+        combined = [images[0], images[1], Path("criterion-3-before-search.png"), *images[2:]]
+        selected = REPORT.report_exhibits(combined,
+            "After clearing the page is restored to its initial catalogue, map, and active layers.")
+        self.assertIn(images[0], selected)
+        self.assertIn(images[1], selected)
+
+    def test_identical_search_restoration_endpoints_both_remain_visible(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            before = Path(temporary) / "criterion-2-before-search.png"
+            final = Path(temporary) / "criterion-2-final.png"
+            Image.new("RGB", (80, 60), "navy").save(before)
+            shutil.copyfile(before, final)
+            self.assertEqual(REPORT.report_exhibits([before, final],
+                "After the query is cleared, the original catalogue is restored."), [before, final])
+
     def test_map_and_layer_comparisons_are_paired_not_dialog_setup(self):
         images = [Path(name) for name in (
             "criterion-3-baseline-map.png", "criterion-3-baseline-layers.png",

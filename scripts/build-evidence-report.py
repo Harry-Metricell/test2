@@ -151,6 +151,24 @@ def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focu
     row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
 
 
+def criterion_focus_region(images, criterion, outcome):
+    """Do not enlarge cursor/focus noise in a passed restoration comparison.
+
+    Full original/restored views prove preservation. Detail crops remain useful
+    for actual toggle/edit changes and for failed comparisons; no source image
+    or reviewed outcome is changed by this display decision.
+    """
+    lower = criterion.lower()
+    preservation = bool(re.search(r"\b(unchanged|restored)\b|\bdoes not change\b", lower)) or (
+        "catalogue" in lower and "original" in lower and "cleared" in lower)
+    original = any("baseline-" in image.stem.lower() or "before-search" in image.stem.lower()
+                   for image in images)
+    final = any(re.search(r"-final(?:-recovered)?$", image.stem.lower()) for image in images)
+    if text(outcome).lower() == "passed" and preservation and original and final:
+        return None
+    return localized_change_region(images)
+
+
 def supporting_captures(candidates, displayed, limit=2):
     """Choose a small, distinct setup appendix; retain all others locally."""
     selected = []
@@ -215,22 +233,50 @@ def report_exhibits(images, criterion, review_reason=""):
     # Keep independent original/restored map and complete-list captures paired.
     # Intervening dialog/search setup remains in the full reviewed attempt.
     compares_map = bool(re.search(r"\b(map|layers?)\b", lower)) and bool(
-        re.search(r"\b(unchanged|original|baseline)\b|\bmatch(?:es|ing)?\s+(?:the\s+)?(?:recorded|original|baseline)", lower))
+        re.search(r"\b(unchanged|original|baseline)\b|\bdoes not change\b|\brestored\b.*\binitial\b|\bmatch(?:es|ing)?\s+(?:the\s+)?(?:recorded|original|baseline)", lower))
     if compares_map:
         pairs = []
         baselines = []
         for role in ("map", "layers"):
+            if not re.search(r"\bmap\b" if role == "map" else r"\blayers?\b", lower):
+                continue
             before = [image for image in images if f"baseline-{role}" in image.stem.lower()]
             after = [image for image in images if "restored" in image.stem.lower() and role in image.stem.lower()]
-            if before and not after and role == "map":
+            # One full-context layer baseline may be compared with the final
+            # full-context viewport. Multiple list scrolls require their own
+            # restored captures; do not pretend one final view proves them all.
+            if before and not after and (role == "map" or len(before) == 1):
                 after = [image for image in images if re.search(r"-final(?:-recovered)?$", image.stem.lower())]
+            if before and not after:
+                # Keep the full reviewed journey when no role-complete
+                # restoration pair can be established from capture names.
+                pairs = []
+                break
             if before and after:
                 baselines.extend(before)
                 pairs.extend([*before, after[-1]])
         if pairs and re.search(r"-final(?:-recovered)?$", images[-1].stem.lower()):
+            # A preservation claim applies during the search as well as after
+            # clearing. Print the original/restored comparison first, then
+            # retain the explicitly named intermediate asserted state.
+            if "does not change" in lower:
+                pairs.extend(image for image in images if "after-search" in image.stem.lower())
             if images[-1] not in pairs:
                 pairs.append(images[-1])
             return distinct_states(pairs, protected=baselines)
+    # Catalogue restoration compares the original and cleared views. The
+    # unmatched query's full sequence remains in the reviewed attempt. Apply
+    # only to an explicit restoration assertion, never a filtering assertion
+    # or an unfamiliar multi-action journey.
+    restores_catalogue = "catalogue" in lower and bool(re.search(
+        r"\b(original|initial)\b", lower)) and bool(re.search(r"\b(cleared|restored)\b", lower))
+    if restores_catalogue:
+        before = [image for image in images if "before-search" in image.stem.lower()]
+        final = [image for image in images if re.search(r"-final(?:-recovered)?$", image.stem.lower())]
+        multiple_baselines = any(sum(f"baseline-{role}" in image.stem.lower() for image in images) > 1
+                                 for role in ("map", "layers"))
+        if len(before) == 1 and final and not multiple_baselines and not any("scroll" in image.stem.lower() for image in images):
+            return [before[0], final[-1]]
     # A module opened from a returned launcher starts at that returned state;
     # the preceding audit visit only establishes setup for this assertion.
     if "returned" in lower and "launcher" in lower:
@@ -908,7 +954,7 @@ def main():
             for start in range(0, len(exhibits), 2):
                 label = f"Criterion {number}" + (" continued" if start else " evidence") + f": {criterion}"
                 row_exhibits = exhibits[start:start + 2]
-                focus = localized_change_region([exhibit[1] for exhibit in row_exhibits])
+                focus = criterion_focus_region([exhibit[1] for exhibit in row_exhibits], criterion, item.get("outcome"))
                 add_image_row(cases, row_exhibits, criterion_label=label, focus_region=focus,
                               opening=number == 1 and start == 0)
 
