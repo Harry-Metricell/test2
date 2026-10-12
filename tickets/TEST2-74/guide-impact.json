@@ -1,0 +1,11 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-74-guide-impact",
+  "handoffVersion": "TEST2-74:guide_impact_assessment:1",
+  "ticket": "TEST2-74",
+  "decision": "not_needed",
+  "affectedSection": "",
+  "reason": "The passed evidence verifies that cancelling an unsaved Surveyor Username leaves the map and active layers unchanged, and that the discarded value is not retained. This is already covered by the existing guide section \"Opening and cancelling Surveyor configuration in V4 GIS\" indexed for TEST2-66, so no new or materially changed user instruction is needed.",
+  "noOp": false,
+  "assessedAt": "2026-10-12T13:39:46.084Z"
+}
