@@ -1,1 +1,18 @@
-All three criteria passed with independent launcher starts and criterion-owned PNG evidence. No-match search retained its query, Surveyor recovery worked without reload, and clearing restored the catalogue with unchanged map/layer state. Search was left empty. The pre-existing coverage-gap data-load error remained unchanged and did not obstruct these assertions. Browser: Google Chrome 155.0.8059.40.
+# TEST2-71 Evidence Review
+
+- **Ticket:** TEST2-71 — V4 GIS catalogue search: recover from no matching layers
+- **QA status:** Evidence Reviewed
+- **Overall outcome:** Passed
+- **Evidence reviewed:** attempt-002
+- **Report:** [Evidence report](report.pdf)
+
+## Criterion results
+
+1. **Passed:** With GIS open and Search layers initially empty, entering `zzqa_showcase_no_match_20261012` leaves the entered text visible, shows no matching catalogue entries, and keeps the GIS map available.
+   - criterion-1-before-no-match.png shows empty Search layers and a populated catalogue. criterion-1-after-no-match.png and criterion-1-final.png retain zzqa_showcase_no_match_20261012, show no matching layers and a rendered GIS map. The pre-existing coverage-gap data error does not obstruct the search or basemap.
+2. **Passed:** Replacing the no-match text with `Surveyor` without reloading GIS shows Surveyor in the filtered catalogue while keeping the GIS map available.
+   - criterion-2-after-no-match-before-recovery.png shows the no-match query; criterion-2-after-recovery.png and criterion-2-final.png show Surveyor as the filtered catalogue entry with the map still rendered. This criterion's ordered replacement steps record no reload; the initial selector error was recovered before testing.
+3. **Passed:** Clearing Search layers restores the original catalogue and leaves the complete Map layers entries and order and the map view matching the recorded pre-search baseline, with no layer added or removed.
+   - criterion-3-baseline-map.png and criterion-3-baseline-layers.png show the original catalogue, unobscured map and complete single-entry Map layers list (ALL Coverage Gap Candidate Areas). criterion-3-after-no-match-before-recovery.png and criterion-3-after-recovery-before-clear.png show the criterion-owned search sequence. criterion-3-after-clear-restored-map.png, criterion-3-after-clear-restored-layers.png and criterion-3-final.png show empty Search layers, the restored catalogue, the same sole layer and controls, and matching West Hove Golf Club/Hangleton landmarks, extent and 300 m scale. No added or removed layer is visible.
+
+**Review summary:** Reviewed the criterion-owned attempt-002 screenshots and remote results; all three final browser URLs record https://o2intelligence-v4-dev.metricell.com/gis.
