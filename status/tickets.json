@@ -1,13 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-12T11:34:27.193+0100",
+  "generatedAt": "2026-10-12T12:46:15.947+0100",
   "counts": {
-    "tickets": 4,
-    "handoffs": 0,
+    "tickets": 5,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Ready": 4
+      "Ready": 5
     },
     "byQaOutcome": {
+      "Not Tested": 1,
       "Passed": 4
     }
   },
@@ -84,6 +85,23 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-74",
+      "summary": "V4 Surveyor: cancelling an unsaved Username leaves the map unchanged",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-12T12:46:15.947+0100",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 0,
       "retryLabel": ""
     }
   ]
