@@ -212,11 +212,33 @@ def report_exhibits(images, criterion, review_reason=""):
     if final_index is not None:
         images = images[:final_index + 1]
     lower = criterion.lower()
+    # Keep independent original/restored map and complete-list captures paired.
+    # Intervening dialog/search setup remains in the full reviewed attempt.
+    compares_map = bool(re.search(r"\b(map|layers?)\b", lower)) and bool(
+        re.search(r"\b(unchanged|original|baseline)\b|\bmatch(?:es|ing)?\s+(?:the\s+)?(?:recorded|original|baseline)", lower))
+    if compares_map:
+        pairs = []
+        baselines = []
+        for role in ("map", "layers"):
+            before = [image for image in images if f"baseline-{role}" in image.stem.lower()]
+            after = [image for image in images if "restored" in image.stem.lower() and role in image.stem.lower()]
+            if before and not after and role == "map":
+                after = [image for image in images if re.search(r"-final(?:-recovered)?$", image.stem.lower())]
+            if before and after:
+                baselines.extend(before)
+                pairs.extend([*before, after[-1]])
+        if pairs and re.search(r"-final(?:-recovered)?$", images[-1].stem.lower()):
+            if images[-1] not in pairs:
+                pairs.append(images[-1])
+            return distinct_states(pairs, protected=baselines)
     # A module opened from a returned launcher starts at that returned state;
     # the preceding audit visit only establishes setup for this assertion.
     if "returned" in lower and "launcher" in lower:
         start = next((i for i, image in enumerate(images)
                       if "after-back-before-open" in image.stem.lower()), None)
+        if start is None:
+            start = next((i for i in range(len(images)-1, -1, -1)
+                          if "before-open-" in images[i].stem.lower()), None)
         if start is not None:
             images = images[start:]
     # Search replacement and opening a filtered configuration have explicit
@@ -519,7 +541,7 @@ def report_limitations(review, outcomes, results):
     # Passed criteria can still have recovered automation or cleanup problems.
     # Preserve source wording rather than turning a tool timeout into a defect.
     notes = []
-    signal = re.compile(r"timeout|timed out|recover|reappear|\berror\b|\bfail(?:ed|ure)?\b|unavailable|denied|could not|unable", re.I)
+    signal = re.compile(r"timeout|timed out|\berror\b|\bfail(?:ed|ure)?\b|unavailable|denied|could not|unable|\bENOENT\b|\bEACCES\b|missing\s+(?:evidence|screenshot|baseline)|cleanup\s+(?:incomplete|failed)", re.I)
     for number, result in enumerate(results, 1):
         reason = text(result.get("reason"))
         steps = [result.get("steps_taken")] if isinstance(result.get("steps_taken"), str) else result.get("steps_taken", [])
@@ -536,7 +558,9 @@ def report_limitations(review, outcomes, results):
                 rf"\b(?:no|without)\s+(?:an?\s+)?{problem}(?:\s*(?:,|or|and)\s+(?:an?\s+)?{problem})*",
                 "", note, flags=re.I,
             )
-            if signal.search(affirmative):
+            affirmative = re.sub(r"Requests and errors over time", "audit chart", affirmative, flags=re.I)
+            affirmative = re.sub(r"\berror\s+rate\b", "audit metric", affirmative, flags=re.I)
+            if signal.search(affirmative) or ("remov" in affirmative.lower() and "reappear" in affirmative.lower()):
                 if note not in notes:
                     notes.append(note)
                     parts.append(f"Criterion {number}: {note}")

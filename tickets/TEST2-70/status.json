@@ -4,7 +4,7 @@
   "qaStatus": "Evidence Reviewed",
   "status": "READY FOR TESTING",
   "retries": 0,
-  "retryLimit": 2,
+  "retryLimit": 1,
   "criteriaVerified": true,
   "blockedStage": null,
   "qaOutcome": "Passed",
@@ -20,5 +20,6 @@
     "reason": "The passed evidence verifies the launcher-to-API Request Audit-to-launcher-to-GIS navigation workflow, which is already covered by the indexed V4 launcher module navigation guidance. This is a repeated validation of documented behaviour, with no material documentation gap or change.",
     "noOp": false,
     "assessedAt": "2026-10-12T09:33:44.149Z"
-  }
+  },
+  "testAttempts": 1
 }

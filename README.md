@@ -21,6 +21,8 @@ Testing permits at most two total attempts (the first run plus one retry). The t
 
 The PDF follows the approved template's binary pass/fail convention: Unverified is displayed as Failed with an explanation that evidence was inconclusive; review JSON retains Unverified. See [report evidence](#report-evidence) for capture selection and verification.
 
+The displayed retry limit is one: `Retry 1/1` means the second total test attempt. `testAttempts` separately records published attempts. Queuing and exhaustion use durable attempt history, so correcting the display cannot allow a third attempt. Reports pair original/restored map and complete-list captures directly beneath their criterion; earlier setup stays in the full reviewed evidence. Routine recovery steps and the audit chart title are not testing limitations, but actual errors, timeouts and cleanup problems remain disclosed.
+
 ## Component responsibilities
 
 | Component | Owns | Does not do |

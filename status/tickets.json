@@ -31,7 +31,8 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-12T09:40:07.625+0100",
       "retries": 0,
-      "retryLimit": 2,
+      "retryLimit": 1,
+      "testAttempts": 1,
       "retryLabel": ""
     },
     {
@@ -46,9 +47,10 @@
       "actionOwner": "Coordinator",
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-12T09:17:41.106Z",
-      "retries": 2,
-      "retryLimit": 2,
-      "retryLabel": "Retry 2/2"
+      "retries": 1,
+      "retryLimit": 1,
+      "testAttempts": 2,
+      "retryLabel": "Retry 1/1"
     },
     {
       "key": "TEST2-72",
@@ -63,7 +65,8 @@
       "nextAction": "QA review complete",
       "updatedAt": "2026-10-12T09:40:11.381+0100",
       "retries": 0,
-      "retryLimit": 2,
+      "retryLimit": 1,
+      "testAttempts": 1,
       "retryLabel": ""
     }
   ]

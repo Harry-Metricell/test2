@@ -19,6 +19,21 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_map_and_layer_comparisons_are_paired_not_dialog_setup(self):
+        images = [Path(name) for name in (
+            "criterion-3-baseline-map.png", "criterion-3-baseline-layers.png",
+            "criterion-3-first-open-before-edit.png", "criterion-3-first-edit-before-cancel.png",
+            "criterion-3-final-reopened-empty-before-cancel.png",
+            "criterion-3-final-restored-layers.png", "criterion-3-final.png")]
+        self.assertEqual(REPORT.report_exhibits(images, "The map view and Map layers match the original pre-dialog baseline."), [images[0], images[-1], images[1], images[-2]])
+
+    def test_routine_search_recovery_and_audit_chart_are_not_limitations(self):
+        result = {"browserVersion": "1", "browserUrl": "https://example.test/gis",
+                  "reason": "Saved the recovery transition and separate final PNG.",
+                  "steps_taken": ["Waited for Requests and errors over time and observed the chart and 0.3% error rate."]}
+        self.assertEqual(REPORT.report_limitations({}, [{"outcome": "Passed"}], [result]), "No testing limitations recorded.")
+        result["steps_taken"].append("Recovered a selector error after a timeout.")
+        self.assertIn("selector error", REPORT.report_limitations({}, [{"outcome": "Passed"}], [result]))
     def test_returned_launcher_is_navigation_baseline_not_earlier_audit(self):
         images = [Path(name) for name in (
             "criterion-4-initial.png", "criterion-4-after-open-audit-before-back.png",

@@ -3,8 +3,8 @@
   "jiraStatus": "READY FOR TESTING",
   "qaStatus": "Evidence Reviewed",
   "status": "READY FOR TESTING",
-  "retries": 2,
-  "retryLimit": 2,
+  "retries": 1,
+  "retryLimit": 1,
   "criteriaVerified": true,
   "blockedStage": null,
   "qaOutcome": "Passed",
@@ -21,5 +21,6 @@
     "reason": "The passed evidence verifies recovery from a no-match GIS layer search, which is already covered by the indexed guide section \"GIS layer catalogue search and filtering\" from TEST2-61. This is a repeated QA verification of documented behaviour, with no material user-facing gap or change.",
     "noOp": false,
     "assessedAt": "2026-10-12T09:31:42.265Z"
-  }
+  },
+  "testAttempts": 2
 }

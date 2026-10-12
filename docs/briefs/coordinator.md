@@ -16,6 +16,8 @@ The coordinator owns only ignored runtime bookkeeping. Never write ticket status
 
 Stay quiet during routine reads, polling and unchanged progress. Notify only on meaningful stage changes, completion, failure or required user action, with at most one short sentence. Host-required updates must also be brief. Never repeat worker payloads. Return a compact structured summary only at the completion/user-action gate below.
 
+Never send status-only messages such as “still running”, “progressing”, “finishing evidence checks”, “awaiting publication” or “bundler still running” when the stage has not changed. Record polling observations in ignored run state, not chat. Announce each stage transition at most once per batch, not once per ticket or poll. If the host requires an update after a quiet interval, give one factual sentence without claiming unobserved progress; no optional updates between those required intervals. Keep these limits while continuing all normal waits and publication gates.
+
 ## Lock and run state
 
 Before queue decisions or child creation, acquire the exclusive directory `.agent-staging/coordinator.lock` in the synchronised Desktop checkout. An existing lock less than 15 minutes old requires a compact no-op and no children. Replace only stale locks; remove your own lock during cleanup.

@@ -70,6 +70,9 @@ test('an Unverified evidence review queues one retry and keeps its report', () =
     const status = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
     const queue = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8'));
     assert.equal(status.retries, 1);
+    assert.equal(status.retryLimit, 1);
+    assert.equal(status.testAttempts, 1);
+    assert.match(JSON.parse(fs.readFileSync(path.join(root, 'status', 'tickets.json'), 'utf8')).tickets[0].retryLabel, /Retry 1\/1/);
     assert.equal(status.workflowState, 'Retry Queued');
     assert.equal(queue.handoffs[0]?.action, 'test_ticket');
     run();
@@ -81,23 +84,34 @@ test('an Unverified evidence review queues one retry and keeps its report', () =
     run();
     const recovered = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
     const next = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8'));
-    assert.equal(recovered.retries, 2);
-    assert.equal(recovered.retryLimit, 2);
+    assert.equal(recovered.retries, 1);
+    assert.equal(recovered.testAttempts, 2);
+    assert.equal(recovered.retryLimit, 1);
     assert.equal(recovered.qaStatus, 'Awaiting Evidence Review');
     assert.equal(next.handoffs[0]?.handoffId, 'handoff-TEST2-99-review-attempt-002');
     run();
-    assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 2);
+    assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 1);
 
     write('review.json', { historyAttempt: 2, evidenceFolder: 'screenshots/attempt-002', overallOutcome: 'Blocked', qaStatus: 'Blocked', criterionOutcomes: [{ criterion: 1, outcome: 'Blocked', reason: 'Authentication stopped testing.' }] });
     run();
     const exhausted = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
     const finalQueue = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8'));
-    assert.equal(exhausted.retries, 2);
+    assert.equal(exhausted.retries, 1);
     assert.equal(exhausted.qaStatus, 'Blocked');
     assert.match(exhausted.nextAction, /Manual review required/);
+    write('history/attempt-002-test.json', { historyAttempt: 2, results: [{ criterion: 1, outcome: 'Passed' }] });
+    write('results.json', [{ criterion: 1, outcome: 'Passed' }]);
+    write('review.json', { historyAttempt: 2, overallOutcome: 'Passed', qaStatus: 'Evidence Reviewed' });
+    run();
+    const passed = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
+    assert.equal(passed.retries, 1);
+    assert.equal(passed.retryLimit, 1);
+    assert.equal(passed.testAttempts, 2);
+    assert.equal(passed.qaStatus, 'Evidence Reviewed');
+    assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8')).handoffs.length, 0);
     assert.equal(finalQueue.handoffs.length, 0);
     run();
-    assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).qaStatus, 'Blocked');
+    assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).qaStatus, 'Evidence Reviewed');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
@@ -123,7 +137,7 @@ test('missing prerequisites, product failures, and legacy blocks go to review wi
       run();
       const status = JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'));
       const queue = JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8'));
-      assert.equal(status.retryLimit, 2, name);
+      assert.equal(status.retryLimit, 1, name);
       assert.equal(status.retries, 0, name);
       assert.equal(status.qaStatus, 'Awaiting Evidence Review', name);
       assert.equal(queue.handoffs[0]?.action, 'evidence_review', name);
@@ -185,7 +199,7 @@ test('a rejected ticket does not spend retries or churn status on polling', () =
     run();
     assert.equal(fs.readFileSync(path.join(dir, 'status.json'), 'utf8'), first);
     assert.equal(fs.readFileSync(path.join(root, 'status', 'tickets.json'), 'utf8'), generated);
-    assert.ok(JSON.parse(first).retries <= 2);
+    assert.ok(JSON.parse(first).retries <= 1);
     assert.equal(JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'), 'utf8')).handoffs.length, 0);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });

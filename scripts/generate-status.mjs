@@ -14,6 +14,7 @@ const guideImpactPolicyPath = path.join(root, 'config', 'user-guide-impact-polic
 const guideUpdatePolicyPath = path.join(root, 'config', 'user-guide-update-policy.json');
 // Two total test attempts: the first run and, only for transient problems, one retry.
 const MAX_TEST_ATTEMPTS = 2;
+const MAX_RETRIES = MAX_TEST_ATTEMPTS - 1;
 
 function attemptDisposition(attempt) {
   if (!attempt) return null;
@@ -155,7 +156,7 @@ function mergeStatus(ticket, localStatus) {
   const localState = canonicalState(localStatus.workflowState || localStatus.status, 'Imported');
   const workflowState = statusRank(localState) <= statusRank(jiraState) ? localState : jiraState;
   const retries = Number(localStatus.retries || 0);
-  const retryLimit = MAX_TEST_ATTEMPTS;
+  const retryLimit = MAX_RETRIES;
   const criteriaBlocked = localStatus.criteriaVerified !== true
     && localStatus.blockedStage === 'criteria'
     && (localStatus.criteriaBlockedForJiraUpdated || null) === (ticket.jira.updated || null);
@@ -167,7 +168,8 @@ function mergeStatus(ticket, localStatus) {
   const jiraReady = jiraReadyForTesting(ticket);
   const jiraGateBlocked = !jiraReady && ['Ready for Testing', 'Awaiting Evidence Review', 'Blocked'].includes(qaStatus);
   const projectedWorkflowState = criteriaBlocked || jiraGateBlocked ? 'Blocked' : workflowState;
-  const retryExhausted = retries >= retryLimit && ['blocked', 'failed', 'unverified'].includes(String(localStatus.qaOutcome || localStatus.outcome || '').trim().toLowerCase());
+  const attemptsExhausted = Number(localStatus.testAttempts || 0) >= MAX_TEST_ATTEMPTS;
+  const retryExhausted = attemptsExhausted && ['blocked', 'failed', 'unverified'].includes(String(localStatus.qaOutcome || localStatus.outcome || '').trim().toLowerCase());
   const finalReviewPending = qaStatus === 'Awaiting Evidence Review' && localStatus.blockedStage === 'evidence_review';
   const nextAction = criteriaBlocked
     ? `Manual criteria review required: ${localStatus.criteriaBlockReason || 'clarify the Jira ticket'}`
@@ -183,7 +185,7 @@ function mergeStatus(ticket, localStatus) {
       ? (jiraReady ? `Retry ${retries}/${retryLimit} queued; coordinator will start tester` : 'Waiting for Jira status: READY FOR TESTING')
       : jiraGateBlocked
         ? 'Waiting for Jira status: READY FOR TESTING'
-      : projectedWorkflowState === 'Blocked' && retries >= retryLimit
+      : projectedWorkflowState === 'Blocked' && attemptsExhausted
         ? 'Manual review required after retry limit'
         : !jiraReady && (qaStatus === 'Ready for Testing' || qaStatus === 'Awaiting Evidence Review')
           ? 'Waiting for Jira status: READY FOR TESTING'
@@ -200,6 +202,7 @@ function mergeStatus(ticket, localStatus) {
     guideImpact: localStatus.guideImpact || null,
     guideUpdate: localStatus.guideUpdate || null,
     retries,
+    testAttempts: Number(localStatus.testAttempts || 0),
     blockedStage: criteriaBlocked ? 'criteria' : (localStatus.blockedStage === 'criteria' ? null : localStatus.blockedStage || null),
     updatedAt: localStatus.updatedAt || ticket.jira.updated || ticket.source.importedAt || null,
     criteriaVerified: localStatus.criteriaVerified === true
@@ -260,10 +263,10 @@ function normalizeTicket(dirName) {
     qaStatus: 'Not Tested',
     status: ticket.jira.status || 'Unknown',
     retries: 0,
-    retryLimit: MAX_TEST_ATTEMPTS
+    retryLimit: MAX_RETRIES
   });
-  if (Number(localStatus.retryLimit) !== MAX_TEST_ATTEMPTS) {
-    localStatus = { ...localStatus, retryLimit: MAX_TEST_ATTEMPTS };
+  if (Number(localStatus.retryLimit) !== MAX_RETRIES) {
+    localStatus = { ...localStatus, retryLimit: MAX_RETRIES };
     if (!checkOnly) writeJson(statusPath, localStatus);
   }
   if (!fs.existsSync(statusPath) && !checkOnly) writeJson(statusPath, localStatus);
@@ -336,23 +339,23 @@ function normalizeTicket(dirName) {
   // test history. This repairs old state where blocked transitions were counted
   // but later failed/unverified attempts were not.
   const recordedRetries = Math.max(0, recordedAttempts - 1);
-  const retryLimit = MAX_TEST_ATTEMPTS;
-  const queuedRetry = wasQueuedRetry && retryEligible && latestNumber < retryLimit;
+  const retryLimit = MAX_RETRIES;
+  const queuedRetry = wasQueuedRetry && retryEligible && latestNumber < MAX_TEST_ATTEMPTS;
   // A queued retry counts once; completed retry attempts come from history.
   // Repeated bundler runs cannot spend the limit again for the same attempt.
-  // The final published attempt consumes the limit even when an earlier
-  // queued-retry marker is cleared by its evidence review.
+  // Attempt two is retry one. Eligibility is bounded by attempt history,
+  // never by this display counter.
   const retries = latestAttempt
-    ? Math.min(retryLimit, latestNumber >= retryLimit ? retryLimit : recordedRetries + Number(queuedRetry))
+    ? recordedRetries + Number(queuedRetry)
     : (Number.isFinite(Number(localStatus.retries)) ? Number(localStatus.retries) : 0);
-  if (!checkOnly && retries !== Number(localStatus.retries || 0)) {
-    localStatus = { ...localStatus, retries };
+  localStatus = { ...localStatus, retries, testAttempts: recordedAttempts };
+  if (!checkOnly) {
     fs.writeFileSync(path.join(dir, 'status.json'), JSON.stringify(localStatus, null, 2) + "\n", 'utf8');
   }
   // Retry only a specifically classified transient failure, once. An
   // inconclusive review of an otherwise passed attempt may also retry once.
   if (localStatus.criteriaVerified === true && !successfulReview && retryEligible
-      && !queuedRetry && latestAttempt && retries < retryLimit && jiraReadyForTesting(ticket)) {
+      && !queuedRetry && latestAttempt && latestNumber < MAX_TEST_ATTEMPTS && jiraReadyForTesting(ticket)) {
     localStatus = {
       ...localStatus,
       qaStatus: 'Ready for Testing',
@@ -370,7 +373,7 @@ function normalizeTicket(dirName) {
   const finalReviewRequired = latestAttempt && !successfulReview && (
     disposition === 'manual'
     || (reviewHasReport && ['failed', 'blocked'].includes(reviewOutcome))
-    || latestNumber >= retryLimit
+    || latestNumber >= MAX_TEST_ATTEMPTS
   );
   if (!criteriaHold && finalReviewRequired) {
     localStatus = reviewHasReport
@@ -428,8 +431,6 @@ function handoffFor(ticket) {
   const qaStatus = String(ticket.status.qaStatus || '').trim().toLowerCase();
   const workflowState = String(ticket.status.workflowState || '').trim().toLowerCase();
   const nextAction = String(ticket.status.nextAction || '').trim().toLowerCase();
-  const retries = Number(ticket.status.retries || 0);
-  const retryLimit = MAX_TEST_ATTEMPTS;
   const historyDir = path.join(ticketsDir, ticket.key, 'history');
   const attempts = fs.existsSync(historyDir)
     ? fs.readdirSync(historyDir).filter((name) => /^attempt-\d+-test\.json$/i.test(name)).sort()
@@ -462,7 +463,7 @@ function handoffFor(ticket) {
     && fs.existsSync(path.join(ticketsDir, ticket.key, 'results.json'))
     && latestAttempt > reviewedAttempt
     && !reviewHasReport
-    && (ticket.status.qaStatus === 'Awaiting Evidence Review' || retries >= retryLimit);
+    && (ticket.status.qaStatus === 'Awaiting Evidence Review' || latestAttempt >= MAX_TEST_ATTEMPTS);
   if (needsReview) {
     return {
       handoffId: `handoff-${ticket.key}-review-attempt-${String(latestAttempt).padStart(3, '0')}`,
@@ -523,7 +524,7 @@ function handoffFor(ticket) {
     };
   }
   const testingEligible = jiraReadyForTesting(ticket)
-    && retries < retryLimit
+    && latestAttempt < MAX_TEST_ATTEMPTS
     && (qaStatus === 'ready for testing' || qaStatus === 'retry queued' || workflowState === 'retry queued' || nextAction === 'create testing handoff')
     && criteriaReady(ticket);
   if (testingEligible) {
@@ -629,12 +630,13 @@ const summary = {
     nextAction: t.status.nextAction,
     updatedAt: t.status.updatedAt,
     retries: t.status.retries,
-    retryLimit: MAX_TEST_ATTEMPTS,
-    retryLabel: t.status.retries > 0 ? `Retry ${t.status.retries}/${MAX_TEST_ATTEMPTS}` : ''
+    retryLimit: MAX_RETRIES,
+    testAttempts: t.status.testAttempts,
+    retryLabel: t.status.retries > 0 ? `Retry ${t.status.retries}/${MAX_RETRIES}` : ''
   }))
 };
 
-const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Retry | Summary |', '| --- | --- | --- | --- |', ...displayTickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.status.retries > 0 ? `Retry ${t.status.retries}/${MAX_TEST_ATTEMPTS}` : ''} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\n');
+const report = ['# Ticket Status', '', `Updated: ${summary.generatedAt || 'unknown'}`, '', '| Ticket | Jira Status | QA Status | Retry | Summary |', '| --- | --- | --- | --- |', ...displayTickets.map((t) => `| ${t.key} | ${t.jira.status || 'Unknown'} | ${t.status.qaStatus} | ${t.status.retries > 0 ? `Retry ${t.status.retries}/${MAX_RETRIES}` : ''} | ${t.summary.replace(/\|/g, '\\|')} |`) , ''].join('\n');
 writeText(path.join(outDir, 'ticket-status.md'), report);
 
 writeJson(path.join(outDir, 'tickets.json'), summary);

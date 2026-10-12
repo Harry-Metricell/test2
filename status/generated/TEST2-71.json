@@ -47,7 +47,8 @@
       "assessedAt": "2026-10-12T09:31:42.265Z"
     },
     "guideUpdate": null,
-    "retries": 2,
+    "retries": 1,
+    "testAttempts": 2,
     "blockedStage": null,
     "updatedAt": "2026-10-12T09:17:41.106Z",
     "criteriaVerified": true

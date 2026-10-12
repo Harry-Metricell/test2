@@ -17,6 +17,13 @@ const stages = [
   ['guide_update_authoring', 'user-guide-authoring', 'guide-update-output.json'],
 ];
 
+test('coordinator suppresses repeated unchanged-status narration', () => {
+  const coordinator = brief('coordinator');
+  assert.match(coordinator, /Announce each stage transition at most once per batch/);
+  assert.match(coordinator, /Record polling observations in ignored run state, not chat/);
+  assert.match(coordinator, /no optional updates between those required intervals/);
+});
+
 test('coordinator example matches the exact handoff-scoped local launch contract', () => {
   const coordinator = brief('coordinator');
   const example = coordinator.match(/```json\s*([\s\S]*?)```/);

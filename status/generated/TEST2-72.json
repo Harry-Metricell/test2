@@ -48,6 +48,7 @@
     },
     "guideUpdate": null,
     "retries": 0,
+    "testAttempts": 1,
     "blockedStage": null,
     "updatedAt": "2026-10-12T09:40:11.381+0100",
     "criteriaVerified": true
