@@ -1,15 +1,15 @@
 {
   "ticket": "TEST2-76",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Evidence Reviewed",
+  "qaStatus": "Blocked",
   "status": "READY FOR TESTING",
   "retries": 1,
   "retryLimit": 1,
   "testAttempts": 2,
   "criteriaVerified": true,
-  "blockedStage": "evidence_review",
-  "qaOutcome": "Passed",
-  "workflowState": "READY FOR TESTING",
-  "nextAction": "Create final evidence review handoff",
+  "blockedStage": "reviewed",
+  "qaOutcome": "Unverified",
+  "workflowState": "Blocked",
+  "nextAction": "Manual review required; final evidence report published",
   "updatedAt": "2026-10-12T15:37:39.069Z"
 }
