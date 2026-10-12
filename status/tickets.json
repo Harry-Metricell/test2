@@ -1,13 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-12T09:40:11.381+0100",
+  "generatedAt": "2026-10-12T11:34:27.193+0100",
   "counts": {
-    "tickets": 3,
-    "handoffs": 0,
+    "tickets": 4,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Ready": 3
+      "Ready": 4
     },
     "byQaOutcome": {
+      "Not Tested": 1,
       "Passed": 3
     }
   },
@@ -67,6 +68,23 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-73",
+      "summary": "V4 GIS layer search: clear an unmatched query and restore the catalogue",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-12T11:34:27.193+0100",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 0,
       "retryLabel": ""
     }
   ]

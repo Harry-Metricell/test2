@@ -1,0 +1,9 @@
+{
+  "ticket": "TEST2-73",
+  "jiraStatus": "READY FOR TESTING",
+  "qaStatus": "Not Tested",
+  "status": "READY FOR TESTING",
+  "retries": 0,
+  "retryLimit": 1,
+  "testAttempts": 0
+}

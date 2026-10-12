@@ -1,0 +1,46 @@
+{
+  "key": "TEST2-73",
+  "id": "106569",
+  "summary": "V4 GIS layer search: clear an unmatched query and restore the catalogue",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-73",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-12T11:34:11.397+0100",
+    "updated": "2026-10-12T11:34:27.193+0100"
+  },
+  "description": "User story\nAs a V4 GIS user, I want to clear a layer search that returns no matches so I can browse the available layers again without changing my map.\nTest scope\nUse https://o2intelligence-v4-dev.metricell.com/launcher and open the GIS module. Authenticate normally if prompted. Use the existing layer catalogue search; this is a read-only UI test, not a request to create data or change configuration. Record the initial catalogue, visible map and active-layer state before searching. Enter a distinctive unmatched query such as TEST2-showcase-no-match-20261012. Clear it using the available search control, then leave the page in its original state.\nAcceptance criteria\nEntering an unmatched query in the GIS layer catalogue search filters out unrelated catalogue entries; the entered query remains visible and the interface does not present unrelated layers as matches.\nClearing the query restores the initial catalogue contents and browsing controls. Compare the same catalogue position before and after clearing, including any scrolling needed to establish that the original entries have returned.\nSearching and clearing do not change the initially active layers or visible map state. The final query is empty and the catalogue, map and active-layer state match the recorded initial state.\nEvidence expectations\nCapture readable, URL-attributed evidence for the initial state, unmatched search, and restored state. Keep before/after views comparable and associate each acceptance criterion with its decisive evidence. Report genuine access or application failures honestly; do not infer success from missing evidence.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-73/ticket.json",
+    "criteria": "tickets/TEST2-73/criteria.md",
+    "status": "tickets/TEST2-73/status.json",
+    "screenshots": "tickets/TEST2-73/screenshots/",
+    "reports": "tickets/TEST2-73/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106569",
+    "importedAt": "2026-10-12T11:34:27.193+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "testAttempts": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-12T11:34:27.193+0100",
+    "criteriaVerified": false
+  }
+}
