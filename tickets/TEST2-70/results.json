@@ -1,0 +1,91 @@
+[
+  {
+    "criterion": "Starting from the authorised V4 launcher at `/launcher`, the page visibly shows both the GIS and API Request Audit module cards, and each card has an Open control.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact authorised launcher URL and waited for the visible launcher.",
+      "Captured the initial launcher and inspected GIS and API request audit cards, their arrow Open controls and accessible button names.",
+      "Captured a separate final image and read the browser URL; no state-changing action was needed for this visibility assertion."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Both module cards and their Open controls were visible on the authorised launcher."
+  },
+  {
+    "criterion": "From the authorised launcher, activating the API Request Audit Open control navigates to a non-error audit page that visibly contains identifiable audit content, such as request metrics or the `Requests and errors over time` chart.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-open-audit.png",
+      "screenshots/attempt-001/criterion-2-after-open-audit.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and captured the initial launcher.",
+      "Captured before opening API request audit, then activated its Open control.",
+      "Waited for Requests and errors over time; observed request metrics (370 requests, 0.3% error rate, 3 callers) and the rendered chart.",
+      "Captured after opening and a separate final audit image, then read the actual browser URL.",
+      "Returned to the launcher by navigation to start the next independent criterion; no audit filters or records were changed."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/api-request-audit?endUtc=2026-10-12T08%3A53%3A12.203Z&startUtc=2026-10-11T08%3A53%3A12.203Z&live=true",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "The audit destination displayed identifiable metrics and a chart without a sign-in or application error page."
+  },
+  {
+    "criterion": "After opening API Request Audit, using the browser Back control returns to the launcher, where the GIS module card and its Open control are visibly available.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-open-audit.png",
+      "screenshots/attempt-001/criterion-3-after-open-audit.png",
+      "screenshots/attempt-001/criterion-3-before-back.png",
+      "screenshots/attempt-001/criterion-3-after-back.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and captured its initial state.",
+      "Captured before opening API request audit and activated its Open control.",
+      "Waited for the visible audit chart, then captured the audit state and the state before Browser Back.",
+      "Used Browser Back and waited for the visible launcher heading.",
+      "Verified GIS and its Open control were available; captured after Back and a separate final launcher image, then read the browser URL."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Browser Back returned exactly to /launcher, with GIS and its Open control available."
+  },
+  {
+    "criterion": "From the returned launcher, activating the GIS Open control navigates to a settled GIS map view with visible map controls.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-before-open-audit.png",
+      "screenshots/attempt-001/criterion-4-after-open-audit.png",
+      "screenshots/attempt-001/criterion-4-before-back.png",
+      "screenshots/attempt-001/criterion-4-after-back.png",
+      "screenshots/attempt-001/criterion-4-before-open-gis.png",
+      "screenshots/attempt-001/criterion-4-after-open-gis.png",
+      "screenshots/attempt-001/criterion-4-final.png",
+      "screenshots/attempt-001/criterion-4-cleanup-launcher.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and captured its initial state.",
+      "Captured before opening API request audit, activated its Open control, waited for the visible chart and captured the audit state.",
+      "Captured before Browser Back, used Browser Back and waited for the visible launcher.",
+      "Verified and read the returned /launcher URL; captured after Back and immediately before opening GIS.",
+      "Activated GIS Open from that returned launcher; waited for map rendering to settle.",
+      "Observed rendered streets, place labels, map search, north reset, map style and zoom controls; captured after opening and a separate final GIS image, then read the browser URL.",
+      "Used Browser Back to finish on the launcher and captured cleanup separately. No layers, filters, selections or records were changed."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "A settled street map and visible map controls were present at /gis. The restored Coverage Gap Candidate Areas layer displayed 'Unable to load coverage gap candidate areas' in its existing side panel; its data could not be inspected, but layer data is outside this navigation-only criterion. The layer and panel were left untouched."
+  }
+]
