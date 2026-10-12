@@ -1,13 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-12T12:46:15.947+0100",
+  "generatedAt": "2026-10-12T14:47:55.939+0100",
   "counts": {
-    "tickets": 5,
-    "handoffs": 0,
+    "tickets": 6,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Ready": 5
+      "Ready": 6
     },
     "byQaOutcome": {
+      "Not Tested": 1,
       "Passed": 5
     }
   },
@@ -101,6 +102,23 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-75",
+      "summary": "V4 GIS catalogue: find Surveyor and clear the search without changing the map",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-12T14:47:55.939+0100",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 0,
       "retryLabel": ""
     }
   ]
