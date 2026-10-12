@@ -1,0 +1,85 @@
+[
+  {
+    "criterion": "With GIS open and Search layers initially empty, entering `zzqa_showcase_no_match_20261012` leaves the entered text visible, shows no matching catalogue entries, and keeps the GIS map available.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-no-match.png",
+      "screenshots/attempt-001/criterion-1-after-no-match.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher URL and observed the authenticated launcher; captured its initial state.",
+      "Opened GIS using Open GIS, waited for the rendered map and catalogue, and recorded empty Search layers with the existing map layer.",
+      "Entered zzqa_showcase_no_match_20261012 in Search layers and observed the settled no-match state.",
+      "Captured the decisive state and read the current browser URL before cleanup.",
+      "Cleared Search layers and verified the original catalogue returned; preserved the existing layer and map."
+    ],
+    "observed_result": "The complete entered value remained in Search layers. No catalogue entries were shown and the visible message was 'No layers match this search.' The map remained rendered and available.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "An initial screenshot save returned ENOENT because the handoff screenshot directory did not yet exist. Created that staging directory, repeated the save before interacting, and verified all referenced PNGs. The existing Coverage Gap Candidate Areas panel showed a data-load alert at baseline and afterward; it did not prevent the catalogue or map assertions."
+  },
+  {
+    "criterion": "Replacing the no-match text with `Surveyor` without reloading GIS shows Surveyor in the filtered catalogue while keeping the GIS map available.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-no-match.png",
+      "screenshots/attempt-001/criterion-2-after-no-match.png",
+      "screenshots/attempt-001/criterion-2-before-surveyor.png",
+      "screenshots/attempt-001/criterion-2-after-surveyor.png",
+      "screenshots/attempt-001/criterion-2-final.png",
+      "screenshots/attempt-001/criterion-2-cleanup.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and captured its authenticated initial state.",
+      "Opened GIS from the launcher and waited for Map layers and Mapbox attribution with the rendered map.",
+      "Entered zzqa_showcase_no_match_20261012 in the initially empty Search layers and waited for the no-match message.",
+      "Replaced the no-match text with Surveyor without navigation or reload and waited for the Surveyor catalogue entry.",
+      "Captured the decisive state and read the actual browser URL.",
+      "Cleared Search layers, verified Network Information returned, and captured cleanup."
+    ],
+    "observed_result": "Surveyor appeared as the sole filtered catalogue entry under Tests and Measurements. Search layers showed Surveyor and the map remained rendered and available throughout replacement.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "A wait for literal 'Open GIS' text timed out because the button's accessible name differs from its displayed text, and a text-based selector did not match. The subsequent accessibility snapshot confirmed the authenticated launcher and its Open GIS button; clicking its exact reference succeeded. The pre-existing data-load alert remained unrelated to the search assertions."
+  },
+  {
+    "criterion": "Clearing Search layers restores the original catalogue and leaves the complete Map layers entries and order and the map view matching the recorded pre-search baseline, with no layer added or removed.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-baseline-map.png",
+      "screenshots/attempt-001/criterion-3-baseline-layers.png",
+      "screenshots/attempt-001/criterion-3-before-no-match.png",
+      "screenshots/attempt-001/criterion-3-baseline-catalogue-network-bottom.png",
+      "screenshots/attempt-001/criterion-3-after-no-match.png",
+      "screenshots/attempt-001/criterion-3-before-surveyor.png",
+      "screenshots/attempt-001/criterion-3-after-surveyor.png",
+      "screenshots/attempt-001/criterion-3-before-clear.png",
+      "screenshots/attempt-001/criterion-3-after-clear.png",
+      "screenshots/attempt-001/criterion-3-restored-map.png",
+      "screenshots/attempt-001/criterion-3-restored-layers.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher, waited for its welcome heading, and captured initial state.",
+      "Opened GIS and waited for the rendered map; recorded the empty search, all 38 catalogue entry labels in order, the map view, and the complete one-entry Map layers list.",
+      "Captured the unobscured baseline map and complete Map layers list; scrolled the Network catalogue to Transmission Links for an additional baseline capture, then returned to Network Information.",
+      "Entered zzqa_showcase_no_match_20261012 and captured the settled no-match state.",
+      "Replaced the text with Surveyor within the same GIS session and captured the filtered Surveyor state.",
+      "Cleared Search layers and waited for Network Information to reappear.",
+      "Read the restored catalogue entry labels, complete Map layers list, and map feedback coordinates; compared them with baseline and captured restored map, layers, and final assertion.",
+      "Read the actual final browser URL; left Search layers empty with all pre-existing map state preserved."
+    ],
+    "observed_result": "All 38 original catalogue entry labels returned in identical order. The complete Map layers list remained the single entry ALL Coverage Gap Candidate Areas, with no additions or removals. Baseline and restored screenshots show the same map extent and landmarks, and the browser-derived map feedback position stayed /-0.19456/50.85221/13.67. Search layers was empty at the final assertion.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "An optional scroll to Custom Datasets hit a strict-selector ambiguity and did not scroll; its unchanged screenshot is excluded from evidence. Complete catalogue label comparison was obtained directly from rendered DOM before and after searching. The one-entry Map layers baseline and restored list are completely visible in their dedicated captures. The pre-existing Coverage Gap Candidate Areas load alert was unchanged and did not prevent these assertions."
+  }
+]
