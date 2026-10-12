@@ -1,1 +1,22 @@
-All five canonical criteria passed in independent launcher-started tests. The unmatched query remained visible with no matches; clearing restored the original catalogue at scrollTop 0, empty search, existing active-layer selection and visible map. Map and active-list PNG regions matched their own baselines during search and after clearing. Existing coverage-gap data-load alert persisted unchanged. Search cleanup completed; 35 saved PNGs verified readable.
+# TEST2-73 Evidence Review
+
+- **Ticket:** TEST2-73 — V4 GIS layer search: clear an unmatched query and restore the catalogue
+- **QA status:** Evidence Reviewed
+- **Overall outcome:** Passed
+- **Evidence reviewed:** attempt-001
+- **Report:** [Evidence report](report.pdf)
+
+## Criterion results
+
+1. **Passed:** With a distinctive unmatched query entered in the GIS layer catalogue search, the query remains visible and the catalogue shows no unrelated layer entries as matches.
+   - criterion-1-before-search.png shows the populated catalogue; criterion-1-after-search.png and criterion-1-final.png show TEST2-showcase-no-match-20261012 still visible with 'No layers match this search.' and no catalogue entries.
+2. **Passed:** After the search query is cleared, the GIS layer catalogue shows the original catalogue contents and browsing controls at the same catalogue position recorded before searching.
+   - criterion-2-before-search.png records the catalogue at the top with Network, RPO, Tests and Measurements, Improvement Areas and Planning controls. criterion-2-after-search.png and criterion-2-before-clear.png show the unmatched query; criterion-2-after-clear.png and criterion-2-final.png restore the same visible entries, controls and scrollbar position with an empty search. The reported text-selector timeout was recovered before this complete sequence.
+3. **Passed:** Searching and clearing the catalogue does not change the active layers that were present before searching.
+   - criterion-3-baseline-layers.png shows the complete one-item active-layer list, ALL Coverage Gap Candidate Areas, with its visibility and controls. criterion-3-after-search.png and criterion-3-before-clear.png retain that list during the unmatched query; criterion-3-after-clear.png and criterion-3-final.png retain it after clearing. criterion-3-baseline-map.png supplies the original visible map comparison. The launcher selector retry did not interrupt the evidenced sequence.
+4. **Passed:** Searching and clearing the catalogue does not change the visible map state that was present before searching.
+   - criterion-4-baseline-map.png records the unobscured visible map around Hangleton and West Hove Golf Club, north-up at 300 m scale. criterion-4-after-search.png and criterion-4-before-clear.png retain the same landmarks, extent and controls; criterion-4-after-clear.png and criterion-4-final.png match that baseline after clearing. criterion-4-baseline-layers.png and criterion-4-final.png retain the complete one-item layer list and existing coverage-gap load alert.
+5. **Passed:** After clearing, the catalogue search field is empty and the GIS page is restored to its recorded initial catalogue, map, and active-layer state.
+   - criterion-5-before-search.png, criterion-5-baseline-map.png and criterion-5-baseline-layers.png record the original catalogue position, visible map and complete one-item active-layer list. criterion-5-after-search.png and criterion-5-before-clear.png show the unmatched query; criterion-5-after-clear.png and criterion-5-final.png show an empty search and restore the same visible catalogue entries and controls, map extent at 300 m scale, active layer and existing load alert.
+
+**Review summary:** Reviewed the five criterion-owned screenshot sequences in attempt-001 against the live canonical criteria. Browser-derived results URLs identify the required development host and GIS destination. Existing coverage-gap load alert is present in both baseline and final states.

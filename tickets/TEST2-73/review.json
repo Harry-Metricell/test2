@@ -1,0 +1,38 @@
+{
+  "handoffId": "handoff-TEST2-73-review-attempt-001",
+  "handoffVersion": "TEST2-73:evidence_review:1",
+  "ticket": "TEST2-73",
+  "criterionOutcomes": [
+    {
+      "criterion": "With a distinctive unmatched query entered in the GIS layer catalogue search, the query remains visible and the catalogue shows no unrelated layer entries as matches.",
+      "outcome": "Passed",
+      "reason": "criterion-1-before-search.png shows the populated catalogue; criterion-1-after-search.png and criterion-1-final.png show TEST2-showcase-no-match-20261012 still visible with 'No layers match this search.' and no catalogue entries."
+    },
+    {
+      "criterion": "After the search query is cleared, the GIS layer catalogue shows the original catalogue contents and browsing controls at the same catalogue position recorded before searching.",
+      "outcome": "Passed",
+      "reason": "criterion-2-before-search.png records the catalogue at the top with Network, RPO, Tests and Measurements, Improvement Areas and Planning controls. criterion-2-after-search.png and criterion-2-before-clear.png show the unmatched query; criterion-2-after-clear.png and criterion-2-final.png restore the same visible entries, controls and scrollbar position with an empty search. The reported text-selector timeout was recovered before this complete sequence."
+    },
+    {
+      "criterion": "Searching and clearing the catalogue does not change the active layers that were present before searching.",
+      "outcome": "Passed",
+      "reason": "criterion-3-baseline-layers.png shows the complete one-item active-layer list, ALL Coverage Gap Candidate Areas, with its visibility and controls. criterion-3-after-search.png and criterion-3-before-clear.png retain that list during the unmatched query; criterion-3-after-clear.png and criterion-3-final.png retain it after clearing. criterion-3-baseline-map.png supplies the original visible map comparison. The launcher selector retry did not interrupt the evidenced sequence."
+    },
+    {
+      "criterion": "Searching and clearing the catalogue does not change the visible map state that was present before searching.",
+      "outcome": "Passed",
+      "reason": "criterion-4-baseline-map.png records the unobscured visible map around Hangleton and West Hove Golf Club, north-up at 300 m scale. criterion-4-after-search.png and criterion-4-before-clear.png retain the same landmarks, extent and controls; criterion-4-after-clear.png and criterion-4-final.png match that baseline after clearing. criterion-4-baseline-layers.png and criterion-4-final.png retain the complete one-item layer list and existing coverage-gap load alert."
+    },
+    {
+      "criterion": "After clearing, the catalogue search field is empty and the GIS page is restored to its recorded initial catalogue, map, and active-layer state.",
+      "outcome": "Passed",
+      "reason": "criterion-5-before-search.png, criterion-5-baseline-map.png and criterion-5-baseline-layers.png record the original catalogue position, visible map and complete one-item active-layer list. criterion-5-after-search.png and criterion-5-before-clear.png show the unmatched query; criterion-5-after-clear.png and criterion-5-final.png show an empty search and restore the same visible catalogue entries and controls, map extent at 300 m scale, active layer and existing load alert."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-73\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Reviewed the five criterion-owned screenshot sequences in attempt-001 against the live canonical criteria. Browser-derived results URLs identify the required development host and GIS destination. Existing coverage-gap load alert is present in both baseline and final states."
+}
