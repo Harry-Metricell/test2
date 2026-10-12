@@ -1,14 +1,16 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-12T16:09:46.708+0100",
+  "generatedAt": "2026-10-12T15:37:39.069Z",
   "counts": {
     "tickets": 7,
     "handoffs": 1,
     "byWorkflowState": {
-      "Ready": 7
+      "Ready": 6,
+      "Retry Queued": 1
     },
     "byQaOutcome": {
-      "Passed": 7
+      "Passed": 6,
+      "Unverified": 1
     }
   },
   "policy": {
@@ -124,18 +126,18 @@
       "key": "TEST2-76",
       "summary": "V4 GIS: recover from an unmatched catalogue search and cancel Surveyor configuration",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Passed",
+      "workflowState": "Retry Queued",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
-      "updatedAt": "2026-10-12T16:09:46.708+0100",
-      "retries": 0,
+      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "updatedAt": "2026-10-12T15:37:39.069Z",
+      "retries": 1,
       "retryLimit": 1,
       "testAttempts": 1,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/1"
     }
   ]
 }
