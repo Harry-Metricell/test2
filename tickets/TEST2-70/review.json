@@ -1,0 +1,33 @@
+{
+  "handoffId": "handoff-TEST2-70-review-attempt-001",
+  "handoffVersion": "TEST2-70:evidence_review:1",
+  "ticket": "TEST2-70",
+  "criterionOutcomes": [
+    {
+      "criterion": "Starting from the authorised V4 launcher at `/launcher`, the page visibly shows both the GIS and API Request Audit module cards, and each card has an Open control.",
+      "outcome": "Passed",
+      "reason": "criterion-1-initial.png and criterion-1-final.png show GIS and API request audit cards with arrow Open controls; browserUrl confirms the authorised host at /launcher."
+    },
+    {
+      "criterion": "From the authorised launcher, activating the API Request Audit Open control navigates to a non-error audit page that visibly contains identifiable audit content, such as request metrics or the `Requests and errors over time` chart.",
+      "outcome": "Passed",
+      "reason": "criterion-2-before-open-audit.png shows the launcher Open control; criterion-2-after-open-audit.png and criterion-2-final.png show 370 requests, 0.3% error rate, 3 callers and the Requests and errors over time chart. The recorded browserUrl confirms /api-request-audit on the authorised host."
+    },
+    {
+      "criterion": "After opening API Request Audit, using the browser Back control returns to the launcher, where the GIS module card and its Open control are visibly available.",
+      "outcome": "Passed",
+      "reason": "The criterion-owned initial/before-open-audit, after-open-audit/before-back and after-back/final images show the complete launcher-to-audit-to-launcher journey documented in steps_taken. criterion-3-after-back.png and criterion-3-final.png show GIS and its arrow Open control; browserUrl confirms the authorised host at /launcher."
+    },
+    {
+      "criterion": "From the returned launcher, activating the GIS Open control navigates to a settled GIS map view with visible map controls.",
+      "outcome": "Passed",
+      "reason": "The criterion-owned audit and Back sequence leads to the returned launcher in criterion-4-after-back.png and criterion-4-before-open-gis.png. criterion-4-after-open-gis.png and criterion-4-final.png show a settled street map with place labels, map search, north reset, map style and zoom controls; browserUrl confirms the authorised host at /gis. The coverage gap candidate areas panel has a data-loading error, outside this map-navigation criterion. criterion-4-cleanup-launcher.png shows the final launcher."
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-70\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Reviewed all four criteria against their own ordered attempt-001 screenshots, recorded steps and browser-derived destination URLs."
+}
