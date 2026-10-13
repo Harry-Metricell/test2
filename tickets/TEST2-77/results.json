@@ -1,0 +1,119 @@
+[
+  {
+    "criterion": "From the initial top-of-catalogue view, entering `TEST2-no-match-rehearsal-20261013` leaves that exact query in the search field and shows no matching catalogue entries, including no Surveyor result.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-restart-initial.png",
+      "screenshots/attempt-001/criterion-1-restart-before-query.png",
+      "screenshots/attempt-001/criterion-1-restart-after-query.png",
+      "screenshots/attempt-001/criterion-1-final-assertion.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS at top of catalogue and captured before query.",
+      "Entered exact unmatched query and verified no-match message.",
+      "Captured after query and final assertion; read current URL.",
+      "Cleared query and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Exact query retained; No layers match this search displayed, with no Surveyor entry. Initial final capture showed cleanup when inspected, so this criterion was restarted from the launcher and the decisive PNG was recaptured and visually verified before clearing."
+  },
+  {
+    "criterion": "Replacing the unmatched query with `Surveyor` without reloading leaves `Surveyor` in the search field and displays its matching catalogue entry.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-unmatched.png",
+      "screenshots/attempt-001/criterion-2-before-replace.png",
+      "screenshots/attempt-001/criterion-2-after-replace.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS, waited for loaded selected layer and captured top catalogue.",
+      "Entered unmatched query; verified no-match and captured before replacement.",
+      "Replaced with Surveyor without navigation/reload; verified entry and captured after/final.",
+      "Read URL and cleared query after final capture."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Surveyor remains in the field and its matching entry appears without reload. Query cleared after final evidence."
+  },
+  {
+    "criterion": "Clearing the search field after the Surveyor result leaves it empty and restores the same catalogue entries and browsing controls visible in the initial top-of-catalogue viewport, at the same browsing position.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-baseline-catalogue.png",
+      "screenshots/attempt-001/criterion-3-before-replace.png",
+      "screenshots/attempt-001/criterion-3-before-clear.png",
+      "screenshots/attempt-001/criterion-3-after-clear.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "First GIS selector failed on launcher; located actual Open GIS button and opened GIS.",
+      "Waited for GIS loaded state, captured catalogue baseline, recorded scrollTop 0.",
+      "Entered unmatched query and captured no-match state.",
+      "Replaced with Surveyor, verified matching entry and captured before clear.",
+      "Cleared, compared restored visible catalogue, verified empty query and scrollTop 0, captured after/final and read URL."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Empty field restores the same visible catalogue entries, expanded groups, Add layer and Snapshots controls. Catalogue scrollTop was 0 before and after. Only the initial visible viewport was assessed."
+  },
+  {
+    "criterion": "The visible map retains its initial extent and scale during both query changes and after clearing.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-baseline-map.png",
+      "screenshots/attempt-001/criterion-4-after-unmatched-before-replace.png",
+      "screenshots/attempt-001/criterion-4-after-replace-before-clear.png",
+      "screenshots/attempt-001/criterion-4-after-clear.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS; Clear wait timed out, then verified available map and catalogue.",
+      "Captured unobscured map baseline and read scale/feedback position.",
+      "Entered unmatched query, verified no-match and captured map; read scale/position.",
+      "Replaced with Surveyor, verified matching entry and captured map; read scale/position.",
+      "Cleared query, verified catalogue restoration, captured map after/final, read scale/position and current URL."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Unobscured map baseline, both query states and cleared map retain landmarks, extent, 500 m scale and feedback position /-0.18994/50.84314/12.3. A wait for Clear timed out because this independent baseline had no selected layers; map and catalogue remained available."
+  },
+  {
+    "criterion": "The complete active-layer list retains its initial entries and order during both query changes and after clearing, with no new layer added.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-initial.png",
+      "screenshots/attempt-001/criterion-5-baseline-layers.png",
+      "screenshots/attempt-001/criterion-5-after-unmatched-before-replace.png",
+      "screenshots/attempt-001/criterion-5-after-replace-before-clear.png",
+      "screenshots/attempt-001/criterion-5-after-clear.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS and waited for visible state.",
+      "Inspected all selected-layer controls and alerts; found no active entries or alerts; captured baseline.",
+      "Entered unmatched query, verified no-match; captured and inspected absence of selected controls.",
+      "Replaced with Surveyor, verified matching entry; captured and inspected selected controls.",
+      "Cleared query, verified restored catalogue; captured after/final and read URL plus empty selected-controls/alerts."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.40",
+    "reason": "Independent criterion began with no active layers: no selected-layer panel or Reorder layer/Remove from selected controls existed. This remained empty through both queries and clearing, and no new layer appeared, but retention and ordering of populated entries could not be tested. Earlier criteria's Network Information layer evidence was not reused.",
+    "retryClass": "prerequisite",
+    "blockerCode": "active_layer_fixture_missing"
+  }
+]
