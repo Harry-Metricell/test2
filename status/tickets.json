@@ -1,15 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-13T09:49:35.626+0100",
+  "generatedAt": "2026-10-13T10:30:19.903+0100",
   "counts": {
     "tickets": 7,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 1,
-      "Ready": 6
+      "Ready": 7
     },
     "byQaOutcome": {
-      "Blocked": 1,
+      "Not Tested": 1,
       "Passed": 6
     }
   },
@@ -123,20 +122,20 @@
       "retryLabel": ""
     },
     {
-      "key": "TEST2-77",
-      "summary": "V4 GIS: replace an unmatched catalogue query and restore the visible entries",
+      "key": "TEST2-78",
+      "summary": "V4 GIS: search Surveyor and preserve the actual initial map and layer state",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required; final evidence report published",
-      "updatedAt": "2026-10-13T09:49:35.626+0100",
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-13T10:30:19.903+0100",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 0,
       "retryLabel": ""
     }
   ]

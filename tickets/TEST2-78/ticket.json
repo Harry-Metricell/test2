@@ -1,0 +1,210 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "106581",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/106581",
+  "key": "TEST2-78",
+  "fields": {
+    "summary": "V4 GIS: search Surveyor and preserve the actual initial map and layer state",
+    "subtasks": [],
+    "created": "2026-10-13T10:30:17.027+0100",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "User story"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "As a V4 GIS user, I want to find Surveyor in the catalogue and return to my initial browsing view without changing the map or the layers I started with."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Environment and starting conditions"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Open https://o2intelligence-v4-dev.metricell.com/launcher with the existing test account, then open GIS and wait for its visible state to settle. Start the catalogue at its top position. Record the actual starting map and selected-layer state independently for each preservation check. Do not open configuration or add/remove layers for this test."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance criteria"
+            }
+          ]
+        },
+        {
+          "type": "bulletList",
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Entering Surveyor in Search layers leaves Surveyor in the search field and shows its matching catalogue entry."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Clearing the Surveyor query leaves the search field empty and restores the same entries and browsing controls visible in the initial top-of-catalogue viewport, at the same browsing position."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The visible map keeps its initial extent and scale while the Surveyor query is present and after it is cleared."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The complete active-layer list keeps its actual initial entries and order while the Surveyor query is present and after it is cleared, with no new layer added. If the settled initial list is empty, it remains empty at both later states; populated entries are not a prerequisite for this preservation check."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Scope and evidence"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Catalogue restoration covers only the visible initial viewport, not off-screen or collapsed entries. Active-layer preservation covers the complete selected-layer list, including extra scroll views if there are entries below the viewport. Establish an empty state positively rather than assuming an absent or loading panel is empty. Each criterion needs its own relevant initial, intermediate and final evidence. Report empty-baseline coverage as remained empty, not as a populated reordering test. Existing alerts are outside scope unless these actions change them. No saved changes or new test data are required."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Documentation"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Assess guide relevance against existing instructions; add or amend guidance only if this passed ticket identifies a genuine gap."
+            }
+          ]
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-10-13T10:30:19.903+0100",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  }
+}
