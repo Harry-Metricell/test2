@@ -10,4 +10,4 @@ Updated: 2026-10-13T10:30:19.903+0100
 | TEST2-73 | READY FOR TESTING | Evidence Reviewed |  | V4 GIS layer search: clear an unmatched query and restore the catalogue |
 | TEST2-74 | READY FOR TESTING | Evidence Reviewed |  | V4 Surveyor: cancelling an unsaved Username leaves the map unchanged |
 | TEST2-75 | READY FOR TESTING | Evidence Reviewed |  | V4 GIS catalogue: find Surveyor and clear the search without changing the map |
-| TEST2-78 | READY FOR TESTING | Criteria Check Required |  | V4 GIS: search Surveyor and preserve the actual initial map and layer state |
+| TEST2-78 | READY FOR TESTING | Ready for Testing |  | V4 GIS: search Surveyor and preserve the actual initial map and layer state |
