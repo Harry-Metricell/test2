@@ -1,16 +1,15 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-12T15:37:39.069Z",
+  "generatedAt": "2026-10-13T09:49:35.626+0100",
   "counts": {
     "tickets": 7,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 1,
-      "Ready": 6
+      "Ready": 7
     },
     "byQaOutcome": {
-      "Passed": 6,
-      "Unverified": 1
+      "Not Tested": 1,
+      "Passed": 6
     }
   },
   "policy": {
@@ -123,21 +122,21 @@
       "retryLabel": ""
     },
     {
-      "key": "TEST2-76",
-      "summary": "V4 GIS: recover from an unmatched catalogue search and cancel Surveyor configuration",
+      "key": "TEST2-77",
+      "summary": "V4 GIS: replace an unmatched catalogue query and restore the visible entries",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Unverified",
+      "workflowState": "Ready",
+      "qaStatus": "Criteria Check Required",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-10-12T15:37:39.069Z",
-      "retries": 1,
+      "nextAction": "Create criteria conversion handoff",
+      "updatedAt": "2026-10-13T09:49:35.626+0100",
+      "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 2,
-      "retryLabel": "Retry 1/1"
+      "testAttempts": 0,
+      "retryLabel": ""
     }
   ]
 }

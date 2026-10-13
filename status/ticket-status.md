@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-10-12T15:37:39.069Z
+Updated: 2026-10-13T09:49:35.626+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
@@ -10,4 +10,4 @@ Updated: 2026-10-12T15:37:39.069Z
 | TEST2-73 | READY FOR TESTING | Evidence Reviewed |  | V4 GIS layer search: clear an unmatched query and restore the catalogue |
 | TEST2-74 | READY FOR TESTING | Evidence Reviewed |  | V4 Surveyor: cancelling an unsaved Username leaves the map unchanged |
 | TEST2-75 | READY FOR TESTING | Evidence Reviewed |  | V4 GIS catalogue: find Surveyor and clear the search without changing the map |
-| TEST2-76 | READY FOR TESTING | Blocked | Retry 1/1 | V4 GIS: recover from an unmatched catalogue search and cancel Surveyor configuration |
+| TEST2-77 | READY FOR TESTING | Criteria Check Required |  | V4 GIS: replace an unmatched catalogue query and restore the visible entries |
