@@ -1,1 +1,20 @@
-All four criteria Passed. Surveyor remained in Search layers with its matching catalogue entry; clearing restored the original visible catalogue viewport and browsing position. The settled map retained extent and 1 km scale. The complete populated list retained all 37 initial layers in the same order, with no new layer. Independent criterion evidence includes full-list scroll comparisons. Map and layer criteria were repeated within this handoff to replace incomplete setup captures; second sequences are decisive. Search and layer-list scroll were restored. PNG evidence verified readable and criterion-owned. No saved changes or new test data.
+# TEST2-78 Evidence Review
+
+- **Ticket:** TEST2-78 — V4 GIS: search Surveyor and preserve the actual initial map and layer state
+- **QA status:** Evidence Reviewed
+- **Overall outcome:** Passed
+- **Evidence reviewed:** attempt-001
+- **Report:** [Evidence report](report.pdf)
+
+## Criterion results
+
+1. **Passed:** With GIS settled and the catalogue at its top position, entering `Surveyor` in Search layers keeps that query in the field and shows the matching Surveyor catalogue entry.
+   - criterion-1-settled-before-search.png establishes the settled top catalogue; criterion-1-after-search.png shows Surveyor retained in Search layers and the matching Surveyor (1) entry. The earlier criterion-1-before-search.png still shows Loading and is setup only.
+2. **Passed:** After searching for `Surveyor` from the initial top-of-catalogue view, clearing the query empties the search field and restores the same entries and browsing controls visible in that initial viewport at the same browsing position.
+   - criterion-2-before-search.png, criterion-2-after-search.png and criterion-2-after-clear.png show the complete search/clear sequence. Clearing empties the field and restores the same visible entries, expanded group controls and top browsing position; off-screen entries are outside this criterion's scope.
+3. **Passed:** From the settled initial GIS view, the visible map retains its initial extent and scale both while the `Surveyor` query is present and after it is cleared.
+   - Decisive second sequence: criterion-3-second-baseline-map.png, criterion-3-second-after-search-map.png and criterion-3-second-restored-map.png show matching coastline, landmarks and overlays at the same extent and 1 km scale before, during Surveyor search and after clearing. The original criterion-3-baseline-map.png still shows Loading and is setup only.
+4. **Passed:** From the settled initial GIS view, the complete active-layer list retains its actual initial entries and order both while the `Surveyor` query is present and after it is cleared, with no new layer added; if the initial list is empty, it remains empty at both later states.
+   - Decisive second sequence: criterion-4-second-baseline-layers.png, criterion-4-second-after-search-layers.png and criterion-4-second-after-clear-layers.png plus each state's criterion-4-second-baseline-layers-scroll-1.png through criterion-4-second-baseline-layers-scroll-4.png, criterion-4-second-query-layers-scroll-1.png through criterion-4-second-query-layers-scroll-4.png, and criterion-4-second-restored-layers-scroll-1.png through criterion-4-second-restored-layers-scroll-4.png show all 37 initial rows in the same order, from Network Information to fully visible Unwind Polygons, with no added row. criterion-4-final.png confirms the cleared bottom state and criterion-4-cleanup.png restores list scroll to top. The first sequence omits the last row in its final baseline scroll capture and is setup only.
+
+**Review summary:** Independent screenshot review completed for all four canonical criteria using attempt-001; second map and full-list comparison sequences are decisive.
