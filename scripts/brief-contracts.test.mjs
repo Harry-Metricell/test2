@@ -100,6 +100,28 @@ test('coordinator retains import, reconciliation, duplicate and completion gates
   assert.match(coordinator, /Do not test, review screenshots or open, render, repair or generate Word\/PDF/);
 });
 
+test('criteria, tester and reviewer reject unstated populated-list prerequisites', () => {
+  for (const name of ['criteria-conversion', 'qa-testing', 'evidence-review']) {
+    const worker = brief(name);
+    assert.match(worker, /An empty initial list is a valid baseline/);
+    assert.match(worker, /populated entries/);
+    assert.match(worker, /reordering|Reordering/);
+    assert.match(worker, /remov/);
+  }
+  assert.match(brief('qa-testing'), /Do not block solely because an unchanged list has zero entries/);
+  assert.match(brief('qa-testing'), /missing panel alone, loading failure or inaccessible list is not proof of emptiness/);
+  assert.match(brief('qa-testing'), /remained empty/);
+  assert.match(brief('evidence-review'), /use Unverified for insufficient proof rather than inventing a missing-fixture blocker/);
+  assert.match(brief('evidence-review'), /without claiming populated ordering coverage/);
+});
+
+test('workers preserve visible catalogue scope rather than inventing complete coverage', () => {
+  assert.match(brief('criteria-conversion'), /visible catalogue entries do not mean every off-screen entry/);
+  assert.match(brief('qa-testing'), /Match visible-viewport versus complete-list scope exactly/);
+  assert.match(brief('evidence-review'), /not off-screen entries unless the criterion requires them/);
+  assert.match(brief('evidence-review'), /every gap must trace to the same canonical criterion and scope/);
+});
+
 test('guide workers retain passed-only policy, replacement identity and captions', () => {
   assert.ok(brief('user-guide-impact').includes('Passed'));
   assert.ok(brief('user-guide-impact').includes('not_needed'));

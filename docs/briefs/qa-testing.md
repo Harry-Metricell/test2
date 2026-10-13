@@ -20,6 +20,8 @@ Read browser identity once through Playwright browser evaluation. Prefer `naviga
 
 Test every criterion independently. Identify its required visible states before acting. Record actual steps_taken, observed results and blockers, not intended actions.
 
+Use only prerequisites stated by the complete ticket/criteria or inherently required by the asserted action. An empty initial list is a valid baseline for unchanged-state and no-new-item assertions unless populated entries are required. Positively establish the settled empty state, capture its own baseline, intermediate and final states, and report "remained empty" rather than claiming populated ordering was exercised. A missing panel alone, loading failure or inaccessible list is not proof of emptiness. Reordering/removal or an explicit populated-list assertion still needs suitable entries; never waive that prerequisite or create data without authorisation. Do not block solely because an unchanged list has zero entries, and do not borrow another criterion's fixture or images. Match visible-viewport versus complete-list scope exactly.
+
 For each criterion:
 
 1. Save its own criterion-N-initial.png at the launcher before the first interaction.

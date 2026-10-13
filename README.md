@@ -39,6 +39,8 @@ The displayed retry limit is one: `Retry 1/1` means the second total test attemp
 
 Worker chat completion is a receipt, not proof of publication. Dependent stages require the exact remote output and successful bundler propagation. The five active handoff actions and their gates are defined in the coordinator brief; each worker brief is self-contained.
 
+Criteria, testing and review preserve the ticket's evidence scope. A settled empty list is valid for unchanged-state/no-new-item assertions unless the ticket or action requires populated entries. Results must say it remained empty, not claim populated ordering coverage. Reordering/removal still requires data; absent panels or loading errors do not prove emptiness. Visible catalogue restoration does not imply off-screen catalogue coverage. These brief contracts have regression checks, but only a fresh model/browser run validates interpretation.
+
 ### Report evidence
 
 Reports show decisive criterion states with descriptive captions. Redundant named setup steps and adjacent pixel-identical states are omitted from the printed report, not deleted from private evidence; a changed pixel or a later return to an earlier state is never removed by similarity matching. A small setup appendix retains context.
