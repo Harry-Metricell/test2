@@ -8,7 +8,7 @@
       "Ready": 7
     },
     "byQaOutcome": {
-      "Not Tested": 1,
+      "Blocked": 1,
       "Passed": 6
     }
   },
@@ -126,16 +126,16 @@
       "summary": "V4 GIS: replace an unmatched catalogue query and restore the visible entries",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-13T09:49:35.626+0100",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 0,
+      "testAttempts": 1,
       "retryLabel": ""
     }
   ]
