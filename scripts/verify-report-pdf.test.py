@@ -36,6 +36,38 @@ def observed(name, image, source_hash):
 
 
 class PdfEvidenceIdentityTests(unittest.TestCase):
+    def test_dense_saturated_markers_survive_word_chroma_subsampling(self):
+        screenshot = Image.new("RGB", (1440, 900), (144, 110, 178))
+        draw = ImageDraw.Draw(screenshot)
+        draw.rectangle((0, 0, 340, 900), fill=(240, 243, 250))
+        draw.rectangle((0, 0, 1440, 70), fill=(240, 243, 250))
+        rng = random.Random(78)
+        colours = [(244, 25, 24), (195, 248, 0), (0, 160, 255), (255, 233, 0)]
+        for _ in range(10000):
+            x, y = rng.randrange(350, 1440), rng.randrange(80, 900)
+            radius = rng.choice([1, 2, 3])
+            draw.ellipse((x, y, x + radius*2, y + radius*2), fill=rng.choice(colours))
+        buffer = io.BytesIO()
+        screenshot.resize((719, 449), Image.Resampling.BICUBIC).save(buffer, format="JPEG", quality=85, subsampling=2)
+        converted = Image.open(io.BytesIO(buffer.getvalue())).convert("RGB")
+        matched, missing = VERIFY.match_expected_images(
+            [expected("dense-markers.png", screenshot, "source")],
+            [observed("dense-markers.jpg", converted, "converted")])
+        self.assertEqual(missing, [])
+        self.assertEqual(matched[0]["method"], "normalized_rgb_pixels")
+
+    def test_dense_map_conversion_does_not_hide_a_changed_ui_control(self):
+        screenshot = patterned_image((144, 110, 178))
+        changed = screenshot.copy()
+        ImageDraw.Draw(changed).rectangle((620, 320, 670, 370), fill=(240, 243, 250))
+        buffer = io.BytesIO()
+        changed.resize((719, 449), Image.Resampling.BICUBIC).save(buffer, format="JPEG", quality=85, subsampling=2)
+        converted = Image.open(io.BytesIO(buffer.getvalue())).convert("RGB")
+        _, missing = VERIFY.match_expected_images(
+            [expected("control.png", screenshot, "source")],
+            [observed("control.jpg", converted, "changed")])
+        self.assertEqual(missing, ["control.png"])
+
     def test_dense_map_survives_word_downsampling_and_jpeg_compression(self):
         screenshot = Image.new("RGB", (1440, 900), (156, 221, 246))
         draw = ImageDraw.Draw(screenshot)

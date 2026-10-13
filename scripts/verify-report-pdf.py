@@ -15,7 +15,11 @@ MAX_COARSE_RGB_DIFFERENCE = 12
 MAX_MEAN_RGB_DIFFERENCE = 6
 MAX_HIGH_DIFFERENCE_FRACTION = 0.03
 MAX_TILE_RGB_DIFFERENCE = 24
-COMPARISON_LONG_EDGE = 512
+# Word uses JPEG chroma subsampling as well as resizing. Dense coloured map
+# markers retain different high-frequency colour edges after that conversion.
+# Compare both originals and PDF images at a shared 256px scale so sampling
+# noise is suppressed, without relaxing any pixel or local-change limits.
+COMPARISON_LONG_EDGE = 256
 
 
 def image_fingerprint(image):
