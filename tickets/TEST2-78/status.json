@@ -10,5 +10,16 @@
   "blockedStage": null,
   "qaOutcome": "Passed",
   "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-78-guide-impact",
+    "handoffVersion": "TEST2-78:guide_impact_assessment:1",
+    "ticket": "TEST2-78",
+    "decision": "not_needed",
+    "affectedSection": "",
+    "reason": "The existing GIS layer catalogue search and filtering guidance already explains searching for Surveyor, clearing the search to restore the catalogue, and keeping loaded Map layers unchanged. The passed evidence confirms this documented behavior without a material user-facing instruction gap.",
+    "noOp": false,
+    "assessedAt": "2026-10-13T10:23:13.854Z"
+  }
 }
