@@ -1,0 +1,248 @@
+{
+  "handoffId": "handoff-TEST2-80-test-attempt-001",
+  "handoffVersion": "TEST2-80:test_ticket:1",
+  "ticket": "TEST2-80",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "The map layer selector includes Service as a selectable layer.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-before-automobile.png",
+        "screenshots/attempt-001/criterion-1-after-automobile-before-types.png",
+        "screenshots/attempt-001/criterion-1-types-before-service.png",
+        "screenshots/attempt-001/criterion-1-final.png",
+        "screenshots/attempt-001/criterion-1-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured initial state.",
+        "Opened GIS; waited for the map to finish loading.",
+        "Opened Automobile Add layer, opened Test type, and selected Service.",
+        "Verified Service displayed as the selected test type with Add layer available; captured final state and URL.",
+        "Cancelled the dialog; no layer was added."
+      ],
+      "reason": "Service is selectable through Automobile > Test type.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "With Service unselected, the map displays no Service test-result points.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-map-service-unselected.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the launcher and captured initial state.",
+        "Opened GIS and waited for Loading map to disappear.",
+        "Observed Automobile not added and no Service test-result points on the displayed map; captured separate map and final images and final URL."
+      ],
+      "reason": "No Service result points were visible on the displayed map with Automobile/Service unselected. Basemap labels and airport symbols were present; no added Service layer.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When the user selects Service and matching authorised results are available, each matching result is displayed as a selectable map point.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "service_points_http_500",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-automobile.png",
+        "screenshots/attempt-001/criterion-3-default-http-layer.png",
+        "screenshots/attempt-001/criterion-3-http-removed.png",
+        "screenshots/attempt-001/criterion-3-dialog.png",
+        "screenshots/attempt-001/criterion-3-types.png",
+        "screenshots/attempt-001/criterion-3-before-add-service.png",
+        "screenshots/attempt-001/criterion-3-final.png",
+        "screenshots/attempt-001/criterion-3-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to launcher and captured initial state.",
+        "Opened GIS and waited for map loading to finish.",
+        "Clicked Automobile row, which added default HTTP Browsing; the subsequent wait for Test type timed out. Captured and removed that test-created layer.",
+        "Opened Automobile via its Add layer button, opened Test type, selected Service, and added the configured layer.",
+        "Verified Automobile - Service selected. Both Service points requests returned HTTP 500; no selectable Service result points became available.",
+        "Captured final state and URL, then removed the test-created Service layer."
+      ],
+      "reason": "Matching authorised results could not be established because /api/platform/automobile/service/points returned HTTP 500 for both requested tile batches. This is a service-access blocker, not proof of empty data or a criterion failure. The same HTTP 500 was observed across criteria 3–9 after independent launcher starts, so a working Service points endpoint is a prerequisite.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When the user selects a Service result point and its details load successfully, a Service details dialog displays MSISDN, Test Time, Signal, Band, Service, Data Technology, PLMN and Serving Cell.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "service_points_http_500",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-before-automobile.png",
+        "screenshots/attempt-001/criterion-4-dialog-before-types.png",
+        "screenshots/attempt-001/criterion-4-types-before-service.png",
+        "screenshots/attempt-001/criterion-4-before-add-service.png",
+        "screenshots/attempt-001/criterion-4-final.png",
+        "screenshots/attempt-001/criterion-4-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher, and captured initial state.",
+        "Opened GIS and waited for Loading map to disappear.",
+        "An initial attempt to locate Automobile through the code tool timed out before the dialog opened. Restarted independently from the launcher and captured a fresh initial state. An unrelated Surveyor - Download selection appeared in this run and was left untouched; cleanup removed Service only.",
+        "Opened the Automobile Add layer dialog, opened Test type, selected Service, and captured each transition.",
+        "Added the configured Service layer and observed Automobile - Service selected; both Service points requests returned HTTP 500 and no selectable Service result became available.",
+        "Captured final state and actual current URL before cleanup.",
+        "Removed only the test-created Automobile - Service layer and captured cleanup."
+      ],
+      "reason": "Service points endpoint /api/platform/automobile/service/points consistently returned HTTP 500 for both tile batches. Matching authorised data could not be established; this was not a confirmed empty result set. Could not open a Service details dialog or inspect its required fields. A working Service points endpoint is required before this criterion can be decided.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "With the Service details table displayed, sorting a supported column reorders the displayed rows according to that column.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "service_points_http_500",
+      "evidence": [
+        "screenshots/attempt-001/criterion-5-initial.png",
+        "screenshots/attempt-001/criterion-5-before-automobile.png",
+        "screenshots/attempt-001/criterion-5-dialog-before-types.png",
+        "screenshots/attempt-001/criterion-5-types-before-service.png",
+        "screenshots/attempt-001/criterion-5-before-add-service.png",
+        "screenshots/attempt-001/criterion-5-final.png",
+        "screenshots/attempt-001/criterion-5-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher, and captured initial state.",
+        "Opened GIS and waited for Loading map to disappear.",
+        "Opened the Automobile Add layer dialog, opened Test type, selected Service, and captured each transition.",
+        "Added the configured Service layer and observed Automobile - Service selected; both Service points requests returned HTTP 500 and no selectable Service result became available.",
+        "Captured final state and actual current URL before cleanup.",
+        "Removed only the test-created Automobile - Service layer and captured cleanup."
+      ],
+      "reason": "Service points endpoint /api/platform/automobile/service/points consistently returned HTTP 500 for both tile batches. Matching authorised data could not be established; this was not a confirmed empty result set. Could not reach the Service details table; sorting was not exercised. A working Service points endpoint is required before this criterion can be decided.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "With the Service details table displayed, filtering a supported column limits the displayed rows to those matching the filter.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "service_points_http_500",
+      "evidence": [
+        "screenshots/attempt-001/criterion-6-initial.png",
+        "screenshots/attempt-001/criterion-6-before-automobile.png",
+        "screenshots/attempt-001/criterion-6-dialog-before-types.png",
+        "screenshots/attempt-001/criterion-6-types-before-service.png",
+        "screenshots/attempt-001/criterion-6-before-add-service.png",
+        "screenshots/attempt-001/criterion-6-final.png",
+        "screenshots/attempt-001/criterion-6-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher, and captured initial state.",
+        "Opened GIS and waited for Loading map to disappear.",
+        "Opened the Automobile Add layer dialog, opened Test type, selected Service, and captured each transition.",
+        "Added the configured Service layer and observed Automobile - Service selected; both Service points requests returned HTTP 500 and no selectable Service result became available.",
+        "Captured final state and actual current URL before cleanup.",
+        "Removed only the test-created Automobile - Service layer and captured cleanup."
+      ],
+      "reason": "Service points endpoint /api/platform/automobile/service/points consistently returned HTTP 500 for both tile batches. Matching authorised data could not be established; this was not a confirmed empty result set. Could not reach the Service details table; filtering was not exercised. A working Service points endpoint is required before this criterion can be decided.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When returned details include cell-neighbour data, the dialog displays each neighbour in its own labelled details table.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "service_points_http_500",
+      "evidence": [
+        "screenshots/attempt-001/criterion-7-initial.png",
+        "screenshots/attempt-001/criterion-7-before-automobile.png",
+        "screenshots/attempt-001/criterion-7-dialog-before-types.png",
+        "screenshots/attempt-001/criterion-7-types-before-service.png",
+        "screenshots/attempt-001/criterion-7-before-add-service.png",
+        "screenshots/attempt-001/criterion-7-final.png",
+        "screenshots/attempt-001/criterion-7-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher, and captured initial state.",
+        "Opened GIS and waited for Loading map to disappear.",
+        "Opened the Automobile Add layer dialog, opened Test type, selected Service, and captured each transition.",
+        "Added the configured Service layer and observed Automobile - Service selected; both Service points requests returned HTTP 500 and no selectable Service result became available.",
+        "Captured final state and actual current URL before cleanup.",
+        "Removed only the test-created Automobile - Service layer and captured cleanup."
+      ],
+      "reason": "Service points endpoint /api/platform/automobile/service/points consistently returned HTTP 500 for both tile batches. Matching authorised data could not be established; this was not a confirmed empty result set. No Service point could be opened, so returned neighbour data and separate labelled tables could not be inspected. A working Service points endpoint is required before this criterion can be decided.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "While Service details are loading, the dialog displays a loading state.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "service_points_http_500",
+      "evidence": [
+        "screenshots/attempt-001/criterion-8-initial.png",
+        "screenshots/attempt-001/criterion-8-before-automobile.png",
+        "screenshots/attempt-001/criterion-8-dialog-before-types.png",
+        "screenshots/attempt-001/criterion-8-types-before-service.png",
+        "screenshots/attempt-001/criterion-8-before-add-service.png",
+        "screenshots/attempt-001/criterion-8-final.png",
+        "screenshots/attempt-001/criterion-8-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher, and captured initial state.",
+        "Opened GIS and waited for Loading map to disappear.",
+        "Opened the Automobile Add layer dialog, opened Test type, selected Service, and captured each transition.",
+        "Added the configured Service layer and observed Automobile - Service selected; both Service points requests returned HTTP 500 and no selectable Service result became available.",
+        "Captured final state and actual current URL before cleanup.",
+        "Removed only the test-created Automobile - Service layer and captured cleanup."
+      ],
+      "reason": "Service points endpoint /api/platform/automobile/service/points consistently returned HTTP 500 for both tile batches. Matching authorised data could not be established; this was not a confirmed empty result set. Could not open Service details, so its loading state was not observed. Map-points loading is not details loading. A working Service points endpoint is required before this criterion can be decided.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "If Service details cannot be retrieved, the dialog displays an error state and does not display stale details.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "service_points_http_500",
+      "evidence": [
+        "screenshots/attempt-001/criterion-9-initial.png",
+        "screenshots/attempt-001/criterion-9-before-automobile.png",
+        "screenshots/attempt-001/criterion-9-dialog-before-types.png",
+        "screenshots/attempt-001/criterion-9-types-before-service.png",
+        "screenshots/attempt-001/criterion-9-before-add-service.png",
+        "screenshots/attempt-001/criterion-9-final.png",
+        "screenshots/attempt-001/criterion-9-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher, and captured initial state.",
+        "Opened GIS and waited for Loading map to disappear.",
+        "Opened the Automobile Add layer dialog, opened Test type, selected Service, and captured each transition.",
+        "Added the configured Service layer and observed Automobile - Service selected; both Service points requests returned HTTP 500 and no selectable Service result became available.",
+        "Captured final state and actual current URL before cleanup.",
+        "Removed only the test-created Automobile - Service layer and captured cleanup."
+      ],
+      "reason": "Service points endpoint /api/platform/automobile/service/points consistently returned HTTP 500 for both tile batches. Matching authorised data could not be established; this was not a confirmed empty result set. Could not open Service details, so its retrieval-error and stale-data handling were not observed. The points HTTP 500 is not a details retrieval error. A working Service points endpoint is required before this criterion can be decided.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    }
+  ],
+  "conciseReport": "## TEST2-80 QA\n\n2 Passed; 7 Blocked. Service can be selected through Automobile > Test type, and the unselected displayed map showed no Service result points. Selecting Service consistently caused both points requests to return HTTP 500 across independent launcher starts. Authorised matching data, point details, sorting, filtering, neighbours, loading and details-error states could not be established. The points failure is not evidence of an empty dataset or a details-dialog error. Service and accidental default HTTP Browsing selections were removed; an unrelated Surveyor selection was left untouched. Browser: Google Chrome 155.0.8059.85. Each criterion has its own saved PNGs and observed GIS URL.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-80-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Consistent Service points HTTP 500 prevents criteria 3–9; working endpoint and accessible matching data are prerequisites.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-19T14:59:49.918Z"
+}

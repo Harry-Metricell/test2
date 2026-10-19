@@ -1,0 +1,3 @@
+## TEST2-80 QA
+
+2 Passed; 7 Blocked. Service can be selected through Automobile > Test type, and the unselected displayed map showed no Service result points. Selecting Service consistently caused both points requests to return HTTP 500 across independent launcher starts. Authorised matching data, point details, sorting, filtering, neighbours, loading and details-error states could not be established. The points failure is not evidence of an empty dataset or a details-dialog error. Service and accidental default HTTP Browsing selections were removed; an unrelated Surveyor selection was left untouched. Browser: Google Chrome 155.0.8059.85. Each criterion has its own saved PNGs and observed GIS URL.
