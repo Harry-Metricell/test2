@@ -1,0 +1,633 @@
+{
+  "handoffId": "handoff-TEST2-79-test-attempt-001",
+  "handoffVersion": "TEST2-79:test_ticket:1",
+  "ticket": "TEST2-79",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "With neither layer selected, the map shows no Download or Upload test-result points.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-before-automobile.png",
+        "screenshots/attempt-001/criterion-1-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-1-test-types.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher URL and captured the visible launcher.",
+        "Opened GIS and waited for Loading map to disappear; captured the map with no selected test layers.",
+        "Opened Automobile configuration and inspected the Test type choices without adding a layer.",
+        "Dismissed the choices and cancelled configuration; captured the final unobscured map with neither Download nor Upload selected.",
+        "An unintended Scanner Data configuration was opened earlier in this criterion and cancelled without adding data; its transition was not captured."
+      ],
+      "observed_result": "The final visible map viewport showed no Download or Upload test-result points and the map had no selected layers. This is limited to the displayed viewport.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "No Download or Upload layer was added."
+    },
+    {
+      "criterion": "After selecting Download, the map shows selectable points for matching authorised Download results only.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-before-automobile.png",
+        "screenshots/attempt-001/criterion-2-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-2-before-add-download.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Cleared the selected Download layer after the final capture."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. Matching authorised Download points and selectability could not be established.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. Matching authorised Download points and selectability could not be established. Cleared the selected Download layer after the final capture.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "GET /api/platform/automobile/download/points with the default 2026-07-21 to 2026-10-19 range returned HTTP 500."
+        }
+      ],
+      "cleanup": "Cleared the selected Download layer after the final capture."
+    },
+    {
+      "criterion": "After selecting Upload, the map shows selectable points for matching authorised Upload results only.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-before-automobile.png",
+        "screenshots/attempt-001/criterion-3-before-test-type.png",
+        "screenshots/attempt-001/criterion-3-test-type-options.png",
+        "screenshots/attempt-001/criterion-3-before-add.png",
+        "screenshots/attempt-001/criterion-3-final.png",
+        "screenshots/attempt-001/criterion-3-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Upload.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Upload to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/upload/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Used Clear map layers after the final capture; this also removed Surveyor layers that appeared during the criterion. Their exact state was not restored by this run."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Upload layer was selected, but its points request returned HTTP 500. Matching authorised Upload points and selectability could not be established.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. Matching authorised Upload points and selectability could not be established. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Used Clear map layers after the final capture; this also removed Surveyor layers that appeared during the criterion. Their exact state was not restored by this run.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n251. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/upload/points?tileKeys=1080868300293941965%2C1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300293941969%2C1080868300562377421%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300562377425%2C1080868300830812877%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868300830812881%2C1080868301099248333%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301099248337%2C1080868301367683789%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792%2C1080868301367683793&timeFrom=2026-07-21T14%3A01%3A00.000Z&timeTo=2026-10-19T14%3A01%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 171 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Used Clear map layers after the final capture; this also removed Surveyor layers that appeared during the criterion. Their exact state was not restored by this run."
+    },
+    {
+      "criterion": "Selecting a Download result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate, and Wi-Fi Connected.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-before-automobile.png",
+        "screenshots/attempt-001/criterion-4-before-test-type.png",
+        "screenshots/attempt-001/criterion-4-test-type-options.png",
+        "screenshots/attempt-001/criterion-4-before-add.png",
+        "screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "An earlier setup attempt could not locate Automobile; captured criterion-4-blocker.png, then restarted from the launcher before the final evidence sequence.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Initial cleanup locator timed out. Subsequently found and removed this criterion's Download layer using its observed Remove from selected reference; that subsequent cleanup has no separate PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. A Download result point could not be selected, so the summary dialog fields were not tested.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. A Download result point could not be selected, so the summary dialog fields were not tested. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Initial cleanup locator timed out. Subsequently found and removed this criterion's Download layer using its observed Remove from selected reference; that subsequent cleanup has no separate PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n204. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941965%2C1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300293941969%2C1080868300562377421%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300562377425%2C1080868300830812877%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868300830812881%2C1080868301099248333%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301099248337%2C1080868301367683789%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792%2C1080868301367683793&timeFrom=2026-07-21T14%3A03%3A00.000Z&timeTo=2026-10-19T14%3A03%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 171 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Initial cleanup locator timed out. Subsequently found and removed this criterion's Download layer using its observed Remove from selected reference; that subsequent cleanup has no separate PNG."
+    },
+    {
+      "criterion": "Selecting an Upload result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Upload Rate, and Wi-Fi Connected.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-5-initial.png",
+        "screenshots/attempt-001/criterion-5-before-automobile.png",
+        "screenshots/attempt-001/criterion-5-before-test-type.png",
+        "screenshots/attempt-001/criterion-5-test-type-options.png",
+        "screenshots/attempt-001/criterion-5-before-add.png",
+        "screenshots/attempt-001/criterion-5-final.png",
+        "screenshots/attempt-001/criterion-5-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Upload.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Upload to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/upload/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Upload layer was selected, but its points request returned HTTP 500. An Upload result point could not be selected, so the summary dialog fields were not tested.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. An Upload result point could not be selected, so the summary dialog fields were not tested. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n205. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/upload/points?tileKeys=1080868300293941965%2C1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300293941969%2C1080868300562377421%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300562377425%2C1080868300830812877%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868300830812881%2C1080868301099248333%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301099248337%2C1080868301367683789%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792%2C1080868301367683793&timeFrom=2026-07-21T14%3A05%3A00.000Z&timeTo=2026-10-19T14%3A05%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 171 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "The Download result details chart plots Signal Strength in dBm and Download Rate in Mbps over time.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-6-initial.png",
+        "screenshots/attempt-001/criterion-6-before-automobile.png",
+        "screenshots/attempt-001/criterion-6-before-test-type.png",
+        "screenshots/attempt-001/criterion-6-test-type-options.png",
+        "screenshots/attempt-001/criterion-6-before-add.png",
+        "screenshots/attempt-001/criterion-6-final.png",
+        "screenshots/attempt-001/criterion-6-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. A Download result dialog could not be opened; chart axes, series and time coverage were not tested.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. A Download result dialog could not be opened; chart axes, series and time coverage were not tested. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n216. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A06%3A00.000Z&timeTo=2026-10-19T14%3A06%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "The Upload result details chart plots Signal Strength in dBm and Upload Rate in Mbps over time.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-7-initial.png",
+        "screenshots/attempt-001/criterion-7-before-automobile.png",
+        "screenshots/attempt-001/criterion-7-before-test-type.png",
+        "screenshots/attempt-001/criterion-7-test-type-options.png",
+        "screenshots/attempt-001/criterion-7-before-add.png",
+        "screenshots/attempt-001/criterion-7-final.png",
+        "screenshots/attempt-001/criterion-7-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Upload.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Upload to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/upload/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Upload layer was selected, but its points request returned HTTP 500. An Upload result dialog could not be opened; chart axes, series and time coverage were not tested.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. An Upload result dialog could not be opened; chart axes, series and time coverage were not tested. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n217. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/upload/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A07%3A00.000Z&timeTo=2026-10-19T14%3A07%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "The Download details table displays MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-8-initial.png",
+        "screenshots/attempt-001/criterion-8-before-automobile.png",
+        "screenshots/attempt-001/criterion-8-before-test-type.png",
+        "screenshots/attempt-001/criterion-8-test-type-options.png",
+        "screenshots/attempt-001/criterion-8-before-add.png",
+        "screenshots/attempt-001/criterion-8-final.png",
+        "screenshots/attempt-001/criterion-8-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. The Download details table could not be reached, so its required columns were not tested.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. The Download details table could not be reached, so its required columns were not tested. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n219. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A08%3A00.000Z&timeTo=2026-10-19T14%3A08%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "The Upload details table displays MSISDN, Start Time, End Time, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-9-initial.png",
+        "screenshots/attempt-001/criterion-9-before-automobile.png",
+        "screenshots/attempt-001/criterion-9-before-test-type.png",
+        "screenshots/attempt-001/criterion-9-test-type-options.png",
+        "screenshots/attempt-001/criterion-9-before-add.png",
+        "screenshots/attempt-001/criterion-9-final.png",
+        "screenshots/attempt-001/criterion-9-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Upload.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Upload to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/upload/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Upload layer was selected, but its points request returned HTTP 500. The Upload details table could not be reached, so its required columns were not tested.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. The Upload details table could not be reached, so its required columns were not tested. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n205. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/upload/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A07%3A00.000Z&timeTo=2026-10-19T14%3A07%3A00.000Z&deviceGroupAll=false => [500] \n219. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/upload/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A09%3A00.000Z&timeTo=2026-10-19T14%3A09%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-10-initial.png",
+        "screenshots/attempt-001/criterion-10-before-automobile.png",
+        "screenshots/attempt-001/criterion-10-before-test-type.png",
+        "screenshots/attempt-001/criterion-10-test-type-options.png",
+        "screenshots/attempt-001/criterion-10-before-add.png",
+        "screenshots/attempt-001/criterion-10-final.png",
+        "screenshots/attempt-001/criterion-10-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. Applicable result signal-strength/rate values could not be reached. Legend units and unrelated Surveyor values do not verify this criterion.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. Applicable result signal-strength/rate values could not be reached. Legend units and unrelated Surveyor values do not verify this criterion. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n216. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A10%3A00.000Z&timeTo=2026-10-19T14%3A10%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "For a result whose Error Message is null, the details table displays “No Error”.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-11-initial.png",
+        "screenshots/attempt-001/criterion-11-before-automobile.png",
+        "screenshots/attempt-001/criterion-11-before-test-type.png",
+        "screenshots/attempt-001/criterion-11-test-type-options.png",
+        "screenshots/attempt-001/criterion-11-before-add.png",
+        "screenshots/attempt-001/criterion-11-final.png",
+        "screenshots/attempt-001/criterion-11-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. No accessible Automobile result with a known null Error Message was available; No Error formatting was not tested.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. No accessible Automobile result with a known null Error Message was available; No Error formatting was not tested. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n218. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A11%3A00.000Z&timeTo=2026-10-19T14%3A11%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-12-initial.png",
+        "screenshots/attempt-001/criterion-12-before-automobile.png",
+        "screenshots/attempt-001/criterion-12-before-test-type.png",
+        "screenshots/attempt-001/criterion-12-test-type-options.png",
+        "screenshots/attempt-001/criterion-12-before-add.png",
+        "screenshots/attempt-001/criterion-12-final.png",
+        "screenshots/attempt-001/criterion-12-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. No populated Automobile details table was accessible; sorting was not exercised.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. No populated Automobile details table was accessible; sorting was not exercised. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n217. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A12%3A00.000Z&timeTo=2026-10-19T14%3A12%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "Filtering a supported Download or Upload details-table column displays rows matching the applied filter.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-13-initial.png",
+        "screenshots/attempt-001/criterion-13-before-automobile.png",
+        "screenshots/attempt-001/criterion-13-before-test-type.png",
+        "screenshots/attempt-001/criterion-13-test-type-options.png",
+        "screenshots/attempt-001/criterion-13-before-add.png",
+        "screenshots/attempt-001/criterion-13-final.png",
+        "screenshots/attempt-001/criterion-13-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. No Automobile details table was accessible; filtering was not exercised.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. No Automobile details table was accessible; filtering was not exercised. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n217. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A13%3A00.000Z&timeTo=2026-10-19T14%3A13%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "Requesting details for a zero-duration test does not open a details dialog.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-14-initial.png",
+        "screenshots/attempt-001/criterion-14-before-automobile.png",
+        "screenshots/attempt-001/criterion-14-before-test-type.png",
+        "screenshots/attempt-001/criterion-14-test-type-options.png",
+        "screenshots/attempt-001/criterion-14-before-add.png",
+        "screenshots/attempt-001/criterion-14-final.png",
+        "screenshots/attempt-001/criterion-14-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. No accessible Automobile zero-duration result fixture could be established; no details request for such a result was made.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. No accessible Automobile zero-duration result fixture could be established; no details request for such a result was made. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n217. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A14%3A00.000Z&timeTo=2026-10-19T14%3A14%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "While result details are loading, the interface shows a loading state without stale or misleading detail data.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-15-initial.png",
+        "screenshots/attempt-001/criterion-15-before-automobile.png",
+        "screenshots/attempt-001/criterion-15-before-test-type.png",
+        "screenshots/attempt-001/criterion-15-test-type-options.png",
+        "screenshots/attempt-001/criterion-15-before-add.png",
+        "screenshots/attempt-001/criterion-15-final.png",
+        "screenshots/attempt-001/criterion-15-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. No Automobile point-details request could be initiated, so its loading state and stale-data handling were not observed.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. No Automobile point-details request could be initiated, so its loading state and stale-data handling were not observed. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n218. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A15%3A00.000Z&timeTo=2026-10-19T14%3A15%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    },
+    {
+      "criterion": "If result details fail to load, the interface shows an error state without stale or misleading detail data.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-16-initial.png",
+        "screenshots/attempt-001/criterion-16-before-automobile.png",
+        "screenshots/attempt-001/criterion-16-before-test-type.png",
+        "screenshots/attempt-001/criterion-16-test-type-options.png",
+        "screenshots/attempt-001/criterion-16-before-add.png",
+        "screenshots/attempt-001/criterion-16-final.png",
+        "screenshots/attempt-001/criterion-16-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible welcome heading and captured this criterion's initial state.",
+        "Opened GIS and waited for Loading map to disappear; captured the pre-configuration map.",
+        "Opened the Automobile layer configuration, inspected Test type and selected Download.",
+        "Kept the default date range and filters; captured the configuration and added the layer.",
+        "Waited for Automobile - Download to appear, waited a further two seconds and read the page snapshot and browser network results.",
+        "Observed HTTP 500 from /api/platform/automobile/download/points. Captured this criterion's final state and read location.href before cleanup.",
+        "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The Download layer was selected, but its points request returned HTTP 500. The observed failure was the points endpoint, not a result-details request. The required details error state and stale-data handling were not tested.",
+      "reason": "Required Automobile test-result data was unavailable because the points service repeatedly returned HTTP 500 throughout the run. This is not an established empty dataset. The observed failure was the points endpoint, not a result-details request. The required details error state and stale-data handling were not tested. Unrelated Surveyor/Automobile layers, map positions and later result panels appeared during independent criterion execution, preventing a controlled comparison; none was treated as evidence for this criterion. Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG.",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_points_service_error",
+      "blockers": [
+        {
+          "code": "automobile_points_service_error",
+          "details": "### Result\n217. [GET] https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/download/points?tileKeys=1080868300293941966%2C1080868300293941967%2C1080868300293941968%2C1080868300562377422%2C1080868300562377423%2C1080868300562377424%2C1080868300830812878%2C1080868300830812879%2C1080868300830812880%2C1080868301099248334%2C1080868301099248335%2C1080868301099248336%2C1080868301367683790%2C1080868301367683791%2C1080868301367683792&timeFrom=2026-07-21T14%3A16%3A00.000Z&timeTo=2026-10-19T14%3A16%3A00.000Z&deviceGroupAll=false => [500] \n\nNote: 174 static requests not shown, run with \"static\" option to see them."
+        },
+        {
+          "code": "shared_browser_state_changed",
+          "details": "Browser snapshots/screenshots showed layers or panels not created by this criterion; independent state could not be guaranteed."
+        }
+      ],
+      "cleanup": "Removed this criterion's selected Automobile layer using the observed layer-specific Remove from selected reference and saved a separate cleanup PNG."
+    }
+  ],
+  "conciseReport": "1 criterion passed; 15 blocked. Neither-layer baseline showed no Download/Upload points in the visible map. Both Automobile points endpoints repeatedly returned HTTP 500, preventing matching-result, dialog, chart, table and edge-state checks. This was not evidence of an empty result set or a details-loading failure. Shared browser state changed during execution; unrelated layers/panels were excluded. Criterion 3 cleanup cleared unrelated Surveyor selections and exact restoration was not completed. Persistent service/fixture blockers require review; no automatic retry is requested.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-79-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Automobile Download/Upload points service unavailable throughout independent checks; required result fixtures and controlled browser state could not be established.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-19T14:18:54.595Z"
+}
