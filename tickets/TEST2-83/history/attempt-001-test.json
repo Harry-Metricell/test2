@@ -1,0 +1,284 @@
+{
+  "handoffId": "handoff-TEST2-83-test-attempt-001",
+  "handoffVersion": "TEST2-83:test_ticket:1",
+  "ticket": "TEST2-83",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Given a Service point's details have loaded in the shared point-detail dialog, the standard detail presentation shows the returned serving-cell information.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial.png",
+        "screenshots/attempt-001/criterion-1-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-1-before-select-service.png",
+        "screenshots/attempt-001/criterion-1-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-1-final.png",
+        "screenshots/attempt-001/criterion-1-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher state.",
+        "Opened GIS, waited for map loading to finish, and captured the map state.",
+        "Opened Automobile layer configuration, opened the Test type list, selected Service, and captured the transitions.",
+        "Added Automobile - Service with default dates and all technologies selected.",
+        "Observed HTTP 500 responses for /api/platform/automobile/service/points in Playwright network responses or console messages; no Service point detail dialog could be opened.",
+        "Captured the final blocked GIS state and recorded its actual current browser URL before cleanup.",
+        "Removed the test-added Automobile - Service layer, verified its configuration control disappeared, and captured cleanup."
+      ],
+      "observedResult": "Service point retrieval returned HTTP 500; the Service layer was selected, but no suitable selectable Service point or loaded Service detail dialog was established. Final PNG records the reachable GIS state; the HTTP status was observed through Playwright, not a visible error message.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "service_points_api_error",
+      "retryClass": "prerequisite",
+      "reason": "Persistent upstream Service point retrieval failure reproduced across independent criterion runs. Cannot verify returned serving-cell information without a loaded Service point detail dialog. The point list was inaccessible, not positively established as empty. Restored the test-added layer selection; unrelated layers and panels were preserved. Persistent environment/data access requires investigation before these prerequisites can be met."
+    },
+    {
+      "criterion": "Given the loaded Service point details include neighbour-cell data, each returned neighbour appears in its own distinct section beneath the serving-cell information.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-after-open-gis.png",
+        "screenshots/attempt-001/criterion-2-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-2-before-select-service.png",
+        "screenshots/attempt-001/criterion-2-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-2-final.png",
+        "screenshots/attempt-001/criterion-2-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher state.",
+        "Opened GIS, waited for map loading to finish, and captured the map state.",
+        "Opened Automobile layer configuration, opened the Test type list, selected Service, and captured the transitions.",
+        "Added Automobile - Service with default dates and all technologies selected.",
+        "Observed HTTP 500 responses for /api/platform/automobile/service/points in Playwright network responses or console messages; no Service point detail dialog could be opened.",
+        "Captured the final blocked GIS state and recorded its actual current browser URL before cleanup.",
+        "Removed the test-added Automobile - Service layer, verified its configuration control disappeared, and captured cleanup."
+      ],
+      "observedResult": "Service point retrieval returned HTTP 500; the Service layer was selected, but no suitable selectable Service point or loaded Service detail dialog was established. Final PNG records the reachable GIS state; the HTTP status was observed through Playwright, not a visible error message.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "service_points_api_error",
+      "retryClass": "prerequisite",
+      "reason": "Persistent upstream Service point retrieval failure reproduced across independent criterion runs. Cannot establish a Service point response containing neighbours or inspect distinct neighbour sections. The point list was inaccessible, not positively established as empty. Restored the test-added layer selection; unrelated layers and panels were preserved. Persistent environment/data access requires investigation before these prerequisites can be met."
+    },
+    {
+      "criterion": "Given the loaded Service point details contain no neighbour-cell data, serving-cell information remains visible and no empty neighbour section appears.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-after-open-gis.png",
+        "screenshots/attempt-001/criterion-3-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-3-before-select-service.png",
+        "screenshots/attempt-001/criterion-3-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-3-final.png",
+        "screenshots/attempt-001/criterion-3-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher state.",
+        "Opened GIS, waited for map loading to finish, and captured the map state.",
+        "Opened Automobile layer configuration, opened the Test type list, selected Service, and captured the transitions.",
+        "Added Automobile - Service with default dates and all technologies selected.",
+        "Observed HTTP 500 responses for /api/platform/automobile/service/points in Playwright network responses or console messages; no Service point detail dialog could be opened.",
+        "Captured the final blocked GIS state and recorded its actual current browser URL before cleanup.",
+        "Removed the test-added Automobile - Service layer, verified its configuration control disappeared, and captured cleanup."
+      ],
+      "observedResult": "Service point retrieval returned HTTP 500; the Service layer was selected, but no suitable selectable Service point or loaded Service detail dialog was established. Final PNG records the reachable GIS state; the HTTP status was observed through Playwright, not a visible error message.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "service_points_api_error",
+      "retryClass": "prerequisite",
+      "reason": "Persistent upstream Service point retrieval failure reproduced across independent criterion runs. Cannot establish a Service point response without neighbours. The failed point-list request is not evidence of a valid empty-neighbour response. The point list was inaccessible, not positively established as empty. Restored the test-added layer selection; unrelated layers and panels were preserved. Persistent environment/data access requires investigation before these prerequisites can be met."
+    },
+    {
+      "criterion": "Given displayed Service point detail rows are available, sorting the rows changes their visible order according to the selected sort, and filtering them shows only rows matching the selected filter.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-after-open-gis.png",
+        "screenshots/attempt-001/criterion-4-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-4-before-select-service.png",
+        "screenshots/attempt-001/criterion-4-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-4-final.png",
+        "screenshots/attempt-001/criterion-4-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher state.",
+        "Opened GIS, waited for map loading to finish, and captured the map state.",
+        "Opened Automobile layer configuration, opened the Test type list, selected Service, and captured the transitions.",
+        "Added Automobile - Service with default dates and all technologies selected.",
+        "Observed HTTP 500 responses for /api/platform/automobile/service/points in Playwright network responses or console messages; no Service point detail dialog could be opened.",
+        "Captured the final blocked GIS state and recorded its actual current browser URL before cleanup.",
+        "Removed the test-added Automobile - Service layer, verified its configuration control disappeared, and captured cleanup."
+      ],
+      "observedResult": "Service point retrieval returned HTTP 500; the Service layer was selected, but no suitable selectable Service point or loaded Service detail dialog was established. Final PNG records the reachable GIS state; the HTTP status was observed through Playwright, not a visible error message.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "service_points_api_error",
+      "retryClass": "prerequisite",
+      "reason": "Persistent upstream Service point retrieval failure reproduced across independent criterion runs. Cannot load Service detail rows, so neither sorting order nor filtering matching rows could be exercised. The point list was inaccessible, not positively established as empty. Restored the test-added layer selection; unrelated layers and panels were preserved. Persistent environment/data access requires investigation before these prerequisites can be met."
+    },
+    {
+      "criterion": "Given a Service point's reported radio generation is 2G, 3G, 4G, 5G NSA, or 5G SA, the visible KPI names are appropriate to that generation.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-5-initial.png",
+        "screenshots/attempt-001/criterion-5-after-open-gis.png",
+        "screenshots/attempt-001/criterion-5-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-5-before-select-service.png",
+        "screenshots/attempt-001/criterion-5-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-5-final.png",
+        "screenshots/attempt-001/criterion-5-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher state.",
+        "Opened GIS, waited for map loading to finish, and captured the map state.",
+        "Opened Automobile layer configuration, opened the Test type list, selected Service, and captured the transitions.",
+        "Added Automobile - Service with default dates and all technologies selected.",
+        "Observed HTTP 500 responses for /api/platform/automobile/service/points in Playwright network responses or console messages; no Service point detail dialog could be opened.",
+        "Captured the final blocked GIS state and recorded its actual current browser URL before cleanup.",
+        "A generic remove control was ambiguous because another layer existed. Inspected selected layers, then removed only the test-added Automobile - Service layer and captured cleanup."
+      ],
+      "observedResult": "Service point retrieval returned HTTP 500; the Service layer was selected, but no suitable selectable Service point or loaded Service detail dialog was established. Final PNG records the reachable GIS state; the HTTP status was observed through Playwright, not a visible error message.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "service_points_api_error",
+      "retryClass": "prerequisite",
+      "reason": "Persistent upstream Service point retrieval failure reproduced across independent criterion runs. Cannot load Service point details for any of 2G, 3G, 4G, 5G NSA or 5G SA; layer legend labels are not point-detail KPI evidence. The point list was inaccessible, not positively established as empty. Restored the test-added layer selection; unrelated layers and panels were preserved. Persistent environment/data access requires investigation before these prerequisites can be met."
+    },
+    {
+      "criterion": "Given 5G SA is selected and the user opens a Service point in the shared point-detail dialog, the Service point detail presentation loads without an error state.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-6-initial.png",
+        "screenshots/attempt-001/criterion-6-after-open-gis.png",
+        "screenshots/attempt-001/criterion-6-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-6-before-select-service.png",
+        "screenshots/attempt-001/criterion-6-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-6-after-select-only-5g-sa.png",
+        "screenshots/attempt-001/criterion-6-final.png",
+        "screenshots/attempt-001/criterion-6-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher state.",
+        "Opened GIS, waited for map loading to finish, and captured the map state.",
+        "Opened Automobile layer configuration, opened the Test type list, selected Service, and captured the transitions.",
+        "Unchecked no-service, 2G, 3G, 4G and 5G NSA in one form operation; verified 5G SA checked and all other technologies unchecked; captured this selection.",
+        "Added Automobile - Service with default dates and only 5G SA selected.",
+        "Observed HTTP 500 responses for /api/platform/automobile/service/points in Playwright network responses or console messages; no Service point detail dialog could be opened.",
+        "Captured the final blocked GIS state and recorded its actual current browser URL before cleanup.",
+        "Removed the test-added Automobile - Service layer, verified its configuration control disappeared, and captured cleanup."
+      ],
+      "observedResult": "Service point retrieval returned HTTP 500; the Service layer was selected, but no suitable selectable Service point or loaded Service detail dialog was established. Final PNG records the reachable GIS state; the HTTP status was observed through Playwright, not a visible error message.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "service_points_api_error",
+      "retryClass": "prerequisite",
+      "reason": "Persistent upstream Service point retrieval failure reproduced across independent criterion runs. With only 5G SA selected, Service point retrieval still returns HTTP 500. No 5G SA point could be opened. The point list was inaccessible, not positively established as empty. Restored the test-added layer selection; unrelated layers and panels were preserved. Persistent environment/data access requires investigation before these prerequisites can be met."
+    },
+    {
+      "criterion": "Given Service point details are loading, the detail presentation shows a loading state.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-7-initial.png",
+        "screenshots/attempt-001/criterion-7-after-open-gis.png",
+        "screenshots/attempt-001/criterion-7-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-7-before-select-service.png",
+        "screenshots/attempt-001/criterion-7-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-7-final.png",
+        "screenshots/attempt-001/criterion-7-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher state.",
+        "Opened GIS, waited for map loading to finish, and captured the map state.",
+        "Opened Automobile layer configuration, opened the Test type list, selected Service, and captured the transitions.",
+        "Added Automobile - Service with default dates and all technologies selected.",
+        "Observed HTTP 500 responses for /api/platform/automobile/service/points in Playwright network responses or console messages; no Service point detail dialog could be opened.",
+        "Captured the final blocked GIS state and recorded its actual current browser URL before cleanup.",
+        "Removed the test-added Automobile - Service layer, verified its configuration control disappeared, and captured cleanup."
+      ],
+      "observedResult": "Service point retrieval returned HTTP 500; the Service layer was selected, but no suitable selectable Service point or loaded Service detail dialog was established. Final PNG records the reachable GIS state; the HTTP status was observed through Playwright, not a visible error message.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "service_points_api_error",
+      "retryClass": "prerequisite",
+      "reason": "Persistent upstream Service point retrieval failure reproduced across independent criterion runs. Cannot initiate Service detail loading because upstream point retrieval fails. Map/layer loading is not the required detail-presentation loading state. The point list was inaccessible, not positively established as empty. Restored the test-added layer selection; unrelated layers and panels were preserved. Persistent environment/data access requires investigation before these prerequisites can be met."
+    },
+    {
+      "criterion": "Given Service point details are unavailable, the detail presentation shows a no-data state.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-8-initial.png",
+        "screenshots/attempt-001/criterion-8-after-open-gis.png",
+        "screenshots/attempt-001/criterion-8-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-8-before-select-service.png",
+        "screenshots/attempt-001/criterion-8-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-8-final.png",
+        "screenshots/attempt-001/criterion-8-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher state.",
+        "Opened GIS, waited for map loading to finish, and captured the map state.",
+        "Opened Automobile layer configuration, opened the Test type list, selected Service, and captured the transitions.",
+        "Added Automobile - Service with default dates and all technologies selected.",
+        "Observed HTTP 500 responses for /api/platform/automobile/service/points in Playwright network responses or console messages; no Service point detail dialog could be opened.",
+        "Captured the final blocked GIS state and recorded its actual current browser URL before cleanup.",
+        "Removed the test-added Automobile - Service layer, verified its configuration control disappeared, and captured cleanup."
+      ],
+      "observedResult": "Service point retrieval returned HTTP 500; the Service layer was selected, but no suitable selectable Service point or loaded Service detail dialog was established. Final PNG records the reachable GIS state; the HTTP status was observed through Playwright, not a visible error message.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "service_points_api_error",
+      "retryClass": "prerequisite",
+      "reason": "Persistent upstream Service point retrieval failure reproduced across independent criterion runs. Cannot establish unavailable Service point details. Failed upstream requests do not establish a no-data detail response. The point list was inaccessible, not positively established as empty. Restored the test-added layer selection; unrelated layers and panels were preserved. Persistent environment/data access requires investigation before these prerequisites can be met."
+    },
+    {
+      "criterion": "Given loading Service point details fails, the detail presentation shows an error state and does not show incorrect detail data.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-001/criterion-9-initial.png",
+        "screenshots/attempt-001/criterion-9-after-open-gis.png",
+        "screenshots/attempt-001/criterion-9-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-9-before-select-service.png",
+        "screenshots/attempt-001/criterion-9-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-9-restart-initial.png",
+        "screenshots/attempt-001/criterion-9-restart-after-open-gis.png",
+        "screenshots/attempt-001/criterion-9-restart-after-open-automobile.png",
+        "screenshots/attempt-001/criterion-9-restart-before-select-service.png",
+        "screenshots/attempt-001/criterion-9-restart-before-add-service-layer.png",
+        "screenshots/attempt-001/criterion-9-restart-final.png",
+        "screenshots/attempt-001/criterion-9-restart-cleanup.png"
+      ],
+      "steps_taken": [
+        "The first GIS attempt timed out locating exact text Automobile because the visible catalogue entry was Automobile (1). Configuration was then reached, but the browser session was interrupted before the attempt completed. Continued from a fresh launcher and captured a new initial state.",
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher state.",
+        "Opened GIS, waited for map loading to finish, and captured the map state.",
+        "Opened Automobile layer configuration, opened the Test type list, selected Service, and captured the transitions.",
+        "Added Automobile - Service with default dates and all technologies selected.",
+        "Observed HTTP 500 responses for /api/platform/automobile/service/points in Playwright network responses or console messages; no Service point detail dialog could be opened.",
+        "Captured the final blocked GIS state and recorded its actual current browser URL before cleanup.",
+        "Removed the test-added Automobile - Service layer, verified its configuration control disappeared, and captured cleanup."
+      ],
+      "observedResult": "Service point retrieval returned HTTP 500; the Service layer was selected, but no suitable selectable Service point or loaded Service detail dialog was established. Final PNG records the reachable GIS state; the HTTP status was observed through Playwright, not a visible error message.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "service_points_api_error",
+      "retryClass": "prerequisite",
+      "reason": "Persistent upstream Service point retrieval failure reproduced across independent criterion runs. Cannot open a Service point and trigger a detail-loading failure. The observed HTTP 500 is on point retrieval, not a shared detail-dialog request; no conclusion about its error state or incorrect-data handling is possible. The point list was inaccessible, not positively established as empty. Restored the test-added layer selection; unrelated layers and panels were preserved. Persistent environment/data access requires investigation before these prerequisites can be met."
+    }
+  ],
+  "conciseReport": "All 9 canonical criteria are Blocked. Independent launcher-to-GIS checks repeatedly returned HTTP 500 from Automobile Service point retrieval, including a 5G-SA-only selection. No Service point detail dialog was reached, so serving-cell/neighbour presentation, sorting/filtering, generation-specific detail KPIs, and detail loading/no-data/error states remain unverified. Criterion-specific PNGs record the reachable blocker state and cleanup; network errors were observed through Playwright. Persistent data-access prerequisite requires investigation. Test-added Service layers were removed.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-83-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Persistent Service point retrieval HTTP 500 prevents the shared detail-dialog prerequisites for all nine criteria. Classified prerequisite because it reproduced throughout this run; no product-detail failure or valid empty response is inferred.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-19T14:00:50.345Z"
+}
