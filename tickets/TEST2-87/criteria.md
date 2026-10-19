@@ -1,9 +1,9 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] Given a completed Call test is selected, its summary displays the available duration, result, connection time, handset, and disconnection information.
-- [ ] Given Call samples are available, a timeline chart displays call state, service technology, and signal strength over the test duration.
-- [ ] Given Call samples are available, they are displayed in a sortable and filterable table.
-- [ ] Given a sample has a known serving site/cell, the table displays it as Serving Cell; otherwise, it displays the CGI.
-- [ ] Given the user selects a Call sample, the related Service details open for that point in time.
-- [ ] Given the selected Call point has no measurable duration, the user receives the standard no-data state rather than an empty detail view.
-- [ ] Given Call details are loading, unavailable, or fail to load, a standard loading, no-data, or error state is shown without displaying incorrect data.
+- [ ] When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.
+- [ ] When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.
+- [ ] When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.
+- [ ] For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.
+- [ ] Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.
+- [ ] When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.
+- [ ] While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.
