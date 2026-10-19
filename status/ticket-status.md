@@ -21,7 +21,7 @@ Updated: 2026-10-19T14:14:16.862+0100
 | TEST2-86 | READY FOR TESTING | Ready for Testing |  | Display Upload Point Details |
 | TEST2-87 | READY FOR TESTING | Ready for Testing |  | Display Call Point Details |
 | TEST2-88 | READY FOR TESTING | Ready for Testing |  | Configure MS Teams Call map display settings |
-| TEST2-89 | READY FOR TESTING | Ready for Testing |  | Map and inspect MS Teams Call results |
+| TEST2-89 | READY FOR TESTING | Awaiting Evidence Review |  | Map and inspect MS Teams Call results |
 | TEST2-90 | READY FOR TESTING | Ready for Testing |  | Map and inspect Automobile call results |
 | TEST2-91 | READY FOR TESTING | Awaiting Evidence Review |  | Filter Automobile map results |
 | TEST2-92 | READY FOR TESTING | Awaiting Evidence Review |  | Filter Automobile map points using the legend |
