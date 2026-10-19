@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-10-13T10:30:19.903+0100
+Updated: 2026-10-19T14:14:16.862+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
@@ -11,3 +11,17 @@ Updated: 2026-10-13T10:30:19.903+0100
 | TEST2-74 | READY FOR TESTING | Evidence Reviewed |  | V4 Surveyor: cancelling an unsaved Username leaves the map unchanged |
 | TEST2-75 | READY FOR TESTING | Evidence Reviewed |  | V4 GIS catalogue: find Surveyor and clear the search without changing the map |
 | TEST2-78 | READY FOR TESTING | Evidence Reviewed |  | V4 GIS: search Surveyor and preserve the actual initial map and layer state |
+| TEST2-79 | READY FOR TESTING | Criteria Check Required |  | Map and inspect Automobile Download and Upload results |
+| TEST2-80 | READY FOR TESTING | Criteria Check Required |  | Map and inspect Automobile Service results |
+| TEST2-81 | READY FOR TESTING | Criteria Check Required |  | Map HTTP Browsing, Ping and Video Streaming point details |
+| TEST2-82 | READY FOR TESTING | Criteria Check Required |  | Display Ping Point Details |
+| TEST2-83 | READY FOR TESTING | Criteria Check Required |  | Display Service Point Details |
+| TEST2-84 | READY FOR TESTING | Criteria Check Required |  | View Building Details and Floorplans |
+| TEST2-85 | READY FOR TESTING | Criteria Check Required |  | Display Download Point Details |
+| TEST2-86 | READY FOR TESTING | Criteria Check Required |  | Display Upload Point Details |
+| TEST2-87 | READY FOR TESTING | Criteria Check Required |  | Display Call Point Details |
+| TEST2-88 | READY FOR TESTING | Criteria Check Required |  | Configure MS Teams Call map display settings |
+| TEST2-89 | READY FOR TESTING | Criteria Check Required |  | Map and inspect MS Teams Call results |
+| TEST2-90 | READY FOR TESTING | Criteria Check Required |  | Map and inspect Automobile call results |
+| TEST2-91 | READY FOR TESTING | Criteria Check Required |  | Filter Automobile map results |
+| TEST2-92 | READY FOR TESTING | Criteria Check Required |  | Filter Automobile map points using the legend |

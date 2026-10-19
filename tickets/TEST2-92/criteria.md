@@ -1,0 +1,21 @@
+<!-- Generated from Jira acceptance criteria. -->
+
+- [ ] Given a standard Automobile map layer is active, when its legend is displayed, then it shows the groups and items from the active selected legend section.
+- [ ] Given the user selects an interactive legend item, when the visibility changes, then matching active-layer points are shown or hidden accordingly.
+- [ ] Given the user double-clicks an interactive legend item, when isolation is applied, then that item remains visible and the other items in its group are hidden.
+- [ ] Given an item is hidden, when the legend and map are displayed, then the item is visually muted and its matching points are not displayed.
+- [ ] Given the versioned legend definitions change, when the updated application is deployed, then the legend and map use the same defined groups, thresholds, colours and shapes.
+- [ ] Given the user uses legend filtering, when other layers or form-based filters are considered, then they are not changed by that interaction.
+- [ ] Additional acceptance criteria:
+- [ ] Given a layer supplies multiple titled legend groups, when the shared interactive list renders them, then each group's title, items and configured marker shapes/outlines are shown, and isolation affects only sibling items.
+- [ ] Given a layer supplies one Colour By option, when the legend renders, then its field title appears as a label; given multiple options, then a dropdown shows exactly the layer-supplied options.
+- [ ] Given a consuming layer supplies multiple fields and their measurements, when Colour By changes, then the displayed groups, map classification, markers and linked-context visibility follow the selected field without changing form filters or fetching the same points again. Do not claim this end-to-end check passed using the current single-field Automobile types.
+- [ ] Given Colour By is selected, when the layer state is restored, then that layer's selected field and saved field-specific overrides are restored independently of other layers.
+- [ ] Given Edit Legend is opened, when labels, colours or numeric boundaries are edited, then the dialog holds drafts for only the active field; the map changes only after Save, while Cancel or Close discards unsaved drafts. A successful Save refreshes the drafts and leaves the dialog open.
+- [ ] Given a valid edit is saved, when the legend and cached map points render, then labels, colours and classification use the same saved definition; other fields and layers retain their saved overrides.
+- [ ] Given a numeric generation group is edited, when the user adds or deletes a range, then the small add icon below the group's marker column adds a row, each eligible existing or added row has a delete action, at least one numeric range remains, and editing a value does not reorder Automobile rows.
+- [ ] Given a Value field is editable, when a value is empty, non-finite, outside its limits or violates boundary ordering, then an inline error appears immediately and Save is disabled. Numeric fields use number inputs; HTTP Browsing boundaries are limited to 0–10,000, while Ping and Video Streaming use a minimum of zero without an additional maximum cap. Video Streaming's exact categories remain fixed.
+- [ ] Given Reset is selected, when defaults are shown, then they remain drafts until Save; saving restores the active field's default labels, colours, boundaries, categories and visibility without resetting other fields or layers.
+- [ ] Given linked-site display settings change, when the map updates, then linked sites/cells use the shared Network context and follow visible result categories. Linked cells are disabled when linked sites are off, and the settings persist per layer.
+- [ ] Given the legend is displayed with or without a details tab, when the map pane resizes, then the legend remains scrollable and avoids Reset North and the other map controls.
+- [ ] Given existing layers use shared legend components, when this change is integrated, then their established markers, visibility, editor actions and default behaviour remain unchanged unless they opt into the new options. Verify Automobile and existing consumers manually.

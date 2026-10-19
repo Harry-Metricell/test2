@@ -1,0 +1,54 @@
+{
+  "key": "TEST2-87",
+  "id": "106643",
+  "summary": "Display Call Point Details",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-87",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-10-19T14:12:03.709+0100",
+    "updated": "2026-10-19T14:14:09.121+0100"
+  },
+  "description": "As a SmartTools map user\nI want to view the details of a Call point\nSo that I can investigate call performance and serving-cell information at the selected location.\nIssue/Change Description:\nWhen a user opens a Call point through the shared point-detail dialog, show the call summary, a call timeline chart, and the returned call samples.\nThe summary includes the available duration, test result, connection time, start and end time, handset, and disconnection cause. The timeline shows call state, service technology, and signal strength. The sample data includes a Serving Cell column; where a known site/cell is not available, show the CGI instead.\nSelecting a call sample opens the relevant Service details for that point in time.\nAcceptance Criteria:\nGiven a completed Call test is selected, its summary displays the available duration, result, connection time, handset, and disconnection information.\nGiven Call samples are available, a timeline chart displays call state, service technology, and signal strength over the test duration.\nGiven Call samples are available, they are displayed in a sortable and filterable table.\nGiven a sample has a known serving site/cell, the table displays it as Serving Cell; otherwise, it displays the CGI.\nGiven the user selects a Call sample, the related Service details open for that point in time.\nGiven the selected Call point has no measurable duration, the user receives the standard no-data state rather than an empty detail view.\nGiven Call details are loading, unavailable, or fail to load, a standard loading, no-data, or error state is shown without displaying incorrect data.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
+  "acceptanceCriteria": [
+    "Given a completed Call test is selected, its summary displays the available duration, result, connection time, handset, and disconnection information.",
+    "Given Call samples are available, a timeline chart displays call state, service technology, and signal strength over the test duration.",
+    "Given Call samples are available, they are displayed in a sortable and filterable table.",
+    "Given a sample has a known serving site/cell, the table displays it as Serving Cell; otherwise, it displays the CGI.",
+    "Given the user selects a Call sample, the related Service details open for that point in time.",
+    "Given the selected Call point has no measurable duration, the user receives the standard no-data state rather than an empty detail view.",
+    "Given Call details are loading, unavailable, or fail to load, a standard loading, no-data, or error state is shown without displaying incorrect data."
+  ],
+  "files": {
+    "ticket": "tickets/TEST2-87/ticket.json",
+    "criteria": "tickets/TEST2-87/criteria.md",
+    "status": "tickets/TEST2-87/status.json",
+    "screenshots": "tickets/TEST2-87/screenshots/",
+    "reports": "tickets/TEST2-87/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106643",
+    "importedAt": "2026-10-19T14:14:09.121+0100"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "testAttempts": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-19T14:14:09.121+0100",
+    "criteriaVerified": false
+  }
+}

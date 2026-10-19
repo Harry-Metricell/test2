@@ -1,5 +1,230 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-10-13T10:30:19.903+0100",
-  "handoffs": []
+  "generatedAt": "2026-10-19T14:14:16.862+0100",
+  "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-79-criteria",
+      "handoffVersion": "TEST2-79:criteria_conversion:2026-10-19T14:13:55.682+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-79",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-79/ticket.json",
+        "generated": "status/generated/TEST2-79.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-79/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-80-criteria",
+      "handoffVersion": "TEST2-80:criteria_conversion:2026-10-19T14:13:57.297+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-80",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-80/ticket.json",
+        "generated": "status/generated/TEST2-80.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-80/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-81-criteria",
+      "handoffVersion": "TEST2-81:criteria_conversion:2026-10-19T14:13:58.948+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-81",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-81/ticket.json",
+        "generated": "status/generated/TEST2-81.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-81/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-82-criteria",
+      "handoffVersion": "TEST2-82:criteria_conversion:2026-10-19T14:14:00.660+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-82",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-82/ticket.json",
+        "generated": "status/generated/TEST2-82.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-82/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-83-criteria",
+      "handoffVersion": "TEST2-83:criteria_conversion:2026-10-19T14:14:02.467+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-83",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-83/ticket.json",
+        "generated": "status/generated/TEST2-83.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-83/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-84-criteria",
+      "handoffVersion": "TEST2-84:criteria_conversion:2026-10-19T14:14:04.309+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-84",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-84/ticket.json",
+        "generated": "status/generated/TEST2-84.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-84/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-85-criteria",
+      "handoffVersion": "TEST2-85:criteria_conversion:2026-10-19T14:14:05.978+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-85",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-85/ticket.json",
+        "generated": "status/generated/TEST2-85.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-85/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-86-criteria",
+      "handoffVersion": "TEST2-86:criteria_conversion:2026-10-19T14:14:07.518+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-86",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-86/ticket.json",
+        "generated": "status/generated/TEST2-86.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-86/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-87-criteria",
+      "handoffVersion": "TEST2-87:criteria_conversion:2026-10-19T14:14:09.121+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-87",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-87/ticket.json",
+        "generated": "status/generated/TEST2-87.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-87/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-88-criteria",
+      "handoffVersion": "TEST2-88:criteria_conversion:2026-10-19T14:14:10.577+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-88",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-88/ticket.json",
+        "generated": "status/generated/TEST2-88.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-88/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-89-criteria",
+      "handoffVersion": "TEST2-89:criteria_conversion:2026-10-19T14:14:12.138+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-89",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-89/ticket.json",
+        "generated": "status/generated/TEST2-89.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-89/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-90-criteria",
+      "handoffVersion": "TEST2-90:criteria_conversion:2026-10-19T14:14:13.719+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-90",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-90/ticket.json",
+        "generated": "status/generated/TEST2-90.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-90/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-91-criteria",
+      "handoffVersion": "TEST2-91:criteria_conversion:2026-10-19T14:14:15.306+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-91",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-91/ticket.json",
+        "generated": "status/generated/TEST2-91.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-91/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-92-criteria",
+      "handoffVersion": "TEST2-92:criteria_conversion:2026-10-19T14:14:16.862+0100",
+      "action": "criteria_conversion",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "owner": "criteria-converter",
+      "ticket": "TEST2-92",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-92/ticket.json",
+        "generated": "status/generated/TEST2-92.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-92/criteria.md",
+        "schema": "v4-qa-criteria.v1"
+      }
+    }
+  ]
 }
