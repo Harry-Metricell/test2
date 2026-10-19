@@ -1,0 +1,212 @@
+[
+  {
+    "criterion": "On a standard Automobile map layer, opening filters shows a time filter for a rolling 90-day range.",
+    "outcome": "Passed",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "steps_taken": [
+      "Navigated to the launcher. The initial screenshot failed with ENOENT; created this handoff's screenshot folder and restarted from the launcher before interacting.",
+      "Captured the launcher, opened GIS, opened Automobile, added HTTP Browsing and opened the active layer configuration, capturing the successive visible states.",
+      "Read From 2026-07-21T14:26 and To 2026-10-19T14:26 from the displayed time fields: a 90-day default interval.",
+      "Captured the decisive final state and browser URL, then closed configuration and removed the test-created layer."
+    ],
+    "observed_result": "The standard HTTP Browsing layer configuration exposes From and To fields with a rolling 90-day default range.",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-after-open-automobile.png",
+      "screenshots/attempt-001/criterion-1-after-add-layer.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ]
+  },
+  {
+    "criterion": "On a standard Automobile map layer, opening filters shows handset fields for MSISDN, SIM MNC, and SIM MCC.",
+    "outcome": "Passed",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "steps_taken": [
+      "Initial setup was interrupted by an unexpected Automobile MS Teams Call layer and Surveyor Call layer; discarded that setup.",
+      "Restarted at the launcher and captured a new independent initial image.",
+      "Opened GIS and Automobile, added HTTP Browsing, and opened its active configuration.",
+      "Observed MSISDN, SIM MCC and SIM MNC under Handset, captured the final state and browser URL, then closed configuration and removed the test-created layer."
+    ],
+    "observed_result": "All three required handset fields are available. Browser-derived types are text for MSISDN and number for SIM MCC and SIM MNC.",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-restart-initial.png",
+      "screenshots/attempt-001/criterion-2-restart-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-restart-after-open-automobile.png",
+      "screenshots/attempt-001/criterion-2-restart-after-add-layer.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ]
+  },
+  {
+    "criterion": "On a standard Automobile map layer, opening filters shows technology choices for Unknown, 2G, 3G, 4G, 5G NSA, and 5G SA.",
+    "outcome": "Failed",
+    "retryClass": "product",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "steps_taken": [
+      "Navigated to the launcher and captured its initial state.",
+      "Opened GIS and Automobile, added HTTP Browsing and opened its configuration.",
+      "Inspected the complete technology checkbox list using the accessibility tree and browser DOM; the labels were no-service, 2G, 3G, 4G, 5G NSA and 5G SA.",
+      "Captured the decisive final state and current URL, then closed configuration and removed the test-created layer."
+    ],
+    "observed_result": "The first technology is labelled no-service rather than Unknown. The required Unknown technology option is absent; Unknown occurs in Band choices instead.",
+    "reason": "The complete browser-observed checkbox list does not include the required Unknown technology choice. The final viewport shows no-service and the first technology rows; the lower 5G rows were inspected through the browser accessibility tree and DOM.",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis.png",
+      "screenshots/attempt-001/criterion-3-after-open-automobile.png",
+      "screenshots/attempt-001/criterion-3-after-add-layer.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ]
+  },
+  {
+    "criterion": "On a standard Automobile map layer, the frequency filter offers the frequencies supplied by the application configuration.",
+    "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "configuration_reference_unavailable",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "steps_taken": [
+      "Navigated to the launcher, captured its initial state, opened GIS and Automobile, added HTTP Browsing and opened configuration.",
+      "Observed populated per-technology Band controls.",
+      "Examined browser-observed network request names for configuration or frequency references. No authoritative Automobile configuration reference was established.",
+      "Observed an unrequested Surveyor cluster events table on the same page while Automobile configuration remained open; captured the final state and URL."
+    ],
+    "observed_result": "Band options are displayed, but their match to configured frequencies and configuration-driven provenance could not be verified.",
+    "reason": "The live ticket and criteria supply no expected frequency configuration fixture, and browser inspection did not establish an authoritative configured list. Unrequested Surveyor state also appeared during the criterion. No configuration was changed. Cleanup of the pending Automobile state was not safely completed because unrelated state appeared and subsequent browser access failed.",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-after-open-gis.png",
+      "screenshots/attempt-001/criterion-4-after-open-automobile.png",
+      "screenshots/attempt-001/criterion-4-after-add-layer.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ]
+  },
+  {
+    "criterion": "On a standard Automobile map layer, opening filters shows network fields for MCC, MNC, LAC, CI, Site, and Cell.",
+    "outcome": "Blocked",
+    "retryClass": "transient",
+    "blockerCode": "browser_approval_review_timeout",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Attempted browser_tabs new with the launcher URL; the tool returned only tab 0 rather than an isolated new tab.",
+      "Attempted browser_navigate to exactly https://o2intelligence-v4-dev.metricell.com/launcher to begin the independent criterion; it returned the approval-review timeout."
+    ],
+    "observed_result": "No decision was possible.",
+    "reason": "Configured Playwright browser access prevented reliable independent execution. Actual browser_navigate error: The automatic permission approval review did not finish before its deadline. Do not assume the action is unsafe based on the timeout alone. You may retry once, or ask the user for guidance or explicit approval. No criterion-specific PNG could be captured because navigation failed before a verified launcher initial state; no earlier criterion's images were reused. Final browser URL is unknown because browser access failed. Browser identity was observed once earlier in this run. Prior unrequested Surveyor/Automobile state changes also prevented a reliable continuous sequence."
+  },
+  {
+    "criterion": "On a standard Automobile map layer, the device-group filter offers the groups supplied by the application configuration.",
+    "outcome": "Blocked",
+    "retryClass": "transient",
+    "blockerCode": "browser_approval_review_timeout",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not entered after the configured browser navigation failed with an approval-review timeout; no product actions were taken for this criterion."
+    ],
+    "observed_result": "No decision was possible.",
+    "reason": "Configured Playwright browser access prevented reliable independent execution. Actual browser_navigate error: The automatic permission approval review did not finish before its deadline. Do not assume the action is unsafe based on the timeout alone. You may retry once, or ask the user for guidance or explicit approval. No criterion-specific PNG could be captured because navigation failed before a verified launcher initial state; no earlier criterion's images were reused. Final browser URL is unknown because browser access failed. Browser identity was observed once earlier in this run. Prior unrequested Surveyor/Automobile state changes also prevented a reliable continuous sequence."
+  },
+  {
+    "criterion": "When SIM MCC, SIM MNC, MCC, MNC, or LAC is edited, each field accepts numeric digits only.",
+    "outcome": "Blocked",
+    "retryClass": "transient",
+    "blockerCode": "browser_approval_review_timeout",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not entered after the configured browser navigation failed with an approval-review timeout; no product actions were taken for this criterion."
+    ],
+    "observed_result": "No decision was possible.",
+    "reason": "Configured Playwright browser access prevented reliable independent execution. Actual browser_navigate error: The automatic permission approval review did not finish before its deadline. Do not assume the action is unsafe based on the timeout alone. You may retry once, or ask the user for guidance or explicit approval. No criterion-specific PNG could be captured because navigation failed before a verified launcher initial state; no earlier criterion's images were reused. Final browser URL is unknown because browser access failed. Browser identity was observed once earlier in this run. Prior unrequested Surveyor/Automobile state changes also prevented a reliable continuous sequence."
+  },
+  {
+    "criterion": "When MSISDN, CI, Site, or Cell is edited, each field accepts text input.",
+    "outcome": "Blocked",
+    "retryClass": "transient",
+    "blockerCode": "browser_approval_review_timeout",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not entered after the configured browser navigation failed with an approval-review timeout; no product actions were taken for this criterion."
+    ],
+    "observed_result": "No decision was possible.",
+    "reason": "Configured Playwright browser access prevented reliable independent execution. Actual browser_navigate error: The automatic permission approval review did not finish before its deadline. Do not assume the action is unsafe based on the timeout alone. You may retry once, or ask the user for guidance or explicit approval. No criterion-specific PNG could be captured because navigation failed before a verified launcher initial state; no earlier criterion's images were reused. Final browser URL is unknown because browser access failed. Browser identity was observed once earlier in this run. Prior unrequested Surveyor/Automobile state changes also prevented a reliable continuous sequence."
+  },
+  {
+    "criterion": "When one or more filters are applied on a standard Automobile map layer, the displayed map results match the active filter values and are within the user's authorised results.",
+    "outcome": "Blocked",
+    "retryClass": "transient",
+    "blockerCode": "browser_approval_review_timeout",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not entered after the configured browser navigation failed with an approval-review timeout; no product actions were taken for this criterion."
+    ],
+    "observed_result": "No decision was possible.",
+    "reason": "Configured Playwright browser access prevented reliable independent execution. Actual browser_navigate error: The automatic permission approval review did not finish before its deadline. Do not assume the action is unsafe based on the timeout alone. You may retry once, or ask the user for guidance or explicit approval. No criterion-specific PNG could be captured because navigation failed before a verified launcher initial state; no earlier criterion's images were reused. Final browser URL is unknown because browser access failed. Browser identity was observed once earlier in this run. Prior unrequested Surveyor/Automobile state changes also prevented a reliable continuous sequence."
+  },
+  {
+    "criterion": "On a Call layer, the technology filter does not offer 5G NSA.",
+    "outcome": "Blocked",
+    "retryClass": "transient",
+    "blockerCode": "browser_approval_review_timeout",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not entered after the configured browser navigation failed with an approval-review timeout; no product actions were taken for this criterion."
+    ],
+    "observed_result": "No decision was possible.",
+    "reason": "Configured Playwright browser access prevented reliable independent execution. Actual browser_navigate error: The automatic permission approval review did not finish before its deadline. Do not assume the action is unsafe based on the timeout alone. You may retry once, or ask the user for guidance or explicit approval. No criterion-specific PNG could be captured because navigation failed before a verified launcher initial state; no earlier criterion's images were reused. Final browser URL is unknown because browser access failed. Browser identity was observed once earlier in this run. Prior unrequested Surveyor/Automobile state changes also prevented a reliable continuous sequence."
+  },
+  {
+    "criterion": "When device groups are shown, restricted device-segregation options are not offered.",
+    "outcome": "Blocked",
+    "retryClass": "transient",
+    "blockerCode": "browser_approval_review_timeout",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not entered after the configured browser navigation failed with an approval-review timeout; no product actions were taken for this criterion."
+    ],
+    "observed_result": "No decision was possible.",
+    "reason": "Configured Playwright browser access prevented reliable independent execution. Actual browser_navigate error: The automatic permission approval review did not finish before its deadline. Do not assume the action is unsafe based on the timeout alone. You may retry once, or ask the user for guidance or explicit approval. No criterion-specific PNG could be captured because navigation failed before a verified launcher initial state; no earlier criterion's images were reused. Final browser URL is unknown because browser access failed. Browser identity was observed once earlier in this run. Prior unrequested Surveyor/Automobile state changes also prevented a reliable continuous sequence."
+  },
+  {
+    "criterion": "On Route Replay, the standard Automobile map filter controls described in this ticket are not available.",
+    "outcome": "Blocked",
+    "retryClass": "transient",
+    "blockerCode": "browser_approval_review_timeout",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not entered after the configured browser navigation failed with an approval-review timeout; no product actions were taken for this criterion."
+    ],
+    "observed_result": "No decision was possible.",
+    "reason": "Configured Playwright browser access prevented reliable independent execution. Actual browser_navigate error: The automatic permission approval review did not finish before its deadline. Do not assume the action is unsafe based on the timeout alone. You may retry once, or ask the user for guidance or explicit approval. No criterion-specific PNG could be captured because navigation failed before a verified launcher initial state; no earlier criterion's images were reused. Final browser URL is unknown because browser access failed. Browser identity was observed once earlier in this run. Prior unrequested Surveyor/Automobile state changes also prevented a reliable continuous sequence."
+  }
+]
