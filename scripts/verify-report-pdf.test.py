@@ -121,6 +121,29 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
         self.assertEqual(missing, [])
         self.assertEqual(matched[0]["method"], "source_sha256")
 
+    def test_full_limitations_survive_page_footer_and_compound_word_wrapping(self):
+        class Page:
+            def __init__(self, value): self.value = value
+            def extract_text(self): return self.value
+        pages = [Page("Overall review outcome: Blocked\nLimitations during Testing: The required"),
+                 Page("Metricell Limited © 2026 – Refer to Title Page\nCommercial in Confidence\nPage 4\n"
+                      "detail state followed an approval-\nreview timeout.\n"
+                      "Browser URL(s) recorded after criteria: https://example.test/gis\nE01 - evidence.png")]
+        contract = {"overallOutcome": "Blocked", "limitations": "The required detail state followed an approval-review timeout.",
+                    "sourceUrls": ["https://example.test/gis"], "evidenceCaptions": ["E01 - evidence.png"]}
+        with patch.object(VERIFY, "PdfReader", return_value=type("Reader", (), {"pages": pages})()):
+            self.assertTrue(VERIFY.verify_report_content("ignored.pdf", contract))
+            with self.assertRaisesRegex(SystemExit, "missing report content"):
+                VERIFY.verify_report_content("ignored.pdf", {**contract, "limitations": "The required detail state followed an approval-review timeout. Missing final sentence."})
+
+    def test_footer_normalization_does_not_remove_real_body_lines(self):
+        class Page:
+            def extract_text(self):
+                return "\n".join(["body line"] * 13 + ["Page 4", "Commercial in Confidence"] + ["body line"] * 13)
+        self.assertIn("Page 4\nCommercial in Confidence", VERIFY.report_page_body(Page()))
+        self.assertEqual(VERIFY.normalize_report_text("HTTP 500, not HTTP 200"), "HTTP 500, not HTTP 200")
+        self.assertEqual(VERIFY.normalize_report_text("a no- \n\n  duration result"), "a no-duration result")
+
     def test_rejects_no_evidence_image(self):
         image = patterned_image((20, 40, 60))
         _, missing = VERIFY.match_expected_images([expected("criterion-1.png", image, "source-a")], [])

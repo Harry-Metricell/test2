@@ -166,18 +166,39 @@ def match_expected_images(expected, observed):
     return matched, missing
 
 
+def normalize_report_text(value):
+    """Ignore layout whitespace, including wrapping inside a hyphenated word."""
+    value = value.replace("\u00ad", "")
+    value = re.sub(r"(?<=\w)-[ \t]*\r?\n\s*(?=\w)", "-", value)
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def report_page_body(page):
+    """Exclude only the template's known margin lines, never arbitrary text.
+
+    Word may emit the footer before the body in its PDF text stream. Keeping
+    it between pages makes a complete multi-page limitations paragraph look
+    truncated. Restrict removal to exact footer lines near a page boundary.
+    """
+    lines = (page.extract_text() or "").splitlines()
+    footer = re.compile(r"Metricell Limited .* Refer to Title Page|Commercial in Confidence|Page\s+\d+")
+    return "\n".join(line for index, line in enumerate(lines)
+                     if not ((index < 12 or index >= len(lines) - 12)
+                             and footer.fullmatch(line.strip())))
+
+
 def verify_report_content(pdf_path, content):
     """Reject a visually populated PDF that dropped its outcome or audit trail."""
     if not isinstance(content, dict) or not content.get("overallOutcome") or not content.get("limitations"):
         raise SystemExit("image manifest has no report-content contract")
-    rendered = re.sub(r"\s+", " ", " ".join(page.extract_text() or "" for page in PdfReader(pdf_path).pages)).strip()
+    rendered = normalize_report_text("\n".join(report_page_body(page) for page in PdfReader(pdf_path).pages))
     required = [
         "Overall review outcome:", content["overallOutcome"],
         "Limitations during Testing:", content["limitations"],
         "Browser URL(s) recorded after criteria:", *(content.get("sourceUrls") or []),
         *(content.get("evidenceCaptions") or []),
     ]
-    missing = [item for item in required if re.sub(r"\s+", " ", item).strip() not in rendered]
+    missing = [item for item in required if normalize_report_text(item) not in rendered]
     if missing:
         raise SystemExit(f"converted PDF is missing report content: {missing}")
     return True

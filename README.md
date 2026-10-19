@@ -43,6 +43,10 @@ Criteria, testing and review preserve the ticket's evidence scope. A settled emp
 
 ### Report evidence
 
+Browser testing is serialized per host. The coordinator allows one active tester, and each tester acquires `scripts/tester-browser-lease.mjs` before any Playwright call. The shared browser must not be driven by multiple chats even when MCP uses `--isolated`. Criteria and evidence reviews can run in parallel. Leases never expire by age; coordinator recovery releases one only after confirming the owning tester has stopped. See the coordinator brief for recovery commands.
+
+PDF content verification excludes the template's exact page-margin lines and normalizes line wrapping inside hyphenated words. It still requires the entire limitations text, outcome, recorded URLs, captions and expected evidence images. A footer inserted between extracted pages must not reject an otherwise complete report.
+
 Reports show decisive criterion states with descriptive captions. Redundant named setup steps and adjacent pixel-identical states are omitted from the printed report, not deleted from private evidence; a changed pixel or a later return to an earlier state is never removed by similarity matching. A small setup appendix retains context.
 
 Where the before/after captures displayed together show a localized change, Word adds clearly labelled detail enlargements beneath those exact full-context images. A crop is never carried over to unrelated setup images. These are display crops of the original embedded PNG, not retouched screenshots; broad changes fall back to complete screenshots. Repeated layer-dialog/loading setup is omitted from settings checks but retained when configuration itself is asserted. Recovered tool errors and cleanup difficulties are reported even when the criterion passed, without changing the reviewed outcome.

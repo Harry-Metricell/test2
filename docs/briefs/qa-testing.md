@@ -8,6 +8,10 @@ Read only its remote inputs.criteria, inputs.ticketJson and inputs.status. Retry
 
 ## Browser and authentication
 
+Before any browser tool call, acquire the shared browser with `node scripts/tester-browser-lease.mjs --acquire <handoffId>` in the synchronized Desktop checkout. Require `acquired: true` and retain its returned token. If `acquired: false`, wait 30 seconds and retry without opening/navigating the browser, staging a result, or consuming an attempt. Never remove or expire another tester's lease. If the lease command is unavailable or denied, do not touch the browser; report the actual capability error rather than bypassing ownership.
+
+Hold the lease for the whole attempt, including all criteria and cleanup. In a finally step after the output is safely staged, run `node scripts/tester-browser-lease.mjs --release <handoffId> <token>`. Only release your own token. If execution is interrupted, preserve the lease for coordinator reconciliation. Do not open or navigate a browser for a busy-lease no-op. Playwright's `--isolated` flag does not provide a private session per chat.
+
 Use the configured Playwright MCP for all interactions and PNG evidence on the same page. Discover installed browser tools before declaring them unavailable. If absent, mark affected results Blocked with blockerCode "browser_tools_unavailable", retryClass "transient" and the actual tool error. Still stage required JSON; do not invent images or use another browser.
 
 Start the run and every independent criterion with browser_navigate to exactly `https://o2intelligence-v4-dev.metricell.com/launcher`. Wait for the visible launcher and capture that criterion's initial state before interacting. An already-open destination module is not a valid start. If the launcher is unavailable, block rather than test from a destination page.
@@ -49,6 +53,8 @@ Every non-Passed result needs retryClass:
 - manual: uncertain classification.
 
 Passed results need no retryClass. Never label persistent conditions transient to obtain another test. Only an all-transient non-Passed run may receive the one automatic tester retry; other runs go to evidence review/report. Status Bundler owns this decision and the two-total-attempt limit.
+
+For a data-service failure, distinguish a settled empty response from an HTTP error. Record the request method, safe endpoint path (omit tokens/query secrets), status code and whether a controlled fresh load reproduced it. Capture the visible blocker; do not invent an on-screen HTTP message from network evidence. A repeated 500 preventing point retrieval blocks dependent detail checks: explain which data could not be obtained, rather than repeatedly issuing the same failing request for every criterion. Continue independent reachable checks. Never change the backend, accounts, permissions or source Jira project to make a test pass.
 
 ## Stage output and finish
 

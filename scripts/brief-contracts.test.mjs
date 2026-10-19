@@ -100,6 +100,18 @@ test('coordinator retains import, reconciliation, duplicate and completion gates
   assert.match(coordinator, /Do not test, review screenshots or open, render, repair or generate Word\/PDF/);
 });
 
+test('different tickets cannot concurrently operate the shared MCP browser', () => {
+  const coordinator = brief('coordinator');
+  const tester = brief('qa-testing');
+  assert.ok(coordinator.includes('Run at most one browser tester across all tickets'));
+  assert.ok(coordinator.includes('testers started before leases were introduced'));
+  assert.ok(coordinator.includes('unavailable child observation reserves the browser'));
+  assert.ok(tester.includes('tester-browser-lease.mjs --acquire <handoffId>'));
+  assert.ok(tester.includes('tester-browser-lease.mjs --release <handoffId> <token>'));
+  assert.ok(tester.includes('without opening/navigating the browser, staging a result, or consuming an attempt'));
+  assert.ok(tester.includes('A repeated 500 preventing point retrieval blocks dependent detail checks'));
+});
+
 test('criteria, tester and reviewer reject unstated populated-list prerequisites', () => {
   for (const name of ['criteria-conversion', 'qa-testing', 'evidence-review']) {
     const worker = brief(name);

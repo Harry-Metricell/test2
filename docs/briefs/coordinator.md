@@ -72,6 +72,14 @@ Testers and reviewers require imported Jira status exactly READY FOR TESTING. Ot
 
 Create one fresh tester per handoff; never revive or message a persistent tester. Workers handle exactly one selected handoff and stage output. PNGs remain under `%USERPROFILE%\Documents\V4-QA-evidence\<KEY>\screenshots\attempt-NNN\` or TEST2_EVIDENCE, not GitHub. A PNG 404 must not delay reviewer dispatch; the reviewer checks local evidence. Never inspect or upload PNGs yourself.
 
+### Shared browser capacity
+
+Run at most one browser tester across all tickets on this host. The Playwright MCP browser is shared by chats; `--isolated` isolates its stored profile, not one chat from another. Criteria and evidence-review tasks may run concurrently because they do not operate the live browser.
+
+Before starting a tester, reconcile all recorded tester children and check `node scripts/tester-browser-lease.mjs --status`. A busy lease, a nonterminal tester, or an unavailable child observation reserves the browser: wait and continue independent non-browser work. This also applies to testers started before leases were introduced. Never start another tester merely because its ticket or handoff differs, its age exceeds a timeout, or its output is not published yet.
+
+Each tester acquires the atomic browser lease before its first browser call and releases its own token after staging output and finishing cleanup. If a lease remains after a definite terminal child, verify its exact handoff has staged output or that the child has definitively stopped, read `.agent-staging/tester-browser.lock/owner.json`, and release only that recorded handoff/token with `node scripts/tester-browser-lease.mjs --release <handoffId> <token>`. Preserve unverifiable ownership; never clear a live lease by age. A lease is capacity bookkeeping, never an attempt or retry count.
+
 After review, wait for publisher confirmation that selected images survived DOCX/PDF conversion and remote read-back of the complete publication. A wholly untested all-Blocked attempt with empty evidence lists instead requires an explicitly verified no-browser-evidence blocker report. A non-empty PDF alone is insufficient. Generation/verification failure retains the same handoff and staged review: no partial review or duplicate reviewer. Require the publisher's non-empty local verified PDF and its remote report.pdf metadata, without opening either file.
 
 Guide stages require a remote Passed review and verified non-empty report. Authoring also requires guide-impact.json decision update_required; not_needed ends guide work. The author writes instructions/references, not a Word document or new captures.
