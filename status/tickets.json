@@ -3,10 +3,10 @@
   "generatedAt": "2026-10-19T14:14:16.862+0100",
   "counts": {
     "tickets": 21,
-    "handoffs": 9,
+    "handoffs": 8,
     "byWorkflowState": {
-      "Blocked": 5,
-      "Ready": 16
+      "Blocked": 6,
+      "Ready": 15
     },
     "byQaOutcome": {
       "Blocked": 14,
@@ -347,13 +347,13 @@
       "key": "TEST2-91",
       "summary": "Filter Automobile map results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-19T14:14:15.306+0100",
       "retries": 0,
       "retryLimit": 1,
