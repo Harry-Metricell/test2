@@ -3,10 +3,10 @@
   "generatedAt": "2026-10-19T14:14:16.862+0100",
   "counts": {
     "tickets": 21,
-    "handoffs": 11,
+    "handoffs": 10,
     "byWorkflowState": {
-      "Blocked": 3,
-      "Ready": 18
+      "Blocked": 4,
+      "Ready": 17
     },
     "byQaOutcome": {
       "Blocked": 14,
@@ -211,13 +211,13 @@
       "key": "TEST2-83",
       "summary": "Display Service Point Details",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-19T14:14:02.467+0100",
       "retries": 0,
       "retryLimit": 1,
