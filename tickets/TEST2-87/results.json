@@ -1,0 +1,207 @@
+[
+  {
+    "criterion": "When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.",
+    "outcome": "Failed",
+    "retryClass": "product",
+    "reason": "The completed Call summary contains no Duration or Handset row, despite measurable start/end timestamps. It shows Success, connection time 1310 and start/end times; Disconnection Cause Code is blank. Complete summary was inspected to its bottom.",
+    "steps_taken": [
+      "Initial screenshot failed because its directory did not exist; created the staging directory and restarted criterion at launcher before continuing.",
+      "Opened GIS; added Surveyor, selected Call and Last 30 days.",
+      "Searched map for 51.07226, -0.31453; clicked green Call point and opened seb.knight call 22/09/2026 08:12:32–08:12:52.",
+      "Inspected complete Call event information table and scrolled summary to its bottom; captured summary without duration/handset."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-gis-before-surveyor.png",
+      "screenshots/attempt-001/criterion-1-surveyor-before-call.png",
+      "screenshots/attempt-001/criterion-1-layer-options.png",
+      "screenshots/attempt-001/criterion-1-call-before-add.png",
+      "screenshots/attempt-001/criterion-1-call-layer.png",
+      "screenshots/attempt-001/criterion-1-before-map-search.png",
+      "screenshots/attempt-001/criterion-1-after-map-search.png",
+      "screenshots/attempt-001/criterion-1-cluster-before-open.png",
+      "screenshots/attempt-001/criterion-1-final.png",
+      "screenshots/attempt-001/criterion-1-summary-bottom.png"
+    ],
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-87-test-attempt-001/screenshots/criterion-1-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
+    "outcome": "Failed",
+    "retryClass": "product",
+    "reason": "Call analysis plots Signal strength against seconds and annotates Call initiated, Connected and Call ended, but no service-technology series or track is displayed. Technology appears only in the separate summary/table.",
+    "steps_taken": [
+      "Started independently at launcher and opened GIS; Surveyor - Call was present on entry.",
+      "Attempt to open exact catalog text Surveyor timed out because its label was Surveyor (1); inspected actual layer state before proceeding.",
+      "Searched 51.07226, -0.31453, opened Call cluster and completed 22/09/2026 08:12:32 call.",
+      "Inspected the settled Call analysis chart and captured final assertion."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-gis-before-layer.png",
+      "screenshots/attempt-001/criterion-2-before-map-search.png",
+      "screenshots/attempt-001/criterion-2-map-before-point.png",
+      "screenshots/attempt-001/criterion-2-cluster-before-open.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-87-test-attempt-001/screenshots/criterion-2-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.",
+    "outcome": "Failed",
+    "retryClass": "product",
+    "reason": "Call measurements displays 110 samples but no column sorting or sample filtering controls. Clicking Time leaves the first sample at 08:12:32.797; no sort state appears.",
+    "steps_taken": [
+      "Started independently at launcher and opened GIS; Call and Upload layers were present.",
+      "Searched 51.07226, -0.31453 and clicked point; selected the Call cluster tab by verifying its Call result/disconnection columns.",
+      "Opened completed 22/09/2026 08:12:32 Call; inspected measurement headers, visible input controls and first sample.",
+      "Captured baseline, clicked Time and verified unchanged first sample, no aria-sort and no sample filtering input."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-map-search.png",
+      "screenshots/attempt-001/criterion-3-map-before-point.png",
+      "screenshots/attempt-001/criterion-3-call-active.png",
+      "screenshots/attempt-001/criterion-3-call-cluster.png",
+      "screenshots/attempt-001/criterion-3-opened-call.png",
+      "screenshots/attempt-001/criterion-3-before-sort.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-87-test-attempt-001/screenshots/criterion-3-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.",
+    "outcome": "Passed",
+    "reason": "Serving Cell shows known cell 510633_124_4 for the 22/09/2026 call and CGI 234-30-3922178 for the 12/10/2026 14:25:31 call. Both values match the actual returned Call samples. Scope: these two returned sample sets.",
+    "steps_taken": [
+      "Started independently at launcher, opened GIS and Call cluster at 51.07226, -0.31453.",
+      "Opened 22/09/2026 08:12:32 Call and verified known Serving Cell 510633_124_4.",
+      "Opened 12/10/2026 14:25:31 Call and captured CGI fallback; browser session was interrupted before completing final metadata.",
+      "After continuation, restarted this criterion at launcher, opened GIS and the Call point again, inspected known-cell samples, returned to Call cluster and reopened the 12/10/2026 call.",
+      "Verified Serving Cell CGI 234-30-3922178 in the displayed table and actual returned samples; captured final PNG and actual URL."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-before-search.png",
+      "screenshots/attempt-001/criterion-4-before-point.png",
+      "screenshots/attempt-001/criterion-4-cluster-before-open.png",
+      "screenshots/attempt-001/criterion-4-known-cell.png",
+      "screenshots/attempt-001/criterion-4-before-second-call.png",
+      "screenshots/attempt-001/criterion-4-resumed-initial.png",
+      "screenshots/attempt-001/criterion-4-resumed-before-search.png",
+      "screenshots/attempt-001/criterion-4-resumed-before-point.png",
+      "screenshots/attempt-001/criterion-4-resumed-known-cell.png",
+      "screenshots/attempt-001/criterion-4-resumed-before-fallback-call.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-87-test-attempt-001/screenshots/criterion-4-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.",
+    "outcome": "Passed",
+    "reason": "Selected the 2026-09-22 08:12:32.797 Call sample. A Selected measurement section opened with Radio details for seb.knight, 4G cell 510633_124_4/site 510633, RSRP -98 dBm and handset samsung SM-S931B, matching the selected sample.",
+    "steps_taken": [
+      "Navigated to launcher independently and captured initial state.",
+      "Opened GIS; existing layer was Surveyor - Ping. Searched 51.07226, -0.31453, opened and inspected its cluster, then added Surveyor Call with Last 30 days.",
+      "Closed the Ping cluster and clicked the green Call point; inspected Call cluster columns and opened completed 22/09/2026 08:12:32 call.",
+      "Scrolled to first Call measurement at 08:12:32.797, captured baseline and selected it.",
+      "Verified Selected measurement Radio details appeared and matched the selected sample cell and -98 dBm signal; captured assertion before cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-initial.png",
+      "screenshots/attempt-001/criterion-5-before-search.png",
+      "screenshots/attempt-001/criterion-5-before-point.png",
+      "screenshots/attempt-001/criterion-5-before-add-call.png",
+      "screenshots/attempt-001/criterion-5-layer-options.png",
+      "screenshots/attempt-001/criterion-5-before-add-layer.png",
+      "screenshots/attempt-001/criterion-5-call-added.png",
+      "screenshots/attempt-001/criterion-5-call-map-before-point.png",
+      "screenshots/attempt-001/criterion-5-cluster-before-call.png",
+      "screenshots/attempt-001/criterion-5-before-sample.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-87-test-attempt-001/screenshots/criterion-5-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.",
+    "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "no_zero_duration_call_fixture",
+    "reason": "All five Call events in the inspected Horsham cluster have distinct start/end timestamps (20 seconds each). No zero-duration/unmeasurable-duration Call point is identified in the supplied ticket or live criteria. The required branch cannot be evaluated with these non-matching fixtures.",
+    "steps_taken": [
+      "Started independently at launcher and opened GIS.",
+      "Searched 51.07226, -0.31453. Existing Automobile - MS Teams Call layer returned HTTP 500 and was left unchanged.",
+      "Opened Surveyor setup and added Call with Last 30 days. A generic Add layer selector was ambiguous; used the observed Surveyor catalog entry.",
+      "Clicked the Call point and inspected all five returned Call event start/end times; all were measurable 20-second calls.",
+      "Captured the populated Call cluster as the prerequisite blocker; did not claim this was a no-data detail state."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "evidence": [
+      "screenshots/attempt-001/criterion-6-initial.png",
+      "screenshots/attempt-001/criterion-6-before-search.png",
+      "screenshots/attempt-001/criterion-6-before-point.png",
+      "screenshots/attempt-001/criterion-6-before-surveyor.png",
+      "screenshots/attempt-001/criterion-6-surveyor-options.png",
+      "screenshots/attempt-001/criterion-6-before-call.png",
+      "screenshots/attempt-001/criterion-6-before-add.png",
+      "screenshots/attempt-001/criterion-6-call-before-point.png",
+      "screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-87-test-attempt-001/screenshots/criterion-6-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.",
+    "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "missing_loading_no_data_error_fixtures",
+    "reason": "The inspected Call resolves successfully with 110 samples and HTTP 200 for its detail requests. No reproducible unavailable/error Call detail fixture or observable sustained loading state is supplied. Errors on unrelated Automobile/Ping layers do not exercise Call detail error handling; these branches remain untested.",
+    "steps_taken": [
+      "Started independently at launcher; opened GIS and confirmed Surveyor Call layer was present.",
+      "Searched 51.07226, -0.31453 and clicked Call point; inspected cluster tabs and selected the one with Call/disconnection columns.",
+      "Opened completed 22/09/2026 08:12:32 Call, which settled to populated details with 110 samples.",
+      "Verified actual Call detail requests succeeded. No Call no-data/error state was observed or manufactured; captured populated state documenting the non-matching prerequisite."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "evidence": [
+      "screenshots/attempt-001/criterion-7-initial.png",
+      "screenshots/attempt-001/criterion-7-before-search.png",
+      "screenshots/attempt-001/criterion-7-before-point.png",
+      "screenshots/attempt-001/criterion-7-before-call.png",
+      "screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-87-test-attempt-001/screenshots/criterion-7-cleanup.png"
+    ]
+  }
+]
