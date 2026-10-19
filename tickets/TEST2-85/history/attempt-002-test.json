@@ -1,0 +1,309 @@
+{
+  "handoffId": "handoff-TEST2-85-retry-attempt-002",
+  "handoffVersion": "TEST2-85:test_ticket:2",
+  "ticket": "TEST2-85",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Given a completed Download test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Download Rate, and Wi-Fi connection status.",
+      "outcome": "Unverified",
+      "retryClass": "manual",
+      "reason": "Completed seb.knight / Test Boldyn Download (22/09/2026 11:01:08–11:01:27) loaded with technology, user, handset, serving cell, Download Rate and Wi-Fi fields. The summary DOM had no explicit Service or Duration rows; final viewport does not include the entire summary, so full criterion is inconclusive.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-before-add-crowd.png",
+        "screenshots/attempt-002/criterion-1-after-open-crowd.png",
+        "screenshots/attempt-002/criterion-1-before-surveyor.png",
+        "screenshots/attempt-002/criterion-1-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-1-before-add-download.png",
+        "screenshots/attempt-002/criterion-1-after-add-download.png",
+        "screenshots/attempt-002/criterion-1-before-select-point.png",
+        "screenshots/attempt-002/criterion-1-after-select-cluster.png",
+        "screenshots/attempt-002/criterion-1-final.png",
+        "screenshots/attempt-002/criterion-1-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Inspected Crowd configuration and Layer options; cancelled without adding Crowd. Inspected launcher navigation, then opened Surveyor.",
+        "Opened Surveyor layer configuration; selected Active layer Download with default Last 30 days and all locations/technologies.",
+        "Added Surveyor - Download and waited for the layer.",
+        "Clicked Download map cluster at viewport (650,655).",
+        "Opened seb.knight / Test Boldyn completed test dated 22/09/2026 11:01:08 from the cluster events table.",
+        "Read Download summary and measurement table; captured final state before closing detail/cluster and removing the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given Download samples are available, a time-series chart shows Signal Strength in dBm and Download Rate in Mbps across the test duration.",
+      "outcome": "Passed",
+      "reason": "Completed Download displays Signal strength (dBm) and Download rate (Mbps) against Seconds; chart spans approximately 0–19 seconds, matching the test interval.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-before-surveyor.png",
+        "screenshots/attempt-002/criterion-2-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-2-before-add-download.png",
+        "screenshots/attempt-002/criterion-2-after-add-download.png",
+        "screenshots/attempt-002/criterion-2-after-select-cluster.png",
+        "screenshots/attempt-002/criterion-2-after-open-details.png",
+        "screenshots/attempt-002/criterion-2-final.png",
+        "screenshots/attempt-002/criterion-2-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Opened Surveyor layer configuration; selected Active layer Download with default Last 30 days and all locations/technologies.",
+        "Added Surveyor - Download and waited for the layer.",
+        "Clicked Download map cluster at viewport (650,655).",
+        "Opened seb.knight / Test Boldyn completed test dated 22/09/2026 11:01:08 from the cluster events table.",
+        "Scrolled the Survey chart into view and verified both series, axis units and Seconds time axis; captured decisive final chart.",
+        "Closed detail/cluster and removed the test-created layer after final evidence."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given per-sample Download data is available, each returned sample is shown in a table with its relevant units.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "reason": "74 sample rows display Time, Download Rate, Technology, Serving Cell, Signal Strength, Size and Mobile Data State. Signal Strength includes dBm, but Download Rate and Size have neither header units nor value units (e.g. 0.35 and 2.65). During this criterion's setup, a stale restored cluster/layer was removed after the Add Surveyor locator timed out; the dedicated after-reset/before-reopen PNG was not captured (missing .agent-staging/handoff-TEST2-85-retry-attempt-002/screenshots/criterion-3-after-reset-restored-layer.png). Per the evidence rule, this remains Blocked despite the observed missing units.",
+      "blockerCode": "incomplete_transition_evidence",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-before-surveyor.png",
+        "screenshots/attempt-002/criterion-3-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-3-before-add-download.png",
+        "screenshots/attempt-002/criterion-3-after-add-download.png",
+        "screenshots/attempt-002/criterion-3-after-select-cluster.png",
+        "screenshots/attempt-002/criterion-3-after-open-details.png",
+        "screenshots/attempt-002/criterion-3-final.png",
+        "screenshots/attempt-002/criterion-3-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Opened Surveyor layer configuration; selected Active layer Download with default Last 30 days and all locations/technologies.",
+        "Added Surveyor - Download and waited for the layer.",
+        "Clicked Download map cluster at viewport (650,655).",
+        "Opened seb.knight / Test Boldyn completed test dated 22/09/2026 11:01:08 from the cluster events table.",
+        "Recovered browser-persisted stale cluster/layer after an Add Surveyor locator timeout, then opened a fresh Download configuration.",
+        "Scrolled the measurement headers into view; counted 74 rows and read first/last samples. Rate and Size columns lack units.",
+        "Captured final state, then closed detail/cluster and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given the per-sample table contains multiple rows, sorting by a displayed column changes their visible order according to that column.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_state_changed",
+      "reason": "After independently selecting Surveyor Download and adding its layer, clicking the intended map location did not produce Surveyor cluster events. Playwright timed out waiting 10000 ms for that table. Browser instead showed HTTP Browsing test - 16/09/2026, 10:44:08, with no configured Download layer. Sorting was not exercised; browser state changed unexpectedly.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-before-surveyor.png",
+        "screenshots/attempt-002/criterion-4-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-4-before-add-download.png",
+        "screenshots/attempt-002/criterion-4-after-add-download.png",
+        "screenshots/attempt-002/criterion-4-blocker.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Opened Surveyor layer configuration; selected Active layer Download with default Last 30 days and all locations/technologies.",
+        "Added Surveyor - Download and waited for the layer.",
+        "Clicked Download map cluster at viewport (650,655).",
+        "After adding Download, the expected Surveyor cluster table did not appear within 10000 ms; inspected actual HTTP Browsing detail state and captured blocker.",
+        "No Download configure controls remained at blocker capture; did not interact with the unrelated HTTP panel."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given per-sample data is available, filtering the table shows only rows matching the selected filter.",
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "Completed Download contains 74 samples, but Download measurements has zero input/button/select controls and no table filter. The only visible textboxes are Ask AI, Filter layers and Search Map; no per-sample filter can be selected.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-before-surveyor.png",
+        "screenshots/attempt-002/criterion-5-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-5-before-add-download.png",
+        "screenshots/attempt-002/criterion-5-after-add-download.png",
+        "screenshots/attempt-002/criterion-5-after-select-cluster.png",
+        "screenshots/attempt-002/criterion-5-after-open-details.png",
+        "screenshots/attempt-002/criterion-5-final.png",
+        "screenshots/attempt-002/criterion-5-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Opened Surveyor layer configuration; selected Active layer Download with default Last 30 days and all locations/technologies.",
+        "Added Surveyor - Download and waited for the layer.",
+        "Clicked Download map cluster at viewport (650,655).",
+        "Opened seb.knight / Test Boldyn completed test dated 22/09/2026 11:01:08 from the cluster events table.",
+        "Scrolled the measurement headers into view and inspected table/page controls; no per-sample filter existed.",
+        "Captured final state, then closed detail/cluster and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear in the summary immediately after Download Rate.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "missing_average_metrics_fixture",
+      "reason": "This criterion independently opened the completed Download. event-analysis returned details:[] and 74 samples; event-l3/event returned []. No Average Signal Strength/Quality/SNR metrics were returned or displayed, so the conditional ordering prerequisite is unmet. No matching fixture was supplied.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-before-surveyor.png",
+        "screenshots/attempt-002/criterion-6-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-6-before-add-download.png",
+        "screenshots/attempt-002/criterion-6-after-add-download.png",
+        "screenshots/attempt-002/criterion-6-after-select-cluster.png",
+        "screenshots/attempt-002/criterion-6-after-open-details.png",
+        "screenshots/attempt-002/criterion-6-final.png",
+        "screenshots/attempt-002/criterion-6-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Opened Surveyor layer configuration; selected Active layer Download with default Last 30 days and all locations/technologies.",
+        "Added Surveyor - Download and waited for the layer.",
+        "Clicked Download map cluster at viewport (650,655).",
+        "Opened seb.knight / Test Boldyn completed test dated 22/09/2026 11:01:08 from the cluster events table.",
+        "Inspected summary and current request response bodies: event-l3/event [], event-analysis details:[], samples:74, no average metrics.",
+        "Captured non-matching fixture as final state, then closed detail/cluster and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given the selected Download point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "missing_zero_duration_fixture",
+      "reason": "This criterion independently opened the available Download: Test Start Time 11:01:08, Test End Time 11:01:27 and populated samples. It has measurable duration and cannot establish zero-duration handling. No matching zero-duration Download fixture was supplied or identified in the selected cluster.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-7-initial.png",
+        "screenshots/attempt-002/criterion-7-before-surveyor.png",
+        "screenshots/attempt-002/criterion-7-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-7-before-add-download.png",
+        "screenshots/attempt-002/criterion-7-after-add-download.png",
+        "screenshots/attempt-002/criterion-7-after-select-cluster.png",
+        "screenshots/attempt-002/criterion-7-after-open-details.png",
+        "screenshots/attempt-002/criterion-7-final.png",
+        "screenshots/attempt-002/criterion-7-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Opened Surveyor layer configuration; selected Active layer Download with default Last 30 days and all locations/technologies.",
+        "Added Surveyor - Download and waited for the layer.",
+        "Clicked Download map cluster at viewport (650,655).",
+        "Opened seb.knight / Test Boldyn completed test dated 22/09/2026 11:01:08 from the cluster events table.",
+        "Compared start/end times and populated sample view; available test has approximately 19 seconds duration.",
+        "Captured non-matching fixture as final state, then closed detail/cluster and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given Download details are loading, the detail presentation shows a loading state.",
+      "outcome": "Unverified",
+      "retryClass": "transient",
+      "reason": "Independently opened Download details and captured immediately after selecting the event, without waiting for the measurement table. By capture/inspection the measurements were already visible, no loading text or progressbar was present. Evidence does not establish whether a transient loading state appeared.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-8-initial.png",
+        "screenshots/attempt-002/criterion-8-before-surveyor.png",
+        "screenshots/attempt-002/criterion-8-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-8-before-add-download.png",
+        "screenshots/attempt-002/criterion-8-after-add-download.png",
+        "screenshots/attempt-002/criterion-8-after-select-cluster.png",
+        "screenshots/attempt-002/criterion-8-after-open-details.png",
+        "screenshots/attempt-002/criterion-8-final.png",
+        "screenshots/attempt-002/criterion-8-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Opened Surveyor layer configuration; selected Active layer Download with default Last 30 days and all locations/technologies.",
+        "Added Surveyor - Download and waited for the layer.",
+        "Clicked Download map cluster at viewport (650,655).",
+        "Opened seb.knight / Test Boldyn completed test dated 22/09/2026 11:01:08 from the cluster events table.",
+        "Clicked the Download row without explicitly waiting for measurement-table load; captured immediate post-click view.",
+        "Inspected loading text/progressbar (none) and loaded measurements (visible); captured inconclusive final state.",
+        "Closed detail/cluster and removed the test-created layer after final capture."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given Download details are unavailable, the detail presentation shows a no-data state.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "missing_unavailable_details_fixture",
+      "reason": "Independently selected the available completed Download; its summary and 74 sample rows loaded successfully. This is not an unavailable-details fixture. No matching unavailable Download was supplied or identified in the selected cluster, so no-data handling cannot be established.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-9-initial.png",
+        "screenshots/attempt-002/criterion-9-before-surveyor.png",
+        "screenshots/attempt-002/criterion-9-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-9-before-add-download.png",
+        "screenshots/attempt-002/criterion-9-after-add-download.png",
+        "screenshots/attempt-002/criterion-9-after-select-cluster.png",
+        "screenshots/attempt-002/criterion-9-after-open-details.png",
+        "screenshots/attempt-002/criterion-9-final.png",
+        "screenshots/attempt-002/criterion-9-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Opened Surveyor layer configuration; selected Active layer Download with default Last 30 days and all locations/technologies.",
+        "Added Surveyor - Download and waited for the layer.",
+        "Clicked Download map cluster at viewport (650,655).",
+        "Opened seb.knight / Test Boldyn completed test dated 22/09/2026 11:01:08 from the cluster events table.",
+        "Inspected successfully loaded summary and 74 measurement rows; no unavailable-details fixture was identified.",
+        "Captured non-matching fixture as final state, then closed detail/cluster and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given loading Download details fails, the detail presentation shows an error state and does not display incorrect data.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_state_changed",
+      "reason": "Started independently from launcher and opened GIS. During restoration of browser-persisted selected layers before configuring the criterion, Playwright timed out after 10000 ms waiting for Remove from selected nth(1); the layer controls changed underneath the action. Error-state testing did not occur. Browser state could not be restored reliably; no further unrelated controls were changed.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-10-initial.png",
+        "screenshots/attempt-002/criterion-10-blocker.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS from launcher.",
+        "Attempted to restore browser-persisted map selections before configuring Download; Remove from selected nth(1) vanished and timed out after 10000 ms.",
+        "Captured actual blocker state and read current URL; error-state assertion was not reached. Restoration could not be confirmed reliably."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    }
+  ],
+  "conciseReport": "TEST2-85 attempt 2: 1 Passed, 1 Failed, 2 Unverified, 6 Blocked.\n\nThe Download chart shows signal strength (dBm) and Download rate (Mbps) over time. The sample table has no filtering controls. Missing rate/size units were observed, but that criterion is Blocked due to a missing transition capture. Complete summary and loading-state assertions remain inconclusive. Average-metric, zero-duration and unavailable-detail fixtures were not established. Browser state changed during sorting and error-state checks. Each criterion started at the launcher with separate evidence; all referenced PNGs were checked for readability. Test-created Download selections were removed after completed criteria; final browser-state restoration could not be confirmed during the last blocked check.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-85-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Work performed; browser/evidence blockers and unavailable matching fixtures prevent complete verification. The handoff contains product, prerequisite, manual and transient classifications; no automatic retry decision was made.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-19T15:05:48.487Z"
+}
