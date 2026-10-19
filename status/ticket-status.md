@@ -13,7 +13,7 @@ Updated: 2026-10-19T16:27:06.061+0100
 | TEST2-78 | READY FOR TESTING | Evidence Reviewed |  | V4 GIS: search Surveyor and preserve the actual initial map and layer state |
 | TEST2-79 | READY FOR TESTING | Awaiting Evidence Review |  | Map and inspect Automobile Download and Upload results |
 | TEST2-81 | READY FOR TESTING | Blocked |  | Map HTTP Browsing, Ping and Video Streaming point details |
-| TEST2-82 | READY FOR TESTING | Awaiting Evidence Review |  | Display Ping Point Details |
+| TEST2-82 | READY FOR TESTING | Blocked |  | Display Ping Point Details |
 | TEST2-84 | READY FOR TESTING | Blocked |  | View Building Details and Floorplans |
 | TEST2-85 | READY FOR TESTING | Blocked | Retry 1/1 | Display Download Point Details |
 | TEST2-86 | READY FOR TESTING | Awaiting Evidence Review |  | Display Upload Point Details |
