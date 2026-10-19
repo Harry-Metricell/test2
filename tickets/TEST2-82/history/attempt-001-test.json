@@ -1,0 +1,180 @@
+{
+  "handoffId": "handoff-TEST2-82-test-attempt-001",
+  "handoffVersion": "TEST2-82:test_ticket:1",
+  "ticket": "TEST2-82",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "When a selected Ping point’s details have loaded, the detail view shows that point’s Ping Time with the unit milliseconds (ms).",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-restart-initial.png",
+        "screenshots/attempt-001/criterion-1-restart-after-open-gis.png",
+        "screenshots/attempt-001/criterion-1-restart-surveyor-dialog.png",
+        "screenshots/attempt-001/criterion-1-layer-options.png",
+        "screenshots/attempt-001/criterion-1-ping-selected.png",
+        "screenshots/attempt-001/criterion-1-after-add-ping.png",
+        "screenshots/attempt-001/criterion-1-configure-ping.png",
+        "screenshots/attempt-001/criterion-1-survey-list.png",
+        "screenshots/attempt-001/criterion-1-survey-selected.png",
+        "screenshots/attempt-001/criterion-1-survey-applied.png",
+        "screenshots/attempt-001/criterion-1-filtered-map.png",
+        "screenshots/attempt-001/criterion-1-before-coordinate-search.png",
+        "screenshots/attempt-001/criterion-1-after-coordinate-search.png",
+        "screenshots/attempt-001/criterion-1-cluster.png",
+        "screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Restarted at the exact launcher after a session reset and captured a new initial state.",
+        "Opened GIS, opened Surveyor configuration, selected Ping and added the layer.",
+        "Configured the independently selected mm wave 2 survey (seb.knight, 06/10/2026) and applied it.",
+        "Searched map coordinates 51.52462, -0.63848, opened a Ping cluster, then selected the 06/10/2026 10:36:18 event.",
+        "Verified Ping event information showed Ping Time 24 ms and recorded final URL.",
+        "Closed the test-created Ping and cluster tabs, removed the Ping layer and returned the map toward its initial location."
+      ],
+      "observed_result": "The selected 06/10/2026 10:36:18 Ping event displayed Ping Time 24 ms.",
+      "reason": "The first initial capture failed because its directory did not exist; the directory was created, and the criterion restarted with fresh verified evidence. A later screenshot call timed out but its PNG was saved and verified. Cleanup map search restored the approximate original location; exact zoom/search-box restoration was incomplete."
+    },
+    {
+      "criterion": "When Ping attributes are returned for the selected point, the detail view displays those attributes alongside the Ping Time.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial.png",
+        "screenshots/attempt-001/criterion-2-gis.png",
+        "screenshots/attempt-001/criterion-2-surveyor-dialog.png",
+        "screenshots/attempt-001/criterion-2-options.png",
+        "screenshots/attempt-001/criterion-2-selected-ping.png",
+        "screenshots/attempt-001/criterion-2-added-ping.png",
+        "screenshots/attempt-001/criterion-2-config.png",
+        "screenshots/attempt-001/criterion-2-surveys.png",
+        "screenshots/attempt-001/criterion-2-survey-chosen.png",
+        "screenshots/attempt-001/criterion-2-survey-configured.png",
+        "screenshots/attempt-001/criterion-2-filter-applied.png",
+        "screenshots/attempt-001/criterion-2-point-map.png",
+        "screenshots/attempt-001/criterion-2-ping-cluster.png",
+        "screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher and captured this criterion's own initial state.",
+        "Opened GIS; it restored an existing Download layer and details. Initial exact-text Surveyor lookup timed out because the visible text included a selected-layer count.",
+        "Used the observed Add Surveyor control, selected Ping, added a separate layer, selected mm wave 2 from the survey list and applied it.",
+        "Searched 51.52462, -0.63848. A first map click did not select the expected event because the restored detail panel reduced the map viewport.",
+        "Opened a Ping cluster in the current map viewport and selected its 06/10/2026 10:36:18 event.",
+        "Verified the Ping table displayed 24 ms with Jitter 2 ms, Cell ID 33097_110_4 and Data Technology 5G NSA, then captured final state and URL.",
+        "Attempted cleanup; previously observed tab and layer references no longer matched the restored workspace. Cleanup was not completed."
+      ],
+      "observed_result": "Ping Time 24 ms appeared alongside returned attributes including Jitter 2 ms, Cell ID 33097_110_4 and Data Technology 5G NSA.",
+      "reason": "Final evidence directly supports the display assertion. Restoration remained incomplete after the workspace changed to unrelated Automobile and Call state; the test-created Ping layer could not subsequently be distinguished safely from restored layers."
+    },
+    {
+      "criterion": "With 5G NSA as the only selected technology, opening a Ping point displays details for that selected point without an error state.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "transient",
+      "blockerCode": "environment_state_changed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial.png",
+        "screenshots/attempt-001/criterion-3-surveyor.png",
+        "screenshots/attempt-001/criterion-3-layer-options.png",
+        "screenshots/attempt-001/criterion-3-ping-selected.png",
+        "screenshots/attempt-001/criterion-3-technology-options.png",
+        "screenshots/attempt-001/criterion-3-deselect-1.png",
+        "screenshots/attempt-001/criterion-3-deselect-2.png",
+        "screenshots/attempt-001/criterion-3-deselect-3.png",
+        "screenshots/attempt-001/criterion-3-deselect-4.png",
+        "screenshots/attempt-001/criterion-3-deselect-5.png",
+        "screenshots/attempt-001/criterion-3-deselect-6.png",
+        "screenshots/attempt-001/criterion-3-only-5g-nsa.png",
+        "screenshots/attempt-001/criterion-3-ping-added.png",
+        "screenshots/attempt-001/criterion-3-point-map.png",
+        "screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher and captured this criterion's initial state.",
+        "Opened GIS and opened a new Surveyor layer configuration.",
+        "Selected Ping; deselected 2G, 3G, 4G, 5G SA, Wi-Fi and Out of Service.",
+        "Verified that 5G NSA was the sole selected technology and added the layer.",
+        "Searched 51.52462, -0.63848.",
+        "Observed the workspace showing Automobile HTTP Browsing details with Unable to load point details and additional unrelated layers, instead of a reliably isolated Ping detail test.",
+        "Captured the actual blocker and final URL; removed this criterion's newly added last Ping layer."
+      ],
+      "observed_result": "The 5G NSA-only configuration was established, but a selected Ping point's resulting details were not verified.",
+      "reason": "The workspace changed outside the recorded criterion actions: Download details and layers became Automobile HTTP Browsing/Call and other layers. The cause was not established. Existing general-technology Ping layers also prevented attributing a subsequent point selection to this criterion's layer. This is an environment isolation blocker, not an observed Ping product failure."
+    },
+    {
+      "criterion": "While Ping details are loading, the detail view shows a loading state.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "transient",
+      "blockerCode": "environment_state_changed",
+      "evidence": [
+        "screenshots/attempt-001/criterion-4-initial.png",
+        "screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher and waited for its visible heading.",
+        "Captured this criterion's initial state and opened GIS.",
+        "Inspected the current destination state and captured the blocker and final URL."
+      ],
+      "observed_result": "GIS restored unrelated Automobile tabs and a Surveyor Upload cluster. No Ping detail loading state was observed.",
+      "reason": "Unsolicited workspace changes continued across independent starts, so a stable isolated Ping selection/loading transition could not be established. No claim is made about the loading-state implementation. No test-created changes were made in this criterion."
+    },
+    {
+      "criterion": "When Ping details are unavailable, the detail view shows a no-data state.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "ping_no_data_fixture_unavailable",
+      "evidence": [
+        "screenshots/attempt-001/criterion-5-initial.png",
+        "screenshots/attempt-001/criterion-5-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher, waited for its visible heading and saved this criterion's initial state.",
+        "Opened GIS and inspected its restored detail state.",
+        "Captured the visible blocker and actual final URL."
+      ],
+      "observed_result": "The available detail state was Automobile HTTP Browsing with Unable to load point details; it was not a Ping no-data state.",
+      "reason": "The supplied complete ticket/criteria identify no selectable Ping point whose details are unavailable, and no such fixture was established. An empty map or unrelated Automobile failure cannot prove Ping no-data behavior. Unexpected workspace changes additionally prevented reliable isolation. No data was created or responses altered."
+    },
+    {
+      "criterion": "When Ping details fail to load, the detail view shows an error state and does not display data as if it belonged to the selected point.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "ping_load_failure_fixture_unavailable",
+      "evidence": [
+        "screenshots/attempt-001/criterion-6-initial.png",
+        "screenshots/attempt-001/criterion-6-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher, waited for its visible heading and captured this criterion's initial state.",
+        "Opened GIS and inspected the actual current details.",
+        "Captured the visible blocker and actual final URL."
+      ],
+      "observed_result": "The restored workspace showed unrelated Automobile HTTP Browsing details, Surveyor clusters and an Unable to load point details message; a Ping detail-load failure was not established.",
+      "reason": "No supplied or discovered fixture reproducibly caused selected Ping details to fail to load. A measurement's Ping Error legend category is not evidence of a detail-request failure, and the unrelated Automobile error cannot support this assertion. Unexpected workspace changes also prevented isolation. No fault was injected and no data was modified."
+    }
+  ],
+  "conciseReport": "TEST2-82: 2 Passed, 4 Blocked. Ping Time and returned attributes were directly verified on independently selected events. 5G NSA-only setup was established, but unexpected workspace changes prevented a reliable detail assertion and loading-state test. No reproducible Ping no-data or detail-load-failure fixtures were supplied or established. Cleanup of criterion 2 remains incomplete; criterion 3's newly added layer was removed. Evidence requires review.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-82-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Partial execution; remaining criteria blocked by unexpected workspace state changes and unavailable condition-specific Ping fixtures. No product failure asserted.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-19T14:13:48.856Z"
+}
