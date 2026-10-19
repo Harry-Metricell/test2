@@ -15,7 +15,7 @@ Updated: 2026-10-19T14:14:16.862+0100
 | TEST2-80 | READY FOR TESTING | Criteria Check Required |  | Map and inspect Automobile Service results |
 | TEST2-81 | READY FOR TESTING | Criteria Check Required |  | Map HTTP Browsing, Ping and Video Streaming point details |
 | TEST2-82 | READY FOR TESTING | Criteria Check Required |  | Display Ping Point Details |
-| TEST2-83 | READY FOR TESTING | Criteria Check Required |  | Display Service Point Details |
+| TEST2-83 | READY FOR TESTING | Ready for Testing |  | Display Service Point Details |
 | TEST2-84 | READY FOR TESTING | Criteria Check Required |  | View Building Details and Floorplans |
 | TEST2-85 | READY FOR TESTING | Criteria Check Required |  | Display Download Point Details |
 | TEST2-86 | READY FOR TESTING | Criteria Check Required |  | Display Upload Point Details |
