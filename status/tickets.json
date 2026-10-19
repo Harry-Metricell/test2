@@ -6,8 +6,7 @@
     "handoffs": 12,
     "byWorkflowState": {
       "Blocked": 2,
-      "Ready": 18,
-      "Retry Queued": 1
+      "Ready": 19
     },
     "byQaOutcome": {
       "Blocked": 13,
@@ -247,17 +246,17 @@
       "key": "TEST2-85",
       "summary": "Display Download Point Details",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-19T14:09:27.980Z",
       "retries": 1,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 2,
       "retryLabel": "Retry 1/1"
     },
     {
