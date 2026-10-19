@@ -1,0 +1,262 @@
+[
+  {
+    "criterion": "Selecting one Building point opens a separate dashboard for that building once its details load.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-after-filter-building.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires a selectable single Building point, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-1-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When multiple Building points are selected at one map location, the user can choose which building dashboard to open.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-after-open-gis.png",
+      "screenshots/attempt-001/criterion-2-after-filter-building.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires multiple Building points at one map location, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-2-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When the selection contains too many Building points to identify a building, the user is prompted to zoom in or apply filters, and no ambiguous building dashboard opens.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-after-open-gis.png",
+      "screenshots/attempt-001/criterion-3-after-filter-building.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires a selection containing too many Building points, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-3-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When building information is available, the dashboard shows building and floorplan summary information in sortable and filterable tables.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-after-open-gis.png",
+      "screenshots/attempt-001/criterion-4-after-filter-building.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires a building dashboard with building and floorplan summary tables, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-4-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When the building has floorplans, the dashboard displays their images and lets the user select a floorplan.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-initial.png",
+      "screenshots/attempt-001/criterion-5-after-open-gis.png",
+      "screenshots/attempt-001/criterion-5-after-filter-building.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires a building with floorplans, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-5-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "Selecting a floorplan displays its image with the associated survey points overlaid.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-6-initial.png",
+      "screenshots/attempt-001/criterion-6-after-open-gis.png",
+      "screenshots/attempt-001/criterion-6-after-filter-building.png",
+      "screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires a selectable floorplan with associated survey points, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-6-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When the building has no floorplans, the dashboard displays available building details without an empty floorplan image area.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-7-initial.png",
+      "screenshots/attempt-001/criterion-7-after-open-gis.png",
+      "screenshots/attempt-001/criterion-7-after-filter-building.png",
+      "screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires a building without floorplans, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-7-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "While Building data is loading, a loading state is displayed.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-8-initial.png",
+      "screenshots/attempt-001/criterion-8-after-open-gis.png",
+      "screenshots/attempt-001/criterion-8-after-filter-building.png",
+      "screenshots/attempt-001/criterion-8-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires a Building data loading operation, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-8-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When Building data is unavailable, a no-data state is displayed.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-9-initial.png",
+      "screenshots/attempt-001/criterion-9-after-open-gis.png",
+      "screenshots/attempt-001/criterion-9-after-filter-building.png",
+      "screenshots/attempt-001/criterion-9-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires an unavailable Building data scenario, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-9-cleanup.png"
+    ]
+  },
+  {
+    "criterion": "When Building data fails to load, an error state is displayed without incorrect building data.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-10-initial.png",
+      "screenshots/attempt-001/criterion-10-after-open-gis.png",
+      "screenshots/attempt-001/criterion-10-after-filter-building.png",
+      "screenshots/attempt-001/criterion-10-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and waited for the visible launcher; captured this criterion's initial state.",
+      "Opened GIS and waited for the map loading indicator to disappear and the layer catalogue to display; captured the settled GIS state.",
+      "Entered Building in Filter layers; waited for the visible message No layers match this search.; captured the filtered state and a separate final image.",
+      "Recorded location.href at the final state.",
+      "Cleared Filter layers, verified Network Information reappeared, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The accessible GIS layer catalogue returned 'No layers match this search.' for Building. This criterion requires a Building data load-error scenario, which could not be reached. The complete ticket and criteria supply no alternative Building entry point or fixture. Building functionality/data availability cannot be distinguished from account permissions from this UI; no product failure is inferred. The general GIS map loading state is not evidence of Building loading/no-data/error behavior. Filter restored after final capture.",
+    "blockerCode": "building_layer_unavailable",
+    "retryClass": "prerequisite",
+    "cleanupEvidence": [
+      ".agent-staging/handoff-TEST2-84-test-attempt-001/screenshots/criterion-10-cleanup.png"
+    ]
+  }
+]
