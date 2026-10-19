@@ -1,8 +1,18 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] Given neither layer has been selected, when the map is displayed, then Download and Upload test-result points are not shown.
-- [ ] Given the user selects Download or Upload and authorised data is available, when results load, then matching results are shown as selectable map points.
-- [ ] Given the user selects a Download or Upload point, when details load successfully, then the dialog shows the stated summary fields and the Signal Strength / applicable-rate chart.
-- [ ] Given the Download or Upload details table is shown, when rendered, then it contains its respective specified columns and displays applicable units and “No Error” as specified.
-- [ ] Given a user sorts or filters a supported detailed-table column, when the operation is applied, then the displayed rows reflect it.
-- [ ] Given a test has zero duration or its details cannot be loaded, when the user requests details, then no details dialog opens for the former and no stale or misleading data is shown for the latter.
+- [ ] With neither layer selected, the map shows no Download or Upload test-result points.
+- [ ] After selecting Download, the map shows selectable points for matching authorised Download results only.
+- [ ] After selecting Upload, the map shows selectable points for matching authorised Upload results only.
+- [ ] Selecting a Download result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate, and Wi-Fi Connected.
+- [ ] Selecting an Upload result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Upload Rate, and Wi-Fi Connected.
+- [ ] The Download result details chart plots Signal Strength in dBm and Download Rate in Mbps over time.
+- [ ] The Upload result details chart plots Signal Strength in dBm and Upload Rate in Mbps over time.
+- [ ] The Download details table displays MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.
+- [ ] The Upload details table displays MSISDN, Start Time, End Time, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.
+- [ ] Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).
+- [ ] For a result whose Error Message is null, the details table displays “No Error”.
+- [ ] Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.
+- [ ] Filtering a supported Download or Upload details-table column displays rows matching the applied filter.
+- [ ] Requesting details for a zero-duration test does not open a details dialog.
+- [ ] While result details are loading, the interface shows a loading state without stale or misleading detail data.
+- [ ] If result details fail to load, the interface shows an error state without stale or misleading detail data.
