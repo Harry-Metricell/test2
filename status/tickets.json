@@ -3,10 +3,10 @@
   "generatedAt": "2026-10-19T14:14:16.862+0100",
   "counts": {
     "tickets": 21,
-    "handoffs": 8,
+    "handoffs": 7,
     "byWorkflowState": {
-      "Blocked": 6,
-      "Ready": 15
+      "Blocked": 7,
+      "Ready": 14
     },
     "byQaOutcome": {
       "Blocked": 14,
@@ -245,13 +245,13 @@
       "key": "TEST2-85",
       "summary": "Display Download Point Details",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-10-19T14:09:27.980Z",
       "retries": 1,
       "retryLimit": 1,
