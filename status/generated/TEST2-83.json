@@ -4,13 +4,13 @@
   "summary": "Display Service Point Details",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-83",
-    "status": "READY FOR TESTING",
+    "status": "To Do",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:11:44.386+0100",
-    "updated": "2026-10-19T14:14:02.467+0100"
+    "updated": "2026-10-19T16:27:06.061+0100"
   },
   "description": "As a SmartTools map user\nI want to view serving-cell and neighbour details for a Service point\nSo that I can investigate the network serving the selected location.\nIssue/Change Description:\nWhen a user opens a Service point through the shared point-detail dialog, display the returned serving-cell information in the standard detail presentation. Where neighbour-cell data is available, display each neighbour separately beneath the serving-cell information.\nThe displayed KPI names must be appropriate to the reported radio generation. The detail view must also support Service points when 5G SA is selected. Point selection, dialog behaviour, and the mini-map are covered by the preceding shared stories.\nAcceptance Criteria:\nGiven a Service point is selected and its details load, the returned serving-cell information is displayed.\nGiven neighbour-cell data is returned, each neighbour is displayed as a distinct neighbour section beneath the serving-cell details.\nGiven no neighbour-cell data is returned, the serving-cell details are displayed without an empty neighbour section.\nGiven Service detail values are available, the user can sort and filter the displayed detail rows.\nGiven a Service point is from 2G, 3G, 4G, 5G NSA, or 5G SA, KPI labels are appropriate to the reported generation.\nGiven 5G SA is the selected technology, when the user opens a Service point, its details load without error.\nGiven Service details are loading, unavailable, or fail to load, a standard loading, no-data, or error state is shown without displaying incorrect data.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -32,23 +32,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106639",
-    "importedAt": "2026-10-19T14:14:02.467+0100"
+    "importedAt": "2026-10-19T16:27:06.061+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "To Do",
     "workflowState": "Blocked",
     "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required; final evidence report published",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
     "testAttempts": 1,
     "blockedStage": "reviewed",
-    "updatedAt": "2026-10-19T14:14:02.467+0100",
+    "updatedAt": "2026-10-19T16:27:06.061+0100",
     "criteriaVerified": true
   }
 }

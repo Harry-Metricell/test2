@@ -4,13 +4,13 @@
   "summary": "Map and inspect Automobile Service results",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-80",
-    "status": "READY FOR TESTING",
+    "status": "To Do",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:11:38.304+0100",
-    "updated": "2026-10-19T14:13:57.297+0100"
+    "updated": "2026-10-19T16:27:04.205+0100"
   },
   "description": "As a SmartTools user\nI want to select the Service layer and view Service test results as points on a map, then open details for an individual result\nSo that I can investigate service state and associated cell information at the location of a test.\nIssue/Change Description:\nProvide Service as a selectable map layer. Service results remain hidden until the layer is selected; when selected, load only matching authorised results as selectable points.\nSelecting a point opens a Service details dialog. Display a sortable and filterable table containing: MSISDN, Test Time, Signal, Band, Service, Data Technology, PLMN and Serving Cell. When cell-neighbour data is returned, show each neighbour in its own labelled details table.\nShow a loading state while details load and an error state if they cannot be retrieved; do not show stale or misleading data. Route Replay is out of scope.\nAcceptance Criteria:\nGiven the Service layer has not been selected, when the map is displayed, then no Service test-result points are shown.\nGiven the user selects the Service layer and authorised data is available, when results load, then matching results are shown as selectable map points.\nGiven the user selects a Service point, when its details load successfully, then a dialog displays MSISDN, Test Time, Signal, Band, Service, Data Technology, PLMN and Serving Cell.\nGiven the Service details table is displayed, when the user sorts or filters a supported column, then the displayed rows reflect that operation.\nGiven cell-neighbour data is returned, when the dialog is displayed, then each neighbour is shown in a separate labelled details table.\nGiven details are loading or cannot be loaded, when the dialog is opened, then a loading or error state is shown without stale data.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -31,23 +31,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106636",
-    "importedAt": "2026-10-19T14:13:57.297+0100"
+    "importedAt": "2026-10-19T16:27:04.205+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "To Do",
     "workflowState": "Blocked",
     "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required; final evidence report published",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
     "testAttempts": 1,
     "blockedStage": "reviewed",
-    "updatedAt": "2026-10-19T14:13:57.297+0100",
+    "updatedAt": "2026-10-19T16:27:04.205+0100",
     "criteriaVerified": true
   }
 }
