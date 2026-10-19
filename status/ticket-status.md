@@ -12,7 +12,7 @@ Updated: 2026-10-19T14:14:16.862+0100
 | TEST2-75 | READY FOR TESTING | Evidence Reviewed |  | V4 GIS catalogue: find Surveyor and clear the search without changing the map |
 | TEST2-78 | READY FOR TESTING | Evidence Reviewed |  | V4 GIS: search Surveyor and preserve the actual initial map and layer state |
 | TEST2-79 | READY FOR TESTING | Awaiting Evidence Review |  | Map and inspect Automobile Download and Upload results |
-| TEST2-80 | READY FOR TESTING | Ready for Testing |  | Map and inspect Automobile Service results |
+| TEST2-80 | READY FOR TESTING | Awaiting Evidence Review |  | Map and inspect Automobile Service results |
 | TEST2-81 | READY FOR TESTING | Ready for Testing |  | Map HTTP Browsing, Ping and Video Streaming point details |
 | TEST2-82 | READY FOR TESTING | Awaiting Evidence Review |  | Display Ping Point Details |
 | TEST2-83 | READY FOR TESTING | Awaiting Evidence Review |  | Display Service Point Details |
