@@ -1,5 +1,204 @@
 {
   "schema": "v4-qa-handoffs.v1",
   "generatedAt": "2026-10-19T16:27:06.061+0100",
-  "handoffs": []
+  "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-79-retry-attempt-002",
+      "handoffVersion": "TEST2-79:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-79",
+      "inputs": {
+        "criteria": "tickets/TEST2-79/criteria.md",
+        "ticketJson": "tickets/TEST2-79/ticket.json",
+        "status": "tickets/TEST2-79/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-79/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-81-retry-attempt-002",
+      "handoffVersion": "TEST2-81:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-81",
+      "inputs": {
+        "criteria": "tickets/TEST2-81/criteria.md",
+        "ticketJson": "tickets/TEST2-81/ticket.json",
+        "status": "tickets/TEST2-81/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-81/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-82-retry-attempt-002",
+      "handoffVersion": "TEST2-82:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-82",
+      "inputs": {
+        "criteria": "tickets/TEST2-82/criteria.md",
+        "ticketJson": "tickets/TEST2-82/ticket.json",
+        "status": "tickets/TEST2-82/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-82/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-84-retry-attempt-002",
+      "handoffVersion": "TEST2-84:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-84",
+      "inputs": {
+        "criteria": "tickets/TEST2-84/criteria.md",
+        "ticketJson": "tickets/TEST2-84/ticket.json",
+        "status": "tickets/TEST2-84/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-84/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-86-retry-attempt-002",
+      "handoffVersion": "TEST2-86:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-86",
+      "inputs": {
+        "criteria": "tickets/TEST2-86/criteria.md",
+        "ticketJson": "tickets/TEST2-86/ticket.json",
+        "status": "tickets/TEST2-86/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-86/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-87-retry-attempt-002",
+      "handoffVersion": "TEST2-87:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-87",
+      "inputs": {
+        "criteria": "tickets/TEST2-87/criteria.md",
+        "ticketJson": "tickets/TEST2-87/ticket.json",
+        "status": "tickets/TEST2-87/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-87/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-88-retry-attempt-002",
+      "handoffVersion": "TEST2-88:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-88",
+      "inputs": {
+        "criteria": "tickets/TEST2-88/criteria.md",
+        "ticketJson": "tickets/TEST2-88/ticket.json",
+        "status": "tickets/TEST2-88/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-88/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-89-retry-attempt-002",
+      "handoffVersion": "TEST2-89:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-89",
+      "inputs": {
+        "criteria": "tickets/TEST2-89/criteria.md",
+        "ticketJson": "tickets/TEST2-89/ticket.json",
+        "status": "tickets/TEST2-89/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-89/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-90-retry-attempt-002",
+      "handoffVersion": "TEST2-90:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-90",
+      "inputs": {
+        "criteria": "tickets/TEST2-90/criteria.md",
+        "ticketJson": "tickets/TEST2-90/ticket.json",
+        "status": "tickets/TEST2-90/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-90/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-91-retry-attempt-002",
+      "handoffVersion": "TEST2-91:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-91",
+      "inputs": {
+        "criteria": "tickets/TEST2-91/criteria.md",
+        "ticketJson": "tickets/TEST2-91/ticket.json",
+        "status": "tickets/TEST2-91/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-91/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    },
+    {
+      "handoffId": "handoff-TEST2-92-retry-attempt-002",
+      "handoffVersion": "TEST2-92:test_ticket:2",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-92",
+      "inputs": {
+        "criteria": "tickets/TEST2-92/criteria.md",
+        "ticketJson": "tickets/TEST2-92/ticket.json",
+        "status": "tickets/TEST2-92/status.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-92/results.json",
+        "schema": "v4-qa-test-result.v1"
+      }
+    }
+  ]
 }

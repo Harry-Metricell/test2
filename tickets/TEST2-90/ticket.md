@@ -4,9 +4,9 @@
 
 - Jira status: READY FOR TESTING
 - QA outcome: Blocked
-- Workflow state: Blocked
+- Workflow state: Retry Queued
 - Action owner: Coordinator
-- Next action: Manual review required; final evidence report published
+- Next action: Retry 1/1 queued; coordinator will start tester
 - Jira: https://metricell.atlassian.net/browse/TEST2-90
 
 ## Acceptance Criteria
