@@ -3,10 +3,10 @@
   "generatedAt": "2026-10-19T16:27:06.061+0100",
   "counts": {
     "tickets": 21,
-    "handoffs": 4,
+    "handoffs": 3,
     "byWorkflowState": {
-      "Blocked": 10,
-      "Ready": 11
+      "Blocked": 11,
+      "Ready": 10
     },
     "byQaOutcome": {
       "Blocked": 14,
@@ -194,13 +194,13 @@
       "key": "TEST2-84",
       "summary": "View Building Details and Floorplans",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-19T14:14:04.309+0100",
       "retries": 0,
       "retryLimit": 1,
