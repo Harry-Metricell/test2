@@ -1,0 +1,226 @@
+[
+  {
+    "criterion": "Given HTTP Browsing results are available, when the HTTP Browsing layer is selected, each supplied result is displayed as a selectable point on the map.",
+    "outcome": "Unverified",
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-before-automobile.png",
+      "screenshots/attempt-001/criterion-1-before-add-http.png",
+      "screenshots/attempt-001/criterion-1-after-add-http.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the launcher and saved the initial PNG. An initial screenshot save failed because its directory was absent; created the directory and restarted from the launcher successfully.",
+      "Opened GIS, waited for the map, opened Automobile and added the default HTTP Browsing layer.",
+      "Inspected rendered marker metadata and selected the marker at observed map pixel 547,209.",
+      "Recorded the HTTP detail panel and final URL; closed the test detail and removed the test layer."
+    ],
+    "observed_result": "HTTP Browsing layer rendered coloured selectable aggregate markers. Clicking mercator key 1152930291304650109 opened HTTP result 132412571 with Page Load Time 1.535 s.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Sampled point rendering/selection was verified, but every supplied individual result was not reconciled against selectable aggregate markers; complete-list coverage remains unverified.",
+    "retryClass": "manual"
+  },
+  {
+    "criterion": "Given Ping results are available, when the Ping layer is selected, each supplied result is displayed as a selectable point on the map.",
+    "outcome": "Unverified",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-before-automobile.png",
+      "screenshots/attempt-001/criterion-2-after-automobile.png",
+      "screenshots/attempt-001/criterion-2-before-select-ping.png",
+      "screenshots/attempt-001/criterion-2-before-add-ping.png",
+      "screenshots/attempt-001/criterion-2-after-add-ping.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Started from the launcher, opened GIS and Automobile, selected Ping, then added the layer.",
+      "Observed source/rendered feature counts and selected the sampled Ping marker at 536,209.",
+      "Observed the detail error, captured final state/URL, closed the detail and removed the test layer."
+    ],
+    "observed_result": "Ping layer returned 30 source features; 25 markers were rendered in the viewport at zoom 10.476869. Selecting the sampled marker opened a detail error panel.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Sampled Ping rendering/selection was verified, but all 30 supplied features were not individually reconciled or selected; the rendered viewport contained 25 markers, and off-viewport features were not exercised.",
+    "retryClass": "manual"
+  },
+  {
+    "criterion": "Given Video Streaming results are available, when the Video Streaming layer is selected, each supplied result is displayed as a selectable point on the map.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-before-automobile.png",
+      "screenshots/attempt-001/criterion-3-after-automobile.png",
+      "screenshots/attempt-001/criterion-3-before-select-video.png",
+      "screenshots/attempt-001/criterion-3-before-add-video.png",
+      "screenshots/attempt-001/criterion-3-after-add-video.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Started independently from the launcher, opened GIS and Automobile, selected Video Streaming and added the layer.",
+      "Waited for the points request, inspected the settled map/layer and observed zero features.",
+      "Captured final state/URL and removed the test layer."
+    ],
+    "observed_result": "Video Streaming points request returned HTTP 200 with no rendered/source features in the current map area and default last-90-days range. No selectable video result was available.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Representative Video Streaming data was unavailable in the tested area/range (criterion 3: 2026-07-21T14:53Z to 2026-10-19T14:53Z). This does not establish absence in other areas/ranges.",
+    "retryClass": "prerequisite",
+    "blockerCode": "representative_data_unavailable"
+  },
+  {
+    "criterion": "Given details are available for a result point, when the point is selected, a new detail dialog opens for that same result and displays its test type, result time, location, and available network technology/context.",
+    "outcome": "Unverified",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-before-automobile.png",
+      "screenshots/attempt-001/criterion-4-before-add-http.png",
+      "screenshots/attempt-001/criterion-4-after-add-http.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Started independently from the launcher, opened GIS and Automobile and added HTTP Browsing.",
+      "Inspected marker 1152930291304650109 and selected it at 547,209.",
+      "Read the actual cluster-details request and response and compared the detail fields through the browser.",
+      "Captured final state/URL; closed the test detail and removed the test layer."
+    ],
+    "observed_result": "Selecting HTTP aggregate 1152930291304650109 sent that mercatorKey to cluster-details and returned exactly result 132412571. Displayed time 16/09/2026 10:44:08, service 4G, cell 507951_130_4, Page Load Time 1.535 and browser-read latitude 51.18915062, longitude -0.1901222, LTE matched the response.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Browser DOM and live response matched the common context, but saved PNGs do not show the below-fold latitude/longitude/technology rows. Screenshot evidence for the complete context is inconclusive.",
+    "retryClass": "manual"
+  },
+  {
+    "criterion": "Given an HTTP Browsing point is selected and its details are available, the dialog displays that result’s Page Load Time.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-initial.png",
+      "screenshots/attempt-001/criterion-5-before-reset.png",
+      "screenshots/attempt-001/criterion-5-after-reset-close.png",
+      "screenshots/attempt-001/criterion-5-after-reset-remove.png",
+      "screenshots/attempt-001/criterion-5-initial-restarted.png",
+      "screenshots/attempt-001/criterion-5-before-automobile-restarted.png",
+      "screenshots/attempt-001/criterion-5-before-add-http-restarted.png",
+      "screenshots/attempt-001/criterion-5-after-add-http.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Started at the launcher and opened GIS. Residual HTTP state was observed during setup; closed/removed the test state and restarted from the launcher, retaining this criterion's own captures.",
+      "Opened Automobile afresh, added HTTP Browsing and inspected the selected marker's 1.535 KPI.",
+      "Selected the marker at 547,209 and waited for the actual HTTP information panel.",
+      "Captured visible Page Load Time 1.535 and final URL; closed the test detail and removed the test layer."
+    ],
+    "observed_result": "Fresh HTTP point selection opened result 132412571 and visibly displayed Page Load Time (s) 1.535, matching the selected marker KPI.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85"
+  },
+  {
+    "criterion": "Given a Ping point is selected and its details are available, the dialog displays that result’s Ping Time.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-6-initial.png",
+      "screenshots/attempt-001/criterion-6-before-automobile.png",
+      "screenshots/attempt-001/criterion-6-after-automobile.png",
+      "screenshots/attempt-001/criterion-6-before-select-ping.png",
+      "screenshots/attempt-001/criterion-6-before-add-ping.png",
+      "screenshots/attempt-001/criterion-6-after-add-ping.png",
+      "screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "steps_taken": [
+      "Started independently from the launcher, opened GIS/Automobile, selected Ping and added the layer.",
+      "Inspected the sampled Ping marker and selected it at 536,209.",
+      "Waited for the visible error; confirmed repeated HTTP 500 responses, captured final state/URL.",
+      "Closed the test detail and removed the test layer."
+    ],
+    "observed_result": "Selected Ping aggregate 1152930291036214653 (KPI 43 ms); cluster-details returned HTTP 500 twice and the visible panel displayed 'Unable to load point details.' with Retry. Ping Time could not be checked.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "The required available-detail prerequisite was not met: Ping cluster-details persistently returned HTTP 500 across independent checks, including another mercator key in criterion 9. Classified prerequisite rather than assuming a fresh-run transient recovery.",
+    "retryClass": "prerequisite",
+    "blockerCode": "point_details_service_error"
+  },
+  {
+    "criterion": "Given a Video Streaming point is selected and its details are available, the dialog displays that result’s Rebuffer Count.",
+    "outcome": "Blocked",
+    "evidence": [
+      "screenshots/attempt-001/criterion-7-initial.png",
+      "screenshots/attempt-001/criterion-7-before-automobile.png",
+      "screenshots/attempt-001/criterion-7-after-automobile.png",
+      "screenshots/attempt-001/criterion-7-before-select-video.png",
+      "screenshots/attempt-001/criterion-7-before-add-video.png",
+      "screenshots/attempt-001/criterion-7-after-add-video.png",
+      "screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "steps_taken": [
+      "Started independently from the launcher, opened GIS/Automobile, selected Video Streaming and added the layer.",
+      "Waited for the points response, read response [] and confirmed zero source/rendered features.",
+      "Captured final state/URL and removed the test layer."
+    ],
+    "observed_result": "Independent Video Streaming layer selection returned HTTP 200 with response [], zero source features and zero rendered points in the current map area and default last-90-days range. Rebuffer Count could not be checked.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Representative Video Streaming data was unavailable in the tested area/range (criterion 7: 2026-07-21T15:00Z to 2026-10-19T15:00Z). No data was created and absence in other areas/ranges is not claimed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "representative_data_unavailable"
+  },
+  {
+    "criterion": "Given an HTTP Browsing result ends in error, when its point is displayed, it is visually distinct from a successful result; a zero Page Load Time on the failed result is not coloured as success.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-8-initial.png",
+      "screenshots/attempt-001/criterion-8-before-automobile.png",
+      "screenshots/attempt-001/criterion-8-before-add-http.png",
+      "screenshots/attempt-001/criterion-8-after-add-http.png",
+      "screenshots/attempt-001/criterion-8-after-select-error.png",
+      "screenshots/attempt-001/criterion-8-final.png"
+    ],
+    "steps_taken": [
+      "Started independently from the launcher, opened GIS/Automobile and added HTTP Browsing.",
+      "Captured the map and legend showing black error squares and successful technology markers; inspected the failed marker category.",
+      "Selected the failed marker using its observed map pixel 669,800; waited for the HTTP details.",
+      "Read Failed, Page Load Time 0 and Task TimeOut; captured final state/URL.",
+      "Closed the test detail and removed the test layer."
+    ],
+    "observed_result": "HTTP failed marker used category http-browsing:load-time:error:item and a black square distinct from successful green/yellow/red technology markers. Selecting it opened result 132585390: Failed, Page Load Time (s) 0, Task TimeOut. It was not assigned a successful load-time colour.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85"
+  },
+  {
+    "criterion": "Given details cannot be returned for a selected point, the user sees a clear no-data or error message and no stale details are displayed.",
+    "outcome": "Passed",
+    "evidence": [
+      "screenshots/attempt-001/criterion-9-initial.png",
+      "screenshots/attempt-001/criterion-9-before-automobile-http.png",
+      "screenshots/attempt-001/criterion-9-before-add-http.png",
+      "screenshots/attempt-001/criterion-9-after-add-http.png",
+      "screenshots/attempt-001/criterion-9-before-select-valid-http.png",
+      "screenshots/attempt-001/criterion-9-after-select-valid-http.png",
+      "screenshots/attempt-001/criterion-9-before-automobile-ping.png",
+      "screenshots/attempt-001/criterion-9-after-automobile-ping.png",
+      "screenshots/attempt-001/criterion-9-before-select-ping.png",
+      "screenshots/attempt-001/criterion-9-before-add-ping.png",
+      "screenshots/attempt-001/criterion-9-after-add-ping.png",
+      "screenshots/attempt-001/criterion-9-final.png"
+    ],
+    "steps_taken": [
+      "Started independently from the launcher and opened GIS. An existing Surveyor Download layer and cluster panel were present and were preserved.",
+      "Added HTTP Browsing. A click using the earlier viewport coordinates did not open HTTP details; inspected the current map geometry and selected a current HTTP marker at 647,213.",
+      "Waited for HTTP result 132585862 and captured its valid details within this criterion.",
+      "Opened Automobile again, selected Ping and added the layer; inspected Ping marker 1152930293720569234 at current pixel 647,235.",
+      "Selected that marker and waited for 'Unable to load point details.'; confirmed the active Ping tab and zero visible Selected test details elements.",
+      "Captured final state/URL before closing test-created Ping/HTTP tabs and removing only their layers; preserved the pre-existing Surveyor layer and panel."
+    ],
+    "observed_result": "Within this criterion, HTTP result 132585862 first displayed valid details (Page Load Time 0.801 s). Selecting Ping aggregate 1152930293720569234 then returned HTTP 500 twice. The active Automobile Ping details panel showed 'Unable to load point details.' with Retry and no visible Selected test details elements. Earlier HTTP details remained only in an inactive tab.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85"
+  }
+]
