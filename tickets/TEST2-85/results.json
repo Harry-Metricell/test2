@@ -1,0 +1,228 @@
+[
+  {
+    "criterion": "Given a completed Download test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Download Rate, and Wi-Fi connection status.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [
+      "screenshots/attempt-001/criterion-1-initial.png",
+      "screenshots/attempt-001/criterion-1-after-open-gis.png",
+      "screenshots/attempt-001/criterion-1-layer-dialog.png",
+      "screenshots/attempt-001/criterion-1-layer-options.png",
+      "screenshots/attempt-001/criterion-1-download-config.png",
+      "screenshots/attempt-001/criterion-1-download-layer.png",
+      "screenshots/attempt-001/criterion-1-download-cluster.png",
+      "screenshots/attempt-001/criterion-1-details-loaded.png",
+      "screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher and captured initial state.",
+      "Opened GIS; added Surveyor with Active layer Download and Last 30 days.",
+      "Selected the map-center cluster and the seb.knight Download test starting 12/10/2026 14:25:53 (11.89 Mbps).",
+      "Read the loaded summary, scrolled its final row into view, and captured final state.",
+      "After interruption, the browser reported about:blank rather than the tested detail page."
+    ],
+    "observed_results": "Loaded summary included username, handset, serving cell, technology, Download Rate and Wi-Fi status. Explicit duration and service rows were not present in the inspected summary. This is an observation pending a reliable evidence review, not a confirmed failure.",
+    "reason": "The final-state browser URL read did not return a retained result before interruption; the next observed URL was about:blank. Required final URL verification is incomplete. Test-created Download layer/detail restoration could not be confirmed after that reset.",
+    "blockerCode": "final_state_lost",
+    "retryClass": "transient"
+  },
+  {
+    "criterion": "Given Download samples are available, a time-series chart shows Signal Strength in dBm and Download Rate in Mbps across the test duration.",
+    "outcome": "Passed",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-2-initial.png",
+      "screenshots/attempt-001/criterion-2-gis.png",
+      "screenshots/attempt-001/criterion-2-config.png",
+      "screenshots/attempt-001/criterion-2-options.png",
+      "screenshots/attempt-001/criterion-2-download-config.png",
+      "screenshots/attempt-001/criterion-2-after-timeout.png",
+      "screenshots/attempt-001/criterion-2-recovery-config.png",
+      "screenshots/attempt-001/criterion-2-recovery-options.png",
+      "screenshots/attempt-001/criterion-2-recovery-download.png",
+      "screenshots/attempt-001/criterion-2-download-layer.png",
+      "screenshots/attempt-001/criterion-2-search-coordinates.png",
+      "screenshots/attempt-001/criterion-2-located-map.png",
+      "screenshots/attempt-001/criterion-2-before-select-point.png",
+      "screenshots/attempt-001/criterion-2-cluster.png",
+      "screenshots/attempt-001/criterion-2-details.png",
+      "screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher and captured initial state; opened GIS.",
+      "Opened Surveyor configuration. Active-layer click timed out (tools/call after 120s); Download option selection then timed out after 30000ms. The following Add layer action selected Service, not Download.",
+      "Removed only that test-added Service layer, reopened Surveyor configuration, selected Download, confirmed the selection, and added it.",
+      "Searched for 51.07226, -0.31453 and submitted; verified the map moved to that location. Cleared the search marker after it intercepted the map-center click.",
+      "Selected the map-center Download cluster; opened the seb.knight test beginning 12/10/2026 14:25:53.",
+      "Waited for Download measurements, inspected Download analysis, captured the chart final state, and read the current browser URL."
+    ],
+    "observed_results": "Final PNG shows Signal strength in dBm (approximately -95 to -96) and Download rate in Mbps (0 to approximately 57), both plotted against Seconds for the approximately eight-second Download test.",
+    "reason": "The chart assertion was directly observed after setup recovery. Later GIS state changed to unrelated layers without this run performing those changes; cleanup of this run's Download layer and opened panels could not be confirmed and unrelated state was left untouched."
+  },
+  {
+    "criterion": "Given per-sample Download data is available, each returned sample is shown in a table with its relevant units.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-3-initial.png",
+      "screenshots/attempt-001/criterion-3-gis.png",
+      "screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher, waited for its welcome heading, and saved this criterion's own initial PNG.",
+      "Opened GIS and waited for the Map region.",
+      "Inspected the resulting visible state and saved this criterion's blocker/final PNG; read its actual current browser URL.",
+      "Attempted to open the Surveyor layer selector by its previously observed exact label; it timed out after 10000ms. The live label had become Surveyor (2) and the selected Download layer had been replaced by unrelated layers."
+    ],
+    "observed_results": "GIS showed Surveyor - Ping, Surveyor - Call, Automobile - HTTP Browsing and Automobile - Call; this run had not selected them. Attempt to find the prior exact Surveyor selector timed out after 10000ms.",
+    "reason": "Unexpected browser/application state changes prevented reliable isolation of this criterion. Required Download data/state was not independently established. No assertion is made from another criterion's fixture or images. Unrelated layers/details were not changed or cleaned up. Per-sample completeness and units were not assessed independently.",
+    "blockerCode": "browser_state_interference",
+    "retryClass": "transient"
+  },
+  {
+    "criterion": "Given the per-sample table contains multiple rows, sorting by a displayed column changes their visible order according to that column.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-4-initial.png",
+      "screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher, waited for its welcome heading, and saved this criterion's own initial PNG.",
+      "Opened GIS and waited for the Map region.",
+      "Inspected the resulting visible state and saved this criterion's blocker/final PNG; read its actual current browser URL."
+    ],
+    "observed_results": "GIS showed Surveyor - Ping, Surveyor - Call and Automobile - MS Teams Call with the Call Quality legend, rather than independently selected Download samples.",
+    "reason": "Unexpected browser/application state changes prevented reliable isolation of this criterion. Required Download data/state was not independently established. No assertion is made from another criterion's fixture or images. Unrelated layers/details were not changed or cleaned up. Multiple Download sample rows and a sorting action were not established independently.",
+    "blockerCode": "browser_state_interference",
+    "retryClass": "transient"
+  },
+  {
+    "criterion": "Given per-sample data is available, filtering the table shows only rows matching the selected filter.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-5-initial.png",
+      "screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher, waited for its welcome heading, and saved this criterion's own initial PNG.",
+      "Opened GIS and waited for the Map region.",
+      "Inspected the resulting visible state and saved this criterion's blocker/final PNG; read its actual current browser URL."
+    ],
+    "observed_results": "GIS showed Surveyor - Ping and Surveyor - Call with the Call Result legend, rather than independently selected Download samples.",
+    "reason": "Unexpected browser/application state changes prevented reliable isolation of this criterion. Required Download data/state was not independently established. No assertion is made from another criterion's fixture or images. Unrelated layers/details were not changed or cleaned up. A Download sample filter and matching rows were not established independently.",
+    "blockerCode": "browser_state_interference",
+    "retryClass": "transient"
+  },
+  {
+    "criterion": "Given average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear in the summary immediately after Download Rate.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-6-initial.png",
+      "screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher, waited for its welcome heading, and saved this criterion's own initial PNG.",
+      "Opened GIS and waited for the Map region.",
+      "Inspected the resulting visible state and saved this criterion's blocker/final PNG; read its actual current browser URL."
+    ],
+    "observed_results": "GIS displayed Call sample rows with off_hook/idle states dated 12/10/2026 rather than independently selected Download summary metrics.",
+    "reason": "Unexpected browser/application state changes prevented reliable isolation of this criterion. Required Download data/state was not independently established. No assertion is made from another criterion's fixture or images. Unrelated layers/details were not changed or cleaned up. A selected Download test returning all three average metrics was not established.",
+    "blockerCode": "browser_state_interference",
+    "retryClass": "transient"
+  },
+  {
+    "criterion": "Given the selected Download point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-7-initial.png",
+      "screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher, waited for its welcome heading, and saved this criterion's own initial PNG.",
+      "Opened GIS and waited for the Map region.",
+      "Inspected the resulting visible state and saved this criterion's blocker/final PNG; read its actual current browser URL."
+    ],
+    "observed_results": "GIS displayed Call sample rows with off_hook/idle states dated 22/09/2026 rather than an independently selected zero-duration Download point.",
+    "reason": "Unexpected browser/application state changes prevented reliable isolation of this criterion. Required Download data/state was not independently established. No assertion is made from another criterion's fixture or images. Unrelated layers/details were not changed or cleaned up. No independently selected zero-duration Download fixture was established.",
+    "blockerCode": "browser_state_interference",
+    "retryClass": "transient"
+  },
+  {
+    "criterion": "Given Download details are loading, the detail presentation shows a loading state.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-8-initial.png",
+      "screenshots/attempt-001/criterion-8-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher, waited for its welcome heading, and saved this criterion's own initial PNG.",
+      "Opened GIS and waited for the Map region.",
+      "Inspected the resulting visible state and saved this criterion's blocker/final PNG; read its actual current browser URL."
+    ],
+    "observed_results": "GIS displayed loaded Call sample rows dated 22/09/2026; this was not a Download-detail loading state.",
+    "reason": "Unexpected browser/application state changes prevented reliable isolation of this criterion. Required Download data/state was not independently established. No assertion is made from another criterion's fixture or images. Unrelated layers/details were not changed or cleaned up. No controlled Download-detail loading transition was established.",
+    "blockerCode": "browser_state_interference",
+    "retryClass": "transient"
+  },
+  {
+    "criterion": "Given Download details are unavailable, the detail presentation shows a no-data state.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-9-initial.png",
+      "screenshots/attempt-001/criterion-9-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher, waited for its welcome heading, and saved this criterion's own initial PNG.",
+      "Opened GIS and waited for the Map region.",
+      "Inspected the resulting visible state and saved this criterion's blocker/final PNG; read its actual current browser URL."
+    ],
+    "observed_results": "GIS displayed loaded Call sample rows dated 22/09/2026; this was not an unavailable Download-detail state.",
+    "reason": "Unexpected browser/application state changes prevented reliable isolation of this criterion. Required Download data/state was not independently established. No assertion is made from another criterion's fixture or images. Unrelated layers/details were not changed or cleaned up. No independently selected unavailable-detail Download fixture was established.",
+    "blockerCode": "browser_state_interference",
+    "retryClass": "transient"
+  },
+  {
+    "criterion": "Given loading Download details fails, the detail presentation shows an error state and does not display incorrect data.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "screenshots/attempt-001/criterion-10-initial.png",
+      "screenshots/attempt-001/criterion-10-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher, waited for its welcome heading, and saved this criterion's own initial PNG.",
+      "Opened GIS and waited for the Map region.",
+      "Inspected the resulting visible state and saved this criterion's blocker/final PNG; read its actual current browser URL."
+    ],
+    "observed_results": "GIS showed Automobile HTTP Browsing details with 'Unable to load point details.' and Retry. This was not a Download point, so it does not prove the Download error-state assertion.",
+    "reason": "Unexpected browser/application state changes prevented reliable isolation of this criterion. Required Download data/state was not independently established. No assertion is made from another criterion's fixture or images. Unrelated layers/details were not changed or cleaned up. No independently selected failing-detail Download fixture was established.",
+    "blockerCode": "browser_state_interference",
+    "retryClass": "transient"
+  }
+]
