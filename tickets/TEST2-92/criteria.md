@@ -1,21 +1,17 @@
-<!-- Generated from Jira acceptance criteria. -->
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
-- [ ] Given a standard Automobile map layer is active, when its legend is displayed, then it shows the groups and items from the active selected legend section.
-- [ ] Given the user selects an interactive legend item, when the visibility changes, then matching active-layer points are shown or hidden accordingly.
-- [ ] Given the user double-clicks an interactive legend item, when isolation is applied, then that item remains visible and the other items in its group are hidden.
-- [ ] Given an item is hidden, when the legend and map are displayed, then the item is visually muted and its matching points are not displayed.
-- [ ] Given the versioned legend definitions change, when the updated application is deployed, then the legend and map use the same defined groups, thresholds, colours and shapes.
-- [ ] Given the user uses legend filtering, when other layers or form-based filters are considered, then they are not changed by that interaction.
-- [ ] Additional acceptance criteria:
-- [ ] Given a layer supplies multiple titled legend groups, when the shared interactive list renders them, then each group's title, items and configured marker shapes/outlines are shown, and isolation affects only sibling items.
-- [ ] Given a layer supplies one Colour By option, when the legend renders, then its field title appears as a label; given multiple options, then a dropdown shows exactly the layer-supplied options.
-- [ ] Given a consuming layer supplies multiple fields and their measurements, when Colour By changes, then the displayed groups, map classification, markers and linked-context visibility follow the selected field without changing form filters or fetching the same points again. Do not claim this end-to-end check passed using the current single-field Automobile types.
-- [ ] Given Colour By is selected, when the layer state is restored, then that layer's selected field and saved field-specific overrides are restored independently of other layers.
-- [ ] Given Edit Legend is opened, when labels, colours or numeric boundaries are edited, then the dialog holds drafts for only the active field; the map changes only after Save, while Cancel or Close discards unsaved drafts. A successful Save refreshes the drafts and leaves the dialog open.
-- [ ] Given a valid edit is saved, when the legend and cached map points render, then labels, colours and classification use the same saved definition; other fields and layers retain their saved overrides.
-- [ ] Given a numeric generation group is edited, when the user adds or deletes a range, then the small add icon below the group's marker column adds a row, each eligible existing or added row has a delete action, at least one numeric range remains, and editing a value does not reorder Automobile rows.
-- [ ] Given a Value field is editable, when a value is empty, non-finite, outside its limits or violates boundary ordering, then an inline error appears immediately and Save is disabled. Numeric fields use number inputs; HTTP Browsing boundaries are limited to 0–10,000, while Ping and Video Streaming use a minimum of zero without an additional maximum cap. Video Streaming's exact categories remain fixed.
-- [ ] Given Reset is selected, when defaults are shown, then they remain drafts until Save; saving restores the active field's default labels, colours, boundaries, categories and visibility without resetting other fields or layers.
-- [ ] Given linked-site display settings change, when the map updates, then linked sites/cells use the shared Network context and follow visible result categories. Linked cells are disabled when linked sites are off, and the settings persist per layer.
-- [ ] Given the legend is displayed with or without a details tab, when the map pane resizes, then the legend remains scrollable and avoids Reset North and the other map controls.
-- [ ] Given existing layers use shared legend components, when this change is integrated, then their established markers, visibility, editor actions and default behaviour remain unchanged unless they opt into the new options. Verify Automobile and existing consumers manually.
+- [ ] With a standard Automobile layer active, the legend shows the titled groups and items defined by that layer’s selected legend section, using the configured categories, thresholds, colours, shapes and outlines.
+- [ ] When a visible legend item is selected, matching points in the active layer are hidden and the item is visibly muted; selecting it again restores the points and normal item appearance.
+- [ ] When a legend item is double-clicked, that item remains visible and all other items in its group are hidden; items in other groups retain their visibility.
+- [ ] Legend filtering and legend edits change only the active layer’s presentation; other layers, underlying data, and form-based filters retain their prior state.
+- [ ] When a layer supplies one Colour By field, its title is displayed as a label; when it supplies multiple fields, a dropdown displays exactly those fields.
+- [ ] When Colour By changes on a consuming layer that supplies multiple fields and measurements, the displayed groups, map classification, markers and linked-context visibility follow the selected field, form filters remain unchanged, and the same points are not fetched again. This end-to-end behavior requires a multi-field consuming layer; current Automobile types provide only one field.
+- [ ] Restoring a layer’s state restores its selected Colour By field and that field’s saved overrides independently of other layers.
+- [ ] In Edit Legend, changing labels, colours or numeric boundaries creates drafts for the active field only; the map remains unchanged until Save, while Cancel or Close discards drafts. After Save, refreshed values remain visible in the open dialog.
+- [ ] After a valid legend edit is saved, the legend and cached map points use the same labels, colours and classification; saved overrides for other fields and layers remain unchanged.
+- [ ] In a numeric generation group, the add control below the marker column adds a range row, eligible rows have delete controls, at least one range remains, and editing a value does not reorder Automobile rows.
+- [ ] Numeric Value fields use number inputs. Empty, non-finite, out-of-limit or incorrectly ordered boundary values show an inline error immediately and disable Save. HTTP Browsing boundaries accept 0–10,000; Ping and Video Streaming boundaries have a minimum of zero and no additional maximum. Video Streaming categories cannot be changed.
+- [ ] Reset displays default labels, colours, boundaries, categories and visibility as drafts; saving applies defaults to the active field only, preserving other fields and layers.
+- [ ] Linked-site and linked-cell display settings use the shared Network context and follow visible result categories; linked cells are disabled when linked sites are off, and settings persist per layer.
+- [ ] With or without a details tab, the legend remains scrollable when the map pane is resized and does not overlap Reset North or other map controls.
+- [ ] For existing consumers of the shared legend, established markers, visibility, editor actions and default behavior remain unchanged unless a consumer opts into the new options.
