@@ -1,5 +1,9 @@
 # Metricell V4 QA Automation
 
+### Human-requested recheck
+
+Automatic retries remain limited to transient problems. An explicitly authorised human recheck may use the remaining second attempt even after a reviewed blocker or product finding. Record `tickets/<KEY>/retry-request.json` with schema `v4-qa-retry-request.v1`, the exact `ticket`, unique `requestId`, UTC `requestedAt`, `authorizedBy: "human"`, the user's `reason`, `afterAttempt: 1` and `targetAttempt: 2`. Only create this record after direct human authorisation; workers and the coordinator must not grant themselves retries. Status Bundler validates the request against published history, a completed review/report, verified criteria and Jira READY FOR TESTING. The request remains as an audit record and becomes inert after attempt two. It never deletes reports, resets counters, bypasses Jira or allows a third attempt.
+
 Repository-controlled QA workflow for Metricell Smart Network V4. This is a working internal prototype, not a production readiness or security certification. Automated results depend on the supplied ticket, available test data, browser access and independently reviewed evidence.
 
 The system keeps durable QA state in GitHub and uses Codex only for authenticated browser testing, evidence review, criteria ambiguity, and other judgement that static code cannot safely perform.

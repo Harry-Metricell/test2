@@ -8,6 +8,51 @@ import { fileURLToPath } from 'node:url';
 
 const generator = fileURLToPath(new URL('./generate-status.mjs', import.meta.url));
 
+test('human rechecks are scoped, idempotent and cannot exceed two attempts', () => {
+  for (const scenario of ['valid', 'wrong ticket', 'wrong attempt', 'no authority', 'no reason', 'bad date', 'jira hold', 'criteria hold', 'no report', 'passed review', 'exhausted']) {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-human-retry-'));
+    const dir = path.join(root, 'tickets', 'TEST2-99');
+    const write = (name, value) => {
+      const dest = path.join(dir, name);
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+      fs.writeFileSync(dest, JSON.stringify(value));
+    };
+    const run = () => execFileSync(process.execPath, [generator], { cwd: root });
+    const queuedTests = () => JSON.parse(fs.readFileSync(path.join(root, 'status', 'handoffs.json'))).handoffs.filter(h => h.action === 'test_ticket');
+    try {
+      write('ticket.json', { key: 'TEST2-99', fields: { summary: scenario, status: { name: scenario === 'jira hold' ? 'To Do' : 'READY FOR TESTING' }, project: { key: 'TEST2' }, description: 'Acceptance Criteria:\nThe GIS layer is visible.' } });
+      fs.writeFileSync(path.join(dir, 'criteria.md'), '- [ ] The GIS layer is visible.\n');
+      write('status.json', { criteriaVerified: scenario !== 'criteria hold', qaStatus: 'Blocked' });
+      write('results.json', [{ criterion: 'The GIS layer is visible.', outcome: 'Failed', retryClass: 'product' }]);
+      write('history/attempt-001-test.json', { historyAttempt: 1, results: [{ criterion: 1, outcome: 'Failed', retryClass: 'product' }] });
+      write('review.json', { historyAttempt: 1, overallOutcome: scenario === 'passed review' ? 'Passed' : 'Blocked', criterionOutcomes: [{ criterion: 1, outcome: 'Blocked' }] });
+      if (scenario !== 'no report') fs.writeFileSync(path.join(dir, 'report.pdf'), 'verified report placeholder');
+      write('retry-request.json', {
+        schema: 'v4-qa-retry-request.v1', ticket: scenario === 'wrong ticket' ? 'TEST2-98' : 'TEST2-99',
+        requestId: 'human-recheck-test', requestedAt: scenario === 'bad date' ? 'invalid' : '2026-10-19T15:40:00Z',
+        authorizedBy: scenario === 'no authority' ? 'worker' : 'human', reason: scenario === 'no reason' ? '' : 'User requested an isolated recheck.',
+        afterAttempt: scenario === 'wrong attempt' ? 0 : 1, targetAttempt: 2
+      });
+      if (scenario === 'exhausted') write('history/attempt-002-test.json', { historyAttempt: 2, results: [{ criterion: 1, outcome: 'Blocked', retryClass: 'transient' }] });
+      run();
+      assert.equal(queuedTests().length, scenario === 'valid' ? 1 : 0, scenario);
+      if (scenario === 'valid') {
+        assert.equal(queuedTests()[0].handoffId, 'handoff-TEST2-99-retry-attempt-002');
+        run();
+        assert.equal(queuedTests().length, 1);
+        assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'))).retries, 1);
+        write('history/attempt-002-test.json', { historyAttempt: 2, results: [{ criterion: 1, outcome: 'Blocked', retryClass: 'transient' }] });
+        run();
+        assert.equal(queuedTests().length, 0);
+        assert.ok(fs.existsSync(path.join(dir, 'report.pdf')));
+        assert.ok(fs.existsSync(path.join(dir, 'history/attempt-001-test.json')));
+      }
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  }
+});
+
 test('post-import criteria check does not race the status bundler', () => {
   const workflows = fileURLToPath(new URL('../.github/workflows/', import.meta.url));
   const criteria = fs.readFileSync(path.join(workflows, 'check-criteria.yml'), 'utf8');

@@ -1,0 +1,10 @@
+{
+  "schema": "v4-qa-retry-request.v1",
+  "ticket": "TEST2-92",
+  "requestId": "human-isolated-recheck-20261019-TEST2-92",
+  "requestedAt": "2026-10-19T15:39:26.027Z",
+  "authorizedBy": "human",
+  "reason": "User explicitly requested retrying today's tickets after shared-browser interference was fixed. Recheck in isolation; retain previous findings and evidence.",
+  "afterAttempt": 1,
+  "targetAttempt": 2
+}

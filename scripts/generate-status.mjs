@@ -301,9 +301,23 @@ function normalizeTicket(dirName) {
     && fs.statSync(path.join(dir, 'report.pdf')).size > 0;
   const reviewOutcome = String(review?.overallOutcome || '').trim().toLowerCase();
   const successfulReview = reviewHasReport && reviewOutcome === 'passed';
-  const retryEligible = reviewHasReport
+  // Explicit human requests can recheck reviewed blockers/product findings,
+  // but never reset history, bypass Jira/criteria, or grant a third attempt.
+  const retryRequest = readJson(path.join(dir, 'retry-request.json'), null);
+  const manualRetry = retryRequest?.schema === 'v4-qa-retry-request.v1'
+    && retryRequest.ticket === ticket.key
+    && retryRequest.authorizedBy === 'human'
+    && typeof retryRequest.reason === 'string' && retryRequest.reason.trim().length > 0
+    && typeof retryRequest.requestId === 'string' && retryRequest.requestId.trim().length > 0
+    && Number.isFinite(Date.parse(retryRequest.requestedAt))
+    && retryRequest.afterAttempt === latestNumber
+    && retryRequest.targetAttempt === latestNumber + 1
+    && latestNumber > 0 && latestNumber < MAX_TEST_ATTEMPTS
+    && localStatus.criteriaVerified === true && !criteriaHold
+    && jiraReadyForTesting(ticket) && reviewHasReport && !successfulReview;
+  const retryEligible = manualRetry || (reviewHasReport
     ? reviewOutcome === 'unverified' && ['passed', 'transient'].includes(disposition)
-    : disposition === 'transient';
+    : disposition === 'transient');
   // A newer test supersedes an older review. A permanent prerequisite or
   // product failure goes to evidence review now, without wasting a retry.
   if (!criteriaHold && latestAttempt && latestNumber > reviewNumber && !(wasQueuedRetry && retryEligible)) {
@@ -370,7 +384,7 @@ function normalizeTicket(dirName) {
   }
   // Permanent blocks and exhausted transient attempts always get a final
   // evidence review and report, including when stopped after attempt one.
-  const finalReviewRequired = latestAttempt && !successfulReview && (
+  const finalReviewRequired = latestAttempt && !successfulReview && !manualRetry && (
     disposition === 'manual'
     || (reviewHasReport && ['failed', 'blocked'].includes(reviewOutcome))
     || latestNumber >= MAX_TEST_ATTEMPTS
