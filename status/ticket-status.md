@@ -19,7 +19,7 @@ Updated: 2026-10-19T14:14:16.862+0100
 | TEST2-84 | READY FOR TESTING | Awaiting Evidence Review |  | View Building Details and Floorplans |
 | TEST2-85 | READY FOR TESTING | Blocked | Retry 1/1 | Display Download Point Details |
 | TEST2-86 | READY FOR TESTING | Awaiting Evidence Review |  | Display Upload Point Details |
-| TEST2-87 | READY FOR TESTING | Awaiting Evidence Review |  | Display Call Point Details |
+| TEST2-87 | READY FOR TESTING | Blocked |  | Display Call Point Details |
 | TEST2-88 | READY FOR TESTING | Blocked |  | Configure MS Teams Call map display settings |
 | TEST2-89 | READY FOR TESTING | Blocked |  | Map and inspect MS Teams Call results |
 | TEST2-90 | READY FOR TESTING | Blocked |  | Map and inspect Automobile call results |
