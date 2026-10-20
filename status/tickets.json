@@ -3,10 +3,9 @@
   "generatedAt": "2026-10-19T16:27:06.061+0100",
   "counts": {
     "tickets": 14,
-    "handoffs": 5,
+    "handoffs": 4,
     "byWorkflowState": {
-      "Blocked": 9,
-      "Ready": 1,
+      "Blocked": 10,
       "Retry Queued": 4
     },
     "byQaOutcome": {
@@ -143,13 +142,13 @@
       "key": "TEST2-88",
       "summary": "Configure MS Teams Call map display settings",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-10-19T15:52:17.800Z",
       "retries": 1,
       "retryLimit": 1,
