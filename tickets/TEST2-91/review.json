@@ -1,73 +1,73 @@
 {
-  "handoffId": "handoff-TEST2-91-review-attempt-001",
-  "handoffVersion": "TEST2-91:evidence_review:1",
+  "handoffId": "handoff-TEST2-91-review-attempt-002",
+  "handoffVersion": "TEST2-91:evidence_review:2",
   "ticket": "TEST2-91",
   "criterionOutcomes": [
     {
       "criterion": "On a standard Automobile map layer, opening filters shows a time filter for a rolling 90-day range.",
       "outcome": "Passed",
-      "reason": "criterion-1-after-open-automobile.png independently shows the initial From 21/07/2026 14:26 and To 19/10/2026 14:26, a 90-day interval ending on the test date. criterion-1-after-add-layer.png shows the new HTTP Browsing layer; criterion-1-final.png shows the same date range when its configuration is opened."
+      "reason": "criterion-1-after-automobile.png shows untouched From 22/07/2026 12:54 and To 20/10/2026 12:54, 90 days apart; criterion-1-final.png retains that range in active HTTP Browsing filters."
     },
     {
       "criterion": "On a standard Automobile map layer, opening filters shows handset fields for MSISDN, SIM MNC, and SIM MCC.",
       "outcome": "Passed",
-      "reason": "criterion-2-restart-after-open-automobile.png and criterion-2-final.png visibly show MSISDN, SIM MCC and SIM MNC under Handset for HTTP Browsing after the independent restart and layer creation."
+      "reason": "criterion-2-final.png directly shows MSISDN, SIM MCC and SIM MNC fields in the active HTTP Browsing Handset section."
     },
     {
       "criterion": "On a standard Automobile map layer, opening filters shows technology choices for Unknown, 2G, 3G, 4G, 5G NSA, and 5G SA.",
-      "outcome": "Unverified",
-      "reason": "criterion-3-final.png shows no-service, 2G, 3G and 4G; Unknown appears in Band values. The lower technology controls are outside the captured viewport, so the complete list, 5G NSA/SA availability and absence of an Unknown technology cannot be established from screenshots. The tester's DOM observations alone do not confirm the reported defect. criterion-3-after-open-gis.png is still loading; the later modal and layer captures show recovery."
+      "outcome": "Failed",
+      "reason": "criterion-3-final.png shows no-service as the technology choice alongside 2G/3G/4G, rather than the required Unknown technology choice. Unknown in a Band summary is a frequency option, not the missing technology choice."
     },
     {
       "criterion": "On a standard Automobile map layer, the frequency filter offers the frequencies supplied by the application configuration.",
-      "outcome": "Blocked",
-      "reason": "criterion-4-after-open-automobile.png and criterion-4-final.png show populated Band controls, but no authoritative configured-frequency reference is available to compare the offered values or establish configuration provenance. Surveyor layers and a cluster table are already present in criterion-4-after-open-gis.png and remain in the final view."
+      "outcome": "Unverified",
+      "reason": "criterion-4-band-0-options.png through criterion-4-band-3-options.png and criterion-4-final.png show technology-specific frequency choices. The claimed configuration response is described only in results notes; no independent captured configuration baseline establishes that these are the supplied frequencies."
     },
     {
       "criterion": "On a standard Automobile map layer, opening filters shows network fields for MCC, MNC, LAC, CI, Site, and Cell.",
-      "outcome": "Blocked",
-      "reason": "Network-field execution was prevented by the recorded browser navigation approval-review timeout and unreliable shared browser state. No criterion-specific browser evidence was captured; testing could not be completed."
+      "outcome": "Passed",
+      "reason": "criterion-5-final.png directly shows all six Network fields: MCC, MNC, LAC, CI, Site and Cell."
     },
     {
       "criterion": "On a standard Automobile map layer, the device-group filter offers the groups supplied by the application configuration.",
       "outcome": "Blocked",
-      "reason": "Device-group execution was prevented by the recorded browser navigation approval-review timeout and unreliable shared browser state. No criterion-specific browser evidence was captured; testing could not be completed."
+      "reason": "The results report deviceSegregationRestricted:true and nine configured groups, requiring an authorised unrestricted user to inspect group choices. criterion-6-after-automobile.png and criterion-6-final.png show the available form portions without a device-group control; configured-group choices cannot be assessed in this restricted environment."
     },
     {
       "criterion": "When SIM MCC, SIM MNC, MCC, MNC, or LAC is edited, each field accepts numeric digits only.",
-      "outcome": "Blocked",
-      "reason": "Numeric-input editing was prevented by the recorded browser navigation approval-review timeout and unreliable shared browser state. No criterion-specific browser evidence was captured for SIM MCC, SIM MNC, MCC, MNC or LAC; testing could not be completed."
+      "outcome": "Failed",
+      "reason": "criterion-7-after-sim-mcc-digits.png shows 123 accepted; criterion-7-after-sim-mcc-invalid.png, criterion-7-after-sim-mnc-invalid.png, criterion-7-after-mcc-invalid.png, criterion-7-after-mnc-invalid.png and criterion-7-after-lac-invalid.png each visibly retain 123.-e, contradicting digits-only entry."
     },
     {
       "criterion": "When MSISDN, CI, Site, or Cell is edited, each field accepts text input.",
-      "outcome": "Blocked",
-      "reason": "Text-input editing was prevented by the recorded browser navigation approval-review timeout and unreliable shared browser state. No criterion-specific browser evidence was captured for MSISDN, CI, Site or Cell; testing could not be completed."
+      "outcome": "Passed",
+      "reason": "criterion-8-before-msisdn.png and criterion-8-after-msisdn.png show empty MSISDN becoming QA-text_91; criterion-8-before-ci.png, criterion-8-after-ci.png, criterion-8-after-site.png and criterion-8-final.png show CI, Site and Cell each accepting QA-text_91."
     },
     {
       "criterion": "When one or more filters are applied on a standard Automobile map layer, the displayed map results match the active filter values and are within the user's authorised results.",
       "outcome": "Blocked",
-      "reason": "Applying filters and checking matching authorised results was prevented by the recorded browser navigation approval-review timeout and unreliable shared browser state. No criterion-specific browser evidence was captured; testing could not be completed."
+      "reason": "criterion-9-layer-active.png shows baseline points including Site 17279; criterion-9-after-site-filter.png enters 17279 and criterion-9-after-apply.png shows points cleared. The same criterion's reload sequence, criterion-9-reload-after-site.png to criterion-9-final.png, repeats that state. Results report HTTP 500 on both filtered requests despite HTTP 200 baseline retrieval; unavailable filtered data prevents matching and authorised-result checks, and the cleared map is not proof of a successful empty response."
     },
     {
       "criterion": "On a Call layer, the technology filter does not offer 5G NSA.",
-      "outcome": "Blocked",
-      "reason": "Call-layer technology execution was prevented by the recorded browser navigation approval-review timeout and unreliable shared browser state. No criterion-specific browser evidence was captured to assess 5G NSA exclusion; testing could not be completed."
+      "outcome": "Failed",
+      "reason": "criterion-10-final.png directly shows Configure Automobile - Call with 5G NSA offered and checked, contradicting its required absence."
     },
     {
       "criterion": "When device groups are shown, restricted device-segregation options are not offered.",
-      "outcome": "Blocked",
-      "reason": "Restricted device-segregation execution was prevented by the recorded browser navigation approval-review timeout and unreliable shared browser state. No criterion-specific browser evidence was captured; testing could not be completed."
+      "outcome": "Unverified",
+      "reason": "criterion-11-after-automobile.png shows the add form's upper portion and criterion-11-final.png shows the active form's bottom; criterion-11-layer-active.png has no filter panel. No captured state shows device groups displayed, and the complete active form is not captured, so these images do not establish restricted-option exclusion when groups are shown."
     },
     {
       "criterion": "On Route Replay, the standard Automobile map filter controls described in this ticket are not available.",
       "outcome": "Blocked",
-      "reason": "Route Replay execution was prevented by the recorded browser navigation approval-review timeout and unreliable shared browser state. No criterion-specific browser evidence was captured to assess the absence of standard-map filters; testing could not be completed."
+      "reason": "criterion-12-initial.png and criterion-12-navigation.png show no Route Replay entry; criterion-12-before-route-search.png to criterion-12-final.png shows Route search settling at No layers match this search. Route Replay could not be activated in the available environment to inspect its controls."
     }
   ],
   "overallOutcome": "Blocked",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-91\\screenshots\\attempt-001",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-91\\screenshots\\attempt-002",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Independent screenshot review completed for all 12 criteria; configuration-reference and browser-execution blockers prevent completion. The reported technology defect is inconclusive because the full list was not captured."
+  "reason": "Completed independent screenshot assessment of all 12 canonical criteria in attempt-002; restricted device-group access, failed filtered-data retrieval and unavailable Route Replay block completion."
 }
