@@ -1,63 +1,63 @@
 {
-  "handoffId": "handoff-TEST2-86-review-attempt-001",
-  "handoffVersion": "TEST2-86:evidence_review:1",
+  "handoffId": "handoff-TEST2-86-review-attempt-002",
+  "handoffVersion": "TEST2-86:evidence_review:2",
   "ticket": "TEST2-86",
   "criterionOutcomes": [
     {
       "criterion": "Given a completed Upload test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Upload Rate, and Wi-Fi connection status.",
-      "outcome": "Unverified",
-      "reason": "criterion-1-final.png shows the loaded summary with 2.62 Mbps Upload Rate, technology, user, serving cell and Wi-Fi False, but the summary continues below the viewport. No criterion-owned capture shows the remaining summary, so missing Service/Duration and coverage of handset and indoor/outdoor cannot be confirmed."
+      "outcome": "Failed",
+      "reason": "criterion-1-summary-top.png, criterion-1-summary-middle.png and criterion-1-final.png cover the summary from top to bottom: user, handset, technology, cell, Upload Rate, Wi-Fi and indoor/outdoor fields are visible, but duration and service fields are absent; start/end timestamps alone do not display duration."
     },
     {
       "criterion": "Given Upload samples are available, a time-series chart shows Signal Strength in dBm and Upload Rate in Mbps across the test duration.",
       "outcome": "Passed",
-      "reason": "criterion-2-final.png directly shows the Upload analysis chart with Signal strength in dBm and Upload rate in Mbps against Seconds across the completed test."
+      "reason": "criterion-2-final.png shows Signal strength and Upload rate series against Seconds, with dBm and Mbps axes and plotted samples spanning about 2.1 seconds."
     },
     {
       "criterion": "Given per-sample Upload data is available, each returned sample is shown in a table with its relevant units.",
       "outcome": "Failed",
-      "reason": "criterion-3-final.png shows populated sample rows with Signal Strength values in dBm, while Upload Rate and Size headers and numeric cells omit units."
+      "reason": "criterion-3-final.png shows ten timestamped sample rows and signal values in dBm, but Upload Rate and Size have no units in either headers or cells."
     },
     {
       "criterion": "Given the per-sample table contains multiple rows, sorting by a displayed column changes their visible order according to that column.",
       "outcome": "Failed",
-      "reason": "criterion-4-before-sort.png and criterion-4-final.png retain the same unsorted Upload Rate sequence (0, 1.88, 0, 0, 3.05, 3.2, 6.93) after the recorded Upload Rate header click."
+      "reason": "criterion-4-before-sort.png and criterion-4-final.png show the same ten-row Upload Rate order after the recorded header click (60.16, 196.99, 138.33 ... 132.93); it is neither ascending nor descending."
     },
     {
       "criterion": "Given per-sample data is available, filtering the table shows only rows matching the selected filter.",
-      "outcome": "Unverified",
-      "reason": "criterion-5-final.png shows populated sample rows and no filter above the visible table, but the table extends below the viewport. The captures do not establish absence of controls throughout the table or show a selected filter and matching result."
+      "outcome": "Failed",
+      "reason": "criterion-5-after-open-details.png shows the chart and table entrance; criterion-5-final.png and criterion-5-analysis.png expose the populated table and full horizontal span. No per-sample filter control is displayed and all ten rows remain visible, consistent with the recorded inability to select a filter."
     },
     {
       "criterion": "Given average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear in the summary immediately after Upload Rate.",
       "outcome": "Blocked",
-      "reason": "criterion-6-final.png shows loaded Upload details, with Band immediately after Upload Rate. The results report an empty details array and no returned average signal metrics; no matching fixture was identified to exercise the conditional placement requirement."
+      "reason": "criterion-6-final.png shows Band immediately after Upload Rate, with no average metrics. The recorded event-analysis response contains empty details and no returned average fields; a fixture returning Average Signal Strength, Average Signal Quality and Average SNR is unavailable, so conditional placement cannot be assessed."
     },
     {
       "criterion": "Given the selected Upload point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.",
       "outcome": "Blocked",
-      "reason": "criterion-7-final.png shows two Upload tests, each spanning seven seconds. No zero-duration Upload fixture was identified, so the required no-data state could not be exercised."
+      "reason": "criterion-7-final.png shows start 10:34:58 and end 10:35:01; criterion-7-after-open-details.png shows a populated analysis. This event has measurable duration; no zero-duration Upload fixture was available to exercise the required no-data state."
     },
     {
       "criterion": "While Upload details are loading, the detail presentation shows the standard loading state.",
-      "outcome": "Unverified",
-      "reason": "criterion-8-details.png and criterion-8-final.png both show already loaded Upload details. The loading transition was not captured, so the standard loading state cannot be verified."
+      "outcome": "Passed",
+      "reason": "criterion-8-final.png directly shows the analysis progress bar and Loading... while the recorded real request was delayed. criterion-8-cleanup-loaded.png shows the chart and samples after release; the recovered run supports the loading assertion despite the earlier route-helper error."
     },
     {
       "criterion": "When Upload details are unavailable, the detail presentation shows the standard no-data state.",
-      "outcome": "Blocked",
-      "reason": "criterion-9-final.png shows two available Upload tests with numeric rates. No unavailable-details Upload fixture was identified, so the required no-data state could not be exercised."
+      "outcome": "Passed",
+      "reason": "criterion-9-final.png shows No chart data is available. and No results are available., with no chart or sample table, after the recorded controlled empty HTTP 200 response. This verifies the induced empty-response UI path."
     },
     {
       "criterion": "When loading Upload details fails, the detail presentation shows the standard error state and does not display incorrect data.",
-      "outcome": "Blocked",
-      "reason": "criterion-10-final.png shows the available Upload test list. No failing Upload-detail fixture was identified; reported Automobile HTTP Browsing errors do not establish Upload error handling or absence of incorrect data."
+      "outcome": "Passed",
+      "reason": "criterion-10-final.png shows Unable to load details. and Retry with no chart or sample table after the recorded controlled HTTP 500 response. The selected-event summary remains visible; criterion-10-cleanup-recovered.png shows chart/sample recovery after removing interception and retrying."
     }
   ],
   "overallOutcome": "Blocked",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-86\\screenshots\\attempt-001",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-86\\screenshots\\attempt-002",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Assessed all 10 criteria against attempt-001 screenshots; average-metric, zero-duration, unavailable-details and failing-detail fixtures remain unavailable."
+  "reason": "Reviewed attempt-002 screenshots against all ten criteria; average-metric and zero-duration fixtures remain unavailable."
 }
