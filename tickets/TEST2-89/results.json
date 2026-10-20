@@ -1,478 +1,300 @@
 [
   {
     "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
-    "criterionText": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
     "outcome": "Passed",
     "evidence": [
-      "screenshots/attempt-001/criterion-1-initial.png",
-      "screenshots/attempt-001/criterion-1-map-before-filter.png",
-      "screenshots/attempt-001/criterion-1-final.png"
+      "screenshots/attempt-002/criterion-1-initial.png",
+      "screenshots/attempt-002/criterion-1-after-open-gis.png",
+      "screenshots/attempt-002/criterion-1-before-filter.png",
+      "screenshots/attempt-002/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS, waited for Loading map to disappear, and captured the displayed map before selecting any layer.",
+      "Searched layer catalogue for MS Teams; no matching layer was listed. The displayed map had no MS Teams Call test-result points.",
+      "Captured final state at GIS and cleared the catalogue filter as cleanup."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "steps_taken": [
-      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured the visible launcher.",
-      "Opened GIS and captured the settled displayed map before any MS Teams Call selection.",
-      "Entered MS Teams in the layer catalogue filter; captured the decisive final map before cleanup and read its actual URL.",
-      "Cleared the catalogue search. Subsequent navigation discovery opened and cancelled Surveyor and Automobile configuration without adding a layer."
-    ],
-    "observed_result": "No MS Teams Call test-result points were shown in the displayed map viewport before selection. The catalogue search had no top-level match; MS Teams Call was later found under Automobile test types.",
-    "reason": "Passed for the displayed viewport before selection; no claim of complete geographical coverage."
+    "reason": "Observed the displayed map before selecting any layer; no MS Teams Call test-result points were shown. No populated-data or colour assertion was exercised."
   },
   {
     "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
-    "criterionText": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "MS Teams Call is unavailable in this account's current GIS layer catalogue: searching MS Teams shows 'No layers match this search.' Exploratory Surveyor configuration offers Service, Download, Upload, Ping, Data Experience, Call, Site Testing and Building; generic Call settings expose no MS Teams Call type. No matching authorised MS Teams Call points could be obtained or selected. Availability/permission/deployment cause is undetermined; this is not evidence of a product failure.",
+    "steps_taken": [
+      "Started independently at launcher and saved initial state.",
+      "Opened GIS and waited for the Map region.",
+      "Opened Surveyor configuration, inspected Active layer options and generic Call settings; no MS Teams Call option was exposed.",
+      "Cancelled without adding a layer, searched the catalogue for MS Teams, and observed No layers match this search.",
+      "Captured final blocker and actual GIS URL; cleared the filter as cleanup."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-2-initial.png",
-      "screenshots/attempt-001/criterion-2-before-automobile.png",
-      "screenshots/attempt-001/criterion-2-after-automobile.png",
-      "screenshots/attempt-001/criterion-2-test-types.png",
-      "screenshots/attempt-001/criterion-2-before-add.png",
-      "screenshots/attempt-001/criterion-2-final.png",
-      "screenshots/attempt-001/criterion-2-cleanup.png"
+      "screenshots/attempt-002/criterion-2-initial.png",
+      "screenshots/attempt-002/criterion-2-after-open-gis.png",
+      "screenshots/attempt-002/criterion-2-surveyor-settings.png",
+      "screenshots/attempt-002/criterion-2-active-layer-options.png",
+      "screenshots/attempt-002/criterion-2-call-settings.png",
+      "screenshots/attempt-002/criterion-2-after-cancel.png",
+      "screenshots/attempt-002/criterion-2-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. Matching authorised results could not be compared against selectable points. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
-    "criterionText": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a displayed MS Teams Call point with Poor Quality 0–0.99 to verify Green.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-3-initial.png",
-      "screenshots/attempt-001/criterion-3-before-automobile.png",
-      "screenshots/attempt-001/criterion-3-after-automobile.png",
-      "screenshots/attempt-001/criterion-3-test-types.png",
-      "screenshots/attempt-001/criterion-3-before-add.png",
-      "screenshots/attempt-001/criterion-3-final.png",
-      "screenshots/attempt-001/criterion-3-cleanup.png"
+      "screenshots/attempt-002/criterion-3-initial.png",
+      "screenshots/attempt-002/criterion-3-after-open-gis.png",
+      "screenshots/attempt-002/criterion-3-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. A point with Poor Quality 0–0.99 could not be selected to verify Green. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
-    "criterionText": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a displayed MS Teams Call point with Poor Quality 1–9.99 to verify Yellow.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-4-initial.png",
-      "screenshots/attempt-001/criterion-4-before-automobile.png",
-      "screenshots/attempt-001/criterion-4-after-automobile.png",
-      "screenshots/attempt-001/criterion-4-test-types.png",
-      "screenshots/attempt-001/criterion-4-before-add.png",
-      "screenshots/attempt-001/criterion-4-final.png",
-      "screenshots/attempt-001/criterion-4-cleanup.png"
+      "screenshots/attempt-002/criterion-4-initial.png",
+      "screenshots/attempt-002/criterion-4-after-open-gis.png",
+      "screenshots/attempt-002/criterion-4-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. A point with Poor Quality 1–9.99 could not be selected to verify Yellow. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
-    "criterionText": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a displayed MS Teams Call point with Poor Quality 10–24.99 to verify Amber.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-5-initial.png",
-      "screenshots/attempt-001/criterion-5-before-automobile.png",
-      "screenshots/attempt-001/criterion-5-after-automobile.png",
-      "screenshots/attempt-001/criterion-5-test-types.png",
-      "screenshots/attempt-001/criterion-5-before-add.png",
-      "screenshots/attempt-001/criterion-5-final.png",
-      "screenshots/attempt-001/criterion-5-cleanup.png"
+      "screenshots/attempt-002/criterion-5-initial.png",
+      "screenshots/attempt-002/criterion-5-after-open-gis.png",
+      "screenshots/attempt-002/criterion-5-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. A point with Poor Quality 10–24.99 could not be selected to verify Amber. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
-    "criterionText": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a displayed MS Teams Call point with Poor Quality 25 or greater to verify Red.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-6-initial.png",
-      "screenshots/attempt-001/criterion-6-before-automobile.png",
-      "screenshots/attempt-001/criterion-6-after-automobile.png",
-      "screenshots/attempt-001/criterion-6-test-types.png",
-      "screenshots/attempt-001/criterion-6-before-add.png",
-      "screenshots/attempt-001/criterion-6-final.png",
-      "screenshots/attempt-001/criterion-6-cleanup.png"
+      "screenshots/attempt-002/criterion-6-initial.png",
+      "screenshots/attempt-002/criterion-6-after-open-gis.png",
+      "screenshots/attempt-002/criterion-6-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. A point with Poor Quality >=25 could not be selected to verify Red. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
-    "criterionText": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selectable MS Teams Call result whose details load to inspect the seven summary fields.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-7-initial.png",
-      "screenshots/attempt-001/criterion-7-before-automobile.png",
-      "screenshots/attempt-001/criterion-7-after-automobile.png",
-      "screenshots/attempt-001/criterion-7-test-types.png",
-      "screenshots/attempt-001/criterion-7-before-add.png",
-      "screenshots/attempt-001/criterion-7-final.png",
-      "screenshots/attempt-001/criterion-7-cleanup.png"
+      "screenshots/attempt-002/criterion-7-initial.png",
+      "screenshots/attempt-002/criterion-7-after-open-gis.png",
+      "screenshots/attempt-002/criterion-7-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. The summary fields could not be inspected because no MS Teams Call details dialog could be opened. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
-    "criterionText": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selectable MS Teams Call result whose details load to inspect charts and available handover markers.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-8-initial.png",
-      "screenshots/attempt-001/criterion-8-before-automobile.png",
-      "screenshots/attempt-001/criterion-8-after-automobile.png",
-      "screenshots/attempt-001/criterion-8-test-types.png",
-      "screenshots/attempt-001/criterion-8-before-add.png",
-      "screenshots/attempt-001/criterion-8-final.png",
-      "screenshots/attempt-001/criterion-8-cleanup.png"
+      "screenshots/attempt-002/criterion-8-initial.png",
+      "screenshots/attempt-002/criterion-8-after-open-gis.png",
+      "screenshots/attempt-002/criterion-8-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. Signal/download charts and handover markers could not be inspected. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
-    "criterionText": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selectable MS Teams Call result whose details load to inspect detailed-sample table columns.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-9-initial.png",
-      "screenshots/attempt-001/criterion-9-before-automobile.png",
-      "screenshots/attempt-001/criterion-9-after-automobile.png",
-      "screenshots/attempt-001/criterion-9-test-types.png",
-      "screenshots/attempt-001/criterion-9-before-add.png",
-      "screenshots/attempt-001/criterion-9-final.png",
-      "screenshots/attempt-001/criterion-9-cleanup.png"
+      "screenshots/attempt-002/criterion-9-initial.png",
+      "screenshots/attempt-002/criterion-9-after-open-gis.png",
+      "screenshots/attempt-002/criterion-9-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. Detailed-sample columns could not be inspected. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
-    "criterionText": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: MS Teams Call detailed samples and a supported sortable column.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-10-initial.png",
-      "screenshots/attempt-001/criterion-10-before-automobile.png",
-      "screenshots/attempt-001/criterion-10-after-automobile.png",
-      "screenshots/attempt-001/criterion-10-test-types.png",
-      "screenshots/attempt-001/criterion-10-before-add.png",
-      "screenshots/attempt-001/criterion-10-final.png",
-      "screenshots/attempt-001/criterion-10-cleanup.png"
+      "screenshots/attempt-002/criterion-10-initial.png",
+      "screenshots/attempt-002/criterion-10-after-open-gis.png",
+      "screenshots/attempt-002/criterion-10-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. No MS Teams Call sample table was available to exercise sorting. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
-    "criterionText": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: MS Teams Call detailed samples and a supported filterable column.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-11-initial.png",
-      "screenshots/attempt-001/criterion-11-before-automobile.png",
-      "screenshots/attempt-001/criterion-11-after-automobile.png",
-      "screenshots/attempt-001/criterion-11-test-types.png",
-      "screenshots/attempt-001/criterion-11-before-add.png",
-      "screenshots/attempt-001/criterion-11-final.png",
-      "screenshots/attempt-001/criterion-11-cleanup.png"
+      "screenshots/attempt-002/criterion-11-initial.png",
+      "screenshots/attempt-002/criterion-11-after-open-gis.png",
+      "screenshots/attempt-002/criterion-11-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. No MS Teams Call sample table was available to exercise filtering. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
-    "criterionText": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selected MS Teams Call test and its CSV export control.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-12-initial.png",
-      "screenshots/attempt-001/criterion-12-before-automobile.png",
-      "screenshots/attempt-001/criterion-12-after-automobile.png",
-      "screenshots/attempt-001/criterion-12-test-types.png",
-      "screenshots/attempt-001/criterion-12-before-add.png",
-      "screenshots/attempt-001/criterion-12-final.png",
-      "screenshots/attempt-001/criterion-12-cleanup.png"
+      "screenshots/attempt-002/criterion-12-initial.png",
+      "screenshots/attempt-002/criterion-12-after-open-gis.png",
+      "screenshots/attempt-002/criterion-12-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. No MS Teams Call test could be selected for CSV export; no CSV was produced. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
-    "criterionText": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: an available zero-duration MS Teams Call result.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-13-initial.png",
-      "screenshots/attempt-001/criterion-13-before-automobile.png",
-      "screenshots/attempt-001/criterion-13-after-automobile.png",
-      "screenshots/attempt-001/criterion-13-test-types.png",
-      "screenshots/attempt-001/criterion-13-before-add.png",
-      "screenshots/attempt-001/criterion-13-final.png",
-      "screenshots/attempt-001/criterion-13-cleanup.png"
+      "screenshots/attempt-002/criterion-13-initial.png",
+      "screenshots/attempt-002/criterion-13-after-open-gis.png",
+      "screenshots/attempt-002/criterion-13-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. No zero-duration MS Teams Call result could be selected; stale-detail handling was not exercised. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   },
   {
     "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
-    "criterionText": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_layer_unavailable",
+    "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selectable MS Teams Call result that exhibits a detail-load failure.",
+    "steps_taken": [
+      "Navigated independently to the launcher and captured its visible initial state.",
+      "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+      "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+      "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+    ],
     "evidence": [
-      "screenshots/attempt-001/criterion-14-initial.png",
-      "screenshots/attempt-001/criterion-14-before-automobile.png",
-      "screenshots/attempt-001/criterion-14-after-automobile.png",
-      "screenshots/attempt-001/criterion-14-test-types.png",
-      "screenshots/attempt-001/criterion-14-before-add.png",
-      "screenshots/attempt-001/criterion-14-final.png",
-      "screenshots/attempt-001/criterion-14-cleanup.png"
+      "screenshots/attempt-002/criterion-14-initial.png",
+      "screenshots/attempt-002/criterion-14-after-open-gis.png",
+      "screenshots/attempt-002/criterion-14-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85",
-    "blockerCode": "ms_teams_points_service_error",
-    "retryClass": "prerequisite",
-    "steps_taken": [
-      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher and saved this criterion's initial screenshot.",
-      "Opened GIS, waited for map loading to finish and captured the state before opening Automobile.",
-      "Opened Automobile configuration and the Test type options; selected MS Teams Call and captured each transition.",
-      "Added the layer using the default approximately 90-day interval and unchanged filter values.",
-      "Observed its legend appear; the browser's GET /api/platform/automobile/ms-teams-call/points returned HTTP 500. Captured the decisive final state and read the actual GIS URL.",
-      "Removed only the test-created MS Teams Call layer, verified its label was absent and captured cleanup."
-    ],
-    "observed_result": "MS Teams Call was selectable as an Automobile test type, but its points request failed with HTTP 500. No usable MS Teams Call result loaded for this criterion.",
-    "reason": "Repeated points-service error prevented the required result-data prerequisite. The points-load failure did not exercise a selected result's detail-load failure. No details dialog could be requested, so stale-detail handling remains untested. This is not evidence of a settled empty dataset or a contradictory product result. Existing unrelated layers were left in place.",
-    "blockers": [
-      {
-        "code": "ms_teams_points_service_error",
-        "description": "GET /api/platform/automobile/ms-teams-call/points returned HTTP 500 across independent criterion starts. The response body inspected during criterion 2 reported: An error occurred while processing your request. Backend availability requires resolution; repeated failure is classified as prerequisite rather than requesting an automatic transient retry."
-      }
-    ]
+    "browserVersion": "155.0.8059.85"
   }
 ]

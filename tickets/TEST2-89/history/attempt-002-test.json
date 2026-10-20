@@ -1,0 +1,313 @@
+{
+  "handoffId": "handoff-TEST2-89-retry-attempt-002",
+  "handoffVersion": "TEST2-89:test_ticket:2",
+  "ticket": "TEST2-89",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-after-open-gis.png",
+        "screenshots/attempt-002/criterion-1-before-filter.png",
+        "screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to launcher and captured initial state.",
+        "Opened GIS, waited for Loading map to disappear, and captured the displayed map before selecting any layer.",
+        "Searched layer catalogue for MS Teams; no matching layer was listed. The displayed map had no MS Teams Call test-result points.",
+        "Captured final state at GIS and cleared the catalogue filter as cleanup."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Observed the displayed map before selecting any layer; no MS Teams Call test-result points were shown. No populated-data or colour assertion was exercised."
+    },
+    {
+      "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "MS Teams Call is unavailable in this account's current GIS layer catalogue: searching MS Teams shows 'No layers match this search.' Exploratory Surveyor configuration offers Service, Download, Upload, Ping, Data Experience, Call, Site Testing and Building; generic Call settings expose no MS Teams Call type. No matching authorised MS Teams Call points could be obtained or selected. Availability/permission/deployment cause is undetermined; this is not evidence of a product failure.",
+      "steps_taken": [
+        "Started independently at launcher and saved initial state.",
+        "Opened GIS and waited for the Map region.",
+        "Opened Surveyor configuration, inspected Active layer options and generic Call settings; no MS Teams Call option was exposed.",
+        "Cancelled without adding a layer, searched the catalogue for MS Teams, and observed No layers match this search.",
+        "Captured final blocker and actual GIS URL; cleared the filter as cleanup."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-after-open-gis.png",
+        "screenshots/attempt-002/criterion-2-surveyor-settings.png",
+        "screenshots/attempt-002/criterion-2-active-layer-options.png",
+        "screenshots/attempt-002/criterion-2-call-settings.png",
+        "screenshots/attempt-002/criterion-2-after-cancel.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a displayed MS Teams Call point with Poor Quality 0–0.99 to verify Green.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-after-open-gis.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a displayed MS Teams Call point with Poor Quality 1–9.99 to verify Yellow.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-after-open-gis.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a displayed MS Teams Call point with Poor Quality 10–24.99 to verify Amber.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-after-open-gis.png",
+        "screenshots/attempt-002/criterion-5-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a displayed MS Teams Call point with Poor Quality 25 or greater to verify Red.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-after-open-gis.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selectable MS Teams Call result whose details load to inspect the seven summary fields.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-7-initial.png",
+        "screenshots/attempt-002/criterion-7-after-open-gis.png",
+        "screenshots/attempt-002/criterion-7-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selectable MS Teams Call result whose details load to inspect charts and available handover markers.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-8-initial.png",
+        "screenshots/attempt-002/criterion-8-after-open-gis.png",
+        "screenshots/attempt-002/criterion-8-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selectable MS Teams Call result whose details load to inspect detailed-sample table columns.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-9-initial.png",
+        "screenshots/attempt-002/criterion-9-after-open-gis.png",
+        "screenshots/attempt-002/criterion-9-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: MS Teams Call detailed samples and a supported sortable column.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-10-initial.png",
+        "screenshots/attempt-002/criterion-10-after-open-gis.png",
+        "screenshots/attempt-002/criterion-10-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: MS Teams Call detailed samples and a supported filterable column.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-11-initial.png",
+        "screenshots/attempt-002/criterion-11-after-open-gis.png",
+        "screenshots/attempt-002/criterion-11-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selected MS Teams Call test and its CSV export control.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-12-initial.png",
+        "screenshots/attempt-002/criterion-12-after-open-gis.png",
+        "screenshots/attempt-002/criterion-12-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: an available zero-duration MS Teams Call result.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-13-initial.png",
+        "screenshots/attempt-002/criterion-13-after-open-gis.png",
+        "screenshots/attempt-002/criterion-13-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The current account's GIS layer catalogue returned 'No layers match this search.' for MS Teams. No MS Teams Call layer or matching selectable result could be obtained, so this criterion's required point/details/sample/export prerequisite could not be reached. The cause (availability, deployment or permissions) is undetermined. No fixture was created and no product failure is asserted. Specifically unavailable: a selectable MS Teams Call result that exhibits a detail-load failure.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured its visible initial state.",
+        "Opened GIS, waited for the Map region, and captured the map and catalogue before searching.",
+        "Filtered layers for MS Teams and waited for the visible No layers match this search message.",
+        "Captured this criterion's final blocker and read the actual browser URL; cleared the search filter as cleanup. The asserted dependent operation could not be attempted."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-14-initial.png",
+        "screenshots/attempt-002/criterion-14-after-open-gis.png",
+        "screenshots/attempt-002/criterion-14-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    }
+  ],
+  "conciseReport": "TEST2-89 retry: 1 Passed, 13 Blocked. The displayed GIS map showed no MS Teams Call result points before selecting a layer. Searching the current account's layer catalogue for MS Teams consistently returned “No layers match this search.” Surveyor's exposed active-layer options and generic Call settings did not expose MS Teams Call. Matching authorised MS Teams Call points, threshold fixtures, detail samples, CSV export, zero-duration and failed-detail-load cases could not be reached. Availability/deployment/permissions cause remains undetermined. Blockers are prerequisite-class, not product failures. Each criterion has separate verified PNG evidence and an observed final GIS URL. Exploratory configuration was cancelled and layer filters restored; no data or layers were created.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-89-retry-attempt-002/screenshots/",
+  "noOp": false,
+  "reason": "Required MS Teams Call layer is unavailable in the current account's exposed GIS controls; dependent matching/edge-case test data and operations cannot be obtained. See criterion-specific evidence. Browser: observed Google Chrome 155.0.8059.85.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-20T11:32:33.631Z"
+}
