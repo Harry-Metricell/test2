@@ -1,0 +1,235 @@
+{
+  "handoffId": "handoff-TEST2-81-retry-attempt-002",
+  "handoffVersion": "TEST2-81:test_ticket:2",
+  "ticket": "TEST2-81",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Given HTTP Browsing results are available, when the HTTP Browsing layer is selected, each supplied result is displayed as a selectable point on the map.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "reason": "HTTP Browsing points returned HTTP 200 and aggregate markers, but individual result access was prevented by POST /api/platform/automobile/http-browsing/cluster-details HTTP 500 (requests 285 and 300). Visible panel: Unable to load point details. Each supplied individual result could not be verified. Initial screenshot capture failed because directory was absent; directory created and criterion restarted from launcher. Some setup search/zoom transitions lack separate before captures; no pass claimed.",
+      "steps_taken": [
+        "Navigated to launcher and captured restarted initial state.",
+        "Opened GIS; added Automobile HTTP Browsing using default 2026-07-22 to 2026-10-20 date range.",
+        "Observed successful points response and aggregate markers; zoomed five levels, searched London then coordinates 51.5087, -0.1.",
+        "Double-clicked supplied aggregate location 51.51109290500474,-0.10677337646484375; details failed with visible alert and two HTTP 500 responses.",
+        "Captured final alert before closing panel and removing test-added layer. Map viewport changed and has not yet been restored."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-before-add-automobile.png",
+        "screenshots/attempt-002/criterion-1-after-open-config.png",
+        "screenshots/attempt-002/criterion-1-after-layer.png",
+        "screenshots/attempt-002/criterion-1-after-zoom.png",
+        "screenshots/attempt-002/criterion-1-after-location-search.png",
+        "screenshots/attempt-002/criterion-1-after-aggregate-zoom.png",
+        "screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "blockerCode": "individual_details_service_error"
+    },
+    {
+      "criterion": "Given Ping results are available, when the Ping layer is selected, each supplied result is displayed as a selectable point on the map.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "reason": "GET /api/platform/automobile/ping/points returned 200 and 30 aggregates. Selecting an aggregate showed Unable to load point details; individual-result selectability and complete supplied-result correspondence could not be established. Layer removed after final capture. Viewport changes were later restored to the original /1.918/53.183/5.34 view. POST /api/platform/automobile/ping/cluster-details returned HTTP 500 twice (requests 201 and 204).",
+      "steps_taken": [
+        "Started independently at launcher and captured initial.",
+        "Opened GIS and Automobile configuration; selected Ping and added layer with default date range.",
+        "Inspected 200 points response; selected supplied aggregate at 51.51119974058721,-0.10728836059570312.",
+        "Observed error panel, captured final state and URL, then closed panel and removed only test-added layer."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-before-add-automobile.png",
+        "screenshots/attempt-002/criterion-2-after-open-config.png",
+        "screenshots/attempt-002/criterion-2-before-select-ping.png",
+        "screenshots/attempt-002/criterion-2-after-select-ping.png",
+        "screenshots/attempt-002/criterion-2-after-add-layer.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "individual_details_service_error"
+    },
+    {
+      "criterion": "Given Video Streaming results are available, when the Video Streaming layer is selected, each supplied result is displayed as a selectable point on the map.",
+      "outcome": "Unverified",
+      "retryClass": "manual",
+      "reason": "Video Streaming returned HTTP 200 with [] at London zoom 15, then one aggregate at UK-scale zoom 5 (latitude 51.618016548773696, longitude -0.17578125, pointId null). The layer and response were exercised; visible individual-result rendering and each supplied result's selectability were not conclusively established. Test-added layer removed.",
+      "steps_taken": [
+        "Started at launcher independently; opened GIS and Automobile configuration.",
+        "Selected Video Streaming, added layer, verified 200 response with empty array.",
+        "Widened map from zoom 15 to 5; response contained one aggregate with Rebuffer Count 1 and no pointId.",
+        "Captured final map and URL, removed test-added layer."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-before-add-automobile.png",
+        "screenshots/attempt-002/criterion-3-after-open-config.png",
+        "screenshots/attempt-002/criterion-3-before-select-video.png",
+        "screenshots/attempt-002/criterion-3-after-select-video.png",
+        "screenshots/attempt-002/criterion-3-after-add-layer.png",
+        "screenshots/attempt-002/criterion-3-after-widen-area.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "criterion": "Given details are available for a result point, when the point is selected, a new detail dialog opens for that same result and displays its test type, result time, location, and available network technology/context.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "reason": "Individual detail access could not be established. At zoom 18 points response contained only aggregates with pointId null. Selection did not open a detail panel; a subsequent lower-zoom click was intercepted by the coordinate-search marker. Controlled reload cleared the test-added layer and search marker; waiting for its prior configuration button timed out. Earlier HTTP Browsing cluster-details calls in this attempt returned HTTP 500. Final screenshot records reachable GIS after reload, not successful details.",
+      "steps_taken": [
+        "Started independently at launcher; opened GIS and added HTTP Browsing.",
+        "Searched a supplied result area; zoomed to 18; inspected three aggregates with null pointId.",
+        "Clicked projected aggregate; no alert/dialog appeared within 30 seconds.",
+        "Zoomed to 14; pointer intercepted by search map marker. Reloaded; prior layer disappeared; configuration wait timed out.",
+        "Captured reachable blocked final state and URL; reload removed test-created layer."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-before-add-automobile.png",
+        "screenshots/attempt-002/criterion-4-after-open-config.png",
+        "screenshots/attempt-002/criterion-4-after-add-http.png",
+        "screenshots/attempt-002/criterion-4-after-coordinate-search.png",
+        "screenshots/attempt-002/criterion-4-after-individual-zoom.png",
+        "screenshots/attempt-002/criterion-4-after-return-aggregate-zoom.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "individual_result_selection_unavailable"
+    },
+    {
+      "criterion": "Given an HTTP Browsing point is selected and its details are available, the dialog displays that result’s Page Load Time.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "reason": "Page Load Time cannot be matched to an individual result: HTTP Browsing points supply aggregates with pointId null and observed cluster-details requests returned HTTP 500. No stable individual point/detail fixture was obtainable. The repeat HTTP failure was not reissued solely for this dependent criterion.",
+      "steps_taken": [
+        "Navigated independently to launcher and captured initial.",
+        "Opened GIS, then Automobile configuration; verified HTTP Browsing available.",
+        "Stopped at the established individual-detail service dependency; no repeated cluster-details request.",
+        "Captured own final configuration evidence and URL; cancelled test configuration."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-before-add-automobile.png",
+        "screenshots/attempt-002/criterion-5-after-open-config.png",
+        "screenshots/attempt-002/criterion-5-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "individual_details_service_error"
+    },
+    {
+      "criterion": "Given a Ping point is selected and its details are available, the dialog displays that result’s Ping Time.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "reason": "Ping Time cannot be matched to an individual result: Ping points supplied aggregates with pointId null and POST /api/platform/automobile/ping/cluster-details returned HTTP 500 twice. No individual point/detail fixture was obtainable. The same failing request was not reissued solely for this dependent criterion.",
+      "steps_taken": [
+        "Started independently at launcher and captured initial.",
+        "Opened GIS and Automobile configuration, selected Ping.",
+        "Stopped at established failed individual-detail service dependency; did not reissue same failing request.",
+        "Captured own final configuration and URL; cancelled configuration."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-before-add-automobile.png",
+        "screenshots/attempt-002/criterion-6-after-open-config.png",
+        "screenshots/attempt-002/criterion-6-after-select-ping.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "individual_details_service_error"
+    },
+    {
+      "criterion": "Given a Video Streaming point is selected and its details are available, the dialog displays that result’s Rebuffer Count.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "reason": "Own fresh Video Streaming layer returned one aggregate (KPI 1, pointId null). Selecting it produced Unable to load point details. POST /api/platform/automobile/video-streaming/cluster-details returned HTTP 500; no individual result and its Rebuffer Count could be verified. This is a service error, not absent Video Streaming data.",
+      "steps_taken": [
+        "Started independently at launcher; opened GIS and configured Video Streaming.",
+        "Added layer; inspected own HTTP 200 response containing one aggregate.",
+        "Selected supplied aggregate at 51.618016548773696,-0.17578125.",
+        "Observed clear load error; captured final state and URL, then closed detail panel and removed test-added layer."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-7-initial.png",
+        "screenshots/attempt-002/criterion-7-before-add-automobile.png",
+        "screenshots/attempt-002/criterion-7-after-open-config.png",
+        "screenshots/attempt-002/criterion-7-after-select-video.png",
+        "screenshots/attempt-002/criterion-7-after-add-layer.png",
+        "screenshots/attempt-002/criterion-7-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "individual_details_service_error"
+    },
+    {
+      "criterion": "Given an HTTP Browsing result ends in error, when its point is displayed, it is visually distinct from a successful result; a zero Page Load Time on the failed result is not coloured as success.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "reason": "Own fresh HTTP Browsing response contained 338 aggregates, 6 marked failed, 0 failed with KPI zero, and no stable individual pointId. Failed KPI values were null. No identifiable failed individual HTTP result with zero Page Load Time was supplied or obtainable. Error legend alone cannot prove required failed-zero colouring; individual details remained unavailable from established cluster-details HTTP 500 errors.",
+      "steps_taken": [
+        "Started independently at launcher, opened GIS and HTTP Browsing configuration.",
+        "Added own HTTP Browsing layer at original UK-scale viewport.",
+        "Inspected own successful points response for failed records, KPI zero and stable pointId; required fixture was absent.",
+        "Captured own final map/legend and current URL; removed test-added layer."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-8-initial.png",
+        "screenshots/attempt-002/criterion-8-before-add-automobile.png",
+        "screenshots/attempt-002/criterion-8-after-open-config.png",
+        "screenshots/attempt-002/criterion-8-after-add-http.png",
+        "screenshots/attempt-002/criterion-8-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "required_failed_zero_fixture_unavailable"
+    },
+    {
+      "criterion": "Given details cannot be returned for a selected point, the user sees a clear no-data or error message and no stale details are displayed.",
+      "outcome": "Unverified",
+      "retryClass": "manual",
+      "reason": "On an independently selected HTTP Browsing aggregate, POST /api/platform/automobile/http-browsing/cluster-details returned HTTP 500 and the panel displayed Unable to load point details with Retry, with no detail values shown. Before selection no detail tab existed. This confirms the aggregate error path from an empty detail baseline, but individual point-detail error/no-data behavior and replacement of previously successful stale details were not exercised because no successful individual result was obtainable. A full pass would overstate the available evidence.",
+      "steps_taken": [
+        "Started independently at launcher; opened GIS and added own HTTP Browsing layer.",
+        "Verified no existing detail tab; captured empty-detail baseline.",
+        "Read own points response and selected aggregate 52.80276141541967,-0.17578125.",
+        "Waited for loading to end in visible error alert; observed no result detail values.",
+        "Captured separate after-error and final PNGs and current URL before cleanup."
+      ],
+      "evidence": [
+        "screenshots/attempt-002/criterion-9-initial.png",
+        "screenshots/attempt-002/criterion-9-before-add-automobile.png",
+        "screenshots/attempt-002/criterion-9-after-open-config.png",
+        "screenshots/attempt-002/criterion-9-after-add-http-baseline.png",
+        "screenshots/attempt-002/criterion-9-after-error.png",
+        "screenshots/attempt-002/criterion-9-final.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    }
+  ],
+  "conciseReport": "TEST2-81: 7 Blocked, 2 Unverified. HTTP Browsing, Ping and Video Streaming layers returned aggregate map data, but cluster-detail requests returned HTTP 500 with a visible load-error message. Individual point identity/context and KPIs could not be verified. The failed-HTTP zero-Page-Load-Time fixture was absent. Aggregate error handling was observed; individual-point and stale-detail replacement behavior remains unverified. All test-added layers/panels were removed and the original map viewport was restored. Evidence: 57 criterion-owned PNG references, all validated readable.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-81-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Performed one attempt covering all nine canonical criteria. Service/data and interaction blockers prevent a pass; no product failure is inferred from unavailable individual data. HTTP Browsing cluster-details HTTP 500 reproduced on an independent fresh launcher/GIS load during criterion 9. Ping and Video Streaming cluster-detail requests also returned 500. Browser state restored: zero selected layers, zero open detail tabs, original map view /1.918/53.183/5.34. No fixture/backend/authentication changes were made.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-20T09:42:33.176Z"
+}
