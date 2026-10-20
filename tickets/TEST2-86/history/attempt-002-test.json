@@ -1,0 +1,299 @@
+{
+  "handoffId": "handoff-TEST2-86-retry-attempt-002",
+  "handoffVersion": "TEST2-86:test_ticket:2",
+  "ticket": "TEST2-86",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Given a completed Upload test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Upload Rate, and Wi-Fi connection status.",
+      "outcome": "Failed",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-before-surveyor.png",
+        "screenshots/attempt-002/criterion-1-after-surveyor.png",
+        "screenshots/attempt-002/criterion-1-before-upload.png",
+        "screenshots/attempt-002/criterion-1-before-add-layer.png",
+        "screenshots/attempt-002/criterion-1-after-add-layer.png",
+        "screenshots/attempt-002/criterion-1-before-open-details.png",
+        "screenshots/attempt-002/criterion-1-after-open-details.png",
+        "screenshots/attempt-002/criterion-1-summary-top.png",
+        "screenshots/attempt-002/criterion-1-summary-middle.png",
+        "screenshots/attempt-002/criterion-1-final.png",
+        "screenshots/attempt-002/criterion-1-cleanup-map.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Read the entire summary, scrolled through its middle and last rows, and captured top, middle and final views.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The complete visible summary contains user, survey, timestamps, rate, band, serving cell, technologies, Wi-Fi state, error, URL, indoor/outdoor and handset fields, but no duration field or distinct service field. A completed test with start/end timestamps is available; the full requested summary is not shown.",
+      "reason": "The complete visible summary contains user, survey, timestamps, rate, band, serving cell, technologies, Wi-Fi state, error, URL, indoor/outdoor and handset fields, but no duration field or distinct service field. A completed test with start/end timestamps is available; the full requested summary is not shown.",
+      "retryClass": "product"
+    },
+    {
+      "criterion": "Given Upload samples are available, a time-series chart shows Signal Strength in dBm and Upload Rate in Mbps across the test duration.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-before-surveyor.png",
+        "screenshots/attempt-002/criterion-2-after-surveyor.png",
+        "screenshots/attempt-002/criterion-2-before-upload.png",
+        "screenshots/attempt-002/criterion-2-before-add-layer.png",
+        "screenshots/attempt-002/criterion-2-after-add-layer.png",
+        "screenshots/attempt-002/criterion-2-before-open-details.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Waited for Upload measurements and Upload analysis to load; inspected the plotted series, axes and duration.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "Both Signal strength and Upload rate are plotted against Seconds; the axes are labelled dBm and Mbps. The ten returned samples span approximately 2.1 seconds."
+    },
+    {
+      "criterion": "Given per-sample Upload data is available, each returned sample is shown in a table with its relevant units.",
+      "outcome": "Failed",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-before-surveyor.png",
+        "screenshots/attempt-002/criterion-3-after-surveyor.png",
+        "screenshots/attempt-002/criterion-3-before-upload.png",
+        "screenshots/attempt-002/criterion-3-before-add-layer.png",
+        "screenshots/attempt-002/criterion-3-after-add-layer.png",
+        "screenshots/attempt-002/criterion-3-before-open-details.png",
+        "screenshots/attempt-002/criterion-3-after-open-details.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Compared the ten visible table rows with the current live event-analysis samples and inspected unit labels.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "All ten returned samples appear with matching times and values. Signal Strength includes dBm, but Upload Rate and Size have no units in their headers or cells, so the units requirement is not met.",
+      "reason": "All ten returned samples appear with matching times and values. Signal Strength includes dBm, but Upload Rate and Size have no units in their headers or cells, so the units requirement is not met.",
+      "retryClass": "product"
+    },
+    {
+      "criterion": "Given the per-sample table contains multiple rows, sorting by a displayed column changes their visible order according to that column.",
+      "outcome": "Failed",
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-before-surveyor.png",
+        "screenshots/attempt-002/criterion-4-after-surveyor.png",
+        "screenshots/attempt-002/criterion-4-before-upload.png",
+        "screenshots/attempt-002/criterion-4-before-add-layer.png",
+        "screenshots/attempt-002/criterion-4-after-add-layer.png",
+        "screenshots/attempt-002/criterion-4-before-open-details.png",
+        "screenshots/attempt-002/criterion-4-after-open-details.png",
+        "screenshots/attempt-002/criterion-4-before-sort.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Captured the populated table before sorting, clicked the Upload Rate header and compared the resulting row order.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The ten rows have different Upload Rate values. Clicking the Upload Rate column header leaves their order unchanged (60.16, 196.99, 138.33, 142.9, 124.99, 131.33, 135.65, 143.09, 127.95, 132.93). Headers expose no sort controls or aria-sort state.",
+      "reason": "The ten rows have different Upload Rate values. Clicking the Upload Rate column header leaves their order unchanged (60.16, 196.99, 138.33, 142.9, 124.99, 131.33, 135.65, 143.09, 127.95, 132.93). Headers expose no sort controls or aria-sort state.",
+      "retryClass": "product"
+    },
+    {
+      "criterion": "Given per-sample data is available, filtering the table shows only rows matching the selected filter.",
+      "outcome": "Failed",
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-before-surveyor.png",
+        "screenshots/attempt-002/criterion-5-after-surveyor.png",
+        "screenshots/attempt-002/criterion-5-before-upload.png",
+        "screenshots/attempt-002/criterion-5-before-add-layer.png",
+        "screenshots/attempt-002/criterion-5-after-add-layer.png",
+        "screenshots/attempt-002/criterion-5-before-open-details.png",
+        "screenshots/attempt-002/criterion-5-after-open-details.png",
+        "screenshots/attempt-002/criterion-5-final.png",
+        "screenshots/attempt-002/criterion-5-analysis.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Scrolled to the complete populated measurements section and inspected its table, headers and surrounding section for filtering controls.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The populated Upload measurements section contains no filter input, selector or button. No per-sample filter can be selected; all ten rows remain displayed.",
+      "reason": "The populated Upload measurements section contains no filter input, selector or button. No per-sample filter can be selected; all ten rows remain displayed.",
+      "retryClass": "product"
+    },
+    {
+      "criterion": "Given average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear in the summary immediately after Upload Rate.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-before-surveyor.png",
+        "screenshots/attempt-002/criterion-6-after-surveyor.png",
+        "screenshots/attempt-002/criterion-6-before-upload.png",
+        "screenshots/attempt-002/criterion-6-before-add-layer.png",
+        "screenshots/attempt-002/criterion-6-after-add-layer.png",
+        "screenshots/attempt-002/criterion-6-before-open-details.png",
+        "screenshots/attempt-002/criterion-6-after-open-details.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Read this criterion's cluster-details and event-analysis responses and inspected its summary for returned average metrics.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The inspected live event-analysis response is HTTP 200 with details: [], ten samples and thresholds: []; cluster-details also returns no average signal fields. A sample signal value is not a returned average. No fixture with returned Average Signal Strength, Average Signal Quality and Average SNR was supplied or found in the inspected event, so their conditional placement cannot be verified.",
+      "reason": "The inspected live event-analysis response is HTTP 200 with details: [], ten samples and thresholds: []; cluster-details also returns no average signal fields. A sample signal value is not a returned average. No fixture with returned Average Signal Strength, Average Signal Quality and Average SNR was supplied or found in the inspected event, so their conditional placement cannot be verified.",
+      "retryClass": "prerequisite",
+      "blockerCode": "average_metrics_fixture_unavailable"
+    },
+    {
+      "criterion": "Given the selected Upload point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-7-initial.png",
+        "screenshots/attempt-002/criterion-7-before-surveyor.png",
+        "screenshots/attempt-002/criterion-7-after-surveyor.png",
+        "screenshots/attempt-002/criterion-7-before-upload.png",
+        "screenshots/attempt-002/criterion-7-before-add-layer.png",
+        "screenshots/attempt-002/criterion-7-after-add-layer.png",
+        "screenshots/attempt-002/criterion-7-before-open-details.png",
+        "screenshots/attempt-002/criterion-7-after-open-details.png",
+        "screenshots/attempt-002/criterion-7-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Read the inspected event's start/end times and ten samples; checked whether it met the no-measurable-duration prerequisite.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "The inspected completed Upload event (seb.knight, mm wave 2, 6 October 2026 10:34:58–10:35:01) has measurable duration and ten samples. No zero-duration Upload fixture or identifying selection was supplied. Its successful detail view cannot decide the conditional no-duration no-data assertion.",
+      "reason": "The inspected completed Upload event (seb.knight, mm wave 2, 6 October 2026 10:34:58–10:35:01) has measurable duration and ten samples. No zero-duration Upload fixture or identifying selection was supplied. Its successful detail view cannot decide the conditional no-duration no-data assertion.",
+      "retryClass": "prerequisite",
+      "blockerCode": "zero_duration_fixture_unavailable"
+    },
+    {
+      "criterion": "While Upload details are loading, the detail presentation shows the standard loading state.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-002/criterion-8-initial.png",
+        "screenshots/attempt-002/criterion-8-before-surveyor.png",
+        "screenshots/attempt-002/criterion-8-after-surveyor.png",
+        "screenshots/attempt-002/criterion-8-before-upload.png",
+        "screenshots/attempt-002/criterion-8-before-add-layer.png",
+        "screenshots/attempt-002/criterion-8-after-add-layer.png",
+        "screenshots/attempt-002/criterion-8-before-open-details.png",
+        "screenshots/attempt-002/criterion-8-final.png",
+        "screenshots/attempt-002/criterion-8-cleanup-loaded.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Used a one-use Playwright browser route to delay the real POST /api/platform/surveyor/upload/event-analysis request for 20 seconds; no response body was changed.",
+        "Captured the loading progress bar and Loading… text while the analysis request was pending.",
+        "Waited for the real samples to load and removed routing.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "With the actual analysis request delayed for 20 seconds in this browser only, the detail view shows a progress bar labelled Loading Analysis and the visible text Loading…. After release, the real response loads normally. An initial route-helper error was removed and this criterion was restarted from the launcher before capturing the successful loading observation."
+    },
+    {
+      "criterion": "When Upload details are unavailable, the detail presentation shows the standard no-data state.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-002/criterion-9-initial.png",
+        "screenshots/attempt-002/criterion-9-before-surveyor.png",
+        "screenshots/attempt-002/criterion-9-after-surveyor.png",
+        "screenshots/attempt-002/criterion-9-before-upload.png",
+        "screenshots/attempt-002/criterion-9-before-add-layer.png",
+        "screenshots/attempt-002/criterion-9-after-add-layer.png",
+        "screenshots/attempt-002/criterion-9-before-open-details.png",
+        "screenshots/attempt-002/criterion-9-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Before opening details, installed a one-use browser route for POST /api/platform/surveyor/upload/event-analysis returning HTTP 200 with empty details/samples/thresholds arrays.",
+        "Waited for both no-data messages, verified no measurement table was displayed and captured the final state.",
+        "Removed the route.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "A one-use browser-only HTTP 200 event-analysis response with details: [], samples: [] and thresholds: [] produces No chart data is available. and No results are available., with no chart or measurement table. This verifies the empty-response UI path using a controlled response, not naturally unavailable live data."
+    },
+    {
+      "criterion": "When loading Upload details fails, the detail presentation shows the standard error state and does not display incorrect data.",
+      "outcome": "Passed",
+      "evidence": [
+        "screenshots/attempt-002/criterion-10-initial.png",
+        "screenshots/attempt-002/criterion-10-before-surveyor.png",
+        "screenshots/attempt-002/criterion-10-after-surveyor.png",
+        "screenshots/attempt-002/criterion-10-before-upload.png",
+        "screenshots/attempt-002/criterion-10-before-add-layer.png",
+        "screenshots/attempt-002/criterion-10-after-add-layer.png",
+        "screenshots/attempt-002/criterion-10-before-open-details.png",
+        "screenshots/attempt-002/criterion-10-final.png",
+        "screenshots/attempt-002/criterion-10-cleanup-recovered.png",
+        "screenshots/attempt-002/criterion-10-cleanup-map.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher, verified the visible launcher and saved this criterion's initial PNG.",
+        "Opened GIS, opened Surveyor configuration, selected Upload and added the layer with its Last 30 days defaults.",
+        "Selected the map point at map-relative (545, 418), then opened its completed Upload event from Surveyor cluster events (seb.knight / mm wave 2 / 06 October 2026 10:34:58).",
+        "Before opening details, installed a one-use browser route for POST /api/platform/surveyor/upload/event-analysis returning HTTP 500.",
+        "Waited for the Unable to load details. alert; verified no chart or measurement table was displayed and captured the final state.",
+        "Removed the route and clicked Retry; verified the real ten samples returned and captured recovery.",
+        "Closed this criterion's detail tabs and removed its test-created Upload layer before proceeding; final cleanup returned the browser to the launcher."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "observed_result": "A one-use browser-only HTTP 500 response for POST /api/platform/surveyor/upload/event-analysis produces an alert Unable to load details. and Retry, with no chart or measurement table. The existing summary remains the selected event's correct summary. This is an induced UI test, not a live backend incident; removing interception and Retry restored the real samples."
+    }
+  ],
+  "conciseReport": "TEST2-86: 4 Passed, 4 Failed, 2 Blocked.\n\nSummary omits duration/service fields; table omits Upload Rate/Size units, sorting does not change order, and filtering controls are absent. Chart series and units passed. Average-metric placement and zero-duration handling require matching live fixtures.\n\nLoading was captured by delaying the real analysis request. No-data and error states passed with explicitly controlled browser-only empty/HTTP 500 responses; these are UI-path checks, not evidence of live backend failures. Routes were removed, Retry recovered real samples, test-created layers/tabs were cleared, and the browser returned to the launcher.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-86-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Two conditional criteria are blocked by missing matching live fixtures. Product failures and controlled-response test scope are recorded per criterion.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-20T10:40:37.828Z"
+}

@@ -1,32 +1,5 @@
-# TEST2-86 Evidence Review
+TEST2-86: 4 Passed, 4 Failed, 2 Blocked.
 
-- **Ticket:** TEST2-86 — Display Upload Point Details
-- **QA status:** Blocked
-- **Overall outcome:** Blocked
-- **Evidence reviewed:** attempt-001
-- **Report:** [Evidence report](report.pdf)
+Summary omits duration/service fields; table omits Upload Rate/Size units, sorting does not change order, and filtering controls are absent. Chart series and units passed. Average-metric placement and zero-duration handling require matching live fixtures.
 
-## Criterion results
-
-1. **Unverified:** Given a completed Upload test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Upload Rate, and Wi-Fi connection status.
-   - criterion-1-final.png shows the loaded summary with 2.62 Mbps Upload Rate, technology, user, serving cell and Wi-Fi False, but the summary continues below the viewport. No criterion-owned capture shows the remaining summary, so missing Service/Duration and coverage of handset and indoor/outdoor cannot be confirmed.
-2. **Passed:** Given Upload samples are available, a time-series chart shows Signal Strength in dBm and Upload Rate in Mbps across the test duration.
-   - criterion-2-final.png directly shows the Upload analysis chart with Signal strength in dBm and Upload rate in Mbps against Seconds across the completed test.
-3. **Failed:** Given per-sample Upload data is available, each returned sample is shown in a table with its relevant units.
-   - criterion-3-final.png shows populated sample rows with Signal Strength values in dBm, while Upload Rate and Size headers and numeric cells omit units.
-4. **Failed:** Given the per-sample table contains multiple rows, sorting by a displayed column changes their visible order according to that column.
-   - criterion-4-before-sort.png and criterion-4-final.png retain the same unsorted Upload Rate sequence (0, 1.88, 0, 0, 3.05, 3.2, 6.93) after the recorded Upload Rate header click.
-5. **Unverified:** Given per-sample data is available, filtering the table shows only rows matching the selected filter.
-   - criterion-5-final.png shows populated sample rows and no filter above the visible table, but the table extends below the viewport. The captures do not establish absence of controls throughout the table or show a selected filter and matching result.
-6. **Blocked:** Given average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear in the summary immediately after Upload Rate.
-   - criterion-6-final.png shows loaded Upload details, with Band immediately after Upload Rate. The results report an empty details array and no returned average signal metrics; no matching fixture was identified to exercise the conditional placement requirement.
-7. **Blocked:** Given the selected Upload point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.
-   - criterion-7-final.png shows two Upload tests, each spanning seven seconds. No zero-duration Upload fixture was identified, so the required no-data state could not be exercised.
-8. **Unverified:** While Upload details are loading, the detail presentation shows the standard loading state.
-   - criterion-8-details.png and criterion-8-final.png both show already loaded Upload details. The loading transition was not captured, so the standard loading state cannot be verified.
-9. **Blocked:** When Upload details are unavailable, the detail presentation shows the standard no-data state.
-   - criterion-9-final.png shows two available Upload tests with numeric rates. No unavailable-details Upload fixture was identified, so the required no-data state could not be exercised.
-10. **Blocked:** When loading Upload details fails, the detail presentation shows the standard error state and does not display incorrect data.
-   - criterion-10-final.png shows the available Upload test list. No failing Upload-detail fixture was identified; reported Automobile HTTP Browsing errors do not establish Upload error handling or absence of incorrect data.
-
-**Review summary:** Assessed all 10 criteria against attempt-001 screenshots; average-metric, zero-duration, unavailable-details and failing-detail fixtures remain unavailable.
+Loading was captured by delaying the real analysis request. No-data and error states passed with explicitly controlled browser-only empty/HTTP 500 responses; these are UI-path checks, not evidence of live backend failures. Routes were removed, Retry recovered real samples, test-created layers/tabs were cleared, and the browser returned to the launcher.
