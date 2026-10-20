@@ -6,8 +6,7 @@
     "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 12,
-      "Ready": 1,
-      "Retry Queued": 1
+      "Ready": 2
     },
     "byQaOutcome": {
       "Blocked": 14
@@ -223,17 +222,17 @@
       "cycleId": "cycle-001",
       "summary": "Filter Automobile map points using the legend",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-19T15:52:17.995Z",
       "retries": 1,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 2,
       "retryLabel": "Retry 1/1"
     },
     {

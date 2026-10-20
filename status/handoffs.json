@@ -22,22 +22,21 @@
       "cycleId": "cycle-001"
     },
     {
-      "handoffId": "handoff-TEST2-92-retry-attempt-002",
-      "handoffVersion": "TEST2-92:test_ticket:2",
+      "handoffId": "handoff-TEST2-92-review-attempt-002",
+      "handoffVersion": "TEST2-92:evidence_review:2",
       "attempt": 2,
-      "action": "test_ticket",
-      "brief": "docs/briefs/qa-testing.md",
-      "owner": "ticket-tester",
+      "action": "evidence_review",
+      "brief": "docs/briefs/evidence-review.md",
+      "owner": "evidence-reviewer",
       "ticket": "TEST2-92",
       "inputs": {
-        "criteria": "tickets/TEST2-92/criteria.md",
-        "ticketJson": "tickets/TEST2-92/ticket.json",
-        "status": "tickets/TEST2-92/status.json",
+        "results": "tickets/TEST2-92/results.json",
+        "generated": "status/generated/TEST2-92.json",
         "evidenceFolder": "TEST2-92/screenshots/attempt-002"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-92/results.json",
-        "schema": "v4-qa-test-result.v1"
+        "path": "tickets/TEST2-92/review.json",
+        "schema": "v4-qa-review.v1"
       },
       "cycleId": "cycle-001"
     }
