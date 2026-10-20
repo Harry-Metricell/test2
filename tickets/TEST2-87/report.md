@@ -1,9 +1,26 @@
-## TEST2-87 — Display Call Point Details
+# TEST2-87 Evidence Review
 
-3 Failed, 1 Passed, 3 Blocked.
+- **Ticket:** TEST2-87 — Display Call Point Details
+- **QA status:** Blocked
+- **Overall outcome:** Blocked
+- **Evidence reviewed:** attempt-002
+- **Report:** [Evidence report](report.pdf)
 
-- Failed: summary omits Duration/Handset; timeline omits service technology; Call sample table exposes no working column sort/filter controls.
-- Passed: selecting a timestamped sample opens matching radio details.
-- Blocked: no verified known-serving-cell sample, zero-duration Call, or controlled loading/unavailable/error detail fixture was established. Setup Failures returned HTTP 200 with an empty points list, not a data-service error.
+## Criterion results
 
-All seven checks started independently at the authenticated launcher and have their own saved PNGs. Temporary layers, filters and detail tabs were restored after each criterion. Browser: observed Google Chrome 155.0.8059.85.
+1. **Failed:** When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.
+   - criterion-1-summary.png shows Success, Connection Time 984, start/end 10:41:30–10:41:50 and a blank disconnection-cause field, but no Duration or Handset in the captured summary. The timestamps establish measurable duration; the blank cause alone is not a defect.
+2. **Failed:** When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.
+   - criterion-2-before-hover-chart.png and criterion-2-final.png show signal strength over seconds with call-initiation, connection and end annotations. The chart legend and hovered tooltip show only Signal strength; service technology appears in the table, not across the timeline.
+3. **Unverified:** When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.
+   - criterion-3-before-time-header-click.png and criterion-3-final.png show plain headers and the same first sample (10:41:30.420) after the reported Time click. Only one row is visible, with no complete ordering comparison or filtering interaction/state; these captures do not establish that sorting and filtering work or conclusively prove their absence.
+4. **Blocked:** For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.
+   - criterion-4-cgi-fallback.png and criterion-4-final.png show CGI 234-30-3369473 in the visible sample of two calls. No independently verified known-serving-site/cell fixture was established, so the known-cell branch and per-sample mapping rule cannot be assessed.
+5. **Passed:** Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.
+   - criterion-5-before-select-sample.png shows the 10:41:30.420 sample with −57 dBm and CGI 234-30-3369473; criterion-5-after-select-radio-details.png and criterion-5-final-selected-measurement.png show opened radio details with matching RSRP −57 dBm and CI 3369473. The recorded selection request uses sampleTime 2026-10-06T10:41:30.4200000.
+6. **Blocked:** When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.
+   - criterion-6-completed-call-has-duration.png shows a populated 20-second call. The reported Setup Failures load returned HTTP 200 with points:[]; criterion-6-final.png shows the filtered map with no selectable call. No zero-duration fixture was available to open the required no-data dialog.
+7. **Blocked:** While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.
+   - criterion-7-after-open-event.png and criterion-7-final.png already show populated Call details. The loading state was not captured, and controlled unavailable-details/error fixtures were not available; the required loading, no-data and error states remain unassessed.
+
+**Review summary:** Completed independent screenshot review of all seven criteria in attempt-002; required known-cell, zero-duration and exception-state fixtures remain unavailable.

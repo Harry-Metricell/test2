@@ -1,48 +1,48 @@
 {
-  "handoffId": "handoff-TEST2-87-review-attempt-001",
-  "handoffVersion": "TEST2-87:evidence_review:1",
+  "handoffId": "handoff-TEST2-87-review-attempt-002",
+  "handoffVersion": "TEST2-87:evidence_review:2",
   "ticket": "TEST2-87",
   "criterionOutcomes": [
     {
       "criterion": "When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.",
       "outcome": "Failed",
-      "reason": "criterion-1-final.png and criterion-1-summary-bottom.png show the summary from Username through Error Message: Success, connection time 1310 and start/end times are present, but duration and handset are absent. Disconnection Cause Code is blank."
+      "reason": "criterion-1-summary.png shows Success, Connection Time 984, start/end 10:41:30–10:41:50 and a blank disconnection-cause field, but no Duration or Handset in the captured summary. The timestamps establish measurable duration; the blank cause alone is not a defect."
     },
     {
       "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
       "outcome": "Failed",
-      "reason": "criterion-2-final.png shows the settled chart with signal strength and Call initiated/Connected/Call ended markers, but no service-technology track or series; 4G appears only in the separate summary and sample row."
+      "reason": "criterion-2-before-hover-chart.png and criterion-2-final.png show signal strength over seconds with call-initiation, connection and end annotations. The chart legend and hovered tooltip show only Signal strength; service technology appears in the table, not across the timeline."
     },
     {
       "criterion": "When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.",
       "outcome": "Unverified",
-      "reason": "criterion-3-before-sort.png and criterion-3-final.png show identical headers and first sample 08:12:32.797 after the reported Time click. Only the table top is captured; no changed ordering or filtering interaction is demonstrated, and these views do not establish the absence of controls throughout the table."
+      "reason": "criterion-3-before-time-header-click.png and criterion-3-final.png show plain headers and the same first sample (10:41:30.420) after the reported Time click. Only one row is visible, with no complete ordering comparison or filtering interaction/state; these captures do not establish that sorting and filtering work or conclusively prove their absence."
     },
     {
       "criterion": "For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.",
-      "outcome": "Passed",
-      "reason": "criterion-4-resumed-known-cell.png shows Serving Cell 510633_124_4 for the 22/09/2026 call; criterion-4-final.png shows CGI-form value 234-30-3922178 for the 12/10/2026 call. The recovered criterion-owned sequence demonstrates both displayed representations."
+      "outcome": "Blocked",
+      "reason": "criterion-4-cgi-fallback.png and criterion-4-final.png show CGI 234-30-3369473 in the visible sample of two calls. No independently verified known-serving-site/cell fixture was established, so the known-cell branch and per-sample mapping rule cannot be assessed."
     },
     {
       "criterion": "Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.",
-      "outcome": "Unverified",
-      "reason": "criterion-5-before-sample.png shows sample 22/09/2026 08:12:32.797 with cell 510633_124_4. criterion-5-final.png shows Selected measurement / Radio details with matching username and cell, but no selected timestamp is visible, so correspondence to the asserted point in time remains unproven."
+      "outcome": "Passed",
+      "reason": "criterion-5-before-select-sample.png shows the 10:41:30.420 sample with −57 dBm and CGI 234-30-3369473; criterion-5-after-select-radio-details.png and criterion-5-final-selected-measurement.png show opened radio details with matching RSRP −57 dBm and CI 3369473. The recorded selection request uses sampleTime 2026-10-06T10:41:30.4200000."
     },
     {
       "criterion": "When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.",
       "outcome": "Blocked",
-      "reason": "criterion-6-final.png shows all five available Call events with distinct start/end times, each 20 seconds apart. No zero-duration or unmeasurable-duration Call fixture is identified in the supplied inputs; the required no-data branch could not be tested."
+      "reason": "criterion-6-completed-call-has-duration.png shows a populated 20-second call. The reported Setup Failures load returned HTTP 200 with points:[]; criterion-6-final.png shows the filtered map with no selectable call. No zero-duration fixture was available to open the required no-data dialog."
     },
     {
       "criterion": "While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.",
       "outcome": "Blocked",
-      "reason": "criterion-7-final.png shows successfully populated Call details. No reproducible Call unavailable/error fixture or captured loading state is supplied; unrelated layer errors do not exercise these Call-detail branches, which remain untested."
+      "reason": "criterion-7-after-open-event.png and criterion-7-final.png already show populated Call details. The loading state was not captured, and controlled unavailable-details/error fixtures were not available; the required loading, no-data and error states remain unassessed."
     }
   ],
   "overallOutcome": "Blocked",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-87\\screenshots\\attempt-001",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-87\\screenshots\\attempt-002",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Completed independent screenshot assessment of all seven criteria; required zero-duration and Call loading/unavailable/error evidence is unavailable."
+  "reason": "Completed independent screenshot review of all seven criteria in attempt-002; required known-cell, zero-duration and exception-state fixtures remain unavailable."
 }
