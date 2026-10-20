@@ -6,7 +6,8 @@
     "handoffs": 4,
     "byWorkflowState": {
       "Blocked": 10,
-      "Retry Queued": 4
+      "Ready": 1,
+      "Retry Queued": 3
     },
     "byQaOutcome": {
       "Blocked": 14
@@ -159,17 +160,17 @@
       "key": "TEST2-89",
       "summary": "Map and inspect MS Teams Call results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-19T15:52:17.804Z",
       "retries": 1,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 2,
       "retryLabel": "Retry 1/1"
     },
     {
