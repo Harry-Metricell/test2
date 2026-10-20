@@ -87,6 +87,25 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     repeat = Document(output)
     assert "\n".join(paragraph.text for paragraph in repeat.paragraphs).count("New feature: Open the launcher") == 1
 
+    # The same ticket may revise its generated section in a later testing
+    # cycle. Rebuilding it twice must replace once, not append or disappear.
+    previous_update = repo / "tickets/TEST2-99/guide-update.json"
+    write_json(repo / "tickets/TEST2-99/cycles/cycle-001/guide-update.json", json.loads(previous_update.read_text()))
+    cycle_image = evidence / "TEST2-99/cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+    cycle_image.parent.mkdir(parents=True)
+    Image.new("RGB", (64, 32), "orange").save(cycle_image)
+    cycle_update = {"schema": "v4-user-guide-update.v1", "ticket": "TEST2-99", "cycleId": "cycle-002", "title": "Revised launcher", "affectedSection": "Getting started", "changeType": "amend", "supersedesTicket": "TEST2-99", "steps": ["Open the revised launcher."], "screenshots": ["cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"], "reason": "A repaired feature changes the instructions."}
+    write_json(previous_update, cycle_update)
+    for _ in range(2):
+        revised = subprocess.run(command, capture_output=True, text=True)
+        assert revised.returncode == 0, revised.stderr or revised.stdout
+        revised_doc = Document(output)
+        revised_text = "\n".join(p.text for p in revised_doc.paragraphs)
+        assert revised_text.count("Updated guidance: Revised launcher") == 1
+        assert revised_text.count("[[AUTO_GUIDE_UPDATE:TEST2-99]]") == 1
+        assert "New feature: Open the launcher" not in revised_text
+        assert len(revised_doc.inline_shapes) == 1
+
     replacement = evidence / "TEST2-100/screenshots/attempt-001/criterion-1-final.png"
     replacement.parent.mkdir(parents=True)
     Image.new("RGB", (64, 32), "green").save(replacement)

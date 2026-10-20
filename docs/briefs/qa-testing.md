@@ -1,5 +1,9 @@
 # TEST2 QA Testing Brief
 
+## Testing-cycle identity
+
+Copy the live handoff's exact ID, handoffVersion and cycleId. Do not reconstruct them or reuse another cycle's stage folder. Before staging output, refetch the live queue; if the exact ID/version is gone, stop with a chat-only stale-handoff receipt. Clean up only your own temporary changes and release your browser lease. Never publish an earlier cycle's result into a newer cycle. The publisher copies staged PNGs to the selected cycle's evidence path; keep using `.agent-staging/<handoffId>/screenshots/` for capture.
+
 ## Select one live handoff
 
 Execute immediately; do not summarise this brief. Fetch live GitHub main `status/handoffs.json`. If a handoff ID and ticket are supplied, verify that exact handoff's ticket, test_ticket action and handoffVersion; do not select another ticket. Otherwise select the first eligible test_ticket by handoffId. If none exists, it changed, or QA status is Awaiting Evidence Review/Evidence Reviewed, return a compact chat-only no-op without staging output.

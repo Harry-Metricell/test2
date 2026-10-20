@@ -199,5 +199,26 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     const guideImpact = run(); assert.equal(guideImpact.status, 0, `${guideImpact.stderr}\n${guideImpact.stdout}`);
     g(seed, 'fetch');
     assert.equal(JSON.parse(g(seed, 'show', 'origin/main:tickets/TEST2-99/guide-impact.json')).decision, 'not_needed');
+
+    // A new cycle rejects old worker identities without overwriting current
+    // state; its own first attempt publishes under the new evidence scope.
+    g(seed, 'reset', '--hard', 'origin/main');
+    const cycleHandoff = { ticket: 'TEST2-99', cycleId: 'cycle-002', handoffId: 'handoff-TEST2-99-cycle-002-test-attempt-001', handoffVersion: 'TEST2-99:cycle-002:test_ticket:1', action: 'test_ticket', attempt: 1 };
+    write(path.join(seed, 'tickets/TEST2-99/qa-cycle.json'), JSON.stringify({ schema: 'v4-qa-cycle.v1', cycleId: 'cycle-002' }));
+    write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [cycleHandoff] }));
+    g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Start new testing cycle'); g(seed, 'push');
+    write(path.join(stage, 'criteria-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-criteria', handoffVersion: 'TEST2-99:criteria_conversion:1', ticket: 'TEST2-99', criteriaMarkdown: '- [ ] Obsolete criterion.', qaStatus: 'Ready for Testing' }));
+    const oldCycle = run(); assert.equal(oldCycle.status, 0, oldCycle.stderr); assert.match(oldCycle.stdout, /staleArchived/);
+    const cycleStage = path.join(desktop, '.agent-staging', cycleHandoff.handoffId);
+    const cyclePng = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aWQ0AAAAASUVORK5CYII=', 'base64');
+    for (const name of ['criterion-1-initial.png', 'criterion-1-final.png']) write(path.join(cycleStage, 'screenshots', name), cyclePng);
+    write(path.join(cycleStage, 'test-output.json'), JSON.stringify({ ...cycleHandoff, qaStatus: 'Awaiting Evidence Review', conciseReport: 'Launcher is visible.', results: [{ criterion: 'Launcher is visible.', outcome: 'Passed', evidence: ['criterion-1-initial.png', 'criterion-1-final.png'] }], noOp: false }));
+    const newCycle = run(); assert.equal(newCycle.status, 0, newCycle.stderr);
+    g(seed, 'fetch');
+    const publishedCycle = JSON.parse(g(seed, 'show', 'origin/main:tickets/TEST2-99/history/attempt-001-test.json'));
+    assert.equal(publishedCycle.cycleId, 'cycle-002'); assert.equal(publishedCycle.historyAttempt, 1);
+    assert.equal(publishedCycle.handoffId, cycleHandoff.handoffId);
+    assert.equal(publishedCycle.results[0].evidence[0], 'cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png');
+    assert.ok(fs.existsSync(path.join(root, 'evidence/TEST2-99/cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png')));
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });

@@ -64,7 +64,7 @@ function main() {
     commit = runGit('rev-parse', 'FETCH_HEAD').trim();
     const remoteJson = file => JSON.parse(runGit('show', `${commit}:${file}`));
     handoffs = remoteJson('status/handoffs.json').handoffs;
-    histories = ticket => runGit('ls-tree', '-r', '--name-only', commit, `tickets/${ticket}/history`)
+    histories = ticket => runGit('ls-tree', '-r', '--name-only', commit, `tickets/${ticket}`, `archive/tickets/${ticket}`)
       .trim().split(/\r?\n/).filter(file => /\/attempt-\d+-test\.json$/.test(file)).map(remoteJson);
   }
   const result = reconcilePublishedTests(state, handoffs, histories);

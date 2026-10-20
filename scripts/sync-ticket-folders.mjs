@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { syncTestingCycle } from './testing-cycle.mjs';
 
 const result = JSON.parse(fs.readFileSync('results.json', 'utf8'));
 if (!result || !Array.isArray(result.issues) || result.isLast !== true) {
@@ -26,20 +27,17 @@ for (const issue of issues) {
   } else if (fs.existsSync(dir) && fs.existsSync(archivedDir)) {
     throw new Error(`${key} exists in both active and archived folders; refusing to overwrite either copy`);
   }
+  fs.mkdirSync(dir, { recursive: true });
+  const oldTicketFile = path.join(dir, 'ticket.json');
+  const previousIssue = fs.existsSync(oldTicketFile) ? JSON.parse(fs.readFileSync(oldTicketFile, 'utf8')) : null;
+  const statusFile = path.join(dir, 'status.json');
+  let existing = fs.existsSync(statusFile) ? JSON.parse(fs.readFileSync(statusFile, 'utf8')) : {};
+  existing = syncTestingCycle(dir, issue, previousIssue, existing).status;
   fs.mkdirSync(path.join(dir, 'screenshots'), { recursive: true });
   fs.mkdirSync(path.join(dir, 'reports'), { recursive: true });
   fs.writeFileSync(path.join(dir, 'screenshots', '.gitkeep'), '');
   fs.writeFileSync(path.join(dir, 'reports', '.gitkeep'), '');
   fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify(issue, null, 2) + '\n');
-  const statusFile = path.join(dir, 'status.json');
-  let existing = {};
-  if (fs.existsSync(statusFile)) {
-    try {
-      existing = JSON.parse(fs.readFileSync(statusFile, 'utf8'));
-    } catch (error) {
-      console.warn(`Ignoring malformed ${statusFile}; Jira status will be preserved and QA status reset`);
-    }
-  }
   // Jira is read-only: refresh only Jira-owned fields and preserve QA workflow
   // state, retries, and block metadata.
   const nextStatus = { ...existing, ticket: key, jiraStatus, qaStatus: existing.qaStatus || 'Not Tested', status: jiraStatus, retries: Number(existing.retries || 0), retryLimit: 1 };

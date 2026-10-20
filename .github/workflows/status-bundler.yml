@@ -9,6 +9,7 @@ on:
     paths:
       - 'tickets/**'
       - 'scripts/generate-status.mjs'
+      - 'scripts/testing-cycle.mjs'
       - 'scripts/check-criteria.mjs'
       - 'package.json'
 

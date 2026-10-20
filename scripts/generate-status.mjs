@@ -4,6 +4,7 @@ import process from 'node:process';
 import { acceptanceCriteria, flattenAdf } from './jira-adf.mjs';
 import { normalizeBrowserToolBlock } from './test-result-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
+import { readCycle, scopeHandoff, firstCycle } from './testing-cycle.mjs';
 
 const root = process.cwd();
 const checkOnly = process.argv.includes('--check');
@@ -229,6 +230,7 @@ function normalizeTicket(dirName) {
   }));
   const ticket = {
     key: raw.key || dirName,
+    cycleId: readCycle(dir).cycleId,
     id: raw.id || null,
     summary: fields.summary || dirName,
     jira: {
@@ -307,6 +309,7 @@ function normalizeTicket(dirName) {
   const manualRetry = retryRequest?.schema === 'v4-qa-retry-request.v1'
     && retryRequest.ticket === ticket.key
     && retryRequest.authorizedBy === 'human'
+    && (retryRequest.cycleId || firstCycle) === ticket.cycleId
     && typeof retryRequest.reason === 'string' && retryRequest.reason.trim().length > 0
     && typeof retryRequest.requestId === 'string' && retryRequest.requestId.trim().length > 0
     && Number.isFinite(Date.parse(retryRequest.requestedAt))
@@ -572,7 +575,7 @@ const ticketDirs = fs.existsSync(ticketsDir)
   : [];
 
 const tickets = ticketDirs.map(normalizeTicket);
-const handoffs = tickets.map(handoffFor).filter(Boolean);
+const handoffs = tickets.map(ticket => scopeHandoff(handoffFor(ticket), ticket.cycleId)).filter(Boolean);
 // The QA stage may be complete while guide work is still queued. Project the
 // actual guide handoff rather than displaying a misleading terminal action.
 const guideActions = { guide_impact_assessment: 'Create user-guide impact assessment handoff',
@@ -589,20 +592,24 @@ for (const base of [ticketsDir, path.join(root, 'archive', 'tickets')]) {
   if (!fs.existsSync(base)) continue;
   for (const entry of fs.readdirSync(base, { withFileTypes: true })) {
     if (!entry.isDirectory() || !/^TEST2-\d+$/.test(entry.name)) continue;
-    const file = path.join(base, entry.name, 'guide-update.json');
-    if (!fs.existsSync(file)) continue;
+    const ticketDir = path.join(base, entry.name);
+    const cycleDir = path.join(ticketDir, 'cycles');
+    const candidates = fs.existsSync(cycleDir) ? fs.readdirSync(cycleDir).filter(name => /^cycle-\d+$/.test(name)).sort().map(name => path.join(cycleDir, name, 'guide-update.json')) : [];
+    candidates.push(path.join(ticketDir, 'guide-update.json'));
+    const file = candidates.filter(file => fs.existsSync(file)).at(-1);
+    if (!file) continue;
     const update = readJson(file);
     guideRecords.push({ ticket: entry.name, title: update.title, affectedSection: update.affectedSection,
-      changeType: update.changeType, supersedesTicket: update.supersedesTicket || null });
+      changeType: update.changeType, supersedesTicket: update.supersedesTicket || null, recordPath: path.relative(root, file).replaceAll('\\', '/') });
   }
 }
 const guidePlanFile = path.join(root, 'config', 'user-guide-plan.json');
 const guidePlan = fs.existsSync(guidePlanFile) ? readJson(guidePlanFile) : {};
 const guideMarkers = guideMarkerCounts(path.join(root, guidePlan.publishedGuide || 'assets/user-guide/V4 User Guide.docx'));
-const superseded = new Set(guideRecords.filter(record => guideMarkers.get(record.ticket) === 1).map(record => record.supersedesTicket).filter(Boolean));
+const superseded = new Set(guideRecords.filter(record => guideMarkers.get(record.ticket) === 1 && record.supersedesTicket !== record.ticket).map(record => record.supersedesTicket).filter(Boolean));
 writeJson(path.join(outDir, 'guide-updates.json'), { schema: 'v4-guide-updates-index.v1',
   sections: guideRecords.filter(record => guideMarkers.get(record.ticket) === 1 && !superseded.has(record.ticket))
-    .map(({ ticket, title, affectedSection }) => ({ ticket, title, affectedSection }))
+    .map(({ ticket, title, affectedSection, recordPath }) => ({ ticket, title, affectedSection, recordPath }))
     .sort((a, b) => a.ticket.localeCompare(b.ticket, undefined, { numeric: true })) });
 // status/generated is a derived projection. Remove records for ticket folders
 // that the importer has deleted so stale tickets cannot remain in GitHub.
@@ -633,6 +640,7 @@ const summary = {
   },
   tickets: displayTickets.map((t) => ({
     key: t.key,
+    cycleId: t.cycleId,
     summary: t.summary,
     jiraStatus: t.jira.status,
     workflowState: t.status.workflowState,

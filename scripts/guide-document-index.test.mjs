@@ -46,8 +46,12 @@ test('bundler indexes only actual unique guide sections, including archived sour
     write('assets/guide.docx', fixture(`<w:document>${paragraph('[[AUTO_GUIDE_UPDATE:TEST2-32]]')}${paragraph('[[AUTO_GUIDE_UPDATE:TEST2-57]]')}${paragraph('[[AUTO_GUIDE_UPDATE:TEST2-59]]')}${paragraph('[[AUTO_GUIDE_UPDATE:TEST2-59]]')}</w:document>`));
     for (const key of ['TEST2-31', 'TEST2-57', 'TEST2-59', 'TEST2-55']) write(`tickets/${key}/guide-update.json`, JSON.stringify({ title: key, affectedSection: key, supersedesTicket: key === 'TEST2-55' ? 'TEST2-32' : undefined }));
     write('archive/tickets/TEST2-32/guide-update.json', JSON.stringify({ title: 'Archived section', affectedSection: 'Existing guidance' }));
+    const old57 = path.join(root, 'tickets/TEST2-57/guide-update.json');
+    write('tickets/TEST2-57/cycles/cycle-001/guide-update.json', fs.readFileSync(old57));
+    fs.rmSync(old57);
     execFileSync(process.execPath, [fileURLToPath(new URL('./generate-status.mjs', import.meta.url))], { cwd: root, encoding: 'utf8' });
     const index = JSON.parse(fs.readFileSync(path.join(root, 'status/guide-updates.json'), 'utf8'));
     assert.deepEqual(index.sections.map(s => s.ticket), ['TEST2-32', 'TEST2-57']);
+    assert.equal(index.sections[1].recordPath, 'tickets/TEST2-57/cycles/cycle-001/guide-update.json');
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });

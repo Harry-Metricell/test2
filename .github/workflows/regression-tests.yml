@@ -60,6 +60,9 @@ jobs:
       - name: Preserve archived tickets during Jira imports
         run: node --test scripts/sync-ticket-folders.test.mjs
 
+      - name: Preserve independent testing cycles and Jira transition pagination
+        run: node --test scripts/testing-cycle.test.mjs
+
       - name: Check in-session authentication recovery
         run: node --test scripts/test2-auth-page.test.cjs
 

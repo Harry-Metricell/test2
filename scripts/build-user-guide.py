@@ -161,7 +161,7 @@ def validate_update(update: dict, ticket: str) -> None:
     if update.get("changeType") not in {"add", "amend"}:
         fail(f"{ticket} has an invalid changeType")
     target = update.get("supersedesTicket")
-    if update["changeType"] == "amend" and (not isinstance(target, str) or not KEY.fullmatch(target) or target == ticket):
+    if update["changeType"] == "amend" and (not isinstance(target, str) or not KEY.fullmatch(target) or (target == ticket and not re.fullmatch(r"cycle-(?:00[2-9]|0[1-9]\d|[1-9]\d{2,})", str(update.get("cycleId", ""))))):
         fail(f"{ticket} amend requires a distinct supersedesTicket")
     if update["changeType"] == "add" and target not in (None, ""):
         fail(f"{ticket} add must not supersede another ticket")
@@ -173,7 +173,7 @@ def validate_update(update: dict, ticket: str) -> None:
     screenshots = update.get("screenshots")
     if not isinstance(screenshots, list) or not screenshots or len(set(screenshots)) != len(screenshots):
         fail(f"{ticket} needs distinct screenshots")
-    if any(not isinstance(item, str) or not re.match(r"^screenshots[\\/].+\.png$", item, re.I) or ".." in Path(item).parts for item in screenshots):
+    if any(not isinstance(item, str) or not re.match(r"^(?:cycles[\\/]cycle-\d{3,}[\\/])?screenshots[\\/].+\.png$", item, re.I) or ".." in item.replace("\\", "/").split("/") for item in screenshots):
         fail(f"{ticket} has an unsafe screenshot path")
     captions = update.get("screenshotCaptions")
     if captions is not None and (not isinstance(captions, list) or len(captions) != len(screenshots)
@@ -220,9 +220,9 @@ def screenshot_path(evidence_root: Path, ticket: str, relative: str) -> Path:
 def superseded_tickets(repo: Path) -> set[str]:
     targets = set()
     for base in (repo / "tickets", repo / "archive" / "tickets"):
-        for record in base.glob("TEST2-*/guide-update.json"):
+        for record in [*base.glob("TEST2-*/guide-update.json"), *base.glob("TEST2-*/cycles/cycle-*/guide-update.json")]:
             update = read_json(record)
-            if update.get("supersedesTicket"):
+            if update.get("supersedesTicket") and update["supersedesTicket"] != update.get("ticket"):
                 targets.add(update["supersedesTicket"])
     return targets
 
@@ -408,7 +408,9 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
         if ticket in obsolete:
             skipped.append(ticket)
             continue
-        if has_update(document, ticket):
+        cycle_marker = f"[[AUTO_GUIDE_CYCLE:{ticket}:{update.get('cycleId', 'cycle-001')}]]"
+        self_revision = update.get("changeType") == "amend" and update.get("supersedesTicket") == ticket
+        if has_update(document, ticket) and (not self_revision or any(cycle_marker in p.text for p in document.paragraphs)):
             skipped.append(ticket)
             continue
         old_elements = []
@@ -418,6 +420,11 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
             anchor_element = anchor._p
         label = "New feature" if update["changeType"] == "add" else "Updated guidance"
         anchor_proxy = type("Anchor", (), {"_p": anchor_element})()
+        if self_revision:
+            cycle_paragraph = yellow_paragraph(cycle_marker)
+            for run in cycle_paragraph.runs:
+                run.font.hidden = True
+            add_before(anchor_proxy, cycle_paragraph._p)
         add_before(anchor_proxy, yellow_paragraph(f"{label}: {update['title'].strip()}", "Heading 1")._p)
         add_before(anchor_proxy, yellow_paragraph(f"Section: {update['affectedSection'].strip()}")._p)
         for paragraph in yellow_steps([step.strip() for step in update["steps"]]):

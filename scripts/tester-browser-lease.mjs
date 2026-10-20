@@ -7,7 +7,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
-const validHandoff = value => /^handoff-TEST2-\d+-(?:test|retry)(?:-attempt-\d+)?$/.test(value || '');
+const validHandoff = value => /^handoff-TEST2-\d+-(?:cycle-\d{3,}-)?(?:test|retry)(?:-attempt-\d+)?$/.test(value || '');
 const lockPath = root => path.join(root, 'tester-browser.lock');
 
 export function leaseStatus(root) {

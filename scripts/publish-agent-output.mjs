@@ -7,6 +7,7 @@ import { guideMarkerCounts } from './guide-document-index.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { serviceImportRefresh } from './jira-import-refresh.mjs';
 import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
+import { readCycle, evidenceBase, firstCycle, latestGuideRecord, publicationStillCurrent } from './testing-cycle.mjs';
 import os from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -478,6 +479,11 @@ if (!liveHandoff
   process.exit(0);
 }
 const ticketDir = path.join(repo, 'tickets', key);
+const selectedCycle = readCycle(ticketDir).cycleId;
+if ((liveHandoff.cycleId || firstCycle) !== selectedCycle) fail('Live handoff differs from the current testing cycle');
+output.cycleId = selectedCycle;
+const cycleEvidenceDir = path.join(evidenceRoot, evidenceBase(key, selectedCycle));
+const cycleEvidencePrefix = selectedCycle === firstCycle ? '' : `cycles/${selectedCycle}/`;
 const statusFile = path.join(ticketDir, 'status.json');
 if (!fs.existsSync(statusFile)) fail(`Missing status file for ${key}`);
 const status = readJson(statusFile);
@@ -541,7 +547,7 @@ if (outputType === 'criteria-output.json') {
   });
   const attempt = nextEvidenceAttempt(key, status, output.handoffId);
   const attemptName = `attempt-${String(attempt).padStart(3, '0')}`;
-  const attemptEvidenceDir = path.join(evidenceRoot, key, 'screenshots', attemptName);
+  const attemptEvidenceDir = path.join(cycleEvidenceDir, 'screenshots', attemptName);
   // Validate each referenced file before publishing status or assigning paths.
   if (!Array.isArray(output.results)) fail('results must be an array');
   const evidenceOwners = new Map();
@@ -571,7 +577,7 @@ if (outputType === 'criteria-output.json') {
   const results = Array.isArray(output.results) ? output.results.map(item => ({
       ...item,
       evidence: Array.isArray(item.evidence)
-        ? item.evidence.map(file => `screenshots/${attemptName}/${path.win32.basename(String(file))}`)
+        ? item.evidence.map(file => `${cycleEvidencePrefix}screenshots/${attemptName}/${path.win32.basename(String(file))}`)
         : item.evidence
     })) : output.results;
   writeJson(path.join(ticketDir, 'results.json'), results);
@@ -612,9 +618,9 @@ if (outputType === 'criteria-output.json') {
   if (typeof output.affectedSection !== 'string' || !output.affectedSection.trim()) fail('guide update affectedSection is missing');
   if (!Array.isArray(policy.allowChangeTypes) || !policy.allowChangeTypes.includes(output.changeType)) fail('guide update changeType is invalid');
   if (output.changeType === 'amend') {
-    if (typeof output.supersedesTicket !== 'string' || !/^TEST2-\d+$/.test(output.supersedesTicket) || output.supersedesTicket === key) fail('guide amendment needs a distinct supersedesTicket');
+    if (typeof output.supersedesTicket !== 'string' || !/^TEST2-\d+$/.test(output.supersedesTicket) || (output.supersedesTicket === key && selectedCycle === firstCycle)) fail('guide amendment needs a distinct supersedesTicket or a later testing cycle');
     const oldKey = output.supersedesTicket;
-    const oldRecord = [path.join(repo, 'tickets', oldKey, 'guide-update.json'), path.join(repo, 'archive', 'tickets', oldKey, 'guide-update.json')].find(file => fs.existsSync(file));
+    const oldRecord = latestGuideRecord(repo, oldKey);
     if (!oldRecord) fail(`guide amendment target ${oldKey} has no published update`);
     const guidePlan = readJson(path.join(repo, 'config', 'user-guide-plan.json'));
     const markerCount = guideMarkerCounts(path.join(repo, guidePlan.publishedGuide)).get(oldKey) || 0;
@@ -623,7 +629,7 @@ if (outputType === 'criteria-output.json') {
   if (!Array.isArray(output.steps) || output.steps.length === 0 || output.steps.some(step => typeof step !== 'string' || !step.trim())) fail('guide update steps are missing');
   const instructionIssues = guideInstructionIssues(output.steps);
   if (instructionIssues.length) fail(instructionIssues.join('; '));
-  if (!Array.isArray(output.screenshots) || output.screenshots.length === 0 || output.screenshots.some(file => typeof file !== 'string' || !/^screenshots[\\/].+\.png$/i.test(file) || file.includes('..'))) fail('guide update screenshots must be safe PNG evidence paths');
+  if (!Array.isArray(output.screenshots) || output.screenshots.length === 0 || output.screenshots.some(file => typeof file !== 'string' || !/^(?:cycles[\\/]cycle-\d{3,}[\\/])?screenshots[\\/].+\.png$/i.test(file) || file.includes('..'))) fail('guide update screenshots must be safe PNG evidence paths');
   if (new Set(output.screenshots).size !== output.screenshots.length) fail('guide update screenshots must be distinct');
   if (!hasCompleteScreenshotCaptions(output)) fail('guide update screenshotCaptions must describe every screenshot in order');
   if (typeof output.reason !== 'string' || !output.reason.trim()) fail('guide update reason is missing');
@@ -655,7 +661,7 @@ if (outputType === 'criteria-output.json') {
   const reviewedAttempt = Number(liveHandoff.attempt || output.handoffVersion.match(/:(\d+)$/)?.[1]);
   if (!Number.isInteger(reviewedAttempt) || reviewedAttempt < 1) fail('Evidence review has no valid selected attempt');
   const expectedAttemptName = `attempt-${String(reviewedAttempt).padStart(3, '0')}`;
-  const expectedEvidenceFolder = path.resolve(evidenceRoot, key, 'screenshots', expectedAttemptName);
+  const expectedEvidenceFolder = path.resolve(cycleEvidenceDir, 'screenshots', expectedAttemptName);
   if (path.resolve(String(output.evidenceFolder || '')) !== expectedEvidenceFolder) {
     fail(`Evidence review must identify the selected ${expectedAttemptName} folder`);
   }
@@ -672,7 +678,7 @@ if (outputType === 'criteria-output.json') {
     .find(file => /screenshots[\\/]attempt-[0-9]+[\\/]/i.test(file));
   const attemptMatch = evidencePath?.match(/screenshots[\\/]((?:attempt)-[0-9]+)/i);
   const screenshots = attemptMatch
-    ? path.join(evidenceRoot, key, 'screenshots', attemptMatch[1])
+    ? path.join(cycleEvidenceDir, 'screenshots', attemptMatch[1])
     : String(output.evidenceFolder || '').match(/[\\/]attempt-[0-9]+(?:[\\/]|$)/i)
       ? String(output.evidenceFolder)
       : '';
@@ -689,8 +695,8 @@ if (outputType === 'criteria-output.json') {
   status.qaStatus = review.qaStatus || 'Evidence Reviewed';
   writeJson(statusFile, status);
   if (!directFile) {
-    copyFolder(generatedDocx, path.join(evidenceRoot, key, 'reports', `${key}.docx`));
-    copyFolder(generatedPdf, path.join(evidenceRoot, key, 'reports', `${key}.pdf`));
+    copyFolder(generatedDocx, path.join(cycleEvidenceDir, 'reports', `${key}.docx`));
+    copyFolder(generatedPdf, path.join(cycleEvidenceDir, 'reports', `${key}.pdf`));
     if (nonEmpty(generatedPdf)) {
       copyFolder(generatedPdf, path.join(repo, 'tickets', key, 'report.pdf'));
       changed.push(`tickets/${key}/report.pdf`);
@@ -712,6 +718,11 @@ function publishFromCleanWorktree() {
       if (!/^[0-9a-f]{40}$/.test(remoteSha)) fail('GitHub remote read-back returned no usable main SHA');
       worktree = path.join(base, `worktree-${attempt}`);
       runGit(['worktree', 'add', '--detach', worktree, remoteSha]);
+      // Revalidate after rendering and before every push retry: an importer
+      // may have started a new cycle while a slow report was being built.
+      if (!publicationStillCurrent(worktree, output, selectedCycle, expectedAction)) {
+        return { staleArchived: true, archivePath: archiveStaleRun(run, output.handoffId) };
+      }
       if (changed.includes('assets/user-guide/V4 User Guide.docx')) {
         const guideRef = 'HEAD:assets/user-guide/V4 User Guide.docx';
         if (runGitAt(worktree, ['rev-parse', guideRef]) !== runGitAt(repo, ['rev-parse', guideRef])) {
@@ -756,6 +767,10 @@ function publishFromCleanWorktree() {
 }
 
 const publication = publishFromCleanWorktree();
+if (publication.staleArchived) {
+  console.log(JSON.stringify({ ticket: key, handoffId: output.handoffId, ...publication }));
+  process.exit(0);
+}
 log('published', { ticket: key, handoffId: output.handoffId, ...publication });
 const cleaned = cleanupRun(run, directFile);
 fs.rmSync(publisherIndex, { force: true });

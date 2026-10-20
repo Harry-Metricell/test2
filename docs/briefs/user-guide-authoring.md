@@ -8,6 +8,8 @@ Read live GitHub `status/handoffs.json` first. Confirm the supplied handoff ID, 
 
 ## Write useful instructions
 
+Use the selected handoff's exact cycle-scoped ID/version. Indexed sections may originate in archived testing cycles: read their `recordPath` when supplied instead of guessing a current-root file. If a later cycle updates this same ticket's existing generated section, choose `amend` with `supersedesTicket` equal to this ticket, only when its exact indexed section needs changing. The publisher records cycleId and replaces that section once; never append a duplicate or reuse an earlier cycle's evidence. Refetch the exact live handoff before staging.
+
 Write clear end-user instructions for the delivered, passed behaviour. Do not invent screens, controls, or outcomes. Reuse one or more verified PNG paths from the ticket's `results.json`; the builder will only accept evidence from the reviewed ticket. Choose `add` for a genuinely new guide section. Choose `amend` only when replacing one exact prior generated section from `status/guide-updates.json`; set `supersedesTicket` to that section's ticket key. If the correct prior section is unclear, stop with a concise failure instead of appending duplicate instructions. Every step must be a short imperative sentence suitable for the guide.
 
 The index includes only sections whose unique marker exists in the current living guide, not every historical update record. Never name an unindexed historical ticket as an amendment target. If the index has no exact corresponding generated section, add only a distinct useful section; do not pretend a manually authored baseline is a replaceable generated block.

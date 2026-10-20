@@ -72,6 +72,10 @@ Testers and reviewers require imported Jira status exactly READY FOR TESTING. Ot
 
 Create one fresh tester per handoff; never revive or message a persistent tester. Workers handle exactly one selected handoff and stage output. PNGs remain under `%USERPROFILE%\Documents\V4-QA-evidence\<KEY>\screenshots\attempt-NNN\` or TEST2_EVIDENCE, not GitHub. A PNG 404 must not delay reviewer dispatch; the reviewer checks local evidence. Never inspect or upload PNGs yourself.
 
+### Testing cycles
+
+The importer owns `tickets/<KEY>/qa-cycle.json`. A Jira return from rework starts a new testing cycle with its own two-attempt allowance; earlier history/reports are retained under `tickets/<KEY>/cycles/<cycleId>/`. Never reset counts, move artifacts or edit cycle metadata yourself. Use each live handoff's exact cycle-scoped ID/version and `inputs.evidenceFolder`; never reconstruct IDs or reuse earlier-cycle workers. A changed cycle invalidates an old handoff. Preserve an old tester's browser lease until it has definitely stopped, even if its handoff has disappeared. Only then retire its bookkeeping after verifying its recorded cycle is archived. The publisher rejects old-cycle output and rechecks ownership immediately before pushing.
+
 ### Shared browser capacity
 
 Run at most one browser tester across all tickets on this host. The Playwright MCP browser is shared by chats; `--isolated` isolates its stored profile, not one chat from another. Criteria and evidence-review tasks may run concurrently because they do not operate the live browser.

@@ -1,14 +1,22 @@
 # Metricell V4 QA Automation
 
-### Human-requested recheck
-
-Automatic retries remain limited to transient problems. An explicitly authorised human recheck may use the remaining second attempt even after a reviewed blocker or product finding. Record `tickets/<KEY>/retry-request.json` with schema `v4-qa-retry-request.v1`, the exact `ticket`, unique `requestId`, UTC `requestedAt`, `authorizedBy: "human"`, the user's `reason`, `afterAttempt: 1` and `targetAttempt: 2`. Only create this record after direct human authorisation; workers and the coordinator must not grant themselves retries. Status Bundler validates the request against published history, a completed review/report, verified criteria and Jira READY FOR TESTING. The request remains as an audit record and becomes inert after attempt two. It never deletes reports, resets counters, bypasses Jira or allows a third attempt.
-
 Repository-controlled QA workflow for Metricell Smart Network V4. This is a working internal prototype, not a production readiness or security certification. Automated results depend on the supplied ticket, available test data, browser access and independently reviewed evidence.
 
 The system keeps durable QA state in GitHub and uses Codex only for authenticated browser testing, evidence review, criteria ambiguity, and other judgement that static code cannot safely perform.
 
 Start with the [workflow](#flow), [component responsibilities](#component-responsibilities), and [new PC setup](#new-pc-setup). Operational instructions live in [the coordinator brief](docs/briefs/coordinator.md) and [publisher diagnostics](docs/publisher-operations.md).
+
+### Returning a fixed ticket for testing
+
+Jira status history, not polling snapshots alone, owns testing-cycle changes. Returning a previously tested ticket from To Do, In Progress, Blocked, Rejected or Done to READY FOR TESTING starts its next `cycle-NNN`, with attempt 1 and one available retry (two total attempts). A quick rework/return between imports is detected through the fully paginated Jira changelog. TESTING IN PROGRESS is not rework. Ordinary edits and unchanged imports do not reset attempts. Deployment baselines existing history without granting fresh cycles.
+
+The importer writes `tickets/<KEY>/qa-cycle.json`, archives the entire previous cycle under `tickets/<KEY>/cycles/<old-cycle>/`, and preserves its report, source, criteria, results and attempt history. Verified criteria carry forward only when the source title/description is unchanged; otherwise criteria checking runs again. New-cycle results cannot pass on an old report. Later-cycle handoff IDs/versions and private evidence paths include the cycle ID; late workers cannot overwrite the new cycle, including when the cycle changes during report rendering. Private evidence remains under `V4-QA-evidence/<KEY>/cycles/<cycle>/screenshots/attempt-NNN/` (legacy first-cycle evidence keeps its existing path). Do not edit cycle metadata or delete history to force retries.
+
+Setup: the importer requires the existing Jira account/token to have permission to read each TEST2 issue's changelog. No new credential or Jira write permission is needed. An unavailable or incomplete search/changelog fails the import without committing partial source data. Changed issues fetch complete changelog pages; unchanged issues reuse the last complete history. Only the configured Jira project is read. Existing historical output stays intact, including during Done/archive/reopen.
+
+### Human-requested recheck
+
+Automatic retries remain limited to transient problems. An explicitly authorised human recheck may use the remaining second attempt even after a reviewed blocker or product finding. Record `tickets/<KEY>/retry-request.json` with schema `v4-qa-retry-request.v1`, the exact `ticket` and current `cycleId`, unique `requestId`, UTC `requestedAt`, `authorizedBy: "human"`, the user's `reason`, `afterAttempt: 1` and `targetAttempt: 2`. Only create this record after direct human authorisation; workers and the coordinator must not grant themselves retries. Status Bundler validates the request against published history, a completed review/report, verified criteria and Jira READY FOR TESTING. Legacy requests without cycleId apply only to cycle-001. The request remains as an audit record and becomes inert after attempt two. It never deletes reports, resets counters, bypasses Jira or allows a third attempt.
 
 ## Flow
 
