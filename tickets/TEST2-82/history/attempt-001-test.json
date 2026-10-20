@@ -1,0 +1,205 @@
+{
+  "handoffId": "handoff-TEST2-82-cycle-002-test-attempt-001",
+  "handoffVersion": "TEST2-82:cycle-002:test_ticket:1",
+  "cycleId": "cycle-002",
+  "ticket": "TEST2-82",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "When a selected Ping point’s details have loaded, the detail view shows that point’s Ping Time with the unit milliseconds (ms).",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-gis-before-layer.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-crowd-dialog.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-surveyor-before-choice.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-ping-before-add.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-ping-layer-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-cluster-before-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-cleanup.png"
+      ],
+      "steps_taken": [
+        "Opened the launcher and captured this criterion's initial state.",
+        "Opened GIS; explored and cancelled Crowd configuration, then opened Surveyor, selected Ping and added the default layer.",
+        "Selected a map cluster and waited for its Ping events to load.",
+        "Selected the first event and waited for the genuine detail view to settle.",
+        "Verified Ping Time 14 ms, captured final state and recorded its URL.",
+        "Closed test detail tabs and removed the test layer."
+      ],
+      "actual_result": "Ping Time is visibly rendered as 14 ms for the selected event.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "The selected Ping event at 21/09/2026 11:47:36 displayed Ping Time 14 ms after genuine details loaded. Initial Crowd exploration was cancelled without adding a layer. The failed first screenshot save was corrected by creating this handoff's folder and restarting from the launcher before collecting the referenced evidence."
+    },
+    {
+      "criterion": "When Ping attributes are returned for the selected point, the detail view displays those attributes alongside the Ping Time.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-gis-before-layer.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-surveyor-before-choice.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-ping-before-add.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-ping-layer-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-cluster-before-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-cleanup.png"
+      ],
+      "steps_taken": [
+        "Opened the launcher and captured this criterion's initial state.",
+        "Opened GIS, opened Surveyor configuration, selected Ping and added the layer with the default Last 30 days range.",
+        "Selected a map cluster and waited for its Ping events to load.",
+        "Opened the first Ping event, waited for populated details and inspected Ping Time plus its adjacent attributes.",
+        "Captured the final state and URL, then closed test tabs and removed the layer."
+      ],
+      "actual_result": "Ping Time and returned Ping/network/device attributes are displayed together.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "The selected Ping event displayed Ping Time 14 ms alongside Jitter 9 ms, Cell ID, Data Technology, Wi-Fi state, Band and other returned attributes. Genuine detail loading completed."
+    },
+    {
+      "criterion": "With 5G NSA as the only selected technology, opening a Ping point displays details for that selected point without an error state.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-gis-before-layer.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-surveyor-before-choice.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-ping-before-tech.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-tech-menu-before.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-tech-toggle-1.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-tech-toggle-2.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-tech-toggle-3.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-tech-toggle-4.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-tech-toggle-5.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-tech-toggle-6.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-nsa-only-before-add.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-nsa-layer-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-cluster-before-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-cleanup.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-cleanup-restored.png"
+      ],
+      "steps_taken": [
+        "Opened the launcher and captured this criterion's initial state.",
+        "Opened GIS and Surveyor configuration, then selected Ping.",
+        "Deselected 2G, 3G, 4G, 5G SA, Wi-Fi and Out of Service; retained only 5G NSA and captured each toggle.",
+        "Added the layer and confirmed the genuine points request used only technology [13].",
+        "Opened the London-area cluster and selected the first event (06/10/2026 10:31:30).",
+        "Waited for genuine details; verified 5G NSA, 23 ms and no load error, captured final state and URL.",
+        "Closed test tabs and removed the layer; corrected an initial cleanup locator timeout and captured completed restoration."
+      ],
+      "actual_result": "5G NSA-only point details load successfully and show the selected event's data.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "With only 5G NSA selected (outbound technology filter [13]), the selected event at 06/10/2026 10:31:30 loaded Ping Time 23 ms, Jitter 3 ms and Data Technology 5G NSA without a detail-load error. Cleanup initially closed only the cluster because a locator changed; the remaining detail tab and test layer were subsequently removed and restoration was captured separately."
+    },
+    {
+      "criterion": "While Ping details are loading, the detail view shows a loading state.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-gis-before-layer.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-surveyor-before-choice.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-ping-before-add.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-ping-layer-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-cluster-before-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-genuine-point-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-held-reopen.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-recovery.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-cleanup.png"
+      ],
+      "steps_taken": [
+        "Opened the launcher and captured this criterion's initial state.",
+        "Opened GIS, opened Surveyor configuration, selected Ping and added the layer with the default Last 30 days range.",
+        "Selected a map cluster and waited for its Ping events to load.",
+        "Opened the first event, waited for its genuine details, and established pointId 9531501 and the real event-analysis request/response.",
+        "SIMULATED UI STATE: closed and reopened the same event while an exact owned route held its original event-analysis request.",
+        "Verified and captured Analysis Loading… with the selected event's genuine summary; recorded final URL.",
+        "Released the original request, awaited recovery, and removed the exact owned handler in finally.",
+        "Captured recovery, closed test tabs and removed the test layer."
+      ],
+      "actual_result": "Analysis shows Loading… and a progress bar while its genuine read request is held; details recover when released.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "SIMULATED UI STATE: POST https://o2intelligence-v4-dev.metricell.com/api/platform/surveyor/ping/event-analysis, pointId 9531501 and mercatorKey 1513490457731707874; other methods/records fell through. After establishing the genuine request and successful populated response through normal UI use, held one original read request behind an owned release gate until the loading screenshot was saved (approximately 7 seconds). The selected event's Analysis section displayed a progress bar and Loading…; its genuine current-record summary remained visible. No response body or successful response was fabricated. Released the request, awaited its genuine response, verified recovered details and removed only the owned handler in finally. This verifies the detail Analysis UI loading state, not backend performance or every panel."
+    },
+    {
+      "criterion": "When Ping details are unavailable, the detail view shows a no-data state.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-gis-before-layer.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-surveyor-before-choice.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-ping-before-add.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-ping-layer-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-cluster-before-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-cleanup.png"
+      ],
+      "steps_taken": [
+        "Opened the launcher and captured this criterion's initial state.",
+        "Opened GIS, opened Surveyor configuration, selected Ping and added the layer with the default Last 30 days range.",
+        "Selected a map cluster and waited for its Ping events to load.",
+        "Opened the first event and waited for its genuine populated details.",
+        "Determined that the empty neighbours list does not establish unavailable Ping details; no verified empty-detail response contract or unavailable fixture was available.",
+        "Captured the actual reachable state and final URL; recorded the prerequisite blocker without mocking an unknown empty response.",
+        "Closed test tabs and removed the test layer."
+      ],
+      "actual_result": "Populated Ping details load; the unavailable-details/no-data state could not be established.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "No unavailable-details fixture was identified in the supplied inputs or observed point data. The selected event's genuine POST /api/platform/surveyor/ping/event-analysis succeeded with populated details; its empty neighbours list is not an empty Ping-detail response. The authoritative empty-response contract is unknown, so no synthetic empty response was installed. Need a known unavailable Ping event or documented empty-detail contract to verify this criterion.",
+      "retryClass": "prerequisite",
+      "blockerCode": "no_data_fixture_or_contract_unavailable"
+    },
+    {
+      "criterion": "When Ping details fail to load, the detail view shows an error state and does not display data as if it belonged to the selected point.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-gis-before-layer.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-surveyor-before-choice.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-ping-before-add.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-ping-layer-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-cluster-before-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-genuine-target-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-distinct-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-distinct-valid-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-failed-target.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-recovery.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-cleanup.png"
+      ],
+      "steps_taken": [
+        "Opened the launcher and captured this criterion's initial state.",
+        "Opened GIS, opened Surveyor configuration, selected Ping and added the layer with the default Last 30 days range.",
+        "Selected a map cluster and waited for its Ping events to load.",
+        "Loaded the target event normally and verified its real successful event-analysis request.",
+        "Closed the target, opened the distinct second event and captured its genuine 13 ms details.",
+        "Closed the distinct event and installed an owned exact-origin/endpoint/method/target-ID route.",
+        "SIMULATED UI STATE: reopened target pointId 9531501 and returned one HTTP 500 text response for its event-analysis read.",
+        "Verified Unable to load details. and Retry; checked target time/14 ms summary and absence of prior event analysis, then captured final state and URL.",
+        "Removed the exact route in finally; clicked Retry and verified genuine recovered target details.",
+        "Captured recovery, closed test tabs, removed the test layer and verified cleanup."
+      ],
+      "actual_result": "Analysis shows Unable to load details. with Retry, without the distinct prior event's analysis; genuine retry recovers.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "SIMULATED UI STATE: POST https://o2intelligence-v4-dev.metricell.com/api/platform/surveyor/ping/event-analysis, pointId 9531501 and mercatorKey 1513490457731707874; other methods/records fell through. Established the target's genuine successful request, then loaded a distinct valid event (21/09/2026 11:47:35, Ping Time 13 ms, RSSI -96 dBm) within this criterion. Returned to the target (11:47:36, 14 ms) with one owned browser route returning standard HTTP 500, text/plain, body Internal Server Error; no product-specific success/empty-response shape was assumed. The Analysis section showed Unable to load details. and Retry. Previous event analysis fields were absent; the 14 ms summary belonged to the selected target, not stale data. Removed the exact handler in finally, used Retry against the genuine service and verified recovery. This verifies synthetic UI error handling for this endpoint only, not an observed backend failure."
+    }
+  ],
+  "conciseReport": "TEST2-82 cycle-002: criteria 1–3 Passed using genuine Ping data. Criterion 4 Passed — SIMULATED UI STATE: held the selected event's original Analysis read and verified loading plus genuine recovery. Criterion 5 Blocked (prerequisite): no unavailable-details fixture or authoritative empty-response contract. Criterion 6 Passed — SIMULATED UI STATE: exact selected-event Analysis read returned HTTP 500; error and stale-analysis exclusion verified, followed by genuine retry recovery. Simulation results cover UI exception handling only. All test layers/tabs and owned handlers were removed. Google Chrome 155.0.8059.85.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-82-cycle-002-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "No-data criterion requires a known unavailable Ping-details fixture or authoritative empty-response contract; no automatic transient retry is indicated.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-20T15:13:24.570Z"
+}
