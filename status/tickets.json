@@ -3,10 +3,9 @@
   "generatedAt": "2026-10-19T16:27:06.061+0100",
   "counts": {
     "tickets": 14,
-    "handoffs": 10,
+    "handoffs": 9,
     "byWorkflowState": {
-      "Blocked": 4,
-      "Ready": 1,
+      "Blocked": 5,
       "Retry Queued": 9
     },
     "byQaOutcome": {
@@ -41,13 +40,13 @@
       "key": "TEST2-81",
       "summary": "Map HTTP Browsing, Ping and Video Streaming point details",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-10-19T15:52:17.760Z",
       "retries": 1,
       "retryLimit": 1,
