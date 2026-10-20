@@ -598,6 +598,13 @@ def report_limitations(review, outcomes, results):
     blocked = sum(text(item.get("outcome")).lower() == "blocked" for item in outcomes)
     unverified = sum(text(item.get("outcome")).lower() == "unverified" for item in outcomes)
     parts = []
+    # Simulated UI handling must remain visible even in an all-Passed report
+    # and even if the reviewer accidentally omits the tester's disclosure.
+    simulated = [number for number, result in enumerate(results, 1)
+                 if "SIMULATED UI STATE:" in json.dumps(result, ensure_ascii=False).upper()]
+    if simulated:
+        parts.append("SIMULATED UI STATE: criterion(s) " + ", ".join(map(str, simulated))
+                     + " used browser-local conditions; this does not verify backend integration.")
     if blocked or unverified:
         parts.append(f"{blocked} blocked; {unverified} inconclusive criterion(s).")
         summary_reason = text(review.get("reason")).strip()

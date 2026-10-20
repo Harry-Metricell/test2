@@ -53,6 +53,12 @@ Worker chat completion is a receipt, not proof of publication. Dependent stages 
 
 Criteria, testing and review preserve the ticket's evidence scope. A settled empty list is valid for unchanged-state/no-new-item assertions unless the ticket or action requires populated entries. Results must say it remained empty, not claim populated ordering coverage. Reordering/removal still requires data; absent panels or loading errors do not prove emptiness. Visible catalogue restoration does not imply off-screen catalogue coverage. These brief contracts have regression checks, but only a fresh model/browser run validates interpretation.
 
+### Controlled exception-state testing
+
+Testers may use narrowly scoped browser-local request delays or documented empty/error responses for explicit loading, no-data and error UI criteria on the configured V4 development host. They first identify the real request through normal UI use. No-data requires a verified empty-response contract, not an invented payload. This cannot substitute for backend integration, missing access/data/modules or ordinary successful behaviour, and must never conceal a genuine failure.
+
+Every affected result and review reason retains `SIMULATED UI STATE:` with the method, scope, contract source, recovery and cleanup; the PDF therefore distinguishes simulated UI handling from real backend coverage. Independent review checks the exact panel and criterion. Each criterion still needs its own evidence. Handlers are record/request scoped, unmatched traffic falls through, and only owned handlers are removed. Unverified cleanup blocks the result and retains the browser lease for reconciliation. See the tester and evidence-review briefs for the full rules. This adds no worker, handoff or retry allowance, does not change existing results, and does not automatically restart exhausted tickets.
+
 ### Report evidence
 
 Browser testing is serialized per host. The coordinator allows one active tester, and each tester acquires `scripts/tester-browser-lease.mjs` before any Playwright call. The shared browser must not be driven by multiple chats even when MCP uses `--isolated`. Criteria and evidence reviews can run in parallel. Leases never expire by age; coordinator recovery releases one only after confirming the owning tester has stopped. See the coordinator brief for recovery commands.

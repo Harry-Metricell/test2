@@ -34,6 +34,14 @@ For unchanged map/layer claims, inspect the original unobscured baseline and res
 
 Treat “remains the same” and “clearing restores the original” as preservation/restoration comparisons, not just final-state assertions. When preservation applies during searching, inspect the intermediate search state too. For a single unsaved Username cancellation, identify both the entered-value capture and the reopened empty-field capture; the publisher pairs the decisive states beneath the criterion. Do not shorten repeated edits or omit any state required by the assertion.
 
+## Review controlled exception states
+
+Results labelled `SIMULATED UI STATE:` are browser-local UI checks, not proof of real backend success or a naturally occurring server error. Require the tester's safe endpoint/method, selected record, injected condition, contract provenance, criterion-owned initial/transition/final evidence, recovery and verified cleanup. Preserve `SIMULATED UI STATE:` and the specific limitation in each affected criterionOutcomes reason, even when Passed, so the PDF discloses the method.
+
+Accept a simulation only for an explicit loading/no-data/error UI criterion on the configured development host. Normal successful behaviour, backend integration, missing modules and permissions cannot pass through simulation. Confirm the tested module, panel and request match the canonical criterion; a detail-analysis panel does not automatically prove the entire point-detail dialog. A failed measurement is not a failed detail request. For no-data, require an actual empty response or project API documentation/schema establishing the empty-response contract; arrays emptied from a populated response are not sufficient. Missing scope or contract is Blocked, not an assumed pass.
+
+Check visible loading before genuine recovery, the correct no-data/error message, and any required absence of stale details using that criterion's distinct previously loaded record and selected target identity. Base summary data for the current record may legitimately remain while its analysis panel loads. Missing comparison or recovery evidence is Unverified; direct contradictory UI behaviour is Failed. Unverified cleanup is Blocked and must be disclosed. Never infer Passed solely from interception logs or the tester's notes, and never remove the simulation disclosure to make the report look like an end-to-end backend test.
+
 ## Stage output and finish
 
 Write `.agent-staging/<handoffId>/review-output.json` and verify it exists/non-empty. Required fields: handoffId, handoffVersion, ticket, criterionOutcomes, overallOutcome, reportPath, evidenceFolder, qaStatus, noOp and reason. Copy live handoffVersion exactly; set noOp false for a completed assessment.

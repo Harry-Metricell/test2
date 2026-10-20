@@ -19,6 +19,20 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_passed_simulation_remains_in_limitations_without_reviewer_disclosure(self):
+        results = [{"outcome": "Passed", "reason": "SIMULATED UI STATE: documented empty response.",
+                    "browserUrl": "https://example.test/gis", "browserVersion": "123"}]
+        limitations = REPORT.report_limitations({}, [{"outcome": "Passed"}], results)
+        self.assertIn("SIMULATED UI STATE: criterion(s) 1", limitations)
+        self.assertIn("does not verify backend integration", limitations)
+        self.assertNotIn("No testing limitations", limitations)
+
+    def test_simulation_in_steps_is_disclosed_but_real_checks_are_not_labelled(self):
+        base = {"outcome": "Passed", "browserUrl": "https://example.test/gis", "browserVersion": "123"}
+        self.assertNotIn("SIMULATED UI STATE:", REPORT.report_limitations({}, [], [base]))
+        simulated = {**base, "steps_taken": ["SIMULATED UI STATE: held original read request."]}
+        self.assertIn("criterion(s) 2", REPORT.report_limitations({}, [], [base, simulated]))
+
     def test_generated_table_text_has_explicit_pdf_safe_font_without_changing_comparisons(self):
         document = Document()
         document.styles['Normal'].font.name = 'Calibri'

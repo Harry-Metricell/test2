@@ -86,6 +86,31 @@ test('tester and reviewer preserve independent evidence and derived outcome fiel
   assert.ok(reviewer.includes('empty evidence lists'));
 });
 
+test('exception-state simulations remain scoped, disclosed and independently reviewed', () => {
+  const tester = brief('qa-testing');
+  const reviewer = brief('evidence-review');
+  assert.ok(brief('coordinator').includes('simulation_cleanup_failed'));
+  assert.ok(brief('coordinator').includes('a stopped child is not proof'));
+  for (const text of [tester, reviewer, read('README.md')]) {
+    assert.ok(text.includes('SIMULATED UI STATE:'));
+    assert.ok(text.includes('empty-response contract'));
+  }
+  for (const rule of ['exact development origin, endpoint, method',
+    'let every unmatched request fall through', 'Never replace a genuine product failure',
+    'Do not manufacture a successful response', 'actual empty response or project API documentation/schema',
+    'not sufficient proof of the empty contract', 'do not assume globalThis is shared',
+    'Never use unrouteAll', 'simulation_cleanup_failed',
+    'retain the lease for explicit coordinator reconciliation', 'overrides the normal release step']) {
+    assert.ok(tester.includes(rule), rule);
+  }
+  for (const rule of ['criterionOutcomes reason, even when Passed',
+    'not proof of real backend success', 'does not automatically prove the entire point-detail dialog',
+    'Missing scope or contract is Blocked', 'Missing comparison or recovery evidence is Unverified',
+    'Unverified cleanup is Blocked']) {
+    assert.ok(reviewer.includes(rule), rule);
+  }
+});
+
 test('coordinator retains import, reconciliation, duplicate and completion gates', () => {
   const coordinator = brief('coordinator');
   for (const contract of ['jira-import-refresh.mjs --request --force', 'jira_import_refresh_unresolved',
