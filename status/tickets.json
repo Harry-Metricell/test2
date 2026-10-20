@@ -6,7 +6,8 @@
     "handoffs": 8,
     "byWorkflowState": {
       "Blocked": 6,
-      "Retry Queued": 8
+      "Ready": 1,
+      "Retry Queued": 7
     },
     "byQaOutcome": {
       "Blocked": 14
@@ -74,17 +75,17 @@
       "key": "TEST2-84",
       "summary": "View Building Details and Floorplans",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-19T15:52:17.790Z",
       "retries": 1,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 2,
       "retryLabel": "Retry 1/1"
     },
     {
