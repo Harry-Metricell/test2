@@ -1,0 +1,368 @@
+{
+  "handoffId": "handoff-TEST2-91-retry-attempt-002",
+  "handoffVersion": "TEST2-91:test_ticket:2",
+  "ticket": "TEST2-91",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "On a standard Automobile map layer, opening filters shows a time filter for a rolling 90-day range.",
+      "outcome": "Passed",
+      "reason": "Active HTTP Browsing configuration opened with From 2026-07-22T12:54 and To 2026-10-20T12:54, a rolling 90-day default range.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-before-automobile.png",
+        "screenshots/attempt-002/criterion-1-after-automobile.png",
+        "screenshots/attempt-002/criterion-1-layer-active.png",
+        "screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "Read the From and To fields at the active configuration's final state; their default dates span 90 days.",
+        "Closed configuration and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "On a standard Automobile map layer, opening filters shows handset fields for MSISDN, SIM MNC, and SIM MCC.",
+      "outcome": "Passed",
+      "reason": "Active HTTP Browsing configuration shows MSISDN text field and SIM MCC / SIM MNC numeric fields.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-before-automobile.png",
+        "screenshots/attempt-002/criterion-2-after-automobile.png",
+        "screenshots/attempt-002/criterion-2-layer-active.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "Inspected MSISDN, SIM MCC and SIM MNC in the active Handset section.",
+        "Captured the handset state, then closed configuration and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "On a standard Automobile map layer, opening filters shows technology choices for Unknown, 2G, 3G, 4G, 5G NSA, and 5G SA.",
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "Technology choices are no-service, 2G, 3G, 4G, 5G NSA and 5G SA; the required Unknown choice is not offered.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-before-automobile.png",
+        "screenshots/attempt-002/criterion-3-after-automobile.png",
+        "screenshots/attempt-002/criterion-3-layer-active.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "Read the technology checkbox labels and captured no-service instead of the required Unknown choice.",
+        "Closed configuration and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "On a standard Automobile map layer, the frequency filter offers the frequencies supplied by the application configuration.",
+      "outcome": "Passed",
+      "reason": "Configured technology-specific Band choices match the 25 frequencies returned by GET /api/platform/automobile/filter-options (200), including Unknown, 900, 1800/1900, LTE TD 2300, L2600, N700 and TD 3700.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-before-automobile.png",
+        "screenshots/attempt-002/criterion-4-after-automobile.png",
+        "screenshots/attempt-002/criterion-4-layer-active.png",
+        "screenshots/attempt-002/criterion-4-recheck-initial.png",
+        "screenshots/attempt-002/criterion-4-recheck-before-automobile.png",
+        "screenshots/attempt-002/criterion-4-recheck-after-automobile.png",
+        "screenshots/attempt-002/criterion-4-recheck-layer-active.png",
+        "screenshots/attempt-002/criterion-4-before-band-0.png",
+        "screenshots/attempt-002/criterion-4-band-0-options.png",
+        "screenshots/attempt-002/criterion-4-band-0-closed.png",
+        "screenshots/attempt-002/criterion-4-before-band-1.png",
+        "screenshots/attempt-002/criterion-4-band-1-options.png",
+        "screenshots/attempt-002/criterion-4-band-1-closed.png",
+        "screenshots/attempt-002/criterion-4-before-band-2.png",
+        "screenshots/attempt-002/criterion-4-band-2-options.png",
+        "screenshots/attempt-002/criterion-4-band-2-closed.png",
+        "screenshots/attempt-002/criterion-4-before-band-3.png",
+        "screenshots/attempt-002/criterion-4-band-3-options.png",
+        "screenshots/attempt-002/criterion-4-band-3-closed.png",
+        "screenshots/attempt-002/criterion-4-before-band-4.png",
+        "screenshots/attempt-002/criterion-4-band-4-options.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "Compared the displayed Band summaries against GET /api/platform/automobile/filter-options, HTTP 200.",
+        "Repeated the setup from a new launcher baseline within this criterion; opened each of the five Band dropdowns (2G, 3G, 4G, 5G NSA, 5G SA), captured its options, and closed it with Escape without changing selections.",
+        "Captured the final 5G SA option list, then closed configuration and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "On a standard Automobile map layer, opening filters shows network fields for MCC, MNC, LAC, CI, Site, and Cell.",
+      "outcome": "Passed",
+      "reason": "Network section displays MCC, MNC, LAC, CI, Site and Cell.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-before-automobile.png",
+        "screenshots/attempt-002/criterion-5-after-automobile.png",
+        "screenshots/attempt-002/criterion-5-layer-active.png",
+        "screenshots/attempt-002/criterion-5-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "Scrolled the configuration to Cell and inspected all six Network fields.",
+        "Captured the network fields, then closed configuration and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "On a standard Automobile map layer, the device-group filter offers the groups supplied by the application configuration.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "reason": "Configuration supplies nine device groups but also deviceSegregationRestricted:true. No device-group control is available for this user, so the configured-group choice assertion requires an authorised unrestricted user; account/permissions were not changed.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-before-automobile.png",
+        "screenshots/attempt-002/criterion-6-after-automobile.png",
+        "screenshots/attempt-002/criterion-6-layer-active.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "Inspected the entire active filter form through its final Network fields.",
+        "Observed no device-group control; configuration supplies nine groups but deviceSegregationRestricted is true.",
+        "Captured the inaccessible-group form state, then closed configuration and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "When SIM MCC, SIM MNC, MCC, MNC, or LAC is edited, each field accepts numeric digits only.",
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "All five numeric fields accept digits 123, but typing a.-e leaves visible 123.-e in each field; input.value becomes empty with validity.badInput:true. Non-digit punctuation/exponent characters remain visibly editable, contradicting digits-only.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-7-initial.png",
+        "screenshots/attempt-002/criterion-7-before-automobile.png",
+        "screenshots/attempt-002/criterion-7-after-automobile.png",
+        "screenshots/attempt-002/criterion-7-layer-active.png",
+        "screenshots/attempt-002/criterion-7-before-sim-mcc.png",
+        "screenshots/attempt-002/criterion-7-after-sim-mcc.png",
+        "screenshots/attempt-002/criterion-7-before-sim-mcc-digits.png",
+        "screenshots/attempt-002/criterion-7-after-sim-mcc-digits.png",
+        "screenshots/attempt-002/criterion-7-after-sim-mcc-invalid.png",
+        "screenshots/attempt-002/criterion-7-before-sim-mnc-digits.png",
+        "screenshots/attempt-002/criterion-7-after-sim-mnc-digits.png",
+        "screenshots/attempt-002/criterion-7-after-sim-mnc-invalid.png",
+        "screenshots/attempt-002/criterion-7-before-mcc-digits.png",
+        "screenshots/attempt-002/criterion-7-after-mcc-digits.png",
+        "screenshots/attempt-002/criterion-7-after-mcc-invalid.png",
+        "screenshots/attempt-002/criterion-7-before-mnc-digits.png",
+        "screenshots/attempt-002/criterion-7-after-mnc-digits.png",
+        "screenshots/attempt-002/criterion-7-after-mnc-invalid.png",
+        "screenshots/attempt-002/criterion-7-before-lac-digits.png",
+        "screenshots/attempt-002/criterion-7-after-lac-digits.png",
+        "screenshots/attempt-002/criterion-7-after-lac-invalid.png",
+        "screenshots/attempt-002/criterion-7-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "Filled SIM MCC with -1.5e2; its DOM value was empty.",
+        "For each of SIM MCC, SIM MNC, MCC, MNC and LAC, scrolled into view, captured its baseline, filled 123 and captured the accepted value, then typed a.-e and captured visible 123.-e.",
+        "Read all five number inputs: value empty and validity.badInput true despite the visible non-digit content.",
+        "Captured final Network fields, then closed configuration without Apply and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "When MSISDN, CI, Site, or Cell is edited, each field accepts text input.",
+      "outcome": "Passed",
+      "reason": "MSISDN, CI, Site and Cell each accepted and retained QA-text_91. Edits were discarded by closing configuration and removing the test layer.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-8-initial.png",
+        "screenshots/attempt-002/criterion-8-before-automobile.png",
+        "screenshots/attempt-002/criterion-8-after-automobile.png",
+        "screenshots/attempt-002/criterion-8-layer-active.png",
+        "screenshots/attempt-002/criterion-8-before-msisdn.png",
+        "screenshots/attempt-002/criterion-8-after-msisdn.png",
+        "screenshots/attempt-002/criterion-8-before-ci.png",
+        "screenshots/attempt-002/criterion-8-after-ci.png",
+        "screenshots/attempt-002/criterion-8-before-site.png",
+        "screenshots/attempt-002/criterion-8-after-site.png",
+        "screenshots/attempt-002/criterion-8-before-cell.png",
+        "screenshots/attempt-002/criterion-8-after-cell.png",
+        "screenshots/attempt-002/criterion-8-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "For each of MSISDN, CI, Site and Cell, scrolled into view, captured the field before editing, filled QA-text_91, verified the retained input value and saved the after image.",
+        "Captured final CI/Site/Cell text values; the MSISDN edit has its own earlier capture.",
+        "Closed configuration without Apply and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "When one or more filters are applied on a standard Automobile map layer, the displayed map results match the active filter values and are within the user's authorised results.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "data_service_error",
+      "reason": "Site 17279 exists in this criterion's baseline. Applying Site=17279 caused GET /api/platform/automobile/http-browsing/points to return HTTP 500; a controlled fresh launcher/GIS load and recreated layer reproduced HTTP 500. Baseline points returned HTTP 200. Filtered point retrieval failed, preventing matching/authorised-result checks. The map cleared points without an on-screen HTTP error message; this is not a settled empty response. Test layers removed.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-9-initial.png",
+        "screenshots/attempt-002/criterion-9-before-automobile.png",
+        "screenshots/attempt-002/criterion-9-after-automobile.png",
+        "screenshots/attempt-002/criterion-9-layer-active.png",
+        "screenshots/attempt-002/criterion-9-before-site-filter.png",
+        "screenshots/attempt-002/criterion-9-after-site-filter.png",
+        "screenshots/attempt-002/criterion-9-after-apply.png",
+        "screenshots/attempt-002/criterion-9-reload-initial.png",
+        "screenshots/attempt-002/criterion-9-reload-before-automobile.png",
+        "screenshots/attempt-002/criterion-9-reload-after-automobile.png",
+        "screenshots/attempt-002/criterion-9-reload-layer-active.png",
+        "screenshots/attempt-002/criterion-9-reload-before-site.png",
+        "screenshots/attempt-002/criterion-9-reload-after-site.png",
+        "screenshots/attempt-002/criterion-9-reload-after-apply.png",
+        "screenshots/attempt-002/criterion-9-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "Read this criterion's baseline point response, HTTP 200, and selected its existing siteId 17279.",
+        "Captured Site before editing, entered 17279, verified the input, captured it and clicked Apply.",
+        "Observed GET /api/platform/automobile/http-browsing/points return HTTP 500 for site=17279; captured the cleared map state.",
+        "Removed the layer; performed a controlled new launcher/GIS load, recreated HTTP Browsing and repeated the same Site filter with separate reload-phase captures.",
+        "The fresh-load Site request again returned HTTP 500. Captured the decisive blocker state, then removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "On a Call layer, the technology filter does not offer 5G NSA.",
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "Added Call layer and reopened active configuration. 5G NSA is visibly offered, enabled and checked. A fresh criterion-owned recheck confirmed the same state. Call point retrieval also returned HTTP 500, but this does not prevent observing the incorrect technology control.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-10-initial.png",
+        "screenshots/attempt-002/criterion-10-before-automobile.png",
+        "screenshots/attempt-002/criterion-10-after-automobile.png",
+        "screenshots/attempt-002/criterion-10-before-call.png",
+        "screenshots/attempt-002/criterion-10-after-call.png",
+        "screenshots/attempt-002/criterion-10-layer-active.png",
+        "screenshots/attempt-002/criterion-10-recheck-initial.png",
+        "screenshots/attempt-002/criterion-10-recheck-before-automobile.png",
+        "screenshots/attempt-002/criterion-10-recheck-after-automobile.png",
+        "screenshots/attempt-002/criterion-10-recheck-before-call.png",
+        "screenshots/attempt-002/criterion-10-recheck-after-call.png",
+        "screenshots/attempt-002/criterion-10-recheck-layer-active.png",
+        "screenshots/attempt-002/criterion-10-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher, captured its baseline, opened GIS and Automobile.",
+        "Opened Test type, selected Call, captured the selected type and added the Call layer.",
+        "Opened Configure Automobile - Call; observed a 5G NSA checkbox. Removed this layer, then repeated the launcher/add-Call sequence within this criterion.",
+        "On the repeated active Call configuration, scrolled 5G NSA into view and verified visible=true, enabled=true, checked=true.",
+        "Captured the decisive checkbox state, closed configuration and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "When device groups are shown, restricted device-segregation options are not offered.",
+      "outcome": "Passed",
+      "reason": "GET /api/platform/automobile/filter-options (200) marks deviceSegregationRestricted:true. Both add dialog and active configuration omit device-group/segregation controls and restricted choices. The full form was inspected through its bottom network fields.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-11-initial.png",
+        "screenshots/attempt-002/criterion-11-before-automobile.png",
+        "screenshots/attempt-002/criterion-11-after-automobile.png",
+        "screenshots/attempt-002/criterion-11-layer-active.png",
+        "screenshots/attempt-002/criterion-11-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher baseline.",
+        "Opened GIS and the Automobile add-layer dialog.",
+        "Added an HTTP Browsing layer, waited for it to appear in Map layers, then opened Configure Automobile - HTTP Browsing.",
+        "Inspected this criterion's GET /api/platform/automobile/filter-options response (200): deviceSegregationRestricted=true.",
+        "Inspected add dialog and active configuration through the bottom Network fields; no device-group or segregation controls were offered.",
+        "Captured the final restricted form state, then closed configuration and removed the test-created layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    },
+    {
+      "criterion": "On Route Replay, the standard Automobile map filter controls described in this ticket are not available.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "feature_unavailable",
+      "reason": "Started at launcher, inspected navigation, entered GIS and searched the layer catalogue for Route. No Route Replay module or layer is offered; the settled catalogue says No layers match this search. Could not activate Route Replay to inspect its controls. Search was cleared; no data created.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-12-initial.png",
+        "screenshots/attempt-002/criterion-12-navigation.png",
+        "screenshots/attempt-002/criterion-12-before-route-search.png",
+        "screenshots/attempt-002/criterion-12-after-route-search.png",
+        "screenshots/attempt-002/criterion-12-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured this criterion's initial state.",
+        "Opened navigation and inspected all available modules; no Route Replay entry was offered.",
+        "Selected GIS from navigation, captured the catalogue baseline, entered Route in Filter layers and waited for No layers match this search.",
+        "Captured the final unavailable-layer state and browser URL, then cleared Filter layers and saved cleanup."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "cleanup": "All test-created map layers removed; unapplied edits discarded. Criterion 12 catalogue search cleared."
+    }
+  ],
+  "conciseReport": "TEST2-91 retry: 6 Passed, 3 Failed, 3 Blocked across 12 canonical criteria.\n\nObserved failures: technology offers no-service instead of Unknown; all five digits-only fields retain punctuation/exponent characters; Call offers enabled, checked 5G NSA.\n\nBlocked checks: configured device-group choices require an unrestricted test account; Site-filtered point retrieval returns HTTP 500 on both initial and controlled fresh loads; Route Replay is unavailable in navigation and the layer catalogue. Baseline point retrieval succeeds (HTTP 200). Repeated filtered-service failure is treated as a data prerequisite blocker. No empty-data success is claimed.\n\nCriterion-specific PNGs were saved and decoded successfully. Browser: Google Chrome 155.0.8059.85. All test-created layers and edits were cleaned up; the catalogue search was cleared.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-91-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Testing completed with product failures and prerequisite blockers; evidence review is required.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-20T12:53:31.908Z"
+}
