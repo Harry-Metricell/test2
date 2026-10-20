@@ -10,5 +10,6 @@
   "blockedStage": "reviewed",
   "qaOutcome": "Blocked",
   "workflowState": "Blocked",
-  "nextAction": "Manual review required; final evidence report published"
+  "nextAction": "Manual review required; final evidence report published",
+  "cycleId": "cycle-001"
 }

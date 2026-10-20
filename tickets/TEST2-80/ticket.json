@@ -383,5 +383,22 @@
         "name": "To Do"
       }
     }
+  },
+  "qaStatusHistory": {
+    "complete": true,
+    "transitions": [
+      {
+        "id": "1186390:0",
+        "at": "2026-10-19T14:13:57.297+0100",
+        "from": "To Do",
+        "to": "READY FOR TESTING"
+      },
+      {
+        "id": "1186420:0",
+        "at": "2026-10-19T16:27:04.205+0100",
+        "from": "READY FOR TESTING",
+        "to": "To Do"
+      }
+    ]
   }
 }

@@ -11,5 +11,6 @@
   "qaOutcome": "Blocked",
   "workflowState": "Blocked",
   "nextAction": "Manual review required; final evidence report published",
-  "updatedAt": "2026-10-19T15:52:17.752Z"
+  "updatedAt": "2026-10-19T15:52:17.752Z",
+  "cycleId": "cycle-001"
 }

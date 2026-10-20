@@ -471,5 +471,16 @@
         "name": "In Progress"
       }
     }
+  },
+  "qaStatusHistory": {
+    "complete": true,
+    "transitions": [
+      {
+        "id": "1186391:0",
+        "at": "2026-10-19T14:13:58.948+0100",
+        "from": "To Do",
+        "to": "READY FOR TESTING"
+      }
+    ]
   }
 }

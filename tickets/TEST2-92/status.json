@@ -11,5 +11,6 @@
   "qaOutcome": "Blocked",
   "workflowState": "Retry Queued",
   "nextAction": "Create retry handoff",
-  "updatedAt": "2026-10-19T15:52:17.995Z"
+  "updatedAt": "2026-10-19T15:52:17.995Z",
+  "cycleId": "cycle-001"
 }

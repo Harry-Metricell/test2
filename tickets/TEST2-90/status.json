@@ -11,5 +11,6 @@
   "qaOutcome": "Blocked",
   "workflowState": "READY FOR TESTING",
   "nextAction": "Create final evidence review handoff",
-  "updatedAt": "2026-10-19T15:52:17.807Z"
+  "updatedAt": "2026-10-19T15:52:17.807Z",
+  "cycleId": "cycle-001"
 }

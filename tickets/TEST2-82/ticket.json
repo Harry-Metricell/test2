@@ -346,5 +346,16 @@
         "name": "In Progress"
       }
     }
+  },
+  "qaStatusHistory": {
+    "complete": true,
+    "transitions": [
+      {
+        "id": "1186392:0",
+        "at": "2026-10-19T14:14:00.660+0100",
+        "from": "To Do",
+        "to": "READY FOR TESTING"
+      }
+    ]
   }
 }
