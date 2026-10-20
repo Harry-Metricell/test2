@@ -1,0 +1,267 @@
+{
+  "handoffId": "handoff-TEST2-88-retry-attempt-002",
+  "handoffVersion": "TEST2-88:test_ticket:2",
+  "ticket": "TEST2-88",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Given the MS Teams Call layer is active, when the user opens its display settings, then the configured map-colouring choices and controls for detailed routes, linked sites and linked cells are visible.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-before-layer-search.png",
+        "screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and verified it was visible; saved initial evidence. Initial screenshot first failed because its directory did not exist; created the staging directory and restarted from the launcher with a verified saved initial PNG.",
+        "Opened GIS, waited for Loading map to disappear and captured the loaded layer catalogue.",
+        "Filtered layers by MS Teams; observed No layers match this search. Captured blocker and final URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. Display controls could not be inspected."
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active and a configured colouring choice is selected, when the map updates, then MS Teams Call result points and the legend display the selected configured colouring and its corresponding legend section.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-before-layer-search.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. Configured point colouring and corresponding legend could not be exercised."
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active, when the user turns detailed routes on and the map refreshes, then detailed route geometry for the active MS Teams Call results is visible.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-before-layer-search.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. Detailed route geometry could not be enabled or observed."
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active and detailed routes are visible, when the user turns detailed routes off and the map refreshes, then that detailed route geometry is hidden.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-before-layer-search.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. The prerequisite visible detailed route geometry could not be established or disabled."
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active and the map is below the configured zoom level for linked sites, when display settings are open, then the linked-site control is unavailable and indicates that the user must zoom in.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-before-layer-search.png",
+        "screenshots/attempt-002/criterion-5-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. The linked-site control and its below-threshold zoom explanation could not be inspected."
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active and the map is at or above the configured zoom level for linked sites, when the user turns linked sites on and the map refreshes, then linked-site overlays for the active MS Teams Call results are visible.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-before-layer-search.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. Linked-site overlays could not be enabled at a supported zoom."
+    },
+    {
+      "criterion": "Given linked-site overlays are visible at a supported zoom level, when the user turns linked sites off and the map refreshes, then those linked-site overlays are hidden.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-7-initial.png",
+        "screenshots/attempt-002/criterion-7-before-layer-search.png",
+        "screenshots/attempt-002/criterion-7-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. The prerequisite visible linked-site overlays could not be established or disabled."
+    },
+    {
+      "criterion": "Given linked sites are enabled and the map is at a zoom level that supports linked cells, when display settings are open, then the linked-cell control is available.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-8-initial.png",
+        "screenshots/attempt-002/criterion-8-before-layer-search.png",
+        "screenshots/attempt-002/criterion-8-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. Linked-cell control availability with linked sites enabled could not be inspected."
+    },
+    {
+      "criterion": "Given linked sites are disabled or the map is below the zoom level that supports linked cells, when display settings are open, then the linked-cell control is unavailable.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-9-initial.png",
+        "screenshots/attempt-002/criterion-9-before-layer-search.png",
+        "screenshots/attempt-002/criterion-9-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. Linked-cell control unavailability with linked sites disabled or insufficient zoom could not be inspected."
+    },
+    {
+      "criterion": "Given linked sites are enabled and the map is at a zoom level that supports linked cells, when the user turns linked cells on and the map refreshes, then linked-cell overlays are visible.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-10-initial.png",
+        "screenshots/attempt-002/criterion-10-before-layer-search.png",
+        "screenshots/attempt-002/criterion-10-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. Linked-cell overlays could not be enabled at a supported zoom."
+    },
+    {
+      "criterion": "Given linked-cell overlays are visible, when the user turns linked cells off and the map refreshes, then those linked-cell overlays are hidden.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-11-initial.png",
+        "screenshots/attempt-002/criterion-11-before-layer-search.png",
+        "screenshots/attempt-002/criterion-11-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. The prerequisite visible linked-cell overlays could not be established or disabled."
+    },
+    {
+      "criterion": "Given any MS Teams Call display setting is changed, when the map refreshes, then the setting is applied only to the active MS Teams Call layer and other visible map layers, standard map filters and legend point-filtering state retain their prior visible states.",
+      "outcome": "Blocked",
+      "evidence": [
+        "screenshots/attempt-002/criterion-12-initial.png",
+        "screenshots/attempt-002/criterion-12-before-layer-search.png",
+        "screenshots/attempt-002/criterion-12-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL; waited for its visible welcome heading and saved initial PNG.",
+        "Opened GIS and waited for the map loading state to disappear; captured the layer catalogue before searching.",
+        "Filtered the layer catalogue by MS Teams; waited for the visible No layers match this search message; saved the final blocker PNG and read the current browser URL.",
+        "Cleared the test-created layer search."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "retryClass": "prerequisite",
+      "blockerCode": "required_layer_unavailable",
+      "reason": "The loaded GIS catalogue offers no MS Teams match for the current account/environment. The required active MS Teams Call layer and its display settings could not be reached; no setting or underlying result data was changed. A display-setting change could not be performed, so layer/filter/legend isolation could not be compared."
+    }
+  ],
+  "conciseReport": "All 12 criteria are Blocked (prerequisite). Each independent check began at the visible launcher and opened the loaded GIS catalogue; filtering by MS Teams consistently displayed “No layers match this search.” The required MS Teams Call layer could not be activated, so display controls, geometry, colouring and isolation assertions could not be exercised. This is an unavailable feature/permission/environment prerequisite, not an observed product failure. Each criterion has separate initial, catalogue and final blocker PNGs. Test-created searches were cleared; no display settings or result data were changed. Observed browser: Google Chrome 155.0.8059.85.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-88-retry-attempt-002/screenshots/",
+  "noOp": false,
+  "reason": "Required MS Teams Call layer unavailable in the current account/environment's loaded GIS catalogue; all independent MS Teams searches returned no matching layers.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-20T11:10:31.009Z"
+}
