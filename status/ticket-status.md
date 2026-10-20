@@ -14,7 +14,7 @@ Updated: 2026-10-19T16:27:06.061+0100
 | TEST2-88 | READY FOR TESTING | Blocked | Retry 1/1 | Configure MS Teams Call map display settings |
 | TEST2-89 | READY FOR TESTING | Blocked | Retry 1/1 | Map and inspect MS Teams Call results |
 | TEST2-90 | READY FOR TESTING | Awaiting Evidence Review | Retry 1/1 | Map and inspect Automobile call results |
-| TEST2-91 | READY FOR TESTING | Ready for Testing | Retry 1/1 | Filter Automobile map results |
+| TEST2-91 | READY FOR TESTING | Awaiting Evidence Review | Retry 1/1 | Filter Automobile map results |
 | TEST2-92 | READY FOR TESTING | Ready for Testing | Retry 1/1 | Filter Automobile map points using the legend |
 | TEST2-80 | To Do | Blocked |  | Map and inspect Automobile Service results |
 | TEST2-83 | To Do | Blocked |  | Display Service Point Details |
