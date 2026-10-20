@@ -1,0 +1,279 @@
+{
+  "handoffId": "handoff-TEST2-87-retry-attempt-002",
+  "handoffVersion": "TEST2-87:test_ticket:2",
+  "ticket": "TEST2-87",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "The completed Call summary has no Duration or Handset field. Start/end times establish a measurable 20-second call. It displays Success, Connection Time 984, start/end times, and an empty Disconnection Cause Code. The empty cause value itself is not classified as a failure because no cause was supplied.",
+      "observedResult": "The complete Call event information table contains Username, Survey Name, Start Time, End Time, MSISDN, Test Result, Service Technology, Band, Connection Time, Disconnection Cause Code, and Error Message; Duration and Handset are absent.",
+      "steps_taken": [
+        "The first screenshot save failed with ENOENT because the handoff screenshot folder did not yet exist. Created that folder and restarted criterion 1 from the launcher before collecting its evidence.",
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher.",
+        "Opened GIS, opened Surveyor layer configuration, selected Active layer Call, retained Last 30 days and default filters, and added the test-created Call layer; captured each transition.",
+        "Clicked the map centre, inspected the Surveyor cluster events table, and opened its completed mm wave 2 Call (06/10/2026 10:41:30–10:41:50). Waited for Call analysis and Call measurements to settle.",
+        "Inspected the complete Call event information table and captured its summary at the final asserted state."
+      ],
+      "criterion": "When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-before-surveyor.png",
+        "screenshots/attempt-002/criterion-1-after-open-surveyor.png",
+        "screenshots/attempt-002/criterion-1-before-select-call.png",
+        "screenshots/attempt-002/criterion-1-after-select-call-before-add.png",
+        "screenshots/attempt-002/criterion-1-after-add-call.png",
+        "screenshots/attempt-002/criterion-1-before-open-point.png",
+        "screenshots/attempt-002/criterion-1-after-map-before-call.png",
+        "screenshots/attempt-002/criterion-1-final.png",
+        "screenshots/attempt-002/criterion-1-summary.png"
+      ],
+      "cleanupEvidence": [
+        ".agent-staging/handoff-TEST2-87-retry-attempt-002/screenshots/criterion-1-cleanup.png"
+      ],
+      "cleanup": "Closed this criterion's test-created detail tabs and removed its Call layer. Temporary filters/selections were removed with that layer; original empty-layer baseline restored.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "The timeline plots Signal strength with call-initiation/connection/end annotations, but does not display service technology across time. The hovered chart tooltip contains only Signal strength; the Service column below the chart does not satisfy the timeline assertion.",
+      "observedResult": "A seconds-based signal-strength chart and call-event annotations render. Hovering the chart shows 14.00 and Signal strength −62. No service-technology series or technology label is shown within the chart.",
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher.",
+        "Opened GIS, opened Surveyor layer configuration, selected Active layer Call, retained Last 30 days and default filters, and added the test-created Call layer; captured each transition.",
+        "Clicked the map centre, inspected the Surveyor cluster events table, and opened its completed mm wave 2 Call (06/10/2026 10:41:30–10:41:50). Waited for Call analysis and Call measurements to settle.",
+        "Hovered the Call analysis chart and inspected its legend, annotations, axes and tooltip; captured the final chart state."
+      ],
+      "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-after-gis-before-surveyor.png",
+        "screenshots/attempt-002/criterion-2-after-surveyor-before-options.png",
+        "screenshots/attempt-002/criterion-2-before-select-call.png",
+        "screenshots/attempt-002/criterion-2-after-call-before-add.png",
+        "screenshots/attempt-002/criterion-2-after-add-before-map.png",
+        "screenshots/attempt-002/criterion-2-after-map-before-event.png",
+        "screenshots/attempt-002/criterion-2-after-open-event.png",
+        "screenshots/attempt-002/criterion-2-before-hover-chart.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "cleanupEvidence": [
+        ".agent-staging/handoff-TEST2-87-retry-attempt-002/screenshots/criterion-2-cleanup.png"
+      ],
+      "cleanup": "Closed this criterion's test-created detail tabs and removed its Call layer. Temporary filters/selections were removed with that layer; original empty-layer baseline restored.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "The Call measurements table exposes plain column headers with no sort or filter controls. Clicking Time does not change the first/last sample order. No sample-table filtering input is exposed.",
+      "observedResult": "109 sample rows are displayed. First sample remains 2026-10-06 10:41:30.420 and last remains 10:41:56.563 after clicking Time. All seven headers have no aria-sort or embedded controls; no table inputs/selects/filter buttons were found.",
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher.",
+        "Opened GIS, opened Surveyor layer configuration, selected Active layer Call, retained Last 30 days and default filters, and added the test-created Call layer; captured each transition.",
+        "Clicked the map centre, inspected the Surveyor cluster events table, and opened its completed mm wave 2 Call (06/10/2026 10:41:30–10:41:50). Waited for Call analysis and Call measurements to settle.",
+        "Inspected the table headers and available controls, and recorded first/last sample timestamps.",
+        "Captured the baseline, clicked the Time column header, and re-read the settled first/last timestamps and table controls. Captured the unchanged decisive state; no successful sorting transition is claimed."
+      ],
+      "criterion": "When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-after-gis-before-surveyor.png",
+        "screenshots/attempt-002/criterion-3-after-surveyor-before-options.png",
+        "screenshots/attempt-002/criterion-3-before-select-call.png",
+        "screenshots/attempt-002/criterion-3-after-call-before-add.png",
+        "screenshots/attempt-002/criterion-3-after-add-before-map.png",
+        "screenshots/attempt-002/criterion-3-after-map-before-event.png",
+        "screenshots/attempt-002/criterion-3-after-open-event.png",
+        "screenshots/attempt-002/criterion-3-before-time-header-click.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "cleanupEvidence": [
+        ".agent-staging/handoff-TEST2-87-retry-attempt-002/screenshots/criterion-3-cleanup.png"
+      ],
+      "cleanup": "Closed this criterion's test-created detail tabs and removed its Call layer. Temporary filters/selections were removed with that layer; original empty-layer baseline restored.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "known_serving_cell_fixture_unavailable",
+      "reason": "The inspected Call samples all display CGI 234-30-3369473. No independently verified sample with a known serving site/cell was established, so the known-site branch and complete per-sample mapping rule cannot be decided from these fixtures. CGI display alone is not treated as a full pass.",
+      "observedResult": "All inspected Serving Cell values in the first call are 234-30-3369473. A second Call at 06/10/2026 10:21:38–10:21:58 also displays that CGI throughout its samples.",
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher.",
+        "Opened GIS, opened Surveyor layer configuration, selected Active layer Call, retained Last 30 days and default filters, and added the test-created Call layer; captured each transition.",
+        "Clicked the map centre, inspected the Surveyor cluster events table, and opened its completed mm wave 2 Call (06/10/2026 10:41:30–10:41:50). Waited for Call analysis and Call measurements to settle.",
+        "Inspected the first call's sample rows and distinct Serving Cell values and captured the CGI values.",
+        "Closed the first Call and cluster tabs, retaining this criterion's Call layer. Clicked a nearby map point (relative position x547/y408), inspected the new completed Call event, and opened it.",
+        "Inspected and captured the second call's sample table; no verified known-site sample was obtained."
+      ],
+      "criterion": "For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-after-gis-before-surveyor.png",
+        "screenshots/attempt-002/criterion-4-after-surveyor-before-options.png",
+        "screenshots/attempt-002/criterion-4-before-select-call.png",
+        "screenshots/attempt-002/criterion-4-after-call-before-add.png",
+        "screenshots/attempt-002/criterion-4-after-add-before-map.png",
+        "screenshots/attempt-002/criterion-4-after-map-before-event.png",
+        "screenshots/attempt-002/criterion-4-after-open-event.png",
+        "screenshots/attempt-002/criterion-4-cgi-fallback.png",
+        "screenshots/attempt-002/criterion-4-before-close-for-known-point.png",
+        "screenshots/attempt-002/criterion-4-after-close-before-known-point.png",
+        "screenshots/attempt-002/criterion-4-after-known-map-before-event.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "cleanupEvidence": [
+        ".agent-staging/handoff-TEST2-87-retry-attempt-002/screenshots/criterion-4-cleanup.png"
+      ],
+      "cleanup": "Closed this criterion's test-created detail tabs and removed its Call layer. Temporary filters/selections were removed with that layer; original empty-layer baseline restored.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "outcome": "Passed",
+      "reason": "Selecting the sample at 2026-10-06 10:41:30.420 opened inline Selected measurement / Radio details. The request uses exactly that sampleTime, and the returned visible radio values match the selected sample.",
+      "observedResult": "Selected measurement radio details display In Service, RSRP −57 dBm, CI 3369473, CGI 234-30-3369473, handset samsung SM-S931B, and Cell ID/Site ID N/A. These correspond to the selected 4G sample with −57 dBm and CGI 234-30-3369473.",
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher.",
+        "Opened GIS, opened Surveyor layer configuration, selected Active layer Call, retained Last 30 days and default filters, and added the test-created Call layer; captured each transition.",
+        "Clicked the map centre, inspected the Surveyor cluster events table, and opened its completed mm wave 2 Call (06/10/2026 10:41:30–10:41:50). Waited for Call analysis and Call measurements to settle.",
+        "Scrolled the first Call measurements row into view, read its timestamp, signal strength and Serving Cell, and captured it before selection.",
+        "Clicked Select Call measurements row 1. Verified the inline Selected measurement region with Radio details and inspected its fields.",
+        "Read the resulting event-analysis request body: sampleTime 2026-10-06T10:41:30.4200000. Captured the final radio-detail state before cleanup."
+      ],
+      "networkObservation": {
+        "method": "POST",
+        "endpointPath": "/api/platform/surveyor/call/event-analysis",
+        "statusCode": 200,
+        "sampleTime": "2026-10-06T10:41:30.4200000"
+      },
+      "criterion": "Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-after-gis-before-surveyor.png",
+        "screenshots/attempt-002/criterion-5-after-surveyor-before-options.png",
+        "screenshots/attempt-002/criterion-5-before-select-call.png",
+        "screenshots/attempt-002/criterion-5-after-call-before-add.png",
+        "screenshots/attempt-002/criterion-5-after-add-before-map.png",
+        "screenshots/attempt-002/criterion-5-after-map-before-event.png",
+        "screenshots/attempt-002/criterion-5-after-open-event.png",
+        "screenshots/attempt-002/criterion-5-before-select-sample.png",
+        "screenshots/attempt-002/criterion-5-after-select-radio-details.png",
+        "screenshots/attempt-002/criterion-5-final.png",
+        "screenshots/attempt-002/criterion-5-final-selected-measurement.png"
+      ],
+      "cleanupEvidence": [
+        ".agent-staging/handoff-TEST2-87-retry-attempt-002/screenshots/criterion-5-cleanup.png"
+      ],
+      "cleanup": "Closed this criterion's test-created detail tabs and removed its Call layer. Temporary filters/selections were removed with that layer; original empty-layer baseline restored.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "zero_duration_call_fixture_unavailable",
+      "reason": "The opened completed Call has a measurable 20-second duration. Applying Call result Setup Failures returned HTTP 200 with points:[] in the current viewport/date range, leaving no selectable zero-duration Call fixture. An empty map is not evidence of the required detail-dialog no-data state.",
+      "observedResult": "Completed-call detail is populated. The controlled setup-failure filter load settled with an empty points response; no HTTP error or zero-duration dialog was observed. Final evidence shows the filtered map after closing the unrelated completed-call tabs.",
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher.",
+        "Opened GIS, opened Surveyor layer configuration, selected Active layer Call, retained Last 30 days and default filters, and added the test-created Call layer; captured each transition.",
+        "Clicked the map centre, inspected the Surveyor cluster events table, and opened its completed mm wave 2 Call (06/10/2026 10:41:30–10:41:50). Waited for Call analysis and Call measurements to settle.",
+        "Verified the available call starts at 10:41:30 and ends at 10:41:50; it is not a zero-duration fixture.",
+        "Opened Configure Surveyor - Call, selected Call result Setup Failures, and applied the filter, capturing the transitions.",
+        "Inspected the successful filtered points response (points:[]). Closed the previously opened completed-call tabs to inspect the filtered map; no zero-duration Call could be selected. Captured the fixture blocker before cleanup."
+      ],
+      "networkObservation": {
+        "method": "GET",
+        "endpointPath": "/api/platform/surveyor/call/points",
+        "statusCode": 200,
+        "responseSummary": "points: []",
+        "controlledLoad": "Applied Setup Failures to this criterion's test-created layer, with Last 30 days, default viewport and otherwise default filters."
+      },
+      "criterion": "When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-after-gis-before-surveyor.png",
+        "screenshots/attempt-002/criterion-6-after-surveyor-before-options.png",
+        "screenshots/attempt-002/criterion-6-before-select-call.png",
+        "screenshots/attempt-002/criterion-6-after-call-before-add.png",
+        "screenshots/attempt-002/criterion-6-after-add-before-map.png",
+        "screenshots/attempt-002/criterion-6-after-map-before-event.png",
+        "screenshots/attempt-002/criterion-6-after-open-event.png",
+        "screenshots/attempt-002/criterion-6-completed-call-has-duration.png",
+        "screenshots/attempt-002/criterion-6-configuration-before-results.png",
+        "screenshots/attempt-002/criterion-6-before-setup-failure-filter.png",
+        "screenshots/attempt-002/criterion-6-after-setup-failure-filter.png",
+        "screenshots/attempt-002/criterion-6-before-apply-setup-failures.png",
+        "screenshots/attempt-002/criterion-6-after-apply-setup-failures.png",
+        "screenshots/attempt-002/criterion-6-before-close-completed-details.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "cleanupEvidence": [
+        ".agent-staging/handoff-TEST2-87-retry-attempt-002/screenshots/criterion-6-cleanup.png"
+      ],
+      "cleanup": "Closed this criterion's test-created detail tabs and removed its Call layer. Temporary filters/selections were removed with that layer; original empty-layer baseline restored.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    },
+    {
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "call_exception_state_fixtures_unavailable",
+      "reason": "This independent load reaches populated Call details successfully. No controlled unavailable-details/error fixture was supplied or found, and a standard loading state was not captured before the successful response settled. Successful populated details and the text 'No Error' do not prove the required loading/no-data/error behaviours.",
+      "observedResult": "The Call analysis chart and 109 sample rows settle successfully. No standard detail loading, no-data or load-error state was established. No data responses were fabricated or backend/account changes made.",
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's visible launcher.",
+        "Opened GIS, opened Surveyor layer configuration, selected Active layer Call, retained Last 30 days and default filters, and added the test-created Call layer; captured each transition.",
+        "Clicked the map centre, inspected the Surveyor cluster events table, and opened its completed mm wave 2 Call (06/10/2026 10:41:30–10:41:50). Waited for Call analysis and Call measurements to settle.",
+        "Observed the settled successful Call detail view and inspected it for loading, no-data and error states. 'Error Message / No Error' is a normal summary field, not an observed load-error state.",
+        "Captured the successful final view as context for the unavailable exception-state fixtures; no pass is claimed for unexercised branches."
+      ],
+      "criterion": "While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.",
+      "evidence": [
+        "screenshots/attempt-002/criterion-7-initial.png",
+        "screenshots/attempt-002/criterion-7-after-gis-before-surveyor.png",
+        "screenshots/attempt-002/criterion-7-after-surveyor-before-options.png",
+        "screenshots/attempt-002/criterion-7-before-select-call.png",
+        "screenshots/attempt-002/criterion-7-after-call-before-add.png",
+        "screenshots/attempt-002/criterion-7-after-add-before-map.png",
+        "screenshots/attempt-002/criterion-7-after-map-before-event.png",
+        "screenshots/attempt-002/criterion-7-after-open-event.png",
+        "screenshots/attempt-002/criterion-7-final.png"
+      ],
+      "cleanupEvidence": [
+        ".agent-staging/handoff-TEST2-87-retry-attempt-002/screenshots/criterion-7-cleanup.png"
+      ],
+      "cleanup": "Closed this criterion's test-created detail tabs and removed its Call layer. Temporary filters/selections were removed with that layer; original empty-layer baseline restored.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85"
+    }
+  ],
+  "conciseReport": "## TEST2-87 — Display Call Point Details\n\n3 Failed, 1 Passed, 3 Blocked.\n\n- Failed: summary omits Duration/Handset; timeline omits service technology; Call sample table exposes no working column sort/filter controls.\n- Passed: selecting a timestamped sample opens matching radio details.\n- Blocked: no verified known-serving-cell sample, zero-duration Call, or controlled loading/unavailable/error detail fixture was established. Setup Failures returned HTTP 200 with an empty points list, not a data-service error.\n\nAll seven checks started independently at the authenticated launcher and have their own saved PNGs. Temporary layers, filters and detail tabs were restored after each criterion. Browser: observed Google Chrome 155.0.8059.85.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-87-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Required fixtures prevent decisions for criteria 4, 6 and 7; criteria 1–3 show directly observed product gaps. Criterion 5 passed with timestamp-specific request and radio-detail evidence.",
+  "runNotes": [
+    "Initial screenshot-directory ENOENT was corrected and criterion 1 restarted from the launcher before collecting evidence.",
+    "A criterion-2 selector wait failed without changing state; the observed DOM was used to correct the selector and continue from its own baseline.",
+    "A permission-review timeout while opening Surveyor for criterion 7 was retried once successfully. It caused no remaining capability blocker.",
+    "Live main handoff and ticket status were rechecked immediately before staging; the exact handoff/version remains eligible."
+  ],
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-20T11:03:31.981Z"
+}
