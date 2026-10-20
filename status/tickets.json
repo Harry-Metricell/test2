@@ -3,10 +3,9 @@
   "generatedAt": "2026-10-19T16:27:06.061+0100",
   "counts": {
     "tickets": 14,
-    "handoffs": 9,
+    "handoffs": 8,
     "byWorkflowState": {
-      "Blocked": 5,
-      "Ready": 1,
+      "Blocked": 6,
       "Retry Queued": 8
     },
     "byQaOutcome": {
@@ -58,13 +57,13 @@
       "key": "TEST2-82",
       "summary": "Display Ping Point Details",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-10-19T15:52:17.762Z",
       "retries": 1,
       "retryLimit": 1,
