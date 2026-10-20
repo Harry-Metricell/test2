@@ -1,118 +1,119 @@
 {
-  "handoffId": "handoff-TEST2-90-review-attempt-001",
-  "handoffVersion": "TEST2-90:evidence_review:1",
+  "handoffId": "handoff-TEST2-90-review-attempt-002",
+  "handoffVersion": "TEST2-90:evidence_review:2",
   "ticket": "TEST2-90",
   "criterionOutcomes": [
     {
       "criterion": "With Automobile Call results available, selecting the Call layer displays the results as selectable map points.",
       "outcome": "Blocked",
-      "reason": "criterion-1-final.png shows an Automobile Call legend alongside Surveyor results, without a demonstrated selectable Automobile Call result. The tester reports Call points HTTP 500, blocking the required available-data prerequisite."
+      "reason": "criterion-1-after-select-call.png shows Call selected; criterion-1-after-add-call.png and criterion-1-final.png show its legend but no selectable Call points. Results report a repeated HTTP 500 from GET /api/platform/automobile/call/points; available Call data could not be obtained. The map does not establish a settled empty dataset."
     },
     {
       "criterion": "The shared Colour By selector offers CSR, Downlink MOS, Uplink MOS, and Estimated MOS, with CSR selected by default.",
       "outcome": "Passed",
-      "reason": "criterion-2-before-add-call.png shows a new Call configuration; criterion-2-after-add-call.png shows CSR selected before any metric change. criterion-2-final.png visibly offers CSR, Downlink MOS, Uplink MOS and Estimated MOS."
+      "reason": "criterion-2-after-reset-own-call-layer.png establishes removal of the prior layer; criterion-2-fresh-layer-dialog.png and criterion-2-after-fresh-call-choice.png show creation of a fresh Call layer. criterion-2-fresh-default-csr.png shows CSR before any metric selection, and criterion-2-final.png lists CSR, Downlink MOS, Uplink MOS and Estimated MOS."
     },
     {
       "criterion": "For each Colour By choice, visible Call markers use that metric's values and the legend shows its matching title, units, categories, and colours; CSR is shown as a percentage and MOS as dimensionless scores.",
       "outcome": "Blocked",
-      "reason": "criterion-3-final.png shows the Estimated MOS legend but no Call markers on the map. Reported Call points HTTP 500 prevents verifying metric-specific marker values and colours across all four modes."
+      "reason": "criterion-3-initial.png shows the launcher only. The reported Call points HTTP 500 prevented metric-specific marker comparisons; marker values, matching legend behaviour and units across all choices were not exercised."
     },
     {
       "criterion": "Changing Colour By preserves the current date, filters, group visibility, marker identities, and selected result.",
       "outcome": "Blocked",
-      "reason": "criterion-4-final.png shows a Call legend without an established selected Call result. Reported Call points HTTP 500 prevents establishing marker identities and selection for the required preservation comparison."
+      "reason": "criterion-4-initial.png shows the launcher only. Call points retrieval was reported to fail with HTTP 500, leaving no marker identities or selected result for the required before/change/after preservation comparison."
     },
     {
       "criterion": "For a marker representing multiple calls, CSR is 100 × successful calls divided by successful, setup-failed, operator-answered, no-service, and invalid calls; dropped calls are excluded and a zero denominator produces zero. Each MOS value is weighted by that metric's own valid sample count, and Estimated MOS uses its dedicated values rather than an average of Downlink and Uplink MOS.",
       "outcome": "Blocked",
-      "reason": "criterion-5-final.png shows the CSR legend with other layers present, without an identified multi-call marker or its counts. Reported Call points HTTP 500 leaves CSR denominators and independent MOS weighting unavailable."
+      "reason": "criterion-5-initial.png shows the launcher only. The reported Call points HTTP 500 prevented obtaining a multi-call marker, call outcome counts and separate MOS sample counts needed to verify the calculations and zero-denominator case."
     },
     {
       "criterion": "The default CSR legend uses green #31AA4F for 95–100%, light green #86BE42 for 90–<95%, yellow #FCBF1A for 85–<90%, red #E61733 for 80–<85%, and dark red #AE1A32 for 0–<80%; exact boundaries use the higher band.",
       "outcome": "Blocked",
-      "reason": "criterion-6-final.png shows descending CSR thresholds at 95, 90, 85 and 80 with coloured swatches. Reported Call points HTTP 500 prevents verifying actual classifications at exact boundaries; visible legend labels alone do not establish them."
+      "reason": "criterion-6-final.png shows descending CSR thresholds and the five visible band colours. The reported Call points HTTP 500 prevented exact-boundary marker checks; legend labels alone do not establish classification at the boundaries."
     },
     {
       "criterion": "Each default MOS legend uses dark red #AE1A32 for 1–<2, yellow #FCBF1A for 2–<3, light green #86BE42 for 3–<4, and green #31AA4F for 4–5 inclusive; exact internal boundaries use the higher band.",
       "outcome": "Blocked",
-      "reason": "criterion-7-final.png shows Estimated MOS bands including 4 ≤ MOS ≤ 5. Reported Call points HTTP 500 prevents checking actual boundary marker classifications across the three MOS metrics."
+      "reason": "criterion-7-after-downlink-mos.png, criterion-7-after-uplink-mos.png and criterion-7-final.png show all three MOS legends with descending intervals, four colours and inclusive upper bound 5. Exact-boundary data classification remained blocked by the reported Call points HTTP 500."
     },
     {
       "criterion": "When the selected MOS metric has no valid samples, it is unavailable rather than shown as zero or replaced by another metric; values outside its bands use the white, initially hidden Out of Threshold category, with no separate Not Tested category.",
       "outcome": "Blocked",
-      "reason": "criterion-8-final.png shows Downlink MOS bands and a hidden white Out of Threshold category. Reported Call points HTTP 500 prevents obtaining missing-sample and out-of-band results to assess unavailable values and substitution."
+      "reason": "criterion-8-initial.png shows the launcher only. The reported Call points HTTP 500 prevented selecting results with missing samples or out-of-band values, so unavailable values, substitution and category behaviour could not be checked."
     },
     {
       "criterion": "The CSR legend shows 2G circles, 3G triangles, 4G diamonds, 5G SA pentagons, and a fixed black-square No Service category for generation 0; No Service is separate from CSR percentage bands.",
-      "outcome": "Unverified",
-      "reason": "criterion-9-after-open-edit-legend.png and criterion-9-final.png show a separate black-square No Service category, 2G circles and 3G triangles. The criterion-owned images do not expose complete 4G and 5G SA generation groups; DOM assertions alone cannot establish the full visual requirement."
+      "outcome": "Blocked",
+      "reason": "criterion-9-legend-top.png shows No Service separately with a black square, 2G circles, 3G triangles and 4G diamonds; criterion-9-final.png shows 5G SA pentagons. The reported Call points HTTP 500 prevented generation-0 data verification, and no category-edit sequence establishes immutability."
     },
     {
       "criterion": "The MOS legends use squares for Downlink MOS, circles for Uplink MOS, and hexagons for Estimated MOS, grouping by the selected metric.",
       "outcome": "Passed",
-      "reason": "criterion-10-after-downlink-mos.png, criterion-10-after-uplink-mos.png and criterion-10-after-estimated-mos.png visibly show squares, circles and hexagons respectively, with a single matching metric heading in each legend."
+      "reason": "criterion-10-before-downlink-mos.png shows the CSR baseline. criterion-10-after-downlink-mos.png shows square Downlink bands, criterion-10-after-uplink-mos.png shows circular Uplink bands, and criterion-10-after-estimated-mos.png and criterion-10-final.png show hexagonal Estimated bands. Each selected metric has its own single metric heading rather than repeated generation groups."
     },
     {
       "criterion": "Each Call legend includes a fixed white-square Out of Threshold category hidden by default; bands are ordered descending, with CSR limits 0–100 and MOS limits 1–5, and displayed labels match the boundary behaviour.",
       "outcome": "Blocked",
-      "reason": "criterion-11-final.png shows descending Estimated MOS bands and a hidden white-square Out of Threshold category. Reported Call points HTTP 500 prevents checking agreement of displayed labels with actual boundary classification; the complete criterion cannot be established from legends alone."
+      "reason": "criterion-11-initial.png shows the launcher only. Fixed category definitions, default limits and label agreement with actual boundary classification were not exercised; boundary results were unavailable because Call points retrieval reportedly returned HTTP 500."
     },
     {
       "criterion": "Editing a metric's customisable bands, labels, marker size, or category visibility updates its Call markers and remains specific to that metric and layer instance when Colour By changes; No Service and Out of Threshold definitions cannot be edited.",
       "outcome": "Blocked",
-      "reason": "criterion-12-final.png shows the Call legend without an established matching Call marker baseline or completed edit sequence. Reported Call points HTTP 500 blocks marker-update and metric/layer-specific comparison."
+      "reason": "criterion-12-initial.png shows the launcher only. Call markers were unavailable following the reported points HTTP 500, preventing the required edited-marker comparison and metric/layer isolation sequence; immutable category controls were not exercised."
     },
     {
       "criterion": "Restoring a Call layer or saved GIS view restores its Colour By choice and associated legend settings; a saved configuration without a choice opens with CSR selected.",
       "outcome": "Blocked",
-      "reason": "criterion-13-final.png shows CSR selected, without a Call restoration sequence. The tester reports no available legacy saved Call configuration lacking Colour By; this required fallback fixture is unavailable, and a new layer's CSR selection does not prove restoration."
+      "reason": "criterion-13-before-select-uplink.png and criterion-13-after-select-uplink.png show CSR changed to Uplink MOS, followed by the launcher in criterion-13-after-return-launcher.png. criterion-13-final.png retains the Uplink selector/legend but still shows map loading. No legacy saved configuration without Colour By was available, and edited legend restoration was not exercised; a complete settled restoration is not proved."
     },
     {
       "criterion": "Selecting a Call marker opens its Call detail tab directly when it represents one result, or opens a cluster results tab when it represents multiple results, following the HTTP and Download GIS workflow and existing group-based visibility.",
       "outcome": "Blocked",
-      "reason": "criterion-14-final.png displays Surveyor cluster content, without a demonstrated single or clustered Automobile Call selection. Reported Call points HTTP 500 blocks the required Call marker prerequisites."
+      "reason": "criterion-14-initial.png shows the launcher only. No selectable single-result or clustered Call markers were available after the reported points HTTP 500, preventing both detail-opening journeys and visibility checks."
     },
     {
       "criterion": "The cluster results table displays MSISDN, Test Result, Start Time, End Time, Test Duration, Call Setup Time, Connection Time, Disconnection Cause Code, LTE Return Time, CSFB Time, MOS Downlink, MOS Uplink, Estimated MOS, Band, Test Technologies, Call End Service, and Call End Serving Cell.",
       "outcome": "Blocked",
-      "reason": "criterion-15-final.png displays a Surveyor table rather than an Automobile Call cluster. Reported Call points HTTP 500 prevents opening the required Call table and inspecting its specified columns."
+      "reason": "criterion-15-initial.png shows the launcher only. The reported Call points HTTP 500 prevented opening a cluster table, so the required columns could not be inspected."
     },
     {
       "criterion": "Each available column in the cluster results table can be sorted.",
       "outcome": "Blocked",
-      "reason": "criterion-16-final.png displays a Surveyor table, without a Call cluster table available to sort. Reported Call points HTTP 500 blocks testing each available Call column."
+      "reason": "criterion-16-initial.png shows the launcher only. The reported Call points HTTP 500 prevented obtaining a populated cluster table needed to verify each column's sort behaviour."
     },
     {
       "criterion": "Selecting a cluster row opens a separate Call detail tab for that row's exact PointID and keeps the cluster tab open; reopening or restoring Call and Service tabs retains the relevant time and filter scope.",
       "outcome": "Blocked",
-      "reason": "criterion-17-final.png shows Surveyor cluster tabs without a demonstrated Call cluster row or exact PointID-bearing Call detail. Reported Call points HTTP 500 blocks the selection, retained cluster and Call/Service restoration sequence."
+      "reason": "criterion-17-initial.png shows the launcher only. The reported Call points HTTP 500 left no cluster row or stable PointID for exact-result tab selection, cluster retention and time/filter restoration checks."
     },
     {
       "criterion": "When a selected result has related service information, its Service Details tab can be opened.",
       "outcome": "Blocked",
-      "reason": "criterion-18-final.png shows Surveyor cluster content without a selected Call result or related Service Details. Reported Call points HTTP 500 prevents establishing the required service-bearing Call result."
+      "reason": "criterion-18-initial.png shows the launcher only. No selectable Call result with related service information was obtainable after the reported points HTTP 500; service drill-down could not be exercised."
     },
     {
       "criterion": "Call technology legends and filters include 2G, 3G, 4G, and 5G SA and exclude 5G NSA.",
       "outcome": "Failed",
-      "reason": "criterion-19-after-select-call.png establishes Call as the configured test type; criterion-19-final.png visibly includes checked 2G, 3G, 4G, 5G SA and 5G NSA filters. The 5G NSA option directly contradicts the exclusion requirement."
+      "reason": "criterion-19-before-configure-call.png directly shows a 5G NSA CSR [%] legend group. criterion-19-final.png shows Configure Automobile - Call with 2G, 3G, 4G, 5G SA and a checked 5G NSA filter. The visible 5G NSA legend and filter contradict the required exclusion."
     },
     {
       "criterion": "Requesting details for a selected result with no duration displays a clear no-data message.",
       "outcome": "Blocked",
-      "reason": "criterion-20-final.png shows Surveyor results without a selected no-duration Call result. Reported Call points HTTP 500 blocks requesting the required result's details and checking its no-data message."
+      "reason": "criterion-20-initial.png shows the launcher only. The reported Call points HTTP 500 prevented identifying and selecting a result without duration, so its requested-detail message could not be checked."
     },
     {
       "criterion": "When point or service details cannot be returned, the selected item does not show stale detail data.",
       "outcome": "Blocked",
-      "reason": "criterion-21-final.png shows Surveyor results without a demonstrated Call/Service detail baseline followed by an unavailable-detail selection. Reported Call points HTTP 500 blocks establishing the Call results needed to assess stale-data prevention."
+      "reason": "criterion-21-initial.png shows the launcher only. The reported Call points HTTP 500 prevented establishing a prior successful detail state and then a failed point/service retrieval; stale-detail handling was not exercised."
     }
   ],
   "overallOutcome": "Blocked",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-90\\screenshots\\attempt-001",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-90\\screenshots\\attempt-002",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Reviewed all 21 criteria against attempt-001. Call data and legacy restoration prerequisites block completion; screenshots directly confirm the 5G NSA exclusion failure."
+  "reason": "Reviewed attempt-002 against all 21 canonical criteria. Call points retrieval was reported to return HTTP 500, blocking data-dependent checks; the unavailable legacy configuration also blocks complete restoration verification. Direct screenshots support the selector/default and MOS legend-shape checks and contradict 5G NSA exclusion.",
+  "cycleId": "cycle-001"
 }
