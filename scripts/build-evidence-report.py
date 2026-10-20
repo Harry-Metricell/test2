@@ -25,6 +25,10 @@ def set_cell(cell, value):
     cell.text = report_text(value)
     for paragraph in cell.paragraphs:
         for run in paragraph.runs:
+            # Use one explicit body font for generated table text. Inherited
+            # Calibri runs can export a second, broken Unicode font subset in
+            # Word when a long cell contains comparison symbols (e.g. ≤).
+            run.font.name = 'Arial'
             run.font.size = Pt(9)
 
 

@@ -19,6 +19,20 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_generated_table_text_has_explicit_pdf_safe_font_without_changing_comparisons(self):
+        document = Document()
+        document.styles['Normal'].font.name = 'Calibri'
+        cell = document.add_table(rows=1, cols=1).cell(0, 0)
+        value = 'Criterion 7: All three MOS legends show 4 ≤ MOS ≤ 5. ' * 120
+        REPORT.set_cell(cell, value)
+        self.assertEqual(cell.text, value)
+        for paragraph in cell.paragraphs:
+            for run in paragraph.runs:
+                self.assertEqual(run.font.name, 'Arial')
+                self.assertEqual(run.font.size.pt, 9)
+                self.assertEqual(run._r.rPr.rFonts.get(REPORT.qn('w:ascii')), 'Arial')
+                self.assertEqual(run._r.rPr.rFonts.get(REPORT.qn('w:hAnsi')), 'Arial')
+
     def test_remains_same_pairs_each_recorded_state_and_search_state(self):
         images = [Path(name) for name in (
             "criterion-3-baseline-map.png", "criterion-3-baseline-layers.png",
