@@ -3,25 +3,6 @@
   "generatedAt": "2026-10-19T16:27:06.061+0100",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-90-review-attempt-002",
-      "handoffVersion": "TEST2-90:evidence_review:2",
-      "attempt": 2,
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-90",
-      "inputs": {
-        "results": "tickets/TEST2-90/results.json",
-        "generated": "status/generated/TEST2-90.json",
-        "evidenceFolder": "TEST2-90/screenshots/attempt-002"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-90/review.json",
-        "schema": "v4-qa-review.v1"
-      },
-      "cycleId": "cycle-001"
-    },
-    {
       "handoffId": "handoff-TEST2-92-review-attempt-002",
       "handoffVersion": "TEST2-92:evidence_review:2",
       "attempt": 2,
