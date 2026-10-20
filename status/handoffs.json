@@ -12,12 +12,14 @@
       "ticket": "TEST2-90",
       "inputs": {
         "results": "tickets/TEST2-90/results.json",
-        "generated": "status/generated/TEST2-90.json"
+        "generated": "status/generated/TEST2-90.json",
+        "evidenceFolder": "TEST2-90/screenshots/attempt-002"
       },
       "expectedOutput": {
         "path": "tickets/TEST2-90/review.json",
         "schema": "v4-qa-review.v1"
-      }
+      },
+      "cycleId": "cycle-001"
     },
     {
       "handoffId": "handoff-TEST2-92-retry-attempt-002",
@@ -30,12 +32,14 @@
       "inputs": {
         "criteria": "tickets/TEST2-92/criteria.md",
         "ticketJson": "tickets/TEST2-92/ticket.json",
-        "status": "tickets/TEST2-92/status.json"
+        "status": "tickets/TEST2-92/status.json",
+        "evidenceFolder": "TEST2-92/screenshots/attempt-002"
       },
       "expectedOutput": {
         "path": "tickets/TEST2-92/results.json",
         "schema": "v4-qa-test-result.v1"
-      }
+      },
+      "cycleId": "cycle-001"
     }
   ]
 }

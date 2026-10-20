@@ -1,5 +1,6 @@
 {
   "key": "TEST2-88",
+  "cycleId": "cycle-001",
   "id": "106644",
   "summary": "Configure MS Teams Call map display settings",
   "jira": {

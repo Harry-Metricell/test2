@@ -1,5 +1,6 @@
 {
   "key": "TEST2-92",
+  "cycleId": "cycle-001",
   "id": "106648",
   "summary": "Filter Automobile map points using the legend",
   "jira": {

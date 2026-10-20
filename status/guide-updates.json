@@ -4,42 +4,50 @@
     {
       "ticket": "TEST2-28",
       "title": "Navigate from the V4 launcher to Agentic AI",
-      "affectedSection": "Navigating the V4 launcher and opening Agentic AI"
+      "affectedSection": "Navigating the V4 launcher and opening Agentic AI",
+      "recordPath": "archive/tickets/TEST2-28/guide-update.json"
     },
     {
       "ticket": "TEST2-43",
       "title": "Open Dashboards from the V4 launcher and return",
-      "affectedSection": "Open Dashboards from the V4 launcher"
+      "affectedSection": "Open Dashboards from the V4 launcher",
+      "recordPath": "archive/tickets/TEST2-43/guide-update.json"
     },
     {
       "ticket": "TEST2-55",
       "title": "Open API Request Audit and return to the V4 launcher",
-      "affectedSection": "API Request Audit"
+      "affectedSection": "API Request Audit",
+      "recordPath": "archive/tickets/TEST2-55/guide-update.json"
     },
     {
       "ticket": "TEST2-57",
       "title": "Zoom the GIS map without losing a loaded Surveyor layer or its display setting",
-      "affectedSection": "GIS map navigation and layer display settings"
+      "affectedSection": "GIS map navigation and layer display settings",
+      "recordPath": "archive/tickets/TEST2-57/guide-update.json"
     },
     {
       "ticket": "TEST2-60",
       "title": "Keep the Show linked sites choice when reopening Display Settings",
-      "affectedSection": "GIS Display Settings: Show linked sites"
+      "affectedSection": "GIS Display Settings: Show linked sites",
+      "recordPath": "archive/tickets/TEST2-60/guide-update.json"
     },
     {
       "ticket": "TEST2-61",
       "title": "Recover the GIS layer catalogue after a no-match search",
-      "affectedSection": "GIS layer catalogue search and filtering"
+      "affectedSection": "GIS layer catalogue search and filtering",
+      "recordPath": "archive/tickets/TEST2-61/guide-update.json"
     },
     {
       "ticket": "TEST2-62",
       "title": "Navigate between the V4 launcher, GIS, and API Request Audit",
-      "affectedSection": "V4 launcher module navigation"
+      "affectedSection": "V4 launcher module navigation",
+      "recordPath": "archive/tickets/TEST2-62/guide-update.json"
     },
     {
       "ticket": "TEST2-66",
       "title": "Cancel an edited Surveyor configuration without applying it",
-      "affectedSection": "Opening and cancelling Surveyor configuration in V4 GIS"
+      "affectedSection": "Opening and cancelling Surveyor configuration in V4 GIS",
+      "recordPath": "archive/tickets/TEST2-66/guide-update.json"
     }
   ]
 }

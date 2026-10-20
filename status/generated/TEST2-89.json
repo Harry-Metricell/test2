@@ -1,5 +1,6 @@
 {
   "key": "TEST2-89",
+  "cycleId": "cycle-001",
   "id": "106645",
   "summary": "Map and inspect MS Teams Call results",
   "jira": {

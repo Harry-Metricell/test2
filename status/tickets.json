@@ -22,6 +22,7 @@
   "tickets": [
     {
       "key": "TEST2-79",
+      "cycleId": "cycle-001",
       "summary": "Map and inspect Automobile Download and Upload results",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -39,6 +40,7 @@
     },
     {
       "key": "TEST2-81",
+      "cycleId": "cycle-001",
       "summary": "Map HTTP Browsing, Ping and Video Streaming point details",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -56,6 +58,7 @@
     },
     {
       "key": "TEST2-82",
+      "cycleId": "cycle-001",
       "summary": "Display Ping Point Details",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -73,6 +76,7 @@
     },
     {
       "key": "TEST2-84",
+      "cycleId": "cycle-001",
       "summary": "View Building Details and Floorplans",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -90,6 +94,7 @@
     },
     {
       "key": "TEST2-85",
+      "cycleId": "cycle-001",
       "summary": "Display Download Point Details",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -107,6 +112,7 @@
     },
     {
       "key": "TEST2-86",
+      "cycleId": "cycle-001",
       "summary": "Display Upload Point Details",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -124,6 +130,7 @@
     },
     {
       "key": "TEST2-87",
+      "cycleId": "cycle-001",
       "summary": "Display Call Point Details",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -141,6 +148,7 @@
     },
     {
       "key": "TEST2-88",
+      "cycleId": "cycle-001",
       "summary": "Configure MS Teams Call map display settings",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -158,6 +166,7 @@
     },
     {
       "key": "TEST2-89",
+      "cycleId": "cycle-001",
       "summary": "Map and inspect MS Teams Call results",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -175,6 +184,7 @@
     },
     {
       "key": "TEST2-90",
+      "cycleId": "cycle-001",
       "summary": "Map and inspect Automobile call results",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
@@ -192,6 +202,7 @@
     },
     {
       "key": "TEST2-91",
+      "cycleId": "cycle-001",
       "summary": "Filter Automobile map results",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Blocked",
@@ -209,6 +220,7 @@
     },
     {
       "key": "TEST2-92",
+      "cycleId": "cycle-001",
       "summary": "Filter Automobile map points using the legend",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Retry Queued",
@@ -226,6 +238,7 @@
     },
     {
       "key": "TEST2-80",
+      "cycleId": "cycle-001",
       "summary": "Map and inspect Automobile Service results",
       "jiraStatus": "To Do",
       "workflowState": "Blocked",
@@ -243,6 +256,7 @@
     },
     {
       "key": "TEST2-83",
+      "cycleId": "cycle-001",
       "summary": "Display Service Point Details",
       "jiraStatus": "To Do",
       "workflowState": "Blocked",
