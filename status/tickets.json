@@ -1,14 +1,16 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-19T16:27:06.061+0100",
+  "generatedAt": "2026-10-20T15:48:30.696+0100",
   "counts": {
     "tickets": 14,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 14
+      "Blocked": 13,
+      "Ready": 1
     },
     "byQaOutcome": {
-      "Blocked": 14
+      "Blocked": 13,
+      "Not Tested": 1
     }
   },
   "policy": {
@@ -56,21 +58,21 @@
     },
     {
       "key": "TEST2-82",
-      "cycleId": "cycle-001",
+      "cycleId": "cycle-002",
       "summary": "Display Ping Point Details",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-10-19T15:52:17.762Z",
-      "retries": 1,
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-10-20T15:48:30.696+0100",
+      "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 2,
-      "retryLabel": "Retry 1/1"
+      "testAttempts": 0,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-84",

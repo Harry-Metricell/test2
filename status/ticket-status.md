@@ -1,12 +1,12 @@
 # Ticket Status
 
-Updated: 2026-10-19T16:27:06.061+0100
+Updated: 2026-10-20T15:48:30.696+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
 | TEST2-79 | READY FOR TESTING | Blocked | Retry 1/1 | Map and inspect Automobile Download and Upload results |
 | TEST2-81 | READY FOR TESTING | Blocked | Retry 1/1 | Map HTTP Browsing, Ping and Video Streaming point details |
-| TEST2-82 | READY FOR TESTING | Blocked | Retry 1/1 | Display Ping Point Details |
+| TEST2-82 | READY FOR TESTING | Ready for Testing |  | Display Ping Point Details |
 | TEST2-84 | READY FOR TESTING | Blocked | Retry 1/1 | View Building Details and Floorplans |
 | TEST2-85 | READY FOR TESTING | Blocked | Retry 1/1 | Display Download Point Details |
 | TEST2-86 | READY FOR TESTING | Blocked | Retry 1/1 | Display Upload Point Details |

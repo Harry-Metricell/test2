@@ -1,5 +1,27 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-10-19T16:27:06.061+0100",
-  "handoffs": []
+  "generatedAt": "2026-10-20T15:48:30.696+0100",
+  "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-82-cycle-002-test-attempt-001",
+      "handoffVersion": "TEST2-82:cycle-002:test_ticket:1",
+      "attempt": 1,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-82",
+      "inputs": {
+        "criteria": "tickets/TEST2-82/criteria.md",
+        "ticketJson": "tickets/TEST2-82/ticket.json",
+        "status": "tickets/TEST2-82/status.json",
+        "cycle": "tickets/TEST2-82/qa-cycle.json",
+        "evidenceFolder": "TEST2-82/cycles/cycle-002/screenshots/attempt-001"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-82/results.json",
+        "schema": "v4-qa-test-result.v1"
+      },
+      "cycleId": "cycle-002"
+    }
+  ]
 }
