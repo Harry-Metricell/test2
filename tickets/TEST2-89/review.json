@@ -1,83 +1,83 @@
 {
-  "handoffId": "handoff-TEST2-89-review-attempt-001",
-  "handoffVersion": "TEST2-89:evidence_review:1",
+  "handoffId": "handoff-TEST2-89-review-attempt-002",
+  "handoffVersion": "TEST2-89:evidence_review:2",
   "ticket": "TEST2-89",
   "criterionOutcomes": [
     {
       "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
       "outcome": "Passed",
-      "reason": "criterion-1-map-before-filter.png shows a settled unobscured map with no MS Teams Call layer or result points; criterion-1-final.png retains the same point-free viewport before selection while the catalogue is filtered."
+      "reason": "criterion-1-after-open-gis.png and criterion-1-before-filter.png show a settled map before layer selection with no MS Teams Call test-result points; criterion-1-final.png shows the map still without those points while the catalogue search returns no matches."
     },
     {
       "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
       "outcome": "Blocked",
-      "reason": "criterion-2-before-add.png shows MS Teams Call selected in Automobile; criterion-2-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. Matching authorised results and selectable MS Teams Call points could not be compared."
+      "reason": "criterion-2-final.png shows MS Teams searched with No layers match this search. criterion-2-active-layer-options.png lists no MS Teams Call option; criterion-2-call-settings.png shows generic Call settings only. The required layer and matching selectable results were unavailable; availability, deployment or permission cause is undetermined."
     },
     {
       "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
       "outcome": "Blocked",
-      "reason": "criterion-3-before-add.png shows MS Teams Call selected in Automobile; criterion-3-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call point with Poor Quality 0–0.99 was available to verify Green; legend swatches alone do not prove point colouring."
+      "reason": "criterion-3-final.png shows MS Teams search returning No layers match this search. No displayed MS Teams Call point with Poor Quality 0-0.99 was available to assess its Green colour."
     },
     {
       "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
       "outcome": "Blocked",
-      "reason": "criterion-4-before-add.png shows MS Teams Call selected in Automobile; criterion-4-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call point with Poor Quality 1–9.99 was available to verify Yellow; legend swatches alone do not prove point colouring."
+      "reason": "criterion-4-final.png shows MS Teams search returning No layers match this search. No displayed MS Teams Call point with Poor Quality 1-9.99 was available to assess its Yellow colour."
     },
     {
       "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
       "outcome": "Blocked",
-      "reason": "criterion-5-before-add.png shows MS Teams Call selected in Automobile; criterion-5-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call point with Poor Quality 10–24.99 was available to verify Amber; unrelated Surveyor points and table do not establish MS Teams Call colouring."
+      "reason": "criterion-5-final.png shows MS Teams search returning No layers match this search. No displayed MS Teams Call point with Poor Quality 10-24.99 was available to assess its Amber colour."
     },
     {
       "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
       "outcome": "Blocked",
-      "reason": "criterion-6-before-add.png shows MS Teams Call selected in Automobile; criterion-6-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call point with Poor Quality 25 or greater was available to verify Red; unrelated Surveyor points and table do not establish MS Teams Call colouring."
+      "reason": "criterion-6-final.png shows MS Teams search returning No layers match this search. No displayed MS Teams Call point with Poor Quality 25 or greater was available to assess its Red colour."
     },
     {
       "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
       "outcome": "Blocked",
-      "reason": "criterion-7-before-add.png shows MS Teams Call selected in Automobile; criterion-7-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call details dialog was available to inspect the required summary fields; the visible table belongs to Surveyor."
+      "reason": "criterion-7-final.png shows MS Teams search returning No layers match this search. A selectable MS Teams Call result and loaded details dialog were unavailable, preventing inspection of Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies."
     },
     {
       "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
       "outcome": "Blocked",
-      "reason": "criterion-8-before-add.png shows MS Teams Call selected in Automobile; criterion-8-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call details dialog was available to inspect signal/download charts or handover markers."
+      "reason": "criterion-8-final.png shows MS Teams search returning No layers match this search. A selectable MS Teams Call result and loaded details dialog were unavailable, preventing inspection of signal/download charts and available handover markers."
     },
     {
       "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
       "outcome": "Blocked",
-      "reason": "criterion-9-before-add.png shows MS Teams Call selected in Automobile; criterion-9-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call detailed-sample table was available to check excluded columns."
+      "reason": "criterion-9-final.png shows MS Teams search returning No layers match this search. MS Teams Call details and detailed samples were unavailable, preventing inspection of the table and exclusion of label, latitude, longitude and handover-only columns."
     },
     {
       "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
       "outcome": "Blocked",
-      "reason": "criterion-10-before-add.png shows MS Teams Call selected in Automobile; criterion-10-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call sample table was available to exercise sorting."
+      "reason": "criterion-10-final.png shows MS Teams search returning No layers match this search. MS Teams Call detailed samples were unavailable, so no supported column sort or resulting order could be exercised."
     },
     {
       "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
       "outcome": "Blocked",
-      "reason": "criterion-11-before-add.png shows MS Teams Call selected in Automobile; criterion-11-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call sample table was available to exercise filtering."
+      "reason": "criterion-11-final.png shows MS Teams search returning No layers match this search. MS Teams Call detailed samples were unavailable, so no supported column filter or matching sample subset could be exercised."
     },
     {
       "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
       "outcome": "Blocked",
-      "reason": "criterion-12-before-add.png shows MS Teams Call selected in Automobile; criterion-12-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No MS Teams Call test could be selected for CSV export. The visible chart and samples belong to Surveyor Download; no selected-test CSV was produced."
+      "reason": "criterion-12-final.png shows MS Teams search returning No layers match this search. No MS Teams Call test could be selected for CSV export; selected-test CSV contents could not be assessed."
     },
     {
       "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
       "outcome": "Blocked",
-      "reason": "criterion-13-before-add.png shows MS Teams Call selected in Automobile; criterion-13-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. No zero-duration MS Teams Call result could be selected, so its stale-data handling was not exercised."
+      "reason": "criterion-13-final.png shows MS Teams search returning No layers match this search. No zero-duration MS Teams Call result was available for selection, preventing assessment of stale or misleading dialog data."
     },
     {
       "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
       "outcome": "Blocked",
-      "reason": "criterion-14-before-add.png shows MS Teams Call selected in Automobile; criterion-14-final.png shows its added layer and legend without usable MS Teams Call results. The tester reports repeated HTTP 500 from /api/platform/automobile/ms-teams-call/points, blocking the result-data prerequisite. The points-service failure prevented selecting an MS Teams Call result; it does not exercise failure of a selected result's detail load or prove stale-data handling."
+      "reason": "criterion-14-final.png shows MS Teams search returning No layers match this search. No MS Teams Call result was available to exercise a failed detail load, preventing assessment of stale or misleading dialog data."
     }
   ],
   "overallOutcome": "Blocked",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-89\\screenshots\\attempt-001",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-89\\screenshots\\attempt-002",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Reviewed attempt-001 screenshots: the preselection map is evidenced; repeated reported MS Teams Call points-service HTTP 500 prevents result-dependent checks. Visible Surveyor data is unrelated to MS Teams Call."
+  "reason": "Reviewed all 14 criteria against attempt-002 PNG evidence: one Passed and thirteen Blocked by the unavailable MS Teams Call layer and dependent results. All 47 referenced PNGs exist and are non-empty. Identical SHA256 groups were visually inspected through one representative per group; each criterion retains its own referenced evidence. The blocker cause is undetermined; no confirmed application defect is established."
 }
