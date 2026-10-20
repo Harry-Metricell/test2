@@ -1,0 +1,200 @@
+{
+  "handoffId": "handoff-TEST2-82-retry-attempt-002",
+  "handoffVersion": "TEST2-82:test_ticket:2",
+  "ticket": "TEST2-82",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "When a selected Ping point’s details have loaded, the detail view shows that point’s Ping Time with the unit milliseconds (ms).",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-after-open-gis.png",
+        "screenshots/attempt-002/criterion-1-before-open-surveyor.png",
+        "screenshots/attempt-002/criterion-1-surveyor-config.png",
+        "screenshots/attempt-002/criterion-1-layer-options.png",
+        "screenshots/attempt-002/criterion-1-ping-config.png",
+        "screenshots/attempt-002/criterion-1-after-add-ping.png",
+        "screenshots/attempt-002/criterion-1-before-search.png",
+        "screenshots/attempt-002/criterion-1-after-search.png",
+        "screenshots/attempt-002/criterion-1-cluster.png",
+        "screenshots/attempt-002/criterion-1-event-no-connection.png",
+        "screenshots/attempt-002/criterion-1-before-second-point.png",
+        "screenshots/attempt-002/criterion-1-second-cluster.png",
+        "screenshots/attempt-002/criterion-1-final.png",
+        "screenshots/attempt-002/criterion-1-confirmation-initial.png",
+        "screenshots/attempt-002/criterion-1-confirmation-before-open-surveyor.png",
+        "screenshots/attempt-002/criterion-1-confirmation-surveyor-config.png",
+        "screenshots/attempt-002/criterion-1-confirmation-layer-options.png",
+        "screenshots/attempt-002/criterion-1-confirmation-before-add-ping.png",
+        "screenshots/attempt-002/criterion-1-confirmation-after-add-ping.png",
+        "screenshots/attempt-002/criterion-1-confirmation-cluster.png",
+        "screenshots/attempt-002/criterion-1-confirmation-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS, opened Surveyor, selected Active layer Ping and added the layer with Last 30 days and no account, route, team or network restrictions.",
+        "During discovery, inspected and cancelled Crowd configuration, then used Surveyor Ping. The first screenshot save failed because the staging screenshots directory did not yet exist; created it and restarted from the launcher before testing.",
+        "Searched map for 51.52461, -0.63830 and opened a visible Ping cluster. The first selected out-of-service event showed Ping Time N/A; selected a second event dated 06/10/2026 10:32:56 and observed Ping Time 0 ms.",
+        "After all independent criteria, repeated a clean confirmation from the launcher with a newly added Ping layer, selected the visible cluster near Slough and opened event 06/10/2026 10:36:20. Compared its cluster-row 28 ms value with the selected detail view's Ping Time 28 ms.",
+        "Recorded the final GIS URL before closing the event and cluster and removing the test-created layer."
+      ],
+      "reason": "The selected event's detail displays Ping Time 28 ms, matching its 28 ms cluster row and event time 06/10/2026 10:36:20. Earlier independent selections within this criterion also showed 0 ms for a recorded timeout and N/A for an unavailable measurement. Confirmation-final is the decisive assertion; exploratory captures are setup."
+    },
+    {
+      "criterion": "When Ping attributes are returned for the selected point, the detail view displays those attributes alongside the Ping Time.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-before-open-surveyor.png",
+        "screenshots/attempt-002/criterion-2-surveyor-config.png",
+        "screenshots/attempt-002/criterion-2-layer-options.png",
+        "screenshots/attempt-002/criterion-2-before-add-ping.png",
+        "screenshots/attempt-002/criterion-2-after-add-ping.png",
+        "screenshots/attempt-002/criterion-2-cluster.png",
+        "screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS, opened Surveyor, selected Active layer Ping and added the layer with Last 30 days and no account, route, team or network restrictions.",
+        "An invalid exact selector was rejected without selecting Ping or adding a layer; inspected the unchanged configuration, then used the supported option selector and verified Ping before adding the layer.",
+        "Selected the visible cluster and its event dated 06/10/2026 10:32:56.",
+        "Verified the detail table showed the matching event time, username seb.knight, survey mm wave 2, phone status Out of Service, Ping Time 0 ms and Jitter 0 ms together. Additional returned handset and recorded NETWORK_TIMEOUT attributes were present in the table.",
+        "Recorded the final GIS URL, closed the event and cluster and removed the layer."
+      ],
+      "reason": "The selected point's attributes are displayed alongside its Ping Time in the Ping event information table. N/A fields reflect this recorded out-of-service event; no populated values are claimed for those fields."
+    },
+    {
+      "criterion": "With 5G NSA as the only selected technology, opening a Ping point displays details for that selected point without an error state.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-before-open-surveyor.png",
+        "screenshots/attempt-002/criterion-3-surveyor-config.png",
+        "screenshots/attempt-002/criterion-3-layer-options.png",
+        "screenshots/attempt-002/criterion-3-ping-config.png",
+        "screenshots/attempt-002/criterion-3-before-technologies.png",
+        "screenshots/attempt-002/criterion-3-after-deselect-2G.png",
+        "screenshots/attempt-002/criterion-3-after-deselect-3G.png",
+        "screenshots/attempt-002/criterion-3-after-deselect-4G.png",
+        "screenshots/attempt-002/criterion-3-after-deselect-5G-SA.png",
+        "screenshots/attempt-002/criterion-3-after-deselect-Wi-Fi.png",
+        "screenshots/attempt-002/criterion-3-after-deselect-out-of-service.png",
+        "screenshots/attempt-002/criterion-3-only-5G-NSA-config.png",
+        "screenshots/attempt-002/criterion-3-after-add-ping.png",
+        "screenshots/attempt-002/criterion-3-cluster.png",
+        "screenshots/attempt-002/criterion-3-before-next-point.png",
+        "screenshots/attempt-002/criterion-3-matching-cluster.png",
+        "screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS and a fresh Surveyor configuration, selected Ping, and deselected 2G, 3G, 4G, 5G SA, Wi-Fi and Out of Service, leaving only 5G NSA selected.",
+        "Verified the Technology dropdown showed only 5G NSA and added the layer. Observed GET /api/platform/surveyor/ping/points returned HTTP 200 with the technology filter containing only 13.",
+        "The first selected cluster showed No matching events; closed it, selected another visible point and waited for its matching 5G NSA events.",
+        "Opened event 06/10/2026 10:36:20 and verified matching Ping Time 28 ms, Jitter 3 ms, Data Technology 5G NSA, Cell ID 72374_135_4 and Error Message No error.",
+        "Captured the decisive final state and URL, then closed event/cluster and removed the layer."
+      ],
+      "reason": "With only 5G NSA selected, the selected Ping event opens successfully and shows its matching point data without a detail-load error. The recorded event's Error Message field is No error."
+    },
+    {
+      "criterion": "While Ping details are loading, the detail view shows a loading state.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "observable_loading_state_unavailable",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-before-open-surveyor.png",
+        "screenshots/attempt-002/criterion-4-surveyor-config.png",
+        "screenshots/attempt-002/criterion-4-layer-options.png",
+        "screenshots/attempt-002/criterion-4-before-add-ping.png",
+        "screenshots/attempt-002/criterion-4-after-add-ping.png",
+        "screenshots/attempt-002/criterion-4-after-point-selection.png",
+        "screenshots/attempt-002/criterion-4-immediately-after-open-event.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS, opened Surveyor, selected Active layer Ping and added the layer with Last 30 days and no account, route, team or network restrictions.",
+        "Selected the visible Ping cluster and opened event 06/10/2026 10:36:20 while attempting to observe its natural loading phase.",
+        "Captured immediately after opening the event and again after inspecting its detail table. Ping Time 28 ms and matching event attributes were already populated.",
+        "Checked current progress/status elements; no visible Ping-detail loading state was established. Recorded URL before cleanup, then closed event/cluster and removed layer."
+      ],
+      "reason": "The natural detail-loading interval completed before an evidential capture could establish a Ping-detail loading state. Ancillary Layer 3 checking is not proof of Ping details loading. A controllable slow-loading point or approved loading fixture is needed; the current fast successful response cannot verify this requirement."
+    },
+    {
+      "criterion": "When Ping details are unavailable, the detail view shows a no-data state.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "unavailable_detail_fixture_missing",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-before-open-surveyor.png",
+        "screenshots/attempt-002/criterion-5-surveyor-config.png",
+        "screenshots/attempt-002/criterion-5-layer-options.png",
+        "screenshots/attempt-002/criterion-5-before-add-ping.png",
+        "screenshots/attempt-002/criterion-5-after-add-ping.png",
+        "screenshots/attempt-002/criterion-5-cluster.png",
+        "screenshots/attempt-002/criterion-5-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS, opened Surveyor, selected Active layer Ping and added the layer with Last 30 days and no account, route, team or network restrictions.",
+        "Selected the visible cluster and opened out-of-service event 06/10/2026 10:36:03 whose Ping Time and Jitter were N/A.",
+        "Verified that its matching event attributes loaded and that the recorded Error Message was NO_CONNECTION. Captured final state and current URL.",
+        "Closed the event and cluster and removed the test-created layer."
+      ],
+      "reason": "The selected event has an unavailable Ping measurement (N/A), but its event details are available and load normally. This does not exercise the detail view's no-data state. No selectable point with unavailable detail data or documented no-data fixture was supplied or established."
+    },
+    {
+      "criterion": "When Ping details fail to load, the detail view shows an error state and does not display data as if it belonged to the selected point.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "failed_detail_load_fixture_missing",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-before-open-surveyor.png",
+        "screenshots/attempt-002/criterion-6-surveyor-config.png",
+        "screenshots/attempt-002/criterion-6-layer-options.png",
+        "screenshots/attempt-002/criterion-6-before-add-ping.png",
+        "screenshots/attempt-002/criterion-6-after-add-ping.png",
+        "screenshots/attempt-002/criterion-6-cluster.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial state.",
+        "Opened GIS, opened Surveyor, selected Active layer Ping and added the layer with Last 30 days and no account, route, team or network restrictions.",
+        "Selected the visible timeout cluster and opened event 06/10/2026 10:32:56.",
+        "Verified that event details loaded, showing its matching time, Ping Time 0 ms, Jitter 0 ms and recorded NETWORK_TIMEOUT measurement attribute.",
+        "Inspected network results: GET /api/platform/surveyor/ping/points and POST /api/platform/surveyor/ping/cluster-details, /event-l3/event, /event-l3/survey and /event-analysis all returned HTTP 200.",
+        "Recorded decisive final URL, closed event/cluster, removed the layer and returned to the launcher after all checks."
+      ],
+      "reason": "NETWORK_TIMEOUT is a historical Ping measurement result, not a failed detail-service request. The available event details loaded successfully. No reproducible failed detail-load point or approved failure fixture was available, so the required load-error state and stale-data protection cannot be determined."
+    }
+  ],
+  "conciseReport": "3 Passed; 3 Blocked. Selected Ping events show milliseconds and returned attributes; 5G NSA-only details open with matching 28 ms data. Loading, no-data and failed-detail-load assertions need suitable observable fixtures. Recorded NO_CONNECTION/NETWORK_TIMEOUT measurements are not detail-service failures. All test-created layers, detail tabs and technology selections were removed; no source data was changed. Search input was cleared by navigation. Browser returned to the launcher. The GIS viewport remains near Slough rather than the original national extent; exact map extent restoration was not completed.",
+  "reportPath": "",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-82-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Criteria 4–6 require suitable loading/unavailable/failing detail fixtures; retryClass prerequisite. All test-created layers, detail tabs and technology selections were removed; no source data was changed. Search input was cleared by navigation. Browser returned to the launcher. The GIS viewport remains near Slough rather than the original national extent; exact map extent restoration was not completed.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-20T10:07:32.162Z"
+}
