@@ -2,289 +2,351 @@
   {
     "criterion": "With a standard Automobile layer active, the legend shows the titled groups and items defined by that layer’s selected legend section, using the configured categories, thresholds, colours, shapes and outlines.",
     "outcome": "Unverified",
-    "steps_taken": [
-      "Navigated to launcher and captured the initial PNG.",
-      "Opened GIS and the Automobile form, then added HTTP Browsing with default filters.",
-      "Observed Load Time [s], Error, 2G, 3G, 4G, 5G NSA, 5G SA and Out of Threshold; distinct circles, triangles, diamonds, outlined and filled pentagons, colours and thresholds were visible.",
-      "Captured final state, then removed the test-created layer."
-    ],
-    "reason": "The grouped legend rendered. Exact agreement with versioned configured definitions cannot be established because the supplied remote inputs do not provide a definition reference. No configuration update/deployment was performed.",
     "retryClass": "criteria",
+    "steps_taken": [
+      "Navigated to launcher; saved initial capture after authentication recovery.",
+      "Opened GIS and Automobile form; added Automobile - HTTP Browsing with default filters.",
+      "Inspected titled groups Error, 2G, 3G, 4G, 5G NSA, 5G SA and Out of Threshold; observed configured-looking circle, triangle, diamond and pentagon markers and thresholds."
+    ],
+    "reason": "Groups and markers render, but the live inputs provide no versioned definition or expected colours/shapes/thresholds for an exact configuration comparison. Rendering alone cannot establish that complete assertion. Initial screenshot ENOENT was recovered by creating the staging directory and restarting from launcher. Temporary auto-review mismatch was resolved by inspecting the Automobile dialog and confirming HTTP Browsing is an expressly scoped Automobile test type. Test-created layer retained temporarily for subsequent criteria; removed in final cleanup.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-1-initial.png",
-      "screenshots/attempt-001/criterion-1-before-add-automobile.png",
-      "screenshots/attempt-001/criterion-1-after-open-form.png",
-      "screenshots/attempt-001/criterion-1-final.png"
+      "screenshots/attempt-002/criterion-1-initial.png",
+      "screenshots/attempt-002/criterion-1-before-add-automobile.png",
+      "screenshots/attempt-002/criterion-1-after-open-form.png",
+      "screenshots/attempt-002/criterion-1-after-add-layer.png",
+      "screenshots/attempt-002/criterion-1-final.png"
     ]
   },
   {
     "criterion": "When a visible legend item is selected, matching points in the active layer are hidden and the item is visibly muted; selecting it again restores the points and normal item appearance.",
-    "outcome": "Blocked",
+    "outcome": "Passed",
     "steps_taken": [
-      "Started independently at launcher and opened GIS.",
-      "Added default HTTP Browsing, selected Hide Error and verified its accessible label changed to Show Error.",
-      "Selected Show Error and verified Hide Error was restored, then captured the final PNG.",
-      "Observed unrelated Surveyor Call/Upload layers, a changed map position and Surveyor detail tabs that were not created by this attempt."
+      "Started independently at launcher and saved initial PNG.",
+      "Opened GIS; captured populated Automobile HTTP Browsing baseline.",
+      "Selected 5G NSA <=3; verified Show <=3 unpressed state, muted row and disappearance of corresponding green pentagon points.",
+      "Selected it again; verified Hide <=3 pressed state and restored markers; captured final before further navigation."
     ],
-    "reason": "Legend visibility toggled and was restored, but matching Error-category map-point disappearance/restoration was not established. The browser state changed outside this attempt, preventing a reliable map comparison. No empty-map or matching-data assertion is made. The test-created layer was subsequently absent when the browser session restarted.",
-    "retryClass": "transient",
-    "blockerCode": "shared_browser_state_interference",
+    "reason": "Visible green outlined pentagons disappeared while yellow/red points remained; normal row appearance and points returned on restore.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-2-initial.png",
-      "screenshots/attempt-001/criterion-2-before-open-form.png",
-      "screenshots/attempt-001/criterion-2-before-add-layer.png",
-      "screenshots/attempt-001/criterion-2-before-hide.png",
-      "screenshots/attempt-001/criterion-2-after-hide.png",
-      "screenshots/attempt-001/criterion-2-final.png",
-      "screenshots/attempt-001/criterion-2-context-check.png"
+      "screenshots/attempt-002/criterion-2-initial.png",
+      "screenshots/attempt-002/criterion-2-before-hide.png",
+      "screenshots/attempt-002/criterion-2-after-hide-before-restore.png",
+      "screenshots/attempt-002/criterion-2-final.png"
     ]
   },
   {
     "criterion": "When a legend item is double-clicked, that item remains visible and all other items in its group are hidden; items in other groups retain their visibility.",
     "outcome": "Failed",
-    "steps_taken": [
-      "Started from launcher, opened GIS and added Automobile HTTP Browsing using default filters.",
-      "Double-clicked 2G <=8 legend row, repeated once and then double-clicked its label.",
-      "All 2G siblings >8, >12 and >20 remained visible (aria-pressed true; labels remained Hide). Other groups remained visible."
-    ],
-    "reason": "Double-click did not isolate the selected category; its group siblings remained visible after both row and label double-clicks.",
     "retryClass": "product",
+    "steps_taken": [
+      "Started independently at launcher; opened GIS and captured baseline.",
+      "Double-clicked visible 5G NSA >3 legend row.",
+      "Inspected settled legend: <=3, >3, >6 and >12 all remained Hide and pressed; no sibling isolation occurred; other groups remained unchanged.",
+      "Captured resulting final and current URL."
+    ],
+    "reason": "Double-click did not isolate the selected item: all four items in the same group remained visible. No restoration required because visibility remained at baseline.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-3-initial.png",
-      "screenshots/attempt-001/criterion-3-before-open-form.png",
-      "screenshots/attempt-001/criterion-3-before-add-layer.png",
-      "screenshots/attempt-001/criterion-3-before-isolate.png",
-      "screenshots/attempt-001/criterion-3-final.png",
-      "screenshots/attempt-001/criterion-3-before-repeat-isolate.png",
-      "screenshots/attempt-001/criterion-3-repeat-final.png",
-      "screenshots/attempt-001/criterion-3-before-label-isolate.png",
-      "screenshots/attempt-001/criterion-3-label-final.png"
-    ],
-    "cleanupEvidence": [
-      ".agent-staging/handoff-TEST2-92-test-attempt-001/screenshots/criterion-3-cleanup.png"
+      "screenshots/attempt-002/criterion-3-initial.png",
+      "screenshots/attempt-002/criterion-3-before-isolate.png",
+      "screenshots/attempt-002/criterion-3-after-isolate.png",
+      "screenshots/attempt-002/criterion-3-final.png"
     ]
   },
   {
     "criterion": "Legend filtering and legend edits change only the active layer’s presentation; other layers, underlying data, and form-based filters retain their prior state.",
-    "outcome": "Blocked",
+    "outcome": "Unverified",
+    "retryClass": "manual",
     "steps_taken": [
-      "Inspected the current shared Playwright browser state; unrelated Surveyor - Ping and Surveyor - Call layers and a changed map extent were present without being added by this attempt.",
-      "Did not start further independent interactions because uncontrolled browser changes invalidate baselines and risk altering another run."
+      "Started at launcher; opened GIS and captured own map and complete single-layer list.",
+      "Opened Automobile configuration; recorded default dates, empty handset/network fields, all generations enabled.",
+      "Hid then restored NSA <=3 with configuration visible; values remained unchanged.",
+      "Captured restored final before closing configuration."
     ],
-    "reason": "The shared browser changed outside this attempt: Surveyor layers and map extent appeared. Independent baseline/action/final comparisons cannot be attributed reliably. This criterion was not executed; blocker PNG records the reachable contaminated GIS state, not assertion evidence.",
-    "retryClass": "transient",
+    "reason": "Form-based filters stayed unchanged in visible inspection. No second layer or saved legend edit was exercised within this criterion, and underlying-data immutability is not established by the UI captures; complete isolation assertion remains inconclusive.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-4-blocker.png"
-    ],
-    "blockerCode": "shared_browser_state_interference"
+      "screenshots/attempt-002/criterion-4-initial.png",
+      "screenshots/attempt-002/criterion-4-baseline-map.png",
+      "screenshots/attempt-002/criterion-4-baseline-layers.png",
+      "screenshots/attempt-002/criterion-4-baseline-form.png",
+      "screenshots/attempt-002/criterion-4-after-filter.png",
+      "screenshots/attempt-002/criterion-4-final.png"
+    ]
   },
   {
     "criterion": "When a layer supplies one Colour By field, its title is displayed as a label; when it supplies multiple fields, a dropdown displays exactly those fields.",
     "outcome": "Blocked",
-    "steps_taken": [
-      "Started at launcher, opened GIS and added HTTP Browsing.",
-      "Verified Load Time [s] renders as a plain paragraph with no Colour By combobox."
-    ],
-    "reason": "Single-field branch is observed. The supplied Automobile types each expose one field; no multi-field consuming-layer fixture/options were supplied for the dropdown branch.",
     "retryClass": "prerequisite",
+    "blockerCode": "multi_field_consumer_unavailable",
+    "steps_taken": [
+      "Started at launcher; opened GIS.",
+      "Inspected Automobile HTTP Browsing legend: Load Time [s] is a label and no Colour By dropdown is present.",
+      "Captured single-field state."
+    ],
+    "reason": "Single-field label is observable, but complete multi-option contract requires a consuming layer with supplied multiple fields and expected options. Live ticket supplies none and explicitly says current Automobile types have only one field.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-5-resume-initial.png",
-      "screenshots/attempt-001/criterion-5-before-open-form.png",
-      "screenshots/attempt-001/criterion-5-before-add-layer.png",
-      "screenshots/attempt-001/criterion-5-final.png"
-    ],
-    "cleanupEvidence": [
-      ".agent-staging/handoff-TEST2-92-test-attempt-001/screenshots/criterion-5-cleanup.png"
+      "screenshots/attempt-002/criterion-5-initial.png",
+      "screenshots/attempt-002/criterion-5-single-field-label.png",
+      "screenshots/attempt-002/criterion-5-final.png"
     ]
   },
   {
     "criterion": "When Colour By changes on a consuming layer that supplies multiple fields and measurements, the displayed groups, map classification, markers and linked-context visibility follow the selected field, form filters remain unchanged, and the same points are not fetched again. This end-to-end behavior requires a multi-field consuming layer; current Automobile types provide only one field.",
     "outcome": "Blocked",
-    "steps_taken": [
-      "Started independently at launcher, opened GIS, added HTTP Browsing and inspected the field label and controls."
-    ],
-    "reason": "HTTP Browsing exposes only Load Time [s]. The required multi-field consuming layer and measurements are not available in the supplied ticket; end-to-end switching cannot be exercised with single-field Automobile.",
     "retryClass": "prerequisite",
+    "blockerCode": "multi_field_consumer_unavailable",
+    "steps_taken": [
+      "Navigated independently to launcher; captured own initial state.",
+      "Opened GIS and inspected current Automobile HTTP Browsing single Load Time field.",
+      "Captured unavailable multi-field prerequisite state; no field switch or field-specific save was possible."
+    ],
+    "reason": "The complete live ticket explicitly limits current Automobile types to one field. No multi-field consuming layer with measurements is identified, so field switching, classification and no-refetch behavior cannot be tested using this Automobile fixture.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-6-resume-initial.png",
-      "screenshots/attempt-001/criterion-6-before-open-form.png",
-      "screenshots/attempt-001/criterion-6-before-add-layer.png",
-      "screenshots/attempt-001/criterion-6-after-add-layer.png",
-      "screenshots/attempt-001/criterion-6-final.png",
-      "screenshots/attempt-001/criterion-6-browser-interference.png"
-    ],
-    "cleanupEvidence": [
-      ".agent-staging/handoff-TEST2-92-test-attempt-001/screenshots/criterion-6-cleanup-own-layer.png"
+      "screenshots/attempt-002/criterion-6-initial.png",
+      "screenshots/attempt-002/criterion-6-blocked-single-field.png"
     ]
   },
   {
     "criterion": "Restoring a layer’s state restores its selected Colour By field and that field’s saved overrides independently of other layers.",
     "outcome": "Blocked",
-    "steps_taken": [
-      "Inspected the current shared Playwright browser state; unrelated Surveyor - Ping and Surveyor - Call layers and a changed map extent were present without being added by this attempt.",
-      "Did not start further independent interactions because uncontrolled browser changes invalidate baselines and risk altering another run."
-    ],
-    "reason": "Selected-field restoration requires a multi-field layer with saved field-specific overrides; none was supplied. Shared-browser interference also prevents a controlled state-restoration sequence.",
     "retryClass": "prerequisite",
+    "blockerCode": "multi_field_consumer_unavailable",
+    "steps_taken": [
+      "Navigated independently to launcher; captured own initial state.",
+      "Opened GIS and inspected current Automobile HTTP Browsing single Load Time field.",
+      "Captured unavailable multi-field prerequisite state; no field switch or field-specific save was possible."
+    ],
+    "reason": "Cannot establish restoration of selected fields and independent saved field-specific overrides with a single-field Automobile fixture and no identified multi-field consuming layer.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-7-blocker.png"
+      "screenshots/attempt-002/criterion-7-initial.png",
+      "screenshots/attempt-002/criterion-7-blocked-single-field.png"
     ]
   },
   {
     "criterion": "In Edit Legend, changing labels, colours or numeric boundaries creates drafts for the active field only; the map remains unchanged until Save, while Cancel or Close discards drafts. After Save, refreshed values remain visible in the open dialog.",
-    "outcome": "Blocked",
+    "outcome": "Unverified",
+    "retryClass": "manual",
     "steps_taken": [
-      "Inspected the current shared Playwright browser state; unrelated Surveyor - Ping and Surveyor - Call layers and a changed map extent were present without being added by this attempt.",
-      "Did not start further independent interactions because uncontrolled browser changes invalidate baselines and risk altering another run."
+      "Started independently at launcher; opened GIS; captured baseline map and complete layer list.",
+      "Opened Edit Legend; changed 2G label to QA draft first; Cancel discarded it and reopening restored <=8.",
+      "Changed label to QA draft second; Close discarded it; captured restored map and reopened <=8.",
+      "Changed label to QA saved label; Save updated the underlying legend while keeping refreshed label in open dialog; captured decisive final.",
+      "Restored original <=8 label, saved and closed; captured cleanup separately."
     ],
-    "reason": "The shared browser changed outside this attempt: Surveyor layers and map extent appeared. Independent baseline/action/final comparisons cannot be attributed reliably. This criterion was not executed; blocker PNG records the reachable contaminated GIS state, not assertion evidence.",
-    "retryClass": "transient",
+    "reason": "Label Cancel/Close/Save behavior supported by captures. Colour/boundary drafts and exclusion of drafts for other supplied fields were not conclusively exercised; only one field exists. Baseline-map initial capture may precede full point loading; baseline-layers and both post-discard captures show settled map. Full criterion remains inconclusive.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-8-blocker.png"
-    ],
-    "blockerCode": "shared_browser_state_interference"
+      "screenshots/attempt-002/criterion-8-initial.png",
+      "screenshots/attempt-002/criterion-8-baseline-map.png",
+      "screenshots/attempt-002/criterion-8-baseline-layers.png",
+      "screenshots/attempt-002/criterion-8-first-open.png",
+      "screenshots/attempt-002/criterion-8-first-edit-before-cancel.png",
+      "screenshots/attempt-002/criterion-8-after-first-cancel-map.png",
+      "screenshots/attempt-002/criterion-8-second-reopen.png",
+      "screenshots/attempt-002/criterion-8-second-edit-before-close.png",
+      "screenshots/attempt-002/criterion-8-after-second-close-map.png",
+      "screenshots/attempt-002/criterion-8-final-reopen.png",
+      "screenshots/attempt-002/criterion-8-final-edit-before-save.png",
+      "screenshots/attempt-002/criterion-8-final.png"
+    ]
   },
   {
     "criterion": "After a valid legend edit is saved, the legend and cached map points use the same labels, colours and classification; saved overrides for other fields and layers remain unchanged.",
-    "outcome": "Blocked",
+    "outcome": "Unverified",
+    "retryClass": "manual",
     "steps_taken": [
-      "Inspected the current shared Playwright browser state; unrelated Surveyor - Ping and Surveyor - Call layers and a changed map extent were present without being added by this attempt.",
-      "Did not start further independent interactions because uncontrolled browser changes invalidate baselines and risk altering another run."
+      "Started independently at launcher; opened GIS and captured map/layers.",
+      "Opened Edit Legend; changed NSA low label to QA NSA low and boundary from 3 to 1.",
+      "Saved and verified refreshed label and adjacent >1 threshold while dialog stayed open.",
+      "Closed dialog; captured unobscured saved legend/map final.",
+      "Restored boundary 3 and label <=3, saved and closed separately."
     ],
-    "reason": "The shared browser changed outside this attempt: Surveyor layers and map extent appeared. Independent baseline/action/final comparisons cannot be attributed reliably. This criterion was not executed; blocker PNG records the reachable contaminated GIS state, not assertion evidence.",
-    "retryClass": "transient",
+    "reason": "Saved labels and threshold appeared consistently and points changed classification visually, but no colour edit or independent other-field/layer saved override comparison was established. Baseline-map capture preceded settled points; baseline-layers shows settled points. Complete assertion remains inconclusive.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-9-blocker.png"
-    ],
-    "blockerCode": "shared_browser_state_interference"
+      "screenshots/attempt-002/criterion-9-initial.png",
+      "screenshots/attempt-002/criterion-9-baseline-map.png",
+      "screenshots/attempt-002/criterion-9-baseline-layers.png",
+      "screenshots/attempt-002/criterion-9-before-edit.png",
+      "screenshots/attempt-002/criterion-9-draft-before-save.png",
+      "screenshots/attempt-002/criterion-9-saved-dialog.png",
+      "screenshots/attempt-002/criterion-9-final.png"
+    ]
   },
   {
     "criterion": "In a numeric generation group, the add control below the marker column adds a range row, eligible rows have delete controls, at least one range remains, and editing a value does not reorder Automobile rows.",
-    "outcome": "Blocked",
+    "outcome": "Passed",
     "steps_taken": [
-      "Inspected the current shared Playwright browser state; unrelated Surveyor - Ping and Surveyor - Call layers and a changed map extent were present without being added by this attempt.",
-      "Did not start further independent interactions because uncontrolled browser changes invalidate baselines and risk altering another run."
+      "Started at launcher; opened GIS then Edit Legend.",
+      "Used small Add range control below 2G marker column; a fifth New range row appeared with its own delete control.",
+      "Changed first boundary from 8 to 9; original row labels stayed in the same order.",
+      "Deleted added row, then existing >20, >12 and >8 rows sequentially.",
+      "Verified one numeric row remained with Delete disabled and explanation At least one value must remain in this group; captured final.",
+      "Cancelled all drafts to restore saved definition."
     ],
-    "reason": "The shared browser changed outside this attempt: Surveyor layers and map extent appeared. Independent baseline/action/final comparisons cannot be attributed reliably. This criterion was not executed; blocker PNG records the reachable contaminated GIS state, not assertion evidence.",
-    "retryClass": "transient",
+    "reason": "Added and existing rows had eligible delete controls; last-row protection and unchanged row order observed directly.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-10-blocker.png"
-    ],
-    "blockerCode": "shared_browser_state_interference"
+      "screenshots/attempt-002/criterion-10-initial.png",
+      "screenshots/attempt-002/criterion-10-before-open.png",
+      "screenshots/attempt-002/criterion-10-before-add.png",
+      "screenshots/attempt-002/criterion-10-after-add.png",
+      "screenshots/attempt-002/criterion-10-after-value-edit-before-delete.png",
+      "screenshots/attempt-002/criterion-10-after-delete-added.png",
+      "screenshots/attempt-002/criterion-10-after-delete-last.png",
+      "screenshots/attempt-002/criterion-10-after-delete-third.png",
+      "screenshots/attempt-002/criterion-10-final.png"
+    ]
   },
   {
     "criterion": "Numeric Value fields use number inputs. Empty, non-finite, out-of-limit or incorrectly ordered boundary values show an inline error immediately and disable Save. HTTP Browsing boundaries accept 0–10,000; Ping and Video Streaming boundaries have a minimum of zero and no additional maximum. Video Streaming categories cannot be changed.",
-    "outcome": "Blocked",
+    "outcome": "Failed",
+    "retryClass": "product",
     "steps_taken": [
-      "Inspected the current shared Playwright browser state; unrelated Surveyor - Ping and Surveyor - Call layers and a changed map extent were present without being added by this attempt.",
-      "Did not start further independent interactions because uncontrolled browser changes invalidate baselines and risk altering another run."
+      "Started at launcher; opened GIS and Edit Legend.",
+      "Read 2G HTTP boundary DOM: type number, min0, max10000.",
+      "Entered empty, -1, 10001, 13 (above next boundary12), and non-finite 1e309 in sequence; captured each immediate validation state and Save availability.",
+      "Captured final validation state, then cancelled drafts.",
+      "Confirmed independently again from launcher: first 2G bound13 with next12 showed no inline alert and Save remained enabled; captured final before cancelling."
     ],
-    "reason": "The shared browser changed outside this attempt: Surveyor layers and map extent appeared. Independent baseline/action/final comparisons cannot be attributed reliably. This criterion was not executed; blocker PNG records the reachable contaminated GIS state, not assertion evidence.",
-    "retryClass": "transient",
+    "reason": "Boundary ordering contradiction: first 2G numeric bound13 exceeded next12, but no immediate inline validation error appeared and Save stayed enabled. Empty/negative/above10000/non-finite cases disabled Save. Ping/Video and accepted endpoints remain unverified; no invalid value was saved.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-11-blocker.png"
-    ],
-    "blockerCode": "shared_browser_state_interference"
+      "screenshots/attempt-002/criterion-11-initial.png",
+      "screenshots/attempt-002/criterion-11-before-open.png",
+      "screenshots/attempt-002/criterion-11-before-invalid.png",
+      "screenshots/attempt-002/criterion-11-empty-invalid.png",
+      "screenshots/attempt-002/criterion-11-negative-invalid.png",
+      "screenshots/attempt-002/criterion-11-above-maximum-invalid.png",
+      "screenshots/attempt-002/criterion-11-unordered-invalid.png",
+      "screenshots/attempt-002/criterion-11-confirmation-initial.png",
+      "screenshots/attempt-002/criterion-11-confirmation-before-open.png",
+      "screenshots/attempt-002/criterion-11-confirmation-before-unordered.png",
+      "screenshots/attempt-002/criterion-11-final.png"
+    ]
   },
   {
     "criterion": "Reset displays default labels, colours, boundaries, categories and visibility as drafts; saving applies defaults to the active field only, preserving other fields and layers.",
-    "outcome": "Blocked",
+    "outcome": "Unverified",
+    "retryClass": "manual",
     "steps_taken": [
-      "Read the reachable GIS browser state and captured a separate blocker PNG for this criterion.",
-      "No criterion-specific sequence was performed because unrelated layers and map changes had appeared outside this attempt."
+      "Started independently from launcher; captured own settled map and complete layers.",
+      "Saved a custom 2G label QA reset setup.",
+      "Reset showed <=8 draft while background legend still showed saved custom label; Cancel retained custom saved label.",
+      "Reopened, selected Reset again, then saved; closed dialog and captured unobscured default <=8 legend/map final."
     ],
-    "reason": "Independent execution is blocked by uncontrolled shared-browser changes. The criterion has no launcher baseline or completed action/final assertion sequence; its PNG documents only the reachable environmental blocker. No pass/failure is inferred.",
-    "retryClass": "transient",
+    "reason": "Reset draft and Save behavior verified for custom label; complete colours, boundaries, categories, hidden visibility and preservation of other field/layer overrides were not established. Test label restored to defaults.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-12-blocker.png"
-    ],
-    "blockerCode": "shared_browser_state_interference"
+      "screenshots/attempt-002/criterion-12-initial.png",
+      "screenshots/attempt-002/criterion-12-baseline-map.png",
+      "screenshots/attempt-002/criterion-12-baseline-layers.png",
+      "screenshots/attempt-002/criterion-12-before-custom-edit.png",
+      "screenshots/attempt-002/criterion-12-custom-draft.png",
+      "screenshots/attempt-002/criterion-12-custom-saved-before-reset.png",
+      "screenshots/attempt-002/criterion-12-reset-draft-before-cancel.png",
+      "screenshots/attempt-002/criterion-12-after-cancel-reset.png",
+      "screenshots/attempt-002/criterion-12-reopen-before-final-reset.png",
+      "screenshots/attempt-002/criterion-12-final-reset-before-save.png",
+      "screenshots/attempt-002/criterion-12-saved-defaults.png",
+      "screenshots/attempt-002/criterion-12-final.png"
+    ]
   },
   {
     "criterion": "Linked-site and linked-cell display settings use the shared Network context and follow visible result categories; linked cells are disabled when linked sites are off, and settings persist per layer.",
-    "outcome": "Blocked",
+    "outcome": "Unverified",
+    "retryClass": "manual",
     "steps_taken": [
-      "Read the reachable GIS browser state and captured a separate blocker PNG for this criterion.",
-      "No criterion-specific sequence was performed because unrelated layers and map changes had appeared outside this attempt."
+      "Started at launcher; opened GIS; captured own populated map/layers.",
+      "Opened Display Settings: linked sites on, linked cells off.",
+      "Turned linked sites off; observed linked cells disabled and removed site connections on map.",
+      "Returned through launcher and reopened GIS/settings: sites remained off and cells disabled; captured final.",
+      "Attempted to restore sites on; tooltip intercepted checkbox/label pointer actions. Closed settings; final run cleanup removed the test-created layer to restore initial empty layer state."
     ],
-    "reason": "Independent execution is blocked by uncontrolled shared-browser changes. The criterion has no launcher baseline or completed action/final assertion sequence; its PNG documents only the reachable environmental blocker. No pass/failure is inferred.",
-    "retryClass": "transient",
+    "reason": "Site-off disables cells and preference persistence supported. Shared Network context identity, linked-cell rendering and category-following behavior were not established; complete criterion remains inconclusive. Direct preference restoration was obstructed by an overlapping disabled-cell tooltip; test-created layer was removed in run cleanup. Misnamed cleanup-restored-sites capture shows the unsuccessful cleanup state and is excluded from assertion evidence.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-13-blocker.png"
-    ],
-    "blockerCode": "shared_browser_state_interference"
+      "screenshots/attempt-002/criterion-13-initial.png",
+      "screenshots/attempt-002/criterion-13-baseline-map.png",
+      "screenshots/attempt-002/criterion-13-baseline-layers.png",
+      "screenshots/attempt-002/criterion-13-settings-baseline.png",
+      "screenshots/attempt-002/criterion-13-sites-off-cells-disabled.png",
+      "screenshots/attempt-002/criterion-13-sites-off-map.png",
+      "screenshots/attempt-002/criterion-13-persistence-launcher.png",
+      "screenshots/attempt-002/criterion-13-restored-sites-off-map.png",
+      "screenshots/attempt-002/criterion-13-final.png"
+    ]
   },
   {
     "criterion": "With or without a details tab, the legend remains scrollable when the map pane is resized and does not overlap Reset North or other map controls.",
-    "outcome": "Blocked",
+    "outcome": "Unverified",
+    "retryClass": "manual",
     "steps_taken": [
-      "Read the reachable GIS browser state and captured a separate blocker PNG for this criterion.",
-      "No criterion-specific sequence was performed because unrelated layers and map changes had appeared outside this attempt."
+      "Started independently at launcher and opened GIS.",
+      "Captured 1440x900 baseline; resized browser to1100x700 to reduce map pane.",
+      "Read legend scroll geometry and scrolled its overflowing content to bottom; captured lower groups and visible map controls at final.",
+      "Restored original 1440x900 viewport separately."
     ],
-    "reason": "Independent execution is blocked by uncontrolled shared-browser changes. The criterion has no launcher baseline or completed action/final assertion sequence; its PNG documents only the reachable environmental blocker. No pass/failure is inferred.",
-    "retryClass": "transient",
+    "reason": "Resized legend remained scrollable and visually clear of Reset North/map controls without details. Details-tab layout was not exercised, so combined assertion remains inconclusive.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-14-blocker.png"
-    ],
-    "blockerCode": "shared_browser_state_interference"
+      "screenshots/attempt-002/criterion-14-initial.png",
+      "screenshots/attempt-002/criterion-14-before-resize.png",
+      "screenshots/attempt-002/criterion-14-resized-without-details.png",
+      "screenshots/attempt-002/criterion-14-final.png"
+    ]
   },
   {
     "criterion": "For existing consumers of the shared legend, established markers, visibility, editor actions and default behavior remain unchanged unless a consumer opts into the new options.",
     "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "blockerCode": "regression_baseline_unavailable",
     "steps_taken": [
-      "Read the reachable GIS browser state and captured a separate blocker PNG for this criterion.",
-      "No criterion-specific sequence was performed because unrelated layers and map changes had appeared outside this attempt."
+      "Started independently at launcher; opened GIS.",
+      "Inspected available layer catalogue and active Automobile legend.",
+      "Captured current consumer-selection environment; made no unsupported equivalence claim."
     ],
-    "reason": "Independent execution is blocked by uncontrolled shared-browser changes. The criterion has no launcher baseline or completed action/final assertion sequence; its PNG documents only the reachable environmental blocker. No pass/failure is inferred.",
-    "retryClass": "transient",
+    "reason": "Live inputs identify no existing shared-component consumers, their opt-in status or established pre-change marker/editor/default baseline. A current UI alone cannot verify unchanged behavior; a known consumer and comparison baseline are required.",
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
     "evidence": [
-      "screenshots/attempt-001/criterion-15-blocker.png"
-    ],
-    "blockerCode": "shared_browser_state_interference"
+      "screenshots/attempt-002/criterion-15-initial.png",
+      "screenshots/attempt-002/criterion-15-existing-consumer-prerequisite.png"
+    ]
   }
 ]
