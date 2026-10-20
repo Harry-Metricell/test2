@@ -3,498 +3,428 @@
     "criterion": "With Automobile Call results available, selecting the Call layer displays the results as selectable map points.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-1-initial.png",
-      "screenshots/attempt-001/criterion-1-after-open-gis.png",
-      "screenshots/attempt-001/criterion-1-after-open-automobile.png",
-      "screenshots/attempt-001/criterion-1-before-select-call.png",
-      "screenshots/attempt-001/criterion-1-before-add-call.png",
-      "screenshots/attempt-001/criterion-1-final.png"
+      "screenshots/attempt-002/criterion-1-initial.png",
+      "screenshots/attempt-002/criterion-1-before-add-automobile.png",
+      "screenshots/attempt-002/criterion-1-after-add-dialog.png",
+      "screenshots/attempt-002/criterion-1-before-select-call.png",
+      "screenshots/attempt-002/criterion-1-after-select-call.png",
+      "screenshots/attempt-002/criterion-1-after-add-call.png",
+      "screenshots/attempt-002/criterion-1-final.png"
     ],
     "steps_taken": [
-      "Started at launcher, opened GIS, configured Automobile as Call and added with default dates and filters.",
-      "Waited for map load; Call points request returned HTTP 500; selectable Call results unavailable.",
-      "Captured final GIS state, then removed the test-created Call layer."
+      "The first PNG save returned ENOENT because the screenshot directory did not exist; created the handoff screenshot directory and restarted this criterion at the launcher before capturing its initial state.",
+      "Opened GIS and captured the state before adding Automobile.",
+      "Opened the Automobile dialog, selected Call, kept the default date/filters and added the Call layer; saved each transition after checking visible controls.",
+      "Observed the Call legend and an unpopulated map; network inspection showed GET /api/platform/automobile/call/points returning HTTP 500.",
+      "Saved the decisive map/legend state and read the actual GIS URL."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call points service HTTP 500 prevents establishing required available Automobile Call data.",
-    "retryClass": "transient",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "Selectable Call points could not be obtained. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "The shared Colour By selector offers CSR, Downlink MOS, Uplink MOS, and Estimated MOS, with CSR selected by default.",
     "outcome": "Passed",
     "evidence": [
-      "screenshots/attempt-001/criterion-2-initial.png",
-      "screenshots/attempt-001/criterion-2-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-2-before-select-call.png",
-      "screenshots/attempt-001/criterion-2-before-add-call.png",
-      "screenshots/attempt-001/criterion-2-after-add-call.png",
-      "screenshots/attempt-001/criterion-2-final.png"
+      "screenshots/attempt-002/criterion-2-initial.png",
+      "screenshots/attempt-002/criterion-2-after-open-gis.png",
+      "screenshots/attempt-002/criterion-2-before-reset-own-call-layer.png",
+      "screenshots/attempt-002/criterion-2-after-reset-own-call-layer.png",
+      "screenshots/attempt-002/criterion-2-fresh-layer-dialog.png",
+      "screenshots/attempt-002/criterion-2-before-fresh-call-choice.png",
+      "screenshots/attempt-002/criterion-2-after-fresh-call-choice.png",
+      "screenshots/attempt-002/criterion-2-fresh-default-csr.png",
+      "screenshots/attempt-002/criterion-2-final.png"
     ],
     "steps_taken": [
-      "Started at launcher, opened GIS and added a new Automobile Call layer.",
-      "Observed CSR selected by default; opened Colour by and observed CSR, Downlink MOS, Uplink MOS and Estimated MOS.",
-      "Captured final selector state, then dismissed selector and removed the test-created Call layer."
+      "Started this criterion again from the launcher and opened GIS.",
+      "Removed the run-created Call layer to establish a fresh default; scrolled Automobile into view and captured the resulting state.",
+      "Opened Automobile, opened Test type and selected Call, then added a new Call layer with transition captures.",
+      "Verified the newly created Colour by control displayed CSR without selecting a metric.",
+      "Opened Colour by and observed exactly CSR, Downlink MOS, Uplink MOS and Estimated MOS; saved the final PNG and read the GIS URL.",
+      "Closed the selector; after all checks removed the run-created layer, verified zero selected layers remained and returned to the launcher."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "All four required choices are offered, with CSR selected by default.",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85"
+    "browserVersion": "155.0.8059.85",
+    "reason": "A fresh Call layer defaulted to CSR, and the selector offered all four required options."
   },
   {
     "criterion": "For each Colour By choice, visible Call markers use that metric's values and the legend shows its matching title, units, categories, and colours; CSR is shown as a percentage and MOS as dimensionless scores.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-3-initial.png",
-      "screenshots/attempt-001/criterion-3-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-3-before-select-call.png",
-      "screenshots/attempt-001/criterion-3-before-add-call.png",
-      "screenshots/attempt-001/criterion-3-after-add-call.png",
-      "screenshots/attempt-001/criterion-3-after-downlink-mos.png",
-      "screenshots/attempt-001/criterion-3-after-uplink-mos.png",
-      "screenshots/attempt-001/criterion-3-after-estimated-mos.png",
-      "screenshots/attempt-001/criterion-3-final.png"
+      "screenshots/attempt-002/criterion-3-initial.png"
     ],
     "steps_taken": [
-      "Started at launcher and added a new Call layer.",
-      "Switched through Downlink MOS, Uplink MOS and Estimated MOS, capturing each legend.",
-      "Call marker data unavailable due to HTTP 500."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "All modes selected, but Call points returned HTTP 500; metric marker values and colours cannot be established.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "Metric-specific marker values/colours require returned Call points. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "Changing Colour By preserves the current date, filters, group visibility, marker identities, and selected result.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-4-initial.png",
-      "screenshots/attempt-001/criterion-4-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-4-before-select-call.png",
-      "screenshots/attempt-001/criterion-4-before-add-call.png",
-      "screenshots/attempt-001/criterion-4-after-add-call.png",
-      "screenshots/attempt-001/criterion-4-final.png"
+      "screenshots/attempt-002/criterion-4-initial.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added a new Automobile Call layer with default dates and filters.",
-      "Waited for the Call layer; its points request failed with HTTP 500, preventing a selected-result baseline."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "No selectable Call result or marker identities could be established because the Call points request returned HTTP 500; preservation of result selection cannot be tested.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "No selected result or marker identities were available to compare across Colour By changes. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "For a marker representing multiple calls, CSR is 100 × successful calls divided by successful, setup-failed, operator-answered, no-service, and invalid calls; dropped calls are excluded and a zero denominator produces zero. Each MOS value is weighted by that metric's own valid sample count, and Estimated MOS uses its dedicated values rather than an average of Downlink and Uplink MOS.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-5-initial.png",
-      "screenshots/attempt-001/criterion-5-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-5-before-select-call.png",
-      "screenshots/attempt-001/criterion-5-before-add-call.png",
-      "screenshots/attempt-001/criterion-5-after-add-call.png",
-      "screenshots/attempt-001/criterion-5-final.png"
+      "screenshots/attempt-002/criterion-5-initial.png"
     ],
     "steps_taken": [
-      "Started at launcher and added Call with default scope.",
-      "Waited for points; observed HTTP 500. Could not obtain a multi-call marker or independently check CSR/MOS calculations."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call points returned HTTP 500. No multi-call marker or underlying successful/failed/dropped call counts and independent MOS sample counts were available to verify the calculations.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "No multi-call marker or per-metric valid-sample counts were available for the legacy calculations. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "The default CSR legend uses green #31AA4F for 95–100%, light green #86BE42 for 90–<95%, yellow #FCBF1A for 85–<90%, red #E61733 for 80–<85%, and dark red #AE1A32 for 0–<80%; exact boundaries use the higher band.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-6-initial.png",
-      "screenshots/attempt-001/criterion-6-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-6-before-select-call.png",
-      "screenshots/attempt-001/criterion-6-before-add-call.png",
-      "screenshots/attempt-001/criterion-6-after-add-call.png",
-      "screenshots/attempt-001/criterion-6-final.png"
+      "screenshots/attempt-002/criterion-6-initial.png",
+      "screenshots/attempt-002/criterion-6-after-open-gis.png",
+      "screenshots/attempt-002/criterion-6-final.png"
     ],
     "steps_taken": [
-      "Started at launcher and added a new Call layer with CSR default.",
-      "Inspected default CSR band labels and swatches.",
-      "No boundary result data available because points service failed."
+      "Started at the launcher with this criterion's own initial capture and opened GIS.",
+      "Inspected the visible CSR category labels and rendered SVG fills: #31AA4F, #86BE42, #FCBF1A, #E61733 and #AE1A32 for >=95, >=90, >=85, >=80 and <80 respectively.",
+      "Captured the final legend/map state and actual GIS URL; exact marker boundaries were blocked by the reproduced Call points failure."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "CSR labels are visible, but Call points returned HTTP 500. Exact-boundary marker classification could not be verified with results at 80/85/90/95/100%.",
-    "retryClass": "transient",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "Legend colours and descending thresholds were observed, but exact CSR boundary classification could not be exercised on returned data. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "Each default MOS legend uses dark red #AE1A32 for 1–<2, yellow #FCBF1A for 2–<3, light green #86BE42 for 3–<4, and green #31AA4F for 4–5 inclusive; exact internal boundaries use the higher band.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-7-initial.png",
-      "screenshots/attempt-001/criterion-7-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-7-before-select-call.png",
-      "screenshots/attempt-001/criterion-7-before-add-call.png",
-      "screenshots/attempt-001/criterion-7-after-add-call.png",
-      "screenshots/attempt-001/criterion-7-after-downlink-mos.png",
-      "screenshots/attempt-001/criterion-7-after-uplink-mos.png",
-      "screenshots/attempt-001/criterion-7-after-estimated-mos.png",
-      "screenshots/attempt-001/criterion-7-final.png"
+      "screenshots/attempt-002/criterion-7-initial.png",
+      "screenshots/attempt-002/criterion-7-after-open-gis.png",
+      "screenshots/attempt-002/criterion-7-before-downlink-mos.png",
+      "screenshots/attempt-002/criterion-7-after-downlink-mos.png",
+      "screenshots/attempt-002/criterion-7-before-uplink-mos.png",
+      "screenshots/attempt-002/criterion-7-after-uplink-mos.png",
+      "screenshots/attempt-002/criterion-7-before-estimated-mos.png",
+      "screenshots/attempt-002/criterion-7-after-estimated-mos.png",
+      "screenshots/attempt-002/criterion-7-final.png"
     ],
     "steps_taken": [
-      "Started from launcher and added new Call layer.",
-      "Switched through all three MOS modes and captured visible bands.",
-      "Could not establish boundary fixtures because Call points service returned HTTP 500."
+      "Started independently at the launcher, captured initial state and opened GIS.",
+      "Selected Downlink MOS, then Uplink MOS, then Estimated MOS continuously within this criterion, with unique before/after captures and visible control checks after each transition.",
+      "Inspected each metric's visible legend title, category labels and rendered SVG shapes/fills.",
+      "Saved the decisive Estimated MOS final state and actual GIS URL, then restored CSR and saved separate cleanup evidence."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "MOS legends display descending bands including 4 ≤ MOS ≤ 5, but HTTP 500 prevents testing actual marker colours at exact boundaries.",
-    "retryClass": "transient",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "All three MOS legends showed the required four colours and explicit intervals, including 4 ≤ MOS ≤ 5. Exact marker boundary classification was not testable without data. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "When the selected MOS metric has no valid samples, it is unavailable rather than shown as zero or replaced by another metric; values outside its bands use the white, initially hidden Out of Threshold category, with no separate Not Tested category.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-8-initial.png",
-      "screenshots/attempt-001/criterion-8-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-8-before-select-call.png",
-      "screenshots/attempt-001/criterion-8-before-add-call.png",
-      "screenshots/attempt-001/criterion-8-after-add-call.png",
-      "screenshots/attempt-001/criterion-8-after-select-downlink-mos.png",
-      "screenshots/attempt-001/criterion-8-final.png"
+      "screenshots/attempt-002/criterion-8-initial.png"
     ],
     "steps_taken": [
-      "Started at launcher and added a new Call layer.",
-      "Selected Downlink MOS and inspected its legend.",
-      "Required missing-sample and out-of-band Call fixtures unavailable due to points service error."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call points returned HTTP 500; results with no valid MOS samples or out-of-band values could not be obtained. No claim of an empty results set or successful no-sample classification is made.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "No result with missing MOS samples or out-of-band MOS values could be selected; unavailable/substitution behaviour was not testable. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "The CSR legend shows 2G circles, 3G triangles, 4G diamonds, 5G SA pentagons, and a fixed black-square No Service category for generation 0; No Service is separate from CSR percentage bands.",
-    "outcome": "Unverified",
+    "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-9-initial.png",
-      "screenshots/attempt-001/criterion-9-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-9-before-select-call.png",
-      "screenshots/attempt-001/criterion-9-before-add-call.png",
-      "screenshots/attempt-001/criterion-9-after-add-call.png",
-      "screenshots/attempt-001/criterion-9-after-open-edit-legend.png",
-      "screenshots/attempt-001/criterion-9-after-change-no-service-colour.png",
-      "screenshots/attempt-001/criterion-9-after-colour-attempt-save-disabled.png",
-      "screenshots/attempt-001/criterion-9-final.png"
+      "screenshots/attempt-002/criterion-9-initial.png",
+      "screenshots/attempt-002/criterion-9-after-open-gis.png",
+      "screenshots/attempt-002/criterion-9-legend-top.png",
+      "screenshots/attempt-002/criterion-9-final.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added a new CSR Call layer.",
-      "Inspected actual SVGs for all required generation shapes and the separate black No Service square.",
-      "Opened Edit Legend, observed disabled No Service label/value controls, attempted a colour change and found Save disabled even after focus moved.",
-      "Cancelled, verified No Service still black, captured final CSR legend and removed the test-created layer."
+      "Started from the launcher and opened GIS for the CSR legend check.",
+      "Inspected rendered SVGs: 2G circle, 3G triangle, 4G diamond, 5G SA pentagon; No Service uses a black rectangle separate from CSR percentage bands.",
+      "Restarted this criterion from the launcher for complete screenshot coverage, captured the top of its own legend and scrolled to capture 5G SA and Out of Threshold at the decisive final state.",
+      "Read the actual GIS URL; actual generation-0 data membership could not be established."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "CSR displays the required 2G circle, 3G triangle, 4G diamond and 5G SA pentagon. No Service is separate and remains a black square; its label/value controls are disabled and the attempted colour-only draft could not be saved. DOM inspection confirmed shapes, but complete viewport evidence for every generation group was not established.",
-    "retryClass": "manual",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85"
+    "browserVersion": "155.0.8059.85",
+    "reason": "The visible CSR legend uses circles, triangles, diamonds and pentagons for the named generations, and a separate black-square No Service category. Mapping of actual generation-0 results and the fixed category definition was not independently established. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "The MOS legends use squares for Downlink MOS, circles for Uplink MOS, and hexagons for Estimated MOS, grouping by the selected metric.",
     "outcome": "Passed",
     "evidence": [
-      "screenshots/attempt-001/criterion-10-initial.png",
-      "screenshots/attempt-001/criterion-10-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-10-before-select-call.png",
-      "screenshots/attempt-001/criterion-10-before-add-call.png",
-      "screenshots/attempt-001/criterion-10-after-add-call.png",
-      "screenshots/attempt-001/criterion-10-after-downlink-mos.png",
-      "screenshots/attempt-001/criterion-10-after-uplink-mos.png",
-      "screenshots/attempt-001/criterion-10-after-estimated-mos.png",
-      "screenshots/attempt-001/criterion-10-final.png"
+      "screenshots/attempt-002/criterion-10-initial.png",
+      "screenshots/attempt-002/criterion-10-after-open-gis.png",
+      "screenshots/attempt-002/criterion-10-before-downlink-mos.png",
+      "screenshots/attempt-002/criterion-10-after-downlink-mos.png",
+      "screenshots/attempt-002/criterion-10-before-uplink-mos.png",
+      "screenshots/attempt-002/criterion-10-after-uplink-mos.png",
+      "screenshots/attempt-002/criterion-10-before-estimated-mos.png",
+      "screenshots/attempt-002/criterion-10-after-estimated-mos.png",
+      "screenshots/attempt-002/criterion-10-final.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added a new Call layer.",
-      "Switched to Downlink MOS, Uplink MOS and Estimated MOS in sequence; verified matching metric headings, no repeated CSR generation groups, and the actual SVG shape for each mode.",
-      "Captured each mode and final Estimated MOS legend before removing the test-created layer."
+      "Started independently at the launcher, captured initial state and opened GIS.",
+      "Selected Downlink MOS, then Uplink MOS, then Estimated MOS continuously within this criterion, with unique before/after captures and visible control checks after each transition.",
+      "Inspected each metric's visible legend title, category labels and rendered SVG shapes/fills.",
+      "Saved the decisive Estimated MOS final state and actual GIS URL, then restored CSR and saved separate cleanup evidence."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "MOS legends group by their selected metric; Downlink MOS uses squares, Uplink MOS circles, Estimated MOS hexagons.",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85"
+    "browserVersion": "155.0.8059.85",
+    "reason": "Downlink MOS legend uses squares, Uplink MOS uses circles, and Estimated MOS uses six-vertex hexagons. Each legend groups its bands under the selected metric rather than CSR generation groups."
   },
   {
     "criterion": "Each Call legend includes a fixed white-square Out of Threshold category hidden by default; bands are ordered descending, with CSR limits 0–100 and MOS limits 1–5, and displayed labels match the boundary behaviour.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-11-initial.png",
-      "screenshots/attempt-001/criterion-11-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-11-before-select-call.png",
-      "screenshots/attempt-001/criterion-11-before-add-call.png",
-      "screenshots/attempt-001/criterion-11-after-add-call.png",
-      "screenshots/attempt-001/criterion-11-csr-edit-controls.png",
-      "screenshots/attempt-001/criterion-11-after-cancel-csr-edit.png",
-      "screenshots/attempt-001/criterion-11-after-downlink-mos.png",
-      "screenshots/attempt-001/criterion-11-after-uplink-mos.png",
-      "screenshots/attempt-001/criterion-11-after-estimated-mos.png",
-      "screenshots/attempt-001/criterion-11-final.png"
+      "screenshots/attempt-002/criterion-11-initial.png"
     ],
     "steps_taken": [
-      "Started at launcher and added a new Call layer.",
-      "Observed hidden white-square Out of Threshold; inspected CSR editor, disabled fixed label/value fields and min 0/max 100 limits, then cancelled.",
-      "Switched through all MOS legends and verified their hidden white Out of Threshold categories and descending inclusive-top-band labels.",
-      "Boundary behaviour requires unavailable Call data."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "All four legends include a white-square Out of Threshold category hidden by default; CSR edit fields enforce 0–100 and fixed category label/value fields are disabled. Agreement between displayed labels and actual classification cannot be established without Call boundary data because the points service returned HTTP 500.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "The complete assertion includes matching actual boundary behaviour, which requires data at the limits. That prerequisite was unavailable; fixed-definition editing and all legend limit behaviours were not exercised in this criterion. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "Editing a metric's customisable bands, labels, marker size, or category visibility updates its Call markers and remains specific to that metric and layer instance when Colour By changes; No Service and Out of Threshold definitions cannot be edited.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-12-initial.png",
-      "screenshots/attempt-001/criterion-12-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-12-before-select-call.png",
-      "screenshots/attempt-001/criterion-12-before-add-call.png",
-      "screenshots/attempt-001/criterion-12-after-add-call.png",
-      "screenshots/attempt-001/criterion-12-final.png"
+      "screenshots/attempt-002/criterion-12-initial.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added a new Call layer.",
-      "Observed available legend editing/display controls, but could not establish Call markers for the required before/after edits comparison.",
-      "Captured the blocked final state and removed the test-created layer."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call points returned HTTP 500, so marker updates from band, label, size or visibility edits cannot be assessed. The prerequisite matching Call markers was not available.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "No Call markers were available to establish that legend edits update the matching points or remain specific across layer instances. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "Restoring a Call layer or saved GIS view restores its Colour By choice and associated legend settings; a saved configuration without a choice opens with CSR selected.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-13-initial.png",
-      "screenshots/attempt-001/criterion-13-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-13-before-select-call.png",
-      "screenshots/attempt-001/criterion-13-before-add-call.png",
-      "screenshots/attempt-001/criterion-13-after-add-call.png",
-      "screenshots/attempt-001/criterion-13-final.png"
+      "screenshots/attempt-002/criterion-13-initial.png",
+      "screenshots/attempt-002/criterion-13-after-open-gis.png",
+      "screenshots/attempt-002/criterion-13-before-select-uplink.png",
+      "screenshots/attempt-002/criterion-13-after-select-uplink.png",
+      "screenshots/attempt-002/criterion-13-after-return-launcher.png",
+      "screenshots/attempt-002/criterion-13-final.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added a new Automobile Call layer.",
-      "Verified new layer defaults to CSR and inspected the visible snapshot area.",
-      "Could not identify an authorised legacy configuration without Colour By or a saved Call view fixture covering the required associated settings."
+      "Started at the launcher, captured its own initial state and opened GIS.",
+      "Selected Uplink MOS and captured the selected metric and its legend.",
+      "Navigated to the launcher, captured the return state, then opened GIS again.",
+      "Observed Uplink MOS restored; inspected the reachable Snapshots area, which showed its header without a supplied legacy configuration.",
+      "Saved the restored metric final PNG and actual GIS URL, then restored CSR with separate cleanup evidence."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "A legacy saved Call configuration without a Colour By choice could not be identified in the available snapshot area or supplied inputs. This fixture is required to test fallback on restoring older configurations; a new layer's default CSR does not prove it.",
-    "retryClass": "prerequisite",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "legacy_saved_configuration_unavailable"
+    "reason": "Uplink MOS persisted when the Call layer was reloaded through the launcher. A saved configuration without a Colour By choice was not supplied or identified in the reachable Snapshots area, so the legacy-default case and restoration of edited legend settings were not established. No fixture/view was created.",
+    "retryClass": "prerequisite",
+    "blockerCode": "legacy_saved_configuration_fixture_unavailable"
   },
   {
     "criterion": "Selecting a Call marker opens its Call detail tab directly when it represents one result, or opens a cluster results tab when it represents multiple results, following the HTTP and Download GIS workflow and existing group-based visibility.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-14-initial.png",
-      "screenshots/attempt-001/criterion-14-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-14-before-select-call.png",
-      "screenshots/attempt-001/criterion-14-before-add-call.png",
-      "screenshots/attempt-001/criterion-14-after-add-call.png",
-      "screenshots/attempt-001/criterion-14-final.png"
+      "screenshots/attempt-002/criterion-14-initial.png"
     ],
     "steps_taken": [
-      "Started at launcher and added new Automobile Call layer.",
-      "Waited for Call data; observed points service HTTP 500.",
-      "Could not select a single-result or clustered Call marker to exercise detail-tab workflow."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call points returned HTTP 500; neither a single-result Call marker nor a multiple-result Call cluster could be established. Existing Surveyor/HTTP markers and detail tabs are not matching Call test data.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "Neither a single-result nor a multi-result Call marker could be selected. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "The cluster results table displays MSISDN, Test Result, Start Time, End Time, Test Duration, Call Setup Time, Connection Time, Disconnection Cause Code, LTE Return Time, CSFB Time, MOS Downlink, MOS Uplink, Estimated MOS, Band, Test Technologies, Call End Service, and Call End Serving Cell.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-15-initial.png",
-      "screenshots/attempt-001/criterion-15-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-15-before-select-call.png",
-      "screenshots/attempt-001/criterion-15-before-add-call.png",
-      "screenshots/attempt-001/criterion-15-after-add-call.png",
-      "screenshots/attempt-001/criterion-15-final.png"
+      "screenshots/attempt-002/criterion-15-initial.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added a new Automobile Call layer with default date/filter scope.",
-      "Waited for the Call points request; observed HTTP 500.",
-      "Could not obtain a multi-call marker to open the Call cluster table; existing Surveyor/HTTP tables are non-matching data."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "The required Automobile Call cluster table cannot be opened because Call points return HTTP 500. Its specified columns could not be inspected.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "A populated Call cluster results table could not be opened, so required columns were not verified. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "Each available column in the cluster results table can be sorted.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-16-initial.png",
-      "screenshots/attempt-001/criterion-16-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-16-before-select-call.png",
-      "screenshots/attempt-001/criterion-16-before-add-call.png",
-      "screenshots/attempt-001/criterion-16-after-add-call.png",
-      "screenshots/attempt-001/criterion-16-final.png"
+      "screenshots/attempt-002/criterion-16-initial.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added a new Automobile Call layer with default date/filter scope.",
-      "Waited for the Call points request; observed HTTP 500.",
-      "Could not obtain a Call cluster with multiple sortable records."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "No Automobile Call cluster results table is available because Call points return HTTP 500. Sorting each available Call column could not be attempted.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "No cluster table rows were obtainable to test sorting on each available column. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "Selecting a cluster row opens a separate Call detail tab for that row's exact PointID and keeps the cluster tab open; reopening or restoring Call and Service tabs retains the relevant time and filter scope.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-17-initial.png",
-      "screenshots/attempt-001/criterion-17-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-17-before-select-call.png",
-      "screenshots/attempt-001/criterion-17-before-add-call.png",
-      "screenshots/attempt-001/criterion-17-after-add-call.png",
-      "screenshots/attempt-001/criterion-17-final.png"
+      "screenshots/attempt-002/criterion-17-initial.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added a new Automobile Call layer with default date/filter scope.",
-      "Waited for the Call points request; observed HTTP 500.",
-      "Could not establish a Call cluster row, separate Call tab, or Service tab for restoration checks."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call points return HTTP 500; no exact PointID-bearing Call cluster row or Call/Service detail tab can be obtained to test row selection and retained time/filter scope.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "No cluster row with a stable PointID was obtainable to test separate detail tabs and retained scope. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "When a selected result has related service information, its Service Details tab can be opened.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-18-initial.png",
-      "screenshots/attempt-001/criterion-18-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-18-before-select-call.png",
-      "screenshots/attempt-001/criterion-18-before-add-call.png",
-      "screenshots/attempt-001/criterion-18-after-add-call.png",
-      "screenshots/attempt-001/criterion-18-final.png"
+      "screenshots/attempt-002/criterion-18-initial.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added a new Automobile Call layer with default date/filter scope.",
-      "Waited for the Call points request; observed HTTP 500.",
-      "Could not obtain a Call result with related Service Details; unrelated Surveyor results were not substituted."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call points return HTTP 500; no selected Call result with related service information could be established to open Service Details.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "No selected Call result with related service information could be obtained. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "Call technology legends and filters include 2G, 3G, 4G, and 5G SA and exclude 5G NSA.",
     "outcome": "Failed",
     "evidence": [
-      "screenshots/attempt-001/criterion-19-initial.png",
-      "screenshots/attempt-001/criterion-19-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-19-before-select-call.png",
-      "screenshots/attempt-001/criterion-19-after-select-call.png",
-      "screenshots/attempt-001/criterion-19-final.png",
-      "screenshots/attempt-001/criterion-19-cleanup.png"
+      "screenshots/attempt-002/criterion-19-initial.png",
+      "screenshots/attempt-002/criterion-19-after-open-gis.png",
+      "screenshots/attempt-002/criterion-19-before-configure-call.png",
+      "screenshots/attempt-002/criterion-19-final.png"
     ],
     "steps_taken": [
-      "Restarted this criterion independently from launcher, opened GIS and Automobile configuration.",
-      "Selected Call and observed 2G, 3G, 4G, 5G SA and 5G NSA technology filters.",
-      "Scrolled the Call configuration to 5G NSA and verified it is enabled and checked.",
-      "Captured the visible 5G NSA checkbox and actual GIS URL before cancelling the configuration."
+      "Started at the launcher, captured initial state and opened GIS.",
+      "Observed the visible 5G NSA CSR [%] legend group and captured it before configuration.",
+      "Opened Configure Automobile - Call, verified Test type was Call, and inspected the technology filters.",
+      "Scrolled the checked 5G NSA checkbox into the viewport, saved the decisive final PNG and read the actual GIS URL.",
+      "Closed configuration without applying changes and captured cleanup."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call technology filters include an enabled, checked 5G NSA option, contrary to the explicit exclusion requirement.",
-    "retryClass": "product",
     "browserName": "Google Chrome",
-    "browserVersion": "155.0.8059.85"
+    "browserVersion": "155.0.8059.85",
+    "reason": "The Call CSR legend includes a 5G NSA CSR [%] group, and the Call configuration exposes a checked 5G NSA technology filter. This directly contradicts the required exclusion of 5G NSA. Required 2G, 3G, 4G and 5G SA options are also present.",
+    "retryClass": "product"
   },
   {
     "criterion": "Requesting details for a selected result with no duration displays a clear no-data message.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-20-initial.png",
-      "screenshots/attempt-001/criterion-20-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-20-before-select-call.png",
-      "screenshots/attempt-001/criterion-20-before-add-call.png",
-      "screenshots/attempt-001/criterion-20-after-add-call.png",
-      "screenshots/attempt-001/criterion-20-final.png",
-      "screenshots/attempt-001/criterion-20-cleanup.png"
+      "screenshots/attempt-002/criterion-20-initial.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added new Call layer.",
-      "Waited for Call data; points request returned HTTP 500.",
-      "Could not obtain the required no-duration Call result."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call points returned HTTP 500; no selected Call result with no duration was available to request its details and verify the no-data message.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "No Call result with missing duration could be identified or selected to request its details. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   },
   {
     "criterion": "When point or service details cannot be returned, the selected item does not show stale detail data.",
     "outcome": "Blocked",
     "evidence": [
-      "screenshots/attempt-001/criterion-21-initial.png",
-      "screenshots/attempt-001/criterion-21-before-open-automobile.png",
-      "screenshots/attempt-001/criterion-21-before-select-call.png",
-      "screenshots/attempt-001/criterion-21-before-add-call.png",
-      "screenshots/attempt-001/criterion-21-after-add-call.png",
-      "screenshots/attempt-001/criterion-21-final.png",
-      "screenshots/attempt-001/criterion-21-cleanup.png"
+      "screenshots/attempt-002/criterion-21-initial.png"
     ],
     "steps_taken": [
-      "Started independently at launcher and added new Call layer.",
-      "Waited for Call data; points request returned HTTP 500.",
-      "Could not establish a selected Call result with returned details, followed by a result whose point/service details cannot be returned."
+      "Navigated to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Stopped at the previously reproduced shared Call-data prerequisite; did not issue another failing points request for this dependent criterion.",
+      "Read the actual current browser URL."
     ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
-    "reason": "Call points returned HTTP 500 before any Call result could be selected. No established Call/Service detail baseline and selected unavailable-detail result were available to test stale-data prevention.",
-    "retryClass": "transient",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
     "browserName": "Google Chrome",
     "browserVersion": "155.0.8059.85",
-    "blockerCode": "call_points_service_error"
+    "reason": "No selectable PointID or successful prior detail state was available to test stale data handling when point/service detail retrieval fails. GET /api/platform/automobile/call/points returned HTTP 500 on the initial Call load and again on a controlled fresh launcher-to-GIS load. This is an HTTP failure, not a settled empty result. No visible HTTP error banner was exposed. Call points, stable PointIDs and associated detail fixtures could not be obtained.",
+    "retryClass": "transient",
+    "blockerCode": "call_points_http_500"
   }
 ]
