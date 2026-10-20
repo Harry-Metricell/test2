@@ -1,0 +1,384 @@
+{
+  "handoffId": "handoff-TEST2-79-retry-attempt-002",
+  "handoffVersion": "TEST2-79:test_ticket:2",
+  "ticket": "TEST2-79",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "With neither layer selected, the map shows no Download or Upload test-result points.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-1-initial.png",
+        "screenshots/attempt-002/criterion-1-before-automobile.png",
+        "screenshots/attempt-002/criterion-1-after-automobile.png",
+        "screenshots/attempt-002/criterion-1-before-cancel.png",
+        "screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured its visible initial state.",
+        "Opened GIS and observed the settled map with no selected layers or test-result points in the visible viewport.",
+        "Opened Automobile configuration without adding any layer; inspected the default HTTP Browsing type.",
+        "Cancelled configuration and captured the unobscured final map with neither Download nor Upload selected."
+      ],
+      "reason": "No Download or Upload test-result points appeared in the visible map viewport. No data or selections were created."
+    },
+    {
+      "criterion": "After selecting Download, the map shows selectable points for matching authorised Download results only.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-2-initial.png",
+        "screenshots/attempt-002/criterion-2-before-automobile.png",
+        "screenshots/attempt-002/criterion-2-after-automobile.png",
+        "screenshots/attempt-002/criterion-2-before-download.png",
+        "screenshots/attempt-002/criterion-2-after-download.png",
+        "screenshots/attempt-002/criterion-2-after-add.png",
+        "screenshots/attempt-002/criterion-2-fresh-before-automobile.png",
+        "screenshots/attempt-002/criterion-2-fresh-before-type.png",
+        "screenshots/attempt-002/criterion-2-fresh-before-download.png",
+        "screenshots/attempt-002/criterion-2-fresh-before-add.png",
+        "screenshots/attempt-002/criterion-2-final.png",
+        "screenshots/attempt-002/criterion-2-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured the initial state.",
+        "Opened GIS, opened Automobile configuration, selected Download and added the layer using default date and technology filters.",
+        "Waited for the map transition and inspected the network request. GET /api/platform/automobile/download/points returned HTTP 500; selectable result points could not be obtained.",
+        "Performed a controlled fresh GIS navigation, reopened Automobile, selected Download and added the layer again. The fresh GET points request also returned HTTP 500.",
+        "Captured the final map and its actual URL, then removed the test-added layer and captured cleanup."
+      ],
+      "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the initial and controlled fresh load. This was a service error, not a settled empty response. Matching authorised Download results and point selectability could not be checked. The screenshots show a selected layer with no result points; the word Error appears in the legend as a category and is not claimed as an HTTP error message. The test-added layer was removed.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient",
+      "networkObservations": [
+        {
+          "method": "GET",
+          "endpointPath": "/api/platform/automobile/download/points",
+          "statusCode": 500,
+          "controlledFreshLoadReproduced": true
+        }
+      ]
+    },
+    {
+      "criterion": "After selecting Upload, the map shows selectable points for matching authorised Upload results only.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-3-initial.png",
+        "screenshots/attempt-002/criterion-3-before-automobile.png",
+        "screenshots/attempt-002/criterion-3-before-type.png",
+        "screenshots/attempt-002/criterion-3-before-upload.png",
+        "screenshots/attempt-002/criterion-3-before-add.png",
+        "screenshots/attempt-002/criterion-3-after-add.png",
+        "screenshots/attempt-002/criterion-3-fresh-before-automobile.png",
+        "screenshots/attempt-002/criterion-3-final.png",
+        "screenshots/attempt-002/criterion-3-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured the initial state.",
+        "Opened GIS, opened Automobile configuration, selected Upload and added the layer using default date and technology filters.",
+        "Waited for the map transition and inspected the network request. GET /api/platform/automobile/upload/points returned HTTP 500; selectable result points could not be obtained.",
+        "Performed a controlled fresh GIS navigation; the Upload layer restored and its fresh GET points request also returned HTTP 500. Attempts to reopen configuration using the pre-reload unselected-layer selector found no element; no extra layer was added.",
+        "Captured the final map and its actual URL, then removed the test-added layer and captured cleanup."
+      ],
+      "reason": "GET /api/platform/automobile/upload/points returned HTTP 500 on the initial and controlled fresh load. This was a service error, not a settled empty response. Matching authorised Upload results and point selectability could not be checked. The screenshots show a selected layer with no result points; the word Error appears in the legend as a category and is not claimed as an HTTP error message. The test-added layer was removed.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient",
+      "networkObservations": [
+        {
+          "method": "GET",
+          "endpointPath": "/api/platform/automobile/upload/points",
+          "statusCode": 500,
+          "controlledFreshLoadReproduced": true
+        }
+      ]
+    },
+    {
+      "criterion": "Selecting a Download result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate, and Wi-Fi Connected.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-4-initial.png",
+        "screenshots/attempt-002/criterion-4-blocked.png",
+        "screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain Download summary dialog because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "Selecting an Upload result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Upload Rate, and Wi-Fi Connected.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-5-initial.png",
+        "screenshots/attempt-002/criterion-5-blocked.png",
+        "screenshots/attempt-002/criterion-5-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain Upload summary dialog because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "The Download result details chart plots Signal Strength in dBm and Download Rate in Mbps over time.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-6-initial.png",
+        "screenshots/attempt-002/criterion-6-blocked.png",
+        "screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain Download chart because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "The Upload result details chart plots Signal Strength in dBm and Upload Rate in Mbps over time.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-7-initial.png",
+        "screenshots/attempt-002/criterion-7-blocked.png",
+        "screenshots/attempt-002/criterion-7-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain Upload chart because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "The Download details table displays MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-8-initial.png",
+        "screenshots/attempt-002/criterion-8-blocked.png",
+        "screenshots/attempt-002/criterion-8-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain Download detailed table because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "The Upload details table displays MSISDN, Start Time, End Time, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-9-initial.png",
+        "screenshots/attempt-002/criterion-9-blocked.png",
+        "screenshots/attempt-002/criterion-9-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain Upload detailed table because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-10-initial.png",
+        "screenshots/attempt-002/criterion-10-blocked.png",
+        "screenshots/attempt-002/criterion-10-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain result-detail signal and rate units because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "For a result whose Error Message is null, the details table displays “No Error”.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-11-initial.png",
+        "screenshots/attempt-002/criterion-11-blocked.png",
+        "screenshots/attempt-002/criterion-11-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain a result with a null Error Message because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-12-initial.png",
+        "screenshots/attempt-002/criterion-12-blocked.png",
+        "screenshots/attempt-002/criterion-12-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain multiple detailed-table rows for sorting because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "Filtering a supported Download or Upload details-table column displays rows matching the applied filter.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-13-initial.png",
+        "screenshots/attempt-002/criterion-13-blocked.png",
+        "screenshots/attempt-002/criterion-13-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain detailed-table rows for filtering because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "Requesting details for a zero-duration test does not open a details dialog.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-14-initial.png",
+        "screenshots/attempt-002/criterion-14-blocked.png",
+        "screenshots/attempt-002/criterion-14-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain a known zero-duration result because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "While result details are loading, the interface shows a loading state without stale or misleading detail data.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-15-initial.png",
+        "screenshots/attempt-002/criterion-15-blocked.png",
+        "screenshots/attempt-002/criterion-15-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain a result whose details can be requested to observe loading because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "If result details fail to load, the interface shows an error state without stale or misleading detail data.",
+      "outcome": "Blocked",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "screenshots/attempt-002/criterion-16-initial.png",
+        "screenshots/attempt-002/criterion-16-blocked.png",
+        "screenshots/attempt-002/criterion-16-final.png"
+      ],
+      "steps_taken": [
+        "Independently navigated to the launcher and captured this criterion's initial state.",
+        "Opened GIS and confirmed the Automobile entry was accessible.",
+        "Stopped at the data prerequisite: both points services had already returned HTTP 500 twice, including controlled fresh loads. Did not repeatedly issue the same failing point requests.",
+        "Captured this criterion's reachable GIS state and final browser URL; no result or detail dialog was available to exercise the assertion."
+      ],
+      "reason": "Cannot obtain a result whose detail request fails because Download and Upload point retrieval failed with HTTP 500 on initial and controlled fresh loads. No result point was selected and this assertion was not exercised. This criterion's screenshots document its independent reachable state; they do not demonstrate a successful empty response or a details error/loading state. No test data was created.",
+      "blockerCode": "data_service_error",
+      "retryClass": "transient"
+    }
+  ],
+  "conciseReport": "Criterion 1 passed for the visible map viewport with neither layer selected. Criteria 2–16 are blocked: GET /api/platform/automobile/download/points and GET /api/platform/automobile/upload/points each returned HTTP 500, reproduced with controlled fresh loads. Point retrieval failed rather than returning a settled empty dataset, so result dialogs, charts, tables, sorting/filtering, zero-duration, and detail loading/error behaviour could not be evaluated. Independent criterion captures are saved. Added layers were removed; no data was created. Chrome 155.0.8059.85 was observed. The legend's Error category is not reported as an HTTP error notification.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-79-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Repeated HTTP 500 responses prevented authorised result-point retrieval and all dependent detail checks. Attempt numbering and further disposition remain with the publisher.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-20T09:13:36.163Z"
+}
