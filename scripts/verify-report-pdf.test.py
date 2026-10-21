@@ -147,6 +147,34 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
         self.assertEqual(VERIFY.normalize_report_text("HTTP 500, not HTTP 200"), "HTTP 500, not HTTP 200")
         self.assertEqual(VERIFY.normalize_report_text("a no- \n\n  duration result"), "a no-duration result")
 
+    def test_assessment_continues_across_repeated_case_table_heading(self):
+        class Page:
+            def __init__(self, value): self.value = value
+            def extract_text(self): return self.value
+        pages = [Page("Overall review outcome: Blocked\nLimitations during Testing: Missing fixture.\n"
+                      "Browser URL(s) recorded after criteria: https://example.test/gis\n"
+                      "Criterion 8 assessment: The response was populated."),
+                 Page("Metricell Limited © 2026 – Refer to Title Page\nCommercial in Confidence\nPage 28\n"
+                      "ID /\nCriterion\nCriteria Tested Expected Result Actual Result / Evidence Path Outcome\n"
+                      "Testing notes: No documented empty response exists.")]
+        note = "Criterion 8 assessment: The response was populated. Testing notes: No documented empty response exists."
+        contract = {"overallOutcome": "Blocked", "limitations": "Missing fixture.", "criterionNotes": [note]}
+        with patch.object(VERIFY, "PdfReader", return_value=type("Reader", (), {"pages": pages})()):
+            self.assertTrue(VERIFY.verify_report_content("ignored.pdf", contract))
+            with self.assertRaisesRegex(SystemExit, "missing report content"):
+                VERIFY.verify_report_content("ignored.pdf", {**contract, "criterionNotes": [note + " Missing conclusion."]})
+
+    def test_table_heading_removal_is_exact_and_boundary_scoped(self):
+        class Page:
+            def __init__(self, value): self.value = value
+            def extract_text(self): return self.value
+        heading = "ID /\nCriterion\nCriteria Tested Expected Result Actual Result / Evidence Path Outcome"
+        body = "\n".join(["real body"] * 13 + [heading, "Outcome remains Blocked."])
+        self.assertIn(heading, VERIFY.report_page_body(Page(body)))
+        self.assertIn("Outcome remains Blocked.", VERIFY.report_page_body(Page(heading + "\nOutcome remains Blocked.")))
+        incomplete = "ID / Criterion Criteria Tested Expected Result Outcome"
+        self.assertIn(incomplete, VERIFY.report_page_body(Page(incomplete)))
+
     def test_rejects_no_evidence_image(self):
         image = patterned_image((20, 40, 60))
         _, missing = VERIFY.match_expected_images([expected("criterion-1.png", image, "source-a")], [])

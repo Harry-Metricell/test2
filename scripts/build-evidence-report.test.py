@@ -19,6 +19,21 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_point_detail_exhibits_omit_layer_setup_but_keep_record_and_radio_proof(self):
+        images = [Path('criterion-1-' + name + '.png') for name in (
+            'before-surveyor', 'service-config', 'service-added', 'cluster',
+            'selected-2g-3g-sa', 'final')]
+        selected = REPORT.report_exhibits(images, 'The Service point details show serving-cell information.')
+        self.assertEqual(selected, images[3:])
+        configured = REPORT.report_exhibits(images, 'The Service point configuration settings remain unchanged.')
+        self.assertIn(images[1], configured)
+
+    def test_building_detail_exhibits_keep_selected_record_not_layer_setup(self):
+        images = [Path('criterion-1-' + name + '.png') for name in (
+            'building-config', 'building-map', 'single-building-map', 'after-point-selection', 'final')]
+        selected = REPORT.report_exhibits(images, 'Selecting a Building point opens its separate dashboard.')
+        self.assertEqual(selected, images[2:])
+
     def test_rebuild_preserves_exact_attempt_date_not_render_date_or_other_history(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -583,11 +598,12 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("Failed", case_text)  # Unverified remains Failed in the PDF convention.
             cases = document.tables[5]
             self.assertEqual(criteria[0], cases.rows[1].cells[1].text)
-            self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[2].cells[0].tables[0].cell(0, 0).text)
+            self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[3].cells[0].tables[0].cell(0, 0).text)
             self.assertIn("A restricted user", cases.rows[4].cells[1].text)
             self.assertEqual(document.tables[3].cell(0, 1).text, 'Outcome')
             self.assertEqual(document.tables[3].cell(2, 1).text, 'Blocked')
-            self.assertIn('Criterion 1 assessment:', cases.rows[3].cells[0].text)
+            self.assertIn('Criterion 1 assessment:', cases.rows[2].cells[0].text)
+            self.assertIsNotNone(cases.rows[2]._tr.trPr.find(REPORT.qn('w:cantSplit')))
             self.assertFalse(cases.autofit)
             summary_heading = next(p for p in document.paragraphs if p.text.strip() == 'Test Summary')
             self.assertTrue(summary_heading.paragraph_format.page_break_before)

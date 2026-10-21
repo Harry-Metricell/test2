@@ -182,9 +182,20 @@ def report_page_body(page):
     """
     lines = (page.extract_text() or "").splitlines()
     footer = re.compile(r"Metricell Limited .* Refer to Title Page|Commercial in Confidence|Page\s+\d+")
-    return "\n".join(line for index, line in enumerate(lines)
-                     if not ((index < 12 or index >= len(lines) - 12)
-                             and footer.fullmatch(line.strip())))
+    lines = [line for index, line in enumerate(lines)
+             if not ((index < 12 or index >= len(lines) - 12)
+                     and footer.fullmatch(line.strip()))]
+    # Word repeats the case-table heading at a page boundary, including when
+    # an assessment continues onto that page. Remove only the complete known
+    # heading near the top, never individual words from assessment text.
+    heading = re.compile(
+        r"ID\s*/\s*Criterion\s+Criteria Tested\s+(?:Steps Taken\s+)?"
+        r"Expected Result\s+Actual Result\s*/\s*Evidence Path\s+Outcome")
+    for start in range(min(12, len(lines))):
+        for end in range(start + 1, min(start + 10, len(lines)) + 1):
+            if heading.fullmatch(normalize_report_text("\n".join(lines[start:end]))):
+                return "\n".join(lines[:start] + lines[end:])
+    return "\n".join(lines)
 
 
 def verify_report_content(pdf_path, content):

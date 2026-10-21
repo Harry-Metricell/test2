@@ -192,10 +192,10 @@ def supporting_captures(candidates, displayed, limit=2):
     selected = []
     seen = set(displayed)
     for image, browser_url in candidates:
-        if not any(term in image.stem.lower() for term in (
+        if not (any(term in image.stem.lower() for term in (
             "after-open-gis", "before-load", "after-open-module",
             "after-open-surveyor-config", "after-open-layer-dialog", "before-confirm-add",
-        )):
+        )) or re.fullmatch(r"criterion-\d+-(?:surveyor-config|service-config|building-config)", image.stem.lower())):
             continue
         digest = hashlib.sha256(image.read_bytes()).hexdigest()
         if digest in seen:
@@ -236,7 +236,8 @@ def report_exhibits(images, criterion, review_reason=""):
         recovery = [image for image in images if image.stem.lower().endswith("-recovery")]
         if len(finals) == 1 and len(recovery) == 1:
             supporting = [image for image in images if any(term in image.stem.lower()
-                          for term in ("genuine-point-baseline", "genuine-target-baseline", "distinct-valid-point"))]
+                          for term in ("genuine-point-baseline", "genuine-target-baseline", "distinct-valid-point",
+                                       "first-record-baseline", "target-genuine-details", "genuine-baseline"))]
             return [finals[0], recovery[0], *supporting]
     # A reviewer may explicitly accept a complete recheck instead of an earlier
     # incomplete journey. Never print the rejected journey as the passed proof.
@@ -456,6 +457,16 @@ def report_exhibits(images, criterion, review_reason=""):
         ):
             continue
         if name.endswith("-initial") and not any(term in lower for term in ("launcher", "starting from")):
+            continue
+        # Layer creation is not proof of point-detail content or an exception
+        # state. Keep technology/record comparisons and unfamiliar captures;
+        # omit only these explicit setup names, never by ticket number.
+        detail_assertion = bool(re.search(r"\b(details?|dashboard|neighbour|floorplans?)\b", lower))
+        configuration_assertion = needs_setup or bool(re.search(r"\b(configure|configuration|settings)\b", lower))
+        if detail_assertion and not configuration_assertion and re.search(
+            r"^criterion-\d+-(?:before-surveyor|surveyor-config|service-config|own-service-config|service-added|"
+            r"own-service-added|before-close-config|building-config|building-map|active-layer-options)$", name
+        ):
             continue
         if any(term in name for term in setup_terms):
             if not (needs_setup and any(term in name for term in ("after-add-dialog", "before-confirm-add"))):
@@ -1073,6 +1084,21 @@ def main():
         for index, value in enumerate(values):
             set_cell(row[index], value)
         assessment = criterion_assessment(item, result)
+        # Read the assessment before the exhibits. A bounded, unsplit notes
+        # row avoids orphaned testing notes after several image pages.
+        if assessment:
+            notes_row = cases.add_row()
+            notes_cell = notes_row.cells[0].merge(notes_row.cells[-1])
+            note = f"Criterion {number} assessment: {assessment}"
+            set_cell(notes_cell, note)
+            assessment_notes.append(note)
+            if len(note) < 2400:
+                notes_row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+            for paragraph in notes_cell.paragraphs:
+                paragraph.paragraph_format.keep_with_next = False
+                paragraph.paragraph_format.space_after = Pt(3)
+                for run in paragraph.runs:
+                    run.bold = False
         if exhibits:
             for cell in row:
                 for paragraph in cell.paragraphs:
@@ -1084,17 +1110,6 @@ def main():
                 add_image_row(cases, row_exhibits, criterion_label=label, focus_region=focus,
                               opening=number == 1 and start == 0,
                               simulation="SIMULATED UI STATE:" in assessment.upper())
-        if assessment:
-            notes_row = cases.add_row()
-            notes_cell = notes_row.cells[0].merge(notes_row.cells[-1])
-            note = f"Criterion {number} assessment: {assessment}"
-            set_cell(notes_cell, note)
-            assessment_notes.append(note)
-            for paragraph in notes_cell.paragraphs:
-                paragraph.paragraph_format.keep_with_next = False
-                paragraph.paragraph_format.space_after = Pt(3)
-                for run in paragraph.runs:
-                    run.bold = False
 
     setup = supporting_captures(setup_candidates, unique_images)
     if setup:
