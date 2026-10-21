@@ -1,0 +1,245 @@
+[
+  {
+    "criterion": "Selecting one Building point opens a separate dashboard for that building once its details load.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-service-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-service-layer.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-active-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Restarted from launcher after recovering a missing screenshot directory and an incorrect navigation; captured a fresh initial state.",
+      "Opened GIS, then Automobile configuration and inspected all Test type choices.",
+      "Selected Automobile Service, added the layer, and inspected its active configuration and nested Test type choices.",
+      "No Building choice was available. Automobile Service points GET /api/platform/automobile/service/points returned HTTP 500 in three tile batches; this is not a Building detail error.",
+      "Removed the test-added Service layer after final capture."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Automobile pre-add and active Service configuration offer Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call, with no Building layer/test type. Required Building point/dashboard is unavailable in the human-confirmed module. Service points HTTP 500 is a separate observed retrieval error, not proof of empty Building data or Building detail failure. No substitution or simulation performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When multiple Building points are selected at one map location, the user can choose which building dashboard to open.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and waited for the visible launcher; saved this criterion's initial PNG.",
+      "Opened GIS and waited for the layer catalogue; saved GIS state.",
+      "Opened Automobile parent configuration; saved configuration state.",
+      "Expanded Test type and observed Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call. Building was absent; saved final blocker and read actual browser URL.",
+      "Dismissed choices and cancelled configuration; verified closure without adding a layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Required Automobile Building layer/point/dashboard is unavailable through the inspected parent configuration; no Building entry among all eight Test type choices. Cannot exercise: When multiple Building points are selected at one map location, the user can choose which building dashboard to open. This criterion has independent launcher/configuration/choice captures. No Building record or Building detail request could be established, so no exception-state simulation was appropriate. No Surveyor substitution performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When the selection contains too many Building points to identify a building, the user is prompted to zoom in or apply filters, and no ambiguous building dashboard opens.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and waited for the visible launcher; saved this criterion's initial PNG.",
+      "Opened GIS and waited for the layer catalogue; saved GIS state.",
+      "Opened Automobile parent configuration; saved configuration state.",
+      "Expanded Test type and observed Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call. Building was absent; saved final blocker and read actual browser URL.",
+      "Dismissed choices and cancelled configuration; verified closure without adding a layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Required Automobile Building layer/point/dashboard is unavailable through the inspected parent configuration; no Building entry among all eight Test type choices. Cannot exercise: When the selection contains too many Building points to identify a building, the user is prompted to zoom in or apply filters, and no ambiguous building dashboard opens. This criterion has independent launcher/configuration/choice captures. No Building record or Building detail request could be established, so no exception-state simulation was appropriate. No Surveyor substitution performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When building information is available, the dashboard shows building and floorplan summary information in sortable and filterable tables.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and waited for the visible launcher; saved this criterion's initial PNG.",
+      "Opened GIS and waited for the layer catalogue; saved GIS state.",
+      "Opened Automobile parent configuration; saved configuration state.",
+      "Expanded Test type and observed Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call. Building was absent; saved final blocker and read actual browser URL.",
+      "Dismissed choices and cancelled configuration; verified closure without adding a layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Required Automobile Building layer/point/dashboard is unavailable through the inspected parent configuration; no Building entry among all eight Test type choices. Cannot exercise: When building information is available, the dashboard shows building and floorplan summary information in sortable and filterable tables. This criterion has independent launcher/configuration/choice captures. No Building record or Building detail request could be established, so no exception-state simulation was appropriate. No Surveyor substitution performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When the building has floorplans, the dashboard displays their images and lets the user select a floorplan.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and waited for the visible launcher; saved this criterion's initial PNG.",
+      "Opened GIS and waited for the layer catalogue; saved GIS state.",
+      "Opened Automobile parent configuration; saved configuration state.",
+      "Expanded Test type and observed Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call. Building was absent; saved final blocker and read actual browser URL.",
+      "Dismissed choices and cancelled configuration; verified closure without adding a layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Required Automobile Building layer/point/dashboard is unavailable through the inspected parent configuration; no Building entry among all eight Test type choices. Cannot exercise: When the building has floorplans, the dashboard displays their images and lets the user select a floorplan. This criterion has independent launcher/configuration/choice captures. No Building record or Building detail request could be established, so no exception-state simulation was appropriate. No Surveyor substitution performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Selecting a floorplan displays its image with the associated survey points overlaid.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and waited for the visible launcher; saved this criterion's initial PNG.",
+      "Opened GIS and waited for the layer catalogue; saved GIS state.",
+      "Opened Automobile parent configuration; saved configuration state.",
+      "Expanded Test type and observed Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call. Building was absent; saved final blocker and read actual browser URL.",
+      "Dismissed choices and cancelled configuration; verified closure without adding a layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Required Automobile Building layer/point/dashboard is unavailable through the inspected parent configuration; no Building entry among all eight Test type choices. Cannot exercise: Selecting a floorplan displays its image with the associated survey points overlaid. This criterion has independent launcher/configuration/choice captures. No Building record or Building detail request could be established, so no exception-state simulation was appropriate. No Surveyor substitution performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When the building has no floorplans, the dashboard displays available building details without an empty floorplan image area.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and waited for the visible launcher; saved this criterion's initial PNG.",
+      "Opened GIS and waited for the layer catalogue; saved GIS state.",
+      "Opened Automobile parent configuration; saved configuration state.",
+      "Expanded Test type and observed Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call. Building was absent; saved final blocker and read actual browser URL.",
+      "Dismissed choices and cancelled configuration; verified closure without adding a layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Required Automobile Building layer/point/dashboard is unavailable through the inspected parent configuration; no Building entry among all eight Test type choices. Cannot exercise: When the building has no floorplans, the dashboard displays available building details without an empty floorplan image area. This criterion has independent launcher/configuration/choice captures. No Building record or Building detail request could be established, so no exception-state simulation was appropriate. No Surveyor substitution performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "While Building data is loading, a loading state is displayed.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and waited for the visible launcher; saved this criterion's initial PNG.",
+      "Opened GIS and waited for the layer catalogue; saved GIS state.",
+      "Opened Automobile parent configuration; saved configuration state.",
+      "Expanded Test type and observed Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call. Building was absent; saved final blocker and read actual browser URL.",
+      "Dismissed choices and cancelled configuration; verified closure without adding a layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Required Automobile Building layer/point/dashboard is unavailable through the inspected parent configuration; no Building entry among all eight Test type choices. Cannot exercise: While Building data is loading, a loading state is displayed. This criterion has independent launcher/configuration/choice captures. No Building record or Building detail request could be established, so no exception-state simulation was appropriate. No Surveyor substitution performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When Building data is unavailable, a no-data state is displayed.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and waited for the visible launcher; saved this criterion's initial PNG.",
+      "Opened GIS and waited for the layer catalogue; saved GIS state.",
+      "Opened Automobile parent configuration; saved configuration state.",
+      "Expanded Test type and observed Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call. Building was absent; saved final blocker and read actual browser URL.",
+      "Dismissed choices and cancelled configuration; verified closure without adding a layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Required Automobile Building layer/point/dashboard is unavailable through the inspected parent configuration; no Building entry among all eight Test type choices. Cannot exercise: When Building data is unavailable, a no-data state is displayed. This criterion has independent launcher/configuration/choice captures. No Building record or Building detail request could be established, so no exception-state simulation was appropriate. No Surveyor substitution performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When Building data fails to load, an error state is displayed without incorrect building data.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-gis.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to the exact launcher URL and waited for the visible launcher; saved this criterion's initial PNG.",
+      "Opened GIS and waited for the layer catalogue; saved GIS state.",
+      "Opened Automobile parent configuration; saved configuration state.",
+      "Expanded Test type and observed Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service and MS Teams Call. Building was absent; saved final blocker and read actual browser URL.",
+      "Dismissed choices and cancelled configuration; verified closure without adding a layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "Required Automobile Building layer/point/dashboard is unavailable through the inspected parent configuration; no Building entry among all eight Test type choices. Cannot exercise: When Building data fails to load, an error state is displayed without incorrect building data. This criterion has independent launcher/configuration/choice captures. No Building record or Building detail request could be established, so no exception-state simulation was appropriate. No Surveyor substitution performed.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_feature_unavailable",
+    "testedModule": "Automobile"
+  }
+]
