@@ -1,0 +1,5 @@
+TEST2-87 — Automobile / Call — Blocked (7/7 criteria).
+
+The human-confirmed Automobile scope exposes exact Call, separately from MS Teams Call and Service. GET /api/platform/automobile/call/points returned HTTP 500, reproduced by a controlled fresh launcher/GIS load. The Automobile - Call map layer and legend were visible, but Call records could not be selected; this was not a settled empty response. Summary, timeline, samples, Serving Cell/CGI fallback, Service drill-down, zero-duration no-data and detail exception states remain untested. The point-request failure does not establish a detail-request error state. No simulation was used.
+
+Every criterion has its own launcher and scope/blocker captures. Criteria 3–7 stop at the established shared retrieval prerequisite without repeating the failing request. Final configuration captures do not claim to prove detail behavior. All created layers were removed and unsaved configurations cancelled. Google Chrome 155.0.8059.85 observed. Backend point retrieval must be restored before these criteria can be exercised.

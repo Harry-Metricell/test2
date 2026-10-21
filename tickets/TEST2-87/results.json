@@ -1,0 +1,204 @@
+[
+  {
+    "criterion": "When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.",
+    "outcome": "Blocked",
+    "testedModule": "Automobile",
+    "retryClass": "prerequisite",
+    "blockerCode": "automobile_call_points_http_500",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-add-automobile.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-test-type-choices.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-call-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS, waited for map loading to end, and captured the baseline before opening Automobile configuration.",
+      "Inspected Automobile Test type choices, which include distinct Call, Service and MS Teams Call options. Selected Call and captured its actual configuration; retained the default date range and filters.",
+      "Added Automobile - Call. Observed the layer and legend, but no selectable Call points; Playwright network observation showed GET /api/platform/automobile/call/points => HTTP 500.",
+      "Captured the criterion's final state and read its actual browser URL before cleanup.",
+      "Removed only the test-created Automobile - Call layer; verified its label was absent and saved a separate cleanup PNG."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "GET /api/platform/automobile/call/points returned HTTP 500 on the first normal load and again after a controlled fresh launcher/GIS load with Automobile > Call selected and the default 90-day range. This is a point-retrieval error, not a settled empty response or a Call detail-request failure. The map displayed the Automobile - Call layer and legend without selectable Call points; no on-screen HTTP error message was observed. Required Call records could not be obtained. No completed Call record was selectable, so the shared detail dialog and summary fields could not be checked.",
+    "cleanup": "Restored: removed the owned layer or cancelled unsaved configuration. No backend, authentication, account, permission or business-data changes; no route handlers installed.",
+    "networkObservations": [
+      {
+        "method": "GET",
+        "endpoint": "/api/platform/automobile/call/points",
+        "status": 500,
+        "controlledFreshLoad": false
+      }
+    ]
+  },
+  {
+    "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
+    "outcome": "Blocked",
+    "testedModule": "Automobile",
+    "retryClass": "prerequisite",
+    "blockerCode": "automobile_call_points_http_500",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-add-automobile.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-test-type-choices.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-call-config-selected.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS, waited for map loading to end, and captured the baseline before opening Automobile configuration.",
+      "Inspected Automobile Test type choices, which include distinct Call, Service and MS Teams Call options. Selected Call and captured its actual configuration; retained the default date range and filters.",
+      "Added Automobile - Call. Observed the layer and legend, but no selectable Call points; Playwright network observation showed GET /api/platform/automobile/call/points => HTTP 500. This independent fresh load reproduced the earlier HTTP 500.",
+      "Captured the criterion's final state and read its actual browser URL before cleanup.",
+      "Removed only the test-created Automobile - Call layer; verified its label was absent and saved a separate cleanup PNG."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "GET /api/platform/automobile/call/points returned HTTP 500 on the first normal load and again after a controlled fresh launcher/GIS load with Automobile > Call selected and the default 90-day range. This is a point-retrieval error, not a settled empty response or a Call detail-request failure. The map displayed the Automobile - Call layer and legend without selectable Call points; no on-screen HTTP error message was observed. Required Call records could not be obtained. No Call record or samples could be retrieved, so the timeline could not be checked.",
+    "cleanup": "Restored: removed the owned layer or cancelled unsaved configuration. No backend, authentication, account, permission or business-data changes; no route handlers installed.",
+    "networkObservations": [
+      {
+        "method": "GET",
+        "endpoint": "/api/platform/automobile/call/points",
+        "status": 500,
+        "controlledFreshLoad": true
+      }
+    ]
+  },
+  {
+    "criterion": "When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.",
+    "outcome": "Blocked",
+    "testedModule": "Automobile",
+    "retryClass": "prerequisite",
+    "blockerCode": "automobile_call_points_http_500",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for the visible launcher and captured this criterion's own initial PNG.",
+      "Opened GIS and captured the baseline, then opened Automobile configuration and captured it.",
+      "Inspected nested Test type choices and selected exact Call, distinct from MS Teams Call. Verified the visible selected type and captured the criterion's final scope/configuration state.",
+      "Stopped at the shared point-retrieval prerequisite: two earlier controlled loads in this attempt returned HTTP 500. Did not issue the same failing point request again or claim that this configuration image proves a detail-state assertion.",
+      "Read the actual final browser URL, cancelled this criterion's unsaved configuration, verified no Automobile - Call layer remained, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "GET /api/platform/automobile/call/points returned HTTP 500 on the first normal load and again after a controlled fresh launcher/GIS load with Automobile > Call selected and the default 90-day range. This is a point-retrieval error, not a settled empty response or a Call detail-request failure. The map displayed the Automobile - Call layer and legend without selectable Call points; no on-screen HTTP error message was observed. Required Call records could not be obtained. No Call record or samples could be retrieved, so table sorting/filtering could not be exercised. The final PNG records the inspected Automobile > Call scope at the blocked boundary; it does not show a detail dialog.",
+    "cleanup": "Restored: removed the owned layer or cancelled unsaved configuration. No backend, authentication, account, permission or business-data changes; no route handlers installed.",
+    "networkObservations": []
+  },
+  {
+    "criterion": "For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.",
+    "outcome": "Blocked",
+    "testedModule": "Automobile",
+    "retryClass": "prerequisite",
+    "blockerCode": "automobile_call_points_http_500",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for the visible launcher and captured this criterion's own initial PNG.",
+      "Opened GIS and captured the baseline, then opened Automobile configuration and captured it.",
+      "Inspected nested Test type choices and selected exact Call, distinct from MS Teams Call. Verified the visible selected type and captured the criterion's final scope/configuration state.",
+      "Stopped at the shared point-retrieval prerequisite: two earlier controlled loads in this attempt returned HTTP 500. Did not issue the same failing point request again or claim that this configuration image proves a detail-state assertion.",
+      "Read the actual final browser URL, cancelled this criterion's unsaved configuration, verified no Automobile - Call layer remained, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "GET /api/platform/automobile/call/points returned HTTP 500 on the first normal load and again after a controlled fresh launcher/GIS load with Automobile > Call selected and the default 90-day range. This is a point-retrieval error, not a settled empty response or a Call detail-request failure. The map displayed the Automobile - Call layer and legend without selectable Call points; no on-screen HTTP error message was observed. Required Call records could not be obtained. No Call samples could be retrieved, so known Serving Cell and CGI fallback values could not be checked. The final PNG records the inspected Automobile > Call scope at the blocked boundary; it does not show a detail dialog.",
+    "cleanup": "Restored: removed the owned layer or cancelled unsaved configuration. No backend, authentication, account, permission or business-data changes; no route handlers installed.",
+    "networkObservations": []
+  },
+  {
+    "criterion": "Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.",
+    "outcome": "Blocked",
+    "testedModule": "Automobile",
+    "retryClass": "prerequisite",
+    "blockerCode": "automobile_call_points_http_500",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for the visible launcher and captured this criterion's own initial PNG.",
+      "Opened GIS and captured the baseline, then opened Automobile configuration and captured it.",
+      "Inspected nested Test type choices and selected exact Call, distinct from MS Teams Call. Verified the visible selected type and captured the criterion's final scope/configuration state.",
+      "Stopped at the shared point-retrieval prerequisite: two earlier controlled loads in this attempt returned HTTP 500. Did not issue the same failing point request again or claim that this configuration image proves a detail-state assertion.",
+      "Read the actual final browser URL, cancelled this criterion's unsaved configuration, verified no Automobile - Call layer remained, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "GET /api/platform/automobile/call/points returned HTTP 500 on the first normal load and again after a controlled fresh launcher/GIS load with Automobile > Call selected and the default 90-day range. This is a point-retrieval error, not a settled empty response or a Call detail-request failure. The map displayed the Automobile - Call layer and legend without selectable Call points; no on-screen HTTP error message was observed. Required Call records could not be obtained. No Call sample could be selected, so related Automobile Service details at its timestamp could not be opened. The final PNG records the inspected Automobile > Call scope at the blocked boundary; it does not show a detail dialog.",
+    "cleanup": "Restored: removed the owned layer or cancelled unsaved configuration. No backend, authentication, account, permission or business-data changes; no route handlers installed.",
+    "networkObservations": []
+  },
+  {
+    "criterion": "When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.",
+    "outcome": "Blocked",
+    "testedModule": "Automobile",
+    "retryClass": "prerequisite",
+    "blockerCode": "automobile_call_points_http_500",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for the visible launcher and captured this criterion's own initial PNG.",
+      "Opened GIS and captured the baseline, then opened Automobile configuration and captured it.",
+      "Inspected nested Test type choices and selected exact Call, distinct from MS Teams Call. Verified the visible selected type and captured the criterion's final scope/configuration state.",
+      "Stopped at the shared point-retrieval prerequisite: two earlier controlled loads in this attempt returned HTTP 500. Did not issue the same failing point request again or claim that this configuration image proves a detail-state assertion.",
+      "Read the actual final browser URL, cancelled this criterion's unsaved configuration, verified no Automobile - Call layer remained, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "GET /api/platform/automobile/call/points returned HTTP 500 on the first normal load and again after a controlled fresh launcher/GIS load with Automobile > Call selected and the default 90-day range. This is a point-retrieval error, not a settled empty response or a Call detail-request failure. The map displayed the Automobile - Call layer and legend without selectable Call points; no on-screen HTTP error message was observed. Required Call records could not be obtained. No zero-duration Call record could be selected, so the detail dialog's no-data behavior could not be checked. The final PNG records the inspected Automobile > Call scope at the blocked boundary; it does not show a detail dialog.",
+    "cleanup": "Restored: removed the owned layer or cancelled unsaved configuration. No backend, authentication, account, permission or business-data changes; no route handlers installed.",
+    "networkObservations": []
+  },
+  {
+    "criterion": "While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.",
+    "outcome": "Blocked",
+    "testedModule": "Automobile",
+    "retryClass": "prerequisite",
+    "blockerCode": "automobile_call_points_http_500",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-automobile-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "steps_taken": [
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for the visible launcher and captured this criterion's own initial PNG.",
+      "Opened GIS and captured the baseline, then opened Automobile configuration and captured it.",
+      "Inspected nested Test type choices and selected exact Call, distinct from MS Teams Call. Verified the visible selected type and captured the criterion's final scope/configuration state.",
+      "Stopped at the shared point-retrieval prerequisite: two earlier controlled loads in this attempt returned HTTP 500. Did not issue the same failing point request again or claim that this configuration image proves a detail-state assertion.",
+      "Read the actual final browser URL, cancelled this criterion's unsaved configuration, verified no Automobile - Call layer remained, and captured cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "reason": "GET /api/platform/automobile/call/points returned HTTP 500 on the first normal load and again after a controlled fresh launcher/GIS load with Automobile > Call selected and the default 90-day range. This is a point-retrieval error, not a settled empty response or a Call detail-request failure. The map displayed the Automobile - Call layer and legend without selectable Call points; no on-screen HTTP error message was observed. Required Call records could not be obtained. No Call record/detail request could be established, so detail loading, unavailable and error states could not be tested. The failing points request is not the detail endpoint. No simulation was installed. The final PNG records the inspected Automobile > Call scope at the blocked boundary; it does not show a detail dialog.",
+    "cleanup": "Restored: removed the owned layer or cancelled unsaved configuration. No backend, authentication, account, permission or business-data changes; no route handlers installed.",
+    "networkObservations": []
+  }
+]
