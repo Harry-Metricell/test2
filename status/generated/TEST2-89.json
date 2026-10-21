@@ -1,6 +1,25 @@
 {
   "key": "TEST2-89",
   "cycleId": "cycle-001",
+  "testingContext": {
+    "schema": "v4-qa-testing-context.v1",
+    "ticket": "TEST2-89",
+    "source": {
+      "key": "VM2ST-101",
+      "url": "https://metricell.atlassian.net/browse/VM2ST-101",
+      "parent": {
+        "key": "VM2ST-66",
+        "summary": "Automobile Migration"
+      }
+    },
+    "targetModule": "Automobile",
+    "targetLayer": "MS Teams Call",
+    "resolution": {
+      "authority": "human",
+      "confirmedAt": "2026-10-21",
+      "reason": "User confirmed this copied batch is for Automobile migration. Source Jira remains read-only; do not substitute Surveyor."
+    }
+  },
   "id": "106645",
   "summary": "Map and inspect MS Teams Call results",
   "jira": {
