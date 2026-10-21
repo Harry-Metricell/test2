@@ -1,0 +1,239 @@
+{
+  "handoffId": "handoff-TEST2-86-cycle-002-retry-attempt-002",
+  "handoffVersion": "TEST2-86:cycle-002:test_ticket:2:scope-b3f8286df37f",
+  "ticket": "TEST2-86",
+  "cycleId": "cycle-002",
+  "testedModule": "Automobile",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Given a completed Upload test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Upload Rate, and Wi-Fi connection status.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-before-automobile.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-automobile-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-test-types.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-upload-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-after-add-upload.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the authenticated launcher, and captured this criterion's initial PNG.",
+        "Opened GIS and captured the map before opening Automobile.",
+        "Opened Automobile and captured its configuration and nested Test type choices.",
+        "Selected Upload, retained the default date range and filters, captured the selected configuration, and added the Automobile - Upload map layer.",
+        "Observed GET /api/platform/automobile/upload/points return 500, with a problem response reporting status 500. No point could be selected.",
+        "Captured this criterion's own post-add and final map states and read the current browser URL before cleanup.",
+        "Removed only the test-created Automobile - Upload layer, verified that its map-layer panel/legend disappeared, and captured cleanup separately."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not select a completed Upload test or load its summary. Its PNGs document module configuration and the blocked map state, not successful detail behavior.",
+      "blockers": [
+        "Could not select a completed Upload test or load its summary."
+      ],
+      "cleanupEvidence": [
+        ".agent-staging/handoff-TEST2-86-cycle-002-retry-attempt-002/screenshots/criterion-1-cleanup.png"
+      ]
+    },
+    {
+      "criterion": "Given Upload samples are available, a time-series chart shows Signal Strength in dBm and Upload Rate in Mbps across the test duration.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-before-automobile.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-automobile-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-test-types.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-upload-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-after-add-upload.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the authenticated launcher, and captured this criterion's initial PNG.",
+        "Opened GIS and captured the map before opening Automobile.",
+        "Opened Automobile and captured its configuration and nested Test type choices.",
+        "Selected Upload, retained the default date range and filters, captured the selected configuration, and added the Automobile - Upload map layer.",
+        "Controlled fresh load independently reproduced GET /api/platform/automobile/upload/points returning 500 with a problem response reporting status 500. No point could be selected.",
+        "Captured this criterion's own post-add and final map states and read the current browser URL before cleanup.",
+        "Removed only the test-created Automobile - Upload layer, verified that its map-layer panel/legend disappeared, and captured cleanup separately."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not obtain Upload samples or open the test-duration chart. Its PNGs document module configuration and the blocked map state, not successful detail behavior.",
+      "blockers": [
+        "Could not obtain Upload samples or open the test-duration chart."
+      ],
+      "cleanupEvidence": [
+        ".agent-staging/handoff-TEST2-86-cycle-002-retry-attempt-002/screenshots/criterion-2-cleanup.png"
+      ]
+    },
+    {
+      "criterion": "Given per-sample Upload data is available, each returned sample is shown in a table with its relevant units.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [],
+      "steps_taken": [
+        "Assessed this criterion's specific data prerequisite against the repeated Automobile Upload point-retrieval blocker established by the initial and controlled fresh loads.",
+        "Did not repeat the same failing point request or execute a dependent detail action; no selectable record or detail request was available."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not obtain returned per-sample Upload rows or inspect their units. This criterion was dependency-blocked before its own browser execution. No criterion-specific detail-state PNG or final URL was obtainable; evidence from other criteria has not been reused.",
+      "blockers": [
+        "Could not obtain returned per-sample Upload rows or inspect their units."
+      ]
+    },
+    {
+      "criterion": "Given the per-sample table contains multiple rows, sorting by a displayed column changes their visible order according to that column.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [],
+      "steps_taken": [
+        "Assessed this criterion's specific data prerequisite against the repeated Automobile Upload point-retrieval blocker established by the initial and controlled fresh loads.",
+        "Did not repeat the same failing point request or execute a dependent detail action; no selectable record or detail request was available."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not obtain a populated per-sample table needed to test sorting. This criterion was dependency-blocked before its own browser execution. No criterion-specific detail-state PNG or final URL was obtainable; evidence from other criteria has not been reused.",
+      "blockers": [
+        "Could not obtain a populated per-sample table needed to test sorting."
+      ]
+    },
+    {
+      "criterion": "Given per-sample data is available, filtering the table shows only rows matching the selected filter.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [],
+      "steps_taken": [
+        "Assessed this criterion's specific data prerequisite against the repeated Automobile Upload point-retrieval blocker established by the initial and controlled fresh loads.",
+        "Did not repeat the same failing point request or execute a dependent detail action; no selectable record or detail request was available."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not obtain per-sample rows needed to test filtering. This criterion was dependency-blocked before its own browser execution. No criterion-specific detail-state PNG or final URL was obtainable; evidence from other criteria has not been reused.",
+      "blockers": [
+        "Could not obtain per-sample rows needed to test filtering."
+      ]
+    },
+    {
+      "criterion": "Given average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear in the summary immediately after Upload Rate.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [],
+      "steps_taken": [
+        "Assessed this criterion's specific data prerequisite against the repeated Automobile Upload point-retrieval blocker established by the initial and controlled fresh loads.",
+        "Did not repeat the same failing point request or execute a dependent detail action; no selectable record or detail request was available."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not obtain a completed test with returned average signal metrics. This criterion was dependency-blocked before its own browser execution. No criterion-specific detail-state PNG or final URL was obtainable; evidence from other criteria has not been reused.",
+      "blockers": [
+        "Could not obtain a completed test with returned average signal metrics."
+      ]
+    },
+    {
+      "criterion": "Given the selected Upload point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [],
+      "steps_taken": [
+        "Assessed this criterion's specific data prerequisite against the repeated Automobile Upload point-retrieval blocker established by the initial and controlled fresh loads.",
+        "Did not repeat the same failing point request or execute a dependent detail action; no selectable record or detail request was available."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not select an Upload point with no measurable duration; a failed point-list request does not establish no-data behavior. This criterion was dependency-blocked before its own browser execution. No criterion-specific detail-state PNG or final URL was obtainable; evidence from other criteria has not been reused.",
+      "blockers": [
+        "Could not select an Upload point with no measurable duration; a failed point-list request does not establish no-data behavior."
+      ]
+    },
+    {
+      "criterion": "While Upload details are loading, the detail presentation shows the standard loading state.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [],
+      "steps_taken": [
+        "Assessed this criterion's specific data prerequisite against the repeated Automobile Upload point-retrieval blocker established by the initial and controlled fresh loads.",
+        "Did not repeat the same failing point request or execute a dependent detail action; no selectable record or detail request was available."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not establish a selected record and genuine point-detail endpoint, so loading-state simulation is not permitted. This criterion was dependency-blocked before its own browser execution. No criterion-specific detail-state PNG or final URL was obtainable; evidence from other criteria has not been reused.",
+      "blockers": [
+        "Could not establish a selected record and genuine point-detail endpoint, so loading-state simulation is not permitted."
+      ]
+    },
+    {
+      "criterion": "When Upload details are unavailable, the detail presentation shows the standard no-data state.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [],
+      "steps_taken": [
+        "Assessed this criterion's specific data prerequisite against the repeated Automobile Upload point-retrieval blocker established by the initial and controlled fresh loads.",
+        "Did not repeat the same failing point request or execute a dependent detail action; no selectable record or detail request was available."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not establish a selected record, genuine point-detail endpoint, or authoritative empty-response contract, so unavailable-detail simulation is not permitted. This criterion was dependency-blocked before its own browser execution. No criterion-specific detail-state PNG or final URL was obtainable; evidence from other criteria has not been reused.",
+      "blockers": [
+        "Could not establish a selected record, genuine point-detail endpoint, or authoritative empty-response contract, so unavailable-detail simulation is not permitted."
+      ]
+    },
+    {
+      "criterion": "When loading Upload details fails, the detail presentation shows the standard error state and does not display incorrect data.",
+      "outcome": "Blocked",
+      "testedModule": "Automobile",
+      "retryClass": "prerequisite",
+      "blockerCode": "automobile_upload_points_http_500",
+      "evidence": [],
+      "steps_taken": [
+        "Assessed this criterion's specific data prerequisite against the repeated Automobile Upload point-retrieval blocker established by the initial and controlled fresh loads.",
+        "Did not repeat the same failing point request or execute a dependent detail action; no selectable record or detail request was available."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. Could not establish a selected record and genuine point-detail endpoint; the point-list HTTP 500 is not a detail-load failure and cannot verify this criterion. This criterion was dependency-blocked before its own browser execution. No criterion-specific detail-state PNG or final URL was obtainable; evidence from other criteria has not been reused.",
+      "blockers": [
+        "Could not establish a selected record and genuine point-detail endpoint; the point-list HTTP 500 is not a detail-load failure and cannot verify this criterion."
+      ]
+    }
+  ],
+  "conciseReport": "# TEST2-86 — cycle-002\n\nBlocked: 10/10 criteria. Tested module: Automobile; nested test type: Upload. GET /api/platform/automobile/upload/points returned HTTP 500 on both the original load and one controlled fresh load from the authenticated launcher. Filter-options returned 200. This is not an empty-data result. No Upload point could be selected, so summary, chart, samples, sorting, filtering, metrics and detail exception states could not be exercised. The failed point-list request is not evidence of failed point-detail handling. Criteria 1–2 have independent configuration/map captures; criteria 3–10 are dependency-blocked with no reused evidence or claimed execution. No simulation was installed because a selected record and genuine detail request could not be established. Test-created layers were removed after both loads. Browser observed: Google Chrome 155.0.8059.85.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-86-cycle-002-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Automobile > Upload is available in its actual nested Test type choices. GET /api/platform/automobile/upload/points returned HTTP 500 on the initial load and again on a controlled fresh launcher-to-GIS load; /api/platform/automobile/filter-options returned 200. The response is an HTTP error, not a settled empty result. No selectable Upload point or point-detail request was obtained. The visible map retained the Automobile - Upload layer and its Upload Rate legend, without selectable point data or an on-screen HTTP status message. The legend's Error category is not treated as a point-detail error state. All criteria depend on retrieving an Upload point. The repeated data-service failure is classified prerequisite, without claiming a product failure of untested detail behavior.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-21T13:32:42.675Z"
+}
