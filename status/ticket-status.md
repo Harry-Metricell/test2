@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-10-21T09:50:06.904+0100
+Updated: 2026-10-21T12:05:59.887+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
@@ -9,7 +9,7 @@ Updated: 2026-10-21T09:50:06.904+0100
 | TEST2-82 | READY FOR TESTING | Blocked |  | Display Ping Point Details |
 | TEST2-83 | READY FOR TESTING | Blocked |  | Display Service Point Details |
 | TEST2-84 | READY FOR TESTING | Blocked |  | View Building Details and Floorplans |
-| TEST2-85 | READY FOR TESTING | Blocked | Retry 1/1 | Display Download Point Details |
+| TEST2-85 | READY FOR TESTING | Ready for Testing |  | Display Download Point Details |
 | TEST2-86 | READY FOR TESTING | Blocked | Retry 1/1 | Display Upload Point Details |
 | TEST2-87 | READY FOR TESTING | Blocked | Retry 1/1 | Display Call Point Details |
 | TEST2-88 | READY FOR TESTING | Blocked | Retry 1/1 | Configure MS Teams Call map display settings |

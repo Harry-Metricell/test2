@@ -1,6 +1,6 @@
 {
   "key": "TEST2-85",
-  "cycleId": "cycle-001",
+  "cycleId": "cycle-002",
   "id": "106641",
   "summary": "Display Download Point Details",
   "jira": {
@@ -11,7 +11,7 @@
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:11:48.989+0100",
-    "updated": "2026-10-19T14:14:05.978+0100"
+    "updated": "2026-10-21T12:05:59.887+0100"
   },
   "description": "As a SmartTools map user\nI want to view the details of a Download point\nSo that I can investigate download performance at the selected location.\nIssue/Change Description:\nWhen a user opens a Download point through the shared point-detail dialog, show the test summary, a time-series chart, and the returned per-sample data.\nThe test summary includes the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Download Rate, and Wi-Fi connection status. The chart shows signal strength and Download Rate over the test duration. Where returned, display Average Signal Strength, Average Signal Quality, and Average SNR immediately after Download Rate.\nPoint selection, dialog behaviour, and the mini-map are covered by the preceding shared stories.\nAcceptance Criteria:\nGiven a completed Download test is selected, its summary shows the available test and device information, including Download Rate and Wi-Fi connection status.\nGiven Download samples are available, a time-series chart shows Signal Strength in dBm and Download Rate in Mbps over the test duration.\nGiven per-sample data is available, it is displayed in a sortable and filterable table with the relevant units.\nGiven average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear immediately after Download Rate.\nGiven the selected Download point has no measurable duration, the user receives the standard no-data state rather than an empty detail view.\nGiven Download details are loading, unavailable, or fail to load, a standard loading, no-data, or error state is shown without displaying incorrect data.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -32,23 +32,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106641",
-    "importedAt": "2026-10-19T14:14:05.978+0100"
+    "importedAt": "2026-10-21T12:05:59.887+0100"
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Blocked",
-    "qaStatus": "Blocked",
-    "qaOutcome": "Blocked",
+    "workflowState": "Ready",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required after retry limit",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 1,
-    "testAttempts": 2,
-    "blockedStage": "reviewed",
-    "updatedAt": "2026-10-19T14:09:27.980Z",
+    "retries": 0,
+    "testAttempts": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-21T12:05:59.887+0100",
     "criteriaVerified": true
   }
 }
