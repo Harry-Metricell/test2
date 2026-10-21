@@ -1,8 +1,24 @@
-TEST2-82 — Automobile / Ping, cycle-004
+# TEST2-82 Evidence Review
 
-- Passed: Ping Time in ms, returned attributes, and genuine 5G NSA-only point details.
-- Failed: SIMULATED UI STATE — delaying the exact selected-point read for about 28 seconds showed no loading presentation. Real response/recovery verified.
-- Blocked: no-data state needs an unavailable fixture or authoritative empty-response contract; no empty response was invented.
-- Passed: SIMULATED UI STATE — scoped HTTP 503 showed the error state without stale attributes. Real Retry recovery and handler cleanup verified; UI handling only.
+- **Ticket:** TEST2-82 — Display Ping Point Details
+- **QA status:** Blocked
+- **Overall outcome:** Blocked
+- **Evidence reviewed:** attempt-001
+- **Report:** [Evidence report](report.pdf)
 
-Google Chrome 155.0.8059.85. Independent launcher/destination evidence per criterion. Original Automobile HTTP Browsing type and all technology selections restored; owned routes and test-created Ping tabs removed. Cleanup limitation: original pre-existing HTTP Browsing detail-panel selection was closed and not restored. Independent evidence review remains required.
+## Criterion results
+
+1. **Passed:** When a selected Ping point’s details have loaded, the detail view shows that point’s Ping Time with the unit milliseconds (ms).
+   - criterion-1-test-types.png shows Ping nested under Automobile; criterion-1-ping-map.png establishes the applied Automobile - Ping layer, and criterion-1-final.png shows selected Test ID 131925029 with Ping Time (ms) 0. The reported genuine Automobile detail response matches that identity/value; a failed measurement is not a failed detail load. criterion-1-after-apply.png still shows the prior HTTP Browsing table, so the later Ping map/final are decisive.
+2. **Passed:** When Ping attributes are returned for the selected point, the detail view displays those attributes alongside the Ping Time.
+   - criterion-2-final.png shows Test ID 131925029 with Ping Time (ms) 0 alongside Jitter (ms) 0, Service/Data Technology 2G, Band 900 and Phone Status In Service, matching the reported genuine Automobile Ping response. criterion-2-before-select.png is still loading the map; the final image proves the required populated presentation.
+3. **Passed:** With 5G NSA as the only selected technology, opening a Ping point displays details for that selected point without an error state.
+   - criterion-3-before-deselect-1.png through criterion-3-after-deselect-5.png show the criterion-owned configuration sequence leaving only 5G NSA checked. criterion-3-after-apply.png shows the filtered Automobile - Ping map, and criterion-3-final.png shows Test ID 131925408, Service/Data Technology 5G NSA, Ping Time (ms) 34 and Jitter (ms) 2 without an error. Reported Automobile requests use technologies=13/[13] and match the displayed record.
+4. **Failed:** While Ping details are loading, the detail view shows a loading state.
+   - SIMULATED UI STATE: Browser-local delay of approximately 28,056 ms on POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/ping/cluster-details, scoped to mercatorKey 864691681432175934 / established point 131925029; no response body or success was fabricated. criterion-4-genuine-details.png establishes the target, criterion-4-before-delayed-select.png shows the cleared map, and criterion-4-final.png during the reported intercepted pending request shows no detail panel or visible loading presentation. criterion-4-recovery.png shows target 131925029 after the unchanged real 200 response was released. This contradicts loading feedback at the map-to-point-detail boundary; it does not establish backend latency or a separate analysis-panel defect. Results record request settlement, exact owned handler removal and absent simulation state.
+5. **Blocked:** When Ping details are unavailable, the detail view shows a no-data state.
+   - Blocked because no genuine unavailable Ping fixture/response or authoritative empty-response contract for the Automobile detail endpoint was established. criterion-5-before-open-point.png contains two populated Ping records; criterion-5-final.png shows populated Test ID 132646698 with Ping Time 41 ms and Jitter 8 ms, not a no-data state. Testing the no-data condition could not be completed; require a genuine unavailable record/response or an authoritative endpoint schema before simulation.
+6. **Passed:** When Ping details fail to load, the detail view shows an error state and does not display data as if it belonged to the selected point.
+   - SIMULATED UI STATE: A standard HTTP 503 (RFC 9110 section 15.6.4), text/plain synthetic Service Unavailable body, was injected only for POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/ping/cluster-details and mercatorKey 864691681432175934, established by the genuine UI response as point 131925029. criterion-6-target-genuine.png establishes the target; criterion-6-baseline-list.png and criterion-6-baseline-details.png establish distinct prior point 132646698 (41 ms, Jitter 8 ms), retained in criterion-6-before-error-select.png. criterion-6-final.png shows the active target error 'Unable to load point details.' and Retry, without prior point values; the prior point remains a separate inactive tab. criterion-6-recovery.png shows genuine target 131925029 after Retry and reported exact route removal. criterion-6-cleanup.png shows Automobile HTTP Browsing restored with Ping tabs closed; results verify absent owned simulation state. UI error handling only, not a naturally occurring backend error. The original pre-existing HTTP Browsing detail-panel selection was not restored.
+
+**Review summary:** Independent review of cycle-004 attempt-001 Automobile/Ping evidence completed. No-data coverage remains blocked by the missing unavailable fixture/empty-response contract. Simulated loading and error checks retain their UI-only limitations and recorded cleanup; the original HTTP Browsing detail-panel selection was not restored.
