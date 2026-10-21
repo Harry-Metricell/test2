@@ -9,8 +9,8 @@
       "Ready": 5
     },
     "byQaOutcome": {
-      "Blocked": 9,
-      "Not Tested": 5
+      "Blocked": 10,
+      "Not Tested": 4
     }
   },
   "policy": {
@@ -80,16 +80,16 @@
       "summary": "Display Service Point Details",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-21T12:55:48.673+0100",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 0,
+      "testAttempts": 1,
       "retryLabel": ""
     },
     {
