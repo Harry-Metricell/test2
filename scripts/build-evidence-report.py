@@ -945,7 +945,7 @@ def main():
     limitations = compact_limitations(review, outcomes, results)
     if any(text(item.get("outcome")).lower() == "unverified" for item in outcomes):
         limitations += " Inconclusive evidence is reported as Failed, but is not a confirmed application defect."
-    limitations += " Defects (No.) counts directly contradicted criteria, not unique Jira bugs; blockers and inconclusive evidence count as zero."
+    limitations += " Pass/Fail use Y/N; blocked criteria are N/N. Defect No counts directly contradicted criteria, not unique Jira bugs; blockers and inconclusive evidence count as zero."
     if no_evidence_block:
         limitations = "No browser evidence was captured; testing could not be completed. " + limitations
     urls = source_urls(results)
@@ -965,7 +965,9 @@ def main():
         set_cell(row[1], value)
 
     summary = doc.tables[3]
-    set_cell(summary.cell(0, 1), "Outcome")
+    set_cell(summary.cell(0, 1), "Pass (Y/N)")
+    set_cell(summary.cell(0, 2), "Fail (Y/N)")
+    set_cell(summary.cell(0, 3), "Defect No")
     repeat_table_header(summary)
     while len(summary.rows) > 1:
         summary._tbl.remove(summary.rows[-1]._tr)
@@ -979,7 +981,7 @@ def main():
         # the distinguishing part of a criterion behind an ellipsis.
         label = report_text(display_criterion(item.get("criterion"), criteria))
         set_cell(row[0], f"{index}. {label}")
-        set_cell(row[1], "Failed (inconclusive)" if raw_outcome == "unverified" else text(item.get("outcome")))
+        set_cell(row[1], "Y" if raw_outcome == "passed" else "N")
         set_cell(row[2], "Y" if raw_outcome in ("failed", "unverified") else "N")
         set_cell(row[3], str(confirmed_defect_count(raw_outcome)))
 

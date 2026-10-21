@@ -587,6 +587,7 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("Unverified criterion(s): 1", cycle.cell(5, 1).text)
             self.assertIn("not a confirmed application defect", cycle.cell(5, 1).text)
             self.assertEqual(document.tables[3].cell(1, 2).text, "Y")
+            self.assertEqual(document.tables[3].cell(1, 1).text, "N")
             self.assertEqual(document.tables[3].cell(1, 3).text, "0")
             self.assertEqual(cycle.cell(6, 1).text, "Blocked")
             self.assertEqual(cycle.cell(7, 1).text, "https://example.test/launcher")
@@ -600,8 +601,10 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertEqual(criteria[0], cases.rows[1].cells[1].text)
             self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[3].cells[0].tables[0].cell(0, 0).text)
             self.assertIn("A restricted user", cases.rows[4].cells[1].text)
-            self.assertEqual(document.tables[3].cell(0, 1).text, 'Outcome')
-            self.assertEqual(document.tables[3].cell(2, 1).text, 'Blocked')
+            self.assertEqual([cell.text for cell in document.tables[3].rows[0].cells][1:],
+                             ['Pass (Y/N)', 'Fail (Y/N)', 'Defect No'])
+            self.assertEqual([cell.text for cell in document.tables[3].rows[2].cells][1:],
+                             ['N', 'N', '0'])
             self.assertIn('Criterion 1 assessment:', cases.rows[2].cells[0].text)
             self.assertIsNotNone(cases.rows[2]._tr.trPr.find(REPORT.qn('w:cantSplit')))
             self.assertFalse(cases.autofit)
@@ -744,6 +747,8 @@ class ResultMatchingTests(unittest.TestCase):
             subprocess.run([sys.executable, str(MODULE), "--template", str(MODULE.parents[1] / "assets/templates/Automated Test Case Template.docx"), "--review-output", str(root / "review.json"), "--criteria", str(root / "criteria.md"), "--results", str(root / "results.json"), "--screenshots", str(root), "--output", str(output), "--image-manifest", str(root / "manifest.json")], check=True)
             document = Document(output)
             self.assertEqual(len(document.inline_shapes), 3)
+            self.assertEqual([cell.text for cell in document.tables[3].rows[1].cells][1:],
+                             ['Y', 'N', '0'])
             manifest = json.loads((root / "manifest.json").read_text())
             self.assertEqual(manifest["embeddedEvidenceImages"], 2)
             self.assertEqual(len(manifest["logicalEvidence"]), 3)
