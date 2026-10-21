@@ -1,7 +1,7 @@
 {
   "ticket": "TEST2-85",
   "criteriaVerified": true,
-  "qaStatus": "Awaiting Evidence Review",
+  "qaStatus": "Blocked",
   "workflowState": "READY FOR TESTING",
   "retries": 1,
   "testAttempts": 2,
