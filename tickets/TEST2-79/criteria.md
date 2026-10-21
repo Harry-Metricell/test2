@@ -1,3 +1,4 @@
+<!-- Testing scope: Automobile. Read config/testing-context/TEST2-79.json for source hierarchy and the human resolution of conflicting links. Do not substitute another module. -->
 <!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
 - [ ] With neither layer selected, the map shows no Download or Upload test-result points.

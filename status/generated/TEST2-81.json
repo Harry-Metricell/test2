@@ -1,6 +1,6 @@
 {
   "key": "TEST2-81",
-  "cycleId": "cycle-001",
+  "cycleId": "cycle-002",
   "testingContext": {
     "schema": "v4-qa-testing-context.v1",
     "ticket": "TEST2-81",
@@ -30,7 +30,7 @@
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:11:40.169+0100",
-    "updated": "2026-10-19T14:13:58.948+0100"
+    "updated": "2026-10-21T17:03:59.645+0100"
   },
   "description": "As a SmartTools user\nI want to view HTTP Browsing, Ping and Video Streaming test results as points on a map and open a detail dialog for an individual point\nSo that I can investigate the specific test result at a location.\nIssue/Change Description:\nProvide direct-map layers for HTTP Browsing, Ping and Video Streaming. Each result is displayed as a selectable map point.\nSelecting a point opens a new point-detail dialog for that exact result. The dialog must show the test type, result time, location, available network technology/context, and the test-specific KPI:\nHTTP Browsing: Page Load Time\nPing: Ping Time\nVideo Streaming: Rebuffer Count\nHTTP Browsing results that end in error must be visually distinct from successful Page Load Time results; a failed result with a zero Page Load Time must not be coloured as successful.\nRoute Replay is out of scope; it will be covered by a separate story.\nDependencies: migrated Automobile map and point-detail data must provide a stable point identifier and the fields required by the dialog.\nQA: verify each test type with representative data, point-to-dialog data matching, failed HTTP result colouring, and empty/error detail responses.\nAcceptance Criteria:\nGiven HTTP Browsing, Ping, or Video Streaming data is available, when its layer is selected, then its results are displayed as points on the map.\nGiven a user clicks a result point, when point details are available, then a new dialog opens for that exact point.\nGiven an HTTP Browsing point is selected, then the dialog displays Page Load Time with the common point context.\nGiven a Ping point is selected, then the dialog displays Ping Time with the common point context.\nGiven a Video Streaming point is selected, then the dialog displays Rebuffer Count with the common point context.\nGiven an HTTP Browsing test ends in error, when its point is rendered, then it is visually distinct from a successful result and is not coloured as a successful Page Load Time result.\nGiven point details cannot be returned, when a user selects a point, then the user receives a clear no-data or error message and no stale detail data is displayed.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -52,23 +52,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106637",
-    "importedAt": "2026-10-19T14:13:58.948+0100"
+    "importedAt": "2026-10-21T17:03:59.645+0100"
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Blocked",
-    "qaStatus": "Blocked",
-    "qaOutcome": "Blocked",
+    "workflowState": "Ready",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required after retry limit",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 1,
-    "testAttempts": 2,
-    "blockedStage": "reviewed",
-    "updatedAt": "2026-10-19T15:52:17.760Z",
+    "retries": 0,
+    "testAttempts": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-21T17:03:59.645+0100",
     "criteriaVerified": true
   }
 }

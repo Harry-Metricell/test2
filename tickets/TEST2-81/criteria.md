@@ -1,3 +1,4 @@
+<!-- Testing scope: Automobile. Read config/testing-context/TEST2-81.json for source hierarchy and the human resolution of conflicting links. Do not substitute another module. -->
 <!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
 - [ ] Given HTTP Browsing results are available, when the HTTP Browsing layer is selected, each supplied result is displayed as a selectable point on the map.

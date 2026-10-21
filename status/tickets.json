@@ -1,16 +1,16 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-21T17:00:50.661+0100",
+  "generatedAt": "2026-10-21T17:03:59.645+0100",
   "counts": {
     "tickets": 14,
-    "handoffs": 1,
+    "handoffs": 4,
     "byWorkflowState": {
-      "Blocked": 13,
-      "Ready": 1
+      "Blocked": 10,
+      "Ready": 4
     },
     "byQaOutcome": {
-      "Blocked": 13,
-      "Not Tested": 1
+      "Blocked": 10,
+      "Not Tested": 4
     }
   },
   "policy": {
@@ -22,39 +22,57 @@
   "tickets": [
     {
       "key": "TEST2-79",
-      "cycleId": "cycle-001",
+      "cycleId": "cycle-002",
       "summary": "Map and inspect Automobile Download and Upload results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-10-19T15:52:17.752Z",
-      "retries": 1,
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-10-21T17:03:56.451+0100",
+      "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 2,
-      "retryLabel": "Retry 1/1"
+      "testAttempts": 0,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-80",
+      "cycleId": "cycle-002",
+      "summary": "Map and inspect Automobile Service results",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-10-21T17:03:58.000+0100",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 0,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-81",
-      "cycleId": "cycle-001",
+      "cycleId": "cycle-002",
       "summary": "Map HTTP Browsing, Ping and Video Streaming point details",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-10-19T15:52:17.760Z",
-      "retries": 1,
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-10-21T17:03:59.645+0100",
+      "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 2,
-      "retryLabel": "Retry 1/1"
+      "testAttempts": 0,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-82",
@@ -123,24 +141,6 @@
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-10-21T13:02:27.370Z",
-      "retries": 1,
-      "retryLimit": 1,
-      "testAttempts": 2,
-      "retryLabel": "Retry 1/1"
-    },
-    {
-      "key": "TEST2-86",
-      "cycleId": "cycle-002",
-      "summary": "Display Upload Point Details",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-10-21T13:15:43.530Z",
       "retries": 1,
       "retryLimit": 1,
       "testAttempts": 2,
@@ -255,9 +255,9 @@
       "retryLabel": "Retry 1/1"
     },
     {
-      "key": "TEST2-80",
-      "cycleId": "cycle-001",
-      "summary": "Map and inspect Automobile Service results",
+      "key": "TEST2-86",
+      "cycleId": "cycle-002",
+      "summary": "Display Upload Point Details",
       "jiraStatus": "To Do",
       "workflowState": "Blocked",
       "qaStatus": "Blocked",
@@ -265,12 +265,12 @@
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-10-19T16:27:04.205+0100",
-      "retries": 0,
+      "nextAction": "Manual review required after retry limit",
+      "updatedAt": "2026-10-21T13:15:43.530Z",
+      "retries": 1,
       "retryLimit": 1,
-      "testAttempts": 1,
-      "retryLabel": ""
+      "testAttempts": 2,
+      "retryLabel": "Retry 1/1"
     }
   ]
 }

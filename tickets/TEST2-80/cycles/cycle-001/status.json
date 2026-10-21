@@ -1,0 +1,15 @@
+{
+  "ticket": "TEST2-80",
+  "jiraStatus": "To Do",
+  "qaStatus": "Blocked",
+  "status": "To Do",
+  "retries": 0,
+  "retryLimit": 1,
+  "testAttempts": 1,
+  "criteriaVerified": true,
+  "blockedStage": "reviewed",
+  "qaOutcome": "Blocked",
+  "workflowState": "Blocked",
+  "nextAction": "Manual review required; final evidence report published",
+  "cycleId": "cycle-001"
+}

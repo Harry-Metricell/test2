@@ -359,19 +359,19 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-10-21T12:55:54.048+0100",
+    "updated": "2026-10-21T17:30:38.832+0100",
     "status": {
-      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10731",
       "description": "",
-      "iconUrl": "https://metricell.atlassian.net/",
-      "name": "READY FOR TESTING",
-      "id": "10735",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/statuses/generic.png",
+      "name": "To Do",
+      "id": "10731",
       "statusCategory": {
-        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
-        "id": 4,
-        "key": "indeterminate",
-        "colorName": "yellow",
-        "name": "In Progress"
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
       }
     }
   },
@@ -395,6 +395,12 @@
         "at": "2026-10-21T12:55:54.048+0100",
         "from": "To Do",
         "to": "READY FOR TESTING"
+      },
+      {
+        "id": "1186675:0",
+        "at": "2026-10-21T17:30:38.832+0100",
+        "from": "READY FOR TESTING",
+        "to": "To Do"
       }
     ]
   }
