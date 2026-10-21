@@ -3,10 +3,9 @@
   "generatedAt": "2026-10-21T13:15:43.530Z",
   "counts": {
     "tickets": 14,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 13,
-      "Ready": 1
+      "Blocked": 14
     },
     "byQaOutcome": {
       "Blocked": 14
@@ -150,13 +149,13 @@
       "cycleId": "cycle-002",
       "summary": "Display Call Point Details",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-21T12:55:55.496+0100",
       "retries": 0,
       "retryLimit": 1,
