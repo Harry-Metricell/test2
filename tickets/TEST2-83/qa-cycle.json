@@ -1,14 +1,16 @@
 {
   "schema": "v4-qa-cycle.v1",
-  "cycleId": "cycle-002",
+  "cycleId": "cycle-003",
   "sourceHash": "4f9693642c77280ff393c6a7601825a62a3a9792ccd70b0dd11f18474a092659",
   "processedTransitions": [
     "1186393:0",
     "1186421:0",
-    "1186547:0"
+    "1186547:0",
+    "1186583:0",
+    "1186587:0"
   ],
   "reworkPending": false,
   "lastJiraStatus": "READY FOR TESTING",
-  "startedByTransition": "1186547:0",
-  "startedAt": "2026-10-21T09:50:06.904+0100"
+  "startedByTransition": "1186587:0",
+  "startedAt": "2026-10-21T12:55:48.673+0100"
 }

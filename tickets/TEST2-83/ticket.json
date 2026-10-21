@@ -373,7 +373,7 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-10-21T09:50:06.904+0100",
+    "updated": "2026-10-21T12:55:48.673+0100",
     "status": {
       "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
       "description": "",
@@ -407,6 +407,18 @@
       {
         "id": "1186547:0",
         "at": "2026-10-21T09:50:06.904+0100",
+        "from": "To Do",
+        "to": "READY FOR TESTING"
+      },
+      {
+        "id": "1186583:0",
+        "at": "2026-10-21T12:44:40.281+0100",
+        "from": "READY FOR TESTING",
+        "to": "To Do"
+      },
+      {
+        "id": "1186587:0",
+        "at": "2026-10-21T12:55:48.673+0100",
         "from": "To Do",
         "to": "READY FOR TESTING"
       }

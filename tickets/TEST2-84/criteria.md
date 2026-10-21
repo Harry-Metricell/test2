@@ -1,6 +1,5 @@
+<!-- Testing scope: Automobile. Read config/testing-context/TEST2-84.json for source hierarchy and the human resolution of conflicting links. Do not substitute another module. -->
 <!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
-<!-- Verified testing context (2026-10-21): Surveyor > Active layer: Building. Building is a nested Surveyor choice, not a standalone catalogue entry. Source VM2ST-106 links VM2ST-115 and VM2ST-118, both Surveyor stories. Source references: https://metricell.atlassian.net/browse/VM2ST-106 https://metricell.atlassian.net/browse/VM2ST-115 https://metricell.atlassian.net/browse/VM2ST-118 . Setup/provenance only; acceptance criteria below are unchanged. -->
-
 - [ ] Selecting one Building point opens a separate dashboard for that building once its details load.
 - [ ] When multiple Building points are selected at one map location, the user can choose which building dashboard to open.
 - [ ] When the selection contains too many Building points to identify a building, the user is prompted to zoom in or apply filters, and no ambiguous building dashboard opens.

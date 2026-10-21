@@ -1,6 +1,5 @@
+<!-- Testing scope: Automobile. Read config/testing-context/TEST2-87.json for source hierarchy and the human resolution of conflicting links. Do not substitute another module. -->
 <!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
-<!-- Verified testing context (2026-10-21): Surveyor > Active layer: Call. Source VM2ST-110 links VM2ST-115 and VM2ST-118 (Surveyor point details and layers). This is not Automobile Call or MS Teams Call. Source references: https://metricell.atlassian.net/browse/VM2ST-110 https://metricell.atlassian.net/browse/VM2ST-115 https://metricell.atlassian.net/browse/VM2ST-118 . Setup/provenance only; acceptance criteria below are unchanged. -->
-
 - [ ] When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.
 - [ ] When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.
 - [ ] When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.

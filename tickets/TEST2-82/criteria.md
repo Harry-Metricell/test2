@@ -1,3 +1,4 @@
+<!-- Testing scope: Automobile. Read config/testing-context/TEST2-82.json for source hierarchy and the human resolution of conflicting links. Do not substitute another module. -->
 <!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
 - [ ] When a selected Ping point’s details have loaded, the detail view shows that point’s Ping Time with the unit milliseconds (ms).

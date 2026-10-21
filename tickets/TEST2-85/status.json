@@ -7,6 +7,6 @@
   "testAttempts": 0,
   "retryLimit": 1,
   "cycleId": "cycle-002",
-  "jiraStatus": "To Do",
-  "status": "To Do"
+  "jiraStatus": "READY FOR TESTING",
+  "status": "READY FOR TESTING"
 }
