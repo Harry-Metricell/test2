@@ -19,6 +19,37 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_simulated_state_pairs_final_with_recovery_and_retains_record_baselines(self):
+        images = [Path('criterion-6-' + name + '.png') for name in (
+            'initial', 'gis-before-layer', 'genuine-target-baseline', 'distinct-valid-point',
+            'final', 'recovery', 'cleanup')]
+        selected = REPORT.report_exhibits(images, 'When point details fail to load, show an error.',
+                                          'SIMULATED UI STATE: one scoped HTTP 500, then genuine recovery.')
+        self.assertEqual(selected, [images[4], images[5], images[2], images[3]])
+        # No explicit review disclosure means no shortcut or post-final reuse.
+        self.assertNotIn(images[5], REPORT.report_exhibits(images, 'When point details fail to load, show an error.'))
+
+    def test_point_content_keeps_identity_and_only_technology_configuration(self):
+        images = [Path('criterion-3-' + name + '.png') for name in (
+            'initial', 'surveyor-before-choice', 'tech-toggle-1', 'nsa-only-before-add',
+            'cluster-before-point', 'final', 'cleanup')]
+        selected = REPORT.report_exhibits(images, 'With 5G NSA as the only selected technology, opening a Ping point displays details.')
+        self.assertEqual(selected, [images[3], images[4], images[5]])
+        # An explicit toggle/restore journey must not be shortened to its end.
+        selected = REPORT.report_exhibits(images, 'Toggle the point details twice and restore the original.')
+        self.assertIn(images[2], selected)
+
+    def test_opening_limitations_are_short_but_criterion_notes_keep_blockers_and_recovery(self):
+        result = {'outcome': 'Blocked', 'reason': 'No available fixture. ' * 100,
+                  'browserVersion': '123', 'browserUrl': 'https://example.test/gis'}
+        outcome = {'outcome': 'Blocked', 'reason': 'A documented empty response is required.'}
+        opening = REPORT.compact_limitations({}, [outcome], [result])
+        self.assertIn('Blocked criterion(s): 1', opening)
+        self.assertLess(len(opening), 300)
+        self.assertIn(outcome['reason'], REPORT.criterion_assessment(outcome, result))
+        recovered = {**result, 'outcome': 'Passed', 'reason': 'Recovered a tool timeout; cleanup completed.'}
+        self.assertIn('Recovered a tool timeout', REPORT.criterion_assessment({'reason': 'State visibly correct.'}, recovered))
+
     def test_passed_simulation_remains_in_limitations_without_reviewer_disclosure(self):
         results = [{"outcome": "Passed", "reason": "SIMULATED UI STATE: documented empty response.",
                     "browserUrl": "https://example.test/gis", "browserVersion": "123"}]
@@ -526,7 +557,8 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertEqual(document.tables[5].cell(1, 0).text, "1.0.0")
             self.assertEqual(document.tables[5].cell(1, 1).text, criteria[0])
             cycle = document.tables[2]
-            self.assertIn("1 blocked; 1 inconclusive", cycle.cell(5, 1).text)
+            self.assertIn("Blocked criterion(s): 2", cycle.cell(5, 1).text)
+            self.assertIn("Unverified criterion(s): 1", cycle.cell(5, 1).text)
             self.assertIn("not a confirmed application defect", cycle.cell(5, 1).text)
             self.assertEqual(document.tables[3].cell(1, 2).text, "Y")
             self.assertEqual(document.tables[3].cell(1, 3).text, "0")
@@ -540,8 +572,11 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("Failed", case_text)  # Unverified remains Failed in the PDF convention.
             cases = document.tables[5]
             self.assertEqual(criteria[0], cases.rows[1].cells[1].text)
-            self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[2].cells[0].tables[0].cell(0, 0).text)
-            self.assertIn("A restricted user", cases.rows[3].cells[1].text)
+            self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[3].cells[0].tables[0].cell(0, 0).text)
+            self.assertIn("A restricted user", cases.rows[4].cells[1].text)
+            self.assertEqual(document.tables[3].cell(0, 1).text, 'Outcome')
+            self.assertEqual(document.tables[3].cell(2, 1).text, 'Blocked')
+            self.assertIn('Criterion 1 assessment:', cases.rows[2].cells[0].text)
             self.assertNotIn("Supporting setup captures", case_text)
             images = json.loads(manifest.read_text(encoding="utf-8"))
             self.assertEqual(images["embeddedEvidenceImages"], 1)

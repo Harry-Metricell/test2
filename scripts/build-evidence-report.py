@@ -95,7 +95,7 @@ def localized_change_region(images):
     return None
 
 
-def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focus_region=None, opening=False):
+def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focus_region=None, opening=False, simulation=False):
     """Use readable pairs plus explicitly labelled, lossless Word detail views."""
     if not 1 <= len(exhibits) <= 2:
         raise ValueError("an evidence row requires one or two captures")
@@ -109,6 +109,8 @@ def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focu
     if not supporting:
         if criterion_label:
             heading.add_run(criterion_label + "\n").bold = True
+        if simulation:
+            heading.add_run("SIMULATED UI STATE: browser-local condition; recovery uses the genuine service.\n").bold = True
         heading.add_run(f"Browser URL recorded after criterion: {exhibits[0][2]}")
         for run in heading.runs:
             run.font.size = Pt(8)
@@ -225,6 +227,17 @@ def report_exhibits(images, criterion, review_reason=""):
     """
     if not images:
         return []
+    # For independently reviewed, simulated exception states show the decisive
+    # state beside genuine recovery. Keep the supporting record comparisons,
+    # not repeated launcher/layer setup. Never infer this from filenames alone.
+    simulated = "SIMULATED UI STATE:" in review_reason.upper()
+    if simulated:
+        finals = [image for image in images if re.search(r"-final$", image.stem.lower())]
+        recovery = [image for image in images if image.stem.lower().endswith("-recovery")]
+        if len(finals) == 1 and len(recovery) == 1:
+            supporting = [image for image in images if any(term in image.stem.lower()
+                          for term in ("genuine-point-baseline", "genuine-target-baseline", "distinct-valid-point"))]
+            return [finals[0], recovery[0], *supporting]
     # A reviewer may explicitly accept a complete recheck instead of an earlier
     # incomplete journey. Never print the rejected journey as the passed proof.
     # Without that review decision, preserve both journeys for transparency.
@@ -246,6 +259,18 @@ def report_exhibits(images, criterion, review_reason=""):
     if final_index is not None:
         images = images[:final_index + 1]
     lower = criterion.lower()
+    # A settled selected-point content assertion needs record identity and its
+    # final fields, plus the configured technology state when asserted. This
+    # is not a dialog lifecycle/toggle/persistence test; unknown journeys keep
+    # the existing conservative selection below.
+    point_content = ("point" in lower and "detail" in lower
+                     and not re.search(r"\b(close|reopen|cancel|restore|toggle|twice|loading|fail)\b", lower))
+    final = [image for image in images if re.search(r"-final$", image.stem.lower())]
+    if point_content and final:
+        configuration = [image for image in images if "only-before-add" in image.stem.lower()]
+        identity = [image for image in images if "cluster-before-point" in image.stem.lower()]
+        if identity and ("only selected technology" not in lower or configuration):
+            return [*configuration, identity[-1], final[-1]]
     # A single unsaved-field cancellation is proved by the entered value and
     # the reopened empty field. Pair these first, not empty-map/dialog setup.
     # Multiple edits or unfamiliar capture names keep their complete journey.
@@ -647,6 +672,54 @@ def report_limitations(review, outcomes, results):
     return " ".join(parts) if parts else "No testing limitations recorded."
 
 
+def compact_limitations(review, outcomes, results):
+    """Keep the opening readable; full criterion notes are printed with proof."""
+    parts = []
+    for label in ("Blocked", "Unverified"):
+        numbers = [str(i) for i, item in enumerate(outcomes, 1)
+                   if text(item.get("outcome")).lower() == label.lower()]
+        if numbers:
+            parts.append(f"{label} criterion(s): {', '.join(numbers)}. See the assessment below each criterion.")
+    simulated = [str(i) for i, item in enumerate(results, 1)
+                 if "SIMULATED UI STATE:" in json.dumps(item, ensure_ascii=False).upper()]
+    if simulated:
+        parts.append(f"SIMULATED UI STATE: criterion(s) {', '.join(simulated)} use browser-local conditions, not backend integration tests. Method and recovery are disclosed with their evidence.")
+    if any(public_browser_url(item.get("browserUrl")) == "Not recorded" for item in results):
+        parts.append("Some source URLs were not recorded.")
+    if any(not item.get("browserVersion") for item in results):
+        parts.append("Browser version was not recorded for some criteria.")
+    if not parts:
+        parts.append("See criterion assessments for any recovered automation or cleanup issues.")
+    return "\n".join(parts)
+
+
+def criterion_assessment(item, result):
+    """Preserve review reasoning and recovered problems beside each criterion."""
+    reason = concise_review_reason(item.get("reason")) or text(result.get("reason"))
+    simulated = "SIMULATED UI STATE:" in json.dumps(result, ensure_ascii=False).upper()
+    note_source = {**result}
+    if simulated:
+        # The full independently reviewed method is already printed above.
+        # Retain additional unexpected tool problems, not a second recital of
+        # the deliberately injected server error.
+        note_source["reason"] = ""
+        steps = result.get("steps_taken", [])
+        if isinstance(steps, str):
+            steps = [steps]
+        note_source["steps_taken"] = [step for step in steps if re.search(
+            r"timeout|timed out|cleanup (?:failed|incomplete)|failed (?:capture|screenshot)", text(step), re.I)]
+    notes = report_limitations({}, [], [{**note_source, "browserVersion": "recorded",
+                                          "browserUrl": "https://example.test/"}])
+    # Keep source details intact, but avoid repeating the identical source
+    # note already included by the reviewer. These are audit notes, not defects.
+    notes = re.sub(r"^SIMULATED UI STATE: criterion\(s\) 1 used browser-local conditions; this does not verify backend integration\.\s*", "", notes)
+    if notes and notes != "No testing limitations recorded." and notes.removeprefix("Criterion 1: ") not in reason:
+        reason += "\nTesting notes: " + notes.replace("Criterion 1: ", "")
+    if "SIMULATED UI STATE:" in json.dumps(result, ensure_ascii=False).upper() and "SIMULATED UI STATE:" not in reason.upper():
+        reason = "SIMULATED UI STATE: browser-local conditions, not backend integration.\n" + reason
+    return reason
+
+
 def result_for_outcome(outcome, results, result_by_criterion, criteria, position):
     """Match a reviewer outcome to its tester result without dropping evidence.
 
@@ -846,7 +919,7 @@ def main():
                     run.font.color.rgb = RGBColor(255, 255, 255)
 
     cycle = doc.tables[2]
-    limitations = report_limitations(review, outcomes, results)
+    limitations = compact_limitations(review, outcomes, results)
     if any(text(item.get("outcome")).lower() == "unverified" for item in outcomes):
         limitations += " Inconclusive evidence is reported as Failed, but is not a confirmed application defect."
     limitations += " Defects (No.) counts directly contradicted criteria, not unique Jira bugs; blockers and inconclusive evidence count as zero."
@@ -868,6 +941,7 @@ def main():
         set_cell(row[1], value)
 
     summary = doc.tables[3]
+    set_cell(summary.cell(0, 1), "Outcome")
     repeat_table_header(summary)
     while len(summary.rows) > 1:
         summary._tbl.remove(summary.rows[-1]._tr)
@@ -881,7 +955,7 @@ def main():
         # the distinguishing part of a criterion behind an ellipsis.
         label = report_text(display_criterion(item.get("criterion"), criteria))
         set_cell(row[0], f"{index}. {label}")
-        set_cell(row[1], "Y" if raw_outcome == "passed" else "N")
+        set_cell(row[1], "Failed (inconclusive)" if raw_outcome == "unverified" else text(item.get("outcome")))
         set_cell(row[2], "Y" if raw_outcome in ("failed", "unverified") else "N")
         set_cell(row[3], str(confirmed_defect_count(raw_outcome)))
 
@@ -929,6 +1003,7 @@ def main():
     logical_images = []
     unique_images = {}
     captions = []
+    assessment_notes = []
     setup_candidates = []
     for number, item in enumerate(outcomes, 1):
         criterion_id = text(item.get("criterion"))
@@ -981,6 +1056,16 @@ def main():
             ]
         for index, value in enumerate(values):
             set_cell(row[index], value)
+        assessment = criterion_assessment(item, result)
+        if assessment:
+            notes_row = cases.add_row()
+            notes_cell = notes_row.cells[0].merge(notes_row.cells[-1])
+            note = f"Criterion {number} assessment: {assessment}"
+            set_cell(notes_cell, note)
+            assessment_notes.append(note)
+            notes_row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+            for paragraph in notes_cell.paragraphs:
+                paragraph.paragraph_format.keep_with_next = True
         if exhibits:
             for cell in row:
                 for paragraph in cell.paragraphs:
@@ -990,7 +1075,8 @@ def main():
                 row_exhibits = exhibits[start:start + 2]
                 focus = criterion_focus_region([exhibit[1] for exhibit in row_exhibits], criterion, item.get("outcome"))
                 add_image_row(cases, row_exhibits, criterion_label=label, focus_region=focus,
-                              opening=number == 1 and start == 0)
+                              opening=number == 1 and start == 0,
+                              simulation="SIMULATED UI STATE:" in assessment.upper())
 
     setup = supporting_captures(setup_candidates, unique_images)
     if setup:
@@ -1024,6 +1110,7 @@ def main():
             "limitations": limitations,
             "sourceUrls": urls or ["Not recorded"],
             "evidenceCaptions": list(dict.fromkeys(captions)),
+            "criterionNotes": assessment_notes,
         },
         **manifest,
     }, indent=2) + "\n", encoding="utf-8")

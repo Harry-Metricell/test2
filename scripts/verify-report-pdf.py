@@ -197,6 +197,7 @@ def verify_report_content(pdf_path, content):
         "Limitations during Testing:", content["limitations"],
         "Browser URL(s) recorded after criteria:", *(content.get("sourceUrls") or []),
         *(content.get("evidenceCaptions") or []),
+        *(content.get("criterionNotes") or []),
     ]
     missing = [item for item in required if normalize_report_text(item) not in rendered]
     if missing:

@@ -114,6 +114,9 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
             self.assertTrue(VERIFY.verify_report_content("ignored.pdf", contract))
             with self.assertRaisesRegex(SystemExit, "missing report content"):
                 VERIFY.verify_report_content("ignored.pdf", {**contract, "sourceUrls": ["https://other.test/gis"]})
+            self.assertTrue(VERIFY.verify_report_content("ignored.pdf", {**contract, "criterionNotes": ["E01 - evidence.png"]}))
+            with self.assertRaisesRegex(SystemExit, "missing report content"):
+                VERIFY.verify_report_content("ignored.pdf", {**contract, "criterionNotes": ["SIMULATED UI STATE: held original request, then genuine recovery."]})
 
     def test_matches_expected_evidence_by_exact_source_hash(self):
         image = patterned_image((20, 40, 60))
