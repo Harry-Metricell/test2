@@ -1,15 +1,12 @@
 {
   "ticket": "TEST2-83",
-  "jiraStatus": "To Do",
-  "qaStatus": "Blocked",
-  "status": "To Do",
-  "retries": 0,
-  "retryLimit": 1,
-  "testAttempts": 1,
   "criteriaVerified": true,
-  "blockedStage": "reviewed",
-  "qaOutcome": "Blocked",
-  "workflowState": "Blocked",
-  "nextAction": "Manual review required; final evidence report published",
-  "cycleId": "cycle-001"
+  "qaStatus": "Not Tested",
+  "workflowState": "Ready",
+  "retries": 0,
+  "testAttempts": 0,
+  "retryLimit": 1,
+  "cycleId": "cycle-002",
+  "jiraStatus": "READY FOR TESTING",
+  "status": "READY FOR TESTING"
 }
