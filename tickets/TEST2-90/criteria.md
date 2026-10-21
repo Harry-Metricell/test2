@@ -1,3 +1,4 @@
+<!-- Testing scope: Automobile. Read config/testing-context/TEST2-90.json for source hierarchy and the human resolution of conflicting links. Do not substitute another module. -->
 <!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
 - [ ] With Automobile Call results available, selecting the Call layer displays the results as selectable map points.

@@ -1,0 +1,23 @@
+<!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
+
+- [ ] With Automobile Call results available, selecting the Call layer displays the results as selectable map points.
+- [ ] The shared Colour By selector offers CSR, Downlink MOS, Uplink MOS, and Estimated MOS, with CSR selected by default.
+- [ ] For each Colour By choice, visible Call markers use that metric's values and the legend shows its matching title, units, categories, and colours; CSR is shown as a percentage and MOS as dimensionless scores.
+- [ ] Changing Colour By preserves the current date, filters, group visibility, marker identities, and selected result.
+- [ ] For a marker representing multiple calls, CSR is 100 × successful calls divided by successful, setup-failed, operator-answered, no-service, and invalid calls; dropped calls are excluded and a zero denominator produces zero. Each MOS value is weighted by that metric's own valid sample count, and Estimated MOS uses its dedicated values rather than an average of Downlink and Uplink MOS.
+- [ ] The default CSR legend uses green #31AA4F for 95–100%, light green #86BE42 for 90–<95%, yellow #FCBF1A for 85–<90%, red #E61733 for 80–<85%, and dark red #AE1A32 for 0–<80%; exact boundaries use the higher band.
+- [ ] Each default MOS legend uses dark red #AE1A32 for 1–<2, yellow #FCBF1A for 2–<3, light green #86BE42 for 3–<4, and green #31AA4F for 4–5 inclusive; exact internal boundaries use the higher band.
+- [ ] When the selected MOS metric has no valid samples, it is unavailable rather than shown as zero or replaced by another metric; values outside its bands use the white, initially hidden Out of Threshold category, with no separate Not Tested category.
+- [ ] The CSR legend shows 2G circles, 3G triangles, 4G diamonds, 5G SA pentagons, and a fixed black-square No Service category for generation 0; No Service is separate from CSR percentage bands.
+- [ ] The MOS legends use squares for Downlink MOS, circles for Uplink MOS, and hexagons for Estimated MOS, grouping by the selected metric.
+- [ ] Each Call legend includes a fixed white-square Out of Threshold category hidden by default; bands are ordered descending, with CSR limits 0–100 and MOS limits 1–5, and displayed labels match the boundary behaviour.
+- [ ] Editing a metric's customisable bands, labels, marker size, or category visibility updates its Call markers and remains specific to that metric and layer instance when Colour By changes; No Service and Out of Threshold definitions cannot be edited.
+- [ ] Restoring a Call layer or saved GIS view restores its Colour By choice and associated legend settings; a saved configuration without a choice opens with CSR selected.
+- [ ] Selecting a Call marker opens its Call detail tab directly when it represents one result, or opens a cluster results tab when it represents multiple results, following the HTTP and Download GIS workflow and existing group-based visibility.
+- [ ] The cluster results table displays MSISDN, Test Result, Start Time, End Time, Test Duration, Call Setup Time, Connection Time, Disconnection Cause Code, LTE Return Time, CSFB Time, MOS Downlink, MOS Uplink, Estimated MOS, Band, Test Technologies, Call End Service, and Call End Serving Cell.
+- [ ] Each available column in the cluster results table can be sorted.
+- [ ] Selecting a cluster row opens a separate Call detail tab for that row's exact PointID and keeps the cluster tab open; reopening or restoring Call and Service tabs retains the relevant time and filter scope.
+- [ ] When a selected result has related service information, its Service Details tab can be opened.
+- [ ] Call technology legends and filters include 2G, 3G, 4G, and 5G SA and exclude 5G NSA.
+- [ ] Requesting details for a selected result with no duration displays a clear no-data message.
+- [ ] When point or service details cannot be returned, the selected item does not show stale detail data.
