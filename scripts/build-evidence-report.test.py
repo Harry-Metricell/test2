@@ -19,6 +19,17 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_rebuild_preserves_exact_attempt_date_not_render_date_or_other_history(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / 'history').mkdir()
+            results = [{'criterion': 1, 'outcome': 'Passed'}]
+            self.assertEqual(REPORT.recorded_test_date(root / 'results.json', results), 'Not recorded')
+            (root / 'history/attempt-001-test.json').write_text(json.dumps({
+                'results': results, 'recordedAt': '2026-10-20T15:13:24.570Z'}))
+            (root / 'history/attempt-002-test.json').write_text(json.dumps({
+                'results': [], 'recordedAt': '2026-10-21T10:00:00Z'}))
+            self.assertEqual(REPORT.recorded_test_date(root / 'results.json', results), '20/10/2026')
     def test_simulated_state_pairs_final_with_recovery_and_retains_record_baselines(self):
         images = [Path('criterion-6-' + name + '.png') for name in (
             'initial', 'gis-before-layer', 'genuine-target-baseline', 'distinct-valid-point',
@@ -34,7 +45,7 @@ class ResultMatchingTests(unittest.TestCase):
             'initial', 'surveyor-before-choice', 'tech-toggle-1', 'nsa-only-before-add',
             'cluster-before-point', 'final', 'cleanup')]
         selected = REPORT.report_exhibits(images, 'With 5G NSA as the only selected technology, opening a Ping point displays details.')
-        self.assertEqual(selected, [images[3], images[4], images[5]])
+        self.assertEqual(selected, [images[3], images[5], images[4]])
         # An explicit toggle/restore journey must not be shortened to its end.
         selected = REPORT.report_exhibits(images, 'Toggle the point details twice and restore the original.')
         self.assertIn(images[2], selected)
@@ -572,11 +583,14 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("Failed", case_text)  # Unverified remains Failed in the PDF convention.
             cases = document.tables[5]
             self.assertEqual(criteria[0], cases.rows[1].cells[1].text)
-            self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[3].cells[0].tables[0].cell(0, 0).text)
+            self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[2].cells[0].tables[0].cell(0, 0).text)
             self.assertIn("A restricted user", cases.rows[4].cells[1].text)
             self.assertEqual(document.tables[3].cell(0, 1).text, 'Outcome')
             self.assertEqual(document.tables[3].cell(2, 1).text, 'Blocked')
-            self.assertIn('Criterion 1 assessment:', cases.rows[2].cells[0].text)
+            self.assertIn('Criterion 1 assessment:', cases.rows[3].cells[0].text)
+            self.assertFalse(cases.autofit)
+            summary_heading = next(p for p in document.paragraphs if p.text.strip() == 'Test Summary')
+            self.assertTrue(summary_heading.paragraph_format.page_break_before)
             self.assertNotIn("Supporting setup captures", case_text)
             images = json.loads(manifest.read_text(encoding="utf-8"))
             self.assertEqual(images["embeddedEvidenceImages"], 1)

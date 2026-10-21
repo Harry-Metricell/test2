@@ -263,14 +263,14 @@ def report_exhibits(images, criterion, review_reason=""):
     # final fields, plus the configured technology state when asserted. This
     # is not a dialog lifecycle/toggle/persistence test; unknown journeys keep
     # the existing conservative selection below.
-    point_content = ("point" in lower and "detail" in lower
+    point_content = (("point" in lower or "detail view" in lower) and "detail" in lower
                      and not re.search(r"\b(close|reopen|cancel|restore|toggle|twice|loading|fail)\b", lower))
     final = [image for image in images if re.search(r"-final$", image.stem.lower())]
     if point_content and final:
         configuration = [image for image in images if "only-before-add" in image.stem.lower()]
         identity = [image for image in images if "cluster-before-point" in image.stem.lower()]
         if identity and ("only selected technology" not in lower or configuration):
-            return [*configuration, identity[-1], final[-1]]
+            return [*configuration, final[-1], identity[-1]]
     # A single unsaved-field cancellation is proved by the entered value and
     # the reopened empty field. Pair these first, not empty-map/dialog setup.
     # Multiple edits or unfamiliar capture names keep their complete journey.
@@ -824,6 +824,16 @@ def criteria_from_markdown(path):
     return values
 
 
+def recorded_test_date(results_path, results):
+    """Use only this exact result's durable attempt record, not rebuild time."""
+    dates = set()
+    for file in (Path(results_path).parent / "history").glob("attempt-*-test.json"):
+        record = json.loads(file.read_text(encoding="utf-8"))
+        if record.get("results") == results and record.get("recordedAt"):
+            dates.add(datetime.fromisoformat(record["recordedAt"].replace("Z", "+00:00")).strftime("%d/%m/%Y"))
+    return next(iter(dates)) if len(dates) == 1 else "Not recorded"
+
+
 def display_criterion(value, criteria):
     """Resolve numeric reviewer IDs back to their canonical criterion text."""
     raw = text(value).strip()
@@ -891,6 +901,8 @@ def main():
 
     # Preserve the template's layout, branding, footer and table structure.
     for paragraph in doc.paragraphs:
+        if paragraph.text.strip() == "Test Summary":
+            paragraph.paragraph_format.page_break_before = True
         if paragraph.text.strip() == "Test Example":
             for run in paragraph.runs:
                 run.text = run.text.replace("Test Example", f"{ticket} Evidence Review")
@@ -929,7 +941,8 @@ def main():
     displayed_outcome = "Failed (inconclusive evidence)" if text(review.get("overallOutcome")).lower() == "unverified" else text(review.get("overallOutcome"))
     environment = "; ".join(dict.fromkeys(urlsplit(url).hostname for url in urls
                                            if urlsplit(url).hostname)) or "Not recorded"
-    values = ["Automated", ticket, environment, browser_details(results), datetime.now().strftime("%d/%m/%Y"), limitations]
+    test_date = recorded_test_date(args.results, results)
+    values = ["Automated", ticket, environment, browser_details(results), test_date, limitations]
     for index, value in enumerate(values):
         if index < len(cycle.rows): set_cell(cycle.cell(index, 1), value)
     for label, value in (
@@ -971,6 +984,9 @@ def main():
                 set_cell(context.cell(0, cell_index), value)
 
     cases = doc.tables[5]
+    # Long endpoint URLs in assessment notes must wrap within the template,
+    # never widen the whole table beyond the landscape page margins.
+    cases.autofit = False
     # The template carries several empty spacer paragraphs between the context
     # and the test table; they can strand the first criterion on the next page.
     following = context._tbl.getnext()
@@ -1057,15 +1073,6 @@ def main():
         for index, value in enumerate(values):
             set_cell(row[index], value)
         assessment = criterion_assessment(item, result)
-        if assessment:
-            notes_row = cases.add_row()
-            notes_cell = notes_row.cells[0].merge(notes_row.cells[-1])
-            note = f"Criterion {number} assessment: {assessment}"
-            set_cell(notes_cell, note)
-            assessment_notes.append(note)
-            notes_row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
-            for paragraph in notes_cell.paragraphs:
-                paragraph.paragraph_format.keep_with_next = True
         if exhibits:
             for cell in row:
                 for paragraph in cell.paragraphs:
@@ -1077,6 +1084,17 @@ def main():
                 add_image_row(cases, row_exhibits, criterion_label=label, focus_region=focus,
                               opening=number == 1 and start == 0,
                               simulation="SIMULATED UI STATE:" in assessment.upper())
+        if assessment:
+            notes_row = cases.add_row()
+            notes_cell = notes_row.cells[0].merge(notes_row.cells[-1])
+            note = f"Criterion {number} assessment: {assessment}"
+            set_cell(notes_cell, note)
+            assessment_notes.append(note)
+            for paragraph in notes_cell.paragraphs:
+                paragraph.paragraph_format.keep_with_next = False
+                paragraph.paragraph_format.space_after = Pt(3)
+                for run in paragraph.runs:
+                    run.bold = False
 
     setup = supporting_captures(setup_candidates, unique_images)
     if setup:
