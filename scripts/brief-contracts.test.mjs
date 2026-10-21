@@ -196,3 +196,13 @@ test('workers retain source module context and inspect nested layers before abse
   assert.ok(brief('criteria-conversion').includes('Preserve verified testing-context notes'));
   assert.ok(brief('evidence-review').includes('not a similarly named substitute'));
 });
+
+test('workers require human-resolved source scope rather than linked-module inference', () => {
+  for (const name of ['criteria-conversion', 'qa-testing', 'evidence-review']) {
+    assert.ok(brief(name).includes('inputs.testingContext'), name);
+    assert.match(brief(name), /human-confirmed/);
+  }
+  assert.ok(brief('qa-testing').includes('never switch to Surveyor'));
+  for (const name of ['qa-testing', 'evidence-review']) assert.ok(brief(name).includes('testedModule'));
+  assert.ok(read('scripts/publish-agent-output.mjs').includes('requireTestedModule'));
+});

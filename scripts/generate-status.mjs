@@ -5,6 +5,7 @@ import { acceptanceCriteria, flattenAdf } from './jira-adf.mjs';
 import { normalizeBrowserToolBlock } from './test-result-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
 import { readCycle, scopeHandoff, firstCycle } from './testing-cycle.mjs';
+import { readTestingContext, contextHandoff } from './testing-context.mjs';
 
 const root = process.cwd();
 const checkOnly = process.argv.includes('--check');
@@ -231,6 +232,7 @@ function normalizeTicket(dirName) {
   const ticket = {
     key: raw.key || dirName,
     cycleId: readCycle(dir).cycleId,
+    testingContext: readTestingContext(root, raw.key || dirName),
     id: raw.id || null,
     summary: fields.summary || dirName,
     jira: {
@@ -575,7 +577,7 @@ const ticketDirs = fs.existsSync(ticketsDir)
   : [];
 
 const tickets = ticketDirs.map(normalizeTicket);
-const handoffs = tickets.map(ticket => scopeHandoff(handoffFor(ticket), ticket.cycleId)).filter(Boolean);
+const handoffs = tickets.map(ticket => contextHandoff(scopeHandoff(handoffFor(ticket), ticket.cycleId), ticket.testingContext)).filter(Boolean);
 // The QA stage may be complete while guide work is still queued. Project the
 // actual guide handoff rather than displaying a misleading terminal action.
 const guideActions = { guide_impact_assessment: 'Create user-guide impact assessment handoff',

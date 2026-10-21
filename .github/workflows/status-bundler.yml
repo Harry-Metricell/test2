@@ -10,6 +10,8 @@ on:
       - 'tickets/**'
       - 'scripts/generate-status.mjs'
       - 'scripts/testing-cycle.mjs'
+      - 'scripts/testing-context.mjs'
+      - 'config/testing-context/**'
       - 'scripts/check-criteria.mjs'
       - 'package.json'
 

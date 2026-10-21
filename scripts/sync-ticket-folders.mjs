@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { syncTestingCycle } from './testing-cycle.mjs';
+import { readTestingContext, contextualCriteria } from './testing-context.mjs';
 
 const result = JSON.parse(fs.readFileSync('results.json', 'utf8'));
 if (!result || !Array.isArray(result.issues) || result.isLast !== true) {
@@ -32,7 +33,15 @@ for (const issue of issues) {
   const previousIssue = fs.existsSync(oldTicketFile) ? JSON.parse(fs.readFileSync(oldTicketFile, 'utf8')) : null;
   const statusFile = path.join(dir, 'status.json');
   let existing = fs.existsSync(statusFile) ? JSON.parse(fs.readFileSync(statusFile, 'utf8')) : {};
-  existing = syncTestingCycle(dir, issue, previousIssue, existing).status;
+  const cycleUpdate = syncTestingCycle(dir, issue, previousIssue, existing);
+  existing = cycleUpdate.status;
+  const context = readTestingContext(process.cwd(), key);
+  const criteriaFile = path.join(dir, 'criteria.md');
+  if (context && fs.existsSync(criteriaFile) && (cycleUpdate.reset || !fs.existsSync(path.join(dir, 'results.json')))) {
+    const before = fs.readFileSync(criteriaFile, 'utf8');
+    const after = contextualCriteria(before, context);
+    if (before !== after) fs.writeFileSync(criteriaFile, after, 'utf8');
+  }
   fs.mkdirSync(path.join(dir, 'screenshots'), { recursive: true });
   fs.mkdirSync(path.join(dir, 'reports'), { recursive: true });
   fs.writeFileSync(path.join(dir, 'screenshots', '.gitkeep'), '');

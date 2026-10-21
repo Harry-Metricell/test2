@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
+import { readTestingContext, contextRevision } from './testing-context.mjs';
 
 export const firstCycle = 'cycle-001';
 export function cycleId(value = firstCycle) {
@@ -20,7 +21,9 @@ export function publicationStillCurrent(repo, output, selectedCycle, action) {
   const file = path.join(repo, 'status', 'handoffs.json');
   const queue = JSON.parse(fs.readFileSync(file, 'utf8'));
   const current = queue.handoffs?.find(h => h.handoffId === output.handoffId);
+  const context = readTestingContext(repo, output.ticket);
   return readCycle(path.join(repo, 'tickets', output.ticket)).cycleId === selectedCycle
+    && (!context || output.handoffVersion?.endsWith(`:scope-${contextRevision(context)}`))
     && current?.handoffVersion === output.handoffVersion
     && current?.ticket === output.ticket && current?.action === action;
 }

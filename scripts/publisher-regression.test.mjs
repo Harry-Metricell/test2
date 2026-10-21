@@ -53,7 +53,7 @@ test('review report always has a useful summary', () => {
   assert.match(markdown, /Review summary:\*\* 1\/1 criteria passed/);
 });
 
-test('publishes new remote tickets from stale dirty Desktop; rejects incomplete evidence', () => {
+test('publishes new remote tickets from stale dirty Desktop; rejects incomplete evidence', async () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'publisher regression '));
   const remote = path.join(root, 'remote.git');
   const seed = path.join(root, 'seed');
@@ -203,7 +203,13 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     // A new cycle rejects old worker identities without overwriting current
     // state; its own first attempt publishes under the new evidence scope.
     g(seed, 'reset', '--hard', 'origin/main');
-    const cycleHandoff = { ticket: 'TEST2-99', cycleId: 'cycle-002', handoffId: 'handoff-TEST2-99-cycle-002-test-attempt-001', handoffVersion: 'TEST2-99:cycle-002:test_ticket:1', action: 'test_ticket', attempt: 1 };
+    const scopeContext = {
+      schema: 'v4-qa-testing-context.v1', ticket: 'TEST2-99', targetModule: 'Automobile',
+      source: { key: 'SOURCE-1', parent: { key: 'SOURCE-EPIC' } }, resolution: { authority: 'human' }
+    };
+    const { contextHandoff } = await import('./testing-context.mjs');
+    const cycleHandoff = contextHandoff({ ticket: 'TEST2-99', cycleId: 'cycle-002', handoffId: 'handoff-TEST2-99-cycle-002-test-attempt-001', handoffVersion: 'TEST2-99:cycle-002:test_ticket:1', action: 'test_ticket', attempt: 1 }, scopeContext);
+    write(path.join(seed, 'config/testing-context/TEST2-99.json'), JSON.stringify(scopeContext));
     write(path.join(seed, 'tickets/TEST2-99/qa-cycle.json'), JSON.stringify({ schema: 'v4-qa-cycle.v1', cycleId: 'cycle-002' }));
     write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [cycleHandoff] }));
     g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Start new testing cycle'); g(seed, 'push');
@@ -212,12 +218,21 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     const cycleStage = path.join(desktop, '.agent-staging', cycleHandoff.handoffId);
     const cyclePng = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aWQ0AAAAASUVORK5CYII=', 'base64');
     for (const name of ['criterion-1-initial.png', 'criterion-1-final.png']) write(path.join(cycleStage, 'screenshots', name), cyclePng);
-    write(path.join(cycleStage, 'test-output.json'), JSON.stringify({ ...cycleHandoff, qaStatus: 'Awaiting Evidence Review', conciseReport: 'Launcher is visible.', results: [{ criterion: 'Launcher is visible.', outcome: 'Passed', evidence: ['criterion-1-initial.png', 'criterion-1-final.png'] }], noOp: false }));
+    const cycleOutput = { ...cycleHandoff, qaStatus: 'Awaiting Evidence Review', conciseReport: 'Launcher is visible.', results: [{ criterion: 'Launcher is visible.', outcome: 'Passed', evidence: ['criterion-1-initial.png', 'criterion-1-final.png'] }], noOp: false };
+    for (const testedModule of [undefined, 'Surveyor']) {
+      write(path.join(cycleStage, 'test-output.json'), JSON.stringify({ ...cycleOutput, testedModule }));
+      const rejectedScope = run();
+      assert.equal(rejectedScope.status, 1);
+      assert.match(rejectedScope.stderr, /testedModule must be Automobile/);
+      fs.rmSync(path.join(cycleStage, 'publisher-error.json'), { force: true });
+    }
+    write(path.join(cycleStage, 'test-output.json'), JSON.stringify({ ...cycleOutput, testedModule: 'Automobile' }));
     const newCycle = run(); assert.equal(newCycle.status, 0, newCycle.stderr);
     g(seed, 'fetch');
     const publishedCycle = JSON.parse(g(seed, 'show', 'origin/main:tickets/TEST2-99/history/attempt-001-test.json'));
     assert.equal(publishedCycle.cycleId, 'cycle-002'); assert.equal(publishedCycle.historyAttempt, 1);
     assert.equal(publishedCycle.handoffId, cycleHandoff.handoffId);
+    assert.equal(publishedCycle.results[0].testedModule, 'Automobile');
     assert.equal(publishedCycle.results[0].evidence[0], 'cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png');
     assert.ok(fs.existsSync(path.join(root, 'evidence/TEST2-99/cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png')));
   } finally { fs.rmSync(root, { recursive: true, force: true }); }

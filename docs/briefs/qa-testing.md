@@ -14,6 +14,10 @@ Read verified testing-context notes outside the checklist as setup/provenance, n
 
 ## Browser and authentication
 
+Before browser work, read `inputs.testingContext` when supplied by the live handoff. Its human-confirmed targetModule/targetLayer and source parent resolution override older setup comments and conflicting linked-story titles. Unresolved source hierarchy/module conflicts are Blocked, not permission to substitute another module. If the required feature is unavailable under the resolved module, capture that module's actual nested choices and report the blocker; never switch to Surveyor to obtain a result. Historical cycles listed as supersededEvidence are not acceptance evidence for this target.
+
+For a handoff with testingContext, include top-level `testedModule` equal to its targetModule in test-output.json, including all-Blocked runs. This declares the module inspected, not a claim that its features passed. The publisher preserves this declaration per result and rejects missing or conflicting declarations. Notes alone do not prove scope: capture the module/layer configuration and the actual request path where observable.
+
 Before any browser tool call, acquire the shared browser with `node scripts/tester-browser-lease.mjs --acquire <handoffId>` in the synchronized Desktop checkout. Require `acquired: true` and retain its returned token. If `acquired: false`, wait 30 seconds and retry without opening/navigating the browser, staging a result, or consuming an attempt. Never remove or expire another tester's lease. If the lease command is unavailable or denied, do not touch the browser; report the actual capability error rather than bypassing ownership.
 
 Hold the lease for the whole attempt, including all criteria and cleanup. In a finally step after the output is safely staged, run `node scripts/tester-browser-lease.mjs --release <handoffId> <token>`. Only release your own token. If execution is interrupted, preserve the lease for coordinator reconciliation. Do not open or navigate a browser for a busy-lease no-op. Playwright's `--isolated` flag does not provide a private session per chat.

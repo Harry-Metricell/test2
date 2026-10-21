@@ -1,0 +1,39 @@
+{
+  "schema": "v4-qa-testing-context.v1",
+  "ticket": "TEST2-86",
+  "source": {
+    "key": "VM2ST-108",
+    "url": "https://metricell.atlassian.net/browse/VM2ST-108",
+    "parent": {
+      "key": "VM2ST-66",
+      "summary": "Automobile Migration"
+    }
+  },
+  "targetModule": "Automobile",
+  "targetLayer": "Upload",
+  "resolution": {
+    "authority": "human",
+    "confirmedAt": "2026-10-21",
+    "reason": "User confirmed this copied batch is for Automobile migration. Source Jira remains read-only; do not substitute Surveyor."
+  },
+  "conflictingLinks": [
+    {
+      "key": "VM2ST-115",
+      "summary": "Open Individual Surveyor Point Details",
+      "relation": "blocks"
+    },
+    {
+      "key": "VM2ST-118",
+      "summary": "Select Multiple Surveyor Point Layers",
+      "relation": "blocks"
+    }
+  ],
+  "scopeRule": "These linked stories do not override the human-confirmed Automobile target. Inspect Automobile's actual nested choices. If this target lacks the required feature, report the scope/feature blocker; do not use Surveyor.",
+  "supersededEvidence": [
+    {
+      "cycleId": "cycle-001",
+      "module": "Surveyor",
+      "reason": "Not Automobile acceptance evidence; preserve the historical report and images, but do not reuse its verdict."
+    }
+  ]
+}

@@ -67,6 +67,29 @@ test('separately imported To Do waits; changed source requires criteria checking
   assert.equal(fs.existsSync(path.join(f.dir, 'criteria.md')) && fs.readFileSync(path.join(f.dir, 'criteria.md'), 'utf8').includes('revised'), true);
 });
 
+test('source scope survives cycles and old Surveyor setup is archived before correction', t => {
+  const f = fixture(t); f.seed();
+  const context = { schema: 'v4-qa-testing-context.v1', ticket: 'TEST2-99',
+    source: { key: 'SOURCE-1', parent: { key: 'SOURCE-EPIC' } }, targetModule: 'Automobile',
+    resolution: { authority: 'human' } };
+  const contextFile = path.join(f.root, 'config/testing-context/TEST2-99.json');
+  fs.mkdirSync(path.dirname(contextFile), { recursive: true });
+  fs.writeFileSync(contextFile, JSON.stringify(context));
+  const original = '<!-- Verified testing context: Surveyor > Download. -->\n- [ ] The layer is visible.\n';
+  f.write('criteria.md', original);
+  f.run(f.issue('To Do', f.events.slice(0, 1)));
+  assert.equal(fs.readFileSync(path.join(f.dir, 'criteria.md'), 'utf8'), original);
+  f.run(f.issue('READY FOR TESTING', f.events));
+  assert.equal(fs.readFileSync(path.join(f.dir, 'cycles/cycle-001/criteria.md'), 'utf8'), original);
+  const current = fs.readFileSync(path.join(f.dir, 'criteria.md'), 'utf8');
+  assert.ok(current.includes('Testing scope: Automobile'));
+  assert.ok(current.includes('- [ ] The layer is visible.\n'));
+  assert.ok(!current.includes('Surveyor > Download'));
+  assert.ok(fs.existsSync(contextFile));
+  assert.equal(f.queue()[0].inputs.testingContext, 'config/testing-context/TEST2-99.json');
+  assert.match(f.queue()[0].handoffVersion, /:scope-[a-f0-9]{12}$/);
+});
+
 test('deployment, ordinary updates, and testing-in-progress do not reset attempts', t => {
   const f = fixture(t); f.seed();
   fs.rmSync(path.join(f.dir, 'qa-cycle.json'));
@@ -103,6 +126,22 @@ test('publication rechecks reject an old cycle even while its old queue is visib
   assert.equal(publicationStillCurrent(f.root, handoff, 'cycle-002', 'test_ticket'), false);
   f.write('cycles/cycle-001/guide-update.json', { title: 'Existing instructions' });
   assert.equal(latestGuideRecord(f.root, 'TEST2-99'), path.join(f.dir, 'cycles/cycle-001/guide-update.json'));
+});
+
+test('publication rejects a scope change even before the bundler refreshes the queue', async t => {
+  const f = fixture(t); f.seed();
+  const { contextHandoff } = await import('./testing-context.mjs');
+  const context = { schema: 'v4-qa-testing-context.v1', ticket: 'TEST2-99', targetModule: 'Automobile',
+    targetLayer: 'Download', source: { key: 'SOURCE-1', parent: { key: 'SOURCE-EPIC' } }, resolution: { authority: 'human' } };
+  const file = path.join(f.root, 'config/testing-context/TEST2-99.json');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, JSON.stringify(context));
+  const handoff = contextHandoff({ ticket: 'TEST2-99', handoffId: 'handoff-TEST2-99-test-attempt-001',
+    handoffVersion: 'TEST2-99:test_ticket:1', action: 'test_ticket' }, context);
+  fs.writeFileSync(path.join(f.root, 'status/handoffs.json'), JSON.stringify({ handoffs: [handoff] }));
+  assert.equal(publicationStillCurrent(f.root, handoff, 'cycle-001', 'test_ticket'), true);
+  fs.writeFileSync(file, JSON.stringify({ ...context, targetLayer: 'Ping' }));
+  assert.equal(publicationStillCurrent(f.root, handoff, 'cycle-001', 'test_ticket'), false);
 });
 
 test('Done/reopen preserves old artifacts and starts one new cycle', t => {

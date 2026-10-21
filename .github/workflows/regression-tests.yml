@@ -9,6 +9,7 @@ on:
       - 'docs/publisher-operations.md'
       - 'README.md'
       - 'config/user-guide-*.json'
+      - 'config/testing-context/**'
       - 'package.json'
       - 'requirements-reporting.txt'
       - '.github/workflows/regression-tests.yml'
@@ -19,6 +20,7 @@ on:
       - 'docs/publisher-operations.md'
       - 'README.md'
       - 'config/user-guide-*.json'
+      - 'config/testing-context/**'
       - 'package.json'
       - 'requirements-reporting.txt'
       - '.github/workflows/regression-tests.yml'
@@ -62,6 +64,9 @@ jobs:
 
       - name: Preserve independent testing cycles and Jira transition pagination
         run: node --test scripts/testing-cycle.test.mjs
+
+      - name: Preserve confirmed source scope through handoffs and publication
+        run: node --test scripts/testing-context.test.mjs
 
       - name: Check in-session authentication recovery
         run: node --test scripts/test2-auth-page.test.cjs

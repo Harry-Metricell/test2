@@ -8,6 +8,7 @@ import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { serviceImportRefresh } from './jira-import-refresh.mjs';
 import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
 import { readCycle, evidenceBase, firstCycle, latestGuideRecord, publicationStillCurrent } from './testing-cycle.mjs';
+import { readTestingContext, contextualCriteria, requireTestedModule } from './testing-context.mjs';
 import os from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -481,6 +482,7 @@ if (!liveHandoff
 const ticketDir = path.join(repo, 'tickets', key);
 const selectedCycle = readCycle(ticketDir).cycleId;
 if ((liveHandoff.cycleId || firstCycle) !== selectedCycle) fail('Live handoff differs from the current testing cycle');
+if (!publicationStillCurrent(repo, output, selectedCycle, expectedAction)) fail('Testing scope changed; wait for the refreshed handoff before publishing');
 output.cycleId = selectedCycle;
 const cycleEvidenceDir = path.join(evidenceRoot, evidenceBase(key, selectedCycle));
 const cycleEvidencePrefix = selectedCycle === firstCycle ? '' : `cycles/${selectedCycle}/`;
@@ -490,6 +492,11 @@ const status = readJson(statusFile);
 if (output.handoffId && !String(output.handoffId).startsWith(`handoff-${key}-`)) fail('Handoff does not match ticket');
 
 const changed = [];
+const testingContext = readTestingContext(repo, key);
+if (testingContext && (outputType === 'test-output.json' || outputType === 'review-output.json')) {
+  requireTestedModule(testingContext, output, outputType === 'review-output.json'
+    ? readJson(path.join(ticketDir, 'results.json')) : null);
+}
 if (outputType === 'criteria-output.json') {
   if (!['Ready for Testing', 'Blocked'].includes(output.qaStatus)) fail('Criteria qaStatus must be Ready for Testing or Blocked');
   if (output.qaStatus === 'Blocked') {
@@ -517,7 +524,7 @@ if (outputType === 'criteria-output.json') {
     const qualityErrors = criteriaQualityErrors(criteriaMarkdown);
     if (qualityErrors.length) fail(`criteriaMarkdown is not browser-testable: ${qualityErrors.join('; ')}`);
     ensurePath(path.join(ticketDir, 'criteria.md'));
-    fs.writeFileSync(path.join(ticketDir, 'criteria.md'), criteriaMarkdown + '\n', 'utf8');
+    fs.writeFileSync(path.join(ticketDir, 'criteria.md'), contextualCriteria(criteriaMarkdown + '\n', testingContext), 'utf8');
     status.qaStatus = 'Ready for Testing';
     status.criteriaVerified = true;
     status.blockedStage = null;
@@ -531,6 +538,7 @@ if (outputType === 'criteria-output.json') {
   if (typeof output.conciseReport !== 'string') fail('conciseReport is missing');
   const criteria = requiredCriteria(ticketDir);
   output.results = validateCriterionCoverage(output.results, criteria, 'Tester results');
+  if (testingContext) output.results = output.results.map(item => ({ ...item, testedModule: output.testedModule }));
   validateTesterStatus(output.results, output.qaStatus);
   output.results = output.results.map((item, index) => {
     if (item.outcome === 'Passed') return item;

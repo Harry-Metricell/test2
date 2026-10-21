@@ -8,6 +8,8 @@ Read only its remote inputs.ticketJson, status/generated/<KEY>.json and tickets/
 
 ## Check the complete ticket
 
+If the handoff includes `inputs.testingContext`, read that exact remote file. It preserves the original source key and parent epic, the target module/layer and a human-confirmed resolution of conflicting links. Use that resolved scope, not a linked story's module name or an old setup comment. Without such a resolution, conflicting parent/description/linked-module evidence is a scope blocker: do not silently choose the easiest available module. Keep this provenance outside the checklist and preserve the original requirements.
+
 Read the original summary, full description, acceptance criteria, change details, scope, exclusions and relevant notes. Existing criteria.md is input to assess, not proof of quality.
 
 Preserve verified testing-context notes and their source links outside the checklist (an HTML comment is acceptable). They identify module/layer scope, not additional requirements. Never turn setup/provenance into a pass/fail criterion or replace the original acceptance criteria with navigation instructions. If context conflicts with the full ticket, report the conflict rather than silently choosing another module.
