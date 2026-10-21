@@ -1,0 +1,3 @@
+# TEST2-83 — Blocked
+
+Inspected human-confirmed Automobile > Service, including nested test types and 5G SA availability. GET `/api/platform/automobile/service/points` returned HTTP 500 in all visible-map batches and reproduced on a controlled fresh load. No selectable Service point or real detail request could be established, so all nine canonical criteria are Blocked (prerequisite), with no product verdict. The empty-looking map is not evidence of an empty response. Criterion 1 owns the setup/blocker captures; dependent criteria have no borrowed evidence. No simulation was used. Test-added layer removed and original map restored.

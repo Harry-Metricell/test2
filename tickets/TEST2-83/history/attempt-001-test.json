@@ -1,0 +1,166 @@
+{
+  "handoffId": "handoff-TEST2-83-cycle-003-test-attempt-001",
+  "handoffVersion": "TEST2-83:cycle-003:test_ticket:1:scope-2847bc2cecaa",
+  "cycleId": "cycle-003",
+  "ticket": "TEST2-83",
+  "testedModule": "Automobile",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Given a Service point's details have loaded in the shared point-detail dialog, the standard detail presentation shows the returned serving-cell information.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-before-automobile.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-automobile-configuration.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-test-types.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-service-selected.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-service-load.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher and saved initial PNG.",
+        "Opened GIS from launcher; original map had no selected layers.",
+        "Opened Automobile configuration; inspected nested Test type choices and selected Service. Observed technology choices through 5G SA.",
+        "Added Automobile - Service with the default three-month range and all technologies; inspected actual network requests.",
+        "Performed one controlled fresh GIS load; same GET point retrieval reproduced HTTP 500 for all three batches.",
+        "Saved decisive final PNG and actual current URL before cleanup.",
+        "Removed the sole test-added layer; verified Map layers and Automobile - Service legend disappeared, restoring the original map."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "automobile_service_points_http_500",
+      "retryClass": "prerequisite",
+      "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Given the loaded Service point details include neighbour-cell data, each returned neighbour appears in its own distinct section beneath the serving-cell information.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Evaluated this criterion's prerequisites against the confirmed Automobile Service point-retrieval blocker. No independent detail interaction was possible; did not repeatedly issue the same failing point requests."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "automobile_service_points_http_500",
+      "retryClass": "prerequisite",
+      "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed. This criterion requires a selected Service point and its detail request, which could not be established. No criterion-specific detail PNG was possible; criterion 1's images are not reused as this criterion's evidence. No loading/error/no-data simulation was installed because the correct selected-record detail request could not first be established.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Given the loaded Service point details contain no neighbour-cell data, serving-cell information remains visible and no empty neighbour section appears.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Evaluated this criterion's prerequisites against the confirmed Automobile Service point-retrieval blocker. No independent detail interaction was possible; did not repeatedly issue the same failing point requests."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "automobile_service_points_http_500",
+      "retryClass": "prerequisite",
+      "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed. This criterion requires a selected Service point and its detail request, which could not be established. No criterion-specific detail PNG was possible; criterion 1's images are not reused as this criterion's evidence. No loading/error/no-data simulation was installed because the correct selected-record detail request could not first be established.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Given displayed Service point detail rows are available, sorting the rows changes their visible order according to the selected sort, and filtering them shows only rows matching the selected filter.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Evaluated this criterion's prerequisites against the confirmed Automobile Service point-retrieval blocker. No independent detail interaction was possible; did not repeatedly issue the same failing point requests."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "automobile_service_points_http_500",
+      "retryClass": "prerequisite",
+      "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed. This criterion requires a selected Service point and its detail request, which could not be established. No criterion-specific detail PNG was possible; criterion 1's images are not reused as this criterion's evidence. No loading/error/no-data simulation was installed because the correct selected-record detail request could not first be established.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Given a Service point's reported radio generation is 2G, 3G, 4G, 5G NSA, or 5G SA, the visible KPI names are appropriate to that generation.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Evaluated this criterion's prerequisites against the confirmed Automobile Service point-retrieval blocker. No independent detail interaction was possible; did not repeatedly issue the same failing point requests."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "automobile_service_points_http_500",
+      "retryClass": "prerequisite",
+      "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed. This criterion requires a selected Service point and its detail request, which could not be established. No criterion-specific detail PNG was possible; criterion 1's images are not reused as this criterion's evidence. No loading/error/no-data simulation was installed because the correct selected-record detail request could not first be established.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Given 5G SA is selected and the user opens a Service point in the shared point-detail dialog, the Service point detail presentation loads without an error state.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Evaluated this criterion's prerequisites against the confirmed Automobile Service point-retrieval blocker. No independent detail interaction was possible; did not repeatedly issue the same failing point requests."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "automobile_service_points_http_500",
+      "retryClass": "prerequisite",
+      "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed. This criterion requires a selected Service point and its detail request, which could not be established. No criterion-specific detail PNG was possible; criterion 1's images are not reused as this criterion's evidence. No loading/error/no-data simulation was installed because the correct selected-record detail request could not first be established.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Given Service point details are loading, the detail presentation shows a loading state.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Evaluated this criterion's prerequisites against the confirmed Automobile Service point-retrieval blocker. No independent detail interaction was possible; did not repeatedly issue the same failing point requests."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "automobile_service_points_http_500",
+      "retryClass": "prerequisite",
+      "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed. This criterion requires a selected Service point and its detail request, which could not be established. No criterion-specific detail PNG was possible; criterion 1's images are not reused as this criterion's evidence. No loading/error/no-data simulation was installed because the correct selected-record detail request could not first be established.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Given Service point details are unavailable, the detail presentation shows a no-data state.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Evaluated this criterion's prerequisites against the confirmed Automobile Service point-retrieval blocker. No independent detail interaction was possible; did not repeatedly issue the same failing point requests."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "automobile_service_points_http_500",
+      "retryClass": "prerequisite",
+      "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed. This criterion requires a selected Service point and its detail request, which could not be established. No criterion-specific detail PNG was possible; criterion 1's images are not reused as this criterion's evidence. No loading/error/no-data simulation was installed because the correct selected-record detail request could not first be established.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Given loading Service point details fails, the detail presentation shows an error state and does not show incorrect detail data.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Evaluated this criterion's prerequisites against the confirmed Automobile Service point-retrieval blocker. No independent detail interaction was possible; did not repeatedly issue the same failing point requests."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "blockerCode": "automobile_service_points_http_500",
+      "retryClass": "prerequisite",
+      "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed. This criterion requires a selected Service point and its detail request, which could not be established. No criterion-specific detail PNG was possible; criterion 1's images are not reused as this criterion's evidence. No loading/error/no-data simulation was installed because the correct selected-record detail request could not first be established.",
+      "testedModule": "Automobile"
+    }
+  ],
+  "conciseReport": "# TEST2-83 — Blocked\n\nInspected human-confirmed Automobile > Service, including nested test types and 5G SA availability. GET `/api/platform/automobile/service/points` returned HTTP 500 in all visible-map batches and reproduced on a controlled fresh load. No selectable Service point or real detail request could be established, so all nine canonical criteria are Blocked (prerequisite), with no product verdict. The empty-looking map is not evidence of an empty response. Criterion 1 owns the setup/blocker captures; dependent criteria have no borrowed evidence. No simulation was used. Test-added layer removed and original map restored.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-83-cycle-003-test-attempt-001/screenshots/",
+  "noOp": false,
+  "reason": "GET /api/platform/automobile/service/points returned HTTP 500 for all three visible-map tile batches, reproduced by one controlled fresh GIS load. Automobile > Test type > Service and all technology choices including 5G SA are available, but no Service points could be retrieved for selection. This is not a settled empty response or a Service-detail error-state test. No on-screen HTTP error message was observed.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-21T12:46:42.595Z"
+}
