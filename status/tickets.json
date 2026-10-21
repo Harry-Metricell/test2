@@ -3,10 +3,10 @@
   "generatedAt": "2026-10-21T13:15:43.530Z",
   "counts": {
     "tickets": 14,
-    "handoffs": 2,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 12,
-      "Ready": 2
+      "Blocked": 13,
+      "Ready": 1
     },
     "byQaOutcome": {
       "Blocked": 13,
@@ -133,13 +133,13 @@
       "cycleId": "cycle-002",
       "summary": "Display Upload Point Details",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-10-21T13:15:43.530Z",
       "retries": 1,
       "retryLimit": 1,
