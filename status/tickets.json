@@ -9,8 +9,7 @@
       "Ready": 2
     },
     "byQaOutcome": {
-      "Blocked": 13,
-      "Not Tested": 1
+      "Blocked": 14
     }
   },
   "policy": {
@@ -98,16 +97,16 @@
       "summary": "View Building Details and Floorplans",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-21T09:50:05.177+0100",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 0,
+      "testAttempts": 1,
       "retryLabel": ""
     },
     {
