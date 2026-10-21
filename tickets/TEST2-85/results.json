@@ -1,0 +1,190 @@
+[
+  {
+    "criterion": "Given a completed Download test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Download Rate, and Wi-Fi connection status.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-automobile.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-automobile-configuration.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-test-types.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-add-download.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-add-download.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to exactly https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial launcher state.",
+      "Opened GIS and captured the map before opening Automobile configuration.",
+      "Opened Automobile, inspected its nested Test type choices, selected Download, verified the selected type, and captured configuration.",
+      "Added Automobile - Download with default three-month time range and otherwise default filters.",
+      "Waited for the layer to settle; observed Error and inspected the actual Automobile points request HTTP 500.",
+      "Captured final blocker at the observed GIS URL.",
+      "Removed this criterion's test-created layer and verified the Download layer was absent; captured cleanup separately."
+    ],
+    "observed_results": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. The required detail assertion was not reached. Cleanup completed.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Download samples are available, a time-series chart shows Signal Strength in dBm and Download Rate in Mbps across the test duration.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-automobile.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-automobile-configuration.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-test-types.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-add-download.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-after-add-download.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to exactly https://o2intelligence-v4-dev.metricell.com/launcher and captured this criterion's initial launcher state.",
+      "Opened GIS and captured the map before opening Automobile configuration.",
+      "Opened Automobile, inspected its nested Test type choices, selected Download, verified the selected type, and captured configuration.",
+      "Added Automobile - Download with default three-month time range and otherwise default filters.",
+      "Waited for the layer to settle; observed Error and inspected the actual Automobile points request HTTP 500.",
+      "Confirmed the same points-retrieval failure on this independent fresh load; captured final blocker and actual GIS URL.",
+      "Removed this criterion's test-created layer and verified the Download layer was absent; captured cleanup separately."
+    ],
+    "observed_results": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. The required detail assertion was not reached. Cleanup completed.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given per-sample Download data is available, each returned sample is shown in a table with its relevant units.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Not executed independently after the shared points-retrieval prerequisite failed twice. Avoided issuing the same known failing points request for each dependent detail criterion, as instructed by the QA brief."
+    ],
+    "observed_results": "No independent assertion was reached. GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. No criterion-specific PNGs or final URL exist because this dependent criterion was not started after the repeated prerequisite failure; evidence from criteria 1 and 2 is not reused.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the per-sample table contains multiple rows, sorting by a displayed column changes their visible order according to that column.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Not executed independently after the shared points-retrieval prerequisite failed twice. Avoided issuing the same known failing points request for each dependent detail criterion, as instructed by the QA brief."
+    ],
+    "observed_results": "No independent assertion was reached. GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. No criterion-specific PNGs or final URL exist because this dependent criterion was not started after the repeated prerequisite failure; evidence from criteria 1 and 2 is not reused.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given per-sample data is available, filtering the table shows only rows matching the selected filter.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Not executed independently after the shared points-retrieval prerequisite failed twice. Avoided issuing the same known failing points request for each dependent detail criterion, as instructed by the QA brief."
+    ],
+    "observed_results": "No independent assertion was reached. GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. No criterion-specific PNGs or final URL exist because this dependent criterion was not started after the repeated prerequisite failure; evidence from criteria 1 and 2 is not reused.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear in the summary immediately after Download Rate.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Not executed independently after the shared points-retrieval prerequisite failed twice. Avoided issuing the same known failing points request for each dependent detail criterion, as instructed by the QA brief."
+    ],
+    "observed_results": "No independent assertion was reached. GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. No criterion-specific PNGs or final URL exist because this dependent criterion was not started after the repeated prerequisite failure; evidence from criteria 1 and 2 is not reused.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the selected Download point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Not executed independently after the shared points-retrieval prerequisite failed twice. Avoided issuing the same known failing points request for each dependent detail criterion, as instructed by the QA brief."
+    ],
+    "observed_results": "No independent assertion was reached. GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. No criterion-specific PNGs or final URL exist because this dependent criterion was not started after the repeated prerequisite failure; evidence from criteria 1 and 2 is not reused. Browser-only exception simulation was not attempted because the correct selected record and real detail request/response could not first be established.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Download details are loading, the detail presentation shows a loading state.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Not executed independently after the shared points-retrieval prerequisite failed twice. Avoided issuing the same known failing points request for each dependent detail criterion, as instructed by the QA brief."
+    ],
+    "observed_results": "No independent assertion was reached. GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. No criterion-specific PNGs or final URL exist because this dependent criterion was not started after the repeated prerequisite failure; evidence from criteria 1 and 2 is not reused. Browser-only exception simulation was not attempted because the correct selected record and real detail request/response could not first be established.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Download details are unavailable, the detail presentation shows a no-data state.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Not executed independently after the shared points-retrieval prerequisite failed twice. Avoided issuing the same known failing points request for each dependent detail criterion, as instructed by the QA brief."
+    ],
+    "observed_results": "No independent assertion was reached. GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. No criterion-specific PNGs or final URL exist because this dependent criterion was not started after the repeated prerequisite failure; evidence from criteria 1 and 2 is not reused. Browser-only exception simulation was not attempted because the correct selected record and real detail request/response could not first be established.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given loading Download details fails, the detail presentation shows an error state and does not display incorrect data.",
+    "outcome": "Blocked",
+    "browserName": "Google Chrome",
+    "browserVersion": "155.0.8059.85",
+    "browserUrl": null,
+    "evidence": [],
+    "steps_taken": [
+      "Not executed independently after the shared points-retrieval prerequisite failed twice. Avoided issuing the same known failing points request for each dependent detail criterion, as instructed by the QA brief."
+    ],
+    "observed_results": "No independent assertion was reached. GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established.",
+    "reason": "GET /api/platform/automobile/download/points returned HTTP 500 on the original load and a controlled fresh load from the launcher. GET /api/platform/automobile/filter-options returned 200. The Automobile - Download layer displayed Error; no HTTP status text was shown on screen. This is a points-retrieval failure, not a settled empty response or a failed detail request. No selectable Download record, samples, or detail endpoint could be established. No criterion-specific PNGs or final URL exist because this dependent criterion was not started after the repeated prerequisite failure; evidence from criteria 1 and 2 is not reused. Browser-only exception simulation was not attempted because the correct selected record and real detail request/response could not first be established.",
+    "blockerCode": "automobile_download_points_http_500",
+    "retryClass": "transient",
+    "testedModule": "Automobile"
+  }
+]
