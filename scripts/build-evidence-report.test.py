@@ -588,7 +588,8 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("not a confirmed application defect", cycle.cell(5, 1).text)
             self.assertEqual(document.tables[3].cell(1, 2).text, "Y")
             self.assertEqual(document.tables[3].cell(1, 1).text, "N")
-            self.assertEqual(document.tables[3].cell(1, 3).text, "0")
+            self.assertEqual(document.tables[3].cell(1, 3).text, "N")
+            self.assertEqual(document.tables[3].cell(1, 4).text, "0")
             self.assertEqual(cycle.cell(6, 1).text, "Blocked")
             self.assertEqual(cycle.cell(7, 1).text, "https://example.test/launcher")
             self.assertEqual(cycle.cell(2, 1).text, "example.test")
@@ -602,9 +603,12 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[3].cells[0].tables[0].cell(0, 0).text)
             self.assertIn("A restricted user", cases.rows[4].cells[1].text)
             self.assertEqual([cell.text for cell in document.tables[3].rows[0].cells][1:],
-                             ['Pass (Y/N)', 'Fail (Y/N)', 'Defect No'])
+                             ['Pass (Y/N)', 'Fail (Y/N)', 'Blocked (Y/N)', 'Defect No'])
             self.assertEqual([cell.text for cell in document.tables[3].rows[2].cells][1:],
-                             ['N', 'N', '0'])
+                             ['N', 'N', 'Y', '0'])
+            self.assertFalse(document.tables[3].autofit)
+            self.assertGreater(document.tables[3].columns[0].width,
+                               3 * document.tables[3].columns[1].width)
             self.assertIn('Criterion 1 assessment:', cases.rows[2].cells[0].text)
             self.assertIsNotNone(cases.rows[2]._tr.trPr.find(REPORT.qn('w:cantSplit')))
             self.assertFalse(cases.autofit)
@@ -748,7 +752,7 @@ class ResultMatchingTests(unittest.TestCase):
             document = Document(output)
             self.assertEqual(len(document.inline_shapes), 3)
             self.assertEqual([cell.text for cell in document.tables[3].rows[1].cells][1:],
-                             ['Y', 'N', '0'])
+                             ['Y', 'N', 'N', '0'])
             manifest = json.loads((root / "manifest.json").read_text())
             self.assertEqual(manifest["embeddedEvidenceImages"], 2)
             self.assertEqual(len(manifest["logicalEvidence"]), 3)

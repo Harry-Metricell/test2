@@ -4,6 +4,7 @@ import json
 import shutil
 import zipfile
 import hashlib
+from copy import deepcopy
 from datetime import datetime
 from pathlib import Path
 import re
@@ -945,7 +946,7 @@ def main():
     limitations = compact_limitations(review, outcomes, results)
     if any(text(item.get("outcome")).lower() == "unverified" for item in outcomes):
         limitations += " Inconclusive evidence is reported as Failed, but is not a confirmed application defect."
-    limitations += " Pass/Fail use Y/N; blocked criteria are N/N. Defect No counts directly contradicted criteria, not unique Jira bugs; blockers and inconclusive evidence count as zero."
+    limitations += " Pass, Fail and Blocked use Y/N. Defect No counts directly contradicted criteria, not unique Jira bugs; blockers and inconclusive evidence count as zero."
     if no_evidence_block:
         limitations = "No browser evidence was captured; testing could not be completed. " + limitations
     urls = source_urls(results)
@@ -965,9 +966,24 @@ def main():
         set_cell(row[1], value)
 
     summary = doc.tables[3]
+    # Extend the retained four-column template without widening the page.
+    summary_width = sum(column.width for column in summary.columns)
+    if len(summary.columns) == 4:
+        summary.add_column(Inches(1))
+        added_header = summary.cell(0, 4)._tc
+        if added_header.tcPr is not None:
+            added_header.remove(added_header.tcPr)
+        added_header.insert(0, deepcopy(summary.cell(0, 3)._tc.tcPr))
+    summary.autofit = False
+    for column, proportion in zip(summary.columns, (0.55, 0.11, 0.11, 0.13, 0.10)):
+        column.width = int(summary_width * proportion)
+    for row in summary.rows:
+        for cell, column in zip(row.cells, summary.columns):
+            cell.width = column.width
     set_cell(summary.cell(0, 1), "Pass (Y/N)")
     set_cell(summary.cell(0, 2), "Fail (Y/N)")
-    set_cell(summary.cell(0, 3), "Defect No")
+    set_cell(summary.cell(0, 3), "Blocked (Y/N)")
+    set_cell(summary.cell(0, 4), "Defect No")
     repeat_table_header(summary)
     while len(summary.rows) > 1:
         summary._tbl.remove(summary.rows[-1]._tr)
@@ -983,7 +999,8 @@ def main():
         set_cell(row[0], f"{index}. {label}")
         set_cell(row[1], "Y" if raw_outcome == "passed" else "N")
         set_cell(row[2], "Y" if raw_outcome in ("failed", "unverified") else "N")
-        set_cell(row[3], str(confirmed_defect_count(raw_outcome)))
+        set_cell(row[3], "Y" if raw_outcome == "blocked" else "N")
+        set_cell(row[4], str(confirmed_defect_count(raw_outcome)))
 
     context = doc.tables[4]
     context_values = [
