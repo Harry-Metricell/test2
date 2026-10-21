@@ -53,6 +53,8 @@ Worker chat completion is a receipt, not proof of publication. Dependent stages 
 
 Criteria, testing and review preserve the ticket's evidence scope. A settled empty list is valid for unchanged-state/no-new-item assertions unless the ticket or action requires populated entries. Results must say it remained empty, not claim populated ordering coverage. Reordering/removal still requires data; absent panels or loading errors do not prove emptiness. Visible catalogue restoration does not imply off-screen catalogue coverage. These brief contracts have regression checks, but only a fresh model/browser run validates interpretation.
 
+Verified module/layer provenance may be retained as a testing-context HTML comment outside the `criteria.md` checklist. It is setup, not an added acceptance criterion, and remains available to testing/review without another handoff or source-Jira access. Workers inspect nested Active layer/test-type choices before declaring a feature missing; similarly named Surveyor, Automobile and MS Teams features are not interchangeable. Source links explain the routing decision but do not grant permission to modify that project.
+
 ### Controlled exception-state testing
 
 Testers may use narrowly scoped browser-local request delays or documented empty/error responses for explicit loading, no-data and error UI criteria on the configured V4 development host. They first identify the real request through normal UI use. No-data requires a verified empty-response contract, not an invented payload. This cannot substitute for backend integration, missing access/data/modules or ordinary successful behaviour, and must never conceal a genuine failure.

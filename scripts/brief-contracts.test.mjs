@@ -189,3 +189,10 @@ test('README distinguishes required renderers, migration and privacy limitations
   assert.doesNotMatch(readme, /LOCALAPPDATA\\TEST2\\python\\python.exe/);
   for (const relative of ['docs/briefs/coordinator.md', 'docs/publisher-operations.md']) assert.ok(fs.existsSync(path.join(root, relative)), relative);
 });
+
+test('workers retain source module context and inspect nested layers before absence claims', () => {
+  assert.ok(brief('qa-testing').includes('a catalogue text search alone is insufficient'));
+  assert.ok(brief('qa-testing').includes('Surveyor Service is not Automobile Service'));
+  assert.ok(brief('criteria-conversion').includes('Preserve verified testing-context notes'));
+  assert.ok(brief('evidence-review').includes('not a similarly named substitute'));
+});

@@ -10,6 +10,8 @@ Execute immediately; do not summarise this brief. Fetch live GitHub main `status
 
 Read only its remote inputs.criteria, inputs.ticketJson and inputs.status. Retry a failed fetch once after a short wait; never substitute local snapshots, Jira or conversation history. One handoff is one attempt; the publisher assigns permanent attempt numbers.
 
+Read verified testing-context notes outside the checklist as setup/provenance, not extra criteria. Match the named module and layer: Surveyor Service is not Automobile Service, and generic Call is not MS Teams Call. Before declaring a feature unavailable, inspect the relevant parent layer's visible configuration and nested Active layer/test-type choices; a catalogue text search alone is insufficient. Do not guess a substitute module from a similarly named feature. If the complete supplied source/context is still ambiguous, report that precise scope blocker. Never fetch or modify source Jira to resolve it yourself.
+
 ## Browser and authentication
 
 Before any browser tool call, acquire the shared browser with `node scripts/tester-browser-lease.mjs --acquire <handoffId>` in the synchronized Desktop checkout. Require `acquired: true` and retain its returned token. If `acquired: false`, wait 30 seconds and retry without opening/navigating the browser, staging a result, or consuming an attempt. Never remove or expire another tester's lease. If the lease command is unavailable or denied, do not touch the browser; report the actual capability error rather than bypassing ownership.

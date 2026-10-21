@@ -10,6 +10,8 @@ Read only its remote inputs.ticketJson, status/generated/<KEY>.json and tickets/
 
 Read the original summary, full description, acceptance criteria, change details, scope, exclusions and relevant notes. Existing criteria.md is input to assess, not proof of quality.
 
+Preserve verified testing-context notes and their source links outside the checklist (an HTML comment is acceptable). They identify module/layer scope, not additional requirements. Never turn setup/provenance into a pass/fail criterion or replace the original acceptance criteria with navigation instructions. If context conflicts with the full ticket, report the conflict rather than silently choosing another module.
+
 Each criterion must faithfully express one clear action/state, observable expected result and necessary starting condition, without hidden assumptions. Remove duplicates, split combined actions, recover omitted requirements and replace vague/uncheckable wording with screenshot-testable criteria. Write the improved checklist even if the existing one is poor.
 
 Preserve the source's evidence scope: visible catalogue entries do not mean every off-screen entry. Do not invent a populated-list prerequisite for unchanged-state or no-new-item assertions. An empty initial list is a valid baseline unless the source requires populated entries or the asserted action inherently needs an item (for example reordering or removing one). State that real prerequisite explicitly when required; do not silently weaken such an assertion to an empty-list check.

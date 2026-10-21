@@ -1,4 +1,5 @@
 <!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
+<!-- Verified testing context (2026-10-21): Surveyor > Active layer: Upload. Source VM2ST-108 links VM2ST-115 and VM2ST-118 (Surveyor point details and layers). This is not Automobile Upload. Source references: https://metricell.atlassian.net/browse/VM2ST-108 https://metricell.atlassian.net/browse/VM2ST-115 https://metricell.atlassian.net/browse/VM2ST-118 . Setup/provenance only; acceptance criteria below are unchanged. -->
 
 - [ ] Given a completed Upload test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Upload Rate, and Wi-Fi connection status.
 - [ ] Given Upload samples are available, a time-series chart shows Signal Strength in dBm and Upload Rate in Mbps across the test duration.
