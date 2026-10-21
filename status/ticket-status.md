@@ -8,7 +8,7 @@ Updated: 2026-10-21T12:55:55.496+0100
 | TEST2-81 | READY FOR TESTING | Blocked | Retry 1/1 | Map HTTP Browsing, Ping and Video Streaming point details |
 | TEST2-82 | READY FOR TESTING | Blocked |  | Display Ping Point Details |
 | TEST2-83 | READY FOR TESTING | Blocked |  | Display Service Point Details |
-| TEST2-84 | READY FOR TESTING | Awaiting Evidence Review |  | View Building Details and Floorplans |
+| TEST2-84 | READY FOR TESTING | Blocked |  | View Building Details and Floorplans |
 | TEST2-85 | READY FOR TESTING | Ready for Testing |  | Display Download Point Details |
 | TEST2-86 | READY FOR TESTING | Ready for Testing |  | Display Upload Point Details |
 | TEST2-87 | READY FOR TESTING | Ready for Testing |  | Display Call Point Details |
