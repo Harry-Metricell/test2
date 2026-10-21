@@ -1,27 +1,5 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-10-21T12:05:59.887+0100",
-  "handoffs": [
-    {
-      "handoffId": "handoff-TEST2-85-cycle-002-test-attempt-001",
-      "handoffVersion": "TEST2-85:cycle-002:test_ticket:1",
-      "attempt": 1,
-      "action": "test_ticket",
-      "brief": "docs/briefs/qa-testing.md",
-      "owner": "ticket-tester",
-      "ticket": "TEST2-85",
-      "inputs": {
-        "criteria": "tickets/TEST2-85/criteria.md",
-        "ticketJson": "tickets/TEST2-85/ticket.json",
-        "status": "tickets/TEST2-85/status.json",
-        "cycle": "tickets/TEST2-85/qa-cycle.json",
-        "evidenceFolder": "TEST2-85/cycles/cycle-002/screenshots/attempt-001"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-85/results.json",
-        "schema": "v4-qa-test-result.v1"
-      },
-      "cycleId": "cycle-002"
-    }
-  ]
+  "generatedAt": "2026-10-21T12:32:25.464+0100",
+  "handoffs": []
 }
