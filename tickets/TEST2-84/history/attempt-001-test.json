@@ -1,0 +1,283 @@
+{
+  "handoffId": "handoff-TEST2-84-cycle-002-test-attempt-001",
+  "handoffVersion": "TEST2-84:cycle-002:test_ticket:1",
+  "cycleId": "cycle-002",
+  "ticket": "TEST2-84",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Selecting one Building point opens a separate dashboard for that building once its details load.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "building_overview_http_500",
+      "reason": "Single-point selection was established by the met2 Building Name filter. The Building details - met2 dashboard shell opened, but details never loaded: GET /api/platform/surveyor/building/overview for buildingId 99 returned HTTP 500, reproduced by a controlled fresh selection. Visible message: Building overview could not be loaded. This prevents verifying the criterion's loaded-details condition.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Add unfiltered Surveyor - Building; select the five-point cluster and choose met2; observe loading, then the HTTP 500/error.",
+        "Close details; configure Building Name met2 and Apply; verify the points request succeeds with that filter; select the single point.",
+        "Observe the fresh overview request return HTTP 500 and the final visible error; capture final URL, then remove the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-add-building.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-building-choice.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-selected-building-details.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-overview-error.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-single-building-filter.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-single-building-filter.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-single-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-single-building-loading.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+      ]
+    },
+    {
+      "criterion": "When multiple Building points are selected at one map location, the user can choose which building dashboard to open.",
+      "outcome": "Passed",
+      "reason": "The five-point cluster offered named building choices. Selecting met2 opened the separate Building details - met2 dashboard dialog. This passes the choice/opening behavior only; its overview subsequently failed in the data service.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Add unfiltered Surveyor - Building; click its five-point map cluster.",
+        "Capture the five named choices; choose met2; verify Building details - met2 opens; capture final state and URL before closing/removing the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-chosen-building-dashboard.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+      ]
+    },
+    {
+      "criterion": "When the selection contains too many Building points to identify a building, the user is prompted to zoom in or apply filters, and no ambiguous building dashboard opens.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "too_many_building_points_fixture_unavailable",
+      "reason": "GET /api/platform/surveyor/building/points returned HTTP 200 with five Building points in Last 30 days. Their shared map cluster offered five choices. No fixture or defined threshold establishing a selection with too many Building points was available; that branch could not be exercised. No business data was created.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Add unfiltered Surveyor - Building; select the available five-point map cluster.",
+        "Observe five building choices, insufficient to establish the too-many threshold; capture this prerequisite limit and URL; remove the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png"
+      ]
+    },
+    {
+      "criterion": "When building information is available, the dashboard shows building and floorplan summary information in sortable and filterable tables.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "building_overview_http_500",
+      "reason": "Building points and their selection menu are reachable, but the prerequisite available building information is not: the overview read for buildingId 99 returned HTTP 500 on the original and controlled fresh selection. Sortable/filterable summary tables could not be established. This criterion independently reached the map and building choices; the known failing overview request was not repeatedly issued for dependent table checks.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Add unfiltered Surveyor - Building; select its cluster and observe available building choices.",
+        "Stop the dependent summary-table check at the known overview-service prerequisite failure rather than repeat the same failing request; capture own final map/choices and URL, then remove the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png"
+      ]
+    },
+    {
+      "criterion": "When the building has floorplans, the dashboard displays their images and lets the user select a floorplan.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "floorplan_fixture_unavailable",
+      "reason": "Selected met2 and opened Floor. The tab displayed No floor plans are available for this Building result, with Event Type disabled and no image/selector. The overview service has a reproduced HTTP 500; this is not proof of a genuine building-with-floorplans fixture or authoritative empty floorplan data. A known building with retrievable floorplans is required.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Filter Building Name met2 in the add-layer configuration; add the layer and select its single map point.",
+        "Capture the opened building dashboard, then select Floor; observe the no-floorplans message and disabled Event Type.",
+        "Capture this fixture limitation and URL before closing details/removing the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-floor-loading.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+      ]
+    },
+    {
+      "criterion": "Selecting a floorplan displays its image with the associated survey points overlaid.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "floorplan_fixture_unavailable",
+      "reason": "No verified building-with-floorplans fixture could be established: met2's Floor tab offered no floorplans, while its overview read failed HTTP 500. Independently reached the Building map and selection choices for this criterion; did not repeat the known failing detail request or invent a floorplan. Image selection and survey-point overlay remain untested.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Add unfiltered Surveyor - Building; select its cluster and inspect the building choices.",
+        "No verified retrievable floorplan exists for overlay selection; capture the independent final prerequisite state and URL, then remove the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+      ]
+    },
+    {
+      "criterion": "When the building has no floorplans, the dashboard displays available building details without an empty floorplan image area.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "no_floorplans_with_details_fixture_unavailable",
+      "reason": "A verified building with no floorplans AND available building details could not be established. The prior met2 Floor display alone is insufficient to prove an authoritative no-floorplans record because overview data fails HTTP 500. Independently reached Building points/choices; did not repeat the same failing detail request. The available-details requirement remains blocked.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Add unfiltered Surveyor - Building; select its cluster and inspect the building choices.",
+        "No verified no-floorplans record with available building details exists; capture this criterion's own prerequisite state/URL and remove the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
+      ]
+    },
+    {
+      "criterion": "While Building data is loading, a loading state is displayed.",
+      "outcome": "Passed",
+      "reason": "During a genuine GET /api/platform/surveyor/building/overview read for filtered met2 (buildingId 99), the dashboard displayed Loading building overview… and its named progressbar. The final PNG captures that live loading state. No interception or simulation was used. This verifies the loading state only, not successful data retrieval.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Filter Building Name met2, add the layer, and select its single point.",
+        "Observe and capture Loading building overview… and its progressbar during the genuine pending overview read.",
+        "Capture final while loading and record URL; close the dialog and remove the test layer separately."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+      ]
+    },
+    {
+      "criterion": "When Building data is unavailable, a no-data state is displayed.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "empty_building_response_contract_unavailable",
+      "reason": "No authentic unavailable-Building/no-data fixture or authoritative empty overview response contract was supplied or established. The real points response is populated (five points), and overview failure is HTTP 500, not settled empty data. Independently reached Building points/choices. No-data simulation was not performed because an empty contract and valid baseline record could not be established.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Add unfiltered Surveyor - Building; select the five-point cluster and inspect the available building choices.",
+        "Identify lack of an authentic no-data fixture/empty overview contract; do not fabricate empty data.",
+        "Capture own final reachable prerequisite state and URL; remove the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+      ]
+    },
+    {
+      "criterion": "When Building data fails to load, an error state is displayed without incorrect building data.",
+      "outcome": "Passed",
+      "reason": "A real GET /api/platform/surveyor/building/overview for met2 (buildingId 99) returned HTTP 500. After the live loading state settled, the selected dashboard displayed Building overview could not be loaded. Its overview content area contained no building tables, floorplan images or other building's details. No mocking was used. This verifies the visible error state for this record; no cross-record stale-data scenario is claimed.",
+      "steps_taken": [
+        "Navigate to https://o2intelligence-v4-dev.metricell.com/launcher and capture the visible launcher.",
+        "Open GIS; wait for the map; open Surveyor configuration; inspect Active layer choices; select Building.",
+        "Filter Building Name met2, add the layer, and select its single point; capture live loading.",
+        "Wait for the genuine overview read to settle; verify HTTP 500 and the visible Building overview could not be loaded message.",
+        "Capture the error assertion and URL before closing the dialog and removing the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-10-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-add-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-10-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-10-active-layer-options.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-10-building-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-10-building-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-10-final.png"
+      ]
+    }
+  ],
+  "conciseReport": "TEST2-84 cycle-002: 3 Passed, 7 Blocked; independent evidence review required.\n\nSurveyor > Building was verified. Named building selection, real loading, and real error UI were observed. Building points returned HTTP 200 with five records. GET /api/platform/surveyor/building/overview for buildingId 99 repeatedly returned HTTP 500, preventing loaded overview/table verification. The Floor tab showed no available floorplans, but a valid populated-floorplan fixture and a no-floorplans fixture with available details could not be established. Too-many-points and genuine no-data fixtures/contracts were unavailable. No simulated responses or backend writes were used. Every criterion has independent launcher/final captures; final URLs were observed in the browser. Test layers/dialogs were removed after final captures.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-84-cycle-002-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Blocked by repeated Building overview HTTP 500 and missing suitable fixtures/contracts. Browser Google Chrome 155.0.8059.85 was observed through fullVersionList. All UI changes were restored; no route handlers were installed.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-21T09:45:27.644Z"
+}
