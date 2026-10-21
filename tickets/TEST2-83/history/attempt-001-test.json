@@ -1,0 +1,280 @@
+{
+  "handoffId": "handoff-TEST2-83-cycle-002-test-attempt-001",
+  "handoffVersion": "TEST2-83:cycle-002:test_ticket:1",
+  "cycleId": "cycle-002",
+  "ticket": "TEST2-83",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Given a Service point's details have loaded in the shared point-detail dialog, the standard detail presentation shows the returned serving-cell information.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-surveyor-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-service-added.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-close-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-search.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-search.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-open-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-cluster.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, captured initial state, opened GIS and added this criterion's Surveyor layer with Active layer Service.",
+        "Inspected Service configuration; searched 51.072365, -0.30713665, cleared the search marker and opened the map-centre Surveyor cluster.",
+        "Selected the first 4G event, 22/09/2026 11:02:02. POST /api/platform/surveyor/service/event-analysis returned HTTP 200.",
+        "Compared returned serving-cell information with the standard Service event information table, including Cell ID 510633_124_4, RSRP -97 dBm, LTE 2100, PCI 142, EARFCN 347, RSRQ -11 dB and SNR 4 dB.",
+        "Captured the decisive populated state before closing details and removing the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Returned serving-cell information is displayed in the shared Surveyor Service detail presentation."
+    },
+    {
+      "criterion": "Given the loaded Service point details include neighbour-cell data, each returned neighbour appears in its own distinct section beneath the serving-cell information.",
+      "outcome": "Failed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-remove-restored-layer.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-removed-restored-layer.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-own-service-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-own-service-added.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-cluster.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-loaded-neighbours.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, captured initial state, opened GIS and added this criterion's Surveyor layer with Active layer Service.",
+        "A removed layer was restored by saved state on entering GIS. Removed it and added an independent Surveyor Service layer before testing this criterion.",
+        "Opened the map-centre cluster and selected the first event at 22/09/2026 11:02:02.",
+        "Observed three neighbours (-106 dBm / PCI 129, -107 dBm / PCI 18, -94 dBm / PCI 142). Each is a row in one Neighbours table to the right of serving-cell information.",
+        "Captured final state before cleanup; all opened details and this layer were subsequently removed."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Returned neighbours appear as rows of a single table beside serving-cell information, rather than each in its own distinct section beneath that information.",
+      "retryClass": "product"
+    },
+    {
+      "criterion": "Given the loaded Service point details contain no neighbour-cell data, serving-cell information remains visible and no empty neighbour section appears.",
+      "outcome": "Failed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-service-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-service-added.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-cluster.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-second-event-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-third-event.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-third-event-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-event-4.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-event-4-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-event-5.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-event-5-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-event-6.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-event-6-loaded.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, captured initial state, opened GIS and added this criterion's Surveyor layer with Active layer Service.",
+        "Opened the cluster and selected events 2 through 6 independently within this criterion, capturing each selection.",
+        "For event 6 at 22/09/2026 11:02:01 with RSRP -99 dBm, the real POST /api/platform/surveyor/service/event-analysis returned HTTP 200 and Neighbours as the string [].",
+        "Verified serving-cell information remains populated, but the Neighbours region still renders with the message 'No neighbours are available.'",
+        "Captured final state before closing all opened detail tabs and removing the layer; saved cleanup."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Serving-cell information remains visible, but an empty Neighbours region remains with 'No neighbours are available.' The criterion requires no empty neighbour section.",
+      "retryClass": "product"
+    },
+    {
+      "criterion": "Given displayed Service point detail rows are available, sorting the rows changes their visible order according to the selected sort, and filtering them shows only rows matching the selected filter.",
+      "outcome": "Failed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-service-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-service-added.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-cluster.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-loaded-details.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, captured initial state, opened GIS and added this criterion's Surveyor layer with Active layer Service.",
+        "Opened the Service cluster and selected its first event; waited for populated RSRP detail rows.",
+        "Inspected the complete Service event information and Neighbours tables and the page's textbox/button controls.",
+        "The detail presentation has no sort buttons or filter controls. Its only table button is the survey-name link. Cluster list sorting/filtering controls belong to event selection, not the loaded detail rows.",
+        "Captured loaded details and a separate final PNG, then closed details and removed the layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "Populated Service detail rows expose no sorting or filtering controls, preventing both required actions.",
+      "retryClass": "product"
+    },
+    {
+      "criterion": "Given a Service point's reported radio generation is 2G, 3G, 4G, 5G NSA, or 5G SA, the visible KPI names are appropriate to that generation.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-service-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-service-added.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-cluster.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-4g-details.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-missing-generation-filter.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-selected-2g-3g-sa.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-filtered-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, captured initial state, opened GIS and added this criterion's Surveyor layer with Active layer Service.",
+        "Selected the first 4G Service event and verified visible RSRP, RSRQ and EARFCN labels against the returned generation.",
+        "Closed details; configured Technology to 2G, 3G and 5G SA only, then applied the filter.",
+        "GET /api/platform/surveyor/service/points returned HTTP 200 with {points:[]} for the selected dates 2026-09-22 through 2026-10-21.",
+        "Zoomed out eight levels to a wide England/Wales view; the settled fresh GET to the same safe endpoint again returned HTTP 200 with {points:[]}. Aborted intermediate requests occurred during map movement; the final response was successful and empty.",
+        "Captured the decisive empty fixture state and its actual GIS URL; the test layer was removed."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "4G labels were directly checked. No 2G, 3G or 5G SA records were available in the tested date range and map extents, so the required multi-generation assertion cannot be decided. 5G NSA was not independently exercised in this criterion. Empty point retrieval is a fixture limitation, not a product failure.",
+      "retryClass": "prerequisite",
+      "blockerCode": "service_generation_fixtures_unavailable"
+    },
+    {
+      "criterion": "Given 5G SA is selected and the user opens a Service point in the shared point-detail dialog, the Service point detail presentation loads without an error state.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-technology.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-5g-sa-selected.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-sa-map.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, captured initial state, opened GIS and added this criterion's Surveyor layer with Active layer Service.",
+        "Before adding the layer, deselected 2G, 3G, 4G, 5G NSA and Out of Service so Technology showed only 5G SA.",
+        "Added Surveyor Service with 5G SA selected in the wide map view.",
+        "The actual GET /api/platform/surveyor/service/points returned HTTP 200 with {points:[]}; no SA Service event was available to open.",
+        "Captured the settled map and actual GIS URL. Unrelated Network Information and RPO layers were visible in this final state; their markers are not SA Service evidence. A cleanup click was declined by a strict locator match for three layers, so no unrelated layer was removed. Subsequent state and final attempt cleanup were verified separately."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "No 5G SA Service point was returned for 2026-09-22 through 2026-10-21, preventing opening an SA detail record. The successful empty point response is not evidence of a detail-load error or success.",
+      "retryClass": "prerequisite",
+      "blockerCode": "fiveg_sa_fixture_unavailable"
+    },
+    {
+      "criterion": "Given Service point details are loading, the detail presentation shows a loading state.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-service-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-service-added.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-search.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-search.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-open-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-cluster.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-genuine-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-delayed-open.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-loading.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-recovery.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, captured initial state, opened GIS and added this criterion's Surveyor layer with Active layer Service.",
+        "Searched 51.072365, -0.30713665, cleared the marker and opened the Service cluster.",
+        "Opened point 9533500 / survey 1101 (22/09/2026 11:02:02) normally; established the real POST /api/platform/surveyor/service/event-analysis HTTP 200 response and populated serving-cell information.",
+        "SIMULATED UI STATE: closed and reopened that record with an owned handler scoped to the exact development origin, endpoint, POST method, pointId 9533500 and surveyId 1101. All unmatched traffic fell through.",
+        "SIMULATED UI STATE: held the original read until the loading and final PNGs were captured. Verified one intercepted request and the visible Analysis progress bar with 'Loading…'. Current-record summary information remained visible.",
+        "In a finally block, released the original request, awaited pending settlement and removed only this exact handler. The genuine response returned HTTP 200 and the full serving-cell information recovered. No response body was fabricated.",
+        "Verified the simulation state was removed; closed details and removed the test layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "SIMULATED UI STATE: browser-only delay of POST https://o2intelligence-v4-dev.metricell.com/api/platform/surveyor/service/event-analysis for pointId 9533500, surveyId 1101. The original read was held until evidence capture, then continued unchanged. Analysis showed a progress bar and 'Loading…'. The actual populated response established the endpoint and record; no empty-response contract or synthetic success was used. Genuine HTTP 200 recovery and exact-handler cleanup were verified. This passes only the explicit loading UI criterion, not backend performance."
+    },
+    {
+      "criterion": "Given Service point details are unavailable, the detail presentation shows a no-data state.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-service-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-service-added.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-cluster.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-populated-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-cleanup.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, captured initial state, opened GIS and added this criterion's Surveyor layer with Active layer Service.",
+        "Opened the Service cluster and point 9533500 / survey 1101 through the normal UI.",
+        "Established POST /api/platform/surveyor/service/event-analysis returning HTTP 200 with a populated details array and serving-cell/neighbour data.",
+        "The selected record was available; no real unavailable-details response was observed. The supplied authoritative inputs do not document an empty details-response contract.",
+        "Did not substitute an empty point-list response or empty the populated details array to invent a contract. Captured the actual populated state as blocker context, then closed details and removed the layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "No unavailable-details fixture or authoritative empty-response contract for POST /api/platform/surveyor/service/event-analysis was established. The real populated response cannot establish how unavailable detail data must be represented; a no-data simulation would be unsupported.",
+      "retryClass": "prerequisite",
+      "blockerCode": "service_details_empty_contract_unavailable"
+    },
+    {
+      "criterion": "Given loading Service point details fails, the detail presentation shows an error state and does not show incorrect detail data.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-surveyor.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-service-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-service-added.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-cluster.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-first-record-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-target-record.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-target-genuine-details.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-first-record-before-error.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-error-open.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-error-state.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-genuine-recovery.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-cleanup.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-cleanup-restored-map.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, captured initial state, opened GIS and added this criterion's Surveyor layer with Active layer Service.",
+        "Loaded distinct point 9533500 (11:02:02, -97 dBm, three neighbours) normally and captured this criterion's baseline.",
+        "Selected target point 9532398 / survey 1101 (11:02:01, -102 dBm, one neighbour) and established the genuine POST /api/platform/surveyor/service/event-analysis HTTP 200 response.",
+        "Closed the target and restored the first record before returning to the cluster to select the target again.",
+        "SIMULATED UI STATE: installed an owned handler for the exact development-origin endpoint and POST requests whose pointId was 9532398 and surveyId was 1101. Unmatched requests fell through. Locally fulfilled only the target read with HTTP 503, application/json, body {message:'QA simulated Service detail read unavailable'}.",
+        "Verified exactly one intercepted request, Analysis alert 'Unable to load details.' with Retry, no Neighbours region, and summary identity 11:02:01 / -102 dBm. The previous record's -97 dBm and three-neighbour detail data did not remain in the active target view.",
+        "Captured the error and final states before recovery. In a finally block awaited owned route work and removed only the exact handler; clicked Retry and verified genuine HTTP 200 recovery with target RSRP -102 dBm and its returned neighbour.",
+        "Closed all test details and removed the Service layer. Restored original map centre 0.093 / 52.385 and zoom 6; verified no selected layers, no open detail tabs and no owned simulation state."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "155.0.8059.85",
+      "reason": "SIMULATED UI STATE: browser-only HTTP 503 for POST https://o2intelligence-v4-dev.metricell.com/api/platform/surveyor/service/event-analysis, pointId 9532398 / surveyId 1101, using an application/json object with a message field. HTTP 503 was used as a synthetic failed read, not an observed backend failure or successful/empty API contract. The real request and populated response were established first. The UI showed 'Unable to load details.' with Retry, retained the current target's correct summary, and excluded previous-record details. Exact-handler removal, genuine HTTP 200 retry recovery and final UI restoration were verified. This passes only the explicit error UI criterion."
+    }
+  ],
+  "conciseReport": "TEST2-83 cycle-002: 3 Passed, 3 Failed, 3 Blocked; evidence review required.\n\nServing-cell values matched the returned Service data. Neighbours were rows in one side table rather than separate sections beneath serving-cell information; an empty Neighbours region remained for a real no-neighbour event; detail-row sorting/filtering controls were absent.\n\nGeneration coverage and 5G SA detail opening were blocked by unavailable fixtures. The no-data criterion was blocked by a missing authoritative empty-details response contract.\n\nSIMULATED UI STATE: criteria 7 and 9 passed scoped browser-only loading and HTTP 503 checks on the Service event-analysis read; both recovered through genuine HTTP 200 responses after exact-handler cleanup. These checks establish UI exception handling only.\n\nAll criteria used independent launcher captures and their own PNGs. Final cleanup verified the original map centre/zoom, no selected layers, no open details and no owned simulation state.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-83-cycle-002-test-attempt-001/screenshots/",
+  "noOp": false,
+  "reason": "Testing performed for the exact live handoff and cycle. Prerequisite blockers prevent a complete decision; three other criteria have direct contradictory UI evidence. Browser identity observed via userAgentData fullVersionList. Original map and test-created UI state restored.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-21T09:28:22.075Z"
+}
