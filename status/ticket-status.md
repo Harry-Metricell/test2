@@ -6,7 +6,7 @@ Updated: 2026-10-21T15:08:26.095+0100
 | --- | --- | --- | --- |
 | TEST2-79 | READY FOR TESTING | Blocked | Retry 1/1 | Map and inspect Automobile Download and Upload results |
 | TEST2-81 | READY FOR TESTING | Blocked | Retry 1/1 | Map HTTP Browsing, Ping and Video Streaming point details |
-| TEST2-82 | READY FOR TESTING | Ready for Testing |  | Display Ping Point Details |
+| TEST2-82 | READY FOR TESTING | Awaiting Evidence Review |  | Display Ping Point Details |
 | TEST2-83 | READY FOR TESTING | Blocked |  | Display Service Point Details |
 | TEST2-84 | READY FOR TESTING | Blocked |  | View Building Details and Floorplans |
 | TEST2-85 | READY FOR TESTING | Blocked | Retry 1/1 | Display Download Point Details |
