@@ -16,6 +16,7 @@ export function formatReviewReport(ticket, title, review, attempt) {
     `- **Overall outcome:** ${markdownCell(review.overallOutcome)}`,
     `- **Evidence reviewed:** ${markdownCell(attempt)}`,
     '- **Report:** [Evidence report](report.pdf)',
+    '- **Editable report:** [Download Word (.docx)](report.docx)',
     '',
     '## Criterion results',
     ''

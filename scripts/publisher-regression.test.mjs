@@ -39,6 +39,7 @@ test('review report markdown reflects the authoritative review rather than stale
     ]
   }, 'attempt-002');
   assert.match(markdown, /Overall outcome:\*\* Unverified/);
+  assert.match(markdown, /\[Download Word \(\.docx\)\]\(report\.docx\)/);
   assert.match(markdown, /Evidence reviewed:\*\* attempt-002/);
   assert.match(markdown, /\*\*Unverified:\*\* Open navigates to module\./);
   assert.match(markdown, /Launcher \\| navigation/);

@@ -705,6 +705,9 @@ if (outputType === 'criteria-output.json') {
   if (!directFile) {
     copyFolder(generatedDocx, path.join(cycleEvidenceDir, 'reports', `${key}.docx`));
     copyFolder(generatedPdf, path.join(cycleEvidenceDir, 'reports', `${key}.pdf`));
+    if (!nonEmpty(generatedDocx)) fail('Editable evidence report DOCX is missing after generation');
+    copyFolder(generatedDocx, path.join(repo, 'tickets', key, 'report.docx'));
+    changed.push(`tickets/${key}/report.docx`);
     if (nonEmpty(generatedPdf)) {
       copyFolder(generatedPdf, path.join(repo, 'tickets', key, 'report.pdf'));
       changed.push(`tickets/${key}/report.pdf`);

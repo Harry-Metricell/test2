@@ -26,6 +26,7 @@ function fixture(t) {
     write('results.json', [{ criterion: 'The layer is visible.', outcome: 'Blocked' }]);
     write('review.json', { historyAttempt: 2, overallOutcome: 'Blocked' });
     write('report.pdf', 'old report bytes');
+    write('report.docx', 'old editable report bytes');
     write('retry-request.json', { schema: 'old request' });
   };
   const events = [{ id: '10:0', at: '2026-10-20T10:00:00Z', from: 'READY FOR TESTING', to: 'To Do' }, { id: '11:0', at: '2026-10-20T10:01:00Z', from: 'To Do', to: 'READY FOR TESTING' }];
@@ -37,6 +38,7 @@ test('rapid rework/return starts a fresh cycle and preserves reports, criteria a
   f.run(f.issue('READY FOR TESTING', f.events));
   assert.equal(readCycle(f.dir).cycleId, 'cycle-002');
   assert.equal(fs.readFileSync(path.join(f.dir, 'cycles/cycle-001/report.pdf'), 'utf8'), 'old report bytes');
+  assert.equal(fs.readFileSync(path.join(f.dir, 'cycles/cycle-001/report.docx'), 'utf8'), 'old editable report bytes');
   assert.ok(fs.existsSync(path.join(f.dir, 'cycles/cycle-001/history/attempt-002-test.json')));
   assert.ok(fs.existsSync(path.join(f.dir, 'cycles/cycle-001/retry-request.json')));
   assert.equal(fs.existsSync(path.join(f.dir, 'history')), false);

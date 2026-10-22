@@ -63,6 +63,8 @@ Every affected result and review reason retains `SIMULATED UI STATE:` with the m
 
 ### Report evidence
 
+Evidence review publication includes both `tickets/<KEY>/report.pdf` and its editable `report.docx`. The ticket detail page offers **Download Word (.docx)** only when the file is published alongside a PDF. Save manual amendments under a new filename; editing a downloaded Word report does not update Jira, QA outcomes or the site's published report. Testing-cycle resets archive both formats together.
+
 Browser testing is serialized per host. The coordinator allows one active tester, and each tester acquires `scripts/tester-browser-lease.mjs` before any Playwright call. The shared browser must not be driven by multiple chats even when MCP uses `--isolated`. Criteria and evidence reviews can run in parallel. Leases never expire by age; coordinator recovery releases one only after confirming the owning tester has stopped. See the coordinator brief for recovery commands.
 
 PDF content verification excludes the template's exact page-margin lines and normalizes line wrapping inside hyphenated words. It still requires the entire limitations text, outcome, recorded URLs, captions and expected evidence images. A footer inserted between extracted pages must not reject an otherwise complete report.
