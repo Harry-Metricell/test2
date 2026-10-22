@@ -1,17 +1,18 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-21T17:03:59.645+0100",
+  "generatedAt": "2026-10-22T10:49:30.555Z",
   "counts": {
     "tickets": 14,
     "handoffs": 4,
     "byWorkflowState": {
       "Blocked": 10,
-      "Ready": 4
+      "Ready": 3,
+      "Retry Queued": 1
     },
     "byQaOutcome": {
       "Blocked": 10,
       "Not Tested": 3,
-      "Passed": 1
+      "Unverified": 1
     }
   },
   "policy": {
@@ -26,18 +27,18 @@
       "cycleId": "cycle-002",
       "summary": "Map and inspect Automobile Download and Upload results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Passed",
+      "workflowState": "Retry Queued",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
-      "updatedAt": "2026-10-21T17:03:56.451+0100",
-      "retries": 0,
+      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "updatedAt": "2026-10-22T10:49:30.555Z",
+      "retries": 1,
       "retryLimit": 1,
       "testAttempts": 1,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/1"
     },
     {
       "key": "TEST2-80",
