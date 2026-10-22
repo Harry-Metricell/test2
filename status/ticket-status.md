@@ -4,7 +4,7 @@ Updated: 2026-10-21T17:03:59.645+0100
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
-| TEST2-79 | READY FOR TESTING | Ready for Testing |  | Map and inspect Automobile Download and Upload results |
+| TEST2-79 | READY FOR TESTING | Awaiting Evidence Review |  | Map and inspect Automobile Download and Upload results |
 | TEST2-80 | READY FOR TESTING | Ready for Testing |  | Map and inspect Automobile Service results |
 | TEST2-81 | READY FOR TESTING | Ready for Testing |  | Map HTTP Browsing, Ping and Video Streaming point details |
 | TEST2-82 | READY FOR TESTING | Blocked |  | Display Ping Point Details |
