@@ -1,0 +1,346 @@
+{
+  "handoffId": "handoff-TEST2-79-cycle-002-retry-attempt-002",
+  "handoffVersion": "TEST2-79:cycle-002:test_ticket:2:scope-35bb8346e931",
+  "cycleId": "cycle-002",
+  "ticket": "TEST2-79",
+  "testedModule": "Automobile",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "With neither layer selected, the map shows no Download or Upload test-result points.",
+      "outcome": "Unverified",
+      "retryClass": "manual",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-before-configure.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-test-types.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Started at launcher; opened GIS.",
+        "Inspected Automobile - Ping configuration and nested Test type list: Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service, MS Teams Call.",
+        "Retained Ping and closed configuration without applying changes; captured final map."
+      ],
+      "reason": "Download and Upload were not selected; Automobile - Ping was the sole selected layer. Map was visible, but absence of every Download/Upload result could not be established independently by marker identity from the viewport evidence. No product failure claimed.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "After selecting Download, the map shows selectable points for matching authorised Download results only.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-before-configure.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-before-download.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-after-apply.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for visible launcher and captured initial PNG.",
+        "Opened GIS and captured existing Automobile - Ping baseline.",
+        "Opened Automobile configuration; inspected nested Test type choices, selected required type and applied.",
+        "Waited for map state and captured it.",
+        "Selected Download; GET /api/platform/automobile/download/points returned 200 with 831 aggregate markers.",
+        "Clicked geographic aggregate 1008808509648672043 near longitude -0.4833984375, latitude 51.903612807883555. The click position was calculated from actual point coordinates and the visible Mapbox feedback center/zoom.",
+        "Verified Download result 132363237 loaded via POST /api/platform/automobile/download/cluster-details and /test-analysis (both 200); captured final.",
+        "Closed only the created Download tab and restored original Automobile - Ping selection; cleanup captured separately."
+      ],
+      "reason": "Automobile Download map showed its markers and Download legend; selecting a matching marker opened Download result 132363237. Current authorised session tested; no cross-account authorisation claim.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "After selecting Upload, the map shows selectable points for matching authorised Upload results only.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-before-configure.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-test-types.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-map.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for visible launcher and captured initial PNG.",
+        "Opened GIS and captured existing Automobile - Ping baseline.",
+        "Opened Automobile configuration; inspected nested Test type choices, selected required type and applied.",
+        "Waited for map state and captured it.",
+        "Selected Upload; GET /api/platform/automobile/upload/points returned 200 with 870 aggregate markers.",
+        "Clicked response-derived Upload aggregate 1008808509648672043; verified Upload test 132363116 and Upload Rate 11.38 Mbps.",
+        "Captured final before closing created Upload tab and restoring Automobile - Ping; cleanup captured separately."
+      ],
+      "reason": "Upload markers and legend rendered; selected matching marker opened Upload result 132363116 in the current authorised session.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Selecting a Download result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate, and Wi-Fi Connected.",
+      "outcome": "Unverified",
+      "retryClass": "manual",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-before-configure.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-test-types.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-map.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-details.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for visible launcher and captured initial PNG.",
+        "Opened GIS and captured existing Automobile - Ping baseline.",
+        "Opened Automobile configuration; inspected nested Test type choices, selected required type and applied.",
+        "Waited for map state and captured it.",
+        "Applied Download and clicked geographic aggregate 1008808509648672043.",
+        "Read selected result 132363237 summary and captured upper summary.",
+        "Scrolled Test Duration (s) into view; captured lower summary as final.",
+        "Closed created Download tab and restored Ping; captured separate cleanup."
+      ],
+      "reason": "The live summary contained all eight requested fields, including Download Rate 152.67 Mbps and Test Duration 31.147 s. Screenshot coverage of the narrow scrolled summary is inconclusive for every required row; no Passed claim from text alone.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Selecting an Upload result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Upload Rate, and Wi-Fi Connected.",
+      "outcome": "Unverified",
+      "retryClass": "manual",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-before-configure.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-test-types.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-map.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-details.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for visible launcher and captured initial PNG.",
+        "Opened GIS and captured existing Automobile - Ping baseline.",
+        "Opened Automobile configuration; inspected nested Test type choices, selected required type and applied.",
+        "Waited for map state and captured it.",
+        "Applied Upload and clicked geographic aggregate 1008808509648672043.",
+        "Read result 132363116 summary; captured upper summary and scrolled to Test Duration for lower final capture.",
+        "Closed created Upload tab and restored Ping; cleanup captured separately."
+      ],
+      "reason": "The live summary contained all eight requested fields, Upload Rate 11.38 Mbps and duration 0.703 s. Screenshot coverage of every requested row in the narrow summary is inconclusive; evidence review is required.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "The Download result details chart plots Signal Strength in dBm and Download Rate in Mbps over time.",
+      "outcome": "Passed",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-6-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-6-before-configure.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-6-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-6-test-types.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-6-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-6-map.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-6-details.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-6-final.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for visible launcher and captured initial PNG.",
+        "Opened GIS and captured existing Automobile - Ping baseline.",
+        "Opened Automobile configuration; inspected nested Test type choices, selected required type and applied.",
+        "Waited for map state and captured it.",
+        "Applied Download and independently selected aggregate 1008808509648672043.",
+        "Waited for actual Download result 132363237 analysis; brought Download analysis into view.",
+        "Captured final chart showing Signal strength and Download Rate against Seconds with dBm and Mbps axes.",
+        "Closed created Download tab and restored Ping; cleanup captured separately."
+      ],
+      "reason": "Independent saved final PNG visibly shows Signal strength and Download Rate series over time, labelled dBm, Mbps and Seconds.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "The Upload result details chart plots Signal Strength in dBm and Upload Rate in Mbps over time.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-7-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-7-before-configure.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-7-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-7-test-types.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-7-before-apply.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher; waited for visible launcher and captured initial PNG.",
+        "Opened GIS and captured existing Automobile - Ping baseline.",
+        "Opened Automobile configuration; inspected nested Test type choices, selected required type and applied.",
+        "Captured Upload selected in configuration before Apply. Execution interrupted before map/final state could be verified."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 7 has no verified final assertion or current final browserUrl. Only the saved launcher/configuration evidence is available; whether Apply completed is unverified. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "The Download details table displays MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [],
+      "steps_taken": [
+        "Criterion not executed: browser tool execution was interrupted during criterion 7; no criterion-specific UI actions or screenshots were performed."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 8 has no verified final assertion or current final browserUrl. No PNG was possible for this criterion because browser execution had stopped. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "The Upload details table displays MSISDN, Start Time, End Time, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [],
+      "steps_taken": [
+        "Criterion not executed: browser tool execution was interrupted during criterion 7; no criterion-specific UI actions or screenshots were performed."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 9 has no verified final assertion or current final browserUrl. No PNG was possible for this criterion because browser execution had stopped. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [],
+      "steps_taken": [
+        "Criterion not executed: browser tool execution was interrupted during criterion 7; no criterion-specific UI actions or screenshots were performed."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 10 has no verified final assertion or current final browserUrl. No PNG was possible for this criterion because browser execution had stopped. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a result whose Error Message is null, the details table displays “No Error”.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [],
+      "steps_taken": [
+        "Criterion not executed: browser tool execution was interrupted during criterion 7; no criterion-specific UI actions or screenshots were performed."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 11 has no verified final assertion or current final browserUrl. No PNG was possible for this criterion because browser execution had stopped. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [],
+      "steps_taken": [
+        "Criterion not executed: browser tool execution was interrupted during criterion 7; no criterion-specific UI actions or screenshots were performed."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 12 has no verified final assertion or current final browserUrl. No PNG was possible for this criterion because browser execution had stopped. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Filtering a supported Download or Upload details-table column displays rows matching the applied filter.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [],
+      "steps_taken": [
+        "Criterion not executed: browser tool execution was interrupted during criterion 7; no criterion-specific UI actions or screenshots were performed."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 13 has no verified final assertion or current final browserUrl. No PNG was possible for this criterion because browser execution had stopped. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Requesting details for a zero-duration test does not open a details dialog.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [],
+      "steps_taken": [
+        "Criterion not executed: browser tool execution was interrupted during criterion 7; no criterion-specific UI actions or screenshots were performed."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 14 has no verified final assertion or current final browserUrl. No PNG was possible for this criterion because browser execution had stopped. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "While result details are loading, the interface shows a loading state without stale or misleading detail data.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [],
+      "steps_taken": [
+        "Criterion not executed: browser tool execution was interrupted during criterion 7; no criterion-specific UI actions or screenshots were performed."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 15 has no verified final assertion or current final browserUrl. No PNG was possible for this criterion because browser execution had stopped. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "If result details fail to load, the interface shows an error state without stale or misleading detail data.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_interrupted",
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "evidence": [],
+      "steps_taken": [
+        "Criterion not executed: browser tool execution was interrupted during criterion 7; no criterion-specific UI actions or screenshots were performed."
+      ],
+      "reason": "Tool interruption: functions.wait reported 'code-mode host timed out waiting for wait response', then 'cell 32 belongs to a stale code-mode host generation'. Criterion 16 has no verified final assertion or current final browserUrl. No PNG was possible for this criterion because browser execution had stopped. Per the QA brief's interruption rule, browser work stopped and the existing owned lease was preserved for coordinator reconciliation. Automobile state after criterion 7 and any incomplete UI restoration must be checked by the coordinator. Browser identity was observed once for this session; it does not imply this criterion ran.",
+      "testedModule": "Automobile"
+    }
+  ],
+  "conciseReport": "Automobile Download and Upload selection returned HTTP 200 and selectable map markers. Download chart passed with independent PNG evidence. Summary fields were observed but full screenshot coverage remains unverified. Browser execution was interrupted during criterion 7 by a stale code-mode host; criteria 7–16 are Blocked with no final assertion. No simulations were installed. Original Ping selection and pre-existing HTTP Browsing tab were preserved through criterion 6; criterion 7 state needs coordinator reconciliation. Browser lease retained as required after interruption.",
+  "reportPath": "",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-79-cycle-002-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Partial attempt staged after browser execution interruption. Live exact handoff ID/version/cycle were revalidated before staging. Browser lease retained for coordinator reconciliation; no release attempted after interruption.",
+  "browserLease": {
+    "handoffId": "handoff-TEST2-79-cycle-002-retry-attempt-002",
+    "retained": true,
+    "reason": "execution_interrupted",
+    "acquiredAt": "2026-10-22T11:04:46.556Z"
+  },
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-22T12:56:31.190Z"
+}
