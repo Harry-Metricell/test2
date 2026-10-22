@@ -3,10 +3,10 @@
   "generatedAt": "2026-10-22T10:49:30.555Z",
   "counts": {
     "tickets": 14,
-    "handoffs": 4,
+    "handoffs": 3,
     "byWorkflowState": {
-      "Blocked": 10,
-      "Ready": 4
+      "Blocked": 11,
+      "Ready": 3
     },
     "byQaOutcome": {
       "Blocked": 11,
@@ -26,13 +26,13 @@
       "cycleId": "cycle-002",
       "summary": "Map and inspect Automobile Download and Upload results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-10-22T10:49:30.555Z",
       "retries": 1,
       "retryLimit": 1,
