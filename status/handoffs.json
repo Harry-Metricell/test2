@@ -25,23 +25,24 @@
       "cycleId": "cycle-002"
     },
     {
-      "handoffId": "handoff-TEST2-80-cycle-002-review-attempt-001",
-      "handoffVersion": "TEST2-80:cycle-002:evidence_review:1:scope-a1e7e4181625",
-      "attempt": 1,
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
+      "handoffId": "handoff-TEST2-80-cycle-002-guide-impact",
+      "handoffVersion": "TEST2-80:cycle-002:guide_impact_assessment:1:scope-a1e7e4181625",
+      "action": "guide_impact_assessment",
+      "brief": "docs/briefs/user-guide-impact.md",
+      "owner": "guide-impact-assessor",
       "ticket": "TEST2-80",
       "inputs": {
-        "results": "tickets/TEST2-80/results.json",
+        "ticketJson": "tickets/TEST2-80/ticket.json",
         "generated": "status/generated/TEST2-80.json",
+        "review": "tickets/TEST2-80/review.json",
+        "report": "tickets/TEST2-80/report.md",
+        "policy": "config/user-guide-impact-policy.json",
         "cycle": "tickets/TEST2-80/qa-cycle.json",
-        "evidenceFolder": "TEST2-80/cycles/cycle-002/screenshots/attempt-001",
         "testingContext": "config/testing-context/TEST2-80.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-80/review.json",
-        "schema": "v4-qa-review.v1"
+        "path": "tickets/TEST2-80/guide-impact.json",
+        "schema": "v4-user-guide-impact.v1"
       },
       "cycleId": "cycle-002"
     },
