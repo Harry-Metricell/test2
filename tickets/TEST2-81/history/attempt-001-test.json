@@ -1,0 +1,266 @@
+{
+  "schema": "v4-qa-test-result.v1",
+  "handoffId": "handoff-TEST2-81-cycle-002-test-attempt-001",
+  "handoffVersion": "TEST2-81:cycle-002:test_ticket:1:scope-e7b8cfd202d4",
+  "cycleId": "cycle-002",
+  "ticket": "TEST2-81",
+  "testedModule": "Automobile",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-81-cycle-002-test-attempt-001/screenshots",
+  "reason": "Video Streaming representative data was unavailable in the inspected area/date range. Complete per-result HTTP/Ping point coverage remains inconclusive. Browser state and the exact owned simulation handler were restored.",
+  "conciseReport": "Automobile, cycle-002: 5 Passed, 2 Unverified, 2 Blocked.\n\nHTTP detail identity/context, Page Load Time, Ping Time and failed HTTP zero-load-time colouring were observed with genuine data. HTTP/Ping map selection worked for representative aggregates; complete individual-result rendering was not established. Video Streaming returned settled HTTP 200 empty arrays, preventing point and Rebuffer Count checks.\n\nSIMULATED UI STATE: criterion 9 used an exact-origin, exact POST cluster-details endpoint and selected mercatorKey match to return HTTP 503 with an empty text body. The active details panel showed a clear error with no visible stale details. The exact handler was removed in finally; Retry recovered genuine HTTP 200 data. This verifies UI exception handling only.\n\nAll criteria have independent launcher/final captures. Original Automobile Ping layer, pre-existing Ping tab and map view were restored. Evidence review remains required.",
+  "results": [
+    {
+      "criterion": "Given HTTP Browsing results are available, when the HTTP Browsing layer is selected, each supplied result is displayed as a selectable point on the map.",
+      "outcome": "Unverified",
+      "retryClass": "manual",
+      "reason": "Automobile HTTP Browsing GET /api/platform/automobile/http-browsing/points returned 200 and rendered coloured aggregate markers. At zoom 15.04, five aggregate markers were supplied with pointId null. Selecting a representative marker issued POST /api/platform/automobile/http-browsing/cluster-details (200) and opened result 132612214 with Page Load Time 1.134 s. Individual point rendering/selectability for each supplied result was not exhaustively reconciled; the full criterion remains inconclusive.",
+      "steps_taken": [
+        "Initial PNG save failed because the handoff screenshot directory did not exist. Created that staging directory and restarted from the launcher; saved and verified a fresh initial PNG before interaction.",
+        "Opened GIS. Recorded the pre-existing Automobile Ping layer, Ping tab and map baseline. Opened its configuration and inspected all nested Test type choices.",
+        "Selected HTTP Browsing and applied. Observed the HTTP legend, map markers and genuine HTTP 200 point response.",
+        "Zoomed from 9.04 to 15.04 with a separate screenshot after each zoom. Selected the aggregate at 52.2232778829, 0.1378440857 and waited for the genuine response and new result tab.",
+        "Captured final evidence and current URL. Closed the test-created HTTP tab and restored Ping; the original zoom was restored later during this run cleanup."
+      ],
+      "testedModule": "Automobile",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-gis-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-automobile-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-test-type-choices.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-zoom-1.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-zoom-2.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-zoom-3.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-zoom-4.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-zoom-5.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-zoom-6.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-after-select.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+      ]
+    },
+    {
+      "criterion": "Given Ping results are available, when the Ping layer is selected, each supplied result is displayed as a selectable point on the map.",
+      "outcome": "Unverified",
+      "retryClass": "manual",
+      "reason": "Automobile Ping returned genuine HTTP 200 empty arrays at zoom 15.04 and 14.04. Broadening to 10.04 supplied 107 aggregates. A representative aggregate selection opened a two-result Automobile Ping details list (132617236 and 132610564), with POST /api/platform/automobile/ping/cluster-details HTTP 200. Complete individual rendering/selectability of each supplied result was not established.",
+      "steps_taken": [
+        "Navigated independently to the launcher and captured initial state; opened GIS and Automobile Ping configuration.",
+        "Applied the already-selected Ping type. Unchanged Apply emitted no new request, so a waitForResponse timed out; inspected the fresh-load request instead and distinguished its 200 empty array from a service error.",
+        "Zoomed out through 14.04, 13.04, 12.04, 11.04 and 10.04 with separate transition captures. Read the genuine 200 response containing 107 aggregate markers.",
+        "Selected the marker at 52.2042403226, 0.1208496094. Waited for its settled populated two-result list and captured final evidence and URL.",
+        "Closed only the test-created cluster tab. Original zoom was restored during later run cleanup."
+      ],
+      "testedModule": "Automobile",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-gis-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-after-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-after-zoom-out.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-after-zoom-out-2.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-after-zoom-out-3.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-after-zoom-out-4.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-after-zoom-out-5.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+      ]
+    },
+    {
+      "criterion": "Given Video Streaming results are available, when the Video Streaming layer is selected, each supplied result is displayed as a selectable point on the map.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "representative_video_data_unavailable",
+      "reason": "Video Streaming was available in the real Automobile Test type menu and was applied. GET /api/platform/automobile/video-streaming/points returned 200 with [] at zoom 10.04, 9.04 and 8.04, using the existing 2026-07-24T10:44:00Z to 2026-10-22T10:44:00Z range. These were settled empty responses, not HTTP failures. No matching representative data was available in those inspected extents/range, so point rendering could not be judged. No substitute module or synthetic successful data was used.",
+      "steps_taken": [
+        "Started independently at the launcher and saved initial state. Opened GIS, then Automobile configuration and its actual nested Test type choices.",
+        "Selected Video Streaming and applied. Waited for the real HTTP 200 empty response and captured the resulting map and Rebuffer Count legend.",
+        "Broadened the map from zoom 10.04 to 9.04 and 8.04; captured each transition and inspected the genuine settled empty responses.",
+        "Captured final state and URL. A browser-tool interruption initially prevented cleanup; after inspecting the actual browser state, restored Automobile Ping and the original zoom 9.04 and recaptured cleanup."
+      ],
+      "testedModule": "Automobile",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-gis-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-test-type-choices.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-zoom-out-1.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-zoom-out-2.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png"
+      ]
+    },
+    {
+      "criterion": "Given details are available for a result point, when the point is selected, a new detail dialog opens for that same result and displays its test type, result time, location, and available network technology/context.",
+      "outcome": "Passed",
+      "reason": "Selecting the Automobile HTTP Browsing aggregate opened a genuine four-result list; selecting result 132612568 opened a new result details tab/pane. Its test type, time 30/09/2026 10:24:44, latitude 52.21575208, longitude 0.13226606, service/technology 5G NSA and serving cell 11318_137_4 matched that exact record in the genuine 200 cluster-details response. Upper and lower detail captures jointly show the common context. This is a representative HTTP result check.",
+      "steps_taken": [
+        "Restarted this criterion at the launcher after recovering the browser from a cleanup timeout; captured a fresh initial state before opening GIS.",
+        "Opened Automobile configuration, inspected the Test type choices, selected HTTP Browsing and applied; observed a genuine HTTP 200 point response with 457 aggregates.",
+        "Selected the aggregate at 52.2210695236, 0.1318359375 and waited for the genuine HTTP 200 four-result list; captured its settled state before selecting a row.",
+        "Selected row 132612568 and verified the new detail pane and its identity/context against the real response. Captured the upper fields, scrolled the visible current detail pane to location/network fields and captured decisive final state and URL.",
+        "Closed only test-created HTTP tabs and restored the original Ping layer."
+      ],
+      "testedModule": "Automobile",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-gis-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-test-type.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-after-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-result-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-details-upper.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png"
+      ]
+    },
+    {
+      "criterion": "Given an HTTP Browsing point is selected and its details are available, the dialog displays that result’s Page Load Time.",
+      "outcome": "Passed",
+      "reason": "The independently selected Automobile HTTP result 132612568 displayed Page Load Time (s) 1.737, matching its genuine cluster-details kpiValue. The visible pane also showed that record ID, time and 5G NSA context.",
+      "steps_taken": [
+        "Started independently at the launcher and saved initial PNG; opened GIS and recorded this criterion baseline.",
+        "Opened Automobile configuration, changed Ping to HTTP Browsing and applied. Waited for HTTP 200 point data and captured the rendered map before selection.",
+        "Selected the Cambridge aggregate; waited for the four-result list and captured it before choosing result 132612568.",
+        "Opened that exact result, brought Page Load Time into view and verified 1.737 seconds against genuine response data. Captured final evidence and the actual GIS URL.",
+        "Closed test-created HTTP panes/list and restored Automobile Ping."
+      ],
+      "testedModule": "Automobile",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-gis-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-test-type.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-result-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+      ]
+    },
+    {
+      "criterion": "Given a Ping point is selected and its details are available, the dialog displays that result’s Ping Time.",
+      "outcome": "Passed",
+      "reason": "Automobile Ping result 132616638 displayed Ping Time (ms) 238, matching the genuine POST /api/platform/automobile/ping/cluster-details HTTP 200 response. The visible record ID, time 30/09/2026 12:02:22 and 5G NSA context identified the selected record. The criterion was restarted and recaptured to replace an earlier map baseline taken before map rendering settled.",
+      "steps_taken": [
+        "Restarted independently at the exact launcher and saved a fresh initial PNG before opening GIS.",
+        "Waited for the genuine Automobile Ping point request (HTTP 200, 208 aggregates), the visible map and settled rendering; saved and visually verified the map baseline.",
+        "Selected the Cambridge aggregate and waited for its genuine 200 three-result cluster response/list. Captured that list before choosing a result.",
+        "Selected row 132616638, verified its newly opened pane and Ping Time 238 ms, then captured final state and actual URL.",
+        "Closed only the new Ping result/list tabs. Verified only the original Ping tab remained, the original map was 0.1355/52.2242/9.04, and no owned simulation handler remained."
+      ],
+      "testedModule": "Automobile",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-gis-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+      ]
+    },
+    {
+      "criterion": "Given a Video Streaming point is selected and its details are available, the dialog displays that result’s Rebuffer Count.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "representative_video_data_unavailable",
+      "reason": "This independent check selected Automobile Video Streaming and received a genuine HTTP 200 [] point response for the inspected Cambridge region at zoom 9.04 and the existing July 24–October 22 range. There was no selectable matching Video Streaming result from which to open a dialog and verify Rebuffer Count. A Rebuffer Count legend is not evidence of the per-result KPI.",
+      "steps_taken": [
+        "Started independently from the launcher, saved initial evidence and opened GIS.",
+        "Opened Automobile configuration, captured its actual nested choices, selected Video Streaming and applied.",
+        "Waited for the genuine empty point response and settled map/legend. Captured this criterion own final blocker state and current URL.",
+        "Restored Automobile Ping without creating data or selecting another module."
+      ],
+      "testedModule": "Automobile",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-gis-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-test-type-choices.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
+      ]
+    },
+    {
+      "criterion": "Given an HTTP Browsing result ends in error, when its point is displayed, it is visually distinct from a successful result; a zero Page Load Time on the failed result is not coloured as success.",
+      "outcome": "Passed",
+      "reason": "The selected Automobile HTTP aggregate 1080868312373537326 rendered in the separate black Error series. Its genuine cluster-details response contained one result, 132301443, isFailed true, kpiValue 0 and Task TimeOut. The detail pane showed Result Failed and Page Load Time 0. Hiding/restoring Error removed/restored the error series, while successful markers used their KPI styles. In this same criterion, a separate genuine successful result 132612568 showed Success and 1.737 seconds for comparison; final returned to the failed zero-time result with Error restored.",
+      "steps_taken": [
+        "Started independently at launcher, captured initial state, opened GIS and configured Automobile HTTP Browsing with before/after captures.",
+        "Read genuine 200 point data to identify the failed aggregate. Selected it and waited for genuine 200 cluster details and the single failed result 132301443.",
+        "Captured Result Failed, zero Page Load Time and the black Error legend/marker. Toggled Error off and back on with separate captures, keeping the sequence within this criterion.",
+        "Selected the distinct successful Cambridge aggregate and result 132612568, capturing its list and successful 1.737-second details.",
+        "Returned to the failed result tab; verified Failed remained visible and captured decisive final evidence and actual URL.",
+        "Closed test-created HTTP tabs/lists, kept Error restored and restored the original Ping layer."
+      ],
+      "testedModule": "Automobile",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-gis-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-test-type.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-failed-point-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-errors-hidden.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-errors-restored.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-success-result-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-success-comparison.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+      ]
+    },
+    {
+      "criterion": "Given details cannot be returned for a selected point, the user sees a clear no-data or error message and no stale details are displayed.",
+      "outcome": "Passed",
+      "simulated": true,
+      "reason": "SIMULATED UI STATE: After genuine Automobile point/detail requests established target result 132301443 under mercatorKey 1080868312373537326, this criterion loaded distinct valid result 132612568 first. An owned Playwright route matched only development origin https://o2intelligence-v4-dev.metricell.com, POST /api/platform/automobile/http-browsing/cluster-details, that exact mercatorKey and the exact existing time range. It returned synthetic HTTP 503 Service Unavailable with an empty text/plain body for two matching reads; unmatched requests fell through. Genuine HTTP 200 array/record response shape was observed first; no application-specific empty/no-data contract was fabricated. The error status exercises HTTP failure handling only. The active destination pane showed Unable to load point details and Retry, with zero visible Selected test details panes, excluding prior result details from the active view. Other retained inactive tabs were not interpreted as stale active details. Finally removed only this exact handler, verified persistent owned state was deleted, and Retry obtained genuine HTTP 200 with result 132301443 again. This supports only the selected point/cluster-detail UI error branch, not a real backend outage or an untested no-data response contract.",
+      "steps_taken": [
+        "SIMULATED UI STATE: Started independently at launcher, captured initial state and opened GIS. Configured Automobile HTTP Browsing and observed genuine 200 point data.",
+        "Selected target aggregate 1080868312373537326 normally. Observed genuine POST cluster-details HTTP 200 and exact returned result 132301443, then captured its details. Its measurement failure was not treated as a detail-service failure.",
+        "Closed the target detail tab, selected a distinct Cambridge aggregate and result 132612568 normally and captured the populated distinct-record baseline.",
+        "Installed the exact owned route for POST, selected mercatorKey and existing time range. Stored the handler on the persistent Playwright page object and verified its existence in a separate tool call before selection.",
+        "Selected the target point. The synthetic 503 matched two reads. Waited for the visible clear error; observed no visible previous detail content and captured final PNG and actual URL.",
+        "In finally, removed only the exact installed handler and deleted owned state. Verified cleanup, clicked Retry and confirmed genuine HTTP 200 target data returned; captured recovery separately.",
+        "Closed only this criterion created HTTP tabs/lists and restored Automobile Ping, the original Ping tab and original map view. Later independent Ping recheck confirmed no owned handler remained."
+      ],
+      "testedModule": "Automobile",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-gis-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-test-type.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-apply.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-real-target-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-real-target-details.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-distinct-result-selection.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-distinct-result-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-recovery.png"
+      ]
+    }
+  ],
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-22T13:32:16.106Z"
+}
