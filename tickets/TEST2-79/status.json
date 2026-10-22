@@ -1,16 +1,16 @@
 {
   "ticket": "TEST2-79",
   "criteriaVerified": true,
-  "qaStatus": "Blocked",
-  "workflowState": "Retry Queued",
+  "qaStatus": "Awaiting Evidence Review",
+  "workflowState": "READY FOR TESTING",
   "retries": 1,
-  "testAttempts": 1,
+  "testAttempts": 2,
   "retryLimit": 1,
   "cycleId": "cycle-002",
   "jiraStatus": "READY FOR TESTING",
   "status": "READY FOR TESTING",
-  "blockedStage": "testing",
-  "qaOutcome": "Unverified",
-  "nextAction": "Create retry handoff",
+  "blockedStage": "evidence_review",
+  "qaOutcome": "Blocked",
+  "nextAction": "Create final evidence review handoff",
   "updatedAt": "2026-10-22T10:49:30.555Z"
 }
