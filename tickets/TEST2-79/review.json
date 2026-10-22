@@ -1,95 +1,95 @@
 {
-  "handoffId": "handoff-TEST2-79-cycle-002-review-attempt-001",
-  "handoffVersion": "TEST2-79:cycle-002:evidence_review:1:scope-35bb8346e931",
+  "handoffId": "handoff-TEST2-79-cycle-002-review-attempt-002",
+  "handoffVersion": "TEST2-79:cycle-002:evidence_review:2:scope-35bb8346e931",
   "ticket": "TEST2-79",
   "testedModule": "Automobile",
   "criterionOutcomes": [
     {
       "criterion": "With neither layer selected, the map shows no Download or Upload test-result points.",
-      "outcome": "Passed",
-      "reason": "criterion-1-after-open-gis.png and criterion-1-final.png show the settled unobscured map remained empty with no selected result layers; criterion-1-test-type-choices.png identifies Download and Upload within Automobile."
+      "outcome": "Unverified",
+      "reason": "criterion-1-before-configure.png, criterion-1-test-types.png and criterion-1-final.png show Automobile - Ping as the sole selected layer, but do not independently identify every visible marker to establish absence of Download/Upload results."
     },
     {
       "criterion": "After selecting Download, the map shows selectable points for matching authorised Download results only.",
       "outcome": "Passed",
-      "reason": "criterion-2-download-config.png selects Automobile Download; criterion-2-final.png shows Download markers and the opened matching Download tests table. Results record GET /api/platform/automobile/download/points HTTP 200 through the authenticated session."
+      "reason": "criterion-2-before-apply.png selects Download; criterion-2-after-apply.png shows Automobile - Download markers and legend; criterion-2-final.png shows selected Download result 132363237. Recorded /api/platform/automobile/download/points, /cluster-details and /test-analysis requests match this module and current authorised session."
     },
     {
       "criterion": "After selecting Upload, the map shows selectable points for matching authorised Upload results only.",
       "outcome": "Passed",
-      "reason": "criterion-3-before-select-point.png shows Automobile Upload markers; criterion-3-final.png shows the selected marker's matching Upload tests table. Results record GET /api/platform/automobile/upload/points HTTP 200."
+      "reason": "criterion-3-before-apply.png selects Upload; criterion-3-map.png shows Automobile - Upload markers and legend; criterion-3-final.png shows selected Upload result 132363116 with Upload Rate 11.38 Mbps. Recorded /api/platform/automobile/upload/points request matches the tested module and current authorised session."
     },
     {
       "criterion": "Selecting a Download result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate, and Wi-Fi Connected.",
       "outcome": "Unverified",
-      "reason": "criterion-4-final.png shows Download test 132737467, MSISDN, rate, serving cell, service and test technologies; criterion-4-final-summary-lower.png shows Technology and duration 31.795 s. The latter starts midway through the Wi-Fi Connected row with its value above the viewport, so the required Wi-Fi summary field/value is not directly evidenced."
+      "reason": "criterion-4-map.png and criterion-4-details.png show Download selection and result 132363237 with MSISDN, rate, Serving Cell, Service and Test Technologies; criterion-4-final.png shows Technology and Test Duration 31.147 s, but its Wi-Fi Connected row is clipped above the viewport. Complete coverage of all eight fields remains inconclusive."
     },
     {
       "criterion": "Selecting an Upload result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Upload Rate, and Wi-Fi Connected.",
       "outcome": "Passed",
-      "reason": "criterion-5-summary-upper.png and criterion-5-final.png show Upload test 132737469 with MSISDN, service, serving cell, test technologies, 18.44 Mbps rate, Wi-Fi Connected No, Technology 5G NSA and duration 0.434 s."
+      "reason": "criterion-5-map.png shows Automobile - Upload; criterion-5-details.png shows selected result 132363116 with MSISDN, Upload Rate 11.38 Mbps, Serving Cell, Service and Test Technologies. criterion-5-final.png shows Wi-Fi Connected No, Technology 5G NSA and Test Duration 0.703 s, completing the requested summary fields across this criterion's own captures."
     },
     {
       "criterion": "The Download result details chart plots Signal Strength in dBm and Download Rate in Mbps over time.",
       "outcome": "Passed",
-      "reason": "criterion-6-final.png directly shows the Download analysis chart with Signal strength and Download Rate series, dBm/Mbps axes and Seconds time axis."
+      "reason": "criterion-6-map.png shows Automobile - Download; criterion-6-details.png and criterion-6-final.png show selected Download result 132363237 with Signal strength and Download Rate series, dBm and Mbps axes, and Seconds on the time axis."
     },
     {
       "criterion": "The Upload result details chart plots Signal Strength in dBm and Upload Rate in Mbps over time.",
-      "outcome": "Passed",
-      "reason": "criterion-7-final.png directly shows Upload test 132737415 with Signal strength and Upload Rate series, dBm/Mbps axes and Seconds time axis."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped after a wait timeout and stale code-mode host error. criterion-7-before-apply.png shows Upload selected in configuration while the map still shows Ping; no criterion-owned Upload chart or final browserUrl was captured. Testing could not be completed; post-interruption state and restoration require coordinator reconciliation."
     },
     {
       "criterion": "The Download details table displays MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
-      "outcome": "Passed",
-      "reason": "criterion-8-table-left.png and criterion-8-final.png together show all specified Download table columns. Start, End and Error are the displayed labels for Start Time, End Time and Error Message."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped during criterion 7 after a wait timeout and stale code-mode host error. This criterion was not executed; no criterion-owned browser evidence was captured and testing could not be completed. Post-interruption Automobile state and restoration require coordinator reconciliation."
     },
     {
       "criterion": "The Upload details table displays MSISDN, Start Time, End Time, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
-      "outcome": "Passed",
-      "reason": "criterion-9-table-left.png and criterion-9-final.png together show all specified Upload table columns, including Upload Rate, Data Technology, Wi-Fi Connected, URL and Error."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped during criterion 7 after a wait timeout and stale code-mode host error. This criterion was not executed; no criterion-owned browser evidence was captured and testing could not be completed. Post-interruption Automobile state and restoration require coordinator reconciliation."
     },
     {
       "criterion": "Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).",
-      "outcome": "Unverified",
-      "reason": "criterion-10-download-table-units.png, criterion-10-download-chart-units.png and criterion-10-download-measurement-units.png show Mbps rates and dBm signal values/axes. Upload table and chart captures show Mbps/dBm axes, but criterion-10-final.png still shows the chart and filter rather than Upload measurement rows; the claimed per-value Upload measurement units lack direct screenshot evidence."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped during criterion 7 after a wait timeout and stale code-mode host error. This criterion was not executed; no criterion-owned browser evidence was captured and testing could not be completed. Post-interruption Automobile state and restoration require coordinator reconciliation."
     },
     {
       "criterion": "For a result whose Error Message is null, the details table displays “No Error”.",
-      "outcome": "Passed",
-      "reason": "criterion-11-table-left.png identifies test 132737467 and criterion-11-final.png shows its corresponding first row as No Error; the results record errorMessage null for that test in the real Automobile Download cluster-details response."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped during criterion 7 after a wait timeout and stale code-mode host error. This criterion was not executed; no criterion-owned browser evidence was captured and testing could not be completed. Post-interruption Automobile state and restoration require coordinator reconciliation."
     },
     {
       "criterion": "Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.",
-      "outcome": "Passed",
-      "reason": "criterion-12-tests-before-sort.png establishes populated original order; criterion-12-tests-first-sort.png shows ascending Download Rate values starting 0.38, 1.15, 2.51 Mbps; criterion-12-final.png shows descending values starting 364.12, 297.28, 277.15 Mbps with the matching sort arrows."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped during criterion 7 after a wait timeout and stale code-mode host error. This criterion was not executed; no criterion-owned browser evidence was captured and testing could not be completed. Post-interruption Automobile state and restoration require coordinator reconciliation."
     },
     {
       "criterion": "Filtering a supported Download or Upload details-table column displays rows matching the applied filter.",
-      "outcome": "Passed",
-      "reason": "criterion-13-before-filter.png shows the populated Download table; criterion-13-final.png shows filter 132737467 and only that matching row. criterion-13-filter-restored.png shows the cleared filter and restored visible baseline rows. The supported shared filter searches the Test ID column."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped during criterion 7 after a wait timeout and stale code-mode host error. This criterion was not executed; no criterion-owned browser evidence was captured and testing could not be completed. Post-interruption Automobile state and restoration require coordinator reconciliation."
     },
     {
       "criterion": "Requesting details for a zero-duration test does not open a details dialog.",
-      "outcome": "Passed",
-      "reason": "criterion-14-before-zero-duration-click.png identifies Upload test 132685097 with equal start/end times and N/A rate; criterion-14-final.png retains the tests table without an individual detail tab after the recorded click. The real cluster-details response confirms zero duration."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped during criterion 7 after a wait timeout and stale code-mode host error. This criterion was not executed; no criterion-owned browser evidence was captured and testing could not be completed. Post-interruption Automobile state and restoration require coordinator reconciliation."
     },
     {
       "criterion": "While result details are loading, the interface shows a loading state without stale or misleading detail data.",
-      "outcome": "Passed",
-      "reason": "SIMULATED UI STATE: Automobile Download analysis UI only on https://o2intelligence-v4-dev.metricell.com/gis. Results document an owned POST /api/platform/automobile/download/test-analysis read limited to pointId 132737365 held 30289 ms and released unchanged, with genuine prior responses establishing the contract. criterion-15-distinct-valid-before-simulation.png shows prior record 132737467; criterion-15-target-real-load.png establishes target 132737365; criterion-15-final.png shows Loading Automobile test analysis... with the correct target summary and no prior analysis. criterion-15-recovery.png restores the target chart after genuine HTTP 200; criterion-15-cleanup.png restores the empty map. Results verify pending-request settlement and exact handler removal in finally. This demonstrates scoped analysis loading UI, not backend latency or every detail endpoint."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped during criterion 7 after a wait timeout and stale code-mode host error. This criterion was not executed; no criterion-owned browser evidence was captured and testing could not be completed. Post-interruption Automobile state and restoration require coordinator reconciliation."
     },
     {
       "criterion": "If result details fail to load, the interface shows an error state without stale or misleading detail data.",
-      "outcome": "Passed",
-      "reason": "SIMULATED UI STATE: Automobile Download analysis UI only on https://o2intelligence-v4-dev.metricell.com/gis. Results document one browser-local HTTP 503 text/plain Service Unavailable for the owned POST /api/platform/automobile/download/test-analysis read limited to pointId 132737365; HTTP status provenance is RFC 9110 section 15.6.4, with no backend-body contract claimed. criterion-16-distinct-valid-before-simulation.png shows prior record 132737467; criterion-16-target-real-load.png establishes target 132737365; criterion-16-final.png shows Unable to load Automobile test analysis. and Retry with correct target summary and no stale prior analysis. criterion-16-recovery.png restores the target chart after genuine HTTP 200 Retry; criterion-16-cleanup.png restores the empty map. Results verify request settlement and exact handler removal in finally. This demonstrates scoped analysis error UI, not a real backend failure or every detail endpoint."
+      "outcome": "Blocked",
+      "reason": "Browser execution stopped during criterion 7 after a wait timeout and stale code-mode host error. This criterion was not executed; no criterion-owned browser evidence was captured and testing could not be completed. Post-interruption Automobile state and restoration require coordinator reconciliation."
     }
   ],
-  "overallOutcome": "Unverified",
+  "overallOutcome": "Blocked",
   "reportPath": "",
-  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-79\\cycles\\cycle-002\\screenshots\\attempt-001",
-  "qaStatus": "Evidence Reviewed",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-79\\cycles\\cycle-002\\screenshots\\attempt-002",
+  "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Independent review of cycle-002 attempt-001 completed against the human-confirmed Automobile scope. All 171 referenced PNGs exist and are non-empty. Summary Wi-Fi visibility and Upload measurement-unit capture gaps remain unverified; no confirmed product defect. Criteria 15 and 16 retain scoped simulation disclosures.",
+  "reason": "Independent review of cycle-002 attempt-002 Automobile evidence completed; browser execution interruption left criteria 7–16 unavailable for completion.",
   "cycleId": "cycle-002"
 }
