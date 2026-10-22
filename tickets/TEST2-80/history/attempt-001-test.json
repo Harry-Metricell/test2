@@ -1,0 +1,228 @@
+{
+  "handoffId": "handoff-TEST2-80-cycle-002-test-attempt-001",
+  "handoffVersion": "TEST2-80:cycle-002:test_ticket:1:scope-a1e7e4181625",
+  "cycleId": "cycle-002",
+  "ticket": "TEST2-80",
+  "testedModule": "Automobile",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "The map layer selector includes Service as a selectable layer.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-automobile.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-automobile-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-service-choice.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and captured the settled launcher.",
+        "Opened GIS, then Automobile configuration.",
+        "Opened Test type; observed Service among the nested choices and selected Service."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "reason": "Automobile configuration offers Service as a selectable test type.",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "With Service unselected, the map displays no Service test-result points.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-service-unselected.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Restarted independently at the launcher after removing the prior criterion's Service layer and test-created tabs.",
+        "Opened GIS and waited for restored Automobile Ping configuration and existing HTTP Browsing details.",
+        "Verified no Configure Automobile - Service control exists and captured settled map with Service unselected."
+      ],
+      "reason": "Service was unselected; no Service result layer or Service points displayed. Existing Ping layer and HTTP Browsing details were retained. Assertion concerns the visible map viewport.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects Service and matching authorised results are available, each matching result is displayed as a selectable map point.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-automobile.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-actual-automobile-config.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-add-service.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-final-selected.png"
+      ],
+      "steps_taken": [
+        "Started at the settled launcher; opened GIS.",
+        "Observed restored Automobile Ping layer and existing HTTP Browsing details; retained unrelated state.",
+        "Initial exact Automobile text locator timed out because catalogue label was Automobile (1); inspected current snapshot and opened that actual parent item.",
+        "Selected Service in Automobile Test type and added it.",
+        "Observed GET /api/platform/automobile/service/points HTTP 200 with populated aggregate markers.",
+        "Clicked a visible marker at viewport (600,405); POST /api/platform/automobile/service/cluster-details returned 200 and Service tests table loaded."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "reason": "Matching Automobile Service results rendered as map markers and a selected marker opened Service tests. Sampled the visible viewport; did not exhaustively enumerate all authorised backend results.",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a Service result point and its details load successfully, a Service details dialog displays MSISDN, Test Time, Signal, Band, Service, Data Technology, PLMN and Serving Cell.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-add-service.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-select-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "steps_taken": [
+        "Started at launcher independently, opened GIS and Automobile configuration.",
+        "Selected Service Test type and added the layer.",
+        "Clicked visible result marker (600,405); waited for Service tests table.",
+        "Verified all eight required table headings."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "reason": "Service details are presented as a docked details table with MSISDN, Test Time, Signal, Band, Service, Data Technology, PLMN and Serving Cell. Sample returned Out of Service/Disconnected rows with N/A values, rather than populated radio fields.",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "With the Service details table displayed, sorting a supported column reorders the displayed rows according to that column.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-add-service.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-select-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-sort.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+      ],
+      "steps_taken": [
+        "Started at launcher and configured a new Automobile Service layer independently.",
+        "Selected marker (600,405) and waited for populated Service tests table.",
+        "Captured descending Test Time baseline (19:47:32 through 19:45:30 on 12/10/2026).",
+        "Clicked Test Time column button; verified aria-sort ascending and timestamps now increasing from 15/08/2026 15:37:13 through 15:39:15 on the displayed page."
+      ],
+      "reason": "Supported Test Time sorting reordered the displayed rows from descending to ascending.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "With the Service details table displayed, filtering a supported column limits the displayed rows to those matching the filter.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-add-service.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-select-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-filter.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+      ],
+      "steps_taken": [
+        "Started at launcher and configured Automobile Service independently.",
+        "Selected visible marker and waited for 25 displayed Service table rows.",
+        "Entered 19:47:32 in Filter shown tests.",
+        "Waited until one row remained; verified its Test Time is 12/10/2026, 19:47:32."
+      ],
+      "reason": "The provided table-wide filter supports matching Test Time values and limited displayed rows to the matching timestamp. A dedicated per-column filter control was not shown.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When returned details include cell-neighbour data, the dialog displays each neighbour in its own labelled details table.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-add-service.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-select-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-earliest-record-sort.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-earliest-record.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-final-earliest-record.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-7-final-all-neighbours.png"
+      ],
+      "steps_taken": [
+        "Started from the launcher, independently configured Automobile Service and selected map marker (600,405).",
+        "Sorted Service tests by ascending Test Time to find an in-service record after the initial out-of-service sample returned no neighbours.",
+        "Opened record 131974812, 15/08/2026 15:37:13, Service 4G, serving cell 508424_130_4.",
+        "Verified genuine POST /api/platform/automobile/service/cluster-details HTTP 200 returned three serviceDetails.Neighbours entries.",
+        "Compared returned neighbour values with UI Cell Neighbour 1, Cell Neighbour 2 and Cell Neighbour 3; scrolled the third into view for complete evidence."
+      ],
+      "reason": "Record 131974812 returned three neighbours. The UI displays each in its own labelled details table: Cell Neighbour 1 (-120 dBm, RSRQ -18, EARFCN 6400, PCI 117); Cell Neighbour 2 (-118 dBm, -16, 6400, 272); Cell Neighbour 3 (-128 dBm, -20, 39448, 62). Empty returned CellID values are shown as N/A. No simulation used.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "While Service details are loading, the dialog displays a loading state.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-add-service.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-select-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-select-record.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-genuine-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-delayed-reopen.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-8-recovery.png"
+      ],
+      "steps_taken": [
+        "SIMULATED UI STATE: Started independently at launcher; configured Automobile Service and selected a map result and record 132762383.",
+        "Established genuine POST /api/platform/automobile/service/cluster-details request/200 response for pointId 132762383, mercatorKey 1008808500521866559.",
+        "Installed an owned handler limited to exact dev origin/endpoint, POST, pointId and mercatorKey; all unmatched traffic fell through.",
+        "Closed and reopened the same Service record, held its original read request, and observed Loading point details progressbar.",
+        "Released the original request, verified genuine detail recovery, then removed only the owned handler in finally."
+      ],
+      "reason": "SIMULATED UI STATE: Held the original POST read to https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/service/cluster-details for pointId 132762383 and mercatorKey 1008808500521866559 until the loading screenshot was captured. Exactly one matching request was intercepted. The visible details area displayed Loading point details. No response body or successful backend result was manufactured; after release, the genuine 200 response restored the selected Service details. Handler removed and pending request settled. This verifies the explicit UI loading state only.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "If Service details cannot be retrieved, the dialog displays an error state and does not display stale details.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-initial.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-add-service.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-select-point.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-target-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-target-genuine-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-distinct-record.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-distinct-record-baseline.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-failing-target.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png",
+        "cycles/cycle-002/screenshots/attempt-001/criterion-9-recovery.png"
+      ],
+      "steps_taken": [
+        "SIMULATED UI STATE: Started independently at launcher; configured Automobile Service and opened record 132762383 with genuine HTTP 200 details.",
+        "Closed target details, then loaded distinct valid record 132762320 (19:47:26) as stale-data baseline.",
+        "Installed an owned handler limited to exact dev origin/endpoint POST /api/platform/automobile/service/cluster-details, pointId 132762383 and mercatorKey 1008808500521866559; unmatched traffic fell through.",
+        "Returned synthetic HTTP 503 application/problem+json when opening target 132762383 from Service tests.",
+        "Observed selected target tab, Unable to load point details alert and Retry button; no visible Selected Service details from prior record.",
+        "Settled pending route work, removed only owned handler in finally; clicked Retry and verified genuine target detail recovery.",
+        "Resolved recovery locator ambiguity by inspecting only the visible Selected Service details; confirmed recovered Test ID 132762383 and no owned handler. Closed remaining test-created tabs and removed Service layer; existing Ping/HTTP Browsing state preserved."
+      ],
+      "reason": "SIMULATED UI STATE: Browser-only HTTP 503 Service Unavailable was injected for the previously verified read-only POST /api/platform/automobile/service/cluster-details on the approved dev origin, limited to pointId 132762383 / mercatorKey 1008808500521866559. Body shape was an application/problem+json object with title, status and synthetic detail message. This is a synthetic HTTP error, not an observed backend outage. The target detail view displayed Unable to load point details with Retry and zero visible Selected Service details; the prior distinct record 132762320 remained only as an inactive tab. After exact handler removal, Retry recovered the genuine 200 target response. Handler state absent and pending work settled.",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    }
+  ],
+  "conciseReport": "Automobile / Service: all 9 canonical criteria exercised with independent launcher starts and criterion-specific PNG evidence. Service selection, map markers, required table columns, Test Time sorting and timestamp filtering behaved as expected. Record 131974812 returned three neighbours, each displayed in a separately labelled details table. Details are docked panels; filtering uses the provided table-wide filter against Test Time.\n\nSIMULATED UI STATE: criteria 8 and 9 used browser-only interception of the exact development-host POST Service detail read for pointId 132762383 / mercatorKey 1008808500521866559. Criterion 8 held and then released the genuine request; criterion 9 returned a synthetic HTTP 503, verified the error and absence of prior record details, then recovered through genuine HTTP 200 on Retry. These results verify explicit UI exception states only. Owned handlers were removed, pending work settled, and test-created layers/tabs restored. Independent evidence review remains required.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-80-cycle-002-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Testing completed in the human-confirmed Automobile module. All criteria have direct UI evidence; loading/error outcomes retain simulation disclosures. No source Jira or backend data was modified.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-22T11:04:14.169Z"
+}
