@@ -11,5 +11,17 @@
   "status": "READY FOR TESTING",
   "blockedStage": null,
   "qaOutcome": "Passed",
-  "nextAction": "QA review complete"
+  "nextAction": "QA review complete",
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-80-cycle-002-guide-impact",
+    "handoffVersion": "TEST2-80:cycle-002:guide_impact_assessment:1:scope-a1e7e4181625",
+    "ticket": "TEST2-80",
+    "decision": "update_required",
+    "affectedSection": "Map and inspect Automobile Service results",
+    "reason": "The reviewed Automobile Service flow adds a selectable layer and point-driven details with sortable, filterable results and neighbour tables. The guide index covers GIS and Surveyor map controls but has no Automobile Service results workflow.",
+    "noOp": false,
+    "cycleId": "cycle-002",
+    "assessedAt": "2026-10-22T11:13:07.868Z"
+  }
 }
