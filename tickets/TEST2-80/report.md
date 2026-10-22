@@ -1,3 +1,30 @@
-Automobile / Service: all 9 canonical criteria exercised with independent launcher starts and criterion-specific PNG evidence. Service selection, map markers, required table columns, Test Time sorting and timestamp filtering behaved as expected. Record 131974812 returned three neighbours, each displayed in a separately labelled details table. Details are docked panels; filtering uses the provided table-wide filter against Test Time.
+# TEST2-80 Evidence Review
 
-SIMULATED UI STATE: criteria 8 and 9 used browser-only interception of the exact development-host POST Service detail read for pointId 132762383 / mercatorKey 1008808500521866559. Criterion 8 held and then released the genuine request; criterion 9 returned a synthetic HTTP 503, verified the error and absence of prior record details, then recovered through genuine HTTP 200 on Retry. These results verify explicit UI exception states only. Owned handlers were removed, pending work settled, and test-created layers/tabs restored. Independent evidence review remains required.
+- **Ticket:** TEST2-80 — Map and inspect Automobile Service results
+- **QA status:** Evidence Reviewed
+- **Overall outcome:** Passed
+- **Evidence reviewed:** attempt-001
+- **Report:** [Evidence report](report.pdf)
+
+## Criterion results
+
+1. **Passed:** The map layer selector includes Service as a selectable layer.
+   - criterion-1-automobile-config.png, criterion-1-service-choice.png and criterion-1-final.png show Service offered and selected within Automobile Test type.
+2. **Passed:** With Service unselected, the map displays no Service test-result points.
+   - criterion-2-service-unselected.png and criterion-2-final.png show the settled map with only Automobile - Ping selected and its legend; no Service layer or Service result points are displayed in the visible viewport. Existing HTTP Browsing details are unrelated.
+3. **Passed:** When the user selects Service and matching authorised results are available, each matching result is displayed as a selectable map point.
+   - criterion-3-before-add-service.png shows Automobile Service selection; criterion-3-final.png shows the added Service layer, legend and populated markers; criterion-3-final-selected.png shows marker selection opening Service tests. Recorded GET /api/platform/automobile/service/points and POST /api/platform/automobile/service/cluster-details returned 200. Evidence samples the visible viewport.
+4. **Passed:** When the user selects a Service result point and its details load successfully, a Service details dialog displays MSISDN, Test Time, Signal, Band, Service, Data Technology, PLMN and Serving Cell.
+   - criterion-4-before-select-point.png and criterion-4-final.png show Service marker selection opening a docked details table containing all eight required headings and returned rows. Signal, PLMN and Serving Cell are N/A for the sampled out-of-service records; details are presented in a docked panel.
+5. **Passed:** With the Service details table displayed, sorting a supported column reorders the displayed rows according to that column.
+   - criterion-5-before-sort.png shows descending Test Time rows from 12/10/2026 19:47:32; criterion-5-final.png shows the ascending indicator and increasing rows from 15/08/2026 15:37:13, 15:37:19 and 15:37:24. The criterion-owned comparison demonstrates reordering.
+6. **Passed:** With the Service details table displayed, filtering a supported column limits the displayed rows to those matching the filter.
+   - criterion-6-before-filter.png shows multiple Service rows with differing Test Times; criterion-6-final.png shows filter 19:47:32 and only the matching 12/10/2026 19:47:32 row. The provided table-wide filter matches the supported Test Time column.
+7. **Passed:** When returned details include cell-neighbour data, the dialog displays each neighbour in its own labelled details table.
+   - criterion-7-before-earliest-record.png shows the selected 15/08/2026 15:37:13 record. criterion-7-final-earliest-record.png and criterion-7-final-all-neighbours.png together show separately labelled Cell Neighbour 1, 2 and 3 tables, matching the three returned neighbours recorded for 131974812: RSRP -120/-118/-128 dBm, RSRQ -18/-16/-20, EARFCN 6400/6400/39448, PCI 117/272/62.
+8. **Passed:** While Service details are loading, the dialog displays a loading state.
+   - SIMULATED UI STATE: The original development-host POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/service/cluster-details read for pointId 132762383 / mercatorKey 1008808500521866559 was held and released, using its genuine 200 baseline as endpoint provenance. criterion-8-genuine-baseline.png and criterion-8-before-delayed-reopen.png establish loaded and closed states; criterion-8-final.png visibly shows a small blue loading spinner in the selected Service detail panel, rather than visible Loading point details text. criterion-8-recovery.png shows the same 19:47:32 record restored. Results document exact owned-handler removal and settled pending work. This proves the explicit loading UI only, not backend performance or manufactured backend success.
+9. **Passed:** If Service details cannot be retrieved, the dialog displays an error state and does not display stale details.
+   - SIMULATED UI STATE: A browser-local HTTP 503 application/problem+json response was injected only for the previously genuine development-host POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/service/cluster-details read, pointId 132762383 / mercatorKey 1008808500521866559. criterion-9-target-genuine-baseline.png shows target 19:47:32; criterion-9-distinct-record-baseline.png shows prior record 132762320 at 19:47:26; criterion-9-before-failing-target.png returns to the list. criterion-9-final.png shows Unable to load point details and Retry with no prior details in the active target panel; the prior record is an inactive tab. criterion-9-recovery.png restores target 19:47:32 after Retry. Results document exact handler removal and settled work; criterion-9-cleanup.png shows restored Ping/HTTP Browsing state. This proves synthetic error UI handling only, not a real backend outage.
+
+**Review summary:** Independent review of all nine canonical criteria for Automobile Service, cycle-002 attempt-001; simulated loading/error checks retain their UI-only limitations.
