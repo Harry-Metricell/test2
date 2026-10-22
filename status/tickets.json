@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-22T10:49:30.555Z",
   "counts": {
     "tickets": 14,
-    "handoffs": 3,
+    "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 11,
       "Ready": 3
@@ -48,9 +48,9 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Map and inspect Automobile Service results",
       "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide update authoring handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-10-21T17:03:58.000+0100",
       "retries": 0,
       "retryLimit": 1,
