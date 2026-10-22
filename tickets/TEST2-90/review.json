@@ -1,0 +1,120 @@
+{
+  "handoffId": "handoff-TEST2-90-cycle-002-review-attempt-001",
+  "handoffVersion": "TEST2-90:cycle-002:evidence_review:1:scope-1aa801b9199d",
+  "ticket": "TEST2-90",
+  "testedModule": "Automobile",
+  "criterionOutcomes": [
+    {
+      "criterion": "With Automobile Call results available, selecting the Call layer displays the results as selectable map points.",
+      "outcome": "Passed",
+      "reason": "criterion-1-final.png shows Automobile - Call map points; criterion-1-selected-point-final.png shows a selected point opening a Call test tab. Reported requests use /api/platform/automobile/call/points and /call/cluster-details, matching the confirmed Automobile/Call scope."
+    },
+    {
+      "criterion": "The shared Colour By selector offers CSR, Downlink MOS, Uplink MOS, and Estimated MOS, with CSR selected by default.",
+      "outcome": "Passed",
+      "reason": "criterion-2-after-apply-call.png and criterion-2-before-colour-options.png show initial CSR; criterion-2-after-colour-options.png visibly lists CSR, Downlink MOS, Uplink MOS and Estimated MOS."
+    },
+    {
+      "criterion": "For each Colour By choice, visible Call markers use that metric's values and the legend shows its matching title, units, categories, and colours; CSR is shown as a percentage and MOS as dimensionless scores.",
+      "outcome": "Unverified",
+      "reason": "criterion-3-after-downlink.png, after-uplink.png, after-estimated.png and after-csr.png show matching metric titles, symbols and percentage/score labels. They do not independently establish that each marker uses its own source values; the observed Downlink/Uplink samples are unavailable."
+    },
+    {
+      "criterion": "Changing Colour By preserves the current date, filters, group visibility, marker identities, and selected result.",
+      "outcome": "Unverified",
+      "reason": "criterion-4-baseline-map.png and baseline-layers.png establish the original Call selection; after-downlink.png, after-uplink.png and after-estimated.png retain its tab, and after-baseline-scope.png versus after-final-scope.png show the date scope. criterion-4-final.png retains the selection, but complete marker identity, group visibility and all filter preservation are not evidenced."
+    },
+    {
+      "criterion": "For a marker representing multiple calls, CSR is 100 × successful calls divided by successful, setup-failed, operator-answered, no-service, and invalid calls; dropped calls are excluded and a zero denominator produces zero. Each MOS value is weighted by that metric's own valid sample count, and Estimated MOS uses its dedicated values rather than an average of Downlink and Uplink MOS.",
+      "outcome": "Blocked",
+      "reason": "The selected aggregate in criterion-5-after-aggregate-selection.png resolves to one Call result. Reported genuine responses lack the component call counts and separate MOS sample counts needed for independent CSR/weighted-MOS verification; known multi-call and zero-denominator fixtures are unavailable."
+    },
+    {
+      "criterion": "The default CSR legend uses green #31AA4F for 95–100%, light green #86BE42 for 90–<95%, yellow #FCBF1A for 85–<90%, red #E61733 for 80–<85%, and dark red #AE1A32 for 0–<80%; exact boundaries use the higher band.",
+      "outcome": "Unverified",
+      "reason": "criterion-6-after-edit-legend.png and final.png show descending CSR bands and expected visible colours/labels. Screenshots do not establish exact hexadecimal values or runtime classification at 80/85/90/95; those boundary fixtures are missing."
+    },
+    {
+      "criterion": "Each default MOS legend uses dark red #AE1A32 for 1–<2, yellow #FCBF1A for 2–<3, light green #86BE42 for 3–<4, and green #31AA4F for 4–5 inclusive; exact internal boundaries use the higher band.",
+      "outcome": "Unverified",
+      "reason": "criterion-7-after-downlink-editor.png, after-uplink-editor.png and after-estimated-editor.png show four expected score bands including the inclusive top label. Exact colour codes and runtime assignment at 2/3/4/5 are not independently demonstrated."
+    },
+    {
+      "criterion": "When the selected MOS metric has no valid samples, it is unavailable rather than shown as zero or replaced by another metric; values outside its bands use the white, initially hidden Out of Threshold category, with no separate Not Tested category.",
+      "outcome": "Unverified",
+      "reason": "criterion-8-missing-mos-details.png shows Downlink/Uplink N/A and Estimated MOS 4.4. The owned after-record-downlink.png, after-show-unavailable.png and after-restore-hidden.png sequence shows hidden/unhidden white markers without a Not Tested category; a known valid out-of-band MOS sample is absent, so that branch remains unverified."
+    },
+    {
+      "criterion": "The CSR legend shows 2G circles, 3G triangles, 4G diamonds, 5G SA pentagons, and a fixed black-square No Service category for generation 0; No Service is separate from CSR percentage bands.",
+      "outcome": "Passed",
+      "reason": "criterion-9-after-shape-editor.png shows 2G circles, 3G triangles and a separate black-square No Service with greyed definition fields. criterion-9-5g-shapes.png and final.png show a 4G diamond and 5G SA pentagons. The additional NSA section is assessed under criterion 19."
+    },
+    {
+      "criterion": "The MOS legends use squares for Downlink MOS, circles for Uplink MOS, and hexagons for Estimated MOS, grouping by the selected metric.",
+      "outcome": "Passed",
+      "reason": "criterion-10-after-downlink.png, after-uplink.png and after-estimated.png visibly show squares, circles and hexagons respectively, grouped by the chosen MOS metric."
+    },
+    {
+      "criterion": "Each Call legend includes a fixed white-square Out of Threshold category hidden by default; bands are ordered descending, with CSR limits 0–100 and MOS limits 1–5, and displayed labels match the boundary behaviour.",
+      "outcome": "Unverified",
+      "reason": "criterion-11-csr-fixed-category.png and after-downlink-fixed.png, after-uplink-fixed.png and after-estimated-fixed.png show white-square Out of Threshold and greyed definition fields, with descending labelled bands. Default hidden state is visible in the owned legend captures, but exact runtime agreement with labels and numeric limits are not fully proven by screenshots."
+    },
+    {
+      "criterion": "Editing a metric's customisable bands, labels, marker size, or category visibility updates its Call markers and remains specific to that metric and layer instance when Colour By changes; No Service and Out of Threshold definitions cannot be edited.",
+      "outcome": "Blocked",
+      "reason": "criterion-12-after-change-band-label.png -> save-not-applied.png -> after-close-saved-editor.png shows that Save did apply the label/band despite keeping the editor open. after-hide-category.png -> after-uplink.png -> after-return-estimated.png shows metric-specific persistence and hidden markers. after-display-settings.png shows only linked-site/cell options; a marker-size control was unavailable in inspected controls, and cross-instance isolation remains unverified."
+    },
+    {
+      "criterion": "Restoring a Call layer or saved GIS view restores its Colour By choice and associated legend settings; a saved configuration without a choice opens with CSR selected.",
+      "outcome": "Unverified",
+      "reason": "criterion-13-after-edit-label.png is the saved Estimated MOS/custom-label baseline; restore-launcher.png records leaving GIS and restored-layer.png plus final.png prove the matching metric and label returned. Initial CSR configuration does not independently establish a restored saved configuration with its Colour By choice absent; that fallback branch remains unverified."
+    },
+    {
+      "criterion": "Selecting a Call marker opens its Call detail tab directly when it represents one result, or opens a cluster results tab when it represents multiple results, following the HTTP and Download GIS workflow and existing group-based visibility.",
+      "outcome": "Unverified",
+      "reason": "criterion-14-after-single-point.png shows a direct Call detail tab; after-nearby-point.png and final.png show the two-row Automobile Call cluster retaining that tab. The single/cluster journey is evidenced, but the asserted existing group-based visibility is not independently demonstrated."
+    },
+    {
+      "criterion": "The cluster results table displays MSISDN, Test Result, Start Time, End Time, Test Duration, Call Setup Time, Connection Time, Disconnection Cause Code, LTE Return Time, CSFB Time, MOS Downlink, MOS Uplink, Estimated MOS, Band, Test Technologies, Call End Service, and Call End Serving Cell.",
+      "outcome": "Passed",
+      "reason": "criterion-15-after-cluster.png and middle-columns.png expose the first eight required headings through Disconnection Cause Code; last-columns.png and final.png expose LTE Return Time through Call End Serving Cell, covering all 17 fields. The middle-columns filename still shows the initial horizontal viewport."
+    },
+    {
+      "criterion": "Each available column in the cluster results table can be sorted.",
+      "outcome": "Unverified",
+      "reason": "criterion-16-before-sort-2.png through before-sort-17.png provide later settled ascending indicators for columns 1–16; many after-sort captures reset the horizontal viewport and cannot prove off-screen indicators. after-time-ascending.png and after-time-descending.png prove actual Start Time reversal. No later capture exposes the settled sort indicator/order for column 17, Call End Serving Cell, so all-column sorting is not fully evidenced; equal/N/A samples do not establish varied-value ordering."
+    },
+    {
+      "criterion": "Selecting a cluster row opens a separate Call detail tab for that row's exact PointID and keeps the cluster tab open; reopening or restoring Call and Service tabs retains the relevant time and filter scope.",
+      "outcome": "Blocked",
+      "reason": "criterion-17-cluster.png -> selected-row.png -> restored-tabs.png/final.png shows row selection, retained cluster and restored Call identity. The tester reports exact PointID 132006263 in POST /api/platform/automobile/call/cluster-details with original scope. Related Service Details fixtures are unavailable (reported serviceDetails=null), preventing the required Service-tab reopening/restoration assessment; complete time/filter persistence is not directly visible."
+    },
+    {
+      "criterion": "When a selected result has related service information, its Service Details tab can be opened.",
+      "outcome": "Blocked",
+      "reason": "Related-service prerequisite is unavailable: tester reports serviceDetails=null for the observed Call records. criterion-18-service-unavailable.png shows no related Service Details action; after-measurement-select.png and final-measurement-checked.png show a Call detail tab from a measurement, which does not demonstrate Service Details."
+    },
+    {
+      "criterion": "Call technology legends and filters include 2G, 3G, 4G, and 5G SA and exclude 5G NSA.",
+      "outcome": "Failed",
+      "reason": "criterion-19-forbidden-nsa-legend.png visibly shows 5G NSA CSR [%] on Automobile Call, directly contradicting exclusion. technology-filter.png and final.png show only the upper filter viewport through 4G; they do not visibly establish the claimed checked NSA filter, but the legend alone proves the failure."
+    },
+    {
+      "criterion": "Requesting details for a selected result with no duration displays a clear no-data message.",
+      "outcome": "Passed",
+      "reason": "criterion-20-no-service-selection.png, zero-duration.png and final.png show the selected Out Of Service Call with identical start/end time, Test Duration [s] 0 and a clear No data available message. The reported genuine Automobile Call detail response identifies PointID 131922311; no simulation was used."
+    },
+    {
+      "criterion": "When point or service details cannot be returned, the selected item does not show stale detail data.",
+      "outcome": "Blocked",
+      "reason": "SIMULATED UI STATE: criterion-21-genuine-target-loaded.png establishes the target Call; distinct-record-baseline.png shows a different previously loaded Call, synthetic-error.png/final.png shows Unable to load Call details without stale definitions, and genuine-recovery.png restores the target. Tester reports a scoped POST /api/platform/automobile/call/cluster-details HTTP 503 for pointId 132006263 on the configured development host after genuine HTTP 200 contract observation; unmatched requests fell through. Owned-handler removal in finally, one hit, zero pending requests and genuine HTTP 200 recovery are reported. This evidences only the simulated point-detail UI branch, not natural backend failure; the Service branch remains blocked by absent related-service fixtures."
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-90\\cycles\\cycle-002\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Independent review of the exact cycle-002 attempt: all 371 referenced PNGs exist and are non-empty. Automobile/Call provenance matches the human-confirmed target. Missing calculation, marker-size and related-service prerequisites block full assessment; 5G NSA is directly visible in the Call legend. Remaining evidence limitations are identified per canonical criterion.",
+  "cycleId": "cycle-002"
+}
