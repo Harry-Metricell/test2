@@ -1,0 +1,37 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-80-cycle-002-guide-update",
+  "handoffVersion": "TEST2-80:cycle-002:guide_update_authoring:1:scope-a1e7e4181625",
+  "ticket": "TEST2-80",
+  "title": "Map and inspect Automobile Service results",
+  "affectedSection": "Automobile Service results",
+  "changeType": "add",
+  "steps": [
+    "In GIS, open the Automobile layer configuration and select Service under Test type.",
+    "Add the Service layer to display matching results as map points.",
+    "Select a map point to open its Service tests table.",
+    "Select a supported column heading, such as Test Time, to sort the displayed rows.",
+    "Enter a value in Filter shown tests to show matching rows.",
+    "Select a result with returned cell-neighbour data to view each neighbour in its labelled details table."
+  ],
+  "screenshots": [
+    "cycles/cycle-002/screenshots/attempt-001/criterion-1-service-choice.png",
+    "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png",
+    "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png",
+    "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png",
+    "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png",
+    "cycles/cycle-002/screenshots/attempt-001/criterion-7-final-all-neighbours.png"
+  ],
+  "screenshotCaptions": [
+    "Service is available under Test type in the Automobile layer configuration.",
+    "The Automobile Service layer is added and matching result markers are visible on the map.",
+    "The selected Service result opens a docked table with MSISDN, Test Time, Signal, Band, Service, Data Technology, PLMN and Serving Cell columns.",
+    "The Service tests table is sorted by Test Time in ascending order.",
+    "The Filter shown tests field contains 19:47:32 and the table shows the matching row.",
+    "The selected Service record shows separately labelled Cell Neighbour 1, 2 and 3 tables."
+  ],
+  "reason": "Adds instructions for selecting the Automobile Service layer, viewing and exploring its mapped results, and reading returned neighbour details.",
+  "noOp": false,
+  "cycleId": "cycle-002",
+  "authoredAt": "2026-10-22T13:05:08.253Z"
+}
