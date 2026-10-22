@@ -1,0 +1,5 @@
+Automobile Download / Upload: 16 criteria provisionally Passed, pending independent evidence review. Verified real Automobile point, cluster-detail and analysis request paths. Covered hidden baseline, selectable result points, summaries, charts, columns, dBm/Mbps formatting, null-error display, populated sorting/filtering and a genuine zero-duration Upload record.
+
+SIMULATED UI STATE: criteria 15 and 16 cover the Automobile Download analysis UI only. An exact record-scoped read was held for 30.289 seconds and then released unchanged; a separate record-scoped read received browser-local HTTP 503. Both excluded prior-record analysis and recovered through genuine HTTP 200 responses. These checks do not assert a real backend failure or all detail endpoints. The 503 status is documented in [RFC 9110 §15.6.4](https://www.rfc-editor.org/rfc/rfc9110.html#name-503-service-unavailable).
+
+171 independent PNG captures verified readable. Current-record summary remained accurate during analysis loading/error. Owned handlers removed, pending requests settled, and all test-created layers, detail tabs and filters restored.
