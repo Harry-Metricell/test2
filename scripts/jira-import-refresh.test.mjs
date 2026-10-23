@@ -41,9 +41,9 @@ test('fresh proof is reusable; expired proof and forced startup request refresh 
   assert.notEqual(requestImport(f.repo,{now:NOW+361000,force:true}).requestId,b.requestId);
 });
 test('successful import proof rejects failure, old runs, wrong workflow and wrong branch',()=>{
-  const request={requestedAt:new Date(NOW).toISOString()}; const run=success({requestId:'test'});
+  const request={requestId:'test',requestedAt:new Date(NOW).toISOString()}; const run=success(request);
   assert.equal(validateCompletedRun(run,request,config).runId,123);
-  for(const change of [{conclusion:'failure'},{status:'queued'},{head_branch:'other'},{path:'.github/workflows/status-bundler.yml'},{created_at:new Date(NOW-60000).toISOString()},{updated_at:'invalid'}]) {
+  for(const change of [{conclusion:'failure'},{status:'queued'},{head_branch:'other'},{event:'schedule'},{display_title:'Unrelated import'},{path:'.github/workflows/status-bundler.yml'},{created_at:new Date(NOW-60000).toISOString()},{updated_at:'invalid'}]) {
     assert.throws(()=>validateCompletedRun({...run,...change},request,config));
   }
 });
@@ -92,8 +92,49 @@ test('queued import remains waiting and does not redispatch',async t=>{
 });
 test('timeout cannot be interpreted as an empty successful queue',async t=>{
   const f=fixture(t); requestImport(f.repo,{now:NOW});
-  const result=await serviceImportRefresh({...options(f),now:NOW+900000,tokenProvider:()=>assert.fail('timed-out request accessed credentials')});
+  const result=await serviceImportRefresh({...options(f),now:NOW+900000,fetchImpl:async(url,opts)=>{
+    assert.notEqual(opts.method,'POST'); return response({workflow_runs:[]});
+  }});
   assert.equal(result.status,'blocked'); assert.match(result.reason,/timed out/);
+  assert.equal(result.retryable,true);
+  assert.notEqual(requestImport(f.repo,{now:NOW+901000}).requestId,result.requestId);
+});
+
+test('restart preserves expired correlation and recovers completed run without redispatch',async t=>{
+  const f=fixture(t); const request=requestImport(f.repo,{now:NOW});
+  fs.writeFileSync(f.file,JSON.stringify({...request,status:'dispatching',dispatchAttemptedAt:new Date(NOW).toISOString()}));
+  assert.equal(requestImport(f.repo,{now:NOW+3600000,force:true}).requestId,request.requestId);
+  const result=await serviceImportRefresh({...options(f),now:NOW+3600000,fetchImpl:async(url,opts)=>{
+    assert.notEqual(opts.method,'POST');
+    return response(url.includes('/actions/runs/123')?success(request):{workflow_runs:[success(request)]});
+  }});
+  assert.equal(result.status,'ready');
+  assert.equal(isFresh(result,config,NOW+3600000),false,'old success is not fresh import proof');
+  assert.notEqual(requestImport(f.repo,{now:NOW+3600000}).requestId,request.requestId);
+});
+
+test('interrupted known run completed recently recovers fresh proof',async t=>{
+  const f=fixture(t); const request=requestImport(f.repo,{now:NOW});
+  fs.writeFileSync(f.file,JSON.stringify({...request,status:'waiting',runId:123}));
+  const result=await serviceImportRefresh({...options(f),now:NOW+1200000,fetchImpl:async(url,opts)=>{
+    assert.ok(url.endsWith('/actions/runs/123')); assert.notEqual(opts.method,'POST');
+    return response({...success(request),updated_at:new Date(NOW+1190000).toISOString()});
+  }});
+  assert.equal(result.status,'ready'); assert.equal(isFresh(result,config,NOW+1200000),true);
+});
+
+test('expired queued run and network outage are bounded; remote failure is not retryable recovery',async t=>{
+  for(const state of ['queued','network','failure','wrong-identity']) {
+    const f=fixture(t); const request=requestImport(f.repo,{now:NOW});
+    fs.writeFileSync(f.file,JSON.stringify({...request,status:'waiting',runId:123}));
+    const result=await serviceImportRefresh({...options(f),now:NOW+1200000,fetchImpl:async()=>{
+      if(state==='network') throw new Error('test-secret-never-printed');
+      return response({...success(request),...(state==='queued'?{status:'queued'}:state==='failure'?{conclusion:'failure'}:{display_title:'wrong'})});
+    }});
+    assert.equal(result.status,'blocked');
+    assert.equal(result.retryable===true,['queued','network'].includes(state));
+    assert.doesNotMatch(fs.readFileSync(f.file,'utf8'),/test-secret/);
+  }
 });
 test('permission failure is actionable; transient GET failure preserves request',async t=>{
   const f=fixture(t); requestImport(f.repo,{now:NOW});
@@ -114,6 +155,9 @@ test('coordinator brief and publisher wire the gate without altering the launch 
   const importer=fs.readFileSync(path.join(root,'.github/workflows/import-ready-for-testing.yml'),'utf8');
   assert.match(brief,/jira-import-refresh\.mjs --request --force/);
   assert.match(brief,/never.*complete.*stale.*import/i);
+  assert.match(brief,/one replacement request per coordinator invocation/);
+  assert.match(brief,/importRecoveryUsed/);
+  assert.match(brief,/Never automatically retry an explicit importer failure/);
   assert.match(publisher,/await serviceImportRefresh/);
   assert.match(importer,/run: node scripts\/check-criteria\.mjs/);
 });

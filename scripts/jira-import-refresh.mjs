@@ -47,7 +47,9 @@ export function requestImport(repo, { force = false, now = Date.now() } = {}) {
   const config = validateConfig(readJson(path.join(repo, 'config/jira-import-refresh.json')));
   const file = path.join(repo, '.agent-staging', requestName);
   const existing = fs.existsSync(file) ? validateRequest(readJson(file)) : undefined;
-  if (existing && pending.has(existing.status) && now - Date.parse(existing.requestedAt) < config.timeoutMinutes * 60000) return existing;
+  // Even after a host interruption, reconcile a dispatched request before replacing
+  // its correlation ID. Otherwise a successful remote run can be lost or duplicated.
+  if (existing && pending.has(existing.status)) return existing;
   if (!force && isFresh(existing, config, now)) return existing;
   const request = { schema: SCHEMA, requestId: randomUUID(), requestedAt: new Date(now).toISOString(), status: 'requested' };
   save(file, request);
@@ -59,6 +61,7 @@ export function validateCompletedRun(run, request, config) {
   const completed = Date.parse(run?.updated_at);
   if (!Number.isSafeInteger(run?.id) || run.id < 1 || run.head_branch !== config.branch
       || run.path?.split('@')[0] !== `.github/workflows/${config.workflow}`
+      || run.event !== 'workflow_dispatch' || run.display_title !== `Coordinator import ${request.requestId}`
       || !Number.isFinite(created) || created < Date.parse(request.requestedAt) - 5000
       || !Number.isFinite(completed) || completed < created
       || run.status !== 'completed' || run.conclusion !== 'success') {
@@ -94,9 +97,10 @@ export async function serviceImportRefresh({ repo, stagingRoot, git, tokenProvid
   if (!pending.has(request.status)) return { status: request.status, runId: request.runId };
   const config = validateConfig(readJson(path.join(repo, 'config/jira-import-refresh.json')));
   const finish = value => { Object.assign(request, value, { observedAt: new Date(now).toISOString() }); save(file, request); return request; };
-  if (now - Date.parse(request.requestedAt) >= config.timeoutMinutes * 60000) {
-    return finish({ status: 'blocked', reason: 'Import refresh timed out; completion must not be claimed', retryable: true });
-  }
+  const expired = now - Date.parse(request.requestedAt) >= config.timeoutMinutes * 60000;
+  const timeout = (detail = 'No completed matching import run was verified') => finish({
+    status: 'blocked', reason: `Import refresh timed out: ${detail}; request a fresh import`, retryable: true
+  });
   try {
     const token = tokenProvider ? await tokenProvider() : githubToken(git, repo);
     const api = async (endpoint, options = {}) => {
@@ -119,6 +123,7 @@ export async function serviceImportRefresh({ repo, stagingRoot, git, tokenProvid
       if (!Array.isArray(listing.workflow_runs)) throw new Error('GitHub returned no usable importer run list');
       const match = listing.workflow_runs.find(run => run.display_title === title && run.head_branch === config.branch);
       if (match) finish({ status: 'waiting', runId: match.id });
+      else if (expired) return timeout();
       else if (!request.dispatchAttemptedAt) {
         // Persist before POST: a lost response must not dispatch duplicate imports.
         finish({ status: 'dispatching', dispatchAttemptedAt: new Date(now).toISOString() });
@@ -128,10 +133,10 @@ export async function serviceImportRefresh({ repo, stagingRoot, git, tokenProvid
         finish({ status: 'waiting', ...(Number.isSafeInteger(dispatched.workflow_run_id) ? { runId: dispatched.workflow_run_id } : {}) });
       }
     }
-    if (!request.runId) return finish({ status: 'waiting', reason: 'Awaiting the exact dispatched import run' });
+    if (!request.runId) return expired ? timeout() : finish({ status: 'waiting', reason: 'Awaiting the exact dispatched import run' });
     const run = await api(`/actions/runs/${request.runId}`);
     if (run.display_title !== title) throw Object.assign(new Error('Importer run identity does not match the refresh request'), { permanent: true });
-    if (run.status !== 'completed') return finish({ status: 'waiting', reason: 'Importer is queued or running' });
+    if (run.status !== 'completed') return expired ? timeout('Importer is still queued or running') : finish({ status: 'waiting', reason: 'Importer is queued or running' });
     if (run.conclusion !== 'success') return finish({ status: 'blocked', reason: `Importer finished with ${run.conclusion || 'unknown outcome'}`, runUrl: run.html_url });
     let proof;
     try { proof = validateCompletedRun(run, request, config); }
@@ -141,7 +146,9 @@ export async function serviceImportRefresh({ repo, stagingRoot, git, tokenProvid
     // Do not log response bodies, credential subprocess output or token values.
     const safe = /^(GitHub import refresh request failed|Existing GitHub authentication|Importer run identity|Import refresh needs|GitHub returned)/.test(error.message)
       ? error.message : 'Import refresh could not contact or verify GitHub; retrying on the next publisher tick';
-    return finish({ status: error.permanent || safe.startsWith('Existing GitHub authentication') ? 'blocked' : request.status, reason: safe });
+    if (error.permanent || safe.startsWith('Existing GitHub authentication')) return finish({ status: 'blocked', reason: safe });
+    if (expired) return timeout('GitHub completion could not be verified during recovery');
+    return finish({ status: request.status, reason: safe });
   }
 }
 
