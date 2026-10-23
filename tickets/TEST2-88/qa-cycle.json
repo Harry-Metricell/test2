@@ -3,8 +3,9 @@
   "cycleId": "cycle-001",
   "sourceHash": "2e9cc7dd78cf47d143475cb81a73a4bbb8f8adbd89308e555434c748cd41bea3",
   "processedTransitions": [
-    "1186398:0"
+    "1186398:0",
+    "1186775:0"
   ],
   "reworkPending": false,
-  "lastJiraStatus": "READY FOR TESTING"
+  "lastJiraStatus": "TESTING IN PROGRESS"
 }

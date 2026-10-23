@@ -5,10 +5,11 @@
   "processedTransitions": [
     "1186391:0",
     "1186671:0",
-    "1186674:0"
+    "1186674:0",
+    "1186774:0"
   ],
   "reworkPending": false,
-  "lastJiraStatus": "READY FOR TESTING",
+  "lastJiraStatus": "TESTING IN PROGRESS",
   "startedByTransition": "1186674:0",
   "startedAt": "2026-10-21T17:03:59.645+0100"
 }

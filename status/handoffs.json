@@ -1,5 +1,52 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-10-23T09:08:46.353+0100",
-  "handoffs": []
+  "generatedAt": "2026-10-23T12:36:37.712+0100",
+  "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-79-cycle-003-test-attempt-001",
+      "handoffVersion": "TEST2-79:cycle-003:test_ticket:1:scope-35bb8346e931",
+      "attempt": 1,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-79",
+      "inputs": {
+        "criteria": "tickets/TEST2-79/criteria.md",
+        "ticketJson": "tickets/TEST2-79/ticket.json",
+        "status": "tickets/TEST2-79/status.json",
+        "cycle": "tickets/TEST2-79/qa-cycle.json",
+        "evidenceFolder": "TEST2-79/cycles/cycle-003/screenshots/attempt-001",
+        "testingContext": "config/testing-context/TEST2-79.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-79/results.json",
+        "schema": "v4-qa-test-result.v1"
+      },
+      "cycleId": "cycle-003",
+      "evidenceCoverageVersion": 1
+    },
+    {
+      "handoffId": "handoff-TEST2-89-cycle-002-test-attempt-001",
+      "handoffVersion": "TEST2-89:cycle-002:test_ticket:1:scope-088f5b95b89b",
+      "attempt": 1,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-89",
+      "inputs": {
+        "criteria": "tickets/TEST2-89/criteria.md",
+        "ticketJson": "tickets/TEST2-89/ticket.json",
+        "status": "tickets/TEST2-89/status.json",
+        "cycle": "tickets/TEST2-89/qa-cycle.json",
+        "evidenceFolder": "TEST2-89/cycles/cycle-002/screenshots/attempt-001",
+        "testingContext": "config/testing-context/TEST2-89.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-89/results.json",
+        "schema": "v4-qa-test-result.v1"
+      },
+      "cycleId": "cycle-002",
+      "evidenceCoverageVersion": 1
+    }
+  ]
 }

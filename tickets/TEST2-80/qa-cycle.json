@@ -6,10 +6,11 @@
     "1186390:0",
     "1186420:0",
     "1186670:0",
-    "1186673:0"
+    "1186673:0",
+    "1186773:0"
   ],
   "reworkPending": false,
-  "lastJiraStatus": "READY FOR TESTING",
+  "lastJiraStatus": "TESTING IN PROGRESS",
   "startedByTransition": "1186673:0",
   "startedAt": "2026-10-21T17:03:58.000+0100"
 }
