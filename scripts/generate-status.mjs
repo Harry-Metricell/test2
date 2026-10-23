@@ -6,6 +6,8 @@ import { normalizeBrowserToolBlock } from './test-result-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
 import { readCycle, scopeHandoff, firstCycle } from './testing-cycle.mjs';
 import { readTestingContext, contextHandoff } from './testing-context.mjs';
+import { coverageHandoff } from './evidence-coverage.mjs';
+import { validateVerificationBatch, verificationAllows } from './qa-verification-batch.mjs';
 
 const root = process.cwd();
 const checkOnly = process.argv.includes('--check');
@@ -577,7 +579,9 @@ const ticketDirs = fs.existsSync(ticketsDir)
   : [];
 
 const tickets = ticketDirs.map(normalizeTicket);
-const handoffs = tickets.map(ticket => contextHandoff(scopeHandoff(handoffFor(ticket), ticket.cycleId), ticket.testingContext)).filter(Boolean);
+const verificationPolicy = validateVerificationBatch(readJson(path.join(root, 'config/qa-verification-batch.json'), null));
+const handoffs = tickets.map(ticket => coverageHandoff(contextHandoff(scopeHandoff(handoffFor(ticket), ticket.cycleId), ticket.testingContext)))
+  .filter(handoff => handoff && verificationAllows(handoff, verificationPolicy));
 // The QA stage may be complete while guide work is still queued. Project the
 // actual guide handoff rather than displaying a misleading terminal action.
 const guideActions = { guide_impact_assessment: 'Create user-guide impact assessment handoff',
@@ -586,6 +590,13 @@ for (const handoff of handoffs) {
   if (!guideActions[handoff.action]) continue;
   const ticket = tickets.find(item => item.key === handoff.ticket);
   ticket.status.nextAction = guideActions[handoff.action];
+}
+for (const ticket of tickets) {
+  if (verificationPolicy?.enabled === true && verificationPolicy.held.includes(ticket.key)
+      && !handoffs.some(handoff => handoff.ticket === ticket.key)) {
+    ticket.status.nextAction = `Awaiting controlled tester verification release; Jira: ${ticket.jira.status}`;
+    ticket.status.actionOwner = 'Human';
+  }
 }
 // Compact, deterministic guide index for the authoring worker. Include
 // archived source tickets because their approved sections remain in the guide.

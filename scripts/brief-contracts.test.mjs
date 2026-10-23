@@ -17,6 +17,19 @@ const stages = [
   ['guide_update_authoring', 'user-guide-authoring', 'guide-update-output.json'],
 ];
 
+test('tester and reviewer require complete per-assertion coverage without weakening criteria', () => {
+  for (const name of ['qa-testing', 'evidence-review']) {
+    assert.ok(brief(name).includes('evidenceCoverageVersion 1'));
+    assert.ok(brief(name).includes('coverageChecks'));
+    assert.match(brief(name), /each\/every\/all|Each\/every\/all/);
+    assert.match(brief(name), /cluster members/);
+  }
+  assert.match(brief('qa-testing'), /Recapture clipped fields/);
+  assert.match(brief('qa-testing'), /do not close unrelated tabs\/panels/);
+  assert.match(brief('evidence-review'), /same coverage standard for every ticket/);
+  assert.match(brief('coordinator'), /do not release the next pair yourself/);
+});
+
 test('coordinator suppresses repeated unchanged-status narration', () => {
   const coordinator = brief('coordinator');
   assert.match(coordinator, /Announce each stage transition at most once per batch/);

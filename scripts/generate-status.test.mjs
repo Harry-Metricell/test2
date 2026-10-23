@@ -8,6 +8,34 @@ import { fileURLToPath } from 'node:url';
 
 const generator = fileURLToPath(new URL('./generate-status.mjs', import.meta.url));
 
+test('controlled verification holds both tests and reviews and projects the release gate', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-verification-hold-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const write = (relative, value) => {
+    const target = path.join(root, relative); fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, typeof value === 'string' ? value : JSON.stringify(value));
+  };
+  write('tickets/TEST2-99/ticket.json', { key: 'TEST2-99', fields: { summary: 'Visible layer', status: { name: 'READY FOR TESTING' }, project: { key: 'TEST2' }, description: 'Acceptance Criteria:\nThe layer is visible.' } });
+  write('tickets/TEST2-99/status.json', { criteriaVerified: true, qaStatus: 'Ready for Testing' });
+  write('tickets/TEST2-99/criteria.md', '- [ ] The layer is visible.\n');
+  const run = () => {
+    execFileSync(process.execPath, [generator], { cwd: root });
+    return JSON.parse(fs.readFileSync(path.join(root, 'status/handoffs.json'))).handoffs;
+  };
+  assert.equal(run()[0].evidenceCoverageVersion, 1);
+  const policy = { enabled: true, maxReleased: 2, released: [], held: ['TEST2-99'] };
+  write('config/qa-verification-batch.json', policy);
+  assert.equal(run().length, 0);
+  assert.match(JSON.parse(fs.readFileSync(path.join(root, 'status/generated/TEST2-99.json'))).status.nextAction, /Awaiting controlled tester verification release/);
+  write('tickets/TEST2-99/results.json', [{ criterion: 1, outcome: 'Passed' }]);
+  write('tickets/TEST2-99/history/attempt-001-test.json', { historyAttempt: 1, results: [{ criterion: 1, outcome: 'Passed' }] });
+  write('tickets/TEST2-99/status.json', { criteriaVerified: true, qaStatus: 'Awaiting Evidence Review' });
+  assert.equal(run().length, 0, 'review must not bypass the same hold');
+  write('config/qa-verification-batch.json', { ...policy, released: ['TEST2-99'], held: [] });
+  const handoff = run()[0];
+  assert.equal(handoff.action, 'evidence_review'); assert.equal(handoff.evidenceCoverageVersion, 1);
+});
+
 test('human rechecks are scoped, idempotent and cannot exceed two attempts', () => {
   for (const scenario of ['valid', 'wrong ticket', 'wrong attempt', 'no authority', 'no reason', 'bad date', 'jira hold', 'criteria hold', 'no report', 'passed review', 'exhausted']) {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-human-retry-'));

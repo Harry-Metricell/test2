@@ -59,8 +59,8 @@
     "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
-    "actionOwner": "Coordinator",
-    "nextAction": "QA review complete",
+    "actionOwner": "Human",
+    "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "guideImpact": {
       "schema": "v4-user-guide-impact.v1",

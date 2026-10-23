@@ -76,6 +76,8 @@ Create one fresh tester per handoff; never revive or message a persistent tester
 
 ### Testing cycles
 
+During the controlled tester-quality verification, config/qa-verification-batch.json holds specific audited tickets and releases at most two at a time. Status Bundler enforces this hold; do not bypass it, edit the policy, promote held Jira tickets or create an extra tester for a held ticket. Complete only the live released handoffs. A human-approved pair is a limit on distinct tickets, not permission to reset attempts or overlap browser testers. When that pair has final reports, stop and report completion; do not release the next pair yourself. The recovery checklist is docs/qa-verification-2026-10-23.md; do not read it routinely unless needed to explain a held ticket.
+
 The importer owns `tickets/<KEY>/qa-cycle.json`. A Jira return from rework starts a new testing cycle with its own two-attempt allowance; earlier history/reports are retained under `tickets/<KEY>/cycles/<cycleId>/`. Never reset counts, move artifacts or edit cycle metadata yourself. Use each live handoff's exact cycle-scoped ID/version and `inputs.evidenceFolder`; never reconstruct IDs or reuse earlier-cycle workers. A changed cycle invalidates an old handoff. Preserve an old tester's browser lease until it has definitely stopped, even if its handoff has disappeared. Only then retire its bookkeeping after verifying its recorded cycle is archived. The publisher rejects old-cycle output and rechecks ownership immediately before pushing.
 
 ### Shared browser capacity

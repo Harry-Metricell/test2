@@ -224,7 +224,7 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
       source: { key: 'SOURCE-1', parent: { key: 'SOURCE-EPIC' } }, resolution: { authority: 'human' }
     };
     const { contextHandoff } = await import('./testing-context.mjs');
-    const cycleHandoff = contextHandoff({ ticket: 'TEST2-99', cycleId: 'cycle-002', handoffId: 'handoff-TEST2-99-cycle-002-test-attempt-001', handoffVersion: 'TEST2-99:cycle-002:test_ticket:1', action: 'test_ticket', attempt: 1 }, scopeContext);
+    const cycleHandoff = contextHandoff({ ticket: 'TEST2-99', cycleId: 'cycle-002', handoffId: 'handoff-TEST2-99-cycle-002-test-attempt-001', handoffVersion: 'TEST2-99:cycle-002:test_ticket:1', action: 'test_ticket', attempt: 1, evidenceCoverageVersion: 1 }, scopeContext);
     write(path.join(seed, 'config/testing-context/TEST2-99.json'), JSON.stringify(scopeContext));
     write(path.join(seed, 'tickets/TEST2-99/qa-cycle.json'), JSON.stringify({ schema: 'v4-qa-cycle.v1', cycleId: 'cycle-002' }));
     write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [cycleHandoff] }));
@@ -243,6 +243,10 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
       fs.rmSync(path.join(cycleStage, 'publisher-error.json'), { force: true });
     }
     write(path.join(cycleStage, 'test-output.json'), JSON.stringify({ ...cycleOutput, testedModule: 'Automobile' }));
+    const missingCoverage = run(); assert.equal(missingCoverage.status, 1); assert.match(missingCoverage.stderr, /coverageChecks/);
+    fs.rmSync(path.join(cycleStage, 'publisher-error.json'), { force: true });
+    cycleOutput.results[0].coverageChecks = [{ assertion: 'Launcher is visibly loaded', outcome: 'Passed', evidence: ['criterion-1-final.png'] }];
+    write(path.join(cycleStage, 'test-output.json'), JSON.stringify({ ...cycleOutput, testedModule: 'Automobile' }));
     const newCycle = run(); assert.equal(newCycle.status, 0, newCycle.stderr);
     g(seed, 'fetch');
     const publishedCycle = JSON.parse(g(seed, 'show', 'origin/main:tickets/TEST2-99/history/attempt-001-test.json'));
@@ -250,6 +254,7 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     assert.equal(publishedCycle.handoffId, cycleHandoff.handoffId);
     assert.equal(publishedCycle.results[0].testedModule, 'Automobile');
     assert.equal(publishedCycle.results[0].evidence[0], 'cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png');
+    assert.equal(publishedCycle.results[0].coverageChecks[0].evidence[0], 'cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png');
     assert.ok(fs.existsSync(path.join(root, 'evidence/TEST2-99/cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png')));
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });

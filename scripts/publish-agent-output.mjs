@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
 import { reportPushArgs } from './git-report-push-policy.mjs';
+import { validateEvidenceCoverage } from './evidence-coverage.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
 import { guideInstructionIssues } from './guide-instruction-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
@@ -539,6 +540,7 @@ if (outputType === 'criteria-output.json') {
   if (typeof output.conciseReport !== 'string') fail('conciseReport is missing');
   const criteria = requiredCriteria(ticketDir);
   output.results = validateCriterionCoverage(output.results, criteria, 'Tester results');
+  validateEvidenceCoverage(output.results, { required: liveHandoff.evidenceCoverageVersion === 1 });
   if (testingContext) output.results = output.results.map(item => ({ ...item, testedModule: output.testedModule }));
   validateTesterStatus(output.results, output.qaStatus);
   output.results = output.results.map((item, index) => {
@@ -587,7 +589,10 @@ if (outputType === 'criteria-output.json') {
       ...item,
       evidence: Array.isArray(item.evidence)
         ? item.evidence.map(file => `${cycleEvidencePrefix}screenshots/${attemptName}/${path.win32.basename(String(file))}`)
-        : item.evidence
+        : item.evidence,
+      ...(item.coverageChecks ? { coverageChecks: item.coverageChecks.map(check => ({ ...check,
+        evidence: check.evidence.map(file => `${cycleEvidencePrefix}screenshots/${attemptName}/${path.win32.basename(String(file))}`)
+      })) } : {})
     })) : output.results;
   writeJson(path.join(ticketDir, 'results.json'), results);
   fs.writeFileSync(path.join(ticketDir, 'report.md'), `${output.conciseReport.trim()}\n`, 'utf8');
@@ -645,6 +650,9 @@ if (outputType === 'criteria-output.json') {
   const impact = readJson(path.join(ticketDir, 'guide-impact.json'));
   const review = readJson(path.join(ticketDir, 'review.json'));
   const results = readJson(path.join(ticketDir, 'results.json'));
+  // Normalise legacy numeric criterion IDs before comparing criterion-owned proof.
+  const coverageResults = validateCriterionCoverage(results, criteria, 'Review source results');
+  validateEvidenceCoverage(output.criterionOutcomes, { required: liveHandoff.evidenceCoverageVersion === 1, results: coverageResults });
   const verifiedEvidence = new Set((Array.isArray(results) ? results : []).flatMap(item => Array.isArray(item?.evidence) ? item.evidence : []));
   if (impact?.decision !== 'update_required' || String(review?.overallOutcome || '').toLowerCase() !== 'passed' || !nonEmpty(path.join(ticketDir, 'report.pdf'))) fail('Guide update requires a passed reviewed update_required ticket');
   if (output.screenshots.some(file => !verifiedEvidence.has(file))) fail('guide update screenshots must come from the ticket’s verified results');

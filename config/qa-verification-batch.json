@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "maxReleased": 2,
+  "released": ["TEST2-79", "TEST2-89"],
+  "held": ["TEST2-80", "TEST2-81", "TEST2-88", "TEST2-90", "TEST2-91", "TEST2-92"],
+  "trackingDocument": "docs/qa-verification-2026-10-23.md"
+}

@@ -5,8 +5,8 @@
 - Jira status: READY FOR TESTING
 - QA outcome: Passed
 - Workflow state: Ready
-- Action owner: Coordinator
-- Next action: QA review complete
+- Action owner: Human
+- Next action: Awaiting controlled tester verification release; Jira: READY FOR TESTING
 - Jira: https://metricell.atlassian.net/browse/TEST2-80
 
 ## Acceptance Criteria
