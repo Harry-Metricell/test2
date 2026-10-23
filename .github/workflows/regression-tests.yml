@@ -95,6 +95,9 @@ jobs:
       - name: Run PDF evidence verifier regression tests
         run: python scripts/verify-report-pdf.test.py
 
+      - name: Preserve editable Word report content within GitHub limits
+        run: python scripts/prepare-editable-report.test.py
+
       - name: Run user-guide builder regression tests
         run: python scripts/build-user-guide.test.py
 

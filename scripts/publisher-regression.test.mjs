@@ -6,6 +6,16 @@ import os from 'node:os';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { formatReviewReport } from './format-review-report.mjs';
+import { reportPushArgs } from './git-report-push-policy.mjs';
+
+test('report publication buffers HTTPS and bounds stalled transfers without force pushing', () => {
+  const args = reportPushArgs();
+  assert.ok(args.includes('http.version=HTTP/1.1'));
+  assert.ok(args.includes('http.postBuffer=524288000'));
+  assert.ok(args.includes('http.lowSpeedTime=60'));
+  assert.deepEqual(args.slice(-3), ['push', 'origin', 'HEAD:refs/heads/main']);
+  assert.ok(!args.some(value => /force/.test(value)));
+});
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
 import { guideInstructionIssues } from './guide-instruction-policy.mjs';
 
@@ -52,6 +62,11 @@ test('review report always has a useful summary', () => {
     criterionOutcomes: [{ criterion: 'Toggle setting.', outcome: 'Passed', reason: 'Visible before and after.' }]
   }, 'attempt-001');
   assert.match(markdown, /Review summary:\*\* 1\/1 criteria passed/);
+  const oversized = formatReviewReport('TEST2-48', 'Display Settings', {
+    qaStatus: 'Evidence Reviewed', overallOutcome: 'Passed', criterionOutcomes: []
+  }, 'attempt-001', false);
+  assert.doesNotMatch(oversized, /\]\(report\.docx\)/);
+  assert.match(oversized, /retained locally; exceeds GitHub file-size limit/);
 });
 
 test('publishes new remote tickets from stale dirty Desktop; rejects incomplete evidence', async () => {

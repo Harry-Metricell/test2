@@ -2,7 +2,7 @@ function markdownCell(value) {
   return String(value || '').replace(/\|/g, '\\|').replace(/[\r\n]+/g, ' ').trim();
 }
 
-export function formatReviewReport(ticket, title, review, attempt) {
+export function formatReviewReport(ticket, title, review, attempt, editableAvailable = true) {
   const outcomes = review.criterionOutcomes || [];
   const counts = Object.fromEntries(['Passed', 'Failed', 'Blocked', 'Unverified'].map(
     outcome => [outcome, outcomes.filter(item => item.outcome === outcome).length]
@@ -16,7 +16,8 @@ export function formatReviewReport(ticket, title, review, attempt) {
     `- **Overall outcome:** ${markdownCell(review.overallOutcome)}`,
     `- **Evidence reviewed:** ${markdownCell(attempt)}`,
     '- **Report:** [Evidence report](report.pdf)',
-    '- **Editable report:** [Download Word (.docx)](report.docx)',
+    editableAvailable ? '- **Editable report:** [Download Word (.docx)](report.docx)'
+      : '- **Editable report:** retained locally; exceeds GitHub file-size limit after lossless preparation.',
     '',
     '## Criterion results',
     ''

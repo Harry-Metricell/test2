@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
+import { reportPushArgs } from './git-report-push-policy.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
 import { guideInstructionIssues } from './guide-instruction-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
@@ -706,8 +707,27 @@ if (outputType === 'criteria-output.json') {
     copyFolder(generatedDocx, path.join(cycleEvidenceDir, 'reports', `${key}.docx`));
     copyFolder(generatedPdf, path.join(cycleEvidenceDir, 'reports', `${key}.pdf`));
     if (!nonEmpty(generatedDocx)) fail('Editable evidence report DOCX is missing after generation');
-    copyFolder(generatedDocx, path.join(repo, 'tickets', key, 'report.docx'));
-    changed.push(`tickets/${key}/report.docx`);
+    const editableDocx = path.join(run, `report-editable-${process.pid}.docx`);
+    const reportingPython = process.env.TEST2_PYTHON || path.join(os.homedir(), '.cache', 'codex-runtimes', 'codex-primary-runtime', 'dependencies', 'python', 'python.exe');
+    const editableAudit = execFileSync(reportingPython, [path.join(repo, 'scripts', 'prepare-editable-report.py'),
+      '--input', generatedDocx, '--output', editableDocx],
+    { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 300000 });
+    const editable = JSON.parse(editableAudit);
+    log('editable_report_prepared', { ticket: key, ...editable });
+    const editablePath = path.join(repo, 'tickets', key, 'report.docx');
+    if (editable.available !== false) {
+      copyFolder(editableDocx, editablePath);
+      changed.push(`tickets/${key}/report.docx`);
+    } else {
+      // An optional Word download must not block a complete verified PDF, or
+      // leave the previous review's Word file beside the new report.
+      if (fs.existsSync(editablePath)) {
+        fs.rmSync(editablePath);
+        changed.push(`tickets/${key}/report.docx`);
+      }
+      fs.writeFileSync(path.join(ticketDir, 'report.md'), formatReviewReport(key, ticketSummary, review,
+        attemptMatch?.[1] || path.basename(screenshots), false), 'utf8');
+    }
     if (nonEmpty(generatedPdf)) {
       copyFolder(generatedPdf, path.join(repo, 'tickets', key, 'report.pdf'));
       changed.push(`tickets/${key}/report.pdf`);
@@ -746,7 +766,9 @@ function publishFromCleanWorktree() {
         const source = path.join(repo, relative);
         const target = path.join(worktree, relative);
         ensurePath(target);
-        fs.copyFileSync(source, target);
+        if (relative === `tickets/${key}/report.docx` && !fs.existsSync(source)) {
+          fs.rmSync(target, { force: true });
+        } else fs.copyFileSync(source, target);
       }
       runGitAt(worktree, ['add', '--', ...changed], cleanIndex);
       if (!runGitAt(worktree, ['diff', '--cached', '--name-only'], cleanIndex)) {
@@ -757,7 +779,7 @@ function publishFromCleanWorktree() {
       }
       runGitAt(worktree, ['commit', '-m', `Publish TEST2 ${key} agent output`], cleanIndex);
       try {
-        runGitAt(worktree, ['push', 'origin', 'HEAD:refs/heads/main'], cleanIndex);
+        runGitAt(worktree, reportPushArgs(), cleanIndex);
         const publishedCommit = runGitAt(worktree, ['rev-parse', 'HEAD'], cleanIndex);
         fetchLatest();
         // Confirm our exact commit is remote, even if a bundler commit followed it.
