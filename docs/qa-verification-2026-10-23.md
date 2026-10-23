@@ -8,7 +8,12 @@ Keep tester-side tickets in Jira **TESTING IN PROGRESS** while held. This status
 
 For an authorised fresh retest, move only the selected ticket through **To Do → READY FOR TESTING**, then request and verify a fresh import. The importer archives the old cycle/report and assigns the new cycle; do not manually clear history, counters, evidence or qa-cycle.json. TESTING IN PROGRESS → READY alone intentionally does not reset attempts. Retain browser ownership and sequential testing. Launch the coordinator with its standard read-brief message only.
 
-First pair: **TEST2-79 and TEST2-89**. Status at implementation: selected, awaiting verified import and dispatch; no new outcomes claimed. After their reports, record exact cycle/handoff, review outcome and remaining coverage gaps here before choosing a new pair. User authorisation is required for changing the released pair.
+First pair: **TEST2-79 and TEST2-89**. Import verified successful on 23 October 2026 at 12:38:13 Europe/London: run 39947398383, request 5c21097b-f7a0-4edb-9382-09391032df9c. Live queue contains exactly these two test handoffs with evidenceCoverageVersion 1:
+
+- TEST2-79: cycle-003, handoff-TEST2-79-cycle-003-test-attempt-001.
+- TEST2-89: cycle-002, handoff-TEST2-89-cycle-002-test-attempt-001.
+
+Previous PDFs and editable Word reports were verified preserved in their respective cycle-002/cycle-001 archives. Both are queued, not claimed tested; coordinator dispatch remains the next step. GitHub Regression Tests run 39947235633 succeeded for implementation commit 61822e73. After their reports, record exact cycle/handoff, review outcome and remaining coverage gaps here before choosing a new pair. User authorisation is required for changing the released pair.
 
 ## Ticket checklist
 
