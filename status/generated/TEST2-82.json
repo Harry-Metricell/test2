@@ -49,13 +49,13 @@
   "summary": "Display Ping Point Details",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-82",
-    "status": "READY FOR TESTING",
+    "status": "To Do",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:11:42.231+0100",
-    "updated": "2026-10-21T15:08:26.095+0100"
+    "updated": "2026-10-23T09:08:46.353+0100"
   },
   "description": "As a SmartTools map user\nI want to view the details for a Ping point\nSo that I can investigate latency at the selected location.\nIssue/Change Description:\nWhen a user opens a Ping point through the shared point-detail dialog, display Ping Time in milliseconds and the attributes returned for that selected point.\nThe Ping detail view must work when 5G NSA is the only selected technology. Point selection, dialog behaviour, and the mini-map are covered by the preceding shared stories.\nAcceptance Criteria:\nGiven a Ping point is selected and its details load, Ping Time is shown in milliseconds for that selected point.\nGiven Ping attributes are available, they are displayed alongside Ping Time in the standard point-detail presentation.\nGiven 5G NSA is the only selected technology, when the user opens a Ping point, the point details open without error and show the selected point’s data.\nGiven Ping details are loading, unavailable, or fail to load, a standard loading, no-data, or error state is shown without displaying incorrect data.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -74,23 +74,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106638",
-    "importedAt": "2026-10-21T15:08:26.095+0100"
+    "importedAt": "2026-10-23T09:08:46.353+0100"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "To Do",
     "workflowState": "Blocked",
     "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required; final evidence report published",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
     "testAttempts": 1,
     "blockedStage": "reviewed",
-    "updatedAt": "2026-10-21T15:08:26.095+0100",
+    "updatedAt": "2026-10-23T09:08:46.353+0100",
     "criteriaVerified": true
   }
 }

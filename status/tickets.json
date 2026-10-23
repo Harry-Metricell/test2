@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-22T10:49:30.555Z",
+  "generatedAt": "2026-10-23T09:08:46.353+0100",
   "counts": {
     "tickets": 14,
     "handoffs": 0,
@@ -69,24 +69,6 @@
       "actionOwner": "Coordinator",
       "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-21T17:03:59.645+0100",
-      "retries": 0,
-      "retryLimit": 1,
-      "testAttempts": 1,
-      "retryLabel": ""
-    },
-    {
-      "key": "TEST2-82",
-      "cycleId": "cycle-004",
-      "summary": "Display Ping Point Details",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Coordinator",
-      "nextAction": "Manual review required; final evidence report published",
-      "updatedAt": "2026-10-21T15:08:26.095+0100",
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
@@ -253,6 +235,24 @@
       "retryLimit": 1,
       "testAttempts": 2,
       "retryLabel": "Retry 1/1"
+    },
+    {
+      "key": "TEST2-82",
+      "cycleId": "cycle-004",
+      "summary": "Display Ping Point Details",
+      "jiraStatus": "To Do",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Blocked",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Waiting for Jira status: READY FOR TESTING",
+      "updatedAt": "2026-10-23T09:08:46.353+0100",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 1,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-86",
