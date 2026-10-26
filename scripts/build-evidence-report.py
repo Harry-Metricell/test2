@@ -59,7 +59,7 @@ def evidence_caption(image):
     return f"{state.capitalize()} ({image.name})"
 
 
-def localized_change_region(images):
+def localized_change_region(images, *, max_fraction=0.12):
     """Enlarge a small before/after change, without guessing where a UI lives.
 
     Broad changes (navigation, a dimmed map, a whole dialog) have no safe focus
@@ -88,7 +88,7 @@ def localized_change_region(images):
             width, height = left.size
             if box is None or (box[2] - box[0]) < 8 or (box[3] - box[1]) < 8:
                 continue
-            if (box[2] - box[0]) * (box[3] - box[1]) > width * height * 0.12:
+            if (box[2] - box[0]) * (box[3] - box[1]) > width * height * max_fraction:
                 continue
             # Include nearby labels and surrounding context, not just a pixel.
             x1, y1, x2, y2 = box
@@ -204,7 +204,11 @@ def criterion_focus_region(images, criterion, outcome):
     final = any(re.search(r"-final(?:-recovered)?$", image.stem.lower()) for image in images)
     if text(outcome).lower() == "passed" and preservation and original and final:
         return None
-    return localized_change_region(images)
+    table_comparison = bool(re.search(r"\b(table|rows?|columns?)\b", lower)
+                            and re.search(r"\b(sort(?:ing|ed)?|filter(?:ing|ed)?|edit(?:ing|ed)?)\b", lower))
+    # A reordered/filtered table can change more pixels than one toggle. Use
+    # measured changes only, and still reject broad navigation/map changes.
+    return localized_change_region(images, max_fraction=0.30 if table_comparison else 0.12)
 
 
 def supporting_captures(candidates, displayed, limit=2):
@@ -215,6 +219,7 @@ def supporting_captures(candidates, displayed, limit=2):
         if not (any(term in image.stem.lower() for term in (
             "after-open-gis", "before-load", "after-open-module",
             "after-open-surveyor-config", "after-open-layer-dialog", "before-confirm-add",
+            "before-automobile", "automobile-config", "before-select-point", "before-select-record",
         )) or re.fullmatch(r"criterion-\d+-(?:surveyor-config|service-config|building-config)", image.stem.lower())):
             continue
         digest = hashlib.sha256(image.read_bytes()).hexdigest()
@@ -237,6 +242,42 @@ def screenshot_paths(item, all_screenshots):
             raise SystemExit(f"referenced screenshot is missing: {name}")
         ordered.append(available[name])
     return ordered
+
+
+def reviewed_report_exhibits(images, criterion, review_reason=""):
+    """Retain reviewed proof, including named post-final selected/detail states.
+
+    Only explicitly recognised setup can move to the appendix, and only when
+    the reviewer names decisive captures. Unknown names/comparisons retain
+    the conservative selection. Source PNGs and result references never change.
+    """
+    selected = report_exhibits(images, criterion, review_reason)
+    if "recheck" in review_reason.lower() and "supersedes" in review_reason.lower():
+        return selected  # Never re-add the deliberately superseded journey.
+    cited = [image for image in images if re.search(
+        r"(?<![\w.-])" + re.escape(image.name) + r"(?![\w.-])", review_reason)
+        and not re.search(r"cleanup|after-clean", image.stem, re.I)]
+    if not cited:
+        return selected
+    lower = criterion.lower()
+    protects_setup = bool(re.search(
+        r"\b(initial|original|baseline|before|unselected|neither|default|configuration|configure|selector)\b", lower)
+        or preserves_recorded_state(criterion) or restores_catalogue_state(criterion))
+    def unrelated_setup(image):
+        if protects_setup or image in cited:
+            return False
+        name = re.sub(r"^criterion-\d+-", "", image.stem.lower())
+        if name in {"initial", "before-automobile", "automobile-config", "actual-automobile-config", "after-open-gis"}:
+            return True
+        if name in {"before-select-point", "before-select-record"}:
+            return not re.search(r"\b(select|selecting|selectable|point)\b", lower)
+        return False
+    kept = [image for image in selected if not unrelated_setup(image)]
+    if "SIMULATED UI STATE:" in review_reason.upper():
+        # Preserve decisive injected-state/recovery pairing first.
+        return kept + [image for image in cited if image not in kept]
+    wanted = set(kept + cited)
+    return [image for image in images if image in wanted]
 
 
 def report_exhibits(images, criterion, review_reason=""):
@@ -784,6 +825,20 @@ def criterion_assessment(item, result):
     return reason
 
 
+def additional_criterion_assessment(item, result, displayed_actual):
+    """Print ordinary reasoning once, retaining distinct audit/recovery notes."""
+    assessment = criterion_assessment(item, result)
+    if "SIMULATED UI STATE:" in json.dumps([item, result], ensure_ascii=False).upper():
+        return assessment
+    actual = displayed_actual.split("\nEvidence:", 1)[0].strip()
+    normalise = lambda value: re.sub(r"\s+", " ", report_text(value)).strip()
+    if normalise(assessment) == normalise(actual):
+        return ""
+    if actual and assessment.startswith(actual + "\nTesting notes:"):
+        return assessment[len(actual):].strip()
+    return assessment  # Different observations or qualifications remain visible.
+
+
 def result_for_outcome(outcome, results, result_by_criterion, criteria, position):
     """Match a reviewer outcome to its tester result without dropping evidence.
 
@@ -1121,7 +1176,7 @@ def main():
         all_criterion_images = screenshot_paths(result, screenshots)
         if not all_criterion_images and text(result.get("outcome")).lower() != "blocked":
             raise SystemExit(f"criterion {number} has no embeddable screenshot evidence")
-        criterion_images = report_exhibits(all_criterion_images, criterion, text(item.get("reason")))
+        criterion_images = reviewed_report_exhibits(all_criterion_images, criterion, text(item.get("reason")))
         setup_candidates.extend((image, public_browser_url(result.get("browserUrl")))
                                 for image in all_criterion_images if image not in criterion_images)
         evidence_ids = []
@@ -1162,7 +1217,7 @@ def main():
             ]
         for index, value in enumerate(values):
             set_cell(row[index], value)
-        assessment = criterion_assessment(item, result)
+        assessment = additional_criterion_assessment(item, result, values[-2])
         # Read the assessment before the exhibits. A bounded, unsplit notes
         # row avoids orphaned testing notes after several image pages.
         if assessment:

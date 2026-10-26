@@ -19,6 +19,48 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_duplicate_assessment_is_removed_but_recovery_note_is_preserved(self):
+        item = {'outcome': 'Passed', 'reason': 'The table shows the expected rows.'}
+        result = {'reason': item['reason']}
+        actual = item['reason'] + '\nEvidence: E01'
+        self.assertEqual(REPORT.additional_criterion_assessment(item, result, actual), '')
+        result['steps_taken'] = ['Recovered a tool timeout; cleanup completed.']
+        extra = REPORT.additional_criterion_assessment(item, result, actual)
+        self.assertIn('Recovered a tool timeout', extra)
+        self.assertNotIn('The table shows the expected rows.', extra)
+        self.assertEqual(REPORT.additional_criterion_assessment(item, {}, 'Different tester observation.\nEvidence: E01'), item['reason'])
+
+    def test_review_cited_selected_capture_after_final_is_not_lost(self):
+        images = [Path('criterion-3-' + suffix + '.png') for suffix in (
+            'before-automobile', 'actual-automobile-config', 'before-add-service', 'final', 'final-selected', 'cleanup')]
+        reason = 'criterion-3-before-add-service.png shows selection; criterion-3-final.png shows markers; criterion-3-final-selected.png shows selected result details.'
+        selected = REPORT.reviewed_report_exhibits(images, 'Matching results are shown as selectable map points.', reason)
+        self.assertEqual(selected, images[2:5])
+
+    def test_sorting_keeps_reviewed_before_after_not_point_opening_setup(self):
+        images = [Path('criterion-5-' + suffix + '.png') for suffix in ('before-select-point', 'before-sort', 'final')]
+        reason = 'criterion-5-before-sort.png shows descending rows; criterion-5-final.png shows ascending rows.'
+        self.assertEqual(REPORT.reviewed_report_exhibits(images, 'Sorting a supported table column reorders displayed rows.', reason), images[1:])
+
+    def test_unknown_or_required_setup_is_not_pruned(self):
+        images = [Path('criterion-1-' + suffix + '.png') for suffix in ('before-automobile', 'automobile-config', 'final')]
+        self.assertEqual(REPORT.reviewed_report_exhibits(images, 'The layer selector includes Service.', 'criterion-1-final.png shows Service.'), images)
+        self.assertEqual(REPORT.reviewed_report_exhibits(images, 'Results are displayed.', ''), REPORT.report_exhibits(images, 'Results are displayed.'))
+        self.assertEqual(REPORT.reviewed_report_exhibits(images, 'The original map remains unchanged.', 'criterion-1-final.png shows the map.'), REPORT.report_exhibits(images, 'The original map remains unchanged.'))
+
+    def test_table_enlargement_uses_measured_change_and_keeps_broad_maps_uncropped(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            before = Path(temporary) / 'criterion-5-before-sort.png'
+            final = Path(temporary) / 'criterion-5-final.png'
+            Image.new('RGB', (1440, 900), 'white').save(before)
+            changed = Image.new('RGB', (1440, 900), 'white')
+            changed.paste('navy', (100, 550, 1200, 800))
+            changed.save(final)
+            self.assertIsNone(REPORT.localized_change_region([before, final]))
+            self.assertIsNotNone(REPORT.criterion_focus_region([before, final], 'Sorting the table changes row order.', 'Passed'))
+            Image.new('RGB', (1440, 900), 'blue').save(final)
+            self.assertIsNone(REPORT.criterion_focus_region([before, final], 'Filtering the table changes rows.', 'Passed'))
+
     def test_passed_simulation_display_is_brief_and_preserves_source_audit(self):
         reason = ('SIMULATED UI STATE: The original request for pointId 123456 and mercatorKey 987654 was held and released. '
                   'criterion-8-baseline.png establishes the baseline; criterion-8-final.png visibly shows a small blue loading spinner. '
@@ -641,8 +683,10 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertIn("Failed", case_text)  # Unverified remains Failed in the PDF convention.
             cases = document.tables[5]
             self.assertEqual(criteria[0], cases.rows[1].cells[1].text)
-            self.assertIn("E01 - Final (criterion-1-final.png)", cases.rows[3].cells[0].tables[0].cell(0, 0).text)
-            self.assertIn("A restricted user", cases.rows[4].cells[1].text)
+            image_row = next(row for row in cases.rows if row.cells[0].tables)
+            self.assertIn("E01 - Final (criterion-1-final.png)", image_row.cells[0].tables[0].cell(0, 0).text)
+            restricted_row = next(row for row in cases.rows if row.cells[0].text == '2.0.0')
+            self.assertIn("A restricted user", restricted_row.cells[1].text)
             self.assertEqual([cell.text for cell in document.tables[3].rows[0].cells][1:],
                              ['Pass (Y/N)', 'Fail (Y/N)', 'Blocked (Y/N)', 'Defect No'])
             self.assertEqual([cell.text for cell in document.tables[3].rows[2].cells][1:],
@@ -650,8 +694,8 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertFalse(document.tables[3].autofit)
             self.assertGreater(document.tables[3].columns[0].width,
                                3 * document.tables[3].columns[1].width)
-            self.assertIn('Criterion 1 assessment:', cases.rows[2].cells[0].text)
-            self.assertIsNotNone(cases.rows[2]._tr.trPr.find(REPORT.qn('w:cantSplit')))
+            self.assertNotIn('Criterion 1 assessment:', case_text)
+            self.assertIn('Evidence is inconclusive.', cases.rows[1].cells[-2].text)
             self.assertFalse(cases.autofit)
             summary_heading = next(p for p in document.paragraphs if p.text.strip() == 'Test Summary')
             self.assertTrue(summary_heading.paragraph_format.page_break_before)

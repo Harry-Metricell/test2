@@ -64,6 +64,10 @@ The publisher creates/verifies the report and rejects inconsistent or incomplete
 
 Report presentation: keep the full simulation scope, contract, record identity, recovery and cleanup audit in the structured review reason. The deterministic report builder may display a short method and decisive visible result once in the criterion assessment; it must not repeat the full audit in actual-result and screenshot boxes or hide unresolved limitations. Opening testing limitations describe material test constraints, not explanations of Y/N columns or defect-count bookkeeping. This display policy never changes an outcome or the evidence required for it.
 
+Name the decisive criterion-owned captures, including selected-result/detail states captured after a file called final when those are the actual proof. The report retains named proof, before/after comparisons and unfamiliar states, moving only clearly unrelated setup to supporting evidence. Ordinary assessments already shown in Actual Results are not repeated; distinct limitations, recovery and simulation notes remain. Table detail enlargements supplement the original full screenshots and must derive from their actual changed pixels, not guessed UI coordinates. Fewer printed setup images never means less required testing.
+
+Do not repeat routine execution dates/times in Actual Results when the report already records the test date. Retain dates and times that prove sorting, filters, chronology or record identity; never remove a relevant value merely to shorten the report.
+
 Return only a compact receipt with handoffId, ticket and staged true; for no-op/failure, a compact reason. Never repeat outcomes or the payload, and do not narrate routine calls; host-required updates must be one short sentence.
 
 
