@@ -5,6 +5,7 @@
 - **Overall outcome:** Passed
 - **Evidence reviewed:** attempt-001
 - **Report:** [Evidence report](report.pdf)
+- **Editable report:** [Download Word (.docx)](report.docx)
 
 ## Criterion results
 
