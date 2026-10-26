@@ -4,6 +4,8 @@ User-authorised 23 October 2026. Source VM2ST remains read-only. Existing report
 
 ## Release procedure
 
+Current release, authorised by the user on 26 October 2026: **TEST2-85 and TEST2-86**. This supersedes the historical first-pair release below. Only these two tickets are released for tester/reviewer work; all other tickets in TEST2-79–92 remain held. Use importer-owned fresh cycles and retain all previous reports/history. The user has accepted TEST2-80 as passed and deferred TEST2-82 pending development work; neither is included in this retest pair.
+
 Keep tester-side tickets in Jira **TESTING IN PROGRESS** while held. This status is a holding queue here, not a claim that a worker is active. The imported status must be READY FOR TESTING before a tester/reviewer can run. Only release one or two tickets, and keep config/qa-verification-batch.json aligned. Bundler excludes held testers/reviewers even if someone prematurely marks them Ready. No automatic next-pair release.
 
 For an authorised fresh retest, move only the selected ticket through **To Do → READY FOR TESTING**, then request and verify a fresh import. The importer archives the old cycle/report and assigns the new cycle; do not manually clear history, counters, evidence or qa-cycle.json. TESTING IN PROGRESS → READY alone intentionally does not reset attempts. Retain browser ownership and sequential testing. Launch the coordinator with its standard read-brief message only.
@@ -25,8 +27,8 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 | 82 | Preserve reported loading failure and missing no-data contract. Correct future preservation of pre-existing panels. | Leave To Do; user bug returned |
 | 83 | Historical Service points 500; later Service success elsewhere means availability needs a fresh scoped check, not an assumed pass. | Deferred; unchanged Jira |
 | 84 | Identify actual Automobile Building feature/prerequisite; never substitute Surveyor. | Deferred; unchanged Jira |
-| 85 | Historical Download points 500; later retrieval worked elsewhere. | Deferred; unchanged Jira |
-| 86 | Historical Upload points 500; later retrieval worked elsewhere. | Deferred; leave To Do |
+| 85 | Recheck Download retrieval, then execute the original point-detail requirements if accessible. | Released 26 October; fresh cycle requested |
+| 86 | Recheck Upload retrieval, then execute the original point-detail requirements if accessible. | Released 26 October; fresh cycle requested |
 | 87 | Historical Call points 500; later retrieval worked elsewhere. | Deferred; unchanged Jira |
 | 88 | Inspect Automobile's nested MS Teams Call type, not only catalogue text search. | Held |
 | 89 | Inspect Automobile's nested MS Teams Call type; do not inspect Surveyor as a substitute. Capture reachable actual states or truthful prerequisites. | First pair |
