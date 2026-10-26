@@ -10,8 +10,8 @@
       "TESTING IN PROGRESS": 1
     },
     "byQaOutcome": {
-      "Blocked": 11,
-      "Not Tested": 2,
+      "Blocked": 12,
+      "Not Tested": 1,
       "Passed": 1
     }
   },
@@ -82,16 +82,16 @@
       "summary": "Display Download Point Details",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-26T14:25:46.537+0000",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 0,
+      "testAttempts": 1,
       "retryLabel": ""
     },
     {
