@@ -19,6 +19,47 @@ SPEC.loader.exec_module(REPORT)
 
 
 class ResultMatchingTests(unittest.TestCase):
+    def test_passed_simulation_display_is_brief_and_preserves_source_audit(self):
+        reason = ('SIMULATED UI STATE: The original request for pointId 123456 and mercatorKey 987654 was held and released. '
+                  'criterion-8-baseline.png establishes the baseline; criterion-8-final.png visibly shows a small blue loading spinner. '
+                  'criterion-8-recovery.png shows genuine details restored. Handler removed and pending work settled.')
+        item = {'outcome': 'Passed', 'reason': reason}
+        result = {'reason': reason, 'steps_taken': []}
+        displayed = REPORT.criterion_assessment(item, result)
+        self.assertIn('SIMULATED UI STATE:', displayed)
+        self.assertIn('Delayed the selected detail request', displayed)
+        self.assertIn('loading spinner', displayed)
+        self.assertNotIn('123456', displayed)
+        self.assertNotIn('establishes the baseline', displayed)
+        self.assertLess(len(displayed), 240)
+        self.assertEqual(item['reason'], reason)
+
+    def test_failed_or_uncertain_simulation_keeps_its_full_explanation(self):
+        reason = 'SIMULATED UI STATE: A request was held. criterion-4-final.png shows no spinner. Cleanup unverified.'
+        self.assertEqual(REPORT.concise_simulation_assessment({'outcome': 'Failed', 'reason': reason}, {}), reason)
+        passed = {'outcome': 'Passed', 'reason': reason}
+        self.assertIn('Cleanup unverified', REPORT.concise_simulation_assessment(passed, {}))
+
+    def test_image_cells_reserve_height_and_do_not_repeat_simulation_method(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            image = Path(temporary) / 'criterion-8-final.png'
+            Image.new('RGB', (1440, 900), 'white').save(image)
+            document = Document()
+            table = document.add_table(rows=1, cols=5)
+            REPORT.add_image_row(table, [('E01', image, 'https://example.test/gis')])
+            self.assertNotIn('SIMULATED UI STATE', table.rows[1].cells[0].text)
+            nested = table.rows[1].cells[0].tables[0]
+            picture = next(p for p in nested.cell(0, 0).paragraphs if p._p.xpath('.//w:drawing'))
+            self.assertEqual(picture.paragraph_format.line_spacing, 1.0)
+            self.assertTrue(nested.cell(0, 0)._tc.xpath('./w:tcPr/w:tcMar/w:bottom'))
+            self.assertTrue(nested.rows[0]._tr.xpath('./w:trPr/w:cantSplit'))
+
+    def test_all_passed_opening_limitations_have_no_column_bookkeeping(self):
+        result = {'browserUrl': 'https://example.test/gis', 'browserVersion': '123'}
+        displayed = REPORT.compact_limitations({}, [{'outcome': 'Passed'}], [result])
+        self.assertEqual(displayed, 'No material testing limitations recorded.')
+        self.assertNotIn('Y/N', displayed)
+
     def test_point_detail_exhibits_omit_layer_setup_but_keep_record_and_radio_proof(self):
         images = [Path('criterion-1-' + name + '.png') for name in (
             'before-surveyor', 'service-config', 'service-added', 'cluster',

@@ -62,6 +62,8 @@ Derive overallOutcome in this precedence: Blocked if any criterion is Blocked; o
 
 The publisher creates/verifies the report and rejects inconsistent or incomplete output. Do not create, render, inspect or upload Word/PDF documents, edit criteria/ticket files/Jira, or handle credentials/authentication state.
 
+Report presentation: keep the full simulation scope, contract, record identity, recovery and cleanup audit in the structured review reason. The deterministic report builder may display a short method and decisive visible result once in the criterion assessment; it must not repeat the full audit in actual-result and screenshot boxes or hide unresolved limitations. Opening testing limitations describe material test constraints, not explanations of Y/N columns or defect-count bookkeeping. This display policy never changes an outcome or the evidence required for it.
+
 Return only a compact receipt with handoffId, ticket and staged true; for no-op/failure, a compact reason. Never repeat outcomes or the payload, and do not narrate routine calls; host-required updates must be one short sentence.
 
 

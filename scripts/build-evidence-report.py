@@ -96,11 +96,12 @@ def localized_change_region(images):
     return None
 
 
-def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focus_region=None, opening=False, simulation=False):
+def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focus_region=None, opening=False):
     """Use readable pairs plus explicitly labelled, lossless Word detail views."""
     if not 1 <= len(exhibits) <= 2:
         raise ValueError("an evidence row requires one or two captures")
     row = table.add_row()
+    row.height = None
     merged = row.cells[0]
     for cell in row.cells[1:]:
         merged = merged.merge(cell)
@@ -110,12 +111,22 @@ def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focu
     if not supporting:
         if criterion_label:
             heading.add_run(criterion_label + "\n").bold = True
-        if simulation:
-            heading.add_run("SIMULATED UI STATE: browser-local condition; recovery uses the genuine service.\n").bold = True
         heading.add_run(f"Browser URL recorded after criterion: {exhibits[0][2]}")
         for run in heading.runs:
             run.font.size = Pt(8)
     grid = merged.add_table(rows=2 if focus_region else 1, cols=len(exhibits))
+    grid.autofit = False
+    for grid_row in grid.rows:
+        grid_row.height = None
+        grid_row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
+        for grid_cell in grid_row.cells:
+            margins = OxmlElement("w:tcMar")
+            for side, amount in (("top", 60), ("bottom", 100), ("left", 60), ("right", 60)):
+                margin = OxmlElement(f"w:{side}")
+                margin.set(qn("w:w"), str(amount))
+                margin.set(qn("w:type"), "dxa")
+                margins.append(margin)
+            grid_cell._tc.get_or_add_tcPr().append(margins)
     for index, (evidence_id, image, _) in enumerate(exhibits):
         cell = grid.cell(0, index)
         caption = cell.paragraphs[0]
@@ -126,6 +137,8 @@ def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focu
         picture = cell.add_paragraph()
         picture.alignment = WD_ALIGN_PARAGRAPH.CENTER
         picture.paragraph_format.space_after = Pt(0)
+        picture.paragraph_format.space_before = Pt(0)
+        picture.paragraph_format.line_spacing = 1.0
         with Image.open(image) as source:
             max_width = 3.65 if supporting else (4.7 if len(exhibits) > 1 else 7.4)
             # A single opening image uses the same readable height as paired
@@ -143,7 +156,9 @@ def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focu
             with Image.open(image) as source:
                 source_width, source_height = source.size
             detail_width = min(4.7 if len(exhibits) > 1 else 7.4, 1.65 * (x2 - x1) / (y2 - y1))
-            shape = detail.add_paragraph().add_run().add_picture(str(image), width=Inches(detail_width), height=Inches(detail_width * (y2 - y1) / (x2 - x1)))
+            detail_picture = detail.add_paragraph()
+            detail_picture.paragraph_format.line_spacing = 1.0
+            shape = detail_picture.add_run().add_picture(str(image), width=Inches(detail_width), height=Inches(detail_width * (y2 - y1) / (x2 - x1)))
             # A Word display crop preserves the original embedded PNG bytes.
             # It supplements, never replaces, the verified full-context image.
             crop = OxmlElement("a:srcRect")
@@ -154,6 +169,10 @@ def add_image_row(table, exhibits, *, supporting=False, criterion_label="", focu
             detail.paragraphs[-1].paragraph_format.space_after = Pt(0)
             detail.paragraphs[-1].paragraph_format.keep_with_next = False
     merged.paragraphs[-1].paragraph_format.space_after = Pt(0)
+    merged.paragraphs[-1].paragraph_format.space_before = Pt(0)
+    merged.paragraphs[-1].paragraph_format.line_spacing = 1.0
+    for run in merged.paragraphs[-1].runs:
+        run.font.size = Pt(1)
     merged.paragraphs[-1].paragraph_format.keep_with_next = False
     row._tr.get_or_add_trPr().append(OxmlElement("w:cantSplit"))
 
@@ -685,7 +704,7 @@ def report_limitations(review, outcomes, results):
 
 
 def compact_limitations(review, outcomes, results):
-    """Keep the opening readable; full criterion notes are printed with proof."""
+    """Keep the opening readable; criterion assessments sit beside their proof."""
     parts = []
     for label in ("Blocked", "Unverified"):
         numbers = [str(i) for i, item in enumerate(outcomes, 1)
@@ -695,23 +714,56 @@ def compact_limitations(review, outcomes, results):
     simulated = [str(i) for i, item in enumerate(results, 1)
                  if "SIMULATED UI STATE:" in json.dumps(item, ensure_ascii=False).upper()]
     if simulated:
-        parts.append(f"SIMULATED UI STATE: criterion(s) {', '.join(simulated)} use browser-local conditions, not backend integration tests. Method and recovery are disclosed with their evidence.")
+        parts.append(f"Criteria {', '.join(simulated)} used simulated UI conditions; see their assessments.")
     if any(public_browser_url(item.get("browserUrl")) == "Not recorded" for item in results):
         parts.append("Some source URLs were not recorded.")
     if any(not item.get("browserVersion") for item in results):
         parts.append("Browser version was not recorded for some criteria.")
     if not parts:
-        parts.append("See criterion assessments for any recovered automation or cleanup issues.")
+        parts.append("No material testing limitations recorded.")
     return "\n".join(parts)
+
+
+def concise_simulation_assessment(item, result):
+    """Short display only: keep the complete reviewed method in the source JSON.
+
+    Compact only Passed checks with a recognised delay/error method and a
+    decisive final-image observation. Unknown or non-passing cases retain
+    their complete explanation rather than concealing a qualification.
+    """
+    reason = concise_review_reason(item.get("reason")) or text(result.get("reason"))
+    if text(item.get("outcome")).lower() != "passed":
+        return reason
+    if re.search(r"\b(?:held|delayed|delay)\b", reason, re.I):
+        method = "Delayed the selected detail request to check loading."
+    else:
+        status = re.search(r"\bHTTP\s+([45]\d\d)\b", reason, re.I)
+        if not status:
+            return reason
+        method = f"Returned HTTP {status.group(1)} for the selected detail request to check error handling."
+    sentences = re.split(r"(?<=[.!?;])\s+(?=[A-Z]|criterion-\d)", reason)
+    decisive_source = next((sentence for sentence in sentences if "-final.png" in sentence
+                     and re.search(r"\bshows?\b|\bdisplays?\b", sentence, re.I)), "")
+    if not decisive_source:
+        return reason
+    decisive = re.sub(r"\bcriterion-\d+-[\w.-]+\.png\b", "The evidence", decisive_source)
+    # Never discard explicit uncertainty or cleanup problems, even on a
+    # legacy Passed review. Those qualifications are not ordinary method detail.
+    qualifications = [sentence for sentence in sentences if re.search(
+        r"cleanup.{0,40}(?:failed|incomplete|unverified|unknown)|(?:handler|recovery).{0,40}(?:not|unverified|failed)|\b(?:limitation|unverified|inconclusive)\b",
+        sentence, re.I) and sentence != decisive_source]
+    return "SIMULATED UI STATE: " + " ".join([method, decisive, *qualifications])
 
 
 def criterion_assessment(item, result):
     """Preserve review reasoning and recovered problems beside each criterion."""
     reason = concise_review_reason(item.get("reason")) or text(result.get("reason"))
-    simulated = "SIMULATED UI STATE:" in json.dumps(result, ensure_ascii=False).upper()
+    simulated = "SIMULATED UI STATE:" in json.dumps([item, result], ensure_ascii=False).upper()
+    if simulated:
+        reason = concise_simulation_assessment(item, result)
     note_source = {**result}
     if simulated:
-        # The full independently reviewed method is already printed above.
+        # The method is disclosed once above; full audit detail stays in JSON.
         # Retain additional unexpected tool problems, not a second recital of
         # the deliberately injected server error.
         note_source["reason"] = ""
@@ -946,7 +998,6 @@ def main():
     limitations = compact_limitations(review, outcomes, results)
     if any(text(item.get("outcome")).lower() == "unverified" for item in outcomes):
         limitations += " Inconclusive evidence is reported as Failed, but is not a confirmed application defect."
-    limitations += " Pass, Fail and Blocked use Y/N. Defect No counts directly contradicted criteria, not unique Jira bugs; blockers and inconclusive evidence count as zero."
     if no_evidence_block:
         limitations = "No browser evidence was captured; testing could not be completed. " + limitations
     urls = source_urls(results)
@@ -1058,6 +1109,15 @@ def main():
         row = cases.add_row().cells
         steps = formatted_steps(result.get("steps_taken", []))
         actual = text(result.get("actual_result")) or concise_review_reason(item.get("reason")) or text(result.get("reason"))
+        simulated = "SIMULATED UI STATE:" in json.dumps([item, result], ensure_ascii=False).upper()
+        if simulated:
+            # Method is explained once in the assessment, not repeated inside
+            # the result box and every following image heading.
+            actual = {
+                "passed": "The recorded check satisfied the criterion; see the assessment below.",
+                "failed": "The recorded check contradicted the criterion; see the assessment below.",
+                "blocked": "Testing could not be completed; see the assessment below.",
+            }.get(text(item.get("outcome")).lower(), "The evidence was inconclusive; see the assessment below.")
         all_criterion_images = screenshot_paths(result, screenshots)
         if not all_criterion_images and text(result.get("outcome")).lower() != "blocked":
             raise SystemExit(f"criterion {number} has no embeddable screenshot evidence")
@@ -1097,7 +1157,7 @@ def main():
                 criterion,
                 steps,
                 expected_result,
-                f"{concise_review_reason(item.get('reason')) or text(result.get('reason'))}\n{trace}",
+                actual if simulated else f"{concise_review_reason(item.get('reason')) or text(result.get('reason'))}\n{trace}",
                 report_outcome,
             ]
         for index, value in enumerate(values):
@@ -1127,8 +1187,7 @@ def main():
                 row_exhibits = exhibits[start:start + 2]
                 focus = criterion_focus_region([exhibit[1] for exhibit in row_exhibits], criterion, item.get("outcome"))
                 add_image_row(cases, row_exhibits, criterion_label=label, focus_region=focus,
-                              opening=number == 1 and start == 0,
-                              simulation="SIMULATED UI STATE:" in assessment.upper())
+                              opening=number == 1 and start == 0)
 
     setup = supporting_captures(setup_candidates, unique_images)
     if setup:
