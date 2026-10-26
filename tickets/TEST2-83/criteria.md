@@ -6,6 +6,6 @@
 - [ ] Given displayed Service point detail rows are available, sorting the rows changes their visible order according to the selected sort, and filtering them shows only rows matching the selected filter.
 - [ ] Given a Service point's reported radio generation is 2G, 3G, 4G, 5G NSA, or 5G SA, the visible KPI names are appropriate to that generation.
 - [ ] Given 5G SA is selected and the user opens a Service point in the shared point-detail dialog, the Service point detail presentation loads without an error state.
-- [ ] Given Service point details are loading, the detail presentation shows a loading state.
-- [ ] Given Service point details are unavailable, the detail presentation shows a no-data state.
+- [ ] Given Service point details are loading, the detail presentation shows a loading state without displaying incorrect detail data.
+- [ ] Given Service point details are unavailable, the detail presentation shows a no-data state without displaying incorrect detail data.
 - [ ] Given loading Service point details fails, the detail presentation shows an error state and does not show incorrect detail data.

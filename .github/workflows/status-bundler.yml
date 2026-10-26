@@ -12,6 +12,8 @@ on:
       - 'scripts/testing-cycle.mjs'
       - 'scripts/testing-context.mjs'
       - 'config/testing-context/**'
+      - 'config/qa-verification-batch.json'
+      - 'scripts/qa-verification-batch.mjs'
       - 'scripts/check-criteria.mjs'
       - 'package.json'
 
