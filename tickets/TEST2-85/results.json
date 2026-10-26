@@ -1,0 +1,508 @@
+[
+  {
+    "criterion": "Given a completed Download test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Download Rate, and Wi-Fi connection status.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle-fixed.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "Selected point 132047153 through the map and waited for genuine summary, chart and 121-row table.",
+      "Read the entire summary using overlapping top/middle/bottom captures, including its final duration row; compared supplied summary/point fields with all ten required information fields.",
+      "Saved final before closing the owned point tab and removing the owned layer. No unrelated panels existed or were closed."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Real Automobile Download point 132047153 loaded. Technology, service, serving cell, duration, tested technologies, Download Rate and Wi-Fi status are readable. User, handset and indoor/outdoor values were not supplied in the inspected point/analysis response or shown in its summary; MSISDN is not treated as a user identity. A fixture returning those three values is needed to decide the full criterion; no product failure inferred from absent data.",
+    "retryClass": "prerequisite",
+    "blockerCode": "required_summary_data_unavailable",
+    "coverageChecks": [
+      {
+        "assertion": "Summary technology",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
+        ]
+      },
+      {
+        "assertion": "Summary user",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
+        ]
+      },
+      {
+        "assertion": "Summary handset",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
+        ]
+      },
+      {
+        "assertion": "Summary service",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
+        ]
+      },
+      {
+        "assertion": "Summary serving cell",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
+        ]
+      },
+      {
+        "assertion": "Summary duration",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+        ]
+      },
+      {
+        "assertion": "Summary tested technologies",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle-fixed.png"
+        ]
+      },
+      {
+        "assertion": "Summary indoor/outdoor",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
+        ]
+      },
+      {
+        "assertion": "Summary Download Rate",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
+        ]
+      },
+      {
+        "assertion": "Summary Wi-Fi connection",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle-fixed.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Download samples are available, a time-series chart shows Signal Strength in dBm and Download Rate in Mbps across the test duration.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-details-loaded.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "Selected point 132047153, waited for the real chart/table, and inspected both chart legends, axis units and Seconds axis against the selected test time interval.",
+      "Saved the decisive chart final; closed only the owned detail tab and removed the owned layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Signal strength (dBm) and Download Rate (Mbps) are visible in the Download analysis chart across approximately 0–30 seconds for point 132047153; the genuine test lasts 30.431 s.",
+    "coverageChecks": [
+      {
+        "assertion": "Chart Signal Strength in dBm",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+        ]
+      },
+      {
+        "assertion": "Chart Download Rate in Mbps",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+        ]
+      },
+      {
+        "assertion": "Chart covers test duration",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given per-sample Download data is available, each returned sample is shown in a table with its relevant units.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-details-loaded.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-01.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-01.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-02.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-03.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-04.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-05.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-06.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "Selected point 132047153. Bounded comparison scope: this point's complete 121-sample response, Cambridge map area, default 90-day date window shown in this criterion's Download configuration (28 July–26 October 2026); all technologies and default empty handset/network filters.",
+      "Read the genuine HTTP 200 POST /api/platform/automobile/download/test-analysis response and all table DOM rows. Compared every ordered row's time, signal strength, Download Rate, technology, cell, size and mobile data state with the returned sample after visible unit/rounding formatting; counts 121/121, mismatches 0.",
+      "Resized from 1440×900 to 1920×1600 for readable full-width rows, scrolled continuously through overlapping settled table captures 01–06, including the first and last sample. Saved final before cleanup.",
+      "Closed the owned tab and removed the owned layer, then restored the original 1440×900 viewport."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "All 121 samples returned for point 132047153 were reconciled in response order against all 121 table rows. All seven displayed values per row matched after UI formatting (time to seconds, rate/size to two decimals); zero mismatches. Overlapping wide captures include first and last rows and every intermediate row.",
+    "coverageChecks": [
+      {
+        "assertion": "Every returned sample appears",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-01.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-02.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-03.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-04.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-05.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-06.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+        ]
+      },
+      {
+        "assertion": "Sample relevant units are shown",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-01.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-02.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-03.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-04.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-05.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-wide-06.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the per-sample table contains multiple rows, sorting by a displayed column changes their visible order according to that column.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-details-loaded.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-before-sort.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-after-sort-ascending.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "Selected point 132047153 and scrolled to the per-sample table header; saved its mixed chronological baseline.",
+      "Clicked Download Rate once; verified all 121 displayed numeric rates ascending (0.00, 0.00, 0.00, 0.00, 0.00, 0.30, 0.56, 1.56...). Captured the sorted state with its header/indicator.",
+      "Clicked Download Rate again; verified all 121 rates descending, captured final with differing values and header/indicator, then closed the owned detail and layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Download Rate sorting changed the 121-row order from chronological mixed values to ascending, then descending numeric order. All rows were checked for monotonicity; first descending values were 67.92, 63.81, 63.46, 63.28, 62.94 and 62.03 Mbps. The selected header and sort indicator are visible.",
+    "coverageChecks": [
+      {
+        "assertion": "Sorting changes visible order according to selected column",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given per-sample data is available, filtering the table shows only rows matching the selected filter.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-details-loaded.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-filter.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-filter-restored.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "Selected point 132047153, scrolled to the table and saved the unfiltered 121-row baseline.",
+      "Entered 105_112_4 in Filter measurements. Checked every resulting row: exactly three matches, all cell 105_112_4. Saved final with filter value and all three rows.",
+      "Cleared the filter and verified 121 rows returned; captured restoration, then closed the owned detail and removed the owned layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Filtering by cell 105_112_4 reduced 121 rows to exactly the three matching rows (0.00, 0.00 and 1.77 Mbps); no other cell remained. Clearing the filter restored 121 rows.",
+    "coverageChecks": [
+      {
+        "assertion": "Filtering shows only matching rows",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear in the summary immediately after Download Rate.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-details-loaded.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "Selected point 132047153 and inspected the loaded summary around Download Rate (followed by Band, not average metrics).",
+      "The genuine inspected record has no average-metric values to exercise the conditional branch. Saved the visible prerequisite limitation as final; cleaned up only owned detail/layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Point 132047153 has no returned average Signal Strength, Signal Quality or SNR values and no corresponding summary rows. A genuine Automobile Download fixture returning all three averages is required to verify their presence and order; missing values are not classified as a product failure.",
+    "retryClass": "prerequisite",
+    "blockerCode": "average_metrics_fixture_unavailable",
+    "coverageChecks": [
+      {
+        "assertion": "Returned average Signal Strength immediately after Download Rate",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+        ]
+      },
+      {
+        "assertion": "Returned average Signal Quality next",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+        ]
+      },
+      {
+        "assertion": "Returned average SNR next",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the selected Download point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-first-point.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-before-second-point.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-second-point.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "Selected genuine point 132618675; its detail summary and chart loaded with duration 30.274 s.",
+      "Closed that owned point tab, captured the intermediate map and selected a second point 132612801; its chart loaded and duration was 31.217 s.",
+      "Read the final duration row with a settled capture. Neither inspected record established the required no-measurable-duration fixture. Saved final and removed owned detail/layer; no synthetic duration or business data was introduced."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "No zero/unmeasurable-duration fixture was established in the two inspected Automobile Download records: 132618675 had 30.274 s and 132612801 had 31.217 s. Their genuine charts are populated. The mandated no-duration starting state was not exercised; no empty state was fabricated.",
+    "retryClass": "prerequisite",
+    "blockerCode": "zero_duration_fixture_unavailable",
+    "coverageChecks": [
+      {
+        "assertion": "No measurable duration shows standard no-data, not empty details",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Download details are loading, the detail presentation shows a loading state.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-details-loaded.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-before-delayed-load.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-genuine-recovery.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "SIMULATED UI STATE: First loaded genuine point 132047153 and its real 121-sample analysis; inspected the actual POST request path/method and pointId.",
+      "Closed the owned point tab and installed one persistent, owned route on the exact development test-analysis endpoint. Unmatched methods/record IDs fell through. Reopened the target and held only its original matching request across the loading capture.",
+      "Saved final showing Loading Automobile test analysis... and progress bar beside the correct current summary, and recorded the final GIS URL.",
+      "In finally, released the pending original request, awaited its genuine chart/table recovery to 121 rows, removed only that handler and verified no owned route state remained. Captured recovery and cleaned up owned detail/layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "SIMULATED UI STATE: On the configured development origin only, an owned route held the original POST /api/platform/automobile/download/test-analysis for pointId 132047153 across the decisive capture, then continued the original request without altering its response. Loading Automobile test analysis... and its progress bar were visible; the correct record summary had already loaded. Releasing the pending request recovered the genuine 121-sample chart/table. The exact handler was removed, pending work settled and owned UI changes cleaned up. This verifies that analysis-panel loading UI only, not backend loading reliability or every possible detail request.",
+    "coverageChecks": [
+      {
+        "assertion": "Loading Download details shows loading",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Download details are unavailable, the detail presentation shows a no-data state.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-details-loaded.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "Loaded genuine point 132047153 through the UI and inspected its populated analysis request (HTTP 200, 121 rows).",
+      "The supplied sources establish no empty-response contract, and this inspected record is available. Recorded the missing unavailable-data prerequisite; did not simulate an invented empty response.",
+      "Saved the actual populated state as final to document what was reachable, then closed owned detail and removed owned layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "A genuine POST /api/platform/automobile/download/test-analysis for point 132047153 returned 200 with 121 samples and a populated chart. No actual unavailable response or project-documented empty-response contract was supplied/established. Emptying a successful response would invent the contract, so no no-data simulation was performed. An authoritative empty-response contract or genuine unavailable fixture is required.",
+    "retryClass": "prerequisite",
+    "blockerCode": "empty_response_contract_unavailable",
+    "coverageChecks": [
+      {
+        "assertion": "Unavailable Download details shows no-data",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given loading Download details fails, the detail presentation shows an error state and does not display incorrect data.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-before-automobile.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-automobile-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-test-types.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-download-config.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-after-add.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-before-distinct-baseline.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-distinct-valid-baseline.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-before-error-load.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-final.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-before-genuine-recovery.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-10-genuine-recovery.png"
+    ],
+    "steps_taken": [
+      "Read the live canonical checklist, ticket, status and human-confirmed Automobile → Download context; excluded superseded Surveyor evidence.",
+      "Navigated independently to https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved this criterion's initial PNG.",
+      "Opened GIS with no selected layers or existing detail panels. Opened Automobile's visible configuration, inspected the actual nested Test type options, selected Download and added the Automobile - Download layer using default date/technology filters. Saved the configuration and each transition.",
+      "SIMULATED UI STATE: Loaded target 132047153 normally to establish its genuine analysis request and response. Then independently loaded distinct valid point 132618675 (120 samples, 1.39 Mbps) and saved its own baseline.",
+      "Closed the owned baseline tab, installed one persistent owned route matching only the exact development POST test-analysis request and pointId 132047153, and selected the target again.",
+      "Injected one HTTP 503 empty text/plain response; waited for Unable to load Automobile test analysis. Checked the current target identity 132047153, correct 24.12 Mbps summary and absence of any analysis chart or table; captured final with error and Retry.",
+      "In finally, removed only the exact handler and verified its state was gone. Reopened the target without interception and verified its genuine 121-sample chart/table recovery; captured recovery, then removed owned detail/layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "SIMULATED UI STATE: After genuine target analysis and a distinct valid baseline (point 132618675, 120 samples, 1.39 Mbps), an owned browser route returned HTTP 503 with an empty text/plain body for exactly one POST /api/platform/automobile/download/test-analysis with pointId 132047153 on the development origin. HTTP 503 represents the controlled unavailable/error status; no successful body was fabricated. The target's genuine summary remained correct, Unable to load Automobile test analysis. and Retry appeared, and the analysis chart/table were absent rather than showing the previous record's 120 samples. Removed only the exact handler, then reopened the target and verified genuine recovery to 121 samples. This is synthetic analysis-panel error handling, not an observed backend failure or proof for all detail requests.",
+    "coverageChecks": [
+      {
+        "assertion": "Failed detail load shows error",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-10-final.png"
+        ]
+      },
+      {
+        "assertion": "Failed detail load excludes incorrect data",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-10-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  }
+]
