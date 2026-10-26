@@ -53,6 +53,8 @@ Worker chat completion is a receipt, not proof of publication. Dependent stages 
 
 Criteria, testing and review preserve the ticket's evidence scope. A settled empty list is valid for unchanged-state/no-new-item assertions unless the ticket or action requires populated entries. Results must say it remained empty, not claim populated ordering coverage. Reordering/removal still requires data; absent panels or loading errors do not prove emptiness. Visible catalogue restoration does not imply off-screen catalogue coverage. These brief contracts have regression checks, but only a fresh model/browser run validates interpretation.
 
+Criteria conversion preserves shared constraints across every branch when splitting a source requirement. Before a controlled retest, check the complete source, required examples and access separately from previous tester interruptions; retain historical results and use the importer-owned cycle process. Keep internal preparation notes and requests in ignored `.agent-staging/`, outside worker handoff folders, until their publication is authorised.
+
 Verified module/layer provenance may be retained as a testing-context HTML comment outside the `criteria.md` checklist. It is setup, not an added acceptance criterion, and remains available to testing/review without another handoff or source-Jira access. Workers inspect nested Active layer/test-type choices before declaring a feature missing; similarly named Surveyor, Automobile and MS Teams features are not interchangeable. Source links explain the routing decision but do not grant permission to modify that project.
 
 ### Controlled exception-state testing
