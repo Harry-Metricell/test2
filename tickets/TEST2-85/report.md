@@ -7,6 +7,15 @@
 - **Report:** [Evidence report](report.pdf)
 - **Editable report:** [Download Word (.docx)](report.docx)
 
+## Follow-up investigation 26 October 2026
+
+The PDF and Word report now include follow-up findings and genuine zero-duration evidence. The original reviewed result remains six Passed and four Blocked; no additional pass or retry has been granted.
+
+- Criterion 1: preserve the source's available/reported-information qualifier. Missing optional values alone do not establish a defect; clarify the checklist before reassessment.
+- Criterion 6: two additional genuine analyses returned none of the three average signal metrics. A suitable example or API clarification remains required.
+- Criterion 7: genuine zero-duration examples were found. Selection is disabled. VM2ST-104 says not to open zero-duration details, while VM2ST-107 asks for a standard no-data state; the intended presentation needs clarification. This replaces the missing-example explanation.
+- Criterion 9: a genuine unavailable-analysis example or authoritative V4 empty-response contract is still required. No empty response was fabricated.
+
 ## Criterion results
 
 1. **Blocked:** Given a completed Download test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Download Rate, and Wi-Fi connection status.
