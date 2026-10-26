@@ -3,8 +3,8 @@
 ## Current State
 
 - Jira status: READY FOR TESTING
-- QA outcome: Blocked
-- Workflow state: Blocked
+- QA outcome: Not Tested
+- Workflow state: Ready
 - Action owner: Human
 - Next action: Awaiting controlled tester verification release; Jira: READY FOR TESTING
 - Jira: https://metricell.atlassian.net/browse/TEST2-87
