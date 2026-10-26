@@ -105,6 +105,8 @@ Recovered captures supersede same-named originals. Zoom checks retain their map/
 
 The complete, canonical coordinator brief is [`docs/briefs/coordinator.md`](docs/briefs/coordinator.md). Keep the rules in that file rather than duplicating them in the README, so the coordinator has one source of truth.
 
+Use local Codex/Work execution attached to the synchronised `Test2-github` checkout. Before sending the prompt, check the task's selected project and local environment; the project name or access to the GitHub plugin alone does not provide Desktop files, locks or worker-task tools. If a chat reports `local_execution_unavailable`, run the same prompt in the local task instead. No Jira reset, publisher reinstall or credential change is needed just to correct that launch environment.
+
 Start each manual coordinator cycle as a fresh Codex task in the saved Test2 project with exactly this prompt:
 
 > [@GitHub](plugin://github@openai-curated-remote)read and follow: docs/briefs/coordinator.md
