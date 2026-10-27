@@ -19,7 +19,23 @@ in each ticket's testing-context file. It reconciles the detail stories with
 VM2ST-104's instruction not to open zero-duration details. It does not define the
 unavailable-details API response contract or apply to other causes of disabled UI.
 
-No source Jira, testing cycle, attempt counter, original result or independent
-review was changed. Published PDF/Word reports remain historical evidence and
-predate this clarification; the existing findings need reassessment against the
-corrected checklist before any formal outcome changes. No retest was queued.
+No source Jira, testing cycle, attempt counter or original tester result was
+changed. The user subsequently authorised an existing-evidence reassessment.
+Both current reviews and PDF/Word reports now record 8 Passed and 2 Blocked;
+criteria 6 and 9 still need a returned-average fixture and an authoritative
+unavailable-details response contract/example. No retest was queued.
+
+The earlier independent reviews are preserved under each ticket's
+`reassessment-history/2026-10-27/previous-review.json`. The replacement reviews
+explicitly identify the manual reassessment and original handoff provenance;
+they do not claim another independent worker or test attempt. Criterion 7 uses
+recorded genuine response observations to establish zero duration; equal times
+in a screenshot alone are not treated as millisecond evidence. Upload criterion
+8 additionally uses the 27 October scoped loading/recovery investigation.
+
+Each reassessment folder also retains the adjudicated `report-inputs.json`, image
+identity manifest and successful PDF verification audit. To rebuild these exact
+reports, use those report inputs with the current review and criteria; keep the
+original `results.json` and tester history immutable. The original observation
+date is 26 October; the reassessment and Upload loading follow-up are dated
+27 October. Earlier report binaries remain available through Git history.

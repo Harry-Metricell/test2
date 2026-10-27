@@ -1,0 +1,45 @@
+{
+  "kind": "manual-existing-evidence-reassessment",
+  "date": "2026-10-27",
+  "cycleId": "cycle-003",
+  "historyAttempt": 1,
+  "authority": "User requested reassessments after source-qualified criteria correction and accepted disabled zero-duration rows as no-data.",
+  "newTestAttempt": false,
+  "newIndependentWorker": false,
+  "priorReview": "reassessment-history/2026-10-27/previous-review.json",
+  "priorRepositoryCommit": "29157dc9",
+  "criteriaAsTested": "docs/qa-corrections/2026-10-27/TEST2-85-criteria-as-tested.md",
+  "changedCriteria": [
+    1,
+    7
+  ],
+  "evidenceBasis": "26 October cycle-003 attempt-001 captures and recorded genuine response observations; supplementary investigation on 26 October.",
+  "scope": "No cycle/counter reset. Original results and tester history retained unchanged. This adjudication supersedes the current review only.",
+  "supplementalEvidence": [
+    {
+      "file": "investigation-20261026-download-config.png",
+      "sha256": "7edcea4f36587e3bdcfeddfd1686832910e59b57682c23122e7f9762855ce6f9"
+    },
+    {
+      "file": "investigation-20261026-download-map.png",
+      "sha256": "12c717473f13fe8bfb16476bb374e6b75cecc4eebd6e08555aedd6d4193e4a8c"
+    },
+    {
+      "file": "investigation-20261026-zero-duration-132611563.png",
+      "sha256": "4e60058fa4808688498c8cedf4398ddf80097a5bcf2063e5ea735dedc32f7a93"
+    },
+    {
+      "file": "investigation-20261026-cleanup.png",
+      "sha256": "9e01bf3949545e31e00b0b71893d955c1b8eb318dfc6585d32716f8f90b51162"
+    }
+  ],
+  "recordedResponseObservation": {
+    "source": "Private TEST2-85-blocker-investigation.md, 26 October 2026",
+    "sourceSha256": "6fc2e9d542a32418073a1c9c79a3a107ee1ea4c1d7f764e63a74fc3e2cd4da8d",
+    "pointId": "132611563",
+    "testDurationMs": 0,
+    "uiAriaDisabled": true,
+    "title": "Test details require a positive test duration."
+  },
+  "reportInputs": "reassessment-history/2026-10-27/report-inputs.json"
+}

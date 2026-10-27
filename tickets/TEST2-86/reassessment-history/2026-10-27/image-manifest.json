@@ -1,0 +1,534 @@
+{
+  "embeddedEvidenceImages": 41,
+  "noEvidenceBlock": null,
+  "reportContent": {
+    "overallOutcome": "Blocked",
+    "limitations": "Blocked criterion(s): 6, 9. See the assessment below each criterion.\nCriteria 8, 10 used simulated UI conditions; see their assessments.",
+    "sourceUrls": [
+      "https://o2intelligence-v4-dev.metricell.com/gis"
+    ],
+    "evidenceCaptions": [
+      "E01 - Summary top (criterion-1-summary-top.png)",
+      "E02 - Summary middle (criterion-1-summary-middle.png)",
+      "E03 - Final (criterion-1-final.png)",
+      "E04 - Repaired upload config (criterion-2-repaired-upload-config.png)",
+      "E05 - Repaired before select (criterion-2-repaired-before-select.png)",
+      "E06 - Final (criterion-2-final.png)",
+      "E07 - Test type choices (criterion-3-test-type-choices.png)",
+      "E08 - Upload config (criterion-3-upload-config.png)",
+      "E05 - Before select (criterion-3-before-select.png)",
+      "E06 - Loaded (criterion-3-loaded.png)",
+      "E09 - Final (criterion-3-final.png)",
+      "E10 - Test type choices (criterion-4-test-type-choices.png)",
+      "E11 - Upload config (criterion-4-upload-config.png)",
+      "E12 - Before select (criterion-4-before-select.png)",
+      "E06 - Loaded (criterion-4-loaded.png)",
+      "E13 - Before sort (criterion-4-before-sort.png)",
+      "E14 - Final (criterion-4-final.png)",
+      "E15 - Test type choices (criterion-5-test-type-choices.png)",
+      "E16 - Upload config (criterion-5-upload-config.png)",
+      "E05 - Before select (criterion-5-before-select.png)",
+      "E06 - Loaded (criterion-5-loaded.png)",
+      "E17 - Before filter (criterion-5-before-filter.png)",
+      "E18 - Final (criterion-5-final.png)",
+      "E19 - Filter restored (criterion-5-filter-restored.png)",
+      "E20 - Test type choices (criterion-6-test-type-choices.png)",
+      "E21 - Upload config (criterion-6-upload-config.png)",
+      "E12 - Before select (criterion-6-before-select.png)",
+      "E06 - After upload rate (criterion-6-after-upload-rate.png)",
+      "E22 - Final (criterion-6-final.png)",
+      "E23 - Failed point details (criterion-7-failed-point-details.png)",
+      "E24 - Final (criterion-7-final.png)",
+      "E25 - Loading before held request (loading-before-held-request.png)",
+      "E26 - Loading before selection (loading-before-selection.png)",
+      "E27 - Loading genuine chart baseline (loading-genuine-chart-baseline.png)",
+      "E28 - Loading genuine table baseline (loading-genuine-table-baseline.png)",
+      "E29 - Loading held final (loading-held-final.png)",
+      "E27 - Loading recovery chart (loading-recovery-chart.png)",
+      "E28 - Loading recovery table first (loading-recovery-table-first.png)",
+      "E30 - Loading recovery table last (loading-recovery-table-last.png)",
+      "E31 - Loading recovery table middle (loading-recovery-table-middle.png)",
+      "E32 - Test type choices (criterion-9-test-type-choices.png)",
+      "E33 - Upload config (criterion-9-upload-config.png)",
+      "E34 - Before select (criterion-9-before-select.png)",
+      "E01 - Loaded (criterion-9-loaded.png)",
+      "E35 - Final (criterion-9-final.png)",
+      "E36 - Final (criterion-10-final.png)",
+      "E37 - Recovery (criterion-10-recovery.png)",
+      "E38 - Distinct record baseline (criterion-10-distinct-record-baseline.png)",
+      "E39 - Before simulated error (criterion-10-before-simulated-error.png)",
+      "E40 - Before automobile (criterion-2-before-automobile.png)",
+      "E41 - Automobile config (criterion-2-automobile-config.png)"
+    ],
+    "criterionNotes": [
+      "Criterion 2 assessment: Testing notes: A genuine 28-sample response for completed Automobile Upload test 131921554 rendered two series labelled Signal strength and Upload Rate, dBm/Mbps axes and Seconds 0\u20137 matching 7.005 s duration. Corrected setup selector failure within this criterion; earlier misnamed pre-repair captures are excluded from proof.",
+      "Criterion 8 assessment: SIMULATED UI STATE: Delayed the selected detail request to check loading. SIMULATED UI STATE: On 27 October, held the original analysis read for Upload point 131921554 to check loading, then released that same genuine request. loading-held-final.png shows the loading message/progress indicator. This checks controlled analysis-panel loading and recovery, not natural backend latency or whole-dialog loading.",
+      "Criterion 9 assessment: Testing notes: Unavailable Upload details could not be reproduced with the supplied fixture: genuine Automobile Upload test 131921554 returns populated summary and 28 samples (HTTP200). No actual empty analysis response or project empty-response schema is supplied/established. The authoritative no-data response contract is missing, so no synthetic arrays/null response was invented. Inspected actual populated detail presentation; this does not prove unavailable-details handling. No safe unavailable-data fixture or authoritative empty-response contract was established in complete supplied inputs or observed response.",
+      "Criterion 10 assessment: SIMULATED UI STATE: On https://o2intelligence-v4-dev.metricell.com, the tester locally fulfilled only POST /api/platform/automobile/upload/test-analysis for pointId 131921554 with one HTTP503 application/json response {message:'QA simulated analysis failure'}; unmatched requests fell through. Scope and successful-contract provenance came from the genuine observed Automobile Upload read; this synthetic error asserts no empty-response contract and no naturally occurring backend failure. criterion-10-distinct-record-baseline.png and criterion-10-before-simulated-error.png show distinct previously loaded test 132301449, cell 70478_110_4 and rate 0.43 Mbps. criterion-10-final.png shows active target 131921554, cell 2591_110_4 and rate 0.78 Mbps, with 'Unable to load Automobile test analysis.' and Retry; the prior chart/table is absent from the active panel. The prior record's inactive tab remains intentionally visible and is not stale active content. The result records exact owned handler removal in finally, Retry and genuine HTTP200 with 28 samples. criterion-10-recovery.png directly shows the target chart recovering; criterion-10-cleanup.png shows both test tabs and layer cleared, and the result records verified absence of owned simulation state. This passes the scoped analysis-error UI and incorrect-data comparison; it does not prove a failure of every point-detail component or an actual backend error."
+    ]
+  },
+  "expectedEvidence": [
+    {
+      "file": "criterion-1-summary-top.png",
+      "sourceSha256": "c72e39299e65221a9f51e6548c7768d81352982466a9d08b44ee2507f530b8f5",
+      "visualFingerprint": "e13971b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-1-summary-middle.png",
+      "sourceSha256": "a99bd3df3ff531398a2668fd0ed662da91e3550e36f39f8b996ec64380eb88eb",
+      "visualFingerprint": "e13971b8324eba19baa9b9693d48b46990d5a36323132346335c9df01c643b01"
+    },
+    {
+      "file": "criterion-1-final.png",
+      "sourceSha256": "f937f06409aa600b96d18ef102bf54cabe5f7212561a85e9c73fb87789897912",
+      "visualFingerprint": "e13971b8324eba19baa9b9693d48b46990d5b3632d132d46395c99f018643201"
+    },
+    {
+      "file": "criterion-2-repaired-upload-config.png",
+      "sourceSha256": "bc3601bf9729411a87ac831fc8603988f61318cc0c893ff630cca01d51ea23cf",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-2-repaired-before-select.png",
+      "sourceSha256": "95d0eb23a10e87fea11d6b22b9b07cc5490869a06b52ccd3344b85fbeebad2fc",
+      "visualFingerprint": "e139f1383626b269b349b8d93159bab99a29bd4d37593479385992293a1832b9"
+    },
+    {
+      "file": "criterion-2-final.png",
+      "sourceSha256": "e6c8628dfc3c8c7ddafb554bc12e265385a36b7a81ed959a8d70d6f7558107f1",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-3-test-type-choices.png",
+      "sourceSha256": "1e807b47792e1fc2bd180fd23c6d548c306acacea86a3a7394792bb8b626d286",
+      "visualFingerprint": "e07970783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-3-upload-config.png",
+      "sourceSha256": "bbbab674753c6005fd01706ce95fbbdfbc84e557bdc68aaf19209cea8509856d",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-3-final.png",
+      "sourceSha256": "76df7b1032c4c450d60d66923669331e53d750f64560366d77865dd641f155e9",
+      "visualFingerprint": "2a10a8bca8bca8bca8bca8b8a8bca8bca8b8a8b8a8bca8b8a8b8a8bca8b8a8b8"
+    },
+    {
+      "file": "criterion-4-test-type-choices.png",
+      "sourceSha256": "05a5ff7ec603aa351adf9cb0f8378ae320566ca6c74d7693725dbd22d5673eff",
+      "visualFingerprint": "e07970783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-4-upload-config.png",
+      "sourceSha256": "d7849b0fbfd3c0f4f3ea974e05adc3d68c307cde2d7e0adc98b52cfa60e37ab2",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-4-before-select.png",
+      "sourceSha256": "f8aec3df10ec12496eaaee685e2129e70fcddeae644a592cd8443424bab81cd1",
+      "visualFingerprint": "e139f1383626b269b349b8d93159bab99a29bd4d37593479385992293a1832b9"
+    },
+    {
+      "file": "criterion-4-before-sort.png",
+      "sourceSha256": "d5f42c19a5b1533e4e21233e7d71f90917654fc1fad0594e334e43aba6baa2d7",
+      "visualFingerprint": "2a10a8bca8bca8b8a8bca9b8a8bca8bca8b8a8b8a8bca8bca8bca8bca8b8a8b8"
+    },
+    {
+      "file": "criterion-4-final.png",
+      "sourceSha256": "ffa36cd7501a1c00b8cb0262b692b04f6f65f1e46d20b5a842cfa2b45b25260d",
+      "visualFingerprint": "2a3aaaaeaabaaabaaabaaabaaabaaabaaabaaabaaaaaaabaaabaaabaaaaaaab8"
+    },
+    {
+      "file": "criterion-5-test-type-choices.png",
+      "sourceSha256": "23ec7007d449ab1c82d9479ab1266b715fa3f371abe82211f927ede667687dee",
+      "visualFingerprint": "e07970783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-5-upload-config.png",
+      "sourceSha256": "6ebb78375418d8df98187f79c5d862216b2dbf709135b607c7ff46d0528a6bf4",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-5-before-filter.png",
+      "sourceSha256": "d2257c75ebb2f1769b902155000e16ced25360b34b455919858661e73d0214d1",
+      "visualFingerprint": "15a52a532ab0a8bca8b8a8b8a8bca8bca8bca8b8a8bca8bca8b8a8bca8b8a8b8"
+    },
+    {
+      "file": "criterion-5-final.png",
+      "sourceSha256": "928009d496c14ad7db193e05269c096223f3ac6effc0b54fa8d3c2ffb71233fe",
+      "visualFingerprint": "20142001d421900064212d09941808106a524241a8bc2894a8bc2898a8bc29bc"
+    },
+    {
+      "file": "criterion-5-filter-restored.png",
+      "sourceSha256": "e00029fffd7594054e0ac1f0b5abd85f43ff0d43513b3c2f4c77f99dd60139d4",
+      "visualFingerprint": "15856a512ab8a9bca8b8a8b8a8bca8bca8bca8b8a8bca8bca8b8a8bca8b8a8b8"
+    },
+    {
+      "file": "criterion-6-test-type-choices.png",
+      "sourceSha256": "93c27d5099e64b13c2a5f596dad5f6ed76f1fcf214993844d8d3ac3515324fd0",
+      "visualFingerprint": "e07970783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-6-upload-config.png",
+      "sourceSha256": "2e4c780b4b9767e73dfb8ec4a60d9dc29b96fead839f09e1ca769abfb225bb7c",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-6-final.png",
+      "sourceSha256": "52dfe0d8d10bdd8d8d8b6365f9cfe58b96e74421bf51826c60ab9c40ab953d55",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5b3632d132d46395c99f018643201"
+    },
+    {
+      "file": "criterion-7-failed-point-details.png",
+      "sourceSha256": "a70a25fc6875fbca9a08b9ba2a5257dced277de1b6c47ddc6118e4a4763c05f2",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990f5b3a021552835228184111843300b"
+    },
+    {
+      "file": "criterion-7-final.png",
+      "sourceSha256": "56e4e5318ffe69baeca14300d474626792afc5032a4d8c7ca14a947e3b9e880f",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990f5b3a021552835228184111843300b"
+    },
+    {
+      "file": "loading-before-held-request.png",
+      "sourceSha256": "d06107500e4edd6ccfbfe5fa5f43f9d0cf986e0001d84c69fb7f8b733b3e3c16",
+      "visualFingerprint": "e039f134324cba09bc69b5513729b3299589b59d3189338939099909154c334d"
+    },
+    {
+      "file": "loading-before-selection.png",
+      "sourceSha256": "dc5ab1a56896f24bb0baf5f490136e65152faaf58eb4ff677ac856339ce03db9",
+      "visualFingerprint": "e039f0bc320eba59b149b2093c69b5519741b32d358932993b899389190c3d0d"
+    },
+    {
+      "file": "loading-genuine-chart-baseline.png",
+      "sourceSha256": "73fe0428f31e39fb7264398219625156b02481f582c050bda7d3e7af5dcb834b",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d930da6612d032d46395c99701a643310"
+    },
+    {
+      "file": "loading-genuine-table-baseline.png",
+      "sourceSha256": "f5869ed1b4d80ae33db4a2ba0322854861ce72207f7d2df07b9715efe7ad8908",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d912da4c62d2a2d2b3b4b9b2a1b2a332a"
+    },
+    {
+      "file": "loading-held-final.png",
+      "sourceSha256": "3a964efa27d22f73b3f102f174a32198c2980ad4c1753f62c85560268a52d0b2",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d912da2242d052c893801990019003200"
+    },
+    {
+      "file": "loading-recovery-table-last.png",
+      "sourceSha256": "9c52d74f6aa321a7200d044a5fec593446dfeb7a2e497f6f3f192eba0a79ea87",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d932da72a2d2a2d2a3b2a9b2a1b2b332b"
+    },
+    {
+      "file": "loading-recovery-table-middle.png",
+      "sourceSha256": "ec1a3acd183bf76bda05d6e2294e4fb2b04abfe5a9b032d4313b839a79d4887c",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d932da72a2d2a2f2a3b0a9b2b1b2b332a"
+    },
+    {
+      "file": "criterion-9-test-type-choices.png",
+      "sourceSha256": "d3ac4ae95116ded5fb5f73651513190a8c422c7942a0a10b2f3af68b3a6478ff",
+      "visualFingerprint": "e07950783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-9-upload-config.png",
+      "sourceSha256": "eee5c867af307a77e9c0041db5f404457e67c1c1dea832df7c7d1590f82decef",
+      "visualFingerprint": "e079d0783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-9-before-select.png",
+      "sourceSha256": "7dc0805a1be07a064b8a9b33fb542f8c879f292bd9c7b08a14f426fbf17dc483",
+      "visualFingerprint": "e13971383626b269b349b8d93159bab99a29bd4d37593479385992293a1832b9"
+    },
+    {
+      "file": "criterion-9-final.png",
+      "sourceSha256": "fdf819b2d2cd0b7ba8b09e7858a6498a420060d9e3850cd064efb2e0f083bc35",
+      "visualFingerprint": "e13971b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-10-final.png",
+      "sourceSha256": "16b18f4e510cc32914d5ba3e40f14152abdde536d33b4518cbd0ed0bca17c9e8",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990f1b5862d922c003808990019003200"
+    },
+    {
+      "file": "criterion-10-recovery.png",
+      "sourceSha256": "1763a530d0d3f2292966843d17eadadfa172f98cddd2f24238eef78c9b25bb04",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5b2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-10-distinct-record-baseline.png",
+      "sourceSha256": "829fa1d70e5feaae328e4d46a705819a07cb183d1805369f777748c994fb7fc3",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2712d622d503b7499a61a663309"
+    },
+    {
+      "file": "criterion-10-before-simulated-error.png",
+      "sourceSha256": "1f6d28127c941cae6ffe49918744e7329aa4825d9513b66695029ce8b11486fe",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2712d622d503b7499a61a663309"
+    },
+    {
+      "file": "criterion-2-before-automobile.png",
+      "sourceSha256": "bcfcc66604f795dfa90c62a64c1cc9c5ff143be13248cfe2b3cc1d3f56dd0b03",
+      "visualFingerprint": "e139d1383ea6b666b345bada3358babb9a29bd4437563472385592a53a1a32bd"
+    },
+    {
+      "file": "criterion-2-automobile-config.png",
+      "sourceSha256": "d32ce9dffa89950806e625acd63a933f434854285badb0e4797ffe56041e961b",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    }
+  ],
+  "logicalEvidence": [
+    {
+      "file": "criterion-1-summary-top.png",
+      "sourceSha256": "c72e39299e65221a9f51e6548c7768d81352982466a9d08b44ee2507f530b8f5",
+      "visualFingerprint": "e13971b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-1-summary-middle.png",
+      "sourceSha256": "a99bd3df3ff531398a2668fd0ed662da91e3550e36f39f8b996ec64380eb88eb",
+      "visualFingerprint": "e13971b8324eba19baa9b9693d48b46990d5a36323132346335c9df01c643b01"
+    },
+    {
+      "file": "criterion-1-final.png",
+      "sourceSha256": "f937f06409aa600b96d18ef102bf54cabe5f7212561a85e9c73fb87789897912",
+      "visualFingerprint": "e13971b8324eba19baa9b9693d48b46990d5b3632d132d46395c99f018643201"
+    },
+    {
+      "file": "criterion-2-repaired-upload-config.png",
+      "sourceSha256": "bc3601bf9729411a87ac831fc8603988f61318cc0c893ff630cca01d51ea23cf",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-2-repaired-before-select.png",
+      "sourceSha256": "95d0eb23a10e87fea11d6b22b9b07cc5490869a06b52ccd3344b85fbeebad2fc",
+      "visualFingerprint": "e139f1383626b269b349b8d93159bab99a29bd4d37593479385992293a1832b9"
+    },
+    {
+      "file": "criterion-2-final.png",
+      "sourceSha256": "e6c8628dfc3c8c7ddafb554bc12e265385a36b7a81ed959a8d70d6f7558107f1",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-3-test-type-choices.png",
+      "sourceSha256": "1e807b47792e1fc2bd180fd23c6d548c306acacea86a3a7394792bb8b626d286",
+      "visualFingerprint": "e07970783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-3-upload-config.png",
+      "sourceSha256": "bbbab674753c6005fd01706ce95fbbdfbc84e557bdc68aaf19209cea8509856d",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-3-before-select.png",
+      "sourceSha256": "95d0eb23a10e87fea11d6b22b9b07cc5490869a06b52ccd3344b85fbeebad2fc",
+      "visualFingerprint": "e139f1383626b269b349b8d93159bab99a29bd4d37593479385992293a1832b9"
+    },
+    {
+      "file": "criterion-3-loaded.png",
+      "sourceSha256": "e6c8628dfc3c8c7ddafb554bc12e265385a36b7a81ed959a8d70d6f7558107f1",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-3-final.png",
+      "sourceSha256": "76df7b1032c4c450d60d66923669331e53d750f64560366d77865dd641f155e9",
+      "visualFingerprint": "2a10a8bca8bca8bca8bca8b8a8bca8bca8b8a8b8a8bca8b8a8b8a8bca8b8a8b8"
+    },
+    {
+      "file": "criterion-4-test-type-choices.png",
+      "sourceSha256": "05a5ff7ec603aa351adf9cb0f8378ae320566ca6c74d7693725dbd22d5673eff",
+      "visualFingerprint": "e07970783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-4-upload-config.png",
+      "sourceSha256": "d7849b0fbfd3c0f4f3ea974e05adc3d68c307cde2d7e0adc98b52cfa60e37ab2",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-4-before-select.png",
+      "sourceSha256": "f8aec3df10ec12496eaaee685e2129e70fcddeae644a592cd8443424bab81cd1",
+      "visualFingerprint": "e139f1383626b269b349b8d93159bab99a29bd4d37593479385992293a1832b9"
+    },
+    {
+      "file": "criterion-4-loaded.png",
+      "sourceSha256": "e6c8628dfc3c8c7ddafb554bc12e265385a36b7a81ed959a8d70d6f7558107f1",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-4-before-sort.png",
+      "sourceSha256": "d5f42c19a5b1533e4e21233e7d71f90917654fc1fad0594e334e43aba6baa2d7",
+      "visualFingerprint": "2a10a8bca8bca8b8a8bca9b8a8bca8bca8b8a8b8a8bca8bca8bca8bca8b8a8b8"
+    },
+    {
+      "file": "criterion-4-final.png",
+      "sourceSha256": "ffa36cd7501a1c00b8cb0262b692b04f6f65f1e46d20b5a842cfa2b45b25260d",
+      "visualFingerprint": "2a3aaaaeaabaaabaaabaaabaaabaaabaaabaaabaaaaaaabaaabaaabaaaaaaab8"
+    },
+    {
+      "file": "criterion-5-test-type-choices.png",
+      "sourceSha256": "23ec7007d449ab1c82d9479ab1266b715fa3f371abe82211f927ede667687dee",
+      "visualFingerprint": "e07970783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-5-upload-config.png",
+      "sourceSha256": "6ebb78375418d8df98187f79c5d862216b2dbf709135b607c7ff46d0528a6bf4",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-5-before-select.png",
+      "sourceSha256": "95d0eb23a10e87fea11d6b22b9b07cc5490869a06b52ccd3344b85fbeebad2fc",
+      "visualFingerprint": "e139f1383626b269b349b8d93159bab99a29bd4d37593479385992293a1832b9"
+    },
+    {
+      "file": "criterion-5-loaded.png",
+      "sourceSha256": "e6c8628dfc3c8c7ddafb554bc12e265385a36b7a81ed959a8d70d6f7558107f1",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-5-before-filter.png",
+      "sourceSha256": "d2257c75ebb2f1769b902155000e16ced25360b34b455919858661e73d0214d1",
+      "visualFingerprint": "15a52a532ab0a8bca8b8a8b8a8bca8bca8bca8b8a8bca8bca8b8a8bca8b8a8b8"
+    },
+    {
+      "file": "criterion-5-final.png",
+      "sourceSha256": "928009d496c14ad7db193e05269c096223f3ac6effc0b54fa8d3c2ffb71233fe",
+      "visualFingerprint": "20142001d421900064212d09941808106a524241a8bc2894a8bc2898a8bc29bc"
+    },
+    {
+      "file": "criterion-5-filter-restored.png",
+      "sourceSha256": "e00029fffd7594054e0ac1f0b5abd85f43ff0d43513b3c2f4c77f99dd60139d4",
+      "visualFingerprint": "15856a512ab8a9bca8b8a8b8a8bca8bca8bca8b8a8bca8bca8b8a8bca8b8a8b8"
+    },
+    {
+      "file": "criterion-6-test-type-choices.png",
+      "sourceSha256": "93c27d5099e64b13c2a5f596dad5f6ed76f1fcf214993844d8d3ac3515324fd0",
+      "visualFingerprint": "e07970783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-6-upload-config.png",
+      "sourceSha256": "2e4c780b4b9767e73dfb8ec4a60d9dc29b96fead839f09e1ca769abfb225bb7c",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-6-before-select.png",
+      "sourceSha256": "f8aec3df10ec12496eaaee685e2129e70fcddeae644a592cd8443424bab81cd1",
+      "visualFingerprint": "e139f1383626b269b349b8d93159bab99a29bd4d37593479385992293a1832b9"
+    },
+    {
+      "file": "criterion-6-after-upload-rate.png",
+      "sourceSha256": "e6c8628dfc3c8c7ddafb554bc12e265385a36b7a81ed959a8d70d6f7558107f1",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-6-final.png",
+      "sourceSha256": "52dfe0d8d10bdd8d8d8b6365f9cfe58b96e74421bf51826c60ab9c40ab953d55",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5b3632d132d46395c99f018643201"
+    },
+    {
+      "file": "criterion-7-failed-point-details.png",
+      "sourceSha256": "a70a25fc6875fbca9a08b9ba2a5257dced277de1b6c47ddc6118e4a4763c05f2",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990f5b3a021552835228184111843300b"
+    },
+    {
+      "file": "criterion-7-final.png",
+      "sourceSha256": "56e4e5318ffe69baeca14300d474626792afc5032a4d8c7ca14a947e3b9e880f",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990f5b3a021552835228184111843300b"
+    },
+    {
+      "file": "loading-before-held-request.png",
+      "sourceSha256": "d06107500e4edd6ccfbfe5fa5f43f9d0cf986e0001d84c69fb7f8b733b3e3c16",
+      "visualFingerprint": "e039f134324cba09bc69b5513729b3299589b59d3189338939099909154c334d"
+    },
+    {
+      "file": "loading-before-selection.png",
+      "sourceSha256": "dc5ab1a56896f24bb0baf5f490136e65152faaf58eb4ff677ac856339ce03db9",
+      "visualFingerprint": "e039f0bc320eba59b149b2093c69b5519741b32d358932993b899389190c3d0d"
+    },
+    {
+      "file": "loading-genuine-chart-baseline.png",
+      "sourceSha256": "73fe0428f31e39fb7264398219625156b02481f582c050bda7d3e7af5dcb834b",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d930da6612d032d46395c99701a643310"
+    },
+    {
+      "file": "loading-genuine-table-baseline.png",
+      "sourceSha256": "f5869ed1b4d80ae33db4a2ba0322854861ce72207f7d2df07b9715efe7ad8908",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d912da4c62d2a2d2b3b4b9b2a1b2a332a"
+    },
+    {
+      "file": "loading-held-final.png",
+      "sourceSha256": "3a964efa27d22f73b3f102f174a32198c2980ad4c1753f62c85560268a52d0b2",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d912da2242d052c893801990019003200"
+    },
+    {
+      "file": "loading-recovery-chart.png",
+      "sourceSha256": "73fe0428f31e39fb7264398219625156b02481f582c050bda7d3e7af5dcb834b",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d930da6612d032d46395c99701a643310"
+    },
+    {
+      "file": "loading-recovery-table-first.png",
+      "sourceSha256": "f5869ed1b4d80ae33db4a2ba0322854861ce72207f7d2df07b9715efe7ad8908",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d912da4c62d2a2d2b3b4b9b2a1b2a332a"
+    },
+    {
+      "file": "loading-recovery-table-last.png",
+      "sourceSha256": "9c52d74f6aa321a7200d044a5fec593446dfeb7a2e497f6f3f192eba0a79ea87",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d932da72a2d2a2d2a3b2a9b2a1b2b332b"
+    },
+    {
+      "file": "loading-recovery-table-middle.png",
+      "sourceSha256": "ec1a3acd183bf76bda05d6e2294e4fb2b04abfe5a9b032d4313b839a79d4887c",
+      "visualFingerprint": "e039f1303276ba29b709b5993289b18d932da72a2d2a2f2a3b0a9b2b1b2b332a"
+    },
+    {
+      "file": "criterion-9-test-type-choices.png",
+      "sourceSha256": "d3ac4ae95116ded5fb5f73651513190a8c422c7942a0a10b2f3af68b3a6478ff",
+      "visualFingerprint": "e07950783966b966b96db96a3968396b9869b864386439623965996539fa39fc"
+    },
+    {
+      "file": "criterion-9-upload-config.png",
+      "sourceSha256": "eee5c867af307a77e9c0041db5f404457e67c1c1dea832df7c7d1590f82decef",
+      "visualFingerprint": "e079d0783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    },
+    {
+      "file": "criterion-9-before-select.png",
+      "sourceSha256": "7dc0805a1be07a064b8a9b33fb542f8c879f292bd9c7b08a14f426fbf17dc483",
+      "visualFingerprint": "e13971383626b269b349b8d93159bab99a29bd4d37593479385992293a1832b9"
+    },
+    {
+      "file": "criterion-9-loaded.png",
+      "sourceSha256": "c72e39299e65221a9f51e6548c7768d81352982466a9d08b44ee2507f530b8f5",
+      "visualFingerprint": "e13971b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-9-final.png",
+      "sourceSha256": "fdf819b2d2cd0b7ba8b09e7858a6498a420060d9e3850cd064efb2e0f083bc35",
+      "visualFingerprint": "e13971b8324eba19baa9b9693d48b46990d5a2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-10-final.png",
+      "sourceSha256": "16b18f4e510cc32914d5ba3e40f14152abdde536d33b4518cbd0ed0bca17c9e8",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990f1b5862d922c003808990019003200"
+    },
+    {
+      "file": "criterion-10-recovery.png",
+      "sourceSha256": "1763a530d0d3f2292966843d17eadadfa172f98cddd2f24238eef78c9b25bb04",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5b2632d132d46395c99701a643301"
+    },
+    {
+      "file": "criterion-10-distinct-record-baseline.png",
+      "sourceSha256": "829fa1d70e5feaae328e4d46a705819a07cb183d1805369f777748c994fb7fc3",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2712d622d503b7499a61a663309"
+    },
+    {
+      "file": "criterion-10-before-simulated-error.png",
+      "sourceSha256": "1f6d28127c941cae6ffe49918744e7329aa4825d9513b66695029ce8b11486fe",
+      "visualFingerprint": "e139d1b8324eba19baa9b9693d48b46990d5a2712d622d503b7499a61a663309"
+    },
+    {
+      "file": "criterion-2-before-automobile.png",
+      "sourceSha256": "bcfcc66604f795dfa90c62a64c1cc9c5ff143be13248cfe2b3cc1d3f56dd0b03",
+      "visualFingerprint": "e139d1383ea6b666b345bada3358babb9a29bd4437563472385592a53a1a32bd"
+    },
+    {
+      "file": "criterion-2-automobile-config.png",
+      "sourceSha256": "d32ce9dffa89950806e625acd63a933f434854285badb0e4797ffe56041e961b",
+      "visualFingerprint": "e07950783966b166b164b96a3168b96b9869b864386639623964996539fa39fc"
+    }
+  ]
+}

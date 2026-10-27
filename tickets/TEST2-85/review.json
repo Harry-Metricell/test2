@@ -1,82 +1,19 @@
 {
-  "handoffId": "handoff-TEST2-85-cycle-003-review-attempt-001",
-  "handoffVersion": "TEST2-85:cycle-003:evidence_review:1:scope-f79b88bbd1c8",
   "ticket": "TEST2-85",
   "testedModule": "Automobile",
   "criterionOutcomes": [
     {
-      "criterion": "Given a completed Download test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Download Rate, and Wi-Fi connection status.",
-      "outcome": "Blocked",
-      "reason": "Automobile Download point 132047153 is loaded in criterion-1-details-loaded.png; criterion-1-summary-middle-fixed.png and criterion-1-final.png complete the summary. Technology 5G NSA, service 5G NSA, serving cell 105_112_4, duration 30.431 s, tested technologies 4G, Download Rate 24.12 Mbps and Wi-Fi Connected No are readable. User, handset and indoor/outdoor values are absent; the result reports those fields were not supplied by the inspected response. A fixture supplying them is required; MSISDN alone does not establish user identity.",
+      "criterion": "Given a completed Download test is selected and its details have loaded, the summary shows the test and device information available for that record, including Download Rate and Wi-Fi connection status. Returned technology, user, handset, service, serving cell, duration, tested technologies and indoor/outdoor values are displayed accurately.",
+      "outcome": "Passed",
+      "reason": "Existing-evidence reassessment against the corrected source-qualified criterion. Automobile Download point 132047153 shows Download Rate 24.12 Mbps, Wi-Fi Connected No, technology/service/data technology 5G NSA, serving cell 105_112_4, tested technologies 4G and duration 30.431 s. The captured summary and recorded genuine response agree for the returned values. User, handset and indoor/outdoor values were not supplied for this record; the source requires available information, not fabricated values. MSISDN is not treated as proof of a user identity.",
       "coverageChecks": [
         {
-          "assertion": "Summary technology",
+          "assertion": "The summary accurately displays the available record information, rate and Wi-Fi status",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
-          ]
-        },
-        {
-          "assertion": "Summary user",
-          "outcome": "Blocked",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
-          ]
-        },
-        {
-          "assertion": "Summary handset",
-          "outcome": "Blocked",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
-          ]
-        },
-        {
-          "assertion": "Summary service",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
-          ]
-        },
-        {
-          "assertion": "Summary serving cell",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
-          ]
-        },
-        {
-          "assertion": "Summary duration",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
-          ]
-        },
-        {
-          "assertion": "Summary tested technologies",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle-fixed.png"
-          ]
-        },
-        {
-          "assertion": "Summary indoor/outdoor",
-          "outcome": "Blocked",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
-          ]
-        },
-        {
-          "assertion": "Summary Download Rate",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-details-loaded.png"
-          ]
-        },
-        {
-          "assertion": "Summary Wi-Fi connection",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle-fixed.png"
+            "criterion-1-details-loaded.png",
+            "criterion-1-summary-middle-fixed.png",
+            "criterion-1-final.png"
           ]
         }
       ]
@@ -202,15 +139,18 @@
       ]
     },
     {
-      "criterion": "Given the selected Download point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.",
-      "outcome": "Blocked",
-      "reason": "criterion-7-first-point.png shows a populated genuine chart for point 132618675; criterion-7-second-point.png and criterion-7-final.png show the second populated record, with final duration 31.217 s. The tester reports durations 30.274 s and 31.217 s for the two inspected records. Neither establishes no measurable duration. The required fixture is unavailable in the inspected scope; no conclusion about the no-duration UI can be drawn.",
+      "criterion": "Given a Download point has no measurable duration, its row is disabled as the no-data state and selecting it does not open an empty details view.",
+      "outcome": "Passed",
+      "reason": "Existing-evidence reassessment of the 26 October genuine zero-duration investigation. Download record 132611563 returned testDurationMs=0 in the recorded cluster response. Its row was aria-disabled with the title \"Test details require a positive test duration.\" The captured list shows the record with equal start/end times and N/A rate; the PNG alone does not establish millisecond duration. The recorded API observation establishes zero duration, and the disabled row prevents an empty details view. The user confirmed on 27 October that this disabled row is the accepted no-data state. No disabled control was bypassed.",
       "coverageChecks": [
         {
-          "assertion": "No measurable duration shows standard no-data, not empty details",
-          "outcome": "Blocked",
+          "assertion": "A genuine zero-duration record is disabled and cannot open an empty details view",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+            "investigation-20261026-download-config.png",
+            "investigation-20261026-download-map.png",
+            "investigation-20261026-zero-duration-132611563.png",
+            "investigation-20261026-cleanup.png"
           ]
         }
       ]
@@ -275,10 +215,58 @@
     }
   ],
   "overallOutcome": "Blocked",
-  "reportPath": "",
+  "reportPath": "tickets/TEST2-85/report.pdf",
   "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-85\\cycles\\cycle-003\\screenshots\\attempt-001",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Independent review completed for the exact Automobile Download cycle-003 attempt-001. Required summary values, returned-average fixtures, a no-duration fixture and an authoritative unavailable-data response remain unavailable in the inspected scope. Controlled loading/error checks retain their simulation and analysis-panel limitations.",
-  "cycleId": "cycle-003"
+  "reason": "8/10 criteria passed; 0 failed and 2 blocked. Manual existing-evidence reassessment on 27 October 2026; no new independent worker or test attempt. Criteria 6 and 9 still need a genuine returned-average fixture and an authoritative unavailable-details response contract/example. Earlier tester history and the prior independent review are preserved.",
+  "cycleId": "cycle-003",
+  "sourceHandoffId": "handoff-TEST2-85-cycle-003-review-attempt-001",
+  "sourceHandoffVersion": "TEST2-85:cycle-003:evidence_review:1:scope-f79b88bbd1c8",
+  "historyAttempt": 1,
+  "reassessment": {
+    "kind": "manual-existing-evidence-reassessment",
+    "date": "2026-10-27",
+    "cycleId": "cycle-003",
+    "historyAttempt": 1,
+    "authority": "User requested reassessments after source-qualified criteria correction and accepted disabled zero-duration rows as no-data.",
+    "newTestAttempt": false,
+    "newIndependentWorker": false,
+    "priorReview": "reassessment-history/2026-10-27/previous-review.json",
+    "priorRepositoryCommit": "29157dc9",
+    "criteriaAsTested": "docs/qa-corrections/2026-10-27/TEST2-85-criteria-as-tested.md",
+    "changedCriteria": [
+      1,
+      7
+    ],
+    "evidenceBasis": "26 October cycle-003 attempt-001 captures and recorded genuine response observations; supplementary investigation on 26 October.",
+    "scope": "No cycle/counter reset. Original results and tester history retained unchanged. This adjudication supersedes the current review only.",
+    "supplementalEvidence": [
+      {
+        "file": "investigation-20261026-download-config.png",
+        "sha256": "7edcea4f36587e3bdcfeddfd1686832910e59b57682c23122e7f9762855ce6f9"
+      },
+      {
+        "file": "investigation-20261026-download-map.png",
+        "sha256": "12c717473f13fe8bfb16476bb374e6b75cecc4eebd6e08555aedd6d4193e4a8c"
+      },
+      {
+        "file": "investigation-20261026-zero-duration-132611563.png",
+        "sha256": "4e60058fa4808688498c8cedf4398ddf80097a5bcf2063e5ea735dedc32f7a93"
+      },
+      {
+        "file": "investigation-20261026-cleanup.png",
+        "sha256": "9e01bf3949545e31e00b0b71893d955c1b8eb318dfc6585d32716f8f90b51162"
+      }
+    ],
+    "recordedResponseObservation": {
+      "source": "Private TEST2-85-blocker-investigation.md, 26 October 2026",
+      "sourceSha256": "6fc2e9d542a32418073a1c9c79a3a107ee1ea4c1d7f764e63a74fc3e2cd4da8d",
+      "pointId": "132611563",
+      "testDurationMs": 0,
+      "uiAriaDisabled": true,
+      "title": "Test details require a positive test duration."
+    },
+    "reportInputs": "reassessment-history/2026-10-27/report-inputs.json"
+  }
 }

@@ -1,89 +1,19 @@
 {
-  "handoffId": "handoff-TEST2-86-cycle-003-review-attempt-001",
-  "handoffVersion": "TEST2-86:cycle-003:evidence_review:1:scope-b3f8286df37f",
   "ticket": "TEST2-86",
   "testedModule": "Automobile",
   "criterionOutcomes": [
     {
-      "criterion": "Given a completed Upload test is selected and its details have loaded, the summary shows the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Upload Rate, and Wi-Fi connection status.",
-      "outcome": "Blocked",
-      "reason": "criterion-1-summary-top.png, criterion-1-summary-middle.png and criterion-1-final.png show test 131921554: technology 5G NSA, service 5G NSA, serving cell 2591_110_4, duration 7.005 s, tested technologies 4G, Upload Rate 0.78 Mbps and Wi-Fi Connected No. User, handset and indoor/outdoor fields are absent from the supplied fixture according to the recorded genuine Automobile responses; their required values cannot be assessed. This is a fixture blocker, not a demonstrated rendering defect.",
+      "criterion": "Given a completed Upload test is selected and its details have loaded, the summary shows the test and device information available for that record, including Upload Rate and Wi-Fi connection status. Returned technology, user, handset, service, serving cell, duration, tested technologies and indoor/outdoor values are displayed accurately.",
+      "outcome": "Passed",
+      "reason": "Existing-evidence reassessment against the corrected source-qualified criterion. Automobile Upload point 131921554 shows Upload Rate 0.78 Mbps, Wi-Fi Connected No, technology/service/data technology 5G NSA, serving cell 2591_110_4, tested technologies 4G and duration 7.005 s. The captured summary and recorded genuine response agree for the returned values. User, handset and indoor/outdoor values were not supplied for this record; the source requires available information, not fabricated values. MSISDN is not treated as proof of a user identity.",
       "coverageChecks": [
         {
-          "assertion": "Summary reported technology",
+          "assertion": "The summary accurately displays the available record information, rate and Wi-Fi status",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
-          ]
-        },
-        {
-          "assertion": "Summary user",
-          "outcome": "Blocked",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
-          ]
-        },
-        {
-          "assertion": "Summary handset",
-          "outcome": "Blocked",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
-          ]
-        },
-        {
-          "assertion": "Summary service",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-top.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png"
-          ]
-        },
-        {
-          "assertion": "Summary serving cell",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-top.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png"
-          ]
-        },
-        {
-          "assertion": "Summary duration",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
-          ]
-        },
-        {
-          "assertion": "Summary tested technologies",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-top.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png"
-          ]
-        },
-        {
-          "assertion": "Summary indoor/outdoor status",
-          "outcome": "Blocked",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
-          ]
-        },
-        {
-          "assertion": "Summary Upload Rate",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-top.png"
-          ]
-        },
-        {
-          "assertion": "Summary Wi-Fi connection status",
-          "outcome": "Passed",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+            "criterion-1-summary-top.png",
+            "criterion-1-summary-middle.png",
+            "criterion-1-final.png"
           ]
         }
       ]
@@ -222,47 +152,43 @@
       ]
     },
     {
-      "criterion": "Given the selected Upload point has no measurable duration, the detail presentation shows the standard no-data state instead of an empty detail view.",
-      "outcome": "Blocked",
-      "reason": "criterion-7-failed-point-details.png and criterion-7-final.png show the sole test 131921687 with matching displayed start/end 08:26:39 and N/A Upload Rate. The result records testDurationMs=0 and a disabled row with title 'Test details require a positive test duration.' Selection of individual details was unavailable, so its standard no-data detail state could not be exercised. The PNG's seconds precision alone does not independently establish exact zero duration, and a failed measurement does not establish a failed detail request.",
+      "criterion": "Given an Upload point has no measurable duration, its row is disabled as the no-data state and selecting it does not open an empty details view.",
+      "outcome": "Passed",
+      "reason": "Existing-evidence reassessment of the original genuine Upload record 131921687. The recorded cluster-details response returned testDurationMs=0 and equal start/end timestamps. Its row was aria-disabled with the title \"Test details require a positive test duration.\" The screenshots show the disabled record with N/A rate and no empty details view; the PNG alone does not establish millisecond duration. The user confirmed on 27 October that this disabled row is the accepted no-data state. No analysis request or response was manufactured.",
       "coverageChecks": [
         {
-          "assertion": "Upload point has no measurable duration",
-          "outcome": "Unverified",
+          "assertion": "A genuine zero-duration record is disabled and cannot open an empty details view",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
-          ],
-          "reason": "Matching displayed seconds and N/A rate support the recorded zero-duration fixture, but the PNG does not display exact milliseconds or duration."
-        },
-        {
-          "assertion": "Standard no-data state shown instead of empty detail view",
-          "outcome": "Blocked",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+            "criterion-7-failed-point-details.png",
+            "criterion-7-final.png",
+            "criterion-7-cleanup.png"
           ]
         }
       ]
     },
     {
       "criterion": "While Upload details are loading, the detail presentation shows the standard loading state.",
-      "outcome": "Unverified",
-      "reason": "SIMULATED UI STATE: On https://o2intelligence-v4-dev.metricell.com, the tester held only the original POST /api/platform/automobile/upload/test-analysis for pointId 131921554; unmatched traffic fell through. Contract provenance was the normally observed genuine read, with no fabricated response status/body. criterion-8-loaded.png and criterion-8-before-simulated-loading.png establish the criterion-owned baseline and reopening transition; criterion-8-final.png directly shows the Analysis progress bar and 'Loading Automobile test analysis...' with the current record summary. The recorded held-request helper error did not invalidate that visible loading state. The original request was released and recorded as genuine HTTP200 with 28 samples; criterion-8-recovery.png visibly proves recovered chart and matching target summary, but its viewport does not show recovered table rows. The retained tester assertion of chart/table recovery is therefore Unverified for the table portion. The result records exact handler removal in finally and deletion/verification of owned state; criterion-8-cleanup.png shows cleared details/layer. This establishes the analysis-panel loading UI, with incomplete visual proof of the asserted table recovery; it is not an end-to-end backend loading guarantee or evidence for every dialog component.",
+      "outcome": "Passed",
+      "reason": "SIMULATED UI STATE: On 27 October, held the original analysis read for Upload point 131921554 to check loading, then released that same genuine request. loading-held-final.png shows the loading message/progress indicator. After HTTP 200, loading-recovery-chart.png shows the recovered chart; loading-recovery-table-first.png, loading-recovery-table-middle.png and loading-recovery-table-last.png show the table through its final row. The cleanup audit confirms all 28 recovered rows match the genuine baseline, the scoped handler was removed and no requests remained pending. No success response or business data was fabricated. This checks controlled analysis-panel loading and recovery, not natural backend latency or whole-dialog loading. Owned UI was removed; the map viewport was not restored exactly.",
       "coverageChecks": [
         {
-          "assertion": "Loading Upload details displays standard loading state",
+          "assertion": "Controlled analysis loading is visible and the genuine chart and all 28 table rows recover after release",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png"
+            "loading-before-held-request.png",
+            "loading-before-selection.png",
+            "loading-cleanup.png",
+            "loading-genuine-chart-baseline.png",
+            "loading-genuine-table-baseline.png",
+            "loading-held-final.png",
+            "loading-initial.png",
+            "loading-recovery-chart.png",
+            "loading-recovery-table-first.png",
+            "loading-recovery-table-last.png",
+            "loading-recovery-table-middle.png",
+            "loading-upload-configuration.png"
           ]
-        },
-        {
-          "assertion": "Held original analysis read is released and genuine chart/table recover; owned handler is removed",
-          "outcome": "Unverified",
-          "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-8-recovery.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-8-cleanup.png"
-          ],
-          "reason": "Recovery PNG shows target chart and summary; measurement table rows are outside the captured viewport. Handler removal is explicitly recorded in the result."
         }
       ]
     },
@@ -313,10 +239,93 @@
     }
   ],
   "overallOutcome": "Blocked",
-  "reportPath": "",
+  "reportPath": "tickets/TEST2-86/report.pdf",
   "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-86\\cycles\\cycle-003\\screenshots\\attempt-001",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Reviewed cycle-003 attempt-001 against the live canonical criteria and human-confirmed Automobile Upload scope. All 103 referenced PNGs exist and are non-empty. Fixture/response-contract blockers remain; simulation scope and the loading-recovery visual limitation are retained in their criterion reasons.",
-  "cycleId": "cycle-003"
+  "reason": "8/10 criteria passed; 0 failed and 2 blocked. Manual existing-evidence reassessment on 27 October 2026; no new independent worker or test attempt. Criteria 6 and 9 still need a genuine returned-average fixture and an authoritative unavailable-details response contract/example. Earlier tester history and the prior independent review are preserved.",
+  "cycleId": "cycle-003",
+  "sourceHandoffId": "handoff-TEST2-86-cycle-003-review-attempt-001",
+  "sourceHandoffVersion": "TEST2-86:cycle-003:evidence_review:1:scope-b3f8286df37f",
+  "historyAttempt": 1,
+  "reassessment": {
+    "kind": "manual-existing-evidence-reassessment",
+    "date": "2026-10-27",
+    "cycleId": "cycle-003",
+    "historyAttempt": 1,
+    "authority": "User requested reassessments after source-qualified criteria correction and accepted disabled zero-duration rows as no-data.",
+    "newTestAttempt": false,
+    "newIndependentWorker": false,
+    "priorReview": "reassessment-history/2026-10-27/previous-review.json",
+    "priorRepositoryCommit": "29157dc9",
+    "criteriaAsTested": "docs/qa-corrections/2026-10-27/TEST2-86-criteria-as-tested.md",
+    "changedCriteria": [
+      1,
+      7,
+      8
+    ],
+    "evidenceBasis": "26 October cycle-003 attempt-001 captures and recorded genuine response observations; supplementary investigation on 27 October.",
+    "scope": "No cycle/counter reset. Original results and tester history retained unchanged. This adjudication supersedes the current review only.",
+    "supplementalEvidence": [
+      {
+        "file": "loading-before-held-request.png",
+        "sha256": "d06107500e4edd6ccfbfe5fa5f43f9d0cf986e0001d84c69fb7f8b733b3e3c16"
+      },
+      {
+        "file": "loading-before-selection.png",
+        "sha256": "dc5ab1a56896f24bb0baf5f490136e65152faaf58eb4ff677ac856339ce03db9"
+      },
+      {
+        "file": "loading-cleanup.png",
+        "sha256": "fcfd1bcb4b65c4411e7cc93d68f7b86adf73a0dbf7c78deace2655f4c0e1ed8f"
+      },
+      {
+        "file": "loading-genuine-chart-baseline.png",
+        "sha256": "73fe0428f31e39fb7264398219625156b02481f582c050bda7d3e7af5dcb834b"
+      },
+      {
+        "file": "loading-genuine-table-baseline.png",
+        "sha256": "f5869ed1b4d80ae33db4a2ba0322854861ce72207f7d2df07b9715efe7ad8908"
+      },
+      {
+        "file": "loading-held-final.png",
+        "sha256": "3a964efa27d22f73b3f102f174a32198c2980ad4c1753f62c85560268a52d0b2"
+      },
+      {
+        "file": "loading-initial.png",
+        "sha256": "3fc53ba7c950274b8e1c97a2a08e85d19b16301a642a6ac6db9c64f8a2f3c1b9"
+      },
+      {
+        "file": "loading-recovery-chart.png",
+        "sha256": "73fe0428f31e39fb7264398219625156b02481f582c050bda7d3e7af5dcb834b"
+      },
+      {
+        "file": "loading-recovery-table-first.png",
+        "sha256": "f5869ed1b4d80ae33db4a2ba0322854861ce72207f7d2df07b9715efe7ad8908"
+      },
+      {
+        "file": "loading-recovery-table-last.png",
+        "sha256": "9c52d74f6aa321a7200d044a5fec593446dfeb7a2e497f6f3f192eba0a79ea87"
+      },
+      {
+        "file": "loading-recovery-table-middle.png",
+        "sha256": "ec1a3acd183bf76bda05d6e2294e4fb2b04abfe5a9b032d4313b839a79d4887c"
+      },
+      {
+        "file": "loading-upload-configuration.png",
+        "sha256": "75bea7a159c14f6ea77ea4a0f36805331836eb867a54eca8fcc089315c22459f"
+      }
+    ],
+    "loadingAudit": {
+      "source": "Private focused-followup audit, 27 October 2026",
+      "sourceSha256": "7b00b6a82771ab42523555b43c675b4338ad2b7ebd6b3f6769c61d88a9b8bcdd",
+      "pointId": "131921554",
+      "baselineRows": 28,
+      "recoveredRows": 28,
+      "allRowsMatchBaseline": true,
+      "routeRemoved": true,
+      "pendingRequests": 0
+    },
+    "reportInputs": "reassessment-history/2026-10-27/report-inputs.json"
+  }
 }
