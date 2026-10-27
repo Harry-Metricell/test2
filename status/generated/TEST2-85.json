@@ -44,7 +44,16 @@
       "handoffId": "handoff-TEST2-85-cycle-002-test-attempt-001",
       "module": "Surveyor",
       "disposition": "Stopped before publication; 114 PNGs preserved privately; not a completed Automobile attempt."
-    }
+    },
+    "requirementClarifications": [
+      {
+        "requirement": "Zero-duration no-data presentation",
+        "authority": "human",
+        "confirmedAt": "2026-10-27",
+        "interpretation": "A disabled zero-duration test row counts as the standard no-data state; no details dialog should open.",
+        "scope": "Zero-duration Download tests only. This does not establish the unavailable-details API response contract."
+      }
+    ]
   },
   "id": "106641",
   "summary": "Display Download Point Details",

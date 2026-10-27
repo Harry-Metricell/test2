@@ -38,6 +38,15 @@
         "module": "Surveyor",
         "reason": "Not Automobile acceptance evidence; preserve the historical report and images, but do not reuse its verdict."
       }
+    ],
+    "requirementClarifications": [
+      {
+        "requirement": "Zero-duration no-data presentation",
+        "authority": "human",
+        "confirmedAt": "2026-10-27",
+        "interpretation": "A disabled zero-duration test row counts as the standard no-data state; no details dialog should open.",
+        "scope": "Zero-duration Upload tests only. This does not establish the unavailable-details API response contract."
+      }
     ]
   },
   "id": "106642",
