@@ -1,0 +1,541 @@
+{
+  "handoffId": "handoff-TEST2-87-cycle-003-test-attempt-001",
+  "handoffVersion": "TEST2-87:cycle-003:test_ticket:1:scope-d53fd6b12ef1",
+  "cycleId": "cycle-003",
+  "ticket": "TEST2-87",
+  "testedModule": "Automobile",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.",
+      "outcome": "Passed",
+      "reason": "Available returned summary fields match the genuine cluster/details response. Handset identification is presented as MSISDN (the Automobile Handset configuration identifies handsets by MSISDN); no separate handset model was returned. Null disconnectionCauseCode is visibly N/A, respecting 'available'.",
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
+        "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
+        "Read the complete summary in overlapping top/middle/end captures. Test Duration 70 s, Test Result Success, Connection Time 1888 ms, Start 19/08/2026 09:34:39, End 09:35:49, handset identifier/MSISDN and Disconnection Cause Code N/A match supplied values. Restored summary to its top and captured summary-decisive before cleanup.",
+        "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Available duration is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available test result is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available connection time is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png"
+          ]
+        },
+        {
+          "assertion": "Available start time is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available end time is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available handset identification is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available disconnection cause is displayed, with null not invented",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png"
+          ]
+        }
+      ],
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-before-automobile.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-automobile-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-test-type-choices.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-call-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-call-layer.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-before-search.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-search-position.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-detail-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-end.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-cleanup.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "The chart plots Signal strength and event annotations such as Call initiated, serving-cell changes and Call ended; it does not display the returned service technology (5G NSA) as a chart series, lane, legend or tooltip. Call-state coverage is inconclusive because event annotations are not a complete idle/off-hook/connected state timeline.",
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
+        "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
+        "Inspected the settled chart and hovered within it. The tooltip showed elapsed time 12.72 and Signal strength -104 only. The x-axis spans approximately 0–120 seconds, including pre/post-call samples; the 70-second test lies within this range. Saved detail-open and final chart PNGs. The chart's only visible series/legend is Signal strength; the table separately contains Call State and Service, which does not prove chart coverage.",
+        "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Timeline displays call state across returned samples",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Timeline displays service technology",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Timeline displays signal strength",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Timeline covers the test duration",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        }
+      ],
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-before-automobile.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-automobile-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-test-type-choices.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-call-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-call-layer.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-search-position.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-cleanup.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.",
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "33 returned samples are displayed and Signal Strength sorting works in both directions, but the Call measurements table has no filtering inputs, filter menu or column filter controls. Inspected the full analysis area to its bottom and all header controls; only sort labels were available. Other column sorting was not exhaustively exercised.",
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
+        "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
+        "Read all eight data headers (Time, Call State, Service, Site, Cell, Signal Strength, Site Distance, Speed). Clicked Signal Strength to ascending then descending, inspected actual ordered rows. Initial captures clipped most rows, so repaired evidence during this attempt: scrolled the settled analysis container to show the header/indicator and multiple rows together, captured descending (-76,-77,-80,-82,-83) then clicked back to ascending (-111,-111,-109,-107,-107). Read the complete DOM row sequence and scrolled to the final row looking for table filter controls. No filter controls appeared; page inputs were Filter layers, Search Map and an unrelated hidden select input. Saved final-readable at the actual table assertion.",
+        "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Returned samples appear in the table",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-baseline.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-end-no-filters.png"
+          ]
+        },
+        {
+          "assertion": "Signal Strength sorts differing values ascending and descending",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-descending-readable.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png"
+          ]
+        },
+        {
+          "assertion": "All remaining data columns can be sorted",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-baseline.png"
+          ]
+        },
+        {
+          "assertion": "Table columns expose usable sample filtering",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-end-no-filters.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-final-readable.png"
+          ]
+        }
+      ],
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-before-automobile.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-automobile-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-test-type-choices.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-call-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-call-layer.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-search-position.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-detail-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-baseline.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-sort-ascending.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-sort-descending.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-descending-readable.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-end-no-filters.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-final-readable.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-cleanup.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.",
+      "outcome": "Failed",
+      "retryClass": "product",
+      "reason": "All supplied known-cell and CGI values inspected match their corresponding rows, but the canonical criterion names a Serving Cell column; the actual table exposes separate Site and Cell columns, with no Serving Cell column. CGI fallback itself works in Cell. One sample returns neither cell nor CGI and is N/A; no value was invented for that unreturned optional datum.",
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
+        "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
+        "Bounded dataset A is the complete 33 samples of point 132006263, 2026-08-19T09:34:29.34–09:36:19.8. Reconciled every source time/site/cell with all 33 DOM rows and overlapping samples-1 through samples-4 captures; no cluster members were omitted (the selected aggregate returned one test). Expected identities and values: [{\"time\":\"2026-08-19T09:34:29.34\",\"site\":\"70886\",\"cell\":\"70886_126_4\"},{\"time\":\"2026-08-19T09:34:39.663\",\"site\":\"70886\",\"cell\":\"70886_126_4\"},{\"time\":\"2026-08-19T09:34:40.04\",\"site\":\"70886\",\"cell\":\"70886_126_4\"},{\"time\":\"2026-08-19T09:34:41.73\",\"site\":\"70886\",\"cell\":\"70886_126_4\"},{\"time\":\"2026-08-19T09:34:42.057\",\"site\":\"70886\",\"cell\":\"70886_120_4\"},{\"time\":\"2026-08-19T09:34:47.093\",\"site\":\"70886\",\"cell\":\"70886_120_4\"},{\"time\":\"2026-08-19T09:34:52.137\",\"site\":\"70886\",\"cell\":\"70886_120_4\"},{\"time\":\"2026-08-19T09:34:52.22\",\"site\":\"70886\",\"cell\":\"70886_120_4\"},{\"time\":\"2026-08-19T09:34:53.303\",\"site\":\"70886\",\"cell\":\"70886_120_4\"},{\"time\":\"2026-08-19T09:34:57.177\",\"site\":\"70876\",\"cell\":\"70876_120_4\"},{\"time\":\"2026-08-19T09:35:02.223\",\"site\":\"70876\",\"cell\":\"70876_120_4\"},{\"time\":\"2026-08-19T09:35:07.213\",\"site\":\"70876\",\"cell\":\"70876_120_4\"},{\"time\":\"2026-08-19T09:35:07.227\",\"site\":\"70886\",\"cell\":\"70886_110_4\"},{\"time\":\"2026-08-19T09:35:07.243\",\"site\":\"70886\",\"cell\":\"70886_110_4\"},{\"time\":\"2026-08-19T09:35:12.273\",\"site\":\"70886\",\"cell\":\"70886_110_4\"},{\"time\":\"2026-08-19T09:35:14.11\",\"site\":\"70886\",\"cell\":\"70886_110_4\"},{\"time\":\"2026-08-19T09:35:17.33\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:22.377\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:24.61\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:27.43\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:32.487\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:37.54\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:42.577\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:47.633\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:49.73\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:49.753\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:52.683\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:35:57.73\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:36:02.783\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:36:07.83\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:36:12.863\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:36:17.923\",\"site\":\"105\",\"cell\":\"105_120_4\"},{\"time\":\"2026-08-19T09:36:19.8\",\"site\":\"105\",\"cell\":\"105_120_4\"}]",
+        "Closed the owned test tab and searched the unknown-cell aggregate at 52.19729641975413, 0.10128021240234375. A center click timed out because the search marker intercepted it; reinspected the UI, cleared that marker with its visible search clear control, and opened the actual aggregate. POST cluster-details and test-analysis returned HTTP 200 for the Success test starting 2026-08-19T09:43:34.693 (70 s).",
+        "Bounded dataset B comprises all 36 returned samples, 09:43:26.877–09:45:14.863 on 19 August. Reconciled every returned time/site/cell against all 36 DOM rows and overlapping fallback-samples-1 through fallback-samples-4 captures. Unknown-site samples at 09:44:40.04, 09:44:42.54 and 09:44:43.953 show CGI 234-10-131567226 in Cell; known cells retain their site/cell names. At 09:44:12.95 the response has no cell/CGI and UI shows N/A. Expected identities and values: [{\"time\":\"2026-08-19T09:43:26.877\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:31.937\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:34.71\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:35.033\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:36.89\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:36.967\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:42.007\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:47.037\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:47.26\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:52.073\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:57.117\",\"site\":\"70472\",\"cell\":\"70472_125_4\"},{\"time\":\"2026-08-19T09:43:57.16\",\"site\":\"70886\",\"cell\":\"70886_125_4\"},{\"time\":\"2026-08-19T09:44:02.17\",\"site\":\"70886\",\"cell\":\"70886_125_4\"},{\"time\":\"2026-08-19T09:44:06.673\",\"site\":\"70886\",\"cell\":\"70886_125_4\"},{\"time\":\"2026-08-19T09:44:06.713\",\"site\":\"70472\",\"cell\":\"70472_120_4\"},{\"time\":\"2026-08-19T09:44:07.203\",\"site\":\"70472\",\"cell\":\"70472_120_4\"},{\"time\":\"2026-08-19T09:44:12.25\",\"site\":\"70472\",\"cell\":\"70472_120_4\"},{\"time\":\"2026-08-19T09:44:12.95\",\"site\":null,\"cell\":null},{\"time\":\"2026-08-19T09:44:17.283\",\"site\":\"70886\",\"cell\":\"70886_122_4\"},{\"time\":\"2026-08-19T09:44:19.653\",\"site\":\"70886\",\"cell\":\"70886_122_4\"},{\"time\":\"2026-08-19T09:44:22.337\",\"site\":\"70886\",\"cell\":\"70886_122_4\"},{\"time\":\"2026-08-19T09:44:27.397\",\"site\":\"70886\",\"cell\":\"70886_122_4\"},{\"time\":\"2026-08-19T09:44:32.45\",\"site\":\"70886\",\"cell\":\"70886_122_4\"},{\"time\":\"2026-08-19T09:44:37.487\",\"site\":\"70886\",\"cell\":\"70886_122_4\"},{\"time\":\"2026-08-19T09:44:40.04\",\"site\":null,\"cell\":\"234-10-131567226\"},{\"time\":\"2026-08-19T09:44:42.54\",\"site\":null,\"cell\":\"234-10-131567226\"},{\"time\":\"2026-08-19T09:44:43.953\",\"site\":null,\"cell\":\"234-10-131567226\"},{\"time\":\"2026-08-19T09:44:44.773\",\"site\":\"70889\",\"cell\":\"70889_110_4\"},{\"time\":\"2026-08-19T09:44:44.797\",\"site\":\"70889\",\"cell\":\"70889_110_4\"},{\"time\":\"2026-08-19T09:44:47.587\",\"site\":\"70889\",\"cell\":\"70889_110_4\"},{\"time\":\"2026-08-19T09:44:52.637\",\"site\":\"70889\",\"cell\":\"70889_110_4\"},{\"time\":\"2026-08-19T09:44:57.687\",\"site\":\"70889\",\"cell\":\"70889_110_4\"},{\"time\":\"2026-08-19T09:45:02.733\",\"site\":\"70889\",\"cell\":\"70889_110_4\"},{\"time\":\"2026-08-19T09:45:07.777\",\"site\":\"70889\",\"cell\":\"70889_110_4\"},{\"time\":\"2026-08-19T09:45:12.843\",\"site\":\"70889\",\"cell\":\"70889_110_4\"},{\"time\":\"2026-08-19T09:45:14.863\",\"site\":\"70889\",\"cell\":\"70889_110_4\"}]",
+        "Saved final-fallback with the three CGI rows visible; separate Site/Cell headers are in fallback-samples-1.",
+        "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Every sample in the bounded displayed datasets is reconciled",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-2.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-3.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-4.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-2.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-3.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-4.png"
+          ]
+        },
+        {
+          "assertion": "Known serving site/cell values are presented for their sample identities",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-2.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-3.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-4.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-2.png"
+          ]
+        },
+        {
+          "assertion": "The table has the specified Serving Cell column",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png"
+          ]
+        },
+        {
+          "assertion": "Unknown serving site/cell falls back to that sample CGI when returned",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-3.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-4.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-final-fallback.png"
+          ]
+        }
+      ],
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-before-automobile.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-automobile-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-test-type-choices.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-call-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-call-layer.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-search-position.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-detail-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-2.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-3.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-4.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-unknown-cell-map.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-search-marker-cleared.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-detail-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-2.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-3.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-4.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-final-fallback.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-cleanup.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.",
+      "outcome": "Passed",
+      "reason": "Selecting the 09:35:17.33 Call sample opened a new Call detail tab containing its related Service details. The request explicitly carried that sampleTime, and the returned point details match the selected sample's cell and signal.",
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
+        "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
+        "Scrolled within this criterion's own Call measurements table to sample 2026-08-19T09:35:17.33, Cell 105_120_4, signal -91 dBm. Captured before-select-sample and clicked its row.",
+        "Observed POST /api/platform/automobile/call/test-analysis HTTP 200 with pointId 132006263 and sampleTime 2026-08-19T09:35:17.33. A new selected tab is named Call detail - 19/08/2026, 09:35:17. Its details show Service State In Service, Service 4G, Data Technology 5G NSA, Cell ID 105_120_4, Site ID 105 and neighbour information. Captured after-select-sample, service-fields and final before cleanup.",
+        "An initial cleanup loop timed out after closing one owned tab because its second index changed; reinspected the UI and completed cleanup using the remaining first matching owned tab.",
+        "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Selecting a Call sample opens related Service details",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select-sample.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        },
+        {
+          "assertion": "Opened Service details correspond to the selected sample time",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select-sample.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-service-fields.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        }
+      ],
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-automobile.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-automobile-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-test-type-choices.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-call-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-call-layer.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-search-position.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-detail-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select-sample.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-service-fields.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-cleanup.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "no_duration_fixture_unavailable",
+      "reason": "No genuine Call point with zero/null measurable test duration was established in the inspected Automobile dataset. The dropped-call fixture has 47.968 s and the setup-failure fixture has 11.941 s. Neither exercises the criterion. Browser simulation is not authorised to manufacture business measurement data or reinterpret a failed call as a failed detail request.",
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
+        "Started at the same Cambridge area, then searched the returned failed aggregate at 52.19666510205681, 0.13492584228515625. Initial projected click was blocked by the legend; reinspected and recentered using Search Map, cleared its marker and opened the aggregate. Its 30 September Drop Call test returned 47.968 s, so it is unsuitable for no-duration coverage.",
+        "Opened the owned layer configuration, scrolled to Test Results and selected only Setup Failures, leaving technologies and other filters unchanged. Applied; Apply closed configuration, so a subsequent Close configuration action timed out; reinspected the settled UI rather than applying again. GET /api/platform/automobile/call/points with testResultFilter=true&testResults=2 returned HTTP 200 and a setup-failure aggregate. Zoomed out three increments to inspect wider coverage, then searched its returned coordinates 52.185720837176895, 0.1490020751953125.",
+        "Opened the genuine setup failure. POST /api/platform/automobile/call/cluster-details returned point 132307934 and testDurationMs 11941, start 2026-09-09T10:55:53.17, end 10:56:05.11. Analysis returned HTTP 200 with samples; final PNG positively shows 11.941 s, so it cannot prove no-data handling. No zero-duration prerequisite fixture is claimed.",
+        "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "A genuine selected Call point has no measurable duration",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-dropped-call-positive-duration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failure-positive-duration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        },
+        {
+          "assertion": "No measurable duration shows the standard no-data state",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        },
+        {
+          "assertion": "No measurable duration avoids an empty detail view",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        }
+      ],
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-automobile.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-automobile-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-test-type-choices.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-call-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-call-layer.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-search-position.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-failure-record-position.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-failure-record-before-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-dropped-call-positive-duration.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-setup-filter.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failures-filter.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failures-map.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failures-wide.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failure-before-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failure-positive-duration.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-cleanup.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.",
+      "outcome": "Blocked",
+      "retryClass": "prerequisite",
+      "blockerCode": "empty_response_contract_unavailable",
+      "reason": "SIMULATED UI STATE: Loading and HTTP-error UI handling passed for the Automobile Call analysis read request, but unavailable/no-data coverage is Blocked because no actual empty analysis response or authoritative empty-response contract was supplied/observed. Exact simulation scope: POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/call/test-analysis, pointId 132307934, only requests without sampleTime. Held its original request until the loading PNG was saved, then continued it to genuine HTTP 200/22 samples. Separately injected HTTP 503 Service Unavailable with application/problem+json body {title:'Service Unavailable',status:503}; this is a synthetic HTTP error, not an observed backend outage. The real populated response established endpoint/request identity only; it did not establish an empty contract. Correct target summary remained visible while prior record analysis was absent. Finally resolved owned pending requests, removed only the exact owned handler and verified Retry recovered a genuine HTTP 200/22-sample response. No unavailable/no-data response was invented.",
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
+        "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
+        "SIMULATED UI STATE: Within this criterion first loaded distinct valid record A (132006263, 19 August 09:34:39), then normally opened target B (132307934, 9 September 10:55:53) at 52.185720837176895, 0.1490020751953125. Verified its genuine POST test-analysis response HTTP 200 and 22 rows. A wait for visible text 'Call measurements' timed out because this is the table's accessibility name; reinspected and confirmed the table by role, without repeating the action.",
+        "Returned to A and captured prior-record-before-loading. Installed one owned route for the exact origin/path, POST method and target pointId 132307934, excluding sampleTime requests. Unmatched requests fell through. Handler references and release functions were held on the actual persistent Playwright page object and confirmed in subsequent calls. Selected B; confirmed exactly one intercepted/pending request. The panel showed 'Loading Automobile test analysis...' and a progress bar, with B's correct summary and no A chart/table. Captured simulated-loading. Released original request: observed genuine HTTP 200 and 22 rows, captured loading-genuine-recovery.",
+        "SIMULATED UI STATE: Loaded A again and captured its own prior-record-before-error. Changed the same scoped route to return synthetic HTTP 503 with body {title:'Service Unavailable',status:503}; selected B. UI showed 'Unable to load Automobile test analysis.' and Retry, no previous chart or measurement rows. Correct B summary remained. Captured simulated-error and final at the assertion, and read location.href as /gis.",
+        "Unavailable/no-data branch was not simulated: no genuine empty response or supplied API schema established the empty contract. A populated response with arrays removed would not establish it. This branch remains Blocked.",
+        "In a finally block set owned handler to pass, resolved all owned pending releases (zero remained), called page.unroute on only its exact pattern+handler and deleted its page-owned state. Confirmed handler absent; clicked visible Retry and observed genuine HTTP 200 and 22 measurement rows. Captured error-genuine-recovery, then removed created UI selections and returned to the launcher.",
+        "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Loading Call analysis shows standard loading state (simulated delay)",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-loading.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-loading.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-loading-genuine-recovery.png"
+          ]
+        },
+        {
+          "assertion": "Unavailable Call details shows standard no-data state",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-genuine-baseline.png"
+          ]
+        },
+        {
+          "assertion": "Failed analysis loading shows standard error state (synthetic HTTP 503)",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+          ]
+        },
+        {
+          "assertion": "Loading state excludes previous record Call analysis",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-loading.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-loading.png"
+          ]
+        },
+        {
+          "assertion": "Error state excludes previous record Call analysis",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+          ]
+        },
+        {
+          "assertion": "Unavailable/no-data state excludes incorrect Call data",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-genuine-baseline.png"
+          ]
+        },
+        {
+          "assertion": "Original request recovers and owned handler is removed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-loading-genuine-recovery.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-error-genuine-recovery.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-cleanup.png"
+          ]
+        }
+      ],
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-before-automobile.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-automobile-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-test-type-choices.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-call-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-call-layer.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-search-position.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-valid-record-baseline.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-before-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-genuine-baseline.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-loading.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-before-simulated-loading.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-loading.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-loading-genuine-recovery.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-error-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-error.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-before-simulated-error.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-error.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-error-genuine-recovery.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-7-cleanup.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    }
+  ],
+  "conciseReport": "# TEST2-87 — Automobile / Call\n\nCriteria 1 and 5 Passed. Criterion 2 Failed: service technology absent from timeline; full call-state coverage inconclusive. Criterion 3 Failed: filtering controls absent (signal sorting verified). Criterion 4 Failed: required Serving Cell column is instead separate Site/Cell columns; known-cell values and returned CGI fallback reconcile across 69 samples.\n\nCriterion 6 Blocked: no genuine no-duration fixture established. Criterion 7 Blocked: empty-response/no-data contract unavailable.\n\nSIMULATED UI STATE: Criterion 7 used an exact request/record-scoped delay and synthetic HTTP 503 to verify loading/error and prior-analysis exclusion. Original request and Retry both recovered genuine HTTP 200/22 samples. Exact owned handler removed; no simulated no-data or successful data was manufactured.\n\nOriginal empty layer/detail selections restored; exact original map viewport was not restored. Evidence still requires independent review.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-87-cycle-003-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "No-duration fixture and authoritative empty-response contract are missing; non-transient prerequisite blocks require review. Product observations are independently documented with owned criterion evidence.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-27T10:17:49.762Z"
+}
