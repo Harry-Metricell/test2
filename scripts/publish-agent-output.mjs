@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
 import { reportPushArgs } from './git-report-push-policy.mjs';
+import { reportVerificationTimeout } from './report-process-policy.mjs';
 import { validateEvidenceCoverage } from './evidence-coverage.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
 import { guideInstructionIssues } from './guide-instruction-policy.mjs';
@@ -363,9 +364,10 @@ function buildVerifiedReport(key, run, screenshots) {
   }
   execFileSync('powershell.exe', ['-NoProfile', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', renderer, '-InputDocx', docx, '-OutputPdf', pdf], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
   if (!nonEmpty(pdf)) fail('Template PDF conversion completed without a non-empty PDF');
+  const verificationTimeoutMs = reportVerificationTimeout(imageSummary.embeddedEvidenceImages);
   try {
-    const audit = execFileSync(python, [pdfVerifier, '--pdf', pdf, '--image-manifest', imageManifest, '--screenshots', screenshots], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000 });
-    log('pdf_evidence_verified', { ticket: key, ...JSON.parse(audit) });
+    const audit = execFileSync(python, [pdfVerifier, '--pdf', pdf, '--image-manifest', imageManifest, '--screenshots', screenshots], { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: verificationTimeoutMs });
+    log('pdf_evidence_verified', { ticket: key, verificationTimeoutMs, ...JSON.parse(audit) });
   } catch (error) {
     const detail = String(error.stdout || error.stderr || error.message).trim();
     fail(`PDF evidence verification failed: ${detail}`);

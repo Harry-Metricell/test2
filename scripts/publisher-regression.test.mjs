@@ -7,6 +7,16 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { formatReviewReport } from './format-review-report.mjs';
 import { reportPushArgs } from './git-report-push-policy.mjs';
+import { reportVerificationTimeout } from './report-process-policy.mjs';
+
+test('large evidence sets get a bounded verification budget and invalid counts fail', () => {
+  assert.equal(reportVerificationTimeout(0), 120_000);
+  assert.ok(reportVerificationTimeout(77) > reportVerificationTimeout(1));
+  assert.equal(reportVerificationTimeout(10_000), 600_000);
+  for (const count of [-1, NaN, Infinity, 1.5, '77', undefined]) {
+    assert.throws(() => reportVerificationTimeout(count), TypeError);
+  }
+});
 
 test('report publication buffers HTTPS and bounds stalled transfers without force pushing', () => {
   const args = reportPushArgs();

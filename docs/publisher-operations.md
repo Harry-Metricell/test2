@@ -41,6 +41,13 @@ is pending. Require remote `criteriaVerified: true` and a new handoff before tes
 | Coordinator reports a lock | Lock age plus observable active run state | A fresh lock means wait; use the brief's stale-lock/reconciliation procedure, not blanket deletion |
 | PDF identity verification fails | Named unmatched evidence and selected manifest | Repair conversion/selection; retain staged review and never bypass verification |
 
+PDF verification allows two minutes plus one second per expected evidence image,
+with a ten-minute ceiling. The bounded allowance avoids restarting a valid large
+report solely because it has more images. Image identity and complete-content
+checks still apply. If plain PDF text extraction inserts spaces inside words,
+the verifier also checks layout-based extraction for the same exact required
+text; it does not waive missing or changed report content.
+
 Completion has three separate proofs: the exact output was read back from GitHub,
 Status Bundler succeeded, and the live handoff advanced. A worker receipt,
 successful Git command, empty staging directory or zero task exit code alone is

@@ -173,14 +173,15 @@ def normalize_report_text(value):
     return re.sub(r"\s+", " ", value).strip()
 
 
-def report_page_body(page):
+def report_page_body(page, extraction_mode=None):
     """Exclude only the template's known margin lines, never arbitrary text.
 
     Word may emit the footer before the body in its PDF text stream. Keeping
     it between pages makes a complete multi-page limitations paragraph look
     truncated. Restrict removal to exact footer lines near a page boundary.
     """
-    lines = (page.extract_text() or "").splitlines()
+    extracted = page.extract_text(extraction_mode=extraction_mode) if extraction_mode else page.extract_text()
+    lines = (extracted or "").splitlines()
     footer = re.compile(r"Metricell Limited .* Refer to Title Page|Commercial in Confidence|Page\s+\d+")
     lines = [line for index, line in enumerate(lines)
              if not ((index < 12 or index >= len(lines) - 12)
@@ -202,7 +203,8 @@ def verify_report_content(pdf_path, content):
     """Reject a visually populated PDF that dropped its outcome or audit trail."""
     if not isinstance(content, dict) or not content.get("overallOutcome") or not content.get("limitations"):
         raise SystemExit("image manifest has no report-content contract")
-    rendered = normalize_report_text("\n".join(report_page_body(page) for page in PdfReader(pdf_path).pages))
+    pages = PdfReader(pdf_path).pages
+    rendered = normalize_report_text("\n".join(report_page_body(page) for page in pages))
     required = [
         "Overall review outcome:", content["overallOutcome"],
         "Limitations during Testing:", content["limitations"],
@@ -211,6 +213,13 @@ def verify_report_content(pdf_path, content):
         *(content.get("criterionNotes") or []),
     ]
     missing = [item for item in required if normalize_report_text(item) not in rendered]
+    if missing:
+        # Word's positioned glyph runs can make plain extraction invent spaces
+        # inside intact words ("us ed"). Layout extraction uses glyph positions
+        # and recovers those words. Require the same exact normalized text;
+        # never delete arbitrary spaces or ignore changed/missing content.
+        layout = normalize_report_text("\n".join(report_page_body(page, "layout") for page in pages))
+        missing = [item for item in missing if normalize_report_text(item) not in layout]
     if missing:
         raise SystemExit(f"converted PDF is missing report content: {missing}")
     return True

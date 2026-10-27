@@ -36,6 +36,30 @@ def observed(name, image, source_hash):
 
 
 class PdfEvidenceIdentityTests(unittest.TestCase):
+    def test_layout_extraction_recovers_word_glyph_spacing_without_relaxing_text(self):
+        contract = {"overallOutcome": "Blocked", "limitations": "The record used HTTP 200 and no data was returned."}
+        text = ("Overall review outcome: Blocked\nLimitations during Testing: "
+                + contract["limitations"] + "\nBrowser URL(s) recorded after criteria:")
+        class Page:
+            def extract_text(self, extraction_mode=None):
+                return text if extraction_mode == "layout" else text.replace("used", "us ed")
+        with patch.object(VERIFY, "PdfReader", return_value=type("Reader", (), {"pages": [Page()]})()):
+            self.assertTrue(VERIFY.verify_report_content("ignored.pdf", contract))
+            for incorrect in ["The record used HTTP 500 and no data was returned.",
+                              "The record used HTTP 200 and nodata was returned.",
+                              contract["limitations"] + " Missing final sentence."]:
+                with self.assertRaisesRegex(SystemExit, "missing report content"):
+                    VERIFY.verify_report_content("ignored.pdf", {**contract, "limitations": incorrect})
+
+    def test_complete_plain_extraction_does_not_pay_for_layout_fallback(self):
+        class Page:
+            def extract_text(self, extraction_mode=None):
+                if extraction_mode:
+                    raise AssertionError("Unnecessary layout extraction")
+                return "Overall review outcome: Passed\nLimitations during Testing: None.\nBrowser URL(s) recorded after criteria:"
+        with patch.object(VERIFY, "PdfReader", return_value=type("Reader", (), {"pages": [Page()]})()):
+            self.assertTrue(VERIFY.verify_report_content("ignored.pdf", {"overallOutcome": "Passed", "limitations": "None."}))
+
     def test_dense_saturated_markers_survive_word_chroma_subsampling(self):
         screenshot = Image.new("RGB", (1440, 900), (144, 110, 178))
         draw = ImageDraw.Draw(screenshot)
@@ -106,7 +130,7 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
 
     def test_report_content_requires_outcome_limitations_url_and_caption(self):
         class Page:
-            def extract_text(self):
+            def extract_text(self, **kwargs):
                 return "Overall review outcome:\nBlocked\nLimitations during Testing:\n1 blocked.\nBrowser URL(s) recorded after criteria: https://example.test/gis\nE01 - evidence.png"
         contract = {"overallOutcome": "Blocked", "limitations": "1 blocked.",
                     "sourceUrls": ["https://example.test/gis"], "evidenceCaptions": ["E01 - evidence.png"]}
@@ -127,7 +151,7 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
     def test_full_limitations_survive_page_footer_and_compound_word_wrapping(self):
         class Page:
             def __init__(self, value): self.value = value
-            def extract_text(self): return self.value
+            def extract_text(self, **kwargs): return self.value
         pages = [Page("Overall review outcome: Blocked\nLimitations during Testing: The required"),
                  Page("Metricell Limited © 2026 – Refer to Title Page\nCommercial in Confidence\nPage 4\n"
                       "detail state followed an approval-\nreview timeout.\n"
@@ -141,7 +165,7 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
 
     def test_footer_normalization_does_not_remove_real_body_lines(self):
         class Page:
-            def extract_text(self):
+            def extract_text(self, **kwargs):
                 return "\n".join(["body line"] * 13 + ["Page 4", "Commercial in Confidence"] + ["body line"] * 13)
         self.assertIn("Page 4\nCommercial in Confidence", VERIFY.report_page_body(Page()))
         self.assertEqual(VERIFY.normalize_report_text("HTTP 500, not HTTP 200"), "HTTP 500, not HTTP 200")
@@ -150,7 +174,7 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
     def test_assessment_continues_across_repeated_case_table_heading(self):
         class Page:
             def __init__(self, value): self.value = value
-            def extract_text(self): return self.value
+            def extract_text(self, **kwargs): return self.value
         pages = [Page("Overall review outcome: Blocked\nLimitations during Testing: Missing fixture.\n"
                       "Browser URL(s) recorded after criteria: https://example.test/gis\n"
                       "Criterion 8 assessment: The response was populated."),
@@ -167,7 +191,7 @@ class PdfEvidenceIdentityTests(unittest.TestCase):
     def test_table_heading_removal_is_exact_and_boundary_scoped(self):
         class Page:
             def __init__(self, value): self.value = value
-            def extract_text(self): return self.value
+            def extract_text(self, **kwargs): return self.value
         heading = "ID /\nCriterion\nCriteria Tested Expected Result Actual Result / Evidence Path Outcome"
         body = "\n".join(["real body"] * 13 + [heading, "Outcome remains Blocked."])
         self.assertIn(heading, VERIFY.report_page_body(Page(body)))
