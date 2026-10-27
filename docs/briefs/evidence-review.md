@@ -1,5 +1,7 @@
 # TEST2 Evidence Review Brief
 
+For a shared-component story, verify the tested consumer against the complete ticket's scope refinement and exclusions. Being in the correct module is insufficient when the source names particular supported layers. Do not carry a verdict from an excluded or unsupported consumer into an in-scope result. A current deployed implementation can explain behaviour but does not, by itself, establish a backend response contract or an independent pre-change regression baseline.
+
 ## Select one live handoff
 
 Execute immediately; do not summarise this brief. Fetch live GitHub main `status/handoffs.json`. Verify the supplied handoff ID, ticket, evidence_review action and handoffVersion; do not select another ticket. Otherwise select the first eligible evidence_review by handoffId. If absent/changed or already Evidence Reviewed, return a compact chat-only no-op without staging output.

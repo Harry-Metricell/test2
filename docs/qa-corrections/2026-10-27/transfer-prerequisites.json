@@ -1,0 +1,33 @@
+{
+  "kind": "read-only-prerequisite-investigation",
+  "observedAt": "2026-10-27T16:54:20.635Z",
+  "tickets": ["TEST2-85", "TEST2-86"],
+  "sourceTicketsReadOnly": ["VM2ST-107", "VM2ST-108"],
+  "deployedAsset": {
+    "url": "https://o2intelligence-v4-dev.metricell.com/assets/automobile.details-7yiKLwJ6.js",
+    "sha256": "12a700a226d168be3fa8e1bb1eacb391bbb40c336afc2f194e10121b13574a10",
+    "bytes": 31379,
+    "downloadAndUploadSummary": "Fixed transfer field list with the rate supplied as a parameter, plus duration and point context. No average-signal field mapping found in these views.",
+    "averageSignalStrengthLabelFound": false,
+    "averageSignalQualityLabelFound": false,
+    "averageSnrLabelFound": false,
+    "unavailableAnalysisBranch": "Falsy analysis response displays No test analysis is available.",
+    "emptySamplesBranch": "Empty samples display No measurements are available.",
+    "limitation": "Static inspection of the deployed client suggests a mapping gap but does not prove a runtime failure under a returned-average fixture, establish a server response contract, or supply an independent regression baseline."
+  },
+  "apiRequestAudit": {
+    "routeTemplate": "/api/automobile/{testType}/test-analysis",
+    "window": "Rolling 24 hours ending approximately 2026-10-27T16:53Z",
+    "requestsShown": 20,
+    "statusFamily": "All 2xx in the inspected view",
+    "requestMetadataInspected": true,
+    "responseBodyAvailable": false,
+    "limitation": "A successful status does not prove an empty or populated response body."
+  },
+  "disposition": "Keep criteria 6 and 9 Blocked on both tickets pending the specific developer inputs recorded in docs/qa-verification-2026-10-23.md. No full retest needed yet.",
+  "newTestAttempt": false,
+  "requestInterceptionInstalled": false,
+  "sourceJiraChanged": false,
+  "ownedTabClosed": true,
+  "ownedBrowserLeaseReleased": true
+}

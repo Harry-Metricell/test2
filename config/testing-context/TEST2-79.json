@@ -11,6 +11,15 @@
   },
   "targetModule": "Automobile",
   "targetLayer": "Download / Upload",
+  "fixtureHints": {
+    "authority": "previously-observed-test-evidence",
+    "observedAt": "2026-10-26",
+    "purpose": "Locate genuine records through the normal Automobile UI; re-establish their current values before using them as evidence.",
+    "downloadZeroDuration": { "pointId": "132611563", "date": "2026-09-30", "recordedTestDurationMs": 0 },
+    "uploadZeroDuration": { "pointId": "131921687", "date": "2026-08-10", "recordedTestDurationMs": 0 },
+    "scope": "Navigation hints only. Do not bypass a disabled row, invent a direct analysis request, or treat another ticket's screenshots as this ticket's proof."
+  },
+  "verificationFocus": "Resume the coverage missing after the previous host interruption: complete Download and Upload tables, units and null-error presentation, supported sorting/filtering, zero-duration selection prevention, and loading/error isolation against a distinct valid baseline. Recheck matching/selectable records against the genuine responses in the inspected authorised scope; do not infer global database completeness.",
   "resolution": {
     "authority": "human",
     "confirmedAt": "2026-10-21",

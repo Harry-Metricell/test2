@@ -10,7 +10,18 @@
     }
   },
   "targetModule": "Automobile",
-  "targetLayer": "Standard Automobile legends",
+  "targetLayer": "HTTP Browsing / Ping / Video Streaming legends",
+  "sourceScope": {
+    "authority": "source-ticket",
+    "sourceKey": "VM2ST-116",
+    "verifiedReadOnlyAt": "2026-10-27",
+    "refinementDate": "2026-10-07",
+    "currentAutomobileConsumers": ["HTTP Browsing", "Ping", "Video Streaming"],
+    "excludedFromThisLegendChange": ["Service", "Download", "Upload", "Band/frequency lookup", "SQL changes", "Route Replay"],
+    "scopeRule": "Use the source's currently covered consumers. Generic Automobile Call is not evidence for the HTTP/Ping/Video legend change. Do not transfer earlier Call-based failures or passes without checking an in-scope consumer.",
+    "multipleFields": "A reusable component contract. End-to-end switching needs an identified consuming layer supplying multiple fields and measurements; do not claim it Passed using a single-field Automobile type.",
+    "baseline": "Exact categories, colours, shapes, thresholds and existing-consumer regressions require an identified versioned expected definition; reading the current UI alone is not an independent regression baseline."
+  },
   "resolution": {
     "authority": "human",
     "confirmedAt": "2026-10-21",

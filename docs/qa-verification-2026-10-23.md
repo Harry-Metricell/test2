@@ -27,16 +27,89 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 | 82 | Preserve reported loading failure and missing no-data contract. Correct future preservation of pre-existing panels. | Leave To Do; user bug returned |
 | 83 | Cycle-004 reviewed: 4 Passed, 1 Failed, 4 Blocked. Source VM2ST-105 checked read-only on 27 October: neighbours beneath serving details is explicit. Needs no-neighbour, 3G/5G SA and unavailable-detail fixtures. | Completed; final PDF/Word published; no automatic reset |
 | 84 | Identify actual Automobile Building feature/prerequisite; never substitute Surveyor. | Deferred; unchanged Jira |
-| 85 | Criterion 1 corrected to preserve the source's available-information scope. User confirmed disabled zero-duration rows count as no-data; criterion 7/context corrected. Prior criteria preserved in docs/qa-corrections/2026-10-27. Existing evidence needs reassessment; average metrics and unavailable-details contract still required. | Held; original review retained pending reassessment |
-| 86 | Original reviewed cycle-003: 5 Passed, 4 Blocked, 1 Unverified. Focused 27 October follow-up captured the held loading state and genuine HTTP 200 recovery for record 131921554. Recovered chart and overlapping first/middle/final table captures show all 28 rows; table data matches baseline. Exact owned handler removed and zero requests pending. Summary availability qualifier and human zero-duration interpretation are now corrected; reassessment is pending. Average metrics and unavailable-details contract remain required. | Held; loading evidence repair added to PDF/Word; original review retained |
+| 85 | Reassessed 27 October: 8 Passed, 2 Blocked. Summary availability and disabled zero-duration presentation cleared from existing evidence. Criteria 6 and 9 need the inputs below; no new attempt or counter reset. | Held; updated PDF/Word published; earlier review and original tester history preserved |
+| 86 | Reassessed 27 October: 8 Passed, 2 Blocked. Summary, disabled zero-duration presentation and repaired loading/recovery evidence cleared. Loading follow-up shows the genuine chart and all 28 recovered rows matching baseline, with exact handler removal and no pending requests. Criteria 6 and 9 need the inputs below. | Held; updated PDF/Word published; earlier review and original tester history preserved |
 | 87 | Cycle-003 reviewed: 1 Passed, 3 Failed, 2 Blocked, 1 Unverified. Source VM2ST-110 checked read-only on 27 October confirms timeline technology, filterable samples and Serving Cell wording. Follow-up demonstrated readable destination time through the built-in detached detail view; five columns sorted correctly in both directions across 33 samples. Service, Site Distance and Speed still need varied values. No sample filters found after header/table/footer inspection. Zero-duration and unavailable-detail branches still need fixtures/contracts. | Completed; focused follow-up supplement records new evidence; original independent review retained |
 | 88 | Inspect Automobile's nested MS Teams Call type, not only catalogue text search. | Held |
 | 89 | Correct nested type was reached; retain the inspected-scope data blocker without substituting Surveyor. | Held; previous release completed |
 | 90 | Full preservation/isolation comparisons; visible final sorting column/order; exact colours distinct from boundary fixtures. Retain confirmed forbidden-NSA finding and genuine calculation/Service fixture blockers. | Held |
 | 91 | Reviewable expected frequency configuration; complete form and actual device-group condition. Preserve product contradictions separately from missing permissions. | Held |
-| 92 | Second-layer comparisons, required editor/reset properties, details-open layout. Check real nested Call options before repeating the old single-field assumption; retain missing authoritative regression baselines. | Held |
+| 92 | Source VM2ST-116 rechecked read-only 27 October: current consumers are HTTP Browsing, Ping and Video Streaming. Earlier Call-based observations are not verdicts for these consumers. Correct context before checking isolation, second-layer comparisons, editor/reset behaviour and details-open layout. Multi-field end-to-end coverage still needs a genuine consuming layer and measurements; exact regression checks need a versioned expected baseline. | Held; second planned check after 79 |
+
+## Next checks after the 85 and 86 reassessments
+
+The next order is **TEST2-79, then TEST2-92**, one browser tester at a time and at
+most two tickets released. This is the selected plan, not an automatic release:
+the current release configuration remains 83/87, both completed. No Jira
+transition, fresh cycle, worker launch or attempt reset has been performed for
+this preparation. Retain 80 as accepted and 82 as returned for development.
+
+1. **79 — complete the interrupted Download/Upload coverage.** Source VM2ST-104
+   was checked read-only on 27 October. Genuine positive-duration records and
+   earlier zero-duration examples are available as navigation hints. Complete
+   the missing tables, units, null-error presentation, sorting/filtering and
+   loading/error isolation. Re-establish each fixture and capture its own
+   evidence. Verify the records against the genuine responses in the inspected
+   authorised scope; do not claim a complete database or another user's access.
+2. **92 — check the correct legend consumers.** Start with populated HTTP
+   Browsing and Ping, with another layer retained for independent comparisons.
+   Inspect Video Streaming's fixed-category and minimum-only numeric rules
+   where reachable; an empty map does not prove marker classification. Check
+   sibling isolation, draft Cancel/Close, Save leaving the editor open, numeric
+   boundary validation, reset Save versus Cancel, linked-site/cell settings and
+   resize with details open. Preserve real failures. Missing multi-field
+   consumers or versioned baselines remain explicit prerequisites.
+
+Defer 81/88/89 until matching Video Streaming/MS Teams data is identified. Keep
+83's serving/neighbour layout finding and fixtures, 84's Building prerequisite,
+87's filtering/varied-data gaps, and 90/91's product/configuration/access findings
+separate; another blanket retry does not resolve them.
+
+## Remaining prerequisites for 85 and 86
+
+Focused investigation on 27 October started from the launcher in an owned tab
+under the shared browser lease. It inspected the deployed Automobile detail code
+and API Request Audit read-only. No request handler or response simulation was
+installed. The owned tab was closed and its exact lease released; the original
+GIS tab was left open. Audit provenance is retained in
+`docs/qa-corrections/2026-10-27/transfer-prerequisites.json`.
+
+**Criterion 6 — returned average metrics.** The deployed Download/Upload views
+use a fixed summary field list, plus duration and point context. Inspection found
+no Average Signal Strength, Average Signal Quality or Average SNR fields in that
+renderer. This suggests an implementation gap as well as the missing fixture;
+it is not a runtime failure verdict for a condition that has not been exercised.
+The original source still explicitly requires the metrics only when returned.
+Do not calculate replacements from samples or inject a successful response.
+
+Developer input needed: identify the supported response fields and units for
+the three averages, confirm the mapping into the Download/Upload summary and
+their order immediately after the rate, and supply a genuine record returning
+them with a date/time and map area. If that mapping is missing, fix it in V4 and
+deploy it before a focused check. The QA repository does not contain V4's source.
+
+**Criterion 9 — unavailable analysis.** The deployed client has a falsy-response
+no-analysis branch and an empty-sample table message. These are distinct states;
+neither establishes the server's actual unavailable-response contract. API
+Request Audit exposes metadata/status, not response bodies. Its 24-hour filtered
+view had 20 successful analysis calls, but HTTP 200 alone cannot establish any
+response's contents. Prior bounded genuine records were populated.
+
+Developer input needed: provide the authoritative status/body schema for
+unavailable Download and Upload analysis, or a genuine reachable example. Then
+capture the actual state, or use only the already-permitted scoped browser
+simulation with that established contract, and verify genuine recovery/cleanup.
+Do not treat a zero-duration disabled row as evidence for this separate branch.
+No request for these inputs has been sent to anyone.
 
 ## Implementation verification
+
+- 27 October preparation: corrected TEST2-92's current consumer scope from the
+  complete source refinement; added TEST2-79's genuine zero-duration navigation
+  hints and missing-coverage focus. Tester/reviewer briefs now explicitly check
+  named consumers and exclusions for shared-component stories. Current formal
+  outcomes, original results, release configuration and cycle counters were not
+  changed by this preparation.
 
 - 27 October criteria correction for 85/86: original VM2ST-107/108 checked read-only; criterion 1's availability qualifier restored. Human clarification accepts disabled zero-duration rows as no-data, recorded in criterion 7 and each selected testing context. Previous criteria preserved outside cycle archives so the importer can still create cycle-003 archives normally on a later genuine rework transition. Worker briefs always cross-check the complete selected source ticket and honour only scoped, explicit human clarifications. No outcome, cycle, retry counter or queue release changed.
 
