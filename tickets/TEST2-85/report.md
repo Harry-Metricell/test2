@@ -1,5 +1,9 @@
 # TEST2-85 Evidence Review
 
+## Criteria correction 27 October 2026
+
+Criterion 1 now preserves the source ticket's available-information qualifier. The user has also confirmed that a disabled zero-duration row counts as the no-data state; criterion 7 and testing context record that interpretation. The original review and PDF/Word report below predate this clarification and remain unchanged pending reassessment. Average-metric and unavailable-details requirements are unchanged.
+
 - **Ticket:** TEST2-85 — Display Download Point Details
 - **QA status:** Blocked
 - **Overall outcome:** Blocked

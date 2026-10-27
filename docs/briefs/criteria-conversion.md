@@ -12,6 +12,8 @@ If the handoff includes `inputs.testingContext`, read that exact remote file. It
 
 Read the original summary, full description, acceptance criteria, change details, scope, exclusions and relevant notes. Existing criteria.md is input to assess, not proof of quality.
 
+The complete source ticket is authoritative over our generated checklist. Trace every final criterion back to its source requirement, retaining conditions and availability qualifiers; a description's field inventory does not remove an acceptance criterion's available-information qualifier. Correct our conversion errors rather than treating them as product/data blockers. Apply explicit human requirementClarifications in the selected testing context only within their recorded scope, preserving their provenance; never invent a clarification or extend it to another ticket.
+
 Preserve verified testing-context notes and their source links outside the checklist (an HTML comment is acceptable). They identify module/layer scope, not additional requirements. Never turn setup/provenance into a pass/fail criterion or replace the original acceptance criteria with navigation instructions. If context conflicts with the full ticket, report the conflict rather than silently choosing another module.
 
 Each criterion must faithfully express one clear action/state, observable expected result and necessary starting condition, without hidden assumptions. Remove duplicates, split combined actions, recover omitted requirements and replace vague/uncheckable wording with screenshot-testable criteria. Write the improved checklist even if the existing one is poor.

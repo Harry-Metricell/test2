@@ -1,5 +1,5 @@
-// Human-confirmed source provenance survives Jira copy/import and QA cycles.
-// It constrains the module, not the acceptance criteria or test outcome.
+// Human-confirmed source provenance and scoped clarifications survive imports
+// and QA cycles. They constrain interpretation, never prescribe a test outcome.
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';

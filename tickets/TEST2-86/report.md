@@ -1,5 +1,9 @@
 # TEST2-86 Evidence Review
 
+## Criteria correction 27 October 2026
+
+Criterion 1 now preserves the source ticket's available-information qualifier. The user has also confirmed that a disabled zero-duration row counts as the no-data state; criterion 7 and testing context record that interpretation. The original review and PDF/Word report below predate this clarification and remain unchanged pending reassessment. The loading evidence follow-up, average-metric requirement and unavailable-details requirement remain as recorded.
+
 ## Loading recovery evidence repair 27 October 2026
 
 The PDF and editable Word report include a focused follow-up for criterion 8. A scoped delay of the original analysis read shows the standard loading state, followed by genuine HTTP 200, recovered chart and all 28 table rows matching the baseline. The temporary handler was removed with zero pending requests; owned UI state was cleaned up. This repairs the missing table recovery evidence. The original independent review below is preserved, the overall outcome remains Blocked for the other findings, and no cycle or retry count was reset.
