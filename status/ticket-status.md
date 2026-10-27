@@ -9,7 +9,7 @@ Updated: 2026-10-26T16:46:06.418+0000
 | TEST2-84 | READY FOR TESTING | Blocked |  | View Building Details and Floorplans |
 | TEST2-85 | READY FOR TESTING | Blocked |  | Display Download Point Details |
 | TEST2-86 | READY FOR TESTING | Blocked |  | Display Upload Point Details |
-| TEST2-87 | READY FOR TESTING | Awaiting Evidence Review |  | Display Call Point Details |
+| TEST2-87 | READY FOR TESTING | Blocked |  | Display Call Point Details |
 | TEST2-89 | READY FOR TESTING | Blocked |  | Map and inspect MS Teams Call results |
 | TEST2-80 | TESTING IN PROGRESS | Evidence Reviewed |  | Map and inspect Automobile Service results |
 | TEST2-81 | TESTING IN PROGRESS | Blocked |  | Map HTTP Browsing, Ping and Video Streaming point details |
