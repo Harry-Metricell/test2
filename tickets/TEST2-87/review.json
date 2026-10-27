@@ -1,0 +1,325 @@
+{
+  "handoffId": "handoff-TEST2-87-cycle-003-review-attempt-001",
+  "handoffVersion": "TEST2-87:cycle-003:evidence_review:1:scope-d53fd6b12ef1",
+  "ticket": "TEST2-87",
+  "testedModule": "Automobile",
+  "criterionOutcomes": [
+    {
+      "criterion": "When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.",
+      "outcome": "Passed",
+      "reason": "criterion-1-summary-decisive.png and criterion-1-summary-middle.png show the completed Automobile Call summary: Success, duration 70 s, connection time 1888 ms, start 19/08/2026 09:34:39, end 09:35:49, and handset identifier MSISDN 447925375897. Disconnection Cause Code is N/A, consistent with the reported null value; the source requires available fields, not an invented cause or unreturned handset model.",
+      "coverageChecks": [
+        {
+          "assertion": "Available duration is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available test result is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available connection time is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png"
+          ]
+        },
+        {
+          "assertion": "Available start time is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available end time is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available handset identification is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+          ]
+        },
+        {
+          "assertion": "Available disconnection cause is displayed, with null not invented",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
+      "outcome": "Failed",
+      "reason": "criterion-2-detail-open.png and criterion-2-final.png show a Signal strength series across approximately 0–120 seconds containing the 70-second call, with initiation, serving-cell-change and end annotations. The hover in criterion-2-final.png shows 12.72 seconds and -104 only. Service technology is absent from the chart despite 5G NSA appearing in its sample table. Event annotations do not establish the complete returned call-state timeline.",
+      "coverageChecks": [
+        {
+          "assertion": "Timeline displays call state across returned samples",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ],
+          "reason": "Initiation/end annotations are visible; complete call-state coverage is inconclusive."
+        },
+        {
+          "assertion": "Timeline displays service technology",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Timeline displays signal strength",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Timeline covers the test duration",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.",
+      "outcome": "Failed",
+      "reason": "criterion-3-descending-readable.png shows the settled Signal Strength down arrow with -76,-77,-80,-82,-83 dBm; criterion-3-ascending-readable.png and criterion-3-final-readable.png show the up arrow with -111,-111,-109,-107,-107 dBm. These later captures repair the clipped rows in criterion-3-final.png. The readable headers and criterion-3-table-end-no-filters.png show the sample table without filtering controls. Sorting of the remaining columns was not demonstrated.",
+      "coverageChecks": [
+        {
+          "assertion": "Returned samples appear in the table",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-baseline.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-end-no-filters.png"
+          ]
+        },
+        {
+          "assertion": "Signal Strength sorts differing values ascending and descending",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-descending-readable.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png"
+          ]
+        },
+        {
+          "assertion": "All remaining data columns can be sorted",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-baseline.png"
+          ],
+          "reason": "No settled ordering sequence for the remaining columns was captured."
+        },
+        {
+          "assertion": "Table columns expose usable sample filtering",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-end-no-filters.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-final-readable.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.",
+      "outcome": "Failed",
+      "reason": "criterion-4-samples-1.png through criterion-4-samples-4.png and criterion-4-fallback-samples-1.png through criterion-4-fallback-samples-4.png cover the two complete reported datasets (33 and 36 samples), with overlapping readable times and site/cell values matching the supplied reconciliation. The headers are separate Site and Cell, with no required Serving Cell column. criterion-4-final-fallback.png decisively shows CGI 234-10-131567226 at 09:44:40.04, 09:44:42.54 and 09:44:43.953; known rows retain site/cell identities. At 09:44:12.95 both source identifiers are absent and the displayed value is N/A; no CGI was available to invent.",
+      "coverageChecks": [
+        {
+          "assertion": "Every sample in the bounded displayed datasets is reconciled",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-2.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-3.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-4.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-2.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-3.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-4.png"
+          ]
+        },
+        {
+          "assertion": "Known serving site/cell values are presented for their sample identities",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-2.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-3.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-4.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-2.png"
+          ]
+        },
+        {
+          "assertion": "The table has the specified Serving Cell column",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png"
+          ]
+        },
+        {
+          "assertion": "Unknown serving site/cell falls back to that sample CGI when returned",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-3.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-4.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-final-fallback.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.",
+      "outcome": "Unverified",
+      "reason": "criterion-5-before-select-sample.png shows the intended 09:35:17.33 row, cell 105_120_4 and -91 dBm. criterion-5-after-select-sample.png, criterion-5-service-fields.png and criterion-5-final.png show a new Call detail tab with Service State In Service, Service 4G, Data Technology 5G NSA, cell 105_120_4 and site 105. However, the opened tab's timestamp is truncated and no readable detail timestamp identifies the selected instant. The reported sampleTime request supports the tester's account but does not replace direct visible proof of the exact time; that part remains Unverified.",
+      "coverageChecks": [
+        {
+          "assertion": "Selecting a Call sample opens related Service details",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select-sample.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        },
+        {
+          "assertion": "Opened Service details correspond to the selected sample time",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select-sample.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-service-fields.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+          ],
+          "reason": "Selected row time is readable before selection, but the opened detail tab truncates the time and its visible fields do not identify the exact selected instant."
+        }
+      ]
+    },
+    {
+      "criterion": "When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.",
+      "outcome": "Blocked",
+      "reason": "Required zero/null-duration Call fixture was not established in the inspected Automobile dataset. criterion-6-dropped-call-positive-duration.png shows 47.968 s and criterion-6-setup-failure-positive-duration.png / criterion-6-final.png show 11.941 s. Both contain populated analysis and neither exercises the no-measurable-duration prerequisite. Testing this branch could not be completed; these captures do not prove fixture absence elsewhere or a no-data product defect.",
+      "coverageChecks": [
+        {
+          "assertion": "A genuine selected Call point has no measurable duration",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-dropped-call-positive-duration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failure-positive-duration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        },
+        {
+          "assertion": "No measurable duration shows the standard no-data state",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        },
+        {
+          "assertion": "No measurable duration avoids an empty detail view",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.",
+      "outcome": "Blocked",
+      "reason": "SIMULATED UI STATE: This verifies browser-local Automobile Call analysis loading/error UI, not naturally occurring backend failure or the whole dialog becoming unavailable. Supplied request audit scopes the read to POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/call/test-analysis, pointId 132307934, excluding sampleTime requests; unmatched requests fall through. Record A is 132006263 (19/08/2026 09:34:39, 70 s); target B is 132307934 (09/09/2026 10:55:53, 11.941 s). criterion-7-prior-record-before-loading.png and criterion-7-prior-record-before-error.png establish A's distinct analysis before each transition. criterion-7-target-genuine-baseline.png establishes B's real populated response/UI. Holding B's original request produced the visible loading message/progress bar in criterion-7-simulated-loading.png; releasing it recovered genuine HTTP 200/22 samples per audit and the matching B analysis in criterion-7-loading-genuine-recovery.png. A separately injected synthetic HTTP 503 Service Unavailable, application/problem+json {title:'Service Unavailable',status:503}, produced the visible error and Retry in criterion-7-simulated-error.png / criterion-7-final.png. Both transitions retain B's correct summary and exclude A's prior chart/table; a failed call measurement is not being treated as a failed analysis request. The populated response establishes endpoint/record identity only. No actual empty response or authoritative empty-response schema was available, so unavailable/no-data behavior and its incorrect-data exclusion remain Blocked; no empty contract was inferred by removing populated arrays. The supplied cleanup audit states all owned pending requests were resolved, zero remained, and only the exact owned pattern/handler was removed and its absence checked before Retry. criterion-7-error-genuine-recovery.png corroborates recovered B analysis after the reported genuine HTTP 200/22 samples; criterion-7-cleanup.png shows removed UI selections. Handler removal is supported by that explicit audit, not proven by a page screenshot. Map viewport was changed and not restored exactly.",
+      "coverageChecks": [
+        {
+          "assertion": "Loading Call analysis shows standard loading state (simulated delay)",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-loading.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-loading.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-loading-genuine-recovery.png"
+          ]
+        },
+        {
+          "assertion": "Unavailable Call details shows standard no-data state",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-genuine-baseline.png"
+          ]
+        },
+        {
+          "assertion": "Failed analysis loading shows standard error state (synthetic HTTP 503)",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+          ]
+        },
+        {
+          "assertion": "Loading state excludes previous record Call analysis",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-loading.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-loading.png"
+          ]
+        },
+        {
+          "assertion": "Error state excludes previous record Call analysis",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+          ]
+        },
+        {
+          "assertion": "Unavailable/no-data state excludes incorrect Call data",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-genuine-baseline.png"
+          ]
+        },
+        {
+          "assertion": "Original request recovers and owned handler is removed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-loading-genuine-recovery.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-error-genuine-recovery.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-cleanup.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-87\\cycles\\cycle-003\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Independent assessment of cycle-003 attempt-001 Automobile / Call evidence; missing no-duration fixture and empty-response contract prevent complete coverage. Simulation is limited to analysis loading/error UI as disclosed in criterion 7.",
+  "cycleId": "cycle-003"
+}
