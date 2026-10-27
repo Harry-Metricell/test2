@@ -1,5 +1,9 @@
 # TEST2-86 Evidence Review
 
+## Loading recovery evidence repair 27 October 2026
+
+The PDF and editable Word report include a focused follow-up for criterion 8. A scoped delay of the original analysis read shows the standard loading state, followed by genuine HTTP 200, recovered chart and all 28 table rows matching the baseline. The temporary handler was removed with zero pending requests; owned UI state was cleaned up. This repairs the missing table recovery evidence. The original independent review below is preserved, the overall outcome remains Blocked for the other findings, and no cycle or retry count was reset.
+
 - **Ticket:** TEST2-86 — Display Upload Point Details
 - **QA status:** Blocked
 - **Overall outcome:** Blocked
