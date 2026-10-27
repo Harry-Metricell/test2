@@ -1,6 +1,6 @@
 {
   "key": "TEST2-92",
-  "cycleId": "cycle-001",
+  "cycleId": "cycle-002",
   "testingContext": {
     "schema": "v4-qa-testing-context.v1",
     "ticket": "TEST2-92",
@@ -46,13 +46,13 @@
   "summary": "Filter Automobile map points using the legend",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-92",
-    "status": "To Do",
+    "status": "READY FOR TESTING",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:12:15.344+0100",
-    "updated": "2026-10-27T20:46:32.731+0000"
+    "updated": "2026-10-27T20:46:36.155+0000"
   },
   "description": "As a SmartTools user\nI want to use the active layer’s legend to show or hide categories of map points\nSo that I can focus the map on the result categories relevant to my investigation.\nIssue/Change Description:\nProvide an interactive legend for standard Automobile map layers. Render the groups and items defined by the active layer’s selected legend section; categories, thresholds, colours and shapes remain configuration-driven.\nSelecting an interactive legend item toggles the visibility of matching map points. Double-clicking an item isolates that item within its group by hiding the other items. Hidden items are visually muted in the legend and their matching points are not displayed on the map.\nLegend filtering and editing affect only the active layer's presentation. They do not change the underlying data or replace the form-based map filters.\nScope refinement (2026-10-07):\nExtend the shared interactive legend components to render multiple titled groups and reuse them in Automobile. Include legend editing, numeric range management, and linked-site/cell display settings.\nProvide a reusable Colour By selector placed in the layer-owned legend content. Options and selected-field definitions belong to the layer; the generic list renders the supplied groups. A single option appears as a label; multiple options appear as a dropdown. Edit Legend handles only the selected field's groups, with no drafts retained for other fields.\nThis supersedes the earlier exclusions of editing and a metric selector. Current Automobile coverage remains HTTP Browsing, Ping and Video Streaming, each with one defined field. Multiple-field support is a reusable component contract; end-to-end switching requires a consuming layer that supplies those fields and measurements. Service, Download, Upload, Band/frequency lookup, SQL changes and Route Replay are outside this legend change. Definitions remain versioned code configuration, rather than runtime database configuration.\nAcceptance Criteria:\nGiven a standard Automobile map layer is active, when its legend is displayed, then it shows the groups and items from the active selected legend section.\nGiven the user selects an interactive legend item, when the visibility changes, then matching active-layer points are shown or hidden accordingly.\nGiven the user double-clicks an interactive legend item, when isolation is applied, then that item remains visible and the other items in its group are hidden.\nGiven an item is hidden, when the legend and map are displayed, then the item is visually muted and its matching points are not displayed.\nGiven the versioned legend definitions change, when the updated application is deployed, then the legend and map use the same defined groups, thresholds, colours and shapes.\nGiven the user uses legend filtering, when other layers or form-based filters are considered, then they are not changed by that interaction.\nAdditional acceptance criteria:\nGiven a layer supplies multiple titled legend groups, when the shared interactive list renders them, then each group's title, items and configured marker shapes/outlines are shown, and isolation affects only sibling items.\nGiven a layer supplies one Colour By option, when the legend renders, then its field title appears as a label; given multiple options, then a dropdown shows exactly the layer-supplied options.\nGiven a consuming layer supplies multiple fields and their measurements, when Colour By changes, then the displayed groups, map classification, markers and linked-context visibility follow the selected field without changing form filters or fetching the same points again. Do not claim this end-to-end check passed using the current single-field Automobile types.\nGiven Colour By is selected, when the layer state is restored, then that layer's selected field and saved field-specific overrides are restored independently of other layers.\nGiven Edit Legend is opened, when labels, colours or numeric boundaries are edited, then the dialog holds drafts for only the active field; the map changes only after Save, while Cancel or Close discards unsaved drafts. A successful Save refreshes the drafts and leaves the dialog open.\nGiven a valid edit is saved, when the legend and cached map points render, then labels, colours and classification use the same saved definition; other fields and layers retain their saved overrides.\nGiven a numeric generation group is edited, when the user adds or deletes a range, then the small add icon below the group's marker column adds a row, each eligible existing or added row has a delete action, at least one numeric range remains, and editing a value does not reorder Automobile rows.\nGiven a Value field is editable, when a value is empty, non-finite, outside its limits or violates boundary ordering, then an inline error appears immediately and Save is disabled. Numeric fields use number inputs; HTTP Browsing boundaries are limited to 0–10,000, while Ping and Video Streaming use a minimum of zero without an additional maximum cap. Video Streaming's exact categories remain fixed.\nGiven Reset is selected, when defaults are shown, then they remain drafts until Save; saving restores the active field's default labels, colours, boundaries, categories and visibility without resetting other fields or layers.\nGiven linked-site display settings change, when the map updates, then linked sites/cells use the shared Network context and follow visible result categories. Linked cells are disabled when linked sites are off, and the settings persist per layer.\nGiven the legend is displayed with or without a details tab, when the map pane resizes, then the legend remains scrollable and avoids Reset North and the other map controls.\nGiven existing layers use shared legend components, when this change is integrated, then their established markers, visibility, editor actions and default behaviour remain unchanged unless they opt into the new options. Verify Automobile and existing consumers manually.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -86,23 +86,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106648",
-    "importedAt": "2026-10-27T20:46:32.731+0000"
+    "importedAt": "2026-10-27T20:46:36.155+0000"
   },
   "status": {
-    "jiraStatus": "To Do",
-    "workflowState": "Blocked",
-    "qaStatus": "Blocked",
-    "qaOutcome": "Blocked",
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required after retry limit",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 1,
-    "testAttempts": 2,
-    "blockedStage": "reviewed",
-    "updatedAt": "2026-10-19T15:52:17.995Z",
+    "retries": 0,
+    "testAttempts": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-27T20:46:36.155+0000",
     "criteriaVerified": true
   }
 }
