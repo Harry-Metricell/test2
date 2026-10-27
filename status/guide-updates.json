@@ -53,7 +53,7 @@
       "ticket": "TEST2-80",
       "title": "Map and inspect Automobile Service results",
       "affectedSection": "Automobile Service results",
-      "recordPath": "tickets/TEST2-80/guide-update.json"
+      "recordPath": "archive/tickets/TEST2-80/guide-update.json"
     }
   ]
 }
