@@ -4,7 +4,7 @@ User-authorised 23 October 2026. Source VM2ST remains read-only. Existing report
 
 ## Release procedure
 
-Current release, authorised by the user on 26 October 2026: **TEST2-83 and TEST2-87**. The previous 85/86 pair completed with independently reviewed reports and is held pending follow-up. Only 83/87 are released for tester/reviewer work; all other tickets in TEST2-79–92 remain held. Use importer-owned fresh cycles and retain all previous reports/history. The user has accepted TEST2-80 as passed and deferred TEST2-82 pending development work; neither is included in this retest pair.
+Current release, authorised by the user on 27 October 2026: **TEST2-79 and TEST2-92**. The previous 83/87 pair has completed and is held. Only 79/92 are released for tester/reviewer work; all other tickets in TEST2-79–92 remain held. Use importer-owned fresh cycles and retain all previous reports/history. The user has accepted TEST2-80 as passed and deferred TEST2-82 pending development work; neither is included in this retest pair. The 85/86 reassessments remain 8 Passed and 2 Blocked each, pending their recorded developer inputs.
 
 Keep tester-side tickets in Jira **TESTING IN PROGRESS** while held. This status is a holding queue here, not a claim that a worker is active. The imported status must be READY FOR TESTING before a tester/reviewer can run. Only release one or two tickets, and keep config/qa-verification-batch.json aligned. Bundler excludes held testers/reviewers even if someone prematurely marks them Ready. No automatic next-pair release.
 
@@ -21,7 +21,7 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 
 | Ticket | Verification work | Disposition |
 | --- | --- | --- |
-| 79 | Readable complete Download summary; verify absence scope; recover tool interaction errors without false success. Earlier host interruption left unfinished checks. | Held; previous release completed |
+| 79 | Readable complete Download summary; verify absence scope; recover tool interaction errors without false success. Earlier host interruption left unfinished checks. | Released 27 October for an importer-owned fresh cycle |
 | 80 | User accepted the existing Passed review. Preserve it and its reports. | Passed; held from further testing |
 | 81 | Reconcile HTTP/Ping results in a bounded permitted genuine scope; Video Streaming needs genuine data separately. | Held; data work deferred |
 | 82 | Preserve reported loading failure and missing no-data contract. Correct future preservation of pre-existing panels. | Leave To Do; user bug returned |
@@ -34,15 +34,16 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 | 89 | Correct nested type was reached; retain the inspected-scope data blocker without substituting Surveyor. | Held; previous release completed |
 | 90 | Full preservation/isolation comparisons; visible final sorting column/order; exact colours distinct from boundary fixtures. Retain confirmed forbidden-NSA finding and genuine calculation/Service fixture blockers. | Held |
 | 91 | Reviewable expected frequency configuration; complete form and actual device-group condition. Preserve product contradictions separately from missing permissions. | Held |
-| 92 | Source VM2ST-116 rechecked read-only 27 October: current consumers are HTTP Browsing, Ping and Video Streaming. Earlier Call-based observations are not verdicts for these consumers. Correct context before checking isolation, second-layer comparisons, editor/reset behaviour and details-open layout. Multi-field end-to-end coverage still needs a genuine consuming layer and measurements; exact regression checks need a versioned expected baseline. | Held; second planned check after 79 |
+| 92 | Source VM2ST-116 rechecked read-only 27 October: current consumers are HTTP Browsing, Ping and Video Streaming. Earlier Call-based observations are not verdicts for these consumers. Correct context before checking isolation, second-layer comparisons, editor/reset behaviour and details-open layout. Multi-field end-to-end coverage still needs a genuine consuming layer and measurements; exact regression checks need a versioned expected baseline. | Released 27 October for an importer-owned fresh cycle; after 79 |
 
 ## Next checks after the 85 and 86 reassessments
 
-The next order is **TEST2-79, then TEST2-92**, one browser tester at a time and at
-most two tickets released. This is the selected plan, not an automatic release:
-the current release configuration remains 83/87, both completed. No Jira
-transition, fresh cycle, worker launch or attempt reset has been performed for
-this preparation. Retain 80 as accepted and 82 as returned for development.
+The user authorised release of **TEST2-79, then TEST2-92** on 27 October: one
+browser tester at a time and at most two tickets released. Change only these
+TEST2 tickets through To Do to READY FOR TESTING and verify the importer archives
+the earlier cycle before creating the new handoffs. Retain 80 as accepted and
+82 as returned for development. No other ticket is authorised for automatic
+release by this instruction.
 
 1. **79 — complete the interrupted Download/Upload coverage.** Source VM2ST-104
    was checked read-only on 27 October. Genuine positive-duration records and
