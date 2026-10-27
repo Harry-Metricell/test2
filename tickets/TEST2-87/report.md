@@ -1,5 +1,9 @@
 # TEST2-87 Evidence Review
 
+## Follow-up evidence check 27 October 2026
+
+The PDF and editable Word report include a dated follow-up. The built-in expanded detail view proves the selected sample's destination time and matching Service fields, closing the earlier clipped-capture gap. Time, Call State, Site, Cell and Signal Strength sort correctly in both directions across 33 genuine samples. Service, Site Distance and Speed need varied values; sample filtering was not found. The original independent review below remains the cycle record, and the overall outcome remains Blocked pending the remaining product/data work. No new attempt or cycle was created.
+
 - **Ticket:** TEST2-87 — Display Call Point Details
 - **QA status:** Blocked
 - **Overall outcome:** Blocked
