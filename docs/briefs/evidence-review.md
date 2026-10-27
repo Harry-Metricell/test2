@@ -34,6 +34,8 @@ Read verified testing-context notes outside the canonical checklist. Check that 
 
 An automation interaction error or missing comparison baseline is not proof of an application defect. Assess the recovered criterion-owned sequence if available; otherwise use Unverified or Blocked as above. The report displays Unverified as Failed but excludes it from confirmed-defect counts.
 
+For sample-to-detail navigation, require readable selected-row and opened-detail identity/time at the precision the application actually displays. An application tooltip or expanded title captured in the criterion's images is valid visible proof. Do not demand hidden millisecond precision; use the recorded request only as supporting correlation, not as a substitute for absent visible destination evidence. Distinguish a clipped screenshot from a proven wrong destination. For table sorting, assess each required column separately; one sorted column cannot prove all. Missing reachable captures are Unverified, while directly demonstrated missing required controls or incorrect ordering are Failed. Chart series must be shown on the chart, not inferred from separate sample-table values.
+
 Inspect actual visible states, not capture filenames or claimed tool success. An after-action image may still show an unsettled transition. Identify the later criterion-owned image that proves the required state, and note any discrepancy; if none proves it, mark Unverified rather than trusting the filename.
 
 For URL requirements, also require the result's browser-derived browserUrl and verify the required host/destination; page screenshots cannot prove the browser address.

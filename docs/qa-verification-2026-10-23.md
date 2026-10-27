@@ -25,11 +25,11 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 | 80 | User accepted the existing Passed review. Preserve it and its reports. | Passed; held from further testing |
 | 81 | Reconcile HTTP/Ping results in a bounded permitted genuine scope; Video Streaming needs genuine data separately. | Held; data work deferred |
 | 82 | Preserve reported loading failure and missing no-data contract. Correct future preservation of pre-existing panels. | Leave To Do; user bug returned |
-| 83 | Recheck Automobile Service retrieval and detail requirements. Preserve the source's incorrect-data constraint in loading and no-data checks. | Released 26 October; fresh cycle |
+| 83 | Cycle-004 reviewed: 4 Passed, 1 Failed, 4 Blocked. Source VM2ST-105 checked read-only on 27 October: neighbours beneath serving details is explicit. Needs no-neighbour, 3G/5G SA and unavailable-detail fixtures. | Completed; final PDF/Word published; no automatic reset |
 | 84 | Identify actual Automobile Building feature/prerequisite; never substitute Surveyor. | Deferred; unchanged Jira |
 | 85 | Reviewed report and follow-up published; retain outstanding clarification/data requirements. | Held; previous release completed |
 | 86 | Reviewed report published; retain prerequisite blockers and incomplete loading-recovery evidence. | Held; previous release completed |
-| 87 | Recheck Automobile Call retrieval, then the original summary, timeline, table, fallback and related Service behaviour. | Released 26 October; fresh cycle |
+| 87 | Cycle-003 reviewed: 1 Passed, 3 Failed, 2 Blocked, 1 Unverified. Source VM2ST-110 checked read-only on 27 October confirms timeline technology, filterable samples and Serving Cell wording. Repair readable destination-time evidence and remaining-column sort coverage; inspect table header menus before confirming absent filters. Zero-duration and unavailable-detail branches still need fixtures/contracts. | Completed; final PDF/Word published; focused follow-up awaits browser sign-in |
 | 88 | Inspect Automobile's nested MS Teams Call type, not only catalogue text search. | Held |
 | 89 | Correct nested type was reached; retain the inspected-scope data blocker without substituting Surveyor. | Held; previous release completed |
 | 90 | Full preservation/isolation comparisons; visible final sorting column/order; exact colours distinct from boundary fixtures. Retain confirmed forbidden-NSA finding and genuine calculation/Service fixture blockers. | Held |
@@ -37,6 +37,8 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 | 92 | Second-layer comparisons, required editor/reset properties, details-open layout. Check real nested Call options before repeating the old single-field assumption; retain missing authoritative regression baselines. | Held |
 
 ## Implementation verification
+
+- 27 October follow-up: strengthened tester/reviewer instructions for readable sample-to-detail timestamp correlation, complete required-column sorting, table-specific filter discovery and chart-specific proof. Existing outcomes/reports remain unchanged until new evidence is reviewed. Browser investigation reached external Microsoft sign-in before any Automobile interaction; no new test output, attempt or cycle was created, and the investigation's own browser lease was released. Restore the configured test browser's signed-in session before the focused TEST2-87 evidence check; do not rerun the entire batch or manufacture no-data responses.
 
 - New tester/reviewer handoffs declare evidenceCoverageVersion 1. Each criterion carries explicit coverageChecks and criterion-owned evidence; publisher rejects inconsistent declared checks/outcomes.
 - Worker/reviewer briefs require full canonical branch coverage, visible settled captures and consistent each/every standards. No structural validator can prove natural-language checklist completeness or replace independent image review.
