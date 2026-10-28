@@ -1,0 +1,679 @@
+{
+  "handoffId": "handoff-TEST2-79-cycle-005-review-attempt-002",
+  "handoffVersion": "TEST2-79:cycle-005:evidence_review:2:scope-57662d618be1",
+  "ticket": "TEST2-79",
+  "testedModule": "Automobile",
+  "criterionOutcomes": [
+    {
+      "criterion": "With neither layer selected, the map shows no Download or Upload test-result points.",
+      "outcome": "Passed",
+      "reason": "criterion-1-final.png shows a settled unobscured map with no selected layer list and no Download or Upload test-result markers; Automobile is available in the catalogue. This establishes absence in the displayed scope.",
+      "coverageChecks": [
+        {
+          "assertion": "Download result points are absent when neither layer is selected",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-1-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload result points are absent when neither layer is selected",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-1-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "After selecting Download, the map shows selectable points for matching authorised Download results only.",
+      "outcome": "Unverified",
+      "reason": "criterion-2-before-add.png selects Automobile Download for 30 September; criterion-2-after-add.png shows the selected layer and its plotted results. The recorded genuine GET /api/platform/automobile/download/points and POST /api/platform/automobile/download/cluster-details support the before-point/final sequence opening Download 132617095. The seven returned aggregates and their members were not reconciled completely with selectable map presentation; matching-only completeness remains Unverified, not a product defect.",
+      "coverageChecks": [
+        {
+          "assertion": "Selecting Automobile Download loads its matching authorised endpoint",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-2-before-add.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-2-after-add.png"
+          ]
+        },
+        {
+          "assertion": "A genuine Download map result opens corresponding details",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-2-before-point.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Every returned result in the bounded scope is reconciled with selectable presentation and no nonmatching results",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-2-after-add.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-2-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "After selecting Upload, the map shows selectable points for matching authorised Upload results only.",
+      "outcome": "Unverified",
+      "reason": "criterion-3-before-apply.png and after-apply.png show Automobile Upload selection and its settled layer. criterion-3-final.png opens Upload 132610532; repair-before-cluster.png and repair-final.png additionally show a seven-result Upload cluster in the later 90-day Cambridge scope. Recorded /api/platform/automobile/upload/points observations support module provenance. Neither the original day scope nor the later viewport response has complete aggregate/member reconciliation; no complete matching-only/selectability pass is supported.",
+      "coverageChecks": [
+        {
+          "assertion": "Automobile Upload is selectable and requests matching Upload results",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-3-before-apply.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-3-after-apply.png"
+          ]
+        },
+        {
+          "assertion": "Matching Upload results have selectable map/cluster presentation",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-before-cluster.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-final.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-3-final.png"
+          ]
+        },
+        {
+          "assertion": "All authorised response records in the bounded viewport are reconciled and nonmatching results excluded",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Selecting a Download result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate, and Wi-Fi Connected.",
+      "outcome": "Passed",
+      "reason": "criterion-4-repair-summary-top.png, repair-summary-middle.png and repair-final.png show Download 132617095 with MSISDN 447925375897, Service/Data Technology 5G NSA, Serving Cell 70886_120_4, Test Technologies 4G, rate 4.78 Mbps, Wi-Fi Connected No and duration 30.841 s. These overlapping settled summary views follow the recorded point selection and supersede the exploratory sequence.",
+      "coverageChecks": [
+        {
+          "assertion": "Download summary shows readable Data Technology",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-middle.png"
+          ]
+        },
+        {
+          "assertion": "Download summary shows readable MSISDN",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+          ]
+        },
+        {
+          "assertion": "Download summary shows readable Service",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+          ]
+        },
+        {
+          "assertion": "Download summary shows readable Serving Cell",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+          ]
+        },
+        {
+          "assertion": "Download summary shows readable Test Duration",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Download summary shows readable Test Technologies",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+          ]
+        },
+        {
+          "assertion": "Download summary shows readable Download Rate",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+          ]
+        },
+        {
+          "assertion": "Download summary shows readable Wi-Fi Connected",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-middle.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Selecting an Upload result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Upload Rate, and Wi-Fi Connected.",
+      "outcome": "Passed",
+      "reason": "criterion-5-repair-top.png, repair-middle.png and repair-final.png show Upload 132610532 with MSISDN 447925375897, Service/Data Technology 5G NSA, Serving Cell 105_120_4, Test Technologies 4G, rate 0.85 Mbps, Wi-Fi Connected No and duration 9.777 s. The repaired criterion-owned sequence proves the eight required summary fields.",
+      "coverageChecks": [
+        {
+          "assertion": "Upload summary shows readable Data Technology",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-middle.png"
+          ]
+        },
+        {
+          "assertion": "Upload summary shows readable MSISDN",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+          ]
+        },
+        {
+          "assertion": "Upload summary shows readable Service",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+          ]
+        },
+        {
+          "assertion": "Upload summary shows readable Serving Cell",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+          ]
+        },
+        {
+          "assertion": "Upload summary shows readable Test Duration",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload summary shows readable Test Technologies",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+          ]
+        },
+        {
+          "assertion": "Upload summary shows readable Upload Rate",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+          ]
+        },
+        {
+          "assertion": "Upload summary shows readable Wi-Fi Connected",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-middle.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "The Download result details chart plots Signal Strength in dBm and Download Rate in Mbps over time.",
+      "outcome": "Passed",
+      "reason": "criterion-6-repair-final.png shows Download 132617095's plotted Signal strength and Download Rate series, dBm and Mbps axes and Seconds horizontal axis; the visible tooltip confirms samples belong to the plotted chart. Tooltip unit formatting is assessed separately under criterion 10.",
+      "coverageChecks": [
+        {
+          "assertion": "Download chart plots Signal Strength with dBm axis",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Download chart plots applicable rate with Mbps axis",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Download chart plots both series over time and exposes sample tooltip",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "The Upload result details chart plots Signal Strength in dBm and Upload Rate in Mbps over time.",
+      "outcome": "Passed",
+      "reason": "criterion-7-repair-final.png shows Upload 132610532's two plotted series with dBm/Mbps axes over Seconds; criterion-7-tooltip.png also exposes the samples. Both signals are visible on the chart, independently of the measurements table.",
+      "coverageChecks": [
+        {
+          "assertion": "Upload chart plots Signal Strength with dBm axis",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-7-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload chart plots applicable rate with Mbps axis",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-7-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload chart plots both series over time and exposes sample tooltip",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-7-tooltip.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "The Download details table displays MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Passed",
+      "reason": "criterion-8-recheck-left.png and recheck-final.png show the Automobile Download test-results table, whose row entities are tests, for 132616647. Across horizontal scroll states all 12 specified columns and their displayed values are readable, including Start/End and Error labels corresponding to Start Time/End Time and Error Message. Rate is N/A and technologies UNKNOWN for this failed record; this proves column presence, not a successful rate. The separate measurement table is not used as column proof.",
+      "coverageChecks": [
+        {
+          "assertion": "Download table has readable MSISDN column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable Start Time column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable End Time column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable Download Rate column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable Band column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable Serving Cell column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable Service column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable Test Technologies column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable Data Technology column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable Wi-Fi Connected column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable URL column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+          ]
+        },
+        {
+          "assertion": "Download table has readable Error Message column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "The Upload details table displays MSISDN, Start Time, End Time, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Passed",
+      "reason": "criterion-9-repair-left.png and repair-final.png show the Automobile Upload test-results table for 132616657 across horizontal scroll states, including every specified column. Start/End and Error correspond to the source's time/error labels. The failed record displays N/A rate, UNKNOWN technologies and Network Error; no successful rate value is claimed. Measurement-table exploration is excluded.",
+      "coverageChecks": [
+        {
+          "assertion": "Upload table has readable MSISDN column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable Start Time column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable End Time column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable Upload Rate column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable Band column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable Serving Cell column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable Service column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable Test Technologies column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable Data Technology column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable Wi-Fi Connected column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable URL column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Upload table has readable Error Message column and record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).",
+      "outcome": "Failed",
+      "reason": "criterion-10-repair-tooltip.png directly shows Upload 132610532 at 5.06 seconds: Signal strength -106 and Upload Rate 0.620104 lack dBm/Mbps beside the tooltip values. Axes are labelled and summary rate is 0.85 Mbps; repair-final.png shows measurement values with -106 dBm and Mbps. The source requires values formatted with units, so the bounded tooltip contradiction is Failed.",
+      "coverageChecks": [
+        {
+          "assertion": "Summary rate value includes Mbps",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-tooltip.png"
+          ]
+        },
+        {
+          "assertion": "Measurement signal values include dBm",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Measurement rate values include Mbps",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Chart tooltip signal value includes applicable dBm unit",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-tooltip.png"
+          ]
+        },
+        {
+          "assertion": "Chart tooltip rate value includes applicable Mbps unit",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-tooltip.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For a result whose Error Message is null, the details table displays “No Error”.",
+      "outcome": "Passed",
+      "reason": "criterion-11-recheck-table-left.png identifies Upload tests and recheck-table-final.png shows No Error on the six visible rows. The criterion-owned genuine POST /api/platform/automobile/upload/cluster-details HTTP 200 observation records errorMessage:null for these IDs. This proves null-to-No Error presentation for the visible records; the seventh row is below the captured scroll area, so the tester's claim that all seven Error cells were visibly verified is not adopted. The source requires a null-error result, not exhaustive null-error records.",
+      "coverageChecks": [
+        {
+          "assertion": "Genuine returned null error is presented as No Error in the detailed test table",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-table-left.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-table-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.",
+      "outcome": "Unverified",
+      "reason": "criterion-12-recheck-baseline.png establishes the Upload test-results table (test rows, not measurement samples). recheck-rate-ascending.png visibly orders six rows as 14.45, 15.36, 15.51, 15.79, 15.88, 16.50 Mbps; recheck-final.png visibly orders six as 17.21, 16.50, 15.88, 15.79, 15.51, 15.36 Mbps with matching header arrows. Pagination says seven rows, but each capture clips the seventh below the scroll area. Complete seven-row ordering and unchanged membership in each state lack bottom-row captures; Unverified, with no demonstrated incorrect ordering.",
+      "coverageChecks": [
+        {
+          "assertion": "A supported detailed-table column sorts genuine differing values ascending",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png"
+          ]
+        },
+        {
+          "assertion": "The same supported column sorts values descending",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-final.png"
+          ]
+        },
+        {
+          "assertion": "Sorting retains the bounded seven-record dataset",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-baseline.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-final.png"
+          ]
+        },
+        {
+          "assertion": "The complete seven-row target-column order is visible in each settled sorted state",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-baseline.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Filtering a supported Download or Upload details-table column displays rows matching the applied filter.",
+      "outcome": "Passed",
+      "reason": "criterion-13-recheck-before-filter.png establishes the unfiltered Automobile Upload test-results table with seven total test rows. recheck-final.png shows Filter shown tests set to 132005176, exactly that readable matching test remaining and pagination 1-1 of 1. This proves the supported Test ID filtering assertion on the test-results table. Post-clear restoration is described in steps but has no matching capture and is not part of this criterion's required assertion.",
+      "coverageChecks": [
+        {
+          "assertion": "Filtering a supported detailed-table column value retains matching rows only",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-13-recheck-before-filter.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-13-recheck-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Requesting details for a zero-duration test does not open a details dialog.",
+      "outcome": "Passed",
+      "reason": "criterion-14-before-disabled-pointer.png and criterion-14-final.png show the same settled Download test-results row 132616647 with equal displayed Start/End 30/09/2026 12:00:07 and no individual analysis tab after the recorded ordinary pointer activation on its Test ID cell. The genuine cluster-details observation identifies testDurationMs:0 and equal underlying times. This is actual pointer prevention proof, not an inference from aria-disabled. The recorded row inspection found no tabindex/focusable keyboard path; no keyboard requirement is invented. The open aggregate's test list is distinct from individual details.",
+      "coverageChecks": [
+        {
+          "assertion": "The exercised target is a genuine zero-duration test",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-14-before-disabled-pointer.png"
+          ]
+        },
+        {
+          "assertion": "Ordinary pointer activation does not open individual test details or navigate",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-14-before-disabled-pointer.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-14-final.png"
+          ]
+        },
+        {
+          "assertion": "Keyboard activation applicability is checked against the row's exposed focusability",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-14-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "While result details are loading, the interface shows a loading state without stale or misleading detail data.",
+      "outcome": "Passed",
+      "reason": "SIMULATED UI STATE: scoped browser-only loading check on https://o2intelligence-v4-dev.metricell.com, POST /api/platform/automobile/upload/test-analysis, JSON pointId 132004961; unmatched requests fell through. The criterion's genuine HTTP 200 observation and genuine-target-chart/table.png establish the actual target response (two samples, -90 dBm, rates 0 and 12.109912 Mbps); no replacement response or empty-response contract was used. valid-baseline-chart/table.png and distinct-baseline-before-delay.png establish distinct record 132005176 with three -91 dBm samples. After normal target selection, the original read was held behind a release gate; criterion-15-final.png shows target 132004961 and Loading Automobile test analysis without the baseline chart or sample table. Current target summary legitimately remains. Finally release of the original read and exact owned-handler removal are recorded; recovery-chart.png and recovery-table.png visibly restore the genuine target chart and both rows (0.00/12.11 Mbps), and test-created tabs were closed. Passed only for this selected analysis loading UI; not proof of a naturally slow backend or every possible dialog request.",
+      "coverageChecks": [
+        {
+          "assertion": "Loading the selected record's analysis shows a visible loading state",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-15-final.png"
+          ]
+        },
+        {
+          "assertion": "Selected loading view does not present prior distinct record's chart or samples",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-15-valid-baseline-chart.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-15-distinct-baseline-before-delay.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-15-final.png"
+          ]
+        },
+        {
+          "assertion": "Releasing the original genuine read recovers its chart",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-15-genuine-target-chart.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-15-recovery-chart.png"
+          ]
+        },
+        {
+          "assertion": "Releasing the read recovers the complete two-row genuine sample table",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-15-genuine-target-table.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-15-recovery-table.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "If result details fail to load, the interface shows an error state without stale or misleading detail data.",
+      "outcome": "Passed",
+      "reason": "SIMULATED UI STATE: scoped browser-only failure check on https://o2intelligence-v4-dev.metricell.com, POST /api/platform/automobile/upload/test-analysis, JSON pointId 132004961; unmatched traffic fell through. The criterion-owned genuine HTTP 200 observation plus criterion-16-genuine-target-chart/table.png establish the real two-sample target before injection. repair-initial.png is the settled repaired start; repair-distinct-baseline.png identifies different valid baseline 132005176. Normal target selection received one synthetic HTTP 503 Service Unavailable, text/plain Service Unavailable, using standard HTTP failure semantics rather than an invented project response body/empty-data contract. repair-final.png shows target 132004961's genuine summary and Unable to load Automobile test analysis with Retry; the previous record's chart/sample table is absent from selected analysis. Exact owned-handler removal in finally and handlerRemoved:true are recorded; normal Retry recovers the genuine chart and complete two-row table in repair-recovery-chart/table.png, matching this criterion's genuine-target captures. Test-created tabs closed; cleanup-restored-configuration/layer.png show restored Upload/date scope. Original map viewport was not restored. Passed for the explicit selected-analysis error UI only, not an observed backend incident or every detail request.",
+      "coverageChecks": [
+        {
+          "assertion": "A selected detail-analysis read failure shows a visible error state",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "Error state excludes stale chart and sample data from distinct baseline",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-distinct-baseline.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-final.png"
+          ]
+        },
+        {
+          "assertion": "After exact handler removal normal Retry recovers genuine target chart",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-16-genuine-target-chart.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-recovery-chart.png"
+          ]
+        },
+        {
+          "assertion": "After Retry the complete genuine two-sample table recovers",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-002/criterion-16-genuine-target-table.png",
+            "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-recovery-table.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "overallOutcome": "Failed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-79\\cycles\\cycle-005\\screenshots\\attempt-002",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Independent review against the complete selected source and human-confirmed Automobile scope. All 97 referenced PNGs exist and are non-empty in cycle-005 attempt-002. Matching-map scope and complete sorted-row evidence remain incomplete; tooltip units directly contradict the source. Simulation disclosures, genuine recovery and the unrestored viewport limitation are retained.",
+  "cycleId": "cycle-005"
+}

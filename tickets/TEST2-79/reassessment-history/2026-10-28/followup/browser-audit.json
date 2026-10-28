@@ -1,0 +1,88 @@
+{
+  "ticket": "TEST2-79",
+  "cycleId": "cycle-005",
+  "sourceAttempt": 2,
+  "date": "2026-10-28",
+  "method": "Focused manual follow-up using ordinary UI filters, normal map/row activation and genuine UI-triggered read responses. No new automated attempt, cycle or backend write.",
+  "limitations": "Scoped comparison with the signed-in account's genuine responses; not a global database or other-account authorisation audit. Tooltip-units failure retained.",
+  "scope": "Normal date, handset and cell filters in the recorded viewport; exact requests retained privately. See criterion-owned configuration screenshots.",
+  "download": {
+    "httpStatus": 200,
+    "aggregateCount": 1,
+    "memberCount": 1,
+    "matchingMemberId": "132617095",
+    "matchingDetailsOpened": true
+  },
+  "upload": {
+    "aggregateCount": 1,
+    "memberCount": 7,
+    "allMembersCompared": true,
+    "allMemberDetailsOpenedAndSettled": true
+  },
+  "sorting": {
+    "dateFrom": "2026-08-19T00:00",
+    "dateTo": "2026-08-20T00:00",
+    "ascending": [
+      {
+        "id": "132003951",
+        "rate": "14.45 Mbps"
+      },
+      {
+        "id": "132004444",
+        "rate": "15.36 Mbps"
+      },
+      {
+        "id": "132004133",
+        "rate": "15.51 Mbps"
+      },
+      {
+        "id": "132005176",
+        "rate": "15.79 Mbps"
+      },
+      {
+        "id": "132003373",
+        "rate": "15.88 Mbps"
+      },
+      {
+        "id": "132003714",
+        "rate": "16.50 Mbps"
+      },
+      {
+        "id": "132004961",
+        "rate": "17.21 Mbps"
+      }
+    ],
+    "descending": [
+      {
+        "id": "132004961",
+        "rate": "17.21 Mbps"
+      },
+      {
+        "id": "132003714",
+        "rate": "16.50 Mbps"
+      },
+      {
+        "id": "132003373",
+        "rate": "15.88 Mbps"
+      },
+      {
+        "id": "132005176",
+        "rate": "15.79 Mbps"
+      },
+      {
+        "id": "132004133",
+        "rate": "15.51 Mbps"
+      },
+      {
+        "id": "132004444",
+        "rate": "15.36 Mbps"
+      },
+      {
+        "id": "132003951",
+        "rate": "14.45 Mbps"
+      }
+    ]
+  },
+  "rawAuditPublished": false,
+  "cleanup": "Closed owned detail tabs and restored the prior recorded Upload configuration and viewport; no backend mutation or active interception. Owned browser lease released."
+}

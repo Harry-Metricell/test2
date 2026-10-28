@@ -1,0 +1,21 @@
+{
+  "kind": "manual-focused-follow-up",
+  "date": "2026-10-28",
+  "cycleId": "cycle-005",
+  "historyAttempt": 2,
+  "changedOutcomeCriteria": [
+    2,
+    3,
+    12
+  ],
+  "newAutomatedAttempt": false,
+  "newBrowserEvidence": true,
+  "newIndependentWorker": false,
+  "previousReview": "reassessment-history/2026-10-28/followup/previous-review.json",
+  "reportInputs": "reassessment-history/2026-10-28/followup/report-inputs.json",
+  "browserAudit": "reassessment-history/2026-10-28/followup/browser-audit.json",
+  "sourceResultsSha256": "5040a63a90546fe02145f0da6ae67f2ca2f5b3cb98fd6bac45546e50dbc47ef1",
+  "preservesOriginalResults": true,
+  "publicationAuthority": "Harry explicitly approved publishing TEST2-79–92 reports including newly captured V4 screenshots on 21 October 2026.",
+  "browserAuditScope": "Public summary; raw request payload retained privately."
+}

@@ -1,6 +1,4 @@
 {
-  "handoffId": "handoff-TEST2-79-cycle-005-review-attempt-002",
-  "handoffVersion": "TEST2-79:cycle-005:evidence_review:2:scope-57662d618be1",
   "ticket": "TEST2-79",
   "testedModule": "Automobile",
   "criterionOutcomes": [
@@ -27,62 +25,104 @@
     },
     {
       "criterion": "After selecting Download, the map shows selectable points for matching authorised Download results only.",
-      "outcome": "Unverified",
-      "reason": "criterion-2-before-add.png selects Automobile Download for 30 September; criterion-2-after-add.png shows the selected layer and its plotted results. The recorded genuine GET /api/platform/automobile/download/points and POST /api/platform/automobile/download/cluster-details support the before-point/final sequence opening Download 132617095. The seven returned aggregates and their members were not reconciled completely with selectable map presentation; matching-only completeness remains Unverified, not a product defect.",
+      "outcome": "Passed",
+      "reason": "Focused 28 October check: the applied 30 September day, handset and cell filters returned one Download aggregate containing one record, 132617095. The entire bounded response was reconciled with the single selectable map result; normal activation opened the matching populated details. No nonmatching result was observed in that filtered viewport. This is scoped verification, not a global database or other-account permissions audit.",
       "coverageChecks": [
         {
-          "assertion": "Selecting Automobile Download loads its matching authorised endpoint",
+          "assertion": "Applied Download date, handset and cell filters request the matching genuine endpoint",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-2-before-add.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-2-after-add.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-2-followup-configuration.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-2-followup-map.png"
           ]
         },
         {
-          "assertion": "A genuine Download map result opens corresponding details",
+          "assertion": "Every aggregate and member returned in the recorded bounded scope is reconciled with selectable matching presentation",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-2-before-point.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-2-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-2-followup-configuration.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-2-followup-map.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-2-followup-final.png"
           ]
         },
         {
-          "assertion": "Every returned result in the bounded scope is reconciled with selectable presentation and no nonmatching results",
-          "outcome": "Unverified",
+          "assertion": "The selected result opens corresponding Download details without substituting another layer",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-2-after-add.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-2-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-2-followup-map.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-2-followup-final.png"
           ]
         }
       ]
     },
     {
       "criterion": "After selecting Upload, the map shows selectable points for matching authorised Upload results only.",
-      "outcome": "Unverified",
-      "reason": "criterion-3-before-apply.png and after-apply.png show Automobile Upload selection and its settled layer. criterion-3-final.png opens Upload 132610532; repair-before-cluster.png and repair-final.png additionally show a seven-result Upload cluster in the later 90-day Cambridge scope. Recorded /api/platform/automobile/upload/points observations support module provenance. Neither the original day scope nor the later viewport response has complete aggregate/member reconciliation; no complete matching-only/selectability pass is supported.",
+      "outcome": "Passed",
+      "reason": "Focused 28 October check: the applied 19 August day, handset and cell filters returned one Upload aggregate containing seven records. Both overlapping member-list captures show the complete set. Every returned member was selected normally; all seven opened matching populated summaries and settled without an analysis error. No nonmatching result was observed in this bounded scope. The complete identity comparison is retained in browser-audit.json.",
       "coverageChecks": [
         {
-          "assertion": "Automobile Upload is selectable and requests matching Upload results",
+          "assertion": "Applied Upload date, handset and cell filters request the genuine Upload endpoint",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-3-before-apply.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-3-after-apply.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-configuration.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-map.png"
           ]
         },
         {
-          "assertion": "Matching Upload results have selectable map/cluster presentation",
+          "assertion": "All seven returned members match the active date, handset and cell filters and complete displayed membership",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-before-cluster.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-final.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-3-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-members-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-members-bottom.png"
           ]
         },
         {
-          "assertion": "All authorised response records in the bounded viewport are reconciled and nonmatching results excluded",
-          "outcome": "Unverified",
+          "assertion": "Returned Upload member 132005176 is selectable and opens its matching settled details",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-member-132005176.png"
+          ]
+        },
+        {
+          "assertion": "Returned Upload member 132004961 is selectable and opens its matching settled details",
+          "outcome": "Passed",
+          "evidence": [
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-member-132004961.png"
+          ]
+        },
+        {
+          "assertion": "Returned Upload member 132004444 is selectable and opens its matching settled details",
+          "outcome": "Passed",
+          "evidence": [
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-member-132004444.png"
+          ]
+        },
+        {
+          "assertion": "Returned Upload member 132004133 is selectable and opens its matching settled details",
+          "outcome": "Passed",
+          "evidence": [
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-member-132004133.png"
+          ]
+        },
+        {
+          "assertion": "Returned Upload member 132003951 is selectable and opens its matching settled details",
+          "outcome": "Passed",
+          "evidence": [
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-member-132003951.png"
+          ]
+        },
+        {
+          "assertion": "Returned Upload member 132003714 is selectable and opens its matching settled details",
+          "outcome": "Passed",
+          "evidence": [
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-member-132003714.png"
+          ]
+        },
+        {
+          "assertion": "Returned Upload member 132003373 is selectable and opens its matching settled details",
+          "outcome": "Passed",
+          "evidence": [
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-member-132003373.png"
           ]
         }
       ]
@@ -510,39 +550,45 @@
     },
     {
       "criterion": "Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.",
-      "outcome": "Unverified",
-      "reason": "criterion-12-recheck-baseline.png establishes the Upload test-results table (test rows, not measurement samples). recheck-rate-ascending.png visibly orders six rows as 14.45, 15.36, 15.51, 15.79, 15.88, 16.50 Mbps; recheck-final.png visibly orders six as 17.21, 16.50, 15.88, 15.79, 15.51, 15.36 Mbps with matching header arrows. Pagination says seven rows, but each capture clips the seventh below the scroll area. Complete seven-row ordering and unchanged membership in each state lack bottom-row captures; Unverified, with no demonstrated incorrect ordering.",
+      "outcome": "Passed",
+      "reason": "The complete seven-record Upload test-results table was checked in both directions. Overlapping top/bottom captures retain the Upload Rate header and collectively show every row. Ascending rates are 14.45, 15.36, 15.51, 15.79, 15.88, 16.50 and 17.21 Mbps; descending reverses that order. Both states preserve exactly the seven IDs returned by the genuine cluster response. The earlier clipped-row evidence gap is resolved.",
       "coverageChecks": [
         {
-          "assertion": "A supported detailed-table column sorts genuine differing values ascending",
+          "assertion": "Upload Rate sorts all seven differing values ascending",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-ascending-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-ascending-bottom.png"
           ]
         },
         {
-          "assertion": "The same supported column sorts values descending",
+          "assertion": "Upload Rate sorts all seven values descending",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-descending-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-descending-bottom.png"
           ]
         },
         {
-          "assertion": "Sorting retains the bounded seven-record dataset",
-          "outcome": "Unverified",
+          "assertion": "Both sorted states retain the same complete seven-record membership",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-baseline.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-baseline-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-baseline-bottom.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-ascending-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-ascending-bottom.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-descending-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-descending-bottom.png"
           ]
         },
         {
-          "assertion": "The complete seven-row target-column order is visible in each settled sorted state",
-          "outcome": "Unverified",
+          "assertion": "Every sorted row is readable across overlapping captures with the active column header",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-baseline.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png",
-            "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-ascending-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-ascending-bottom.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-descending-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-12-followup-descending-bottom.png"
           ]
         }
       ]
@@ -670,10 +716,31 @@
     }
   ],
   "overallOutcome": "Failed",
-  "reportPath": "",
+  "reportPath": "tickets/TEST2-79/report.pdf",
   "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-79\\cycles\\cycle-005\\screenshots\\attempt-002",
   "qaStatus": "Evidence Reviewed",
   "noOp": false,
-  "reason": "Independent review against the complete selected source and human-confirmed Automobile scope. All 97 referenced PNGs exist and are non-empty in cycle-005 attempt-002. Matching-map scope and complete sorted-row evidence remain incomplete; tooltip units directly contradict the source. Simulation disclosures, genuine recovery and the unrestored viewport limitation are retained.",
-  "cycleId": "cycle-005"
+  "reason": "15 criteria Passed; criterion 10 remains Failed because the recorded Upload chart tooltip omits the required dBm/Mbps units. Focused manual follow-up on 28 October resolved Download/Upload matching-record reconciliation and complete seven-row sorting proof in explicitly recorded bounded UI scopes. Original attempt/history and controlled loading/error simulation disclosures are retained. No new automated attempt or retry cycle was created.",
+  "cycleId": "cycle-005",
+  "sourceHandoffId": "handoff-TEST2-79-cycle-005-review-attempt-002",
+  "sourceHandoffVersion": "TEST2-79:cycle-005:evidence_review:2:scope-57662d618be1",
+  "historyAttempt": 2,
+  "reassessment": {
+    "kind": "manual-focused-follow-up",
+    "date": "2026-10-28",
+    "cycleId": "cycle-005",
+    "historyAttempt": 2,
+    "changedOutcomeCriteria": [
+      2,
+      3,
+      12
+    ],
+    "newAutomatedAttempt": false,
+    "newBrowserEvidence": true,
+    "newIndependentWorker": false,
+    "previousReview": "reassessment-history/2026-10-28/followup/previous-review.json",
+    "reportInputs": "reassessment-history/2026-10-28/followup/report-inputs.json",
+    "browserAudit": "reassessment-history/2026-10-28/followup/browser-audit.json",
+    "sourceResultsSha256": "5040a63a90546fe02145f0da6ae67f2ca2f5b3cb98fd6bac45546e50dbc47ef1"
+  }
 }
