@@ -38,6 +38,20 @@
         "module": "Surveyor",
         "reason": "Not Automobile acceptance evidence; preserve the historical report and images, but do not reuse its verdict."
       }
+    ],
+    "requirementClarifications": [
+      {
+        "authority": "human",
+        "confirmedAt": "2026-10-28",
+        "criterion": 2,
+        "clarification": "Harry accepts the demonstrated side-by-side placement of the distinct neighbour sections."
+      },
+      {
+        "authority": "human",
+        "confirmedAt": "2026-10-28",
+        "criterion": 4,
+        "clarification": "Harry accepts the demonstrated selection-table sorting/filtering as meeting this criterion. Preserve this scoped human acceptance; do not infer execution of another table."
+      }
     ]
   },
   "id": "106639",
