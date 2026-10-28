@@ -4,7 +4,7 @@ Updated: 2026-10-28T10:48:56.747Z
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
-| TEST2-79 | READY FOR TESTING | Awaiting Evidence Review | Retry 1/1 | Map and inspect Automobile Download and Upload results |
+| TEST2-79 | READY FOR TESTING | Blocked | Retry 1/1 | Map and inspect Automobile Download and Upload results |
 | TEST2-83 | READY FOR TESTING | Blocked |  | Display Service Point Details |
 | TEST2-84 | READY FOR TESTING | Blocked |  | View Building Details and Floorplans |
 | TEST2-87 | READY FOR TESTING | Blocked |  | Display Call Point Details |
