@@ -1,0 +1,15 @@
+{
+  "kind": "manual-focused-follow-up",
+  "date": "2026-10-28",
+  "cycleId": "cycle-004",
+  "historyAttempt": 1,
+  "newAutomatedAttempt": false,
+  "newBrowserEvidence": true,
+  "newIndependentWorker": false,
+  "authority": "Harry requested report refresh and explicitly accepted criteria 2 and 4.",
+  "preservesOriginalResults": true,
+  "previousReview": "reassessment-history/2026-10-28/followup/previous-review.json",
+  "reportInputs": "reassessment-history/2026-10-28/followup/report-inputs.json",
+  "publicationAuthority": "Harry explicitly approved the corrected PDF, Word report, new screenshots and supporting review evidence on 28 October 2026.",
+  "sourceResultsSha256": "96845cb8d6da86fde06ac95bc4e05573439ec930970baff16dc627ef169244d8"
+}

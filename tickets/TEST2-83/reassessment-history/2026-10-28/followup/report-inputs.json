@@ -1,0 +1,486 @@
+[
+  {
+    "criterion": "Given a Service point's details have loaded in the shared point-detail dialog, the standard detail presentation shows the returned serving-cell information.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-280.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-540.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-1-final-complete-serving.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher and captured the settled launcher; original GIS selected-layer list and detail tabs were empty.",
+      "Opened GIS > Automobile; inspected Test type options, selected Service and added the layer with default 29 July–27 October 2026 dates, all technologies and no handset/network filters.",
+      "Selected the map marker near 52.20 N, 0.30 E and opened the first of six returned cluster records, ID 131928136.",
+      "Compared POST /api/platform/automobile/service/cluster-details HTTP 200, serviceDetails for ID 131928136, with the selected detail presentation. Captured overlapping top, middle and bottom serving rows.",
+      "Verified CellID 2592_130_4, generation 4, RSRP -116 dBm, band 800 DD, PLMN 23410, site 2592, TAC 432, CI 153973122, PCI 468, EARFCN 6400, RSRQ -20 and SINR -6; observed supplied coordinates, timestamps and In Service state. Null BSIC displays N/A.",
+      "Recorded the final GIS URL, inspected saved decisive images, then closed test tabs and removed the owned layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Returned serving-cell information matched the loaded 4G point in the standard selected Service presentation.",
+    "coverageChecks": [
+      {
+        "assertion": "Loaded Service point 131928136 is identified in the shared detail presentation",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-280.png"
+        ]
+      },
+      {
+        "assertion": "Returned serving-cell identity, site and location fields are displayed",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-280.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-540.png"
+        ]
+      },
+      {
+        "assertion": "Returned serving-cell radio and KPI values are displayed without mismatches",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-540.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the loaded Service point details include neighbour-cell data, each returned neighbour appears in its own distinct section beneath the serving-cell information.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-0.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-280.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-560.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-840.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-1000.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Started independently at the settled launcher; opened GIS > Automobile > Service using default dates/all technologies and captured configuration transitions.",
+      "Selected the same geographic cluster and opened point 131928136. Its own POST /api/platform/automobile/service/cluster-details HTTP 200 returned seven Neighbours.",
+      "Bounded comparison: exactly the seven neighbours of point 131928136 at 10 August 2026 12:32:47.223 UTC, latitude 52.20127, longitude 0.30414; compared all seven using EARFCN/PCI plus RSRP/RSRQ tuples.",
+      "Scrolled the neighbour pane in overlapping 0, 280, 560, 840 and bottom positions. All seven distinct Cell Neighbour sections and returned values matched.",
+      "Observed at 1440 × 900 CSS pixels: the serving details occupy the left column and neighbour sections occupy a separate right column, rather than appearing beneath the serving-cell information.",
+      "Recorded the final GIS URL and inspected saved captures. Cleanup initially timed out after closing the cluster tab; inspected current UI, then closed the remaining owned detail tab and removed the layer before restarting criterion 3."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "All seven returned neighbours are shown in distinct sections. Harry explicitly accepted the demonstrated side-by-side placement on 28 October 2026; the earlier placement-only failure is withdrawn under that scoped human acceptance.",
+    "coverageChecks": [
+      {
+        "assertion": "Neighbour 1 is a distinct section with matching EARFCN 6400, PCI 343, RSRP -115 and RSRQ -19",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-0.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-280.png"
+        ]
+      },
+      {
+        "assertion": "Neighbour 2 is a distinct section with matching EARFCN 3725, PCI 22, RSRP -115 and RSRQ -14",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-0.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-280.png"
+        ]
+      },
+      {
+        "assertion": "Neighbour 3 is a distinct section with matching EARFCN 3725, PCI 343, RSRP -119 and RSRQ -18",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-280.png"
+        ]
+      },
+      {
+        "assertion": "Neighbour 4 is a distinct section with matching EARFCN 3725, PCI 468, RSRP -119 and RSRQ -17",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-560.png"
+        ]
+      },
+      {
+        "assertion": "Neighbour 5 is a distinct section with matching EARFCN 347, PCI 343, RSRP -113 and RSRQ -16",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-560.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-840.png"
+        ]
+      },
+      {
+        "assertion": "Neighbour 6 is a distinct section with matching EARFCN 347, PCI 22, RSRP -114 and RSRQ -17",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-840.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-1000.png"
+        ]
+      },
+      {
+        "assertion": "Neighbour 7 is a distinct section with matching EARFCN 347, PCI 397, RSRP -116 and RSRQ -17",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-840.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-1000.png"
+        ]
+      },
+      {
+        "assertion": "Distinct neighbour sections use the side-by-side placement explicitly accepted by Harry on 28 October 2026",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-0.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the loaded Service point details contain no neighbour-cell data, serving-cell information remains visible and no empty neighbour section appears.",
+    "outcome": "Passed",
+    "evidence": [
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-selected-row.png",
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-final.png",
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-serving.png"
+    ],
+    "steps_taken": [
+      "28 October focused follow-up: started at the launcher, opened GIS and configured Automobile Service with only no-service selected in the visible 90-day date range.",
+      "Widened the map beyond Cambridge, opened the Bath-area cluster and selected 19/09/2026 16:20:00 normally. The genuine cluster-details request returned HTTP 200.",
+      "Verified selected test 132467975, serving cell 504712_130_4 and the no-neighbours message; captured overlapping serving fields and selected-row identity.",
+      "Closed owned detail tabs and removed the temporary Service layer after the checks. No simulated response or backend write was used."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "criterion-3-followup-selected-row.png, criterion-3-followup-final.png and criterion-3-followup-serving.png show the genuine Service record opened successfully with serving cell 504712_130_4 and serving-site information retained. With no neighbours, the right panel says \"No cell neighbours are available for this point.\" No empty neighbour field block is rendered; the informational message is retained as the actual observed state.",
+    "coverageChecks": [
+      {
+        "assertion": "Serving information remains visible when the selected genuine record has no neighbours",
+        "outcome": "Passed",
+        "evidence": [
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-final.png",
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-serving.png"
+        ]
+      },
+      {
+        "assertion": "No empty neighbour field block is displayed; an explicit no-neighbours message is shown",
+        "outcome": "Passed",
+        "evidence": [
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-final.png",
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-serving.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given displayed Service point detail rows are available, sorting the rows changes their visible order according to the selected sort, and filtering them shows only rows matching the selected filter.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-ascending.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-descending.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Started at the settled launcher; opened GIS > Automobile > Service, default 29 July–27 October 2026 dates and all technologies.",
+      "Selected the map cluster near 52.20 N, 0.30 E. Bounded dataset: six Service rows with test times 10 August 2026 13:32:47, 13:32:42, 13:32:37, 08:22:26, 08:22:21 and 08:22:16 (browser local presentation). Baseline shows all six.",
+      "Clicked Signal ascending: observed -116, -115, -115, -113, -112, -110 dBm with an upward sort indicator.",
+      "Clicked Signal descending: observed -110, -112, -113, -115, -115, -116 dBm with downward indicator and DOM aria-sort descending.",
+      "Filtered shown tests by 900 GSM. Exactly three expected rows remained: 08:22:21 (-113), 08:22:26 (-115), 08:22:16 (-115); all have Band 900 GSM. All 800 DD rows disappeared.",
+      "Captured final filtered table, recorded its GIS URL, inspected baseline/sorted/final images, cleared the filter, closed the owned detail tab and removed the layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "The existing captures demonstrate selection-table sorting and filtering. Harry explicitly accepted that demonstrated scope as satisfying criterion 4 on 28 October 2026. This is a scoped human acceptance, not a claim that a different detail table was exercised.",
+    "coverageChecks": [
+      {
+        "assertion": "Ascending Signal sort changes visible row order to numeric ascending with a visible indicator",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-ascending.png"
+        ]
+      },
+      {
+        "assertion": "Descending Signal sort changes visible row order to numeric descending with a visible indicator",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-descending.png"
+        ]
+      },
+      {
+        "assertion": "Filtering 900 GSM displays all and only the three matching rows",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-4-final.png"
+        ]
+      },
+      {
+        "assertion": "Harry accepted the demonstrated selection-table sorting/filtering as meeting criterion 4 on 28 October 2026",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-ascending.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-descending.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-4-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given a Service point's reported radio generation is 2G, 3G, 4G, 5G NSA, or 5G SA, the visible KPI names are appropriate to that generation.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-5-2g-kpis-top.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-5-2g-kpis-bottom.png",
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-3g-top.png",
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-3g-kpis.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-5-4g-top.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-5-4g-kpis.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-5-nsa-kpis-top.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-5-nsa-kpis-bottom.png",
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-sa-top.png",
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-sa-kpis.png"
+    ],
+    "steps_taken": [
+      "Retained the reviewed 27 October 2G, 4G and NSA evidence without changing its history.",
+      "28 October follow-up began at the launcher. Opened Automobile Service and independently selected the genuine 24/08/2026 11:16:54 SA record near London and 05/10/2026 19:48:04 3G record near Gloucester.",
+      "Captured the upper Service/RSRP or RSCP fields and lower generation-appropriate KPI labels. Did not fabricate N/A values or reinterpret Data Technology as Service generation.",
+      "No interception was used; owned detail tabs and temporary layer were removed after the check."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "The earlier evidence covers 2G, 4G and 5G NSA. Fresh 28 October captures add genuine 3G and 5G SA details: 3G uses RSCP, PSC, UARFCN and Ec/N0; SA uses RSRP, RSRQ, SINR, PCI and EARFCN. Some 3G values are N/A. Service generation and Data Technology are separate displayed fields; the latter reads 4G on the 3G record and 2G on the SA record. This check verifies generation-specific KPI labels, not that those separate source fields agree.",
+    "coverageChecks": [
+      {
+        "assertion": "2G point labels use RxLevel, RxQual, ARFCN and BSIC for reported generation 2",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-5-2g-kpis-top.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-5-2g-kpis-bottom.png"
+        ]
+      },
+      {
+        "assertion": "3G Service generation 3 displays RSCP, PSC, UARFCN and Ec/N0 labels; unavailable source values remain N/A",
+        "outcome": "Passed",
+        "evidence": [
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-3g-top.png",
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-3g-kpis.png"
+        ]
+      },
+      {
+        "assertion": "4G point labels use RSRP, RSRQ, EARFCN and SINR for reported generation 4",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-5-4g-top.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-5-4g-kpis.png"
+        ]
+      },
+      {
+        "assertion": "5G NSA labels are appropriate to the reported NSA/LTE anchor values",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-5-nsa-kpis-top.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-5-nsa-kpis-bottom.png"
+        ]
+      },
+      {
+        "assertion": "5G SA Service generation 5 displays RSRP, RSRQ, SINR, PCI and EARFCN labels",
+        "outcome": "Passed",
+        "evidence": [
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-sa-top.png",
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-sa-kpis.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given 5G SA is selected and the user opens a Service point in the shared point-detail dialog, the Service point detail presentation loads without an error state.",
+    "outcome": "Passed",
+    "evidence": [
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-sa-configuration.png",
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-selected-row.png",
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-final.png",
+      "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-identity.png"
+    ],
+    "steps_taken": [
+      "28 October focused follow-up started at the launcher, opened GIS, added Automobile Service and selected only 5G SA.",
+      "Widened the map beyond Cambridge and opened the London-area cluster. Captured the selected 24/08/2026 11:16:54 row before normal activation.",
+      "Observed loading settle into populated Service details for test 132095965 and captured its upper and lower fields. No simulation was used.",
+      "Closed only owned detail tabs and removed the temporary layer during cleanup."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "criterion-6-followup-sa-configuration.png and criterion-6-followup-selected-row.png establish the SA-only selection. criterion-6-followup-final.png and criterion-6-followup-identity.png show the genuine London-area record dated 24/08/2026 11:16:54 opened successfully. The matching detail shows Service 5G SA, Generation 5, serving cell 1307_13702_5 and radio values, with no loading error. The former Cambridge-only missing-fixture blocker is resolved.",
+    "coverageChecks": [
+      {
+        "assertion": "5G SA is the selected Automobile Service generation",
+        "outcome": "Passed",
+        "evidence": [
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-sa-configuration.png"
+        ]
+      },
+      {
+        "assertion": "The selected SA record opens its matching populated details without an error state",
+        "outcome": "Passed",
+        "evidence": [
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-selected-row.png",
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-final.png",
+          "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-identity.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Service point details are loading, the detail presentation shows a loading state without displaying incorrect detail data.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-7-valid-baseline.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-7-target-genuine-baseline.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-7-before-held-load.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-7-before-target-selection.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-7-final.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-7-recovery.png"
+    ],
+    "steps_taken": [
+      "SIMULATED UI STATE: Started independently at the settled launcher; configured Automobile Service and selected a genuine six-record cluster.",
+      "Loaded distinct valid point 131928136, then target 131928146 normally. Established the target's actual POST /api/platform/automobile/service/cluster-details request and HTTP 200 recovery data through UI use.",
+      "Closed only the owned target tab and returned to valid point 131928136. Installed an owned route matching exactly the development-origin endpoint, POST method and request pointId 131928146; unmatched requests fell through.",
+      "SIMULATED UI STATE: Held the original target read request on a persistent page-owned promise; did not modify its response. Selected point 131928146 through the cluster row.",
+      "Observed Loading point details progress indicator and an otherwise empty active detail presentation, with no previous point fields or neighbour sections. Captured final held loading state and its GIS URL.",
+      "In a finally cleanup released the original request, waited for genuine point 131928146 recovery, removed only the exact owned route and cleared its stored reference. Captured recovery and inspected baseline/final/recovery images.",
+      "Closed owned detail tabs and removed the layer; no interceptor or pending request remained."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "SIMULATED UI STATE: Only the UI loading state was tested. Exact development-origin POST /api/platform/automobile/service/cluster-details for pointId 131928146 was held from selection until capture/release (about 30 seconds), with unchanged original response. The progress indicator replaced prior record details; releasing produced genuine HTTP 200 recovery. Exact handler removed in finally; no successful backend response was fabricated.",
+    "coverageChecks": [
+      {
+        "assertion": "Loading Service point details shows a visible loading indicator",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-7-final.png"
+        ]
+      },
+      {
+        "assertion": "Loading target 131928146 does not display incorrect or stale details from baseline 131928136",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-7-before-held-load.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-7-before-target-selection.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-7-final.png"
+        ]
+      },
+      {
+        "assertion": "Releasing the original request recovers genuine target details and removes the owned simulation",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-7-target-genuine-baseline.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-7-recovery.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Service point details are unavailable, the detail presentation shows a no-data state without displaying incorrect detail data.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-8-final.png"
+    ],
+    "steps_taken": [
+      "Started independently at the settled launcher and configured Automobile Service with default dates/all technologies.",
+      "Selected the cluster and opened point 131928117 through its third row.",
+      "Inspected the genuine POST /api/platform/automobile/service/cluster-details HTTP 200 response: it contained populated serving details and two neighbours. It was not an unavailable-details fixture.",
+      "No authoritative empty-detail response contract or genuine unavailable-detail response was supplied or established. Empty map point-list responses are a different endpoint/state.",
+      "Did not fabricate an empty response by deleting populated fields. Captured the loaded point as evidence of the fixture limitation, recorded GIS URL, inspected the saved image, closed owned tabs and removed the layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "No genuine unavailable-detail fixture or authoritative empty response contract for the individual Service detail request was established. The no-data UI branch and incorrect-data exclusion cannot be decided safely.",
+    "coverageChecks": [
+      {
+        "assertion": "Unavailable Service details shows a standard no-data state",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      },
+      {
+        "assertion": "The no-data state excludes incorrect or stale detail data",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      }
+    ],
+    "retryClass": "prerequisite",
+    "blockerCode": "empty_detail_contract_unavailable",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given loading Service point details fails, the detail presentation shows an error state and does not show incorrect detail data.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-target-genuine.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-before-error.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-before-target.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-final.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-recovery.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-cleanup.png"
+    ],
+    "steps_taken": [
+      "SIMULATED UI STATE: Restarted the entire criterion from a settled launcher after image QA found the earlier initial capture was still Initializing. Only the restart sequence supports this verdict.",
+      "Opened GIS > Automobile > Service, selected the genuine cluster, loaded distinct baseline point 131928136 and target 131928146 normally. Established the real target POST /api/platform/automobile/service/cluster-details pointId 131928146 and HTTP 200 response.",
+      "Closed only the owned target tab and returned to valid point 131928136; captured its baseline. Installed a page-owned handler for the exact development-origin endpoint, POST method and pointId 131928146, letting unmatched requests fall through.",
+      "SIMULATED UI STATE: Selected target 131928146 and locally fulfilled exactly one matching read with standard HTTP 503 Service Unavailable, text/plain body 'Service Unavailable'. No backend write or authentication interception occurred.",
+      "Observed alert 'Unable to load point details.' and Retry button; the active presentation contained no baseline or target field values or neighbour sections. Captured final error state and GIS URL.",
+      "In finally removed only the exact owned handler and its reference. Clicked Retry and verified genuine point 131928146 details recovered without error. Captured recovery and inspected restart launcher/error/recovery images.",
+      "Closed all owned detail tabs, removed the owned layer, captured cleanup and returned to launcher. No owned handler remained."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "SIMULATED UI STATE: Exact development-origin POST /api/platform/automobile/service/cluster-details for pointId 131928146 was locally given standard HTTP 503 Service Unavailable with text/plain body 'Service Unavailable'. This tests UI handling of a failed read, not an observed backend outage or failed measurement. The active view showed 'Unable to load point details.' and Retry without stale fields. Exact handler was removed in finally; Retry recovered genuine HTTP 200 target details and UI cleanup completed.",
+    "coverageChecks": [
+      {
+        "assertion": "A failed Service detail request shows a standard error state",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-final.png"
+        ]
+      },
+      {
+        "assertion": "The failed target request does not show incorrect or stale details from baseline point 131928136",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-before-error.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-before-target.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-final.png"
+        ]
+      },
+      {
+        "assertion": "After exact handler removal, Retry recovers genuine target 131928146 details",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-target-genuine.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-recovery.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  }
+]

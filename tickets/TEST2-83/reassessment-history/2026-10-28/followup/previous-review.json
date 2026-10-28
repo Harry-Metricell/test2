@@ -1,0 +1,363 @@
+{
+  "ticket": "TEST2-83",
+  "testedModule": "Automobile",
+  "criterionOutcomes": [
+    {
+      "criterion": "Given a Service point's details have loaded in the shared point-detail dialog, the standard detail presentation shows the returned serving-cell information.",
+      "outcome": "Passed",
+      "reason": "criterion-1-final.png, criterion-1-serving-280.png and criterion-1-final-complete-serving.png show point 131928136, serving cell 2592_130_4 and the complete serving panel. The overlapping captures display the identity, location and radio fields reconciled with the recorded genuine Service response.",
+      "coverageChecks": [
+        {
+          "assertion": "Loaded Service point 131928136 is identified in the shared detail presentation",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-280.png"
+          ]
+        },
+        {
+          "assertion": "Returned serving-cell identity, site and location fields are displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-280.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-540.png"
+          ]
+        },
+        {
+          "assertion": "Returned serving-cell radio and KPI values are displayed without mismatches",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-serving-540.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given the loaded Service point details include neighbour-cell data, each returned neighbour appears in its own distinct section beneath the serving-cell information.",
+      "outcome": "Failed",
+      "reason": "criterion-2-neighbours-0.png, criterion-2-neighbours-280.png, criterion-2-neighbours-560.png, criterion-2-neighbours-840.png and criterion-2-neighbours-1000.png reconcile all seven returned neighbours for the selected point 131928136, using EARFCN/PCI and RSRP/RSRQ tuples. Each has a distinct section. The first capture directly contradicts placement beneath the serving information: neighbours occupy the separate right-hand column beside serving details. criterion-2-final.png retains the bottom of that layout.",
+      "coverageChecks": [
+        {
+          "assertion": "Neighbour 1 is a distinct section with matching EARFCN 6400, PCI 343, RSRP -115 and RSRQ -19",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-0.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-280.png"
+          ]
+        },
+        {
+          "assertion": "Neighbour 2 is a distinct section with matching EARFCN 3725, PCI 22, RSRP -115 and RSRQ -14",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-0.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-280.png"
+          ]
+        },
+        {
+          "assertion": "Neighbour 3 is a distinct section with matching EARFCN 3725, PCI 343, RSRP -119 and RSRQ -18",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-280.png"
+          ]
+        },
+        {
+          "assertion": "Neighbour 4 is a distinct section with matching EARFCN 3725, PCI 468, RSRP -119 and RSRQ -17",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-560.png"
+          ]
+        },
+        {
+          "assertion": "Neighbour 5 is a distinct section with matching EARFCN 347, PCI 343, RSRP -113 and RSRQ -16",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-560.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-840.png"
+          ]
+        },
+        {
+          "assertion": "Neighbour 6 is a distinct section with matching EARFCN 347, PCI 22, RSRP -114 and RSRQ -17",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-840.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-1000.png"
+          ]
+        },
+        {
+          "assertion": "Neighbour 7 is a distinct section with matching EARFCN 347, PCI 397, RSRP -116 and RSRQ -17",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-840.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-1000.png"
+          ]
+        },
+        {
+          "assertion": "Neighbour sections appear beneath the serving-cell information",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-0.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given the loaded Service point details contain no neighbour-cell data, serving-cell information remains visible and no empty neighbour section appears.",
+      "outcome": "Blocked",
+      "reason": "criterion-3-record-131928146.png and criterion-3-final.png show populated serving details and two neighbour sections for each inspected record (131928146 and 131921586). No qualifying no-neighbour detail fixture was established in this Automobile Service run, so serving-only rendering and absence of an empty neighbour section remain blocked. This is a fixture limitation, not evidence that the feature is unavailable or defective.",
+      "coverageChecks": [
+        {
+          "assertion": "Serving-cell details remain visible for a loaded point whose returned neighbour data is absent",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-3-record-131928146.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-3-final.png"
+          ]
+        },
+        {
+          "assertion": "No empty neighbour section is rendered when neighbour data is absent",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-3-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given displayed Service point detail rows are available, sorting the rows changes their visible order according to the selected sort, and filtering them shows only rows matching the selected filter.",
+      "outcome": "Unverified",
+      "reason": "Required detail-row scope not established. criterion-4-baseline.png, criterion-4-sorted-ascending.png, criterion-4-sorted-descending.png and criterion-4-final.png prove sorting/filtering of the six-row Service-test selection list. They do not establish sorting/filtering of the individual Service point detail rows named in VM2ST-105. The earlier Pass was too broad. A focused check must identify the intended detail view and exercise its controls; no product defect is inferred from testing another table.",
+      "coverageChecks": [
+        {
+          "assertion": "Ascending Signal sort changes visible row order to numeric ascending with a visible indicator",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-ascending.png"
+          ]
+        },
+        {
+          "assertion": "Descending Signal sort changes visible row order to numeric descending with a visible indicator",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-descending.png"
+          ]
+        },
+        {
+          "assertion": "Filtering 900 GSM displays all and only the three matching rows",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        },
+        {
+          "assertion": "Sorting is demonstrated on the Service point detail rows required by the source",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-ascending.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-descending.png"
+          ]
+        },
+        {
+          "assertion": "Filtering is demonstrated on the Service point detail rows required by the source",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given a Service point's reported radio generation is 2G, 3G, 4G, 5G NSA, or 5G SA, the visible KPI names are appropriate to that generation.",
+      "outcome": "Blocked",
+      "reason": "criterion-5-2g-kpis-top.png and criterion-5-2g-kpis-bottom.png show reported 2G with RxLevel, RxQual, ARFCN and BSIC; criterion-5-4g-top.png and criterion-5-4g-kpis.png show 4G with RSRP, RSRQ, EARFCN and SINR; criterion-5-nsa-kpis-top.png and criterion-5-nsa-kpis-bottom.png show 5G NSA and its LTE-anchor labels. criterion-5-3g-configuration.png/criterion-5-3g-map.png and criterion-5-sa-configuration.png/criterion-5-final.png show exclusive generation selection followed by empty scoped maps. No 3G or 5G SA detail fixture was established in the inspected Cambridge/date scope; their KPI branches remain blocked, without asserting global data absence.",
+      "coverageChecks": [
+        {
+          "assertion": "2G point labels use RxLevel, RxQual, ARFCN and BSIC for reported generation 2",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-2g-kpis-top.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-2g-kpis-bottom.png"
+          ]
+        },
+        {
+          "assertion": "3G point detail KPI labels are appropriate to reported generation 3",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-3g-configuration.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-3g-map.png"
+          ]
+        },
+        {
+          "assertion": "4G point labels use RSRP, RSRQ, EARFCN and SINR for reported generation 4",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-4g-top.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-4g-kpis.png"
+          ]
+        },
+        {
+          "assertion": "5G NSA labels are appropriate to the reported NSA/LTE anchor values",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-nsa-kpis-top.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-nsa-kpis-bottom.png"
+          ]
+        },
+        {
+          "assertion": "5G SA point detail KPI labels are appropriate to reported generation 5",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-sa-configuration.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given 5G SA is selected and the user opens a Service point in the shared point-detail dialog, the Service point detail presentation loads without an error state.",
+      "outcome": "Blocked",
+      "reason": "criterion-6-sa-configuration.png shows only 5G SA selected for Automobile Service. criterion-6-final.png shows the settled scoped map without selectable points, consistent with the result's recorded technologies=5 point-list HTTP 200 empty responses. With no qualifying 5G SA point in the inspected Cambridge/date scope, opening it and observing a successful detail load are blocked; an empty map cannot prove either requirement.",
+      "coverageChecks": [
+        {
+          "assertion": "5G SA can be selected exclusively for Automobile Service",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-6-sa-configuration.png"
+          ]
+        },
+        {
+          "assertion": "A 5G SA Service point opens in the shared point-detail presentation",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        },
+        {
+          "assertion": "The 5G SA Service detail presentation loads without an error state",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given Service point details are loading, the detail presentation shows a loading state without displaying incorrect detail data.",
+      "outcome": "Passed",
+      "reason": "SIMULATED UI STATE: UI-only loading check on https://o2intelligence-v4-dev.metricell.com. The selected result records an exact-origin POST /api/platform/automobile/service/cluster-details route restricted to pointId 131928146, holding the original read about 30 seconds without modifying its response; unmatched requests fell through. Contract provenance is the target's genuine HTTP 200 request/response established before interception, with no fabricated empty or successful response. criterion-7-valid-baseline.png and criterion-7-before-held-load.png show distinct prior point 131928136 (13:32:47, -116 dBm, serving cell 2592_130_4); criterion-7-before-target-selection.png shows the selection table. criterion-7-target-genuine-baseline.png identifies target 131928146 by 13:32:42, -112 dBm and serving cell 70888_120_4. criterion-7-final.png shows only a loading spinner in the entire active detail presentation, without prior fields or neighbours. criterion-7-recovery.png matches the genuine target baseline after release. The structured tester steps record finally releasing the original read, removing only the exact owned handler/reference and completing UI cleanup with no pending interception. Visible recovery corroborates the cleanup; this establishes controlled loading UI behavior, not natural latency or backend success through simulation.",
+      "coverageChecks": [
+        {
+          "assertion": "Loading Service point details shows a visible loading indicator",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-7-final.png"
+          ]
+        },
+        {
+          "assertion": "Loading target 131928146 does not display incorrect or stale details from baseline 131928136",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-7-before-held-load.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-7-before-target-selection.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-7-final.png"
+          ]
+        },
+        {
+          "assertion": "Releasing the original request recovers genuine target details and removes the owned simulation",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-7-target-genuine-baseline.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-7-recovery.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given Service point details are unavailable, the detail presentation shows a no-data state without displaying incorrect detail data.",
+      "outcome": "Blocked",
+      "reason": "No genuine unavailable-detail fixture or authoritative empty-response contract for POST /api/platform/automobile/service/cluster-details was established. criterion-8-final.png instead shows the selected point 131928117 loaded with serving information and two neighbours. An empty point-list response is a different endpoint/state. The no-data presentation and exclusion of stale details are blocked pending the required fixture or contract; no fabricated empty detail response is accepted.",
+      "coverageChecks": [
+        {
+          "assertion": "Unavailable Service details shows a standard no-data state",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        },
+        {
+          "assertion": "The no-data state excludes incorrect or stale detail data",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given loading Service point details fails, the detail presentation shows an error state and does not show incorrect detail data.",
+      "outcome": "Passed",
+      "reason": "SIMULATED UI STATE: UI-only failed-read check on https://o2intelligence-v4-dev.metricell.com. Only the criterion-9-restart sequence supports this review. The tester records an exact-origin POST /api/platform/automobile/service/cluster-details handler restricted to pointId 131928146, fulfilling one matching read with standard HTTP 503 Service Unavailable and text/plain 'Service Unavailable'; unmatched requests fell through. Provenance is the target's genuine read/HTTP 200 baseline and standard failed HTTP status, not a failed measurement, empty-response contract or observed backend outage. criterion-9-restart-before-error.png shows distinct prior point 131928136 (13:32:47, -116 dBm, serving cell 2592_130_4); criterion-9-restart-before-target.png shows the target selection table. criterion-9-restart-target-genuine.png identifies target 131928146 by 13:32:42, -112 dBm and serving cell 70888_120_4. criterion-9-restart-final.png shows 'Unable to load point details.' and Retry with no stale serving fields or neighbours in the active presentation. Tester steps record removing only the exact handler/reference in finally before Retry. criterion-9-restart-recovery.png then matches the genuine target details; criterion-9-restart-cleanup.png shows owned detail tabs and layer removed. Recovery corroborates removal and the tester records no remaining handler. This proves controlled error UI handling only.",
+      "coverageChecks": [
+        {
+          "assertion": "A failed Service detail request shows a standard error state",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-final.png"
+          ]
+        },
+        {
+          "assertion": "The failed target request does not show incorrect or stale details from baseline point 131928136",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-before-error.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-before-target.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-final.png"
+          ]
+        },
+        {
+          "assertion": "After exact handler removal, Retry recovers genuine target 131928146 details",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-target-genuine.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-9-restart-recovery.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "tickets/TEST2-83/report.pdf",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-83\\cycles\\cycle-004\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "3 criteria passed; 1 confirmed failure, 1 inconclusive criterion and 4 blocked. Manual existing-evidence reassessment on 28 October 2026 corrected criterion 4's unsupported Pass. Neighbour placement contradicts the source. No-neighbour, 3G/5G SA and unavailable-detail prerequisites remain unresolved. Loading/error passes are controlled UI simulations. No new browser test, independent review worker, cycle or retry was created.",
+  "cycleId": "cycle-004",
+  "sourceHandoffId": "handoff-TEST2-83-cycle-004-review-attempt-001",
+  "sourceHandoffVersion": "TEST2-83:cycle-004:evidence_review:1:scope-2847bc2cecaa",
+  "historyAttempt": 1,
+  "reassessment": {
+    "kind": "manual-existing-evidence-reassessment",
+    "date": "2026-10-28",
+    "cycleId": "cycle-004",
+    "historyAttempt": 1,
+    "changedOutcomeCriteria": [
+      4
+    ],
+    "sourceTicket": "VM2ST-105",
+    "sourceReadOnlyCheckedAt": "2026-10-28",
+    "authority": "User requested correction after the report/source/evidence audit.",
+    "priorReview": "reassessment-history/2026-10-28/previous-review.json",
+    "priorRepositoryCommit": "5d45af11b4950925a24c11c9ba6af879ce0c8cf8",
+    "sourceResultsSha256": "96845cb8d6da86fde06ac95bc4e05573439ec930970baff16dc627ef169244d8",
+    "newTestAttempt": false,
+    "newIndependentWorker": false,
+    "reportInputs": "reassessment-history/2026-10-28/report-inputs.json",
+    "presentation": "Print the criterion-owned evidence cited by the review and its coverage checks; preserve the complete original results, steps and source PNGs."
+  }
+}

@@ -25,7 +25,7 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 | 80 | User accepted the existing Passed review. Preserve it and its reports. | Passed; held from further testing |
 | 81 | Reconcile HTTP/Ping results in a bounded permitted genuine scope; Video Streaming needs genuine data separately. | Held; data work deferred |
 | 82 | Preserve reported loading failure and missing no-data contract. Correct future preservation of pre-existing panels. | Leave To Do; user bug returned |
-| 83 | Cycle-004 reassessed 28 October: 3 Passed, 1 confirmed Failed, 1 inconclusive, 4 Blocked. Criterion 4's earlier Pass exercised the Service-test selection list, leaving the source-required detail-row scope unverified. Neighbours beneath serving details remains an explicit source requirement and a supported layout failure. Needs no-neighbour, 3G/5G SA and unavailable-detail fixtures. | Corrected PDF/Word; prior review/tester history retained; focused detail-view check needed, no automatic reset |
+| 83 | Focused 28 October follow-up: 8 Passed, 1 Blocked. Harry accepted neighbour placement and demonstrated sorting/filtering scope. Genuine no-neighbour, 3G and SA records were checked; only unavailable-details testing still needs a fixture or agreed response contract. | Corrected report published; original cycle/results/history retained |
 | 84 | Identify actual Automobile Building feature/prerequisite; never substitute Surveyor. | Deferred; unchanged Jira |
 | 85 | Reassessed 27 October: 8 Passed, 2 Blocked. Summary availability and disabled zero-duration presentation cleared from existing evidence. Criteria 6 and 9 need the inputs below; no new attempt or counter reset. | Held; updated PDF/Word published; earlier review and original tester history preserved |
 | 86 | Reassessed 27 October: 8 Passed, 2 Blocked. Summary, disabled zero-duration presentation and repaired loading/recovery evidence cleared. Loading follow-up shows the genuine chart and all 28 recovered rows matching baseline, with exact handler removal and no pending requests. Criteria 6 and 9 need the inputs below. | Held; updated PDF/Word published; earlier review and original tester history preserved |
@@ -62,7 +62,7 @@ release by this instruction.
    consumers or versioned baselines remain explicit prerequisites.
 
 Defer 81/88/89 until matching Video Streaming/MS Teams data is identified. Keep
-83's serving/neighbour layout finding and fixtures, 84's Building prerequisite,
+83's unavailable-detail prerequisite, 84's Building prerequisite,
 87's filtering/varied-data gaps, and 90/91's product/configuration/access findings
 separate; another blanket retry does not resolve them.
 
@@ -141,3 +141,5 @@ No request for these inputs has been sent to anyone.
 - Worker/reviewer briefs require full canonical branch coverage, visible settled captures and consistent each/every standards. No structural validator can prove natural-language checklist completeness or replace independent image review.
 - Browser host outages cannot be prevented by prompt changes. Preserve truthful partial output and ownership, and distinguish infrastructure interruption from application failure.
 - Regression checks cover coverage contracts, legacy compatibility, evidence ownership, two-ticket hold enforcement, generation and publisher integration. These checks do not establish successful browser execution; first-pair final reports remain the acceptance gate.
+
+- 28 October TEST2-83 follow-up: 8 Passed and criterion 8 Blocked. Human acceptance for criteria 2/4 is distinguished from fresh browser proof for 3/5/6. Retained prior review and original attempt, added criterion-owned screenshots and verified the 23-page PDF against all 41 expected evidence images. No retry/cycle reset. Public release explicitly approved in the updater chat.

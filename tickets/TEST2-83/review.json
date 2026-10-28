@@ -36,8 +36,8 @@
     },
     {
       "criterion": "Given the loaded Service point details include neighbour-cell data, each returned neighbour appears in its own distinct section beneath the serving-cell information.",
-      "outcome": "Failed",
-      "reason": "criterion-2-neighbours-0.png, criterion-2-neighbours-280.png, criterion-2-neighbours-560.png, criterion-2-neighbours-840.png and criterion-2-neighbours-1000.png reconcile all seven returned neighbours for the selected point 131928136, using EARFCN/PCI and RSRP/RSRQ tuples. Each has a distinct section. The first capture directly contradicts placement beneath the serving information: neighbours occupy the separate right-hand column beside serving details. criterion-2-final.png retains the bottom of that layout.",
+      "outcome": "Passed",
+      "reason": "All seven returned neighbours are shown in distinct sections. Harry explicitly accepted the demonstrated side-by-side placement on 28 October 2026; the earlier placement-only failure is withdrawn under that scoped human acceptance.",
       "coverageChecks": [
         {
           "assertion": "Neighbour 1 is a distinct section with matching EARFCN 6400, PCI 343, RSRP -115 and RSRQ -19",
@@ -94,8 +94,8 @@
           ]
         },
         {
-          "assertion": "Neighbour sections appear beneath the serving-cell information",
-          "outcome": "Failed",
+          "assertion": "Distinct neighbour sections use the side-by-side placement explicitly accepted by Harry on 28 October 2026",
+          "outcome": "Passed",
           "evidence": [
             "cycles/cycle-004/screenshots/attempt-001/criterion-2-neighbours-0.png",
             "cycles/cycle-004/screenshots/attempt-001/criterion-2-final.png"
@@ -105,30 +105,31 @@
     },
     {
       "criterion": "Given the loaded Service point details contain no neighbour-cell data, serving-cell information remains visible and no empty neighbour section appears.",
-      "outcome": "Blocked",
-      "reason": "criterion-3-record-131928146.png and criterion-3-final.png show populated serving details and two neighbour sections for each inspected record (131928146 and 131921586). No qualifying no-neighbour detail fixture was established in this Automobile Service run, so serving-only rendering and absence of an empty neighbour section remain blocked. This is a fixture limitation, not evidence that the feature is unavailable or defective.",
+      "outcome": "Passed",
+      "reason": "criterion-3-followup-selected-row.png, criterion-3-followup-final.png and criterion-3-followup-serving.png show the genuine Service record opened successfully with serving cell 504712_130_4 and serving-site information retained. With no neighbours, the right panel says \"No cell neighbours are available for this point.\" No empty neighbour field block is rendered; the informational message is retained as the actual observed state.",
       "coverageChecks": [
         {
-          "assertion": "Serving-cell details remain visible for a loaded point whose returned neighbour data is absent",
-          "outcome": "Blocked",
+          "assertion": "Serving information remains visible when the selected genuine record has no neighbours",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-004/screenshots/attempt-001/criterion-3-record-131928146.png",
-            "cycles/cycle-004/screenshots/attempt-001/criterion-3-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-final.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-serving.png"
           ]
         },
         {
-          "assertion": "No empty neighbour section is rendered when neighbour data is absent",
-          "outcome": "Blocked",
+          "assertion": "No empty neighbour field block is displayed; an explicit no-neighbours message is shown",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-004/screenshots/attempt-001/criterion-3-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-final.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-3-followup-serving.png"
           ]
         }
       ]
     },
     {
       "criterion": "Given displayed Service point detail rows are available, sorting the rows changes their visible order according to the selected sort, and filtering them shows only rows matching the selected filter.",
-      "outcome": "Unverified",
-      "reason": "Required detail-row scope not established. criterion-4-baseline.png, criterion-4-sorted-ascending.png, criterion-4-sorted-descending.png and criterion-4-final.png prove sorting/filtering of the six-row Service-test selection list. They do not establish sorting/filtering of the individual Service point detail rows named in VM2ST-105. The earlier Pass was too broad. A focused check must identify the intended detail view and exercise its controls; no product defect is inferred from testing another table.",
+      "outcome": "Passed",
+      "reason": "The existing captures demonstrate selection-table sorting and filtering. Harry explicitly accepted that demonstrated scope as satisfying criterion 4 on 28 October 2026. This is a scoped human acceptance, not a claim that a different detail table was exercised.",
       "coverageChecks": [
         {
           "assertion": "Ascending Signal sort changes visible row order to numeric ascending with a visible indicator",
@@ -154,19 +155,12 @@
           ]
         },
         {
-          "assertion": "Sorting is demonstrated on the Service point detail rows required by the source",
-          "outcome": "Unverified",
+          "assertion": "Harry accepted the demonstrated selection-table sorting/filtering as meeting criterion 4 on 28 October 2026",
+          "outcome": "Passed",
           "evidence": [
             "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
             "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-ascending.png",
-            "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-descending.png"
-          ]
-        },
-        {
-          "assertion": "Filtering is demonstrated on the Service point detail rows required by the source",
-          "outcome": "Unverified",
-          "evidence": [
-            "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-descending.png",
             "cycles/cycle-004/screenshots/attempt-001/criterion-4-final.png"
           ]
         }
@@ -174,8 +168,8 @@
     },
     {
       "criterion": "Given a Service point's reported radio generation is 2G, 3G, 4G, 5G NSA, or 5G SA, the visible KPI names are appropriate to that generation.",
-      "outcome": "Blocked",
-      "reason": "criterion-5-2g-kpis-top.png and criterion-5-2g-kpis-bottom.png show reported 2G with RxLevel, RxQual, ARFCN and BSIC; criterion-5-4g-top.png and criterion-5-4g-kpis.png show 4G with RSRP, RSRQ, EARFCN and SINR; criterion-5-nsa-kpis-top.png and criterion-5-nsa-kpis-bottom.png show 5G NSA and its LTE-anchor labels. criterion-5-3g-configuration.png/criterion-5-3g-map.png and criterion-5-sa-configuration.png/criterion-5-final.png show exclusive generation selection followed by empty scoped maps. No 3G or 5G SA detail fixture was established in the inspected Cambridge/date scope; their KPI branches remain blocked, without asserting global data absence.",
+      "outcome": "Passed",
+      "reason": "The earlier evidence covers 2G, 4G and 5G NSA. Fresh 28 October captures add genuine 3G and 5G SA details: 3G uses RSCP, PSC, UARFCN and Ec/N0; SA uses RSRP, RSRQ, SINR, PCI and EARFCN. Some 3G values are N/A. Service generation and Data Technology are separate displayed fields; the latter reads 4G on the 3G record and 2G on the SA record. This check verifies generation-specific KPI labels, not that those separate source fields agree.",
       "coverageChecks": [
         {
           "assertion": "2G point labels use RxLevel, RxQual, ARFCN and BSIC for reported generation 2",
@@ -186,11 +180,11 @@
           ]
         },
         {
-          "assertion": "3G point detail KPI labels are appropriate to reported generation 3",
-          "outcome": "Blocked",
+          "assertion": "3G Service generation 3 displays RSCP, PSC, UARFCN and Ec/N0 labels; unavailable source values remain N/A",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-004/screenshots/attempt-001/criterion-5-3g-configuration.png",
-            "cycles/cycle-004/screenshots/attempt-001/criterion-5-3g-map.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-3g-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-3g-kpis.png"
           ]
         },
         {
@@ -210,39 +204,34 @@
           ]
         },
         {
-          "assertion": "5G SA point detail KPI labels are appropriate to reported generation 5",
-          "outcome": "Blocked",
+          "assertion": "5G SA Service generation 5 displays RSRP, RSRQ, SINR, PCI and EARFCN labels",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-004/screenshots/attempt-001/criterion-5-sa-configuration.png",
-            "cycles/cycle-004/screenshots/attempt-001/criterion-5-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-sa-top.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-5-followup-sa-kpis.png"
           ]
         }
       ]
     },
     {
       "criterion": "Given 5G SA is selected and the user opens a Service point in the shared point-detail dialog, the Service point detail presentation loads without an error state.",
-      "outcome": "Blocked",
-      "reason": "criterion-6-sa-configuration.png shows only 5G SA selected for Automobile Service. criterion-6-final.png shows the settled scoped map without selectable points, consistent with the result's recorded technologies=5 point-list HTTP 200 empty responses. With no qualifying 5G SA point in the inspected Cambridge/date scope, opening it and observing a successful detail load are blocked; an empty map cannot prove either requirement.",
+      "outcome": "Passed",
+      "reason": "criterion-6-followup-sa-configuration.png and criterion-6-followup-selected-row.png establish the SA-only selection. criterion-6-followup-final.png and criterion-6-followup-identity.png show the genuine London-area record dated 24/08/2026 11:16:54 opened successfully. The matching detail shows Service 5G SA, Generation 5, serving cell 1307_13702_5 and radio values, with no loading error. The former Cambridge-only missing-fixture blocker is resolved.",
       "coverageChecks": [
         {
-          "assertion": "5G SA can be selected exclusively for Automobile Service",
+          "assertion": "5G SA is the selected Automobile Service generation",
           "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-004/screenshots/attempt-001/criterion-6-sa-configuration.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-sa-configuration.png"
           ]
         },
         {
-          "assertion": "A 5G SA Service point opens in the shared point-detail presentation",
-          "outcome": "Blocked",
+          "assertion": "The selected SA record opens its matching populated details without an error state",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-004/screenshots/attempt-001/criterion-6-final.png"
-          ]
-        },
-        {
-          "assertion": "The 5G SA Service detail presentation loads without an error state",
-          "outcome": "Blocked",
-          "evidence": [
-            "cycles/cycle-004/screenshots/attempt-001/criterion-6-final.png"
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-selected-row.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-final.png",
+            "reassessment-history/2026-10-28/followup/screenshots/criterion-6-followup-identity.png"
           ]
         }
       ]
@@ -336,28 +325,24 @@
   "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-83\\cycles\\cycle-004\\screenshots\\attempt-001",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "3 criteria passed; 1 confirmed failure, 1 inconclusive criterion and 4 blocked. Manual existing-evidence reassessment on 28 October 2026 corrected criterion 4's unsupported Pass. Neighbour placement contradicts the source. No-neighbour, 3G/5G SA and unavailable-detail prerequisites remain unresolved. Loading/error passes are controlled UI simulations. No new browser test, independent review worker, cycle or retry was created.",
+  "reason": "8 criteria passed; criterion 8 remains blocked because no genuine unavailable-detail fixture or authoritative empty-detail response contract is established. Criteria 2 and 4 include explicit scoped human acceptance. Criteria 3, 5 and 6 include fresh 28 October browser evidence. Loading and error UI checks retain their disclosed controlled simulations.",
   "cycleId": "cycle-004",
   "sourceHandoffId": "handoff-TEST2-83-cycle-004-review-attempt-001",
   "sourceHandoffVersion": "TEST2-83:cycle-004:evidence_review:1:scope-2847bc2cecaa",
   "historyAttempt": 1,
   "reassessment": {
-    "kind": "manual-existing-evidence-reassessment",
+    "kind": "manual-focused-follow-up",
     "date": "2026-10-28",
     "cycleId": "cycle-004",
     "historyAttempt": 1,
-    "changedOutcomeCriteria": [
-      4
-    ],
-    "sourceTicket": "VM2ST-105",
-    "sourceReadOnlyCheckedAt": "2026-10-28",
-    "authority": "User requested correction after the report/source/evidence audit.",
-    "priorReview": "reassessment-history/2026-10-28/previous-review.json",
-    "priorRepositoryCommit": "5d45af11b4950925a24c11c9ba6af879ce0c8cf8",
-    "sourceResultsSha256": "96845cb8d6da86fde06ac95bc4e05573439ec930970baff16dc627ef169244d8",
-    "newTestAttempt": false,
+    "newAutomatedAttempt": false,
+    "newBrowserEvidence": true,
     "newIndependentWorker": false,
-    "reportInputs": "reassessment-history/2026-10-28/report-inputs.json",
-    "presentation": "Print the criterion-owned evidence cited by the review and its coverage checks; preserve the complete original results, steps and source PNGs."
+    "authority": "Harry requested report refresh and explicitly accepted criteria 2 and 4.",
+    "preservesOriginalResults": true,
+    "previousReview": "reassessment-history/2026-10-28/followup/previous-review.json",
+    "reportInputs": "reassessment-history/2026-10-28/followup/report-inputs.json",
+    "publicationAuthority": "Harry explicitly approved the corrected PDF, Word report, new screenshots and supporting review evidence on 28 October 2026.",
+    "sourceResultsSha256": "96845cb8d6da86fde06ac95bc4e05573439ec930970baff16dc627ef169244d8"
   }
 }

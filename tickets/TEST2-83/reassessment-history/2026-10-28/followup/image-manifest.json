@@ -1,0 +1,474 @@
+{
+  "embeddedEvidenceImages": 41,
+  "noEvidenceBlock": null,
+  "reportContent": {
+    "overallOutcome": "Blocked",
+    "limitations": "Blocked criterion(s): 8. See the assessment below each criterion.\nCriteria 7, 9 used simulated UI conditions; see their assessments.",
+    "sourceUrls": [
+      "https://o2intelligence-v4-dev.metricell.com/gis"
+    ],
+    "evidenceCaptions": [
+      "E01 - Final (criterion-1-final.png)",
+      "E02 - Serving 280 (criterion-1-serving-280.png)",
+      "E03 - Final complete serving (criterion-1-final-complete-serving.png)",
+      "E04 - Neighbours 0 (criterion-2-neighbours-0.png)",
+      "E05 - Neighbours 280 (criterion-2-neighbours-280.png)",
+      "E06 - Neighbours 560 (criterion-2-neighbours-560.png)",
+      "E07 - Neighbours 840 (criterion-2-neighbours-840.png)",
+      "E08 - Final (criterion-2-final.png)",
+      "E09 - Followup selected row (criterion-3-followup-selected-row.png)",
+      "E10 - Followup final (criterion-3-followup-final.png)",
+      "E11 - Followup serving (criterion-3-followup-serving.png)",
+      "E12 - Baseline (criterion-4-baseline.png)",
+      "E13 - Sorted ascending (criterion-4-sorted-ascending.png)",
+      "E14 - Sorted descending (criterion-4-sorted-descending.png)",
+      "E15 - Final (criterion-4-final.png)",
+      "E16 - 2g kpis top (criterion-5-2g-kpis-top.png)",
+      "E17 - 2g kpis bottom (criterion-5-2g-kpis-bottom.png)",
+      "E18 - Followup 3g top (criterion-5-followup-3g-top.png)",
+      "E19 - Followup 3g kpis (criterion-5-followup-3g-kpis.png)",
+      "E20 - 4g top (criterion-5-4g-top.png)",
+      "E21 - 4g kpis (criterion-5-4g-kpis.png)",
+      "E22 - Nsa kpis top (criterion-5-nsa-kpis-top.png)",
+      "E23 - Nsa kpis bottom (criterion-5-nsa-kpis-bottom.png)",
+      "E24 - Followup sa top (criterion-5-followup-sa-top.png)",
+      "E25 - Followup sa kpis (criterion-5-followup-sa-kpis.png)",
+      "E26 - Followup sa configuration (criterion-6-followup-sa-configuration.png)",
+      "E27 - Followup selected row (criterion-6-followup-selected-row.png)",
+      "E28 - Followup final (criterion-6-followup-final.png)",
+      "E29 - Followup identity (criterion-6-followup-identity.png)",
+      "E30 - Final (criterion-7-final.png)",
+      "E31 - Recovery (criterion-7-recovery.png)",
+      "E32 - Target genuine baseline (criterion-7-target-genuine-baseline.png)",
+      "E33 - Valid baseline (criterion-7-valid-baseline.png)",
+      "E34 - Before held load (criterion-7-before-held-load.png)",
+      "E35 - Before target selection (criterion-7-before-target-selection.png)",
+      "E36 - Final (criterion-8-final.png)",
+      "E37 - Restart final (criterion-9-restart-final.png)",
+      "E38 - Restart recovery (criterion-9-restart-recovery.png)",
+      "E39 - Restart target genuine (criterion-9-restart-target-genuine.png)",
+      "E40 - Restart before error (criterion-9-restart-before-error.png)",
+      "E41 - Restart before target (criterion-9-restart-before-target.png)"
+    ],
+    "criterionNotes": [
+      "Criterion 2 assessment: Testing notes: All seven returned neighbours are shown in distinct sections. Harry explicitly accepted the demonstrated side-by-side placement on 28 October 2026; the earlier placement-only failure is withdrawn under that scoped human acceptance. Recorded the final GIS URL and inspected saved captures. Cleanup initially timed out after closing the cluster tab; inspected current UI, then closed the remaining owned detail tab and removed the layer before restarting criterion 3.",
+      "Criterion 7 assessment: SIMULATED UI STATE: Delayed the selected detail request to check loading. The evidence shows only a loading spinner in the entire active detail presentation, without prior fields or neighbours.",
+      "Criterion 8 assessment: Testing notes: No genuine unavailable-detail fixture or authoritative empty response contract for the individual Service detail request was established. The no-data UI branch and incorrect-data exclusion cannot be decided safely. Inspected the genuine POST /api/platform/automobile/service/cluster-details HTTP 200 response: it contained populated serving details and two neighbours. It was not an unavailable-details fixture. No authoritative empty-detail response contract or genuine unavailable-detail response was supplied or established. Empty map point-list responses are a different endpoint/state.",
+      "Criterion 9 assessment: SIMULATED UI STATE: Returned HTTP 503 for the selected detail request to check error handling. The evidence shows 'Unable to load point details.' and Retry with no stale serving fields or neighbours in the active presentation."
+    ]
+  },
+  "expectedEvidence": [
+    {
+      "file": "criterion-1-final.png",
+      "sourceSha256": "f1f6d9c1559a148deb7499e8b630190844e30fdf75ed31147998a69d48b34a3a",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5b6252c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-1-serving-280.png",
+      "sourceSha256": "238dd271a991ee86a77946300e9e1b6cabc5fa9c7bc6cdbf7fcb1c2ff142d480",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5ba252a352c243224926018243820"
+    },
+    {
+      "file": "criterion-1-final-complete-serving.png",
+      "sourceSha256": "86c54c5a7634b1e6e435a321b5eb49df679e73920478ad85f60db92cac476bd5",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5b225293528242b249a6012243220"
+    },
+    {
+      "file": "criterion-2-neighbours-0.png",
+      "sourceSha256": "c0714f164d82d7bd7c48518349984272ae735b6db6177ee80c71fc200d2af641",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5b6252c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-2-neighbours-280.png",
+      "sourceSha256": "1133f126c935b237fff3eb72128370c27d2e36f683200a35a4e658b135effe57",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b4262c252a4532359a241a603a60"
+    },
+    {
+      "file": "criterion-2-neighbours-560.png",
+      "sourceSha256": "2dfd89ac6d6ecc5cc5d8a348bc1e14fc760ed1ecfa5219d83333a78101b76485",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b76990f5b6042c222a2432259a6118343a20"
+    },
+    {
+      "file": "criterion-2-neighbours-840.png",
+      "sourceSha256": "8ce0e8cccfde7769ddcfcffcce2753a989b0fccb8d89caa52e9ab86d5f0fef3f",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b4362c242a6432649a2518253a61"
+    },
+    {
+      "file": "criterion-2-final.png",
+      "sourceSha256": "f4ccd8bc8638723909e1933a3486c3c0b286076aefee9945bbb4ea44aceaed9e",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699055b6242c342a2432449a7418253a21"
+    },
+    {
+      "file": "criterion-3-followup-selected-row.png",
+      "sourceSha256": "48781af56cef50fc195a9af7ebc371742d96c82afb29b8353d81fb6bce2b8a46",
+      "visualFingerprint": "e139f1783364bab1b299b3c131c9b8919145a228251234d2349694d614d6201b"
+    },
+    {
+      "file": "criterion-3-followup-final.png",
+      "sourceSha256": "edc6e98b219965e08daf465851ee64a353311e960bcc1a14147661e6b2049009",
+      "visualFingerprint": "e139f1783364bab1b299b3c131c9b89190e5b64a2d8224023908980019003800"
+    },
+    {
+      "file": "criterion-3-followup-serving.png",
+      "sourceSha256": "1dc6eeedc41b2aeffc8f072a8fb4f61a790819dfc3bfc8556a964e004cf0fb4b",
+      "visualFingerprint": "e139f1783364bab1b299b3c131c9ba9190e5b34a238221023808988018803800"
+    },
+    {
+      "file": "criterion-4-baseline.png",
+      "sourceSha256": "dfa55aa427680a986e659cb7832f20fe39cf3a41e44da382f5cb5d5f14d3c1ad",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b38425323596348694961486202b"
+    },
+    {
+      "file": "criterion-4-sorted-ascending.png",
+      "sourceSha256": "540749eb72d2cc1cb46711bc4ba6779188dece38d363b02c97bfcddf5ad0146e",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b3842532355634d694d61486202b"
+    },
+    {
+      "file": "criterion-4-sorted-descending.png",
+      "sourceSha256": "3d8461ffe72d2d2c7e83aa4bf15d51ac03d452ee0d9d3dbc5f7d9ce1cb9d405b",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b38425323516349694d61486202b"
+    },
+    {
+      "file": "criterion-4-final.png",
+      "sourceSha256": "de104b9e67d3294e0d82a3acdd4d291567029f890257d8fb13b02f8df2a777ac",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b288351235d634d68021000b301b"
+    },
+    {
+      "file": "criterion-5-2g-kpis-top.png",
+      "sourceSha256": "619409725389d3efa8440385800b62098f518eb4a201adcbb67808e5c73c5bda",
+      "visualFingerprint": "e139d1b8325eba99baa9b9693d49b46990f5a2252c25222532659a6118243a20"
+    },
+    {
+      "file": "criterion-5-2g-kpis-bottom.png",
+      "sourceSha256": "85a66bdb4c3dff89f1baadf434b4afb60e62553a0d133fbd7763ee8ca98a6830",
+      "visualFingerprint": "e139d1b8325eba99baa9b9693d49b46990f5a325282528252b659a6112243620"
+    },
+    {
+      "file": "criterion-5-followup-3g-top.png",
+      "sourceSha256": "45287c5855e135e556354c27462178fc8d38ba01378392dbac34e8355a703d42",
+      "visualFingerprint": "e139f1783364ba11b319b3b132d9b8f19065b64a2d822c023008900019003800"
+    },
+    {
+      "file": "criterion-5-followup-3g-kpis.png",
+      "sourceSha256": "d9c2e41740f5b55589e4cdba3a10350ee21b2f1ef6fce391fd6dd2fbe9122784",
+      "visualFingerprint": "e139f1783364ba11b319b3b132d9b8f19065b34a238223023808980010803000"
+    },
+    {
+      "file": "criterion-5-4g-top.png",
+      "sourceSha256": "d31fb65e1b1a450b82f3f3cfeb8f47461777bc89544ee6ec546d0bc124b18f1b",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5b6252c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-5-4g-kpis.png",
+      "sourceSha256": "d77880c3831db16c4df8aa288e6ae812e6d4f55645d6b6567ff5f278b7bd0133",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5b225293528242b249a6012243220"
+    },
+    {
+      "file": "criterion-5-nsa-kpis-top.png",
+      "sourceSha256": "01dca33a0c490ae4db68a89f0d8ca617e5522a55f15471c8b48d1e8291fd01c4",
+      "visualFingerprint": "e139d1f8325eba99baa9b9693d49b66990d5b6252c352c253b499a6118243a20"
+    },
+    {
+      "file": "criterion-5-nsa-kpis-bottom.png",
+      "sourceSha256": "3d8cd1723b9c4d8ad608a679bd6a97b8d98e397bc6f6d8b4a236918480438386",
+      "visualFingerprint": "e139d1f8325eba99baa9b9693d49b66990d5b225293528252b499a6116243220"
+    },
+    {
+      "file": "criterion-5-followup-sa-top.png",
+      "sourceSha256": "4d583438fb7b2d9f2f41c38a424d7656516ab1808bca42f513cbbfff4cbe78b1",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f190e5b6422c352a343224980019003800"
+    },
+    {
+      "file": "criterion-5-followup-sa-kpis.png",
+      "sourceSha256": "5523312034c9739a2fc3a046797e77fdca411ee1622f061b0c53e7c427b24df4",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f190e5b242293528342824988014803000"
+    },
+    {
+      "file": "criterion-6-followup-sa-configuration.png",
+      "sourceSha256": "6264287cc12c492176b0314fcec6c29d5f260ad9fad60df3dc6364a53c646b86",
+      "visualFingerprint": "e0795070386cb969b069b8613869b9799969b969396939693969996939ec39fd"
+    },
+    {
+      "file": "criterion-6-followup-selected-row.png",
+      "sourceSha256": "29bae052c705bf44b90fbcc2b71b323702468379db91ce7ede41a515ba334df1",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f19365b28825163596348e948e148e320b"
+    },
+    {
+      "file": "criterion-6-followup-final.png",
+      "sourceSha256": "fff6873b2633d7d6ceaf4e509908e876ae66a2e868d88d766cbeb19c4c22b20b",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f190e5b6422c352a343224980019003800"
+    },
+    {
+      "file": "criterion-6-followup-identity.png",
+      "sourceSha256": "5df86128f671145b391cbd4f809f3e597db5451c163232772c1f6f95773f9f4e",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f190e5b242293528342824988014803000"
+    },
+    {
+      "file": "criterion-7-final.png",
+      "sourceSha256": "de944cf6031dcff3b7ff083861c00f23488f80e55a9b1062ee4938ec1f7ec27b",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699435a644274026012402900010003000"
+    },
+    {
+      "file": "criterion-7-recovery.png",
+      "sourceSha256": "c3dd7cccfee4085b202c9432a70bee14f9a3103be36d937c0ac0d2b1246c14d8",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699635b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-7-target-genuine-baseline.png",
+      "sourceSha256": "86ad89355c3c960a6c8894e3489cb45cb40840058994d3e6935d455fd781302f",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699635b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-7-valid-baseline.png",
+      "sourceSha256": "4d3318499ef033b44faae6c88ec9fdf5c3af3d646ab1d57901f2ab6f99674f4a",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5b6252c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-7-before-held-load.png",
+      "sourceSha256": "7219d7ebe2566161fa746a486ea955e740f2179c45c56815842810fe8e1971f6",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5ac452c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-7-before-target-selection.png",
+      "sourceSha256": "03ad5ed8f6de6851f661c6b930cbffd575b0d289f3906ed106f565a273ea5503",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b7699675b20425323496348694961486202b"
+    },
+    {
+      "file": "criterion-8-final.png",
+      "sourceSha256": "ac45e886bc40fce2c3b8ecb205f4235167c3663f908f1b0fcc1a7ee55c5011e3",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-9-restart-final.png",
+      "sourceSha256": "08cc16d3a78b0e46ff4c158392ef3715ca6caf46f6105b6ec4b7dc69a7bb2426",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b6699435b923274324042402900010003000"
+    },
+    {
+      "file": "criterion-9-restart-recovery.png",
+      "sourceSha256": "7ec737bd8531a1b1b529fdb880d46846aee785dd2dcec28b2480d0ef5dc068e5",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b6699635b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-9-restart-target-genuine.png",
+      "sourceSha256": "fc8c4a207d28f1bcc5e605f6d1dbb415c7b8e6787365e1831cefe558ac66c051",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b6699635b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-9-restart-before-error.png",
+      "sourceSha256": "f12f948842938607d38c51f65bad38b048faf008d3a1a441a6a3cc023653079e",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5ac452c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-9-restart-before-target.png",
+      "sourceSha256": "367596e5b7cd28cada629fc62f9b89b3e2e65da5db59484960f9350da5422976",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b7699675b20425323496348694961486202b"
+    }
+  ],
+  "logicalEvidence": [
+    {
+      "file": "criterion-1-final.png",
+      "sourceSha256": "f1f6d9c1559a148deb7499e8b630190844e30fdf75ed31147998a69d48b34a3a",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5b6252c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-1-serving-280.png",
+      "sourceSha256": "238dd271a991ee86a77946300e9e1b6cabc5fa9c7bc6cdbf7fcb1c2ff142d480",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5ba252a352c243224926018243820"
+    },
+    {
+      "file": "criterion-1-final-complete-serving.png",
+      "sourceSha256": "86c54c5a7634b1e6e435a321b5eb49df679e73920478ad85f60db92cac476bd5",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5b225293528242b249a6012243220"
+    },
+    {
+      "file": "criterion-2-neighbours-0.png",
+      "sourceSha256": "c0714f164d82d7bd7c48518349984272ae735b6db6177ee80c71fc200d2af641",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5b6252c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-2-neighbours-280.png",
+      "sourceSha256": "1133f126c935b237fff3eb72128370c27d2e36f683200a35a4e658b135effe57",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b4262c252a4532359a241a603a60"
+    },
+    {
+      "file": "criterion-2-neighbours-560.png",
+      "sourceSha256": "2dfd89ac6d6ecc5cc5d8a348bc1e14fc760ed1ecfa5219d83333a78101b76485",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b76990f5b6042c222a2432259a6118343a20"
+    },
+    {
+      "file": "criterion-2-neighbours-840.png",
+      "sourceSha256": "8ce0e8cccfde7769ddcfcffcce2753a989b0fccb8d89caa52e9ab86d5f0fef3f",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b4362c242a6432649a2518253a61"
+    },
+    {
+      "file": "criterion-2-final.png",
+      "sourceSha256": "f4ccd8bc8638723909e1933a3486c3c0b286076aefee9945bbb4ea44aceaed9e",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699055b6242c342a2432449a7418253a21"
+    },
+    {
+      "file": "criterion-3-followup-selected-row.png",
+      "sourceSha256": "48781af56cef50fc195a9af7ebc371742d96c82afb29b8353d81fb6bce2b8a46",
+      "visualFingerprint": "e139f1783364bab1b299b3c131c9b8919145a228251234d2349694d614d6201b"
+    },
+    {
+      "file": "criterion-3-followup-final.png",
+      "sourceSha256": "edc6e98b219965e08daf465851ee64a353311e960bcc1a14147661e6b2049009",
+      "visualFingerprint": "e139f1783364bab1b299b3c131c9b89190e5b64a2d8224023908980019003800"
+    },
+    {
+      "file": "criterion-3-followup-serving.png",
+      "sourceSha256": "1dc6eeedc41b2aeffc8f072a8fb4f61a790819dfc3bfc8556a964e004cf0fb4b",
+      "visualFingerprint": "e139f1783364bab1b299b3c131c9ba9190e5b34a238221023808988018803800"
+    },
+    {
+      "file": "criterion-4-baseline.png",
+      "sourceSha256": "dfa55aa427680a986e659cb7832f20fe39cf3a41e44da382f5cb5d5f14d3c1ad",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b38425323596348694961486202b"
+    },
+    {
+      "file": "criterion-4-sorted-ascending.png",
+      "sourceSha256": "540749eb72d2cc1cb46711bc4ba6779188dece38d363b02c97bfcddf5ad0146e",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b3842532355634d694d61486202b"
+    },
+    {
+      "file": "criterion-4-sorted-descending.png",
+      "sourceSha256": "3d8461ffe72d2d2c7e83aa4bf15d51ac03d452ee0d9d3dbc5f7d9ce1cb9d405b",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b38425323516349694d61486202b"
+    },
+    {
+      "file": "criterion-4-final.png",
+      "sourceSha256": "de104b9e67d3294e0d82a3acdd4d291567029f890257d8fb13b02f8df2a777ac",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699075b288351235d634d68021000b301b"
+    },
+    {
+      "file": "criterion-5-2g-kpis-top.png",
+      "sourceSha256": "619409725389d3efa8440385800b62098f518eb4a201adcbb67808e5c73c5bda",
+      "visualFingerprint": "e139d1b8325eba99baa9b9693d49b46990f5a2252c25222532659a6118243a20"
+    },
+    {
+      "file": "criterion-5-2g-kpis-bottom.png",
+      "sourceSha256": "85a66bdb4c3dff89f1baadf434b4afb60e62553a0d133fbd7763ee8ca98a6830",
+      "visualFingerprint": "e139d1b8325eba99baa9b9693d49b46990f5a325282528252b659a6112243620"
+    },
+    {
+      "file": "criterion-5-followup-3g-top.png",
+      "sourceSha256": "45287c5855e135e556354c27462178fc8d38ba01378392dbac34e8355a703d42",
+      "visualFingerprint": "e139f1783364ba11b319b3b132d9b8f19065b64a2d822c023008900019003800"
+    },
+    {
+      "file": "criterion-5-followup-3g-kpis.png",
+      "sourceSha256": "d9c2e41740f5b55589e4cdba3a10350ee21b2f1ef6fce391fd6dd2fbe9122784",
+      "visualFingerprint": "e139f1783364ba11b319b3b132d9b8f19065b34a238223023808980010803000"
+    },
+    {
+      "file": "criterion-5-4g-top.png",
+      "sourceSha256": "d31fb65e1b1a450b82f3f3cfeb8f47461777bc89544ee6ec546d0bc124b18f1b",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5b6252c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-5-4g-kpis.png",
+      "sourceSha256": "d77880c3831db16c4df8aa288e6ae812e6d4f55645d6b6567ff5f278b7bd0133",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5b225293528242b249a6012243220"
+    },
+    {
+      "file": "criterion-5-nsa-kpis-top.png",
+      "sourceSha256": "01dca33a0c490ae4db68a89f0d8ca617e5522a55f15471c8b48d1e8291fd01c4",
+      "visualFingerprint": "e139d1f8325eba99baa9b9693d49b66990d5b6252c352c253b499a6118243a20"
+    },
+    {
+      "file": "criterion-5-nsa-kpis-bottom.png",
+      "sourceSha256": "3d8cd1723b9c4d8ad608a679bd6a97b8d98e397bc6f6d8b4a236918480438386",
+      "visualFingerprint": "e139d1f8325eba99baa9b9693d49b66990d5b225293528252b499a6116243220"
+    },
+    {
+      "file": "criterion-5-followup-sa-top.png",
+      "sourceSha256": "4d583438fb7b2d9f2f41c38a424d7656516ab1808bca42f513cbbfff4cbe78b1",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f190e5b6422c352a343224980019003800"
+    },
+    {
+      "file": "criterion-5-followup-sa-kpis.png",
+      "sourceSha256": "5523312034c9739a2fc3a046797e77fdca411ee1622f061b0c53e7c427b24df4",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f190e5b242293528342824988014803000"
+    },
+    {
+      "file": "criterion-6-followup-sa-configuration.png",
+      "sourceSha256": "6264287cc12c492176b0314fcec6c29d5f260ad9fad60df3dc6364a53c646b86",
+      "visualFingerprint": "e0795070386cb969b069b8613869b9799969b969396939693969996939ec39fd"
+    },
+    {
+      "file": "criterion-6-followup-selected-row.png",
+      "sourceSha256": "29bae052c705bf44b90fbcc2b71b323702468379db91ce7ede41a515ba334df1",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f19365b28825163596348e948e148e320b"
+    },
+    {
+      "file": "criterion-6-followup-final.png",
+      "sourceSha256": "fff6873b2633d7d6ceaf4e509908e876ae66a2e868d88d766cbeb19c4c22b20b",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f190e5b6422c352a343224980019003800"
+    },
+    {
+      "file": "criterion-6-followup-identity.png",
+      "sourceSha256": "5df86128f671145b391cbd4f809f3e597db5451c163232772c1f6f95773f9f4e",
+      "visualFingerprint": "e139f1783364ba11b319b3b130d9b8f190e5b242293528342824988014803000"
+    },
+    {
+      "file": "criterion-7-final.png",
+      "sourceSha256": "de944cf6031dcff3b7ff083861c00f23488f80e55a9b1062ee4938ec1f7ec27b",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699435a644274026012402900010003000"
+    },
+    {
+      "file": "criterion-7-recovery.png",
+      "sourceSha256": "c3dd7cccfee4085b202c9432a70bee14f9a3103be36d937c0ac0d2b1246c14d8",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699635b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-7-target-genuine-baseline.png",
+      "sourceSha256": "86ad89355c3c960a6c8894e3489cb45cb40840058994d3e6935d455fd781302f",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b6699635b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-7-valid-baseline.png",
+      "sourceSha256": "4d3318499ef033b44faae6c88ec9fdf5c3af3d646ab1d57901f2ab6f99674f4a",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5b6252c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-7-before-held-load.png",
+      "sourceSha256": "7219d7ebe2566161fa746a486ea955e740f2179c45c56815842810fe8e1971f6",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b66990d5ac452c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-7-before-target-selection.png",
+      "sourceSha256": "03ad5ed8f6de6851f661c6b930cbffd575b0d289f3906ed106f565a273ea5503",
+      "visualFingerprint": "e139d1d8325eba99baa9b9693d49b7699675b20425323496348694961486202b"
+    },
+    {
+      "file": "criterion-8-final.png",
+      "sourceSha256": "ac45e886bc40fce2c3b8ecb205f4235167c3663f908f1b0fcc1a7ee55c5011e3",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-9-restart-final.png",
+      "sourceSha256": "08cc16d3a78b0e46ff4c158392ef3715ca6caf46f6105b6ec4b7dc69a7bb2426",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b6699435b923274324042402900010003000"
+    },
+    {
+      "file": "criterion-9-restart-recovery.png",
+      "sourceSha256": "7ec737bd8531a1b1b529fdb880d46846aee785dd2dcec28b2480d0ef5dc068e5",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b6699635b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-9-restart-target-genuine.png",
+      "sourceSha256": "fc8c4a207d28f1bcc5e605f6d1dbb415c7b8e6787365e1831cefe558ac66c051",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b6699635b6252c352a2532259a6518253a21"
+    },
+    {
+      "file": "criterion-9-restart-before-error.png",
+      "sourceSha256": "f12f948842938607d38c51f65bad38b048faf008d3a1a441a6a3cc023653079e",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b66990d5ac452c352a2432249a6018243a20"
+    },
+    {
+      "file": "criterion-9-restart-before-target.png",
+      "sourceSha256": "367596e5b7cd28cada629fc62f9b89b3e2e65da5db59484960f9350da5422976",
+      "visualFingerprint": "e13971f8325eba99baa9b9693d49b7699675b20425323496348694961486202b"
+    }
+  ]
+}
