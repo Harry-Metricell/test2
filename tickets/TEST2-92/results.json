@@ -1,0 +1,1062 @@
+[
+  {
+    "criterion": "With a standard Automobile layer active, the legend shows the titled groups and items defined by that layer’s selected legend section, using the configured categories, thresholds, colours, shapes and outlines.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-add.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-http-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-types.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-middle-groups.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Started from launcher and captured own initial state.",
+      "Observed pre-existing Automobile - Download layer and three Download details tabs; retained them unchanged.",
+      "Added own Automobile HTTP Browsing layer using visible Automobile test-type configuration. Choices included HTTP Browsing, Ping, Video Streaming; did not substitute Download or Surveyor.",
+      "GET /api/platform/automobile/http-browsing/points returned 200 for default 30 July–28 October 2026 window and current map tiles; response contains aggregate measurements.",
+      "Inspected Load Time [s], Error, 2G/3G/4G/5G NSA/5G SA and Out of Threshold groups through scroll captures. No independent versioned baseline in the authoritative inputs. Final browser URL https://o2intelligence-v4-dev.metricell.com/gis."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "No identified versioned expected legend definition was supplied for exact configured groups, categories, thresholds, colours, shapes and outlines. Current HTTP Browsing UI renders titled generation groups, but it is not an independent expected baseline.",
+    "retryClass": "prerequisite",
+    "coverageChecks": [
+      {
+        "assertion": "Titled groups/items equal the selected versioned section",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Configured categories and numeric thresholds match independent definition",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Exact colours match independent definition",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Shapes and outlines match independent definition",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ]
+  },
+  {
+    "criterion": "When a visible legend item is selected, matching points in the active layer are hidden and the item is visibly muted; selecting it again restores the points and normal item appearance.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-before-hide.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-after-hide.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-final.png"
+    ],
+    "steps_taken": [
+      "Restarted independently from launcher to repair the restored-state evidence, using criterion-2-repair-initial.png.",
+      "Added own Automobile HTTP Browsing, confirmed Load Time [s] and waited for populated map settlement. The pre-existing Service layer was retained as found; it was not used as target evidence.",
+      "Captured baseline, selected Hide Error and waited for visible muted item and black HTTP markers to disappear; selected Show Error and waited for markers and normal item appearance to return.",
+      "Captured criterion-2-repair-final.png and actual final URL https://o2intelligence-v4-dev.metricell.com/gis; inspected before/hide/restore saved PNGs.",
+      "Removed own HTTP after final. Earlier Download-only and unsettled restoration captures were excluded from acceptance evidence."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "Fresh HTTP Browsing sequence showed black error markers disappear and the Error item mute; selecting again restored markers and appearance.",
+    "coverageChecks": [
+      {
+        "assertion": "Selecting a visible item hides matching active-layer points",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-before-hide.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-after-hide.png"
+        ]
+      },
+      {
+        "assertion": "Hidden item is visibly muted",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-after-hide.png"
+        ]
+      },
+      {
+        "assertion": "Selecting it again restores points and normal appearance",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-before-hide.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-after-hide.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-final.png"
+        ]
+      }
+    ]
+  },
+  {
+    "criterion": "When a legend item is double-clicked, that item remains visible and all other items in its group are hidden; items in other groups retain their visibility.",
+    "outcome": "Failed",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-http-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-http-before-isolate.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-http-final.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-decisive-final.png"
+    ],
+    "steps_taken": [
+      "Started from launcher and own initial capture.",
+      "The supplied browser workspace reverted to pre-existing Download on launcher navigation; initial destination attempt found no HTTP legend. Inspected current state after timeout and added own Automobile HTTP Browsing through actual test-type configuration.",
+      "Captured HTTP Browsing baseline with all 2G siblings visible. Double-clicked <=8 through both Playwright item reference and normal item locator; after settlement >8, >12, >20 remained visible with pressed=true. 3G and other groups remained visible.",
+      "Captured decisive HTTP state; final URL https://o2intelligence-v4-dev.metricell.com/gis. Removed own HTTP layer after final; pre-existing Download layer retained."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "Repeated double-click of HTTP Browsing 2G <=8 left all three sibling categories visible and aria-pressed true; isolation was not applied.",
+    "retryClass": "product",
+    "coverageChecks": [
+      {
+        "assertion": "Double-clicked item remains visible",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-http-before-isolate.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-decisive-final.png"
+        ]
+      },
+      {
+        "assertion": "All sibling items in selected group become hidden",
+        "outcome": "Failed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-http-before-isolate.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-decisive-final.png"
+        ]
+      },
+      {
+        "assertion": "Other groups retain visibility",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-http-before-isolate.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-decisive-final.png"
+        ]
+      }
+    ]
+  },
+  {
+    "criterion": "Legend filtering and legend edits change only the active layer’s presentation; other layers, underlying data, and form-based filters retain their prior state.",
+    "outcome": "Unverified",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-http-filter-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-edit.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-editor-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-after-save.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-filtered-edited.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-after-filters.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-other-layer-final.png"
+    ],
+    "steps_taken": [
+      "Launcher initial; added own HTTP Browsing with default time window and all technologies/bands enabled, blank handset/network restrictions. Captured form baseline.",
+      "Opened editor, changed Error label to QA isolation error, captured draft and saved-open dialog, closed then hid the renamed Error category.",
+      "Inspected HTTP configuration after editing/filtering: original From/To, blank handset/network fields and selected technologies/bands retained; did not Apply changes.",
+      "Selected pre-existing Download layer and captured its unchanged Error label and categories; complete independent before baseline for that layer and underlying data reconciliation missing.",
+      "Final URL https://o2intelligence-v4-dev.metricell.com/gis. Removed own HTTP layer; pre-existing Download retained. Configuration-inspection locator timeout did not change filters."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "HTTP legend editing/filtering and unchanged HTTP form values were observed; a complete independent before/after comparison for all other-layer presentation and underlying data was not established. No full isolation pass claimed.",
+    "retryClass": "manual",
+    "coverageChecks": [
+      {
+        "assertion": "Legend filtering affects active-layer presentation",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-edit.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-filtered-edited.png"
+        ]
+      },
+      {
+        "assertion": "Legend edits affect active-layer presentation",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-editor-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-after-save.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-filtered-edited.png"
+        ]
+      },
+      {
+        "assertion": "Other-layer presentation retains prior state",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-other-layer-final.png"
+        ]
+      },
+      {
+        "assertion": "Underlying data retains prior state",
+        "outcome": "Unverified",
+        "evidence": []
+      },
+      {
+        "assertion": "All form-based filter values retain prior state",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-http-filter-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-after-filters.png"
+        ]
+      }
+    ]
+  },
+  {
+    "criterion": "When a layer supplies one Colour By field, its title is displayed as a label; when it supplies multiple fields, a dropdown displays exactly those fields.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-http-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-http-label.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-ping-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-ping-label.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-video-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Launcher initial; own HTTP Browsing layer added through Automobile configuration.",
+      "Confirmed plain Load Time [s] title.",
+      "Changed only own layer through Test type Ping, Apply; confirmed Ping Time [ms] plain title.",
+      "Changed own layer through Test type Video Streaming, Apply; confirmed Rebuffer Count title and zero legend comboboxes.",
+      "Final URL https://o2intelligence-v4-dev.metricell.com/gis. Removed own Video Streaming layer; pre-existing Download retained."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "Single-option labels verified for HTTP Browsing (Load Time [s]), Ping (Ping Time [ms]) and Video Streaming (Rebuffer Count). No identified consuming layer supplies multiple Colour By options and its expected option list; dropdown branch cannot be tested using current single-field Automobile types.",
+    "retryClass": "prerequisite",
+    "coverageChecks": [
+      {
+        "assertion": "One supplied field appears as label in scoped Automobile consumers",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-5-http-label.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-5-ping-label.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+        ]
+      },
+      {
+        "assertion": "Multiple supplied fields appear as dropdown",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Dropdown contains exactly independently supplied fields",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ]
+  },
+  {
+    "criterion": "When Colour By changes on a consuming layer that supplies multiple fields and measurements, the displayed groups, map classification, markers and linked-context visibility follow the selected field, form filters remain unchanged, and the same points are not fetched again. This end-to-end behavior requires a multi-field consuming layer; current Automobile types provide only one field.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-http-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "steps_taken": [
+      "Started from launcher with criterion-owned initial capture.",
+      "Inspected Automobile configuration; added own HTTP Browsing layer, confirmed Load Time [s] title with zero legend dropdowns.",
+      "Captured own blocker/final at https://o2intelligence-v4-dev.metricell.com/gis.",
+      "Removed own HTTP layer without changing pre-existing Download. No switch/refetch assertion claimed."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "Authoritative source/context identifies current Automobile HTTP Browsing, Ping and Video Streaming as single-field consumers. No identified multi-field consumer with measurements was supplied. Fresh HTTP legend confirms single Load Time [s] label and no selector, so end-to-end Colour By switching cannot be exercised.",
+    "retryClass": "prerequisite",
+    "coverageChecks": [
+      {
+        "assertion": "Multi-field consuming layer and measurements are available",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Changing field updates displayed groups",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Changing field updates map classification",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Changing field updates markers",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Changing field updates linked-context visibility",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Form filters remain unchanged on field switch",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Same points are not fetched again on field switch",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ]
+  },
+  {
+    "criterion": "Restoring a layer’s state restores its selected Colour By field and that field’s saved overrides independently of other layers.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "steps_taken": [
+      "Started own criterion at launcher.",
+      "Inspected Automobile configuration and added own HTTP Browsing layer; observed Load Time [s] label and zero Colour By dropdowns.",
+      "Captured own final/blocker at https://o2intelligence-v4-dev.metricell.com/gis; removed own layer afterward.",
+      "Did not reinterpret reselecting a single-field type as proof of selected-field restoration."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "No multi-field consumer/state fixture with distinct field-specific overrides is identified in supplied source/context. Current scoped Automobile types each provide one field. Independent selected-field and other-field override restoration cannot be established from a single field.",
+    "retryClass": "prerequisite",
+    "coverageChecks": [
+      {
+        "assertion": "Layer selected Colour By field restores from saved state",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Saved overrides restore for that selected field",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Restoration is independent of other layers",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ]
+  },
+  {
+    "criterion": "In Edit Legend, changing labels, colours or numeric boundaries creates drafts for the active field only; the map remains unchanged until Save, while Cancel or Close discards drafts. After Save, refreshed values remain visible in the open dialog.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-map-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-editor-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-label-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-colour-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-value-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-after-cancel.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-reopen.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-label-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-colour-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-value-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-after-close.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-reopen.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-final-label-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-final-colour-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-final-value-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+    ],
+    "steps_taken": [
+      "Launcher initial; added own HTTP Browsing through Automobile configuration. Baseline 2G first range label <=8, colour #31aa4f, numeric boundary 8.",
+      "First phase: changed label to QA draft range, colour to #123456, boundary to 7; underlying legend retained <=8 before Save. Cancel; reopened and original label, #31aa4f, 8 returned.",
+      "Second phase: label QA close draft, colour #654321, boundary 6; Close; reopened and original label, #31aa4f, 8 returned.",
+      "Final phase: label QA saved range, colour #123456, boundary 7; Save; dialog remained open and refreshed controls displayed these values. Final browser URL https://o2intelligence-v4-dev.metricell.com/gis.",
+      "Inspected saved decisive images. Closed editor and removed own HTTP layer after final; did not change pre-existing Download."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "HTTP draft/edit/Cancel/Close/Save paths were exercised. A consuming layer with multiple fields is still required to verify that no drafts are retained for other fields; single-field UI cannot prove that isolation. Map-before-Save pixel equivalence is also inconclusive through the dialog overlay.",
+    "retryClass": "prerequisite",
+    "coverageChecks": [
+      {
+        "assertion": "Label edits are drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-editor-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-label-draft.png"
+        ]
+      },
+      {
+        "assertion": "Colour edits are drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-label-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-colour-draft.png"
+        ]
+      },
+      {
+        "assertion": "Numeric boundary edits are drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-colour-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-value-draft.png"
+        ]
+      },
+      {
+        "assertion": "Drafts belong only to active field and no other-field drafts are retained",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Map remains unchanged until Save",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-map-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-value-draft.png"
+        ]
+      },
+      {
+        "assertion": "Cancel discards all label/colour/boundary drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-value-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-after-cancel.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-reopen.png"
+        ]
+      },
+      {
+        "assertion": "Close discards all label/colour/boundary drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-value-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-after-close.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-reopen.png"
+        ]
+      },
+      {
+        "assertion": "Save applies drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-final-value-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      },
+      {
+        "assertion": "Refreshed saved values remain in open dialog",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      }
+    ]
+  },
+  {
+    "criterion": "After a valid legend edit is saved, the legend and cached map points use the same labels, colours and classification; saved overrides for other fields and layers remain unchanged.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-map-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-editor-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-label-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-colour-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-value-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-after-save.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+    ],
+    "steps_taken": [
+      "Own launcher initial and HTTP configuration/map/editor baselines.",
+      "Drafted Error label QA saved error, colour #ff00ff and first 2G boundary 7; captured each transition.",
+      "Saved and captured refreshed editor; closed editor and captured magenta map squares and QA saved error legend. Legend SVG fill observed #FF00FF.",
+      "Observed one GET /api/platform/automobile/http-browsing/points (200) for this load, with no further points request after saving. Did not claim exact known-sample boundary classification or other-field preservation.",
+      "Final URL https://o2intelligence-v4-dev.metricell.com/gis. Removed own HTTP layer after final."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "Saved Error label/colour (#FF00FF) appeared in legend and map squares without another HTTP points fetch. Exact boundary sample classification was not independently reconciled, and no multi-field fixture with saved other-field overrides was supplied for isolation.",
+    "retryClass": "prerequisite",
+    "coverageChecks": [
+      {
+        "assertion": "Saved labels are used by legend and cached map presentation",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-after-save.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+        ]
+      },
+      {
+        "assertion": "Saved colour matches legend and cached points",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-map-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-colour-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+        ]
+      },
+      {
+        "assertion": "Known samples classify consistently with saved numeric boundaries",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-value-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+        ]
+      },
+      {
+        "assertion": "Saved overrides for other fields remain unchanged",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Saved overrides for other layers remain unchanged",
+        "outcome": "Unverified",
+        "evidence": []
+      }
+    ]
+  },
+  {
+    "criterion": "In a numeric generation group, the add control below the marker column adds a range row, eligible rows have delete controls, at least one range remains, and editing a value does not reorder Automobile rows.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-map.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-add.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-add.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-value-edit.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-added.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-first.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-second.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-out-of-order-edit.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-restored-value.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-final.png"
+    ],
+    "steps_taken": [
+      "Own launcher initial; added own Automobile HTTP Browsing, opened editor with 2G numeric rows 8,12,20,10000 in original order.",
+      "Captured add control beneath marker column and delete actions on existing rows; Add created New range with blank required value and its own delete control.",
+      "Edited first value 8 to9: order remained9,12,20,10000,blank. Deleted added row, then existing first and second rows.",
+      "With remaining rows20,10000, changed first to10001; it stayed before10000 and showed max error. Restored20; deleted that eligible row.",
+      "Final one remaining range10000 had disabled Delete >20; Add remained available. Captured final at https://o2intelligence-v4-dev.metricell.com/gis.",
+      "Inspected decisive saved images, Cancelled unsaved drafts and removed own HTTP layer."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "HTTP Browsing 2G range add/delete controls worked, last remaining range could not be deleted, and editing across another row's value did not reorder the rows.",
+    "coverageChecks": [
+      {
+        "assertion": "Add control below marker column adds a range row",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-add.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-add.png"
+        ]
+      },
+      {
+        "assertion": "Eligible original rows have working delete controls",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-add.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-first.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-second.png"
+        ]
+      },
+      {
+        "assertion": "Added row has a working delete control",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-add.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-added.png"
+        ]
+      },
+      {
+        "assertion": "At least one numeric range remains and last delete is disabled",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-second.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-final.png"
+        ]
+      },
+      {
+        "assertion": "Editing a value across another boundary does not reorder Automobile rows",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-value-edit.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-out-of-order-edit.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-restored-value.png"
+        ]
+      }
+    ]
+  },
+  {
+    "criterion": "Numeric Value fields use number inputs. Empty, non-finite, out-of-limit or incorrectly ordered boundary values show an inline error immediately and disable Save. HTTP Browsing boundaries accept 0–10,000; Ping and Video Streaming boundaries have a minimum of zero and no additional maximum. Video Streaming categories cannot be changed.",
+    "outcome": "Failed",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-restart-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-actual-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-actual-map.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-actual-editor.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-empty.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-non-finite.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-below-min.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-above-max.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-order-settled.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-map.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-editor.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-below-min.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-restored.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-no-max.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-map.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-editor.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-below-min.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-restore-zero.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-no-max.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-category-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png"
+    ],
+    "steps_taken": [
+      "Started launcher; initial setup tool timed out after120s and restored Download workspace. Rechecked own lease and live browser state, closed untouched Download editor, restarted at launcher with criterion-11-restart-initial.png. Excluded Download setup captures from acceptance proof.",
+      "Added own HTTP Browsing. Observed all numeric Value fields type=number, min0 max10000.",
+      "HTTP first boundary: empty produced Value is required and disabled Save; 1e999 remained visibly non-finite but native inputValue empty and required error/disabled Save; -1 produced min0 error;10001 produced max10000 error. Each captured immediately.",
+      "Changed first boundary to13 while next remained12: after settled recapture no alerts, Save enabled. Did not save bad ordering. Zero was rejected as equal to initial lower boundary0, recorded as ordering context rather than a standalone min-limit failure.",
+      "Cancelled HTTP drafts. Switched own layer to Ping; observed number min0 no max. -1 rejected; restored400, set final2G boundary1000000, no alerts and Save enabled. Cancelled drafts.",
+      "Switched own layer to Video Streaming; observed number min0 no max and enabled exact-category fields. -1 rejected; restored0 accepted; final boundary1000000 accepted.",
+      "Changed 2G exact category1 to1.5; Save enabled and saved. Refreshed dialog and legend both show1.5, while other generations remain1. Captured criterion-11-final at https://o2intelligence-v4-dev.metricell.com/gis.",
+      "Inspected decisive saved images. Closed editor and removed own Video layer after final; no pre-existing layer was edited."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "HTTP 2G first boundary13 before next12 showed no inline ordering error and left Save enabled after settlement. Video Streaming exact category1 was editable and saved as1.5, changing the legend; source explicitly requires fixed categories.",
+    "retryClass": "product",
+    "coverageChecks": [
+      {
+        "assertion": "Numeric Value fields use number inputs",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-actual-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-editor.png"
+        ]
+      },
+      {
+        "assertion": "Empty input immediately shows inline error and disables Save",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-empty.png"
+        ]
+      },
+      {
+        "assertion": "Non-finite input is rejected with inline error and disabled Save",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-non-finite.png"
+        ]
+      },
+      {
+        "assertion": "Out-of-limit inputs immediately show error and disable Save",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-below-min.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-above-max.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-below-min.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-below-min.png"
+        ]
+      },
+      {
+        "assertion": "Incorrectly ordered boundaries immediately show error and disable Save",
+        "outcome": "Failed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-actual-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-order-settled.png"
+        ]
+      },
+      {
+        "assertion": "HTTP boundary limit is0–10000 subject to ordering",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-below-min.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-above-max.png"
+        ]
+      },
+      {
+        "assertion": "Ping minimum0 with no extra maximum cap",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-below-min.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-no-max.png"
+        ]
+      },
+      {
+        "assertion": "Video Streaming minimum0 with no extra maximum cap",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-below-min.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-restore-zero.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-no-max.png"
+        ]
+      },
+      {
+        "assertion": "Video Streaming exact categories cannot be changed",
+        "outcome": "Failed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-category-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png"
+        ]
+      }
+    ]
+  },
+  {
+    "criterion": "Reset displays default labels, colours, boundaries, categories and visibility as drafts; saving applies defaults to the active field only, preserving other fields and layers.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-map-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-label-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-colour-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-boundary-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-category-draft.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-saved-overrides.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-overrides-map.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-hidden-category.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-saved.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+    ],
+    "steps_taken": [
+      "Own launcher initial; added HTTP Browsing and captured map/editor baseline.",
+      "Changed Error label to QA reset error, colour#ff00ff, 2G first boundary8 to7 and deleted >20 range. Saved and closed; hid renamed Error item.",
+      "Reopened editor, selected Reset: drafts restored Error, #000000, boundary8 and deleted >20 range while background legend retained saved overrides and muted category.",
+      "Save applied defaults; closed editor. Error became visible aria-pressed true, black markers returned, <=8 and >20 categories restored. Final URL https://o2intelligence-v4-dev.metricell.com/gis.",
+      "Inspected own reset comparison images; removed own HTTP layer. No claim of independent code-configuration match or other-field reset isolation."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "Reset draft/save behavior matched this criterion's fresh UI baseline for changed labels, colours, boundaries, categories and visibility. Independent versioned expected defaults and a multi-field consumer with other saved overrides are absent, so exact defaults and other-field preservation remain blocked.",
+    "retryClass": "prerequisite",
+    "coverageChecks": [
+      {
+        "assertion": "Reset restores default labels as drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-saved.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      },
+      {
+        "assertion": "Reset restores default colours as drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      },
+      {
+        "assertion": "Reset restores default numeric boundaries as drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-boundary-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      },
+      {
+        "assertion": "Reset restores default categories as drafts",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-category-draft.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      },
+      {
+        "assertion": "Reset restores default visibility only on Save",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-hidden-category.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-saved.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      },
+      {
+        "assertion": "Save applies defaults to active field",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-saved.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      },
+      {
+        "assertion": "Other fields retain saved overrides",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Other layers retain saved overrides",
+        "outcome": "Unverified",
+        "evidence": []
+      },
+      {
+        "assertion": "Defaults match independent versioned expected configuration",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ]
+  },
+  {
+    "criterion": "Linked-site and linked-cell display settings use the shared Network context and follow visible result categories; linked cells are disabled when linked sites are off, and settings persist per layer.",
+    "outcome": "Unverified",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-map-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-settings-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-sites-off.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-sites-on.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-cells-on.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-before-zoom.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-1.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-2.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-3.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-4.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-persist-reopen.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-filter-error.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-before-second-layer.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-ping-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-ping-map.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-ping-independent.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-return-http.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-13-final.png"
+    ],
+    "steps_taken": [
+      "Own launcher initial; added HTTP Browsing; captured Show linked sites checked, Show linked cells unchecked baseline.",
+      "Turned sites off: linked cells disabled with enable-sites tooltip. Turned sites on: cells enabled; checked cells. Reopened settings and both remained checked.",
+      "Used four normal Zoom in actions with own captures. GET /api/platform/automobile/http-browsing/points returned200 at each scale. Last settled response230 had106 aggregates,98 with site/cell IDs and coordinates. Example linked site12666, cell12666_120_4. No separate /network/sites/cells requests observed.",
+      "Hid Error and captured map, then restored Error; did not reconcile every linked marker/category or establish internal shared Network context from visible UI.",
+      "Added separate own Ping layer: settings sites=true cells=false. Returned to HTTP: sites=true cells=true persisted independently. Final URL https://o2intelligence-v4-dev.metricell.com/gis.",
+      "Inspected decisive settings PNGs. Removed both own layers and reversed four zoom steps; pre-existing Download and detail retained. Exact original camera equivalence unverified."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "Site-off disabling of linked cells and independent HTTP/Ping settings persistence were proven. Shared Network-context use and complete category-to-linked-marker visibility reconciliation remain inconclusive; linkable point data existed, so this is a coverage gap rather than missing-data blocker. Exact original map camera restoration was not independently proven after reversing zooms.",
+    "retryClass": "manual",
+    "coverageChecks": [
+      {
+        "assertion": "Linked-site settings use shared Network context",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-4.png"
+        ]
+      },
+      {
+        "assertion": "Linked-cell settings use shared Network context",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-4.png"
+        ]
+      },
+      {
+        "assertion": "Linked sites follow visible result categories",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-4.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-filter-error.png"
+        ]
+      },
+      {
+        "assertion": "Linked cells follow visible result categories",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-4.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-filter-error.png"
+        ]
+      },
+      {
+        "assertion": "Linked cells disabled when sites off and enabled when sites on",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-settings-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-sites-off.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-sites-on.png"
+        ]
+      },
+      {
+        "assertion": "Settings persist independently per layer",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-cells-on.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-persist-reopen.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-ping-independent.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-13-final.png"
+        ]
+      }
+    ]
+  },
+  {
+    "criterion": "With or without a details tab, the legend remains scrollable when the map pane is resized and does not overlap Reset North or other map controls.",
+    "outcome": "Failed",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-with-details-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-top.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-bottom.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-before-dual.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-dual.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-actual-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-actual-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-resized-top.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-14-decisive-final.png"
+    ],
+    "steps_taken": [
+      "Own launcher initial; added own HTTP on original mapA with pre-existing Download detail tab retained. Baseline1440x900 map pane1100x416.",
+      "Resized viewport1100x720: map pane shrank; captured HTTP legend top and bottom after normal scrolling, with Reset North/style/zoom separate.",
+      "Restored1440x900 then Dual; mapA pane550 wide with detail, mapB empty and no details. Used actual Add to map B menu and own HTTP configuration to add second own HTTP layer. Initial menu permission review timed out; current state/lease rechecked, one retry succeeded.",
+      "Resized1440x720: mapA with detail and mapB without detail. Captured mapB legend top/bottom with controls and full mapB no-details area visible. Final decisive URL https://o2intelligence-v4-dev.metricell.com/gis.",
+      "At550px width legend covered Map layers configure/remove controls; normal remove click was intercepted by legend subtree and timed out. Narrow1100 dual viewport captures were offscreen for mapB and excluded as no-details acceptance proof; repaired at1440x720 before finishing.",
+      "Inspected decisive images. Cleanup enlarged viewport2400x900 to separate controls, removed both own HTTP layers, returned Single and1440x900. Original Download/detail remained; cleanup screenshot saved."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "Legends remained scrollable and clear of compass/style/zoom controls, but in550px-wide dual map panes the HTTP legend overlapped Map layers controls and intercepted configure/remove clicks. A normal Remove from selected click timed out with the legend subtree intercepting pointer events.",
+    "retryClass": "product",
+    "coverageChecks": [
+      {
+        "assertion": "With details tab legend remains scrollable after pane resize",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-with-details-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-top.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-bottom.png"
+        ]
+      },
+      {
+        "assertion": "Without details tab legend remains scrollable after pane resize",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-actual-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-resized-top.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-decisive-final.png"
+        ]
+      },
+      {
+        "assertion": "Legend avoids Reset North when resized",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-top.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-resized-top.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-decisive-final.png"
+        ]
+      },
+      {
+        "assertion": "Legend avoids map style/zoom controls when resized",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-top.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-resized-top.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-decisive-final.png"
+        ]
+      },
+      {
+        "assertion": "Legend avoids other map/layer controls when resized",
+        "outcome": "Failed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-dual.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-actual-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-14-decisive-final.png"
+        ]
+      }
+    ]
+  },
+  {
+    "criterion": "For existing consumers of the shared legend, established markers, visibility, editor actions and default behavior remain unchanged unless a consumer opts into the new options.",
+    "outcome": "Blocked",
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-15-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-15-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-15-current-consumer.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-15-final.png"
+    ],
+    "steps_taken": [
+      "Read complete authoritative source and testing-context baseline requirement; no independent versioned regression baseline or identified existing-consumer fixture supplied.",
+      "Started own criterion at launcher; inspected Automobile HTTP configuration, added own HTTP layer, captured current legend/map and opened editor.",
+      "Captured own current editor/final at https://o2intelligence-v4-dev.metricell.com/gis. Did not use excluded Download/Service or Surveyor as substitute acceptance consumers.",
+      "Inspected own saved final PNG, closed editor and removed own HTTP layer; pre-existing Download retained."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "reason": "No identified existing-consumer regression set, opt-in matrix or versioned pre-change expected definition was supplied. Current HTTP UI/editor can be inspected but cannot establish unchanged established markers, visibility, actions or defaults independently.",
+    "retryClass": "prerequisite",
+    "coverageChecks": [
+      {
+        "assertion": "Existing-consumer established markers remain unchanged against versioned baseline",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Existing-consumer visibility remains unchanged against versioned baseline",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Existing-consumer editor actions remain unchanged against versioned baseline",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Existing-consumer default behavior remains unchanged against versioned baseline",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Changes apply only to consumers that opt in",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ]
+  }
+]
