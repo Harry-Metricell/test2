@@ -1,0 +1,820 @@
+{
+  "handoffId": "handoff-TEST2-79-cycle-005-test-attempt-001",
+  "handoffVersion": "TEST2-79:cycle-005:test_ticket:1:scope-57662d618be1",
+  "cycleId": "cycle-005",
+  "ticket": "TEST2-79",
+  "testedModule": "Automobile",
+  "qaStatus": "Blocked",
+  "evidenceCoverageVersion": 1,
+  "noOp": false,
+  "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-79-cycle-005-test-attempt-001/screenshots/",
+  "conciseReport": "Criterion 1 passed in the observed GIS baseline: only Automobile - Service was selected; no Download or Upload layer was active. Automobile configuration visibly offered Download and Upload. Criterion 2 was interrupted by the configured browser host timeout after its launcher capture; criteria 2–16 are Blocked (transient). No genuine Download/Upload response was reached or verified. Browser state and any in-flight selection are uncertain; browser lease retained for coordinator reconciliation under the host-interruption rule. No simulation handlers installed. Complete source ticket and canonical checklist were cross-checked; no scope substitution made.",
+  "browserLease": {
+    "retained": true,
+    "ownerFile": ".agent-staging/tester-browser.lock/owner.json",
+    "reason": "Coordinator must reconcile in-flight execution and browser state before release."
+  },
+  "results": [
+    {
+      "criterion": "With neither layer selected, the map shows no Download or Upload test-result points.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-005/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-005/screenshots/attempt-001/criterion-1-baseline-map.png",
+        "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-types.png",
+        "cycles/cycle-005/screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated exactly to https://o2intelligence-v4-dev.metricell.com/launcher; waited for visible Launcher; saved initial PNG.",
+        "Opened GIS. Original complete active layer list contained only Automobile - Service, with no pre-existing detail dialog. Captured baseline map.",
+        "Opened Configure Automobile - Service. Original Test type Service; From 2026-07-30T10:31, To 2026-10-28T10:31; handset/network text filters empty and technology checkboxes checked. No filters changed.",
+        "Opened Test type menu: Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service (selected), MS Teams Call. Captured menu.",
+        "Pressed Escape; closed configuration without Apply. Captured final unchanged active-layer list and map before next criterion. Recorded actual URL. Reopened final and test-types PNGs and visually verified decisive states."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Bounded baseline: active map layer list contained only Automobile - Service; Download and Upload unselected. Automobile nested menu confirmed separate choices. Configuration closed without Apply; original selections restored.",
+      "coverageChecks": [
+        {
+          "assertion": "Neither Download nor Upload is selected in complete active layer list",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-1-final.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-types.png"
+          ]
+        },
+        {
+          "assertion": "Map shows no Download result points",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-1-final.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-types.png"
+          ]
+        },
+        {
+          "assertion": "Map shows no Upload result points",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-1-final.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-types.png"
+          ]
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "After selecting Download, the map shows selectable points for matching authorised Download results only.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-005/screenshots/attempt-001/criterion-2-initial.png"
+      ],
+      "steps_taken": [
+        "Navigated exactly to launcher; initial PNG exists, is non-empty and was reopened for visual verification.",
+        "Submitted batch to capture launcher, open GIS and Automobile - Service configuration, open Test type menu, capture before-Download state, select Download and Apply. Host timeout returned. Only initial PNG can be confirmed; no successful selection asserted.",
+        "Stopped browser work. Current state, final URL and cleanup cannot be verified after host interruption."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Final capture unavailable; only initial launcher PNG survived.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download selected within Automobile",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "All genuine authorised Download results in inspected time/area/filter scope reconciled with map points and cluster members",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "All matching Download points selectable",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "No non-Download results in selected layer",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "After selecting Upload, the map shows selectable points for matching authorised Upload results only.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Upload selected within Automobile",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "All genuine authorised Upload results in inspected time/area/filter scope reconciled with map points and cluster members",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "All matching Upload points selectable",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "No non-Upload results in selected layer",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Selecting a Download result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate, and Wi-Fi Connected.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download point opens matching details",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download summary readable: Data Technology",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download summary readable: MSISDN",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download summary readable: Service",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download summary readable: Serving Cell",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download summary readable: Test Duration",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download summary readable: Test Technologies",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download summary readable: Download Rate",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download summary readable: Wi-Fi Connected",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Selecting an Upload result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Upload Rate, and Wi-Fi Connected.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Upload point opens matching details",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload summary readable: Data Technology",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload summary readable: MSISDN",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload summary readable: Service",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload summary readable: Serving Cell",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload summary readable: Test Duration",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload summary readable: Test Technologies",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload summary readable: Upload Rate",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload summary readable: Wi-Fi Connected",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "The Download result details chart plots Signal Strength in dBm and Download Rate in Mbps over time.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download chart plots Signal Strength in dBm",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download chart plots Download Rate in Mbps",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download chart displays quantities over time, including relevant tooltips",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "The Upload result details chart plots Signal Strength in dBm and Upload Rate in Mbps over time.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Upload chart plots Signal Strength in dBm",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload chart plots Upload Rate in Mbps",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload chart displays quantities over time, including relevant tooltips",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "The Download details table displays MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download table readable column: MSISDN",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: Start Time",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: End Time",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: Download Rate",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: Band",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: Serving Cell",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: Service",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: Test Technologies",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: Data Technology",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: Wi-Fi Connected",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: URL",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download table readable column: Error Message",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "The Upload details table displays MSISDN, Start Time, End Time, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Upload table readable column: MSISDN",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: Start Time",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: End Time",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: Upload Rate",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: Band",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: Serving Cell",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: Service",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: Test Technologies",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: Data Technology",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: Wi-Fi Connected",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: URL",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload table readable column: Error Message",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download: Every displayed Signal Strength value includes dBm",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Every displayed rate value includes Mbps",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Every displayed Signal Strength value includes dBm",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Every displayed rate value includes Mbps",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a result whose Error Message is null, the details table displays “No Error”.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download: Genuine response establishes null Error Message",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Table renders null Error Message as No Error",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Genuine response establishes null Error Message",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Table renders null Error Message as No Error",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download: Enumerate all supported table sortable columns",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Every supported sortable column orders differing values correctly ascending",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Every supported sortable column orders differing values correctly descending",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Settled headers and sort indicators remain readable; all-equal fixtures disclosed",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Enumerate all supported table sortable columns",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Every supported sortable column orders differing values correctly ascending",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Every supported sortable column orders differing values correctly descending",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Settled headers and sort indicators remain readable; all-equal fixtures disclosed",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Filtering a supported Download or Upload details-table column displays rows matching the applied filter.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download: Inspect table-specific header menus and filtering controls",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Applying a supported column filter displays only matching rows",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Inspect table-specific header menus and filtering controls",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Applying a supported column filter displays only matching rows",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "Requesting details for a zero-duration test does not open a details dialog.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download: Establish target identity and actual zero test duration",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Pointer activation leaves details closed, with own settled before/after captures",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Check keyboard activation when target exposes it",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Establish target identity and actual zero test duration",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Pointer activation leaves details closed, with own settled before/after captures",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Check keyboard activation when target exposes it",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "While result details are loading, the interface shows a loading state without stale or misleading detail data.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download: Establish target identity, genuine detail request and distinct valid baseline",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Visible loading state",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Loading excludes stale or misleading details",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Genuine recovery restores chart and sample table after removing any scoped delay",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Establish target identity, genuine detail request and distinct valid baseline",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Visible loading state",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Loading excludes stale or misleading details",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Genuine recovery restores chart and sample table after removing any scoped delay",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "If result details fail to load, the interface shows an error state without stale or misleading detail data.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "steps_taken": [
+        "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
+      "retryClass": "transient",
+      "blockerCode": "browser_host_interrupted",
+      "coverageChecks": [
+        {
+          "assertion": "Download: Establish target identity, genuine detail request and distinct valid baseline",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Failed detail request shows visible error",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Error excludes stale or misleading details",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download: Genuine recovery verified after removal of any scoped simulation",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Establish target identity, genuine detail request and distinct valid baseline",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Failed detail request shows visible error",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Error excludes stale or misleading details",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Upload: Genuine recovery verified after removal of any scoped simulation",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    }
+  ],
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-28T10:46:44.560Z"
+}
