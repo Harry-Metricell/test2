@@ -4,7 +4,7 @@ User-authorised 23 October 2026. Source VM2ST remains read-only. Existing report
 
 ## Release procedure
 
-Current release, authorised by the user on 27 October 2026: **TEST2-79 and TEST2-92**. The previous 83/87 pair has completed and is held. Only 79/92 are released for tester/reviewer work; all other tickets in TEST2-79–92 remain held. Use importer-owned fresh cycles and retain all previous reports/history. The user has accepted TEST2-80 as passed and deferred TEST2-82 pending development work; neither is included in this retest pair. The 85/86 reassessments remain 8 Passed and 2 Blocked each, pending their recorded developer inputs.
+Current release, authorised by the user on 28 October 2026: **TEST2-81 and TEST2-88**. TEST2-79’s focused repair is complete (15 Passed, one tooltip-units failure). TEST2-83 is done per the user. TEST2-89 is the reserve, held until the user releases it. Only 81/88 are eligible for the next automated pair; all other batch tickets remain held. Preserve all earlier cycles and reports. 80 is accepted; 82, 85 and 86 stay in the user’s development queue.
 
 Keep tester-side tickets in Jira **TESTING IN PROGRESS** while held. This status is a holding queue here, not a claim that a worker is active. The imported status must be READY FOR TESTING before a tester/reviewer can run. Only release one or two tickets, and keep config/qa-verification-batch.json aligned. Bundler excludes held testers/reviewers even if someone prematurely marks them Ready. No automatic next-pair release.
 
@@ -23,27 +23,26 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 | --- | --- | --- |
 | 79 | Focused 28 October repair: 15 Passed, 1 Failed. Download/Upload matching-record reconciliation and all seven sorting rows verified in bounded genuine scopes. Criterion 10 still fails: Upload chart tooltip omits required units. | Corrected PDF/Word; original cycle-005 attempt-002 results/history and retry counters retained |
 | 80 | User accepted the existing Passed review. Preserve it and its reports. | Passed; held from further testing |
-| 81 | Reconcile HTTP/Ping results in a bounded permitted genuine scope; Video Streaming needs genuine data separately. | Held; data work deferred |
+| 81 | Next pair: genuine Video Streaming result opened near London on 28 October, with Rebuffer Count 1; earlier HTTP/Ping evidence exists. Re-establish all nine criteria and complete bounded membership; no scope weakening. | Prepare importer-owned fresh cycle; first candidate |
 | 82 | Preserve reported loading failure and missing no-data contract. Correct future preservation of pre-existing panels. | Leave To Do; user bug returned |
 | 83 | Focused 28 October follow-up: 8 Passed, 1 Blocked. Harry accepted neighbour placement and demonstrated sorting/filtering scope. Genuine no-neighbour, 3G and SA records were checked; only unavailable-details testing still needs a fixture or agreed response contract. | User marked done on 28 October; no further retesting. Corrected report and original cycle/results/history retained |
 | 84 | Identify actual Automobile Building feature/prerequisite; never substitute Surveyor. | Deferred; unchanged Jira |
 | 85 | Reassessed 27 October: 8 Passed, 2 Blocked. Summary availability and disabled zero-duration presentation cleared from existing evidence. Criteria 6 and 9 need the inputs below; no new attempt or counter reset. | Held; updated PDF/Word published; earlier review and original tester history preserved |
 | 86 | Reassessed 27 October: 8 Passed, 2 Blocked. Summary, disabled zero-duration presentation and repaired loading/recovery evidence cleared. Loading follow-up shows the genuine chart and all 28 recovered rows matching baseline, with exact handler removal and no pending requests. Criteria 6 and 9 need the inputs below. | Held; updated PDF/Word published; earlier review and original tester history preserved |
 | 87 | Cycle-003 reviewed: 1 Passed, 3 Failed, 2 Blocked, 1 Unverified. Source VM2ST-110 checked read-only on 27 October confirms timeline technology, filterable samples and Serving Cell wording. Follow-up demonstrated readable destination time through the built-in detached detail view; five columns sorted correctly in both directions across 33 samples. Service, Site Distance and Speed still need varied values. No sample filters found after header/table/footer inspection. Zero-duration and unavailable-detail branches still need fixtures/contracts. | Completed; focused follow-up supplement records new evidence; original independent review retained |
-| 88 | Inspect Automobile's nested MS Teams Call type, not only catalogue text search. | Held |
-| 89 | Correct nested type was reached; retain the inspected-scope data blocker without substituting Surveyor. | Held; previous release completed |
+| 88 | Next pair: nested Automobile MS Teams Call exists and genuine populated aggregates were found at wider UK zoom. Verify actual routes, linked overlays and all preservation/disabled-control sequences. | Prepare importer-owned fresh cycle; second candidate |
+| 89 | Reserve: MS Teams populated aggregates now located, but specific quality bands, details/samples and exception fixtures still need independent checks. | Held; do not release a third concurrent ticket |
 | 90 | Full preservation/isolation comparisons; visible final sorting column/order; exact colours distinct from boundary fixtures. Retain confirmed forbidden-NSA finding and genuine calculation/Service fixture blockers. | Held |
 | 91 | Reviewable expected frequency configuration; complete form and actual device-group condition. Preserve product contradictions separately from missing permissions. | Held |
-| 92 | Source VM2ST-116 rechecked read-only 27 October: current consumers are HTTP Browsing, Ping and Video Streaming. Earlier Call-based observations are not verdicts for these consumers. Correct context before checking isolation, second-layer comparisons, editor/reset behaviour and details-open layout. Multi-field end-to-end coverage still needs a genuine consuming layer and measurements; exact regression checks need a versioned expected baseline. | Released 27 October for an importer-owned fresh cycle; after 79 |
+| 92 | Source VM2ST-116 rechecked read-only 27 October: current consumers are HTTP Browsing, Ping and Video Streaming. Earlier Call-based observations are not verdicts for these consumers. Correct context before checking isolation, second-layer comparisons, editor/reset behaviour and details-open layout. Multi-field end-to-end coverage still needs a genuine consuming layer and measurements; exact regression checks need a versioned expected baseline. | Held after completed review; genuine product defects and evidence/prerequisite gaps remain |
 
-## Next checks after the 85 and 86 reassessments
+## Historical 27 October release after the 85 and 86 reassessments
 
 The user authorised release of **TEST2-79, then TEST2-92** on 27 October: one
 browser tester at a time and at most two tickets released. Change only these
 TEST2 tickets through To Do to READY FOR TESTING and verify the importer archives
 the earlier cycle before creating the new handoffs. Retain 80 as accepted and
-82 as returned for development. No other ticket is authorised for automatic
-release by this instruction.
+82 as returned for development. That release is superseded by the current release above.
 
 1. **79 — complete the interrupted Download/Upload coverage.** Source VM2ST-104
    was checked read-only on 27 October. Genuine positive-duration records and
@@ -145,3 +144,5 @@ No request for these inputs has been sent to anyone.
 - 28 October TEST2-83 follow-up: 8 Passed and criterion 8 Blocked. Human acceptance for criteria 2/4 is distinguished from fresh browser proof for 3/5/6. Retained prior review and original attempt, added criterion-owned screenshots and verified the 23-page PDF against all 41 expected evidence images. No retry/cycle reset. Public release explicitly approved in the updater chat.
 
 - 28 October TEST2-79 focused follow-up: resolved criteria 2, 3 and 12 with normal UI interactions, genuine returned membership and complete overlapping sorting captures. Report has 15 Passed and one product failure (criterion 10, missing tooltip units), 31 pages and 49 verified evidence images. No new automated attempt or cycle. Raw request audit stays private; public supporting summary records scope and complete sorting membership. Tester brief now requires complete settled visible-table evidence. Browser setup restored to its prior recorded configuration and owned lease released.
+
+- 28 October next-pair preparation: user requested the strongest two or three candidates after 79. Ordinary UI preflight found populated MS Teams aggregates at wider UK zoom and opened genuine Video Streaming details near London with Rebuffer Count 1. Selected 81/88; 89 is a reserve only. Preflight is not acceptance evidence or a test attempt. Owned tabs/layers removed, original Upload configuration retained, exact initial viewport restored and browser lease released. No source Jira writes or criteria changes. Fresh cycles must be created by the importer from the authorised TEST2 To Do → READY FOR TESTING transitions; do not reset files or counters manually.
