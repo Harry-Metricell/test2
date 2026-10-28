@@ -3,10 +3,9 @@
   "generatedAt": "2026-10-28T10:48:56.747Z",
   "counts": {
     "tickets": 13,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 12,
-      "Ready": 1
+      "Blocked": 13
     },
     "byQaOutcome": {
       "Blocked": 12,
@@ -115,13 +114,13 @@
       "cycleId": "cycle-002",
       "summary": "Filter Automobile map points using the legend",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-27T20:46:36.155+0000",
       "retries": 0,
       "retryLimit": 1,
