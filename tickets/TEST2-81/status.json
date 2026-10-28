@@ -1,12 +1,13 @@
 {
   "ticket": "TEST2-81",
   "criteriaVerified": true,
-  "qaStatus": "Not Tested",
+  "qaStatus": "Awaiting Evidence Review",
   "workflowState": "Ready",
   "retries": 0,
   "testAttempts": 0,
   "retryLimit": 1,
   "cycleId": "cycle-003",
   "jiraStatus": "READY FOR TESTING",
-  "status": "READY FOR TESTING"
+  "status": "READY FOR TESTING",
+  "blockedStage": null
 }
