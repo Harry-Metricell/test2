@@ -9,7 +9,7 @@
   "cycleId": "cycle-003",
   "jiraStatus": "READY FOR TESTING",
   "status": "READY FOR TESTING",
-  "blockedStage": "evidence_review",
+  "blockedStage": null,
   "qaOutcome": "Passed",
-  "nextAction": "Create final evidence review handoff"
+  "nextAction": "QA review complete"
 }
