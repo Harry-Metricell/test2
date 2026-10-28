@@ -18,7 +18,16 @@
       "authority": "human",
       "confirmedAt": "2026-10-21",
       "reason": "User confirmed this copied batch is for Automobile migration. Source Jira remains read-only; do not substitute Surveyor."
-    }
+    },
+    "fixtureHints": {
+      "authority": "observed-normal-ui-readiness-check",
+      "observedAt": "2026-10-28",
+      "dateScope": "30 July through 28 October 2026; all default technologies, no handset/cell restriction",
+      "navigation": "Automobile > Test type; inspect nested choices, not just the layer-catalogue search. Start from the launcher.",
+      "scope": "Navigation hints only, not criterion evidence. Re-establish genuine current records and collect this ticket’s own complete evidence. Do not fabricate missing data or alter source scope.",
+      "videoStreaming": "The wider southern-England view at zoom 6 returned a genuine Video Streaming aggregate near central London. Normal map selection opened an 8 October result with Rebuffer Count 1 and populated identity, time, location and technology. Search London on that day for a bounded complete comparison; an empty Cambridge viewport is not evidence of global absence."
+    },
+    "verificationFocus": "Recheck all nine unchanged criteria. Reconcile every returned HTTP Browsing, Ping and Video Streaming member in explicitly recorded bounded scopes with its selectable presentation. Verify the per-record KPIs and error colouring. Use a distinct genuine baseline for unavailable/error checks; retain any genuine contract/fixture blocker."
   },
   "id": "106637",
   "summary": "Map HTTP Browsing, Ping and Video Streaming point details",
@@ -60,8 +69,8 @@
     "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
-    "actionOwner": "Human",
-    "nextAction": "Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS",
+    "actionOwner": "Coordinator",
+    "nextAction": "Waiting for Jira status: READY FOR TESTING",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,

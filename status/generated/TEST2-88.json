@@ -18,7 +18,16 @@
       "authority": "human",
       "confirmedAt": "2026-10-21",
       "reason": "User confirmed this copied batch is for Automobile migration. Source Jira remains read-only; do not substitute Surveyor."
-    }
+    },
+    "fixtureHints": {
+      "authority": "observed-normal-ui-readiness-check",
+      "observedAt": "2026-10-28",
+      "dateScope": "30 July through 28 October 2026; all default technologies, no handset/cell restriction",
+      "navigation": "Automobile > Test type; inspect nested choices, not just the layer-catalogue search. Start from the launcher.",
+      "scope": "Navigation hints only, not criterion evidence. Re-establish genuine current records and collect this ticket’s own complete evidence. Do not fabricate missing data or alter source scope.",
+      "msTeamsCall": "MS Teams Call is the eighth nested Automobile Test type. At a wider UK view centred near Cambridge, zoom 6, the normal points request returned HTTP 200 with 118 aggregates, including north-west England/Wales. Cambridge at zoom 12 was empty. Use a populated area and narrow normally; these are aggregate counts, not proof of individual-record or route completeness."
+    },
+    "verificationFocus": "Recheck all twelve unchanged display-setting criteria on Automobile MS Teams Call. Establish genuine populated result routes and linked site/cell contexts. Capture every on/off sequence and ordinary disabled-control activation, zoom prerequisite, and complete independent other-layer/filter/legend preservation. Configuration or a populated point alone does not prove routes or linked overlays."
   },
   "id": "106644",
   "summary": "Configure MS Teams Call map display settings",
@@ -59,8 +68,8 @@
     "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
-    "actionOwner": "Human",
-    "nextAction": "Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS",
+    "actionOwner": "Coordinator",
+    "nextAction": "Manual review required after retry limit",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,

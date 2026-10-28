@@ -5,8 +5,8 @@
 - Jira status: TESTING IN PROGRESS
 - QA outcome: Blocked
 - Workflow state: Blocked
-- Action owner: Human
-- Next action: Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS
+- Action owner: Coordinator
+- Next action: Waiting for Jira status: READY FOR TESTING
 - Jira: https://metricell.atlassian.net/browse/TEST2-81
 
 ## Acceptance Criteria
