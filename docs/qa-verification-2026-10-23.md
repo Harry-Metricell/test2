@@ -4,7 +4,7 @@ User-authorised 23 October 2026. Source VM2ST remains read-only. Existing report
 
 ## Release procedure
 
-Current release, authorised by the user on 28 October 2026: **TEST2-81 and TEST2-88**. TEST2-79’s focused repair is complete (15 Passed, one tooltip-units failure). TEST2-83 is done per the user. TEST2-89 is the reserve, held until the user releases it. Only 81/88 are eligible for the next automated pair; all other batch tickets remain held. Preserve all earlier cycles and reports. 80 is accepted; 82, 85 and 86 stay in the user’s development queue.
+Current release, authorised by the user on 28 October 2026: **TEST2-81 and TEST2-88**. TEST2-79 is Passed after Harry’s graph-units clarification (16 Passed). TEST2-83 is done per the user. TEST2-89 is the reserve, held until the user releases it. Only 81/88 are eligible for the next automated pair; all other batch tickets remain held. Preserve all earlier cycles and reports. 80 is accepted; 82, 85 and 86 stay in the user’s development queue.
 
 Keep tester-side tickets in Jira **TESTING IN PROGRESS** while held. This status is a holding queue here, not a claim that a worker is active. The imported status must be READY FOR TESTING before a tester/reviewer can run. Only release one or two tickets, and keep config/qa-verification-batch.json aligned. Bundler excludes held testers/reviewers even if someone prematurely marks them Ready. No automatic next-pair release.
 
@@ -21,7 +21,7 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 
 | Ticket | Verification work | Disposition |
 | --- | --- | --- |
-| 79 | Focused 28 October repair: 15 Passed, 1 Failed. Download/Upload matching-record reconciliation and all seven sorting rows verified in bounded genuine scopes. Criterion 10 still fails: Upload chart tooltip omits required units. | Corrected PDF/Word; original cycle-005 attempt-002 results/history and retry counters retained |
+| 79 | 16 Passed after Harry’s 28 October clarification: dBm/Mbps labels on the graph satisfy criterion 10; tooltip repetition is optional. Existing focused evidence for 2/3/12 and original history preserved. | Passed review; refreshed PDF/Word; no new test or retry |
 | 80 | User accepted the existing Passed review. Preserve it and its reports. | Passed; held from further testing |
 | 81 | Next pair: genuine Video Streaming result opened near London on 28 October, with Rebuffer Count 1; earlier HTTP/Ping evidence exists. Re-establish all nine criteria and complete bounded membership; no scope weakening. | Prepare importer-owned fresh cycle; first candidate |
 | 82 | Preserve reported loading failure and missing no-data contract. Correct future preservation of pre-existing panels. | Leave To Do; user bug returned |
@@ -146,3 +146,5 @@ No request for these inputs has been sent to anyone.
 - 28 October TEST2-79 focused follow-up: resolved criteria 2, 3 and 12 with normal UI interactions, genuine returned membership and complete overlapping sorting captures. Report has 15 Passed and one product failure (criterion 10, missing tooltip units), 31 pages and 49 verified evidence images. No new automated attempt or cycle. Raw request audit stays private; public supporting summary records scope and complete sorting membership. Tester brief now requires complete settled visible-table evidence. Browser setup restored to its prior recorded configuration and owned lease released.
 
 - 28 October next-pair preparation: user requested the strongest two or three candidates after 79. Ordinary UI preflight found populated MS Teams aggregates at wider UK zoom and opened genuine Video Streaming details near London with Rebuffer Count 1. Selected 81/88; 89 is a reserve only. Preflight is not acceptance evidence or a test attempt. Owned tabs/layers removed, original Upload configuration retained, exact initial viewport restored and browser lease released. No source Jira writes or criteria changes. Fresh cycles must be created by the importer from the authorised TEST2 To Do → READY FOR TESTING transitions; do not reset files or counters manually.
+
+- 28 October TEST2-79 acceptance correction: Harry confirmed graph unit labels satisfy criterion 10. Existing PNGs visibly show dBm/Mbps on the axes and units in summary/table values. Changed the scoped criterion and overall review to Passed (16/16), retained the prior failed review under units-clarification, regenerated PDF/Word with identical source evidence, and recorded the clarification in testing context for future runs. No source Jira, original results, attempt history or cycle changes.

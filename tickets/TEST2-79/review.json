@@ -493,8 +493,8 @@
     },
     {
       "criterion": "Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).",
-      "outcome": "Failed",
-      "reason": "criterion-10-repair-tooltip.png directly shows Upload 132610532 at 5.06 seconds: Signal strength -106 and Upload Rate 0.620104 lack dBm/Mbps beside the tooltip values. Axes are labelled and summary rate is 0.85 Mbps; repair-final.png shows measurement values with -106 dBm and Mbps. The source requires values formatted with units, so the bounded tooltip contradiction is Failed.",
+      "outcome": "Passed",
+      "reason": "The screenshots show dBm and Mbps on the graph axes, with applicable units also present in the summary and measurement table. Harry clarified on 28 October that units on the graph satisfy this requirement; repeating them beside each hover-tooltip value is not required. Passed on that explicit acceptance clarification; no new browser test was performed.",
       "coverageChecks": [
         {
           "assertion": "Summary rate value includes Mbps",
@@ -518,15 +518,8 @@
           ]
         },
         {
-          "assertion": "Chart tooltip signal value includes applicable dBm unit",
-          "outcome": "Failed",
-          "evidence": [
-            "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-tooltip.png"
-          ]
-        },
-        {
-          "assertion": "Chart tooltip rate value includes applicable Mbps unit",
-          "outcome": "Failed",
+          "assertion": "The graph identifies signal strength as dBm and rate as Mbps; repeating those units inside the tooltip is not required under Harry’s clarification",
+          "outcome": "Passed",
           "evidence": [
             "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-tooltip.png"
           ]
@@ -715,12 +708,12 @@
       ]
     }
   ],
-  "overallOutcome": "Failed",
+  "overallOutcome": "Passed",
   "reportPath": "tickets/TEST2-79/report.pdf",
   "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-79\\cycles\\cycle-005\\screenshots\\attempt-002",
   "qaStatus": "Evidence Reviewed",
   "noOp": false,
-  "reason": "15 criteria Passed; criterion 10 remains Failed because the recorded Upload chart tooltip omits the required dBm/Mbps units. Focused manual follow-up on 28 October resolved Download/Upload matching-record reconciliation and complete seven-row sorting proof in explicitly recorded bounded UI scopes. Original attempt/history and controlled loading/error simulation disclosures are retained. No new automated attempt or retry cycle was created.",
+  "reason": "All 16 criteria Passed. Harry accepted graph-axis unit labels for criterion 10 on 28 October; tooltip repetition is not required. Existing focused evidence for criteria 2, 3 and 12, scoped verification limits and disclosed loading/error simulations are retained. No new automated attempt or cycle.",
   "cycleId": "cycle-005",
   "sourceHandoffId": "handoff-TEST2-79-cycle-005-review-attempt-002",
   "sourceHandoffVersion": "TEST2-79:cycle-005:evidence_review:2:scope-57662d618be1",
@@ -742,5 +735,15 @@
     "reportInputs": "reassessment-history/2026-10-28/followup/report-inputs.json",
     "browserAudit": "reassessment-history/2026-10-28/followup/browser-audit.json",
     "sourceResultsSha256": "5040a63a90546fe02145f0da6ae67f2ca2f5b3cb98fd6bac45546e50dbc47ef1"
+  },
+  "humanAcceptance": {
+    "date": "2026-10-28",
+    "authority": "Harry",
+    "criterion": 10,
+    "clarification": "That is fine, as long as it is on the graph.",
+    "interpretation": "Clearly labelled graph axes satisfy the units requirement; tooltip units are optional.",
+    "previousReview": "reassessment-history/2026-10-28/units-clarification/previous-review.json",
+    "newBrowserEvidence": false,
+    "newAutomatedAttempt": false
   }
 }

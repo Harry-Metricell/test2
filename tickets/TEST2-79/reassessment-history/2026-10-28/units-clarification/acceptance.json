@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28",
+  "authority": "Harry",
+  "criterion": 10,
+  "clarification": "That is fine, as long as it is on the graph.",
+  "interpretation": "Clearly labelled graph axes satisfy the units requirement; tooltip units are optional.",
+  "previousReview": "reassessment-history/2026-10-28/units-clarification/previous-review.json",
+  "newBrowserEvidence": false,
+  "newAutomatedAttempt": false,
+  "sourceResultsSha256": "5040a63a90546fe02145f0da6ae67f2ca2f5b3cb98fd6bac45546e50dbc47ef1"
+}
