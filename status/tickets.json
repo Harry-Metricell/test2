@@ -3,16 +3,15 @@
   "generatedAt": "2026-10-28T15:23:58.770+0000",
   "counts": {
     "tickets": 12,
-    "handoffs": 2,
+    "handoffs": 3,
     "byWorkflowState": {
-      "Blocked": 10,
-      "Ready": 2
+      "Blocked": 9,
+      "Ready": 3
     },
     "byQaOutcome": {
       "Blocked": 9,
-      "Failed": 1,
       "Not Tested": 1,
-      "Passed": 1
+      "Passed": 2
     }
   },
   "policy": {
@@ -27,13 +26,13 @@
       "cycleId": "cycle-005",
       "summary": "Map and inspect Automobile Download and Upload results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Failed",
+      "workflowState": "Ready",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create user-guide impact assessment handoff",
       "updatedAt": "2026-10-28T10:48:56.747Z",
       "retries": 1,
       "retryLimit": 1,
@@ -48,10 +47,10 @@
       "workflowState": "Ready",
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
-      "guideImpact": null,
+      "guideImpact": "update_required",
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide impact assessment handoff",
+      "nextAction": "Create user-guide update authoring handoff",
       "updatedAt": "2026-10-28T15:23:57.099+0000",
       "retries": 0,
       "retryLimit": 1,

@@ -35,7 +35,15 @@
       "authority": "human",
       "confirmedAt": "2026-10-21",
       "reason": "User confirmed this copied batch is for Automobile migration. Source Jira remains read-only; do not substitute Surveyor."
-    }
+    },
+    "requirementClarifications": [
+      {
+        "authority": "human",
+        "confirmedAt": "2026-10-28",
+        "criterion": 10,
+        "clarification": "Harry accepts clear dBm/Mbps labels on the graph as satisfying the units requirement. Tooltip values need not repeat the units. Preserve correct labels in summaries/tables; no wider waiver is granted."
+      }
+    ]
   },
   "id": "106635",
   "summary": "Map and inspect Automobile Download and Upload results",
@@ -72,18 +80,18 @@
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
-    "workflowState": "Blocked",
-    "qaStatus": "Blocked",
-    "qaOutcome": "Failed",
+    "workflowState": "Ready",
+    "qaStatus": "Evidence Reviewed",
+    "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
-    "actionOwner": "Human",
-    "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create user-guide impact assessment handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 1,
     "testAttempts": 2,
-    "blockedStage": "reviewed",
+    "blockedStage": null,
     "updatedAt": "2026-10-28T10:48:56.747Z",
     "criteriaVerified": true
   }

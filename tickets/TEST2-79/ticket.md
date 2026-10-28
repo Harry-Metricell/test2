@@ -3,10 +3,10 @@
 ## Current State
 
 - Jira status: READY FOR TESTING
-- QA outcome: Failed
-- Workflow state: Blocked
-- Action owner: Human
-- Next action: Awaiting controlled tester verification release; Jira: READY FOR TESTING
+- QA outcome: Passed
+- Workflow state: Ready
+- Action owner: Coordinator
+- Next action: Create user-guide impact assessment handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-79
 
 ## Acceptance Criteria
