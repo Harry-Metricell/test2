@@ -53,13 +53,13 @@
   "summary": "Display Upload Point Details",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-86",
-    "status": "READY FOR TESTING",
+    "status": "To Do",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:11:58.566+0100",
-    "updated": "2026-10-26T14:28:18.828+0000"
+    "updated": "2026-10-28T10:29:06.593+0000"
   },
   "description": "As a SmartTools map user\nI want to view the details of an Upload point\nSo that I can investigate upload performance at the selected location.\nIssue/Change Description:\nWhen a user opens an Upload point through the shared point-detail dialog, show the test summary, a time-series chart, and the returned per-sample data.\nThe summary includes the reported technology, user, handset, service, serving cell, duration, tested technologies, indoor/outdoor status, Upload Rate, and Wi-Fi connection status. The chart shows signal strength and Upload Rate over the test duration. Where returned, display Average Signal Strength, Average Signal Quality, and Average SNR immediately after Upload Rate.\nAcceptance Criteria:\nGiven a completed Upload test is selected, its summary shows the available test and device information, including Upload Rate and Wi-Fi connection status.\nGiven Upload samples are available, a time-series chart shows Signal Strength in dBm and Upload Rate in Mbps over the test duration.\nGiven per-sample data is available, it is displayed in a sortable and filterable table with the relevant units.\nGiven average signal metrics are returned, Average Signal Strength, Average Signal Quality, and Average SNR appear immediately after Upload Rate.\nGiven the selected Upload point has no measurable duration, the user receives the standard no-data state rather than an empty detail view.\nGiven Upload details are loading, unavailable, or fail to load, a standard loading, no-data, or error state is shown without displaying incorrect data.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -80,23 +80,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106642",
-    "importedAt": "2026-10-26T14:28:18.828+0000"
+    "importedAt": "2026-10-28T10:29:06.593+0000"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "To Do",
     "workflowState": "Blocked",
     "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Human",
-    "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
+    "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
     "testAttempts": 1,
     "blockedStage": "reviewed",
-    "updatedAt": "2026-10-26T14:28:18.828+0000",
+    "updatedAt": "2026-10-28T10:29:06.593+0000",
     "criteriaVerified": true
   }
 }

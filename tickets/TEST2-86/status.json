@@ -7,8 +7,8 @@
   "testAttempts": 1,
   "retryLimit": 1,
   "cycleId": "cycle-003",
-  "jiraStatus": "READY FOR TESTING",
-  "status": "READY FOR TESTING",
+  "jiraStatus": "To Do",
+  "status": "To Do",
   "blockedStage": "reviewed",
   "qaOutcome": "Blocked",
   "nextAction": "Manual review required; final evidence report published"
