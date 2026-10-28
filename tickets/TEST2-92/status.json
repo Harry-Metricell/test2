@@ -1,13 +1,15 @@
 {
   "ticket": "TEST2-92",
   "criteriaVerified": true,
-  "qaStatus": "Blocked",
-  "workflowState": "Ready",
+  "qaStatus": "Awaiting Evidence Review",
+  "workflowState": "READY FOR TESTING",
   "retries": 0,
-  "testAttempts": 0,
+  "testAttempts": 1,
   "retryLimit": 1,
   "cycleId": "cycle-002",
   "jiraStatus": "READY FOR TESTING",
   "status": "READY FOR TESTING",
-  "blockedStage": "testing"
+  "blockedStage": "evidence_review",
+  "qaOutcome": "Blocked",
+  "nextAction": "Create final evidence review handoff"
 }

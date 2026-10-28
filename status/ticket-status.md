@@ -10,7 +10,7 @@ Updated: 2026-10-28T10:18:40.965+0000
 | TEST2-86 | READY FOR TESTING | Blocked |  | Display Upload Point Details |
 | TEST2-87 | READY FOR TESTING | Blocked |  | Display Call Point Details |
 | TEST2-89 | READY FOR TESTING | Blocked |  | Map and inspect MS Teams Call results |
-| TEST2-92 | READY FOR TESTING | Ready for Testing |  | Filter Automobile map points using the legend |
+| TEST2-92 | READY FOR TESTING | Awaiting Evidence Review |  | Filter Automobile map points using the legend |
 | TEST2-81 | TESTING IN PROGRESS | Blocked |  | Map HTTP Browsing, Ping and Video Streaming point details |
 | TEST2-88 | TESTING IN PROGRESS | Blocked | Retry 1/1 | Configure MS Teams Call map display settings |
 | TEST2-90 | TESTING IN PROGRESS | Blocked |  | Map and inspect Automobile call results |
