@@ -1,6 +1,6 @@
 {
   "key": "TEST2-79",
-  "cycleId": "cycle-004",
+  "cycleId": "cycle-005",
   "testingContext": {
     "schema": "v4-qa-testing-context.v1",
     "ticket": "TEST2-79",
@@ -47,7 +47,7 @@
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:11:36.110+0100",
-    "updated": "2026-10-27T20:46:34.592+0000"
+    "updated": "2026-10-28T10:18:40.965+0000"
   },
   "description": "As a SmartTools user\nI want to select the Download or Upload layer and view its test results as points on a map, then open details for an individual result\nSo that I can assess data-transfer performance at the location where each test was performed.\nIssue/Change Description:\nProvide Download and Upload as selectable map layers. Results for each remain hidden until that layer is selected; when selected, load only matching authorised results as selectable points.\nSelecting a point opens the corresponding details dialog. Show the summary fields Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate or Upload Rate, and Wi-Fi Connected. Show a chart of Signal Strength (dBm) and the applicable rate (Mbps) over time.\nShow a sortable and filterable detailed table. For Download, display MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL and Error Message. For Upload, display the same fields with Upload Rate in place of Download Rate. Format signal strength and rate values with their units; a null error value displays as “No Error”.\nDo not open details for a zero-duration test. Show loading and error states without stale or misleading data. Route Replay is out of scope.\nAcceptance Criteria:\nGiven neither layer has been selected, when the map is displayed, then Download and Upload test-result points are not shown.\nGiven the user selects Download or Upload and authorised data is available, when results load, then matching results are shown as selectable map points.\nGiven the user selects a Download or Upload point, when details load successfully, then the dialog shows the stated summary fields and the Signal Strength / applicable-rate chart.\nGiven the Download or Upload details table is shown, when rendered, then it contains its respective specified columns and displays applicable units and “No Error” as specified.\nGiven a user sorts or filters a supported detailed-table column, when the operation is applied, then the displayed rows reflect it.\nGiven a test has zero duration or its details cannot be loaded, when the user requests details, then no details dialog opens for the former and no stale or misleading data is shown for the latter.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -68,23 +68,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106635",
-    "importedAt": "2026-10-27T20:46:34.592+0000"
+    "importedAt": "2026-10-28T10:18:40.965+0000"
   },
   "status": {
     "jiraStatus": "READY FOR TESTING",
     "workflowState": "Ready",
-    "qaStatus": "Awaiting Evidence Review",
-    "qaOutcome": "Blocked",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create final evidence review handoff",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
-    "testAttempts": 1,
-    "blockedStage": "evidence_review",
-    "updatedAt": "2026-10-27T20:46:34.592+0000",
+    "testAttempts": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-28T10:18:40.965+0000",
     "criteriaVerified": true
   }
 }

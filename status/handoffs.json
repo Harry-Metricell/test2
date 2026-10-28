@@ -1,27 +1,28 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-10-27T20:46:36.155+0000",
+  "generatedAt": "2026-10-28T10:18:40.965+0000",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-79-cycle-004-review-attempt-001",
-      "handoffVersion": "TEST2-79:cycle-004:evidence_review:1:scope-57662d618be1",
+      "handoffId": "handoff-TEST2-79-cycle-005-test-attempt-001",
+      "handoffVersion": "TEST2-79:cycle-005:test_ticket:1:scope-57662d618be1",
       "attempt": 1,
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
       "ticket": "TEST2-79",
       "inputs": {
-        "results": "tickets/TEST2-79/results.json",
-        "generated": "status/generated/TEST2-79.json",
+        "criteria": "tickets/TEST2-79/criteria.md",
+        "ticketJson": "tickets/TEST2-79/ticket.json",
+        "status": "tickets/TEST2-79/status.json",
         "cycle": "tickets/TEST2-79/qa-cycle.json",
-        "evidenceFolder": "TEST2-79/cycles/cycle-004/screenshots/attempt-001",
+        "evidenceFolder": "TEST2-79/cycles/cycle-005/screenshots/attempt-001",
         "testingContext": "config/testing-context/TEST2-79.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-79/review.json",
-        "schema": "v4-qa-review.v1"
+        "path": "tickets/TEST2-79/results.json",
+        "schema": "v4-qa-test-result.v1"
       },
-      "cycleId": "cycle-004",
+      "cycleId": "cycle-005",
       "evidenceCoverageVersion": 1
     },
     {

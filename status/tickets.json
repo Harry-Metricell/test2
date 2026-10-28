@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-27T20:46:36.155+0000",
+  "generatedAt": "2026-10-28T10:18:40.965+0000",
   "counts": {
     "tickets": 13,
     "handoffs": 2,
@@ -9,8 +9,8 @@
       "Ready": 2
     },
     "byQaOutcome": {
-      "Blocked": 12,
-      "Not Tested": 1
+      "Blocked": 11,
+      "Not Tested": 2
     }
   },
   "policy": {
@@ -22,20 +22,20 @@
   "tickets": [
     {
       "key": "TEST2-79",
-      "cycleId": "cycle-004",
+      "cycleId": "cycle-005",
       "summary": "Map and inspect Automobile Download and Upload results",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
-      "qaOutcome": "Blocked",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
-      "updatedAt": "2026-10-27T20:46:34.592+0000",
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-10-28T10:18:40.965+0000",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 0,
       "retryLabel": ""
     },
     {
@@ -69,24 +69,6 @@
       "actionOwner": "Human",
       "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
       "updatedAt": "2026-10-21T12:55:50.549+0100",
-      "retries": 0,
-      "retryLimit": 1,
-      "testAttempts": 1,
-      "retryLabel": ""
-    },
-    {
-      "key": "TEST2-85",
-      "cycleId": "cycle-003",
-      "summary": "Display Download Point Details",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
-      "updatedAt": "2026-10-26T14:25:46.537+0000",
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
@@ -249,6 +231,24 @@
       "actionOwner": "Human",
       "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
       "updatedAt": "2026-10-23T09:08:46.353+0100",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-85",
+      "cycleId": "cycle-003",
+      "summary": "Display Download Point Details",
+      "jiraStatus": "To Do",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Blocked",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Human",
+      "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
+      "updatedAt": "2026-10-28T09:58:34.099+0000",
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
