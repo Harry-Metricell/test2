@@ -1,6 +1,6 @@
 {
   "key": "TEST2-88",
-  "cycleId": "cycle-001",
+  "cycleId": "cycle-002",
   "testingContext": {
     "schema": "v4-qa-testing-context.v1",
     "ticket": "TEST2-88",
@@ -33,13 +33,13 @@
   "summary": "Configure MS Teams Call map display settings",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-88",
-    "status": "TESTING IN PROGRESS",
+    "status": "READY FOR TESTING",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:12:06.092+0100",
-    "updated": "2026-10-23T12:19:02.504+0100"
+    "updated": "2026-10-28T15:23:58.770+0000"
   },
   "description": "As a SmartTools user\nI want to configure how MS Teams Call results and their network context are displayed on the map\nSo that I can investigate result patterns alongside the relevant route, sites and cells.\nIssue/Change Description:\nProvide display settings when the MS Teams Call map layer is active. The user can choose the configured map colouring, show or hide detailed routes, show or hide linked sites, and show or hide linked cells.\nColouring options and their legend sections must remain configuration-driven. Linked-site controls are enabled only at the configured map zoom level; linked-cell controls are enabled only when linked sites are shown and the zoom level supports them.\nThese settings affect only the active MS Teams Call layer. They do not alter the underlying result data, the standard map filters, or legend point filtering. Route Replay display options, including sectors and site labels, are out of scope.\nAcceptance Criteria:\nGiven the MS Teams Call layer is active, when the user opens display settings, then configured map-colouring options and controls for detailed routes, linked sites and linked cells are available.\nGiven the user selects a configured colouring option, when the map updates, then MS Teams Call points and the legend use that configured colouring without hard-coded categories.\nGiven the user enables or disables detailed routes, when the map refreshes, then detailed route geometry is respectively shown or hidden for the active MS Teams Call results.\nGiven the map is below the configured zoom level for linked sites, when display settings are shown, then the linked-site control is unavailable and explains that the user must zoom in.\nGiven linked sites are enabled at a supported zoom level, when the user enables or disables linked cells, then linked-cell overlays are respectively shown or hidden; linked cells remain unavailable until linked sites are enabled.\nGiven the user changes any of these display settings, when other layers, Route Replay, standard map filters or legend point-filtering state are considered, then they are unchanged.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -60,23 +60,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106644",
-    "importedAt": "2026-10-23T12:19:02.504+0100"
+    "importedAt": "2026-10-28T15:23:58.770+0000"
   },
   "status": {
-    "jiraStatus": "TESTING IN PROGRESS",
-    "workflowState": "Blocked",
-    "qaStatus": "Blocked",
-    "qaOutcome": "Blocked",
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Ready for Testing",
+    "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Manual review required after retry limit",
+    "nextAction": "Create testing handoff",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
-    "retries": 1,
-    "testAttempts": 2,
-    "blockedStage": "reviewed",
-    "updatedAt": "2026-10-19T15:52:17.800Z",
+    "retries": 0,
+    "testAttempts": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-10-28T15:23:58.770+0000",
     "criteriaVerified": true
   }
 }

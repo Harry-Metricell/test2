@@ -1,3 +1,4 @@
+<!-- Testing scope: Automobile. Read config/testing-context/TEST2-88.json for source hierarchy and the human resolution of conflicting links. Do not substitute another module. -->
 <!-- Converted from the complete Jira ticket source; each item has a testable starting state, action, and observable result. -->
 
 - [ ] Given the MS Teams Call layer is active, when the user opens its display settings, then the configured map-colouring choices and controls for detailed routes, linked sites and linked cells are visible.
