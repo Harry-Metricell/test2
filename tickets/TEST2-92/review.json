@@ -1,0 +1,761 @@
+{
+  "handoffId": "handoff-TEST2-92-cycle-002-review-attempt-001",
+  "handoffVersion": "TEST2-92:cycle-002:evidence_review:1:scope-f5f71694a037",
+  "ticket": "TEST2-92",
+  "testedModule": "Automobile",
+  "cycleId": "cycle-002",
+  "evidenceCoverageVersion": 1,
+  "criterionOutcomes": [
+    {
+      "criterion": "With a standard Automobile layer active, the legend shows the titled groups and items defined by that layer’s selected legend section, using the configured categories, thresholds, colours, shapes and outlines.",
+      "outcome": "Blocked",
+      "reason": "No independent versioned expected definition identifies the HTTP/Ping/Video groups, categories, thresholds, exact colours, shapes or outlines. criterion-1-final.png shows the current HTTP lower groups, not their correctness against configuration. Our criteria issue: checklist item 1 omits the source's explicit changed-versioned-definition/deployment comparison; that required branch is also Blocked without identified before/after versions and deployment evidence. The current application cannot serve as its own independent baseline.",
+      "coverageChecks": [
+        {
+          "assertion": "Titled groups/items equal the selected versioned section",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Configured categories and numeric thresholds match independent definition",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Exact colours match independent definition",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Shapes and outlines match independent definition",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "After a versioned legend-definition change is deployed, legend and map use the same updated groups, thresholds, colours and shapes",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When a visible legend item is selected, matching points in the active layer are hidden and the item is visibly muted; selecting it again restores the points and normal item appearance.",
+      "outcome": "Passed",
+      "reason": "HTTP Browsing Error toggle is supported by criterion-2-repair-before-hide.png, criterion-2-repair-after-hide.png and criterion-2-repair-final.png: the item mutes and identifiable black HTTP error squares disappear, then return with normal item appearance. Some underlying symbols remain from the pre-existing Service layer; that excluded consumer is incidental background and supplies no acceptance verdict. Assessment is limited to this HTTP sequence.",
+      "coverageChecks": [
+        {
+          "assertion": "Selecting a visible item hides matching active-layer points",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-before-hide.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-after-hide.png"
+          ]
+        },
+        {
+          "assertion": "Hidden item is visibly muted",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-after-hide.png"
+          ]
+        },
+        {
+          "assertion": "Selecting it again restores points and normal appearance",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-before-hide.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-after-hide.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-repair-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When a legend item is double-clicked, that item remains visible and all other items in its group are hidden; items in other groups retain their visibility.",
+      "outcome": "Failed",
+      "reason": "criterion-3-http-before-isolate.png and criterion-3-decisive-final.png show HTTP 2G <=8 remaining visible after the recorded normal double-click, while >8, >12 and >20 also retain open-eye appearance: sibling isolation fails. Visible 3G/4G/5G groups look unchanged, but the complete other-group scope, including the lower Out of Threshold state, is not captured before and after; that branch is Unverified.",
+      "coverageChecks": [
+        {
+          "assertion": "Double-clicked item remains visible",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-http-before-isolate.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-decisive-final.png"
+          ]
+        },
+        {
+          "assertion": "All sibling items in selected group become hidden",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-http-before-isolate.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-decisive-final.png"
+          ]
+        },
+        {
+          "assertion": "Other groups retain visibility",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-http-before-isolate.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-decisive-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Legend filtering and legend edits change only the active layer’s presentation; other layers, underlying data, and form-based filters retain their prior state.",
+      "outcome": "Unverified",
+      "reason": "criterion-4-before-edit.png, criterion-4-editor-baseline.png, criterion-4-draft.png, criterion-4-after-save.png and criterion-4-filtered-edited.png show the HTTP Error rename and subsequent hiding. criterion-4-http-filter-baseline.png versus criterion-4-after-filters.png supports the readable handset, time-window and technology subset only; lower filters and clipped values lack complete comparisons. criterion-4-other-layer-final.png shows the incidental Download legend, without a complete independent other-layer baseline. Underlying-data reconciliation is absent. These are coverage gaps, not demonstrated data/layer defects.",
+      "coverageChecks": [
+        {
+          "assertion": "Legend filtering affects active-layer presentation",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-edit.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-filtered-edited.png"
+          ]
+        },
+        {
+          "assertion": "Legend edits affect active-layer presentation",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-draft.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-after-save.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-filtered-edited.png"
+          ]
+        },
+        {
+          "assertion": "Other-layer presentation retains prior state",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-other-layer-final.png"
+          ]
+        },
+        {
+          "assertion": "Underlying data retains prior state",
+          "outcome": "Unverified",
+          "evidence": []
+        },
+        {
+          "assertion": "All form-based filter values retain prior state",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-http-filter-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-after-filters.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When a layer supplies one Colour By field, its title is displayed as a label; when it supplies multiple fields, a dropdown displays exactly those fields.",
+      "outcome": "Blocked",
+      "reason": "criterion-5-http-label.png, criterion-5-ping-label.png and criterion-5-final.png show plain Load Time [s], Ping Time [ms] and Rebuffer Count labels in the three supported Automobile consumers. The multi-option dropdown/exact-options branch is Blocked: source and context identify these as single-field consumers and supply no identified multi-field consumer or authoritative option set.",
+      "coverageChecks": [
+        {
+          "assertion": "One supplied field appears as label in scoped Automobile consumers",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-5-http-label.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-5-ping-label.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        },
+        {
+          "assertion": "Multiple supplied fields appear as dropdown",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Dropdown contains exactly independently supplied fields",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When Colour By changes on a consuming layer that supplies multiple fields and measurements, the displayed groups, map classification, markers and linked-context visibility follow the selected field, form filters remain unchanged, and the same points are not fetched again. This end-to-end behavior requires a multi-field consuming layer; current Automobile types provide only one field.",
+      "outcome": "Blocked",
+      "reason": "No identified multi-field consuming fixture with its measurements is supplied. Source/context explicitly makes this a reusable component contract and says current HTTP/Ping/Video types are single-field. criterion-6-final.png shows HTTP Load Time [s], not a field-switch sequence; groups, classification, markers, linked context, unchanged form filters and no-refetch branches cannot be exercised from it.",
+      "coverageChecks": [
+        {
+          "assertion": "Multi-field consuming layer and measurements are available",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Changing field updates displayed groups",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Changing field updates map classification",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Changing field updates markers",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Changing field updates linked-context visibility",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Form filters remain unchanged on field switch",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Same points are not fetched again on field switch",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "Restoring a layer’s state restores its selected Colour By field and that field’s saved overrides independently of other layers.",
+      "outcome": "Unverified",
+      "reason": "criterion-7-final.png shows an HTTP Load Time [s] label, but contains no saved-override baseline, restoration action or reopened restored state, and no independent other-layer comparison. A single field does not prevent testing that field's saved overrides and restoration, so these reachable missing sequences are Unverified rather than a blanket multi-field fixture blocker.",
+      "coverageChecks": [
+        {
+          "assertion": "Layer selected Colour By field restores from saved state",
+          "outcome": "Unverified",
+          "evidence": []
+        },
+        {
+          "assertion": "Saved overrides restore for that selected field",
+          "outcome": "Unverified",
+          "evidence": []
+        },
+        {
+          "assertion": "Restoration is independent of other layers",
+          "outcome": "Unverified",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "In Edit Legend, changing labels, colours or numeric boundaries creates drafts for the active field only; the map remains unchanged until Save, while Cancel or Close discards drafts. After Save, refreshed values remain visible in the open dialog.",
+      "outcome": "Blocked",
+      "reason": "HTTP baseline criterion-8-first-editor-baseline.png -> criterion-8-first-value-draft.png -> criterion-8-first-after-cancel.png -> criterion-8-first-reopen.png supports label/colour/boundary drafts and Cancel restoring <=8, green, 8. The separate Close sequence criterion-8-second-value-draft.png -> criterion-8-second-after-close.png -> criterion-8-second-reopen.png restores those same baseline values. criterion-8-final-value-draft.png -> criterion-8-final.png shows QA saved range, blue swatch and 7 saved in the still-open refreshed dialog, with underlying legend updated. No exact hex is visibly proven. Complete map preservation before Save is inconclusive behind the overlay. Cross-field draft discard remains Blocked without an identified multi-field consumer.",
+      "coverageChecks": [
+        {
+          "assertion": "Label edits are drafts",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-value-draft.png"
+          ]
+        },
+        {
+          "assertion": "Colour edits are drafts",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-value-draft.png"
+          ]
+        },
+        {
+          "assertion": "Numeric boundary edits are drafts",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-value-draft.png"
+          ]
+        },
+        {
+          "assertion": "Drafts belong only to active field and no other-field drafts are retained",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Map remains unchanged until Save",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-map-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-value-draft.png"
+          ]
+        },
+        {
+          "assertion": "Cancel discards all label/colour/boundary drafts",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-value-draft.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-after-cancel.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-reopen.png"
+          ]
+        },
+        {
+          "assertion": "Close discards all label/colour/boundary drafts",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-first-reopen.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-value-draft.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-after-close.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-second-reopen.png"
+          ]
+        },
+        {
+          "assertion": "Save applies drafts",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-final-value-draft.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        },
+        {
+          "assertion": "Refreshed saved values remain in open dialog",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "After a valid legend edit is saved, the legend and cached map points use the same labels, colours and classification; saved overrides for other fields and layers remain unchanged.",
+      "outcome": "Blocked",
+      "reason": "criterion-9-after-save.png and criterion-9-final.png visibly show QA saved error in the HTTP legend and magenta map squares replacing some black squares from criterion-9-map-baseline.png. Exact assigned colour value is not readable in criterion-9-colour-draft.png; the reported #ff00ff/SVG value is supporting narrative, not visible exact-value proof. criterion-9-value-draft.png shows boundary 7, but no known measurement-to-category reconciliation. Cache reuse is reported, without a reviewable request trace proving no refetch. Cross-field preservation is Blocked without a multi-field fixture; other-layer saved-override preservation lacks a before/after sequence.",
+      "coverageChecks": [
+        {
+          "assertion": "Saved labels are used by legend and cached map presentation",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-after-save.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+          ]
+        },
+        {
+          "assertion": "Saved colour matches legend and cached points",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-map-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-colour-draft.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+          ]
+        },
+        {
+          "assertion": "Known samples classify consistently with saved numeric boundaries",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-value-draft.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+          ]
+        },
+        {
+          "assertion": "Saved overrides for other fields remain unchanged",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Saved overrides for other layers remain unchanged",
+          "outcome": "Unverified",
+          "evidence": []
+        },
+        {
+          "assertion": "Saved edits update cached map points without fetching the same points again",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-map-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-after-save.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+          ]
+        },
+        {
+          "assertion": "Saved Error label is visibly used in the HTTP legend",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-after-save.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "In a numeric generation group, the add control below the marker column adds a range row, eligible rows have delete controls, at least one range remains, and editing a value does not reorder Automobile rows.",
+      "outcome": "Unverified",
+      "reason": "criterion-10-before-add.png -> criterion-10-after-add.png -> criterion-10-after-delete-added.png shows the add icon below the HTTP 2G marker column creating an editable New range row and its deletion. criterion-10-after-delete-first.png and criterion-10-after-delete-second.png show existing-row deletion. criterion-10-out-of-order-edit.png -> criterion-10-restored-value.png keeps the first remaining row before 10000 when edited to 10001 and back to 20. criterion-10-final.png shows one remaining range and a grey Delete control, but no recorded normal pointer activation or applicable keyboard activation followed by a settled unchanged state. Therefore prevention of deleting the last range is Unverified, not Passed from disabled appearance.",
+      "coverageChecks": [
+        {
+          "assertion": "Add control below marker column adds a range row",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-add.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-add.png"
+          ]
+        },
+        {
+          "assertion": "Eligible original rows have working delete controls",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-add.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-first.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-second.png"
+          ]
+        },
+        {
+          "assertion": "Added row has a working delete control",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-add.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-added.png"
+          ]
+        },
+        {
+          "assertion": "At least one numeric range remains and last delete is disabled",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-second.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-final.png"
+          ]
+        },
+        {
+          "assertion": "Editing a value across another boundary does not reorder Automobile rows",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-after-delete-second.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-out-of-order-edit.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-restored-value.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Numeric Value fields use number inputs. Empty, non-finite, out-of-limit or incorrectly ordered boundary values show an inline error immediately and disable Save. HTTP Browsing boundaries accept 0–10,000; Ping and Video Streaming boundaries have a minimum of zero and no additional maximum. Video Streaming categories cannot be changed.",
+      "outcome": "Failed",
+      "reason": "HTTP criterion-11-http-order-settled.png directly shows first boundary 13 before next boundary 12, without an inline ordering error; Save appears enabled. Video criterion-11-video-editor.png -> criterion-11-video-category-draft.png -> criterion-11-final.png directly shows exact category 1 edited and saved as 1.5 in both editor and legend, contradicting fixed categories. HTTP empty, 1e999, -1 and 10001 captures show required/minimum/maximum messages and muted Save; Ping/Video -1 captures show minimum-zero messages. Their blocked-Save claims lack normal pointer/applicable keyboard activation and settled after-state proof. Numeric spinner controls are visible. Boundary acceptance and unlimited maxima are only partially exercised: Ping/Video 1000000 accepted-looking drafts do not alone establish absence of every additional cap, and HTTP valid endpoint acceptance lacks its own captures.",
+      "coverageChecks": [
+        {
+          "assertion": "Numeric Value fields use number inputs",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-empty.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-no-max.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-restore-zero.png"
+          ]
+        },
+        {
+          "assertion": "Empty input immediately shows inline error and disables Save",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-empty.png"
+          ]
+        },
+        {
+          "assertion": "Non-finite input is rejected with inline error and disabled Save",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-non-finite.png"
+          ]
+        },
+        {
+          "assertion": "Out-of-limit inputs immediately show error and disable Save",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-below-min.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-above-max.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-below-min.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-below-min.png"
+          ]
+        },
+        {
+          "assertion": "Incorrectly ordered boundaries immediately show error and disable Save",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-actual-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-order-settled.png"
+          ]
+        },
+        {
+          "assertion": "HTTP boundary limit is0–10000 subject to ordering",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-below-min.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-above-max.png"
+          ]
+        },
+        {
+          "assertion": "Ping minimum0 with no extra maximum cap",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-below-min.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-no-max.png"
+          ]
+        },
+        {
+          "assertion": "Video Streaming minimum0 with no extra maximum cap",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-below-min.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-restore-zero.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-no-max.png"
+          ]
+        },
+        {
+          "assertion": "Video Streaming exact categories cannot be changed",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-category-draft.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png"
+          ]
+        },
+        {
+          "assertion": "Required validation branches are exercised for HTTP Browsing, Ping and Video Streaming",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-empty.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-http-non-finite.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-ping-below-min.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-video-below-min.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Reset displays default labels, colours, boundaries, categories and visibility as drafts; saving applies defaults to the active field only, preserving other fields and layers.",
+      "outcome": "Blocked",
+      "reason": "criterion-12-editor-baseline.png -> criterion-12-before-reset.png -> criterion-12-reset-drafts.png -> criterion-12-reset-saved.png -> criterion-12-final.png shows the runtime baseline, modified Error label/colour, boundary 7 and deleted row, Reset drafts restoring Error/black/8 and four rows while the underlying legend retains the modified state, then saved restoration. criterion-12-hidden-category.png supplies the hidden Error baseline. However, no independent versioned expected defaults establish correct labels, colours, boundaries, categories or default visibility; those assertions remain Blocked. Other-field overrides need a multi-field fixture, and other-layer overrides lack their own preservation comparison. The runtime sequence is supported without treating the current UI as authoritative configuration.",
+      "coverageChecks": [
+        {
+          "assertion": "Reset restores default labels as drafts",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-saved.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        },
+        {
+          "assertion": "Reset restores default colours as drafts",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        },
+        {
+          "assertion": "Reset restores default numeric boundaries as drafts",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-boundary-draft.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        },
+        {
+          "assertion": "Reset restores default categories as drafts",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-category-draft.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        },
+        {
+          "assertion": "Reset restores default visibility only on Save",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-hidden-category.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-saved.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        },
+        {
+          "assertion": "Save applies defaults to active field",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-saved.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        },
+        {
+          "assertion": "Other fields retain saved overrides",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Other layers retain saved overrides",
+          "outcome": "Unverified",
+          "evidence": []
+        },
+        {
+          "assertion": "Defaults match independent versioned expected configuration",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Reset changes remain drafts until Save in the visible runtime label, colour, boundary and category sequence",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-editor-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-reset.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-drafts.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-reset-saved.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Linked-site and linked-cell display settings use the shared Network context and follow visible result categories; linked cells are disabled when linked sites are off, and settings persist per layer.",
+      "outcome": "Unverified",
+      "reason": "criterion-13-settings-baseline.png -> criterion-13-sites-off.png -> criterion-13-sites-on.png -> criterion-13-cells-on.png shows the sites/cells state changes, but the grey cells control when sites are off lacks normal pointer/applicable keyboard activation with a settled unchanged after capture; prevention remains Unverified. criterion-13-cells-on.png, criterion-13-persist-reopen.png, criterion-13-ping-independent.png and criterion-13-final.png support HTTP true/true persisting independently of Ping true/false when reselecting layers. criterion-13-zoom-4.png versus criterion-13-filter-error.png does not identify and reconcile linked site/cell markers to every affected result category or establish shared Network context. Reported linkable response data makes this incomplete verification, not missing-data unavailability.",
+      "coverageChecks": [
+        {
+          "assertion": "Linked-site settings use shared Network context",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-4.png"
+          ]
+        },
+        {
+          "assertion": "Linked-cell settings use shared Network context",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-4.png"
+          ]
+        },
+        {
+          "assertion": "Linked sites follow visible result categories",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-4.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-filter-error.png"
+          ]
+        },
+        {
+          "assertion": "Linked cells follow visible result categories",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-zoom-4.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-filter-error.png"
+          ]
+        },
+        {
+          "assertion": "Linked cells disabled when sites off and enabled when sites on",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-settings-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-sites-off.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-sites-on.png"
+          ]
+        },
+        {
+          "assertion": "Settings persist independently per layer",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-cells-on.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-persist-reopen.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-ping-independent.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-13-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "With or without a details tab, the legend remains scrollable when the map pane is resized and does not overlap Reset North or other map controls.",
+      "outcome": "Failed",
+      "reason": "criterion-14-with-details-baseline.png -> criterion-14-details-resized-top.png -> criterion-14-details-resized-bottom.png shows HTTP scrolling after resize with a details tab. criterion-14-map-b-actual-baseline.png -> criterion-14-map-b-resized-top.png -> criterion-14-decisive-final.png shows scrolling in the fully visible second map without a details tab. Compass/Reset North, style and zoom remain separate. In criterion-14-map-b-actual-baseline.png and criterion-14-decisive-final.png the legend visibly covers the right-hand Map layers controls in the narrow dual panes, contradicting avoidance of other controls. The recorded remove-click interception corroborates this visible overlap; timeout alone is not the defect evidence.",
+      "coverageChecks": [
+        {
+          "assertion": "With details tab legend remains scrollable after pane resize",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-with-details-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-top.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-bottom.png"
+          ]
+        },
+        {
+          "assertion": "Without details tab legend remains scrollable after pane resize",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-actual-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-resized-top.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-decisive-final.png"
+          ]
+        },
+        {
+          "assertion": "Legend avoids Reset North when resized",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-top.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-resized-top.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-decisive-final.png"
+          ]
+        },
+        {
+          "assertion": "Legend avoids map style/zoom controls when resized",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-details-resized-top.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-resized-top.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-decisive-final.png"
+          ]
+        },
+        {
+          "assertion": "Legend avoids other map/layer controls when resized",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-dual.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-map-b-actual-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-14-decisive-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For existing consumers of the shared legend, established markers, visibility, editor actions and default behavior remain unchanged unless a consumer opts into the new options.",
+      "outcome": "Blocked",
+      "reason": "No identified independent versioned pre-change baseline, existing-consumer fixture set or opt-in matrix is supplied. criterion-15-final.png shows the current HTTP editor only; it cannot establish unchanged historical markers, visibility, editor actions or defaults, or which consumers opted in. Incidental Download/Service layers are excluded as substitute acceptance consumers.",
+      "coverageChecks": [
+        {
+          "assertion": "Existing-consumer established markers remain unchanged against versioned baseline",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Existing-consumer visibility remains unchanged against versioned baseline",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Existing-consumer editor actions remain unchanged against versioned baseline",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Existing-consumer default behavior remains unchanged against versioned baseline",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Changes apply only to consumers that opt in",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-92\\cycles\\cycle-002\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Independent review of all 15 criteria against the complete selected source and cycle-002 attempt-001. All 150 referenced PNGs exist and are non-empty. Missing versioned expectations/regression baselines and multi-field fixtures remain blockers; reachable incomplete activation, restoration and comparison sequences remain Unverified. Source deployment-configuration branch omitted from checklist item 1 is explicitly assessed. Automobile HTTP Browsing/Ping/Video evidence is scoped to the supported consumers; incidental excluded layers supply no substitute acceptance verdict. No simulation is claimed."
+}
