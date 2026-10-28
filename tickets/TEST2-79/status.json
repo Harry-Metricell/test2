@@ -1,7 +1,7 @@
 {
   "ticket": "TEST2-79",
   "criteriaVerified": true,
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Awaiting Evidence Review",
   "workflowState": "Retry Queued",
   "retries": 1,
   "testAttempts": 1,

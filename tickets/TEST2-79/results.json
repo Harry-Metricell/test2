@@ -3,45 +3,34 @@
     "criterion": "With neither layer selected, the map shows no Download or Upload test-result points.",
     "outcome": "Passed",
     "evidence": [
-      "cycles/cycle-005/screenshots/attempt-001/criterion-1-initial.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-1-baseline-map.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-types.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-1-final.png"
+      "cycles/cycle-005/screenshots/attempt-002/criterion-1-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-1-original-upload.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-1-original-config.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-1-final.png"
     ],
     "steps_taken": [
-      "Navigated exactly to https://o2intelligence-v4-dev.metricell.com/launcher; waited for visible Launcher; saved initial PNG.",
-      "Opened GIS. Original complete active layer list contained only Automobile - Service, with no pre-existing detail dialog. Captured baseline map.",
-      "Opened Configure Automobile - Service. Original Test type Service; From 2026-07-30T10:31, To 2026-10-28T10:31; handset/network text filters empty and technology checkboxes checked. No filters changed.",
-      "Opened Test type menu: Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service (selected), MS Teams Call. Captured menu.",
-      "Pressed Escape; closed configuration without Apply. Captured final unchanged active-layer list and map before next criterion. Recorded actual URL. Reopened final and test-types PNGs and visually verified decisive states."
+      "Navigated to the exact launcher and captured the settled launcher.",
+      "Opened GIS; original state was one visible Automobile - Upload layer, no pre-existing detail tabs, single map, center approximately -0.007/51.901 at zoom 7.14.",
+      "Inspected Upload configuration: From 2026-07-30T10:46, To 2026-10-28T10:46, empty handset/network filters and all displayed technologies selected.",
+      "Closed configuration and removed this selected layer temporarily. Inspected settled map with no selected Download or Upload layer and no associated result markers."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Bounded baseline: active map layer list contained only Automobile - Service; Download and Upload unselected. Automobile nested menu confirmed separate choices. Configuration closed without Apply; original selections restored.",
+    "reason": "Neither result layer was selected in the decisive state; no Download or Upload result points were visible. Original Upload selection/configuration was restored at run cleanup; map viewport restoration is incomplete.",
     "coverageChecks": [
       {
-        "assertion": "Neither Download nor Upload is selected in complete active layer list",
+        "assertion": "Download result points are absent when neither layer is selected",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-005/screenshots/attempt-001/criterion-1-final.png",
-          "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-types.png"
+          "cycles/cycle-005/screenshots/attempt-002/criterion-1-final.png"
         ]
       },
       {
-        "assertion": "Map shows no Download result points",
+        "assertion": "Upload result points are absent when neither layer is selected",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-005/screenshots/attempt-001/criterion-1-final.png",
-          "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-types.png"
-        ]
-      },
-      {
-        "assertion": "Map shows no Upload result points",
-        "outcome": "Passed",
-        "evidence": [
-          "cycles/cycle-005/screenshots/attempt-001/criterion-1-final.png",
-          "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-types.png"
+          "cycles/cycle-005/screenshots/attempt-002/criterion-1-final.png"
         ]
       }
     ],
@@ -49,749 +38,928 @@
   },
   {
     "criterion": "After selecting Download, the map shows selectable points for matching authorised Download results only.",
-    "outcome": "Blocked",
+    "outcome": "Unverified",
     "evidence": [
-      "cycles/cycle-005/screenshots/attempt-001/criterion-2-initial.png"
+      "cycles/cycle-005/screenshots/attempt-002/criterion-2-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-2-before-add.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-2-after-add.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-2-before-search-select.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-2-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-2-final.png"
     ],
     "steps_taken": [
-      "Navigated exactly to launcher; initial PNG exists, is non-empty and was reopened for visual verification.",
-      "Submitted batch to capture launcher, open GIS and Automobile - Service configuration, open Test type menu, capture before-Download state, select Download and Apply. Host timeout returned. Only initial PNG can be confirmed; no successful selection asserted.",
-      "Stopped browser work. Current state, final URL and cleanup cannot be verified after host interruption."
+      "Started at settled launcher, opened GIS, opened Automobile configuration and selected Download.",
+      "Applied 30 September 2026 00:00 to 1 October 2026 00:00 local UI time (request UTC 2026-09-29T23:00Z to 2026-09-30T23:00Z); other filters remained empty/default.",
+      "Observed GET /api/platform/automobile/download/points HTTP 200. Searched Cambridge UK through the UI; settled center 0.13127/52.19508, zoom 14. The genuine response contained seven aggregates: 1441292711394362688, 1441292713541846351, 1441292721326474588, 1441292724279264629, 1441292726695183737, 1441292732600763753, 1441292740385391952.",
+      "Activated the first aggregate by ordinary map pointer input; POST /api/platform/automobile/download/cluster-details returned HTTP 200 and opened Download test 132617095, ending 30/09/2026 12:09:23.",
+      "Did not reconcile every remaining aggregate and cluster member against selectable UI presentation."
     ],
-    "browserUrl": null,
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Final capture unavailable; only initial launcher PNG survived.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "Download selection, matching endpoint and one selectable matching record are demonstrated. Complete reconciliation of all seven returned aggregates and their members was not completed; this is a coverage gap, not unavailable data.",
     "coverageChecks": [
       {
-        "assertion": "Download selected within Automobile",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Selecting Automobile Download loads its matching authorised endpoint",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-2-before-add.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-2-after-add.png"
+        ]
       },
       {
-        "assertion": "All genuine authorised Download results in inspected time/area/filter scope reconciled with map points and cluster members",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "A genuine Download map result opens corresponding details",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-2-before-point.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-2-final.png"
+        ]
       },
       {
-        "assertion": "All matching Download points selectable",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "No non-Download results in selected layer",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Every returned result in the bounded scope is reconciled with selectable presentation and no nonmatching results",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-2-after-add.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-2-final.png"
+        ]
       }
     ],
+    "retryClass": "manual",
     "testedModule": "Automobile"
   },
   {
     "criterion": "After selecting Upload, the map shows selectable points for matching authorised Upload results only.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Unverified",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-before-cluster.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-final.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-3-before-apply.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-3-after-apply.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-3-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Original exploration selected Upload in Automobile configuration and applied the 30 September scope, observed HTTP 200 from /api/platform/automobile/upload/points, and opened matching Upload test 132610532.",
+      "Revisited this criterion to replace its loading-launcher baseline: navigated to exact launcher, waited for the visible welcome heading, captured a fresh settled initial, then opened GIS.",
+      "At Cambridge center 0.13127/52.19508 zoom 12, with From 2026-07-30T10:46 and To 2026-10-28T10:46 and default other filters, activated a genuine Upload aggregate.",
+      "The cluster table displayed seven authorised Upload records: 132005176, 132004961, 132004444, 132004133, 132003951, 132003714, 132003373.",
+      "The original seven-aggregate day-scope response and the later whole-viewport response were not exhaustively reconciled across every map aggregate/member."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "Matching Upload data and selectable presentation were observed, including a seven-record cluster. Complete viewport response reconciliation remains unverified. The loading initial from original exploration is superseded by repair-initial.",
     "coverageChecks": [
       {
-        "assertion": "Upload selected within Automobile",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Automobile Upload is selectable and requests matching Upload results",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-3-before-apply.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-3-after-apply.png"
+        ]
       },
       {
-        "assertion": "All genuine authorised Upload results in inspected time/area/filter scope reconciled with map points and cluster members",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Matching Upload results have selectable map/cluster presentation",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-before-cluster.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-final.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-3-final.png"
+        ]
       },
       {
-        "assertion": "All matching Upload points selectable",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "No non-Upload results in selected layer",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "All authorised response records in the bounded viewport are reconciled and nonmatching results excluded",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-3-repair-final.png"
+        ]
       }
     ],
+    "retryClass": "manual",
     "testedModule": "Automobile"
   },
   {
     "criterion": "Selecting a Download result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate, and Wi-Fi Connected.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-before-apply.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-middle.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Revisited this criterion to repair its loading initial: navigated to exact launcher, waited for visible welcome heading and saved the settled initial.",
+      "Opened GIS; selected Automobile Download in Test type and applied 30 September 2026 local day scope with other filters unchanged.",
+      "Activated the genuine Download map result by ordinary pointer input; inspected selected test 132617095.",
+      "Read the summary top, middle and bottom through normal scrolling. Observed Data Technology 5G NSA, the returned MSISDN, Service 5G NSA, Serving Cell 70886_120_4, Test Duration 30.841 seconds, Test Technologies 4G, Download Rate 4.78 Mbps, Wi-Fi Connected No.",
+      "Captured the asserted summary before closing only this criterion's detail tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "All eight mandatory summary fields are readable across overlapping captures for Download test 132617095. Earlier loading initial is superseded by the repair sequence.",
     "coverageChecks": [
       {
-        "assertion": "Download point opens matching details",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download summary shows readable Data Technology",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-middle.png"
+        ]
       },
       {
-        "assertion": "Download summary readable: Data Technology",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download summary shows readable MSISDN",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+        ]
       },
       {
-        "assertion": "Download summary readable: MSISDN",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download summary shows readable Service",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+        ]
       },
       {
-        "assertion": "Download summary readable: Service",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download summary shows readable Serving Cell",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+        ]
       },
       {
-        "assertion": "Download summary readable: Serving Cell",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download summary shows readable Test Duration",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-final.png"
+        ]
       },
       {
-        "assertion": "Download summary readable: Test Duration",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download summary shows readable Test Technologies",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+        ]
       },
       {
-        "assertion": "Download summary readable: Test Technologies",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download summary shows readable Download Rate",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-top.png"
+        ]
       },
       {
-        "assertion": "Download summary readable: Download Rate",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Download summary readable: Wi-Fi Connected",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download summary shows readable Wi-Fi Connected",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-summary-middle.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "Selecting an Upload result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Upload Rate, and Wi-Fi Connected.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-before-apply.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-middle.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Revisited this criterion to repair its loading initial: navigated to exact launcher, waited for visible welcome heading and saved the settled initial.",
+      "Opened GIS; selected Automobile Upload in Test type and applied 30 September 2026 local day scope with other filters unchanged.",
+      "Activated the genuine Upload map result by ordinary pointer input; inspected selected test 132610532.",
+      "Read the summary top, middle and bottom through normal scrolling. Observed Data Technology 5G NSA, the returned MSISDN, Service 5G NSA, Serving Cell 105_120_4, Test Duration 9.777 seconds, Test Technologies 4G, Upload Rate 0.85 Mbps, Wi-Fi Connected No.",
+      "Captured the asserted summary before closing only this criterion's detail tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "All eight mandatory summary fields are readable across overlapping captures for Upload test 132610532. Earlier loading initial is superseded by the repair sequence.",
     "coverageChecks": [
       {
-        "assertion": "Upload point opens matching details",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload summary shows readable Data Technology",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-middle.png"
+        ]
       },
       {
-        "assertion": "Upload summary readable: Data Technology",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload summary shows readable MSISDN",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+        ]
       },
       {
-        "assertion": "Upload summary readable: MSISDN",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload summary shows readable Service",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+        ]
       },
       {
-        "assertion": "Upload summary readable: Service",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload summary shows readable Serving Cell",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+        ]
       },
       {
-        "assertion": "Upload summary readable: Serving Cell",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload summary shows readable Test Duration",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload summary readable: Test Duration",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload summary shows readable Test Technologies",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+        ]
       },
       {
-        "assertion": "Upload summary readable: Test Technologies",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload summary shows readable Upload Rate",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-top.png"
+        ]
       },
       {
-        "assertion": "Upload summary readable: Upload Rate",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload summary readable: Wi-Fi Connected",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload summary shows readable Wi-Fi Connected",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-5-repair-middle.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "The Download result details chart plots Signal Strength in dBm and Download Rate in Mbps over time.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-before-apply.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Repeated from the exact launcher after waiting for the settled welcome heading.",
+      "Opened GIS and applied Automobile Download, 30 September local day scope.",
+      "Activated the genuine Download point by normal pointer input and waited for the Download analysis region.",
+      "Inspected both plotted series, legend, left dBm axis, right Mbps axis and Seconds time axis for test 132617095; hovered the chart to inspect sample values.",
+      "Saved decisive chart before closing the test-created detail tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "The Download chart visibly plots Signal strength and Download Rate over seconds with dBm/Mbps axis labels. Repaired initial and final supersede the loading initial.",
     "coverageChecks": [
       {
-        "assertion": "Download chart plots Signal Strength in dBm",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download chart plots Signal Strength with dBm axis",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-final.png"
+        ]
       },
       {
-        "assertion": "Download chart plots Download Rate in Mbps",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download chart plots applicable rate with Mbps axis",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-final.png"
+        ]
       },
       {
-        "assertion": "Download chart displays quantities over time, including relevant tooltips",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download chart plots both series over time and exposes sample tooltip",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-6-repair-final.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "The Upload result details chart plots Signal Strength in dBm and Upload Rate in Mbps over time.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-7-repair-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-7-repair-before-apply.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-7-repair-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-7-repair-final.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-7-tooltip.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Repeated from the exact launcher after waiting for the settled welcome heading.",
+      "Opened GIS and applied Automobile Upload, 30 September local day scope.",
+      "Activated the genuine Upload point by normal pointer input and waited for the Upload analysis region.",
+      "Inspected both plotted series, legend, left dBm axis, right Mbps axis and Seconds time axis for test 132610532; hovered the chart to inspect sample values.",
+      "Saved decisive chart before closing the test-created detail tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "The Upload chart visibly plots Signal strength and Upload Rate over seconds with dBm/Mbps axis labels. Repaired initial and final supersede the loading initial.",
     "coverageChecks": [
       {
-        "assertion": "Upload chart plots Signal Strength in dBm",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload chart plots Signal Strength with dBm axis",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-7-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload chart plots Upload Rate in Mbps",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload chart plots applicable rate with Mbps axis",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-7-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload chart displays quantities over time, including relevant tooltips",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload chart plots both series over time and exposes sample tooltip",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-7-tooltip.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "The Download details table displays MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-8-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Started this criterion at the launcher; later revisited it to inspect the separate test-results table rather than the measurement-sample table.",
+      "In Automobile Download with 30 September local day filters, selected the failed map result 132616647; the test-results table remained open rather than an individual analysis view.",
+      "Enumerated all 13 actual headers, including additional Test ID. Read required fields across overlapping left/right settled captures via ordinary horizontal scrolling.",
+      "Actual labels Start, End and Error correspond to specified Start Time, End Time and Error Message. Rate was N/A on this zero-duration Network Error record; column presence is verified, not a successful rate value."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "The actual Download test-results table contains every required field. The earlier exploratory measurement-table interpretation is superseded; no missing-column product failure is claimed.",
     "coverageChecks": [
       {
-        "assertion": "Download table readable column: MSISDN",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable MSISDN column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: Start Time",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable Start Time column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: End Time",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable End Time column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: Download Rate",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable Download Rate column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: Band",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable Band column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: Serving Cell",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable Serving Cell column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: Service",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable Service column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: Test Technologies",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable Test Technologies column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: Data Technology",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable Data Technology column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: Wi-Fi Connected",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable Wi-Fi Connected column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: URL",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable URL column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+        ]
       },
       {
-        "assertion": "Download table readable column: Error Message",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Download table has readable Error Message column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-final.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "The Upload details table displays MSISDN, Start Time, End Time, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Started this criterion at the launcher; later revisited it to inspect the separate test-results table rather than the measurement-sample table.",
+      "Repeated the criterion from a fresh settled launcher for the final repair.",
+      "In Automobile Upload with 30 September local day filters, selected the failed map result 132616657; the test-results table remained open rather than an individual analysis view.",
+      "Enumerated all 13 actual headers, including additional Test ID. Read required fields across overlapping left/right settled captures via ordinary horizontal scrolling.",
+      "Actual labels Start, End and Error correspond to specified Start Time, End Time and Error Message. Rate was N/A on this zero-duration Network Error record; column presence is verified, not a successful rate value."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "The actual Upload test-results table contains every required field. The earlier exploratory measurement-table interpretation is superseded; no missing-column product failure is claimed.",
     "coverageChecks": [
       {
-        "assertion": "Upload table readable column: MSISDN",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable MSISDN column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: Start Time",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable Start Time column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: End Time",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable End Time column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: Upload Rate",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable Upload Rate column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: Band",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable Band column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-left.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: Serving Cell",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable Serving Cell column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: Service",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable Service column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: Test Technologies",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable Test Technologies column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: Data Technology",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable Data Technology column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: Wi-Fi Connected",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable Wi-Fi Connected column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: URL",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable URL column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload table readable column: Error Message",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Upload table has readable Error Message column and record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-9-repair-final.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Failed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-tooltip.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Repeated from a settled exact launcher, opened GIS and selected genuine Automobile Upload test 132610532.",
+      "Inspected summary rate, chart axes/tooltip and measurement table values.",
+      "Summary showed 0.85 Mbps; measurement rows showed -106 dBm and rate values with Mbps.",
+      "Chart tooltip at 5.06 seconds displayed Signal strength -106 and Upload Rate 0.620104 without units beside either value, while surrounding axes separately showed dBm and Mbps.",
+      "Host interruption occurred during repair; verified the same lease token and current detail state before resuming capture."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "The explicit each-value unit requirement is contradicted by chart tooltip values lacking their applicable units; summary/table values and axis labels carry units. This is a bounded observed tooltip failure, not a claim about all other records.",
     "coverageChecks": [
       {
-        "assertion": "Download: Every displayed Signal Strength value includes dBm",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Summary rate value includes Mbps",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-tooltip.png"
+        ]
       },
       {
-        "assertion": "Download: Every displayed rate value includes Mbps",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Measurement signal values include dBm",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload: Every displayed Signal Strength value includes dBm",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Measurement rate values include Mbps",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-final.png"
+        ]
       },
       {
-        "assertion": "Upload: Every displayed rate value includes Mbps",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Chart tooltip signal value includes applicable dBm unit",
+        "outcome": "Failed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-tooltip.png"
+        ]
+      },
+      {
+        "assertion": "Chart tooltip rate value includes applicable Mbps unit",
+        "outcome": "Failed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-10-repair-tooltip.png"
+        ]
       }
     ],
+    "retryClass": "product",
     "testedModule": "Automobile"
   },
   {
     "criterion": "For a result whose Error Message is null, the details table displays “No Error”.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-before-apply.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-single.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-zoom13.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-settled-zoom12.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-table-left.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-table-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Started the recheck at the settled launcher; opened GIS and restored original Upload date filters: 2026-07-30T10:46 to 2026-10-28T10:46.",
+      "Inspected genuine Upload responses, then used normal Zoom out controls; verified actual settled zoom 12 before selecting the aggregate near latitude 52.17225, longitude 0.11124.",
+      "POST /api/platform/automobile/upload/cluster-details HTTP 200 returned seven records (132005176,132004961,132004444,132004133,132003951,132003714,132003373), each errorMessage:null.",
+      "Compared the selected cluster's table, including all seven Error cells, with the genuine null-error values. Each displayed No Error.",
+      "Earlier measurement-table interpretation was corrected by inspecting this actual test-results table."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "Null errorMessage values display as No Error in the correct detailed test-results table.",
     "coverageChecks": [
       {
-        "assertion": "Download: Genuine response establishes null Error Message",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Download: Table renders null Error Message as No Error",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Genuine response establishes null Error Message",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Table renders null Error Message as No Error",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Genuine returned null error is presented as No Error in the detailed test table",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-table-left.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-11-recheck-table-final.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-12-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-baseline.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Started this criterion at its settled launcher. Explored measurement-table sorting first; that exploration is excluded as proof of the test-results-table assertion.",
+      "Revisited the correct Automobile Upload test-results table: original 90-day filters, Cambridge center 0.13127/52.19508 at zoom 12, selected aggregate containing seven records.",
+      "Enumerated headers: Test ID, MSISDN, Start, End, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, Error. The source/canonical criterion requires sorting a supported column; selected Upload Rate with seven differing values.",
+      "Clicked Upload Rate ascending then descending; read every resulting ID/rate pair and captured settled visible header indicators and differing rows.",
+      "Ascending rates: 14.45,15.36,15.51,15.79,15.88,16.50,17.21 Mbps. Descending reversed that order. Both retained exactly the same seven IDs.",
+      "Captured the descending asserted state before closing this criterion's table."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "Sorting the supported Upload Rate test-results column works in both directions on seven differing genuine values. No claim is made that every other column's differing-value behaviour was exercised.",
     "coverageChecks": [
       {
-        "assertion": "Download: Enumerate all supported table sortable columns",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "A supported detailed-table column sorts genuine differing values ascending",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png"
+        ]
       },
       {
-        "assertion": "Download: Every supported sortable column orders differing values correctly ascending",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "The same supported column sorts values descending",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-final.png"
+        ]
       },
       {
-        "assertion": "Download: Every supported sortable column orders differing values correctly descending",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Download: Settled headers and sort indicators remain readable; all-equal fixtures disclosed",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Enumerate all supported table sortable columns",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Every supported sortable column orders differing values correctly ascending",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Every supported sortable column orders differing values correctly descending",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Settled headers and sort indicators remain readable; all-equal fixtures disclosed",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Sorting retains the bounded seven-record dataset",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-baseline.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-final.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "Filtering a supported Download or Upload details-table column displays rows matching the applied filter.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-13-recheck-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-13-recheck-before-point.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-13-recheck-before-filter.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-13-recheck-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Repeated from a settled launcher and opened GIS, Automobile Upload with original 90-day scope at Cambridge zoom 12.",
+      "Selected the genuine seven-record cluster; expected IDs were 132005176,132004961,132004444,132004133,132003951,132003714,132003373.",
+      "Inspected the table-specific Filter shown tests control and 13 headers.",
+      "Entered 132005176 into Filter shown tests to filter the Test ID value. Read the complete filtered table: exactly the expected record remained.",
+      "Saved decisive filtered state; cleared filter and verified seven rows returned before closing the table."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "The table-specific filter correctly restricts the supported Test ID value to the matching record and clearing it restores seven records. This supersedes earlier measurement-filter exploration.",
     "coverageChecks": [
       {
-        "assertion": "Download: Inspect table-specific header menus and filtering controls",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Download: Applying a supported column filter displays only matching rows",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Inspect table-specific header menus and filtering controls",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Applying a supported column filter displays only matching rows",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Filtering a supported detailed-table column value retains matching rows only",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-13-recheck-before-filter.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-13-recheck-final.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "Requesting details for a zero-duration test does not open a details dialog.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-14-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-14-before-apply.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-14-before-cluster.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-14-before-disabled-pointer.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-14-final.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "Started at settled launcher, opened GIS and selected Automobile Download for 30 September local day.",
+      "Activated the failed map aggregate near 52.19498/0.13184; genuine POST /api/platform/automobile/download/cluster-details HTTP 200 returned test 132616647 with testDurationMs:0 and identical startTime/endTime 2026-09-30T12:00:07.383.",
+      "Inspected the settled Download tests row: correct ID, matching visible start/end, aria-disabled true and no tabindex.",
+      "Captured before state, then used ordinary pointer input at the visible row's Test ID cell coordinates without forced click, DOM changes or bypasses.",
+      "After settlement, the only open detail was the cluster's Automobile Download details table; no individual test analysis/dialog/navigation/selection opened. Row remained disabled. No keyboard activation was invented for the non-focusable row."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "An actual zero-duration Download test did not open individual details after normal pointer activation. The cluster list itself is distinct from a test's details.",
     "coverageChecks": [
       {
-        "assertion": "Download: Establish target identity and actual zero test duration",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "The exercised target is a genuine zero-duration test",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-14-before-disabled-pointer.png"
+        ]
       },
       {
-        "assertion": "Download: Pointer activation leaves details closed, with own settled before/after captures",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Ordinary pointer activation does not open individual test details or navigate",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-14-before-disabled-pointer.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-14-final.png"
+        ]
       },
       {
-        "assertion": "Download: Check keyboard activation when target exposes it",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Establish target identity and actual zero test duration",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Pointer activation leaves details closed, with own settled before/after captures",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Check keyboard activation when target exposes it",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Keyboard activation applicability is checked against the row's exposed focusability",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-14-final.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "While result details are loading, the interface shows a loading state without stale or misleading detail data.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-before-cluster.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-before-baseline.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-valid-baseline-chart.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-valid-baseline-table.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-before-target-genuine.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-genuine-target-chart.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-genuine-target-table.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-distinct-baseline-before-delay.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-before-delayed-selection.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-final.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-recovery-chart.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-15-recovery-table.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "SIMULATED UI STATE: started at the settled launcher and navigated normally through Automobile Upload cluster and individual results.",
+      "Established distinct valid baseline 132005176: 3 genuine samples, -91 dBm; separately selected target 132004961 and observed genuine POST /api/platform/automobile/upload/test-analysis HTTP 200 with pointId 132004961, summary and two samples (-90 dBm, rates 0 and 12.109912 Mbps).",
+      "Closed target tab, selected baseline 132005176, then installed one owned route scoped to exact dev origin/path, POST method and JSON pointId 132004961. Unmatched requests fell through.",
+      "SIMULATED UI STATE: selected target normally and held its original read request behind an explicit release gate. Confirmed pending:true and visible Loading Automobile test analysis progress state; selected summary remained target 132004961 and prior baseline chart/sample rows were absent from selected analysis.",
+      "Captured final loading state and actual URL. Released the original read in a finally cleanup, awaited settlement and removed only the exact owned handler.",
+      "Verified genuine recovery chart and both sample rows matched the prior target baseline. Closed only the three test-created tabs; handler removal confirmed."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "SIMULATED UI STATE: only the analysis pane's original POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/upload/test-analysis for pointId 132004961 was delayed with a manually released gate. No response body was replaced. Genuine successful response provenance was established in this criterion. Loading indicator appeared without previous record analysis; genuine target summary remained legitimate current data. Released original request, recovered chart and both rows, removed exact handler and closed test-created tabs. This verifies the explicit UI loading state, not a backend delay incident.",
     "coverageChecks": [
       {
-        "assertion": "Download: Establish target identity, genuine detail request and distinct valid baseline",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Loading the selected record's analysis shows a visible loading state",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-15-final.png"
+        ]
       },
       {
-        "assertion": "Download: Visible loading state",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Selected loading view does not present prior distinct record's chart or samples",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-15-valid-baseline-chart.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-15-distinct-baseline-before-delay.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-15-final.png"
+        ]
       },
       {
-        "assertion": "Download: Loading excludes stale or misleading details",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Releasing the original genuine read recovers its chart",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-15-genuine-target-chart.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-15-recovery-chart.png"
+        ]
       },
       {
-        "assertion": "Download: Genuine recovery restores chart and sample table after removing any scoped delay",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Establish target identity, genuine detail request and distinct valid baseline",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Visible loading state",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Loading excludes stale or misleading details",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Genuine recovery restores chart and sample table after removing any scoped delay",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Releasing the read recovers the complete two-row genuine sample table",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-15-genuine-target-table.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-15-recovery-table.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
   },
   {
     "criterion": "If result details fail to load, the interface shows an error state without stale or misleading detail data.",
-    "outcome": "Blocked",
-    "evidence": [],
-    "steps_taken": [
-      "Not started: configured browser host interrupted in criterion 2. No independent launcher navigation or PNG was possible after interruption without resuming an unreconciled host; no other criterion's evidence reused."
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-initial.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-before-apply.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-before-cluster.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-before-baseline.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-distinct-baseline.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-before-error.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-final.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-recovery-chart.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-recovery-table.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-cleanup-restored-configuration.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-cleanup-restored-layer.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-genuine-target-chart.png",
+      "cycles/cycle-005/screenshots/attempt-002/criterion-16-genuine-target-table.png"
     ],
-    "browserUrl": null,
+    "steps_taken": [
+      "SIMULATED UI STATE: original in-criterion exploration established target 132004961 through its genuine POST /api/platform/automobile/upload/test-analysis HTTP 200, with a two-sample successful response; original initial was loading and was superseded by this full settled-launcher repair.",
+      "Restarted from exact launcher, waited for welcome heading, captured repair-initial. Opened GIS and restored original Upload filters (2026-07-30T10:46 to 2026-10-28T10:46); selected the genuine seven-record cluster.",
+      "Loaded distinct valid baseline 132005176 normally and captured its readable identity/analysis before installing a new owned handler.",
+      "SIMULATED UI STATE: scoped route to exact dev origin/path, POST method and pointId 132004961; unmatched traffic fell through. Returned one synthetic HTTP 503 Service Unavailable (standard status semantics), text/plain body Service Unavailable. Selected the target normally.",
+      "Waited for Unable to load Automobile test analysis with Retry. Target summary showed ID132004961; old baseline chart/sample data were not visible in selected error analysis. Saved decisive error state and current browser URL.",
+      "In finally cleanup removed exact owned handler; clicked normal Retry, awaited genuine target data, captured recovered chart and all two sample rows.",
+      "Verified handlerRemoved true; closed only test-created tabs. Verified original Upload selection and date filters restored. Original map center/zoom was not restored: current Cambridge center0.13127/52.19508 zoom12 rather than original approximately-0.007/51.901 zoom7.14."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Configured browser host interrupted: functions.exec returned 'code-mode host timed out waiting for wait response' during the criterion-2 batch containing browser_take_screenshot, browser_run_code_unsafe and Download selection operations. Only criterion-2-initial.png exists; execution, selection and current browser state are unknown. Stopped browser work under the brief's lost-host rule; lease retained for coordinator reconciliation. No owned route handlers were installed. This is a capability interruption, not a product failure. Criterion not begun; no PNG possible after host interruption.",
-    "retryClass": "transient",
-    "blockerCode": "browser_host_interrupted",
+    "reason": "SIMULATED UI STATE: one browser-only HTTP 503 Service Unavailable with text/plain body Service Unavailable was injected into POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/upload/test-analysis for pointId132004961 after genuine request/response establishment. No project-specific empty-response contract was invented. Visible analysis error and absence of previous baseline analysis were verified; current target summary is genuine cluster data. Exact handler removed, Retry recovered genuine chart and complete two-row table; test tabs closed and Upload/date filters restored. Cleanup limitation: original map viewport was not restored.",
     "coverageChecks": [
       {
-        "assertion": "Download: Establish target identity, genuine detail request and distinct valid baseline",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "A selected detail-analysis read failure shows a visible error state",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-final.png"
+        ]
       },
       {
-        "assertion": "Download: Failed detail request shows visible error",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "Error state excludes stale chart and sample data from distinct baseline",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-distinct-baseline.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-final.png"
+        ]
       },
       {
-        "assertion": "Download: Error excludes stale or misleading details",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "After exact handler removal normal Retry recovers genuine target chart",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-16-genuine-target-chart.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-recovery-chart.png"
+        ]
       },
       {
-        "assertion": "Download: Genuine recovery verified after removal of any scoped simulation",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Establish target identity, genuine detail request and distinct valid baseline",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Failed detail request shows visible error",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Error excludes stale or misleading details",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Upload: Genuine recovery verified after removal of any scoped simulation",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "After Retry the complete genuine two-sample table recovers",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-002/criterion-16-genuine-target-table.png",
+          "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-recovery-table.png"
+        ]
       }
     ],
     "testedModule": "Automobile"
