@@ -1,0 +1,12 @@
+{
+  "schema": "v4-user-guide-impact.v1",
+  "handoffId": "handoff-TEST2-79-cycle-005-guide-impact",
+  "handoffVersion": "TEST2-79:cycle-005:guide_impact_assessment:2:scope-ee087994b548",
+  "ticket": "TEST2-79",
+  "decision": "update_required",
+  "affectedSection": "Automobile Download and Upload results",
+  "reason": "The passed behaviour adds selectable Download and Upload map layers with individual result details, signal and rate charts, and sortable/filterable test tables. The indexed Automobile Service results section covers a distinct test type and does not explain these controls or details.",
+  "noOp": false,
+  "cycleId": "cycle-005",
+  "assessedAt": "2026-10-28T17:00:45.926Z"
+}
