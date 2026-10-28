@@ -6,7 +6,8 @@
     "handoffs": 3,
     "byWorkflowState": {
       "Blocked": 9,
-      "Ready": 3
+      "Ready": 2,
+      "TESTING IN PROGRESS": 1
     },
     "byQaOutcome": {
       "Blocked": 9,
@@ -21,24 +22,6 @@
     "missingEvidence": "warning_not_pass"
   },
   "tickets": [
-    {
-      "key": "TEST2-79",
-      "cycleId": "cycle-005",
-      "summary": "Map and inspect Automobile Download and Upload results",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
-      "guideImpact": "update_required",
-      "guideUpdate": null,
-      "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide update authoring handoff",
-      "updatedAt": "2026-10-28T10:48:56.747Z",
-      "retries": 1,
-      "retryLimit": 1,
-      "testAttempts": 2,
-      "retryLabel": "Retry 1/1"
-    },
     {
       "key": "TEST2-81",
       "cycleId": "cycle-003",
@@ -146,6 +129,24 @@
       "retryLimit": 1,
       "testAttempts": 1,
       "retryLabel": ""
+    },
+    {
+      "key": "TEST2-79",
+      "cycleId": "cycle-005",
+      "summary": "Map and inspect Automobile Download and Upload results",
+      "jiraStatus": "TESTING IN PROGRESS",
+      "workflowState": "TESTING IN PROGRESS",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Passed",
+      "guideImpact": "update_required",
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "Create user-guide update authoring handoff",
+      "updatedAt": "2026-10-28T10:48:56.747Z",
+      "retries": 1,
+      "retryLimit": 1,
+      "testAttempts": 2,
+      "retryLabel": "Retry 1/1"
     },
     {
       "key": "TEST2-90",

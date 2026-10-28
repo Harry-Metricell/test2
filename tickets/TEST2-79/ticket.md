@@ -2,9 +2,9 @@
 
 ## Current State
 
-- Jira status: READY FOR TESTING
+- Jira status: TESTING IN PROGRESS
 - QA outcome: Passed
-- Workflow state: Ready
+- Workflow state: TESTING IN PROGRESS
 - Action owner: Coordinator
 - Next action: Create user-guide update authoring handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-79
