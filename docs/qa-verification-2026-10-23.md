@@ -105,6 +105,15 @@ No request for these inputs has been sent to anyone.
 
 ## Implementation verification
 
+- 28 October reviewer correction after the user challenged TEST2-85/86: disabled
+  controls need a recorded normal activation sequence and settled before/after
+  evidence; ARIA/tooltip observations alone cannot justify Passed. Named fields
+  not exercised must be disclosed first in the criterion assessment, preserving
+  source-qualified optionality. Corrections/reassessments use the same gates;
+  human clarification is not execution evidence. Tester guidance now supplies
+  the same proof. Existing reports/outcomes are not retroactively changed by
+  this brief update; 85/86 remain in the user's To Do queue for follow-up.
+
 - 27 October preparation: corrected TEST2-92's current consumer scope from the
   complete source refinement; added TEST2-79's genuine zero-duration navigation
   hints and missing-coverage focus. Tester/reviewer briefs now explicitly check
