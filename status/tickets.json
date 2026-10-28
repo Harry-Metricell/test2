@@ -6,11 +6,11 @@
     "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 11,
-      "Ready": 1,
-      "Retry Queued": 1
+      "Ready": 2
     },
     "byQaOutcome": {
-      "Blocked": 13
+      "Blocked": 12,
+      "Failed": 1
     }
   },
   "policy": {
@@ -25,17 +25,17 @@
       "cycleId": "cycle-005",
       "summary": "Map and inspect Automobile Download and Upload results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Failed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-28T10:48:56.747Z",
       "retries": 1,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 2,
       "retryLabel": "Retry 1/1"
     },
     {
