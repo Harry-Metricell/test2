@@ -269,6 +269,14 @@ def reviewed_report_exhibits(images, criterion, review_reason=""):
         name = re.sub(r"^criterion-\d+-", "", image.stem.lower())
         if name in {"initial", "before-automobile", "automobile-config", "actual-automobile-config", "after-open-gis"}:
             return True
+        # Known layer-creation captures move only when the reviewer names
+        # decisive proof and the criterion does not assert setup behaviour.
+        if re.fullmatch(r"(?:restart-)?setup-\d+", name):
+            return True
+        if name in {"test-types", "test-type-choices", "test-type-options",
+                    "service-config", "service-configuration", "building-config",
+                    "download-config", "upload-config"}:
+            return True
         if name in {"before-select-point", "before-select-record"}:
             return not re.search(r"\b(select|selecting|selectable|point)\b", lower)
         return False

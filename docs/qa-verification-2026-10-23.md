@@ -25,7 +25,7 @@ Previous PDFs and editable Word reports were verified preserved in their respect
 | 80 | User accepted the existing Passed review. Preserve it and its reports. | Passed; held from further testing |
 | 81 | Reconcile HTTP/Ping results in a bounded permitted genuine scope; Video Streaming needs genuine data separately. | Held; data work deferred |
 | 82 | Preserve reported loading failure and missing no-data contract. Correct future preservation of pre-existing panels. | Leave To Do; user bug returned |
-| 83 | Cycle-004 reviewed: 4 Passed, 1 Failed, 4 Blocked. Source VM2ST-105 checked read-only on 27 October: neighbours beneath serving details is explicit. Needs no-neighbour, 3G/5G SA and unavailable-detail fixtures. | Completed; final PDF/Word published; no automatic reset |
+| 83 | Cycle-004 reassessed 28 October: 3 Passed, 1 confirmed Failed, 1 inconclusive, 4 Blocked. Criterion 4's earlier Pass exercised the Service-test selection list, leaving the source-required detail-row scope unverified. Neighbours beneath serving details remains an explicit source requirement and a supported layout failure. Needs no-neighbour, 3G/5G SA and unavailable-detail fixtures. | Corrected PDF/Word; prior review/tester history retained; focused detail-view check needed, no automatic reset |
 | 84 | Identify actual Automobile Building feature/prerequisite; never substitute Surveyor. | Deferred; unchanged Jira |
 | 85 | Reassessed 27 October: 8 Passed, 2 Blocked. Summary availability and disabled zero-duration presentation cleared from existing evidence. Criteria 6 and 9 need the inputs below; no new attempt or counter reset. | Held; updated PDF/Word published; earlier review and original tester history preserved |
 | 86 | Reassessed 27 October: 8 Passed, 2 Blocked. Summary, disabled zero-duration presentation and repaired loading/recovery evidence cleared. Loading follow-up shows the genuine chart and all 28 recovered rows matching baseline, with exact handler removal and no pending requests. Criteria 6 and 9 need the inputs below. | Held; updated PDF/Word published; earlier review and original tester history preserved |
@@ -104,6 +104,16 @@ Do not treat a zero-duration disabled row as evidence for this separate branch.
 No request for these inputs has been sent to anyone.
 
 ## Implementation verification
+
+- 28 October TEST2-83 audit correction: preserved the earlier review and original
+  cycle-004 results/history; criterion 4 is now Unverified (displayed as Failed
+  without a confirmed defect). Added the missing detail-view assertions rather
+  than discarding the proven selection-list checks. Report inputs retain every
+  review-cited/coverage-referenced capture and the full original attempt remains
+  available. Recognised numbered layer-setup captures move out of criterion
+  proof only when the reviewer names decisive evidence; cited configuration,
+  required baselines and unfamiliar states remain. Tester/reviewer briefs now
+  distinguish selection lists from individual-record detail/sample tables.
 
 - 28 October reviewer correction after the user challenged TEST2-85/86: disabled
   controls need a recorded normal activation sequence and settled before/after

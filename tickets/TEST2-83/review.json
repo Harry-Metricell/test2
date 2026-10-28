@@ -1,13 +1,11 @@
 {
-  "handoffId": "handoff-TEST2-83-cycle-004-review-attempt-001",
-  "handoffVersion": "TEST2-83:cycle-004:evidence_review:1:scope-2847bc2cecaa",
   "ticket": "TEST2-83",
   "testedModule": "Automobile",
   "criterionOutcomes": [
     {
       "criterion": "Given a Service point's details have loaded in the shared point-detail dialog, the standard detail presentation shows the returned serving-cell information.",
       "outcome": "Passed",
-      "reason": "criterion-1-final.png, criterion-1-serving-280.png and criterion-1-serving-540.png show the loaded Automobile Service 4G point 131928136 and overlapping serving rows: serving cell 2592_130_4, PLMN 23410, location 52.20127/0.30414, site 2592, TAC 432, CI 153973122, PCI 468, EARFCN 6400, RSRP -116 dBm, RSRQ -20 and SINR -6. The decisive bottom state is also retained as criterion-1-final-complete-serving.png. These visible fields agree with the selected result's recorded serviceDetails response from POST /api/platform/automobile/service/cluster-details.",
+      "reason": "criterion-1-final.png, criterion-1-serving-280.png and criterion-1-final-complete-serving.png show point 131928136, serving cell 2592_130_4 and the complete serving panel. The overlapping captures display the identity, location and radio fields reconciled with the recorded genuine Service response.",
       "coverageChecks": [
         {
           "assertion": "Loaded Service point 131928136 is identified in the shared detail presentation",
@@ -129,8 +127,8 @@
     },
     {
       "criterion": "Given displayed Service point detail rows are available, sorting the rows changes their visible order according to the selected sort, and filtering them shows only rows matching the selected filter.",
-      "outcome": "Passed",
-      "reason": "criterion-4-baseline.png defines all six displayed Automobile Service rows (pagination 1-6 of 6). criterion-4-sorted-ascending.png shows the settled Signal upward indicator and -116, -115, -115, -113, -112, -110 dBm order; criterion-4-sorted-descending.png shows the downward indicator and reversed numeric order. criterion-4-final.png filters 900 GSM and retains exactly the three baseline matches at 08:22:21, 08:22:26 and 08:22:16, excluding all three 800 DD rows.",
+      "outcome": "Unverified",
+      "reason": "Required detail-row scope not established. criterion-4-baseline.png, criterion-4-sorted-ascending.png, criterion-4-sorted-descending.png and criterion-4-final.png prove sorting/filtering of the six-row Service-test selection list. They do not establish sorting/filtering of the individual Service point detail rows named in VM2ST-105. The earlier Pass was too broad. A focused check must identify the intended detail view and exercise its controls; no product defect is inferred from testing another table.",
       "coverageChecks": [
         {
           "assertion": "Ascending Signal sort changes visible row order to numeric ascending with a visible indicator",
@@ -150,6 +148,23 @@
         {
           "assertion": "Filtering 900 GSM displays all and only the three matching rows",
           "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        },
+        {
+          "assertion": "Sorting is demonstrated on the Service point detail rows required by the source",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-ascending.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-4-sorted-descending.png"
+          ]
+        },
+        {
+          "assertion": "Filtering is demonstrated on the Service point detail rows required by the source",
+          "outcome": "Unverified",
           "evidence": [
             "cycles/cycle-004/screenshots/attempt-001/criterion-4-baseline.png",
             "cycles/cycle-004/screenshots/attempt-001/criterion-4-final.png"
@@ -317,10 +332,32 @@
     }
   ],
   "overallOutcome": "Blocked",
-  "reportPath": "",
+  "reportPath": "tickets/TEST2-83/report.pdf",
   "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-83\\cycles\\cycle-004\\screenshots\\attempt-001",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Independent review of the selected Automobile Service cycle-004 attempt-001 evidence. Missing no-neighbour, 3G and 5G SA detail fixtures and unavailable-detail response contract block completion. Neighbour placement is directly contradicted. Loading/error assessments retain their controlled simulation scope, genuine recovery and cleanup audit.",
-  "cycleId": "cycle-004"
+  "reason": "3 criteria passed; 1 confirmed failure, 1 inconclusive criterion and 4 blocked. Manual existing-evidence reassessment on 28 October 2026 corrected criterion 4's unsupported Pass. Neighbour placement contradicts the source. No-neighbour, 3G/5G SA and unavailable-detail prerequisites remain unresolved. Loading/error passes are controlled UI simulations. No new browser test, independent review worker, cycle or retry was created.",
+  "cycleId": "cycle-004",
+  "sourceHandoffId": "handoff-TEST2-83-cycle-004-review-attempt-001",
+  "sourceHandoffVersion": "TEST2-83:cycle-004:evidence_review:1:scope-2847bc2cecaa",
+  "historyAttempt": 1,
+  "reassessment": {
+    "kind": "manual-existing-evidence-reassessment",
+    "date": "2026-10-28",
+    "cycleId": "cycle-004",
+    "historyAttempt": 1,
+    "changedOutcomeCriteria": [
+      4
+    ],
+    "sourceTicket": "VM2ST-105",
+    "sourceReadOnlyCheckedAt": "2026-10-28",
+    "authority": "User requested correction after the report/source/evidence audit.",
+    "priorReview": "reassessment-history/2026-10-28/previous-review.json",
+    "priorRepositoryCommit": "5d45af11b4950925a24c11c9ba6af879ce0c8cf8",
+    "sourceResultsSha256": "96845cb8d6da86fde06ac95bc4e05573439ec930970baff16dc627ef169244d8",
+    "newTestAttempt": false,
+    "newIndependentWorker": false,
+    "reportInputs": "reassessment-history/2026-10-28/report-inputs.json",
+    "presentation": "Print the criterion-owned evidence cited by the review and its coverage checks; preserve the complete original results, steps and source PNGs."
+  }
 }

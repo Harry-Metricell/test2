@@ -48,6 +48,24 @@ class ResultMatchingTests(unittest.TestCase):
         self.assertEqual(REPORT.reviewed_report_exhibits(images, 'Results are displayed.', ''), REPORT.report_exhibits(images, 'Results are displayed.'))
         self.assertEqual(REPORT.reviewed_report_exhibits(images, 'The original map remains unchanged.', 'criterion-1-final.png shows the map.'), REPORT.report_exhibits(images, 'The original map remains unchanged.'))
 
+    def test_numbered_layer_setup_does_not_bury_reviewed_detail_proof(self):
+        images = [Path('criterion-2-' + suffix + '.png') for suffix in (
+            'setup-0', 'setup-1', 'test-type-choices', 'service-configuration',
+            'unfamiliar-intermediate-state', 'neighbours-0', 'neighbours-280', 'final')]
+        reason = 'criterion-2-neighbours-0.png and criterion-2-neighbours-280.png show the returned neighbours; criterion-2-final.png shows the last section.'
+        selected = REPORT.reviewed_report_exhibits(images, 'Each returned neighbour is displayed beneath serving details.', reason)
+        self.assertEqual(selected, images[4:])
+        cited = REPORT.reviewed_report_exhibits(images, 'The point details load.',
+            'criterion-2-setup-1.png shows the missing required choice; criterion-2-final.png shows the blocker.')
+        self.assertIn(images[1], cited)
+
+    def test_numbered_setup_is_retained_for_configuration_and_without_review(self):
+        images = [Path('criterion-3-' + suffix + '.png') for suffix in ('restart-setup-0', 'setup-1', 'final')]
+        self.assertEqual(REPORT.reviewed_report_exhibits(images, 'The original configuration remains unchanged.',
+            'criterion-3-final.png shows the configuration.'), images)
+        self.assertEqual(REPORT.reviewed_report_exhibits(images, 'The point details load.', ''),
+            REPORT.report_exhibits(images, 'The point details load.'))
+
     def test_table_enlargement_uses_measured_change_and_keeps_broad_maps_uncropped(self):
         with tempfile.TemporaryDirectory() as temporary:
             before = Path(temporary) / 'criterion-5-before-sort.png'

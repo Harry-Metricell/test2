@@ -1,0 +1,19 @@
+{
+  "kind": "manual-existing-evidence-reassessment",
+  "date": "2026-10-28",
+  "cycleId": "cycle-004",
+  "historyAttempt": 1,
+  "changedOutcomeCriteria": [
+    4
+  ],
+  "sourceTicket": "VM2ST-105",
+  "sourceReadOnlyCheckedAt": "2026-10-28",
+  "authority": "User requested correction after the report/source/evidence audit.",
+  "priorReview": "reassessment-history/2026-10-28/previous-review.json",
+  "priorRepositoryCommit": "5d45af11b4950925a24c11c9ba6af879ce0c8cf8",
+  "sourceResultsSha256": "96845cb8d6da86fde06ac95bc4e05573439ec930970baff16dc627ef169244d8",
+  "newTestAttempt": false,
+  "newIndependentWorker": false,
+  "reportInputs": "reassessment-history/2026-10-28/report-inputs.json",
+  "presentation": "Print the criterion-owned evidence cited by the review and its coverage checks; preserve the complete original results, steps and source PNGs."
+}
