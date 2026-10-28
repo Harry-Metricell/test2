@@ -1,0 +1,759 @@
+[
+  {
+    "criterion": "With neither layer selected, the map shows no Download or Upload test-result points.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-1-initial.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-1-service-config.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-1-test-type-choices.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Started at launcher; opened GIS without changing pre-existing layer or either Service detail tab.",
+      "Inspected Automobile Service configuration and all nested Test type choices; kept Service selected.",
+      "Closed configuration and inspected settled map; only Automobile - Service selected."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Only the pre-existing Automobile Service layer was selected; Download and Upload were unselected and their result points were absent.",
+    "coverageChecks": [
+      {
+        "assertion": "Download points hidden while Download unselected",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-service-config.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-test-type-choices.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png"
+        ]
+      },
+      {
+        "assertion": "Upload points hidden while Upload unselected",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-service-config.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-test-type-choices.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "After selecting Download, the map shows selectable points for matching authorised Download results only.",
+    "outcome": "Unverified",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-initial.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-before-apply.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-after-apply.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-selected-error-cluster.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Started at launcher and opened GIS; pre-existing Automobile Service layer, two Service tabs and original map preserved.",
+      "Selected Download and applied original 2026-07-29T15:20 to 2026-10-27T15:20 UI range, with no handset/network restrictions changed.",
+      "GET /api/platform/automobile/download/points returned HTTP 200, eight aggregate IDs in six tiles; visible bounds 0.359063..0.573910 longitude, 52.256603..52.306271 latitude rendered six matching Download aggregates.",
+      "Selected aggregate 1224996732975229056: disabled test 131927798; selected 1224996728411826304: valid test 131922100 opened genuine analysis.",
+      "Not all eight aggregate/member sets reconciled; no global completeness claim.",
+      "Closed only created Download tabs; restored Service test type."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Download endpoint returned eight aggregate points in six requested map tiles; six were rendered in the visible viewport. Two aggregates were selected, including an error cluster and valid test 131922100. Full aggregate/member reconciliation was not completed, so matching authorised results only remains unverified. Restored Service and closed only this criterion's Download tabs.",
+    "retryClass": "manual",
+    "coverageChecks": [
+      {
+        "assertion": "Download selection uses Automobile download endpoint and selectable Download points",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-before-apply.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-after-apply.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-selected-error-cluster.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-final.png"
+        ]
+      },
+      {
+        "assertion": "Every supplied result in the inspected tile/time scope reconciles to a matching authorised selectable presentation, including cluster members",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-before-apply.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-after-apply.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-selected-error-cluster.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-2-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "After selecting Upload, the map shows selectable points for matching authorised Upload results only.",
+    "outcome": "Unverified",
+    "evidence": [
+      "cycles/cycle-004/screenshots/attempt-001/criterion-3-initial.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-3-service-baseline.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-3-configuration-before.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-3-configuration-selected.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-3-map-selected.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-3-final.png",
+      "cycles/cycle-004/screenshots/attempt-001/criterion-3-cleanup.png"
+    ],
+    "steps_taken": [
+      "Started independently at launcher, opened GIS and changed Automobile Service to Upload with original filters.",
+      "GET /api/platform/automobile/upload/points HTTP 200; observed five Upload aggregates in visible map bounds.",
+      "Selected aggregate 1224996728411826304; genuine Upload analysis opened from POST /api/platform/automobile/upload/test-analysis HTTP 200.",
+      "Complete member reconciliation unavailable from the checks performed; restored original Service configuration and preserved pre-existing Service tabs."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Genuine Automobile Upload points loaded and a valid record opened. Complete point/cluster-member reconciliation has not been established in the six-tile scope; no completeness pass is claimed.",
+    "retryClass": "manual",
+    "coverageChecks": [
+      {
+        "assertion": "Selecting Upload loads matching Automobile Upload points",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-service-baseline.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-configuration-before.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-configuration-selected.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-map-selected.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-final.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-cleanup.png"
+        ]
+      },
+      {
+        "assertion": "All supplied records reconcile to matching authorised selectable points, including every cluster member",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-service-baseline.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-configuration-before.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-configuration-selected.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-map-selected.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-final.png",
+          "cycles/cycle-004/screenshots/attempt-001/criterion-3-cleanup.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Selecting a Download result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Download Rate, and Wi-Fi Connected.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Navigated independently to the exact launcher and captured criterion-4-initial.png.",
+      "Opened GIS; waited for Configure Automobile - Service and saved criterion-4-service-baseline.png.",
+      "Configure Automobile - Service click then timed out after 30000ms; the saved configuration-before capture showed Download and absent pre-existing tabs instead of a configuration panel.",
+      "Stopped the pending orchestration; reinspected current UI and lease status without repeating the failed click.",
+      "No criterion 4 point or summary assertions were executed; state restoration was not safe after unexplained changes."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Download point selection opens its corresponding details dialog",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Data Technology is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "MSISDN is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Service is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Serving Cell is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Test Duration is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Test Technologies is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download Rate is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Wi-Fi Connected is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Selecting an Upload result point opens its details dialog with Data Technology, MSISDN, Service, Serving Cell, Test Duration, Test Technologies, Upload Rate, and Wi-Fi Connected.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Upload point selection opens its corresponding details dialog",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Data Technology is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "MSISDN is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Service is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Serving Cell is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Test Duration is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Test Technologies is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload Rate is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Wi-Fi Connected is displayed",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "The Download result details chart plots Signal Strength in dBm and Download Rate in Mbps over time.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Download chart plots Signal Strength in dBm",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download chart plots Download Rate in Mbps",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Both Download chart quantities are plotted over time",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "The Upload result details chart plots Signal Strength in dBm and Upload Rate in Mbps over time.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Upload chart plots Signal Strength in dBm",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload chart plots Upload Rate in Mbps",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Both Upload chart quantities are plotted over time",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "The Download details table displays MSISDN, Start Time, End Time, Download Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Download details table displays readable MSISDN",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable Start Time",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable End Time",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable Download Rate",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable Band",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable Serving Cell",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable Service",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable Test Technologies",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable Data Technology",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable Wi-Fi Connected",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable URL",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Download details table displays readable Error Message",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "The Upload details table displays MSISDN, Start Time, End Time, Upload Rate, Band, Serving Cell, Service, Test Technologies, Data Technology, Wi-Fi Connected, URL, and Error Message.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Upload details table displays readable MSISDN",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable Start Time",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable End Time",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable Upload Rate",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable Band",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable Serving Cell",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable Service",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable Test Technologies",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable Data Technology",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable Wi-Fi Connected",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable URL",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Upload details table displays readable Error Message",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Where signal strength or rate values are shown, each value includes its applicable unit (dBm or Mbps).",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Every shown signal strength value carries dBm",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Every shown Download Rate value carries Mbps",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Every shown Upload Rate value carries Mbps",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "For a result whose Error Message is null, the details table displays “No Error”.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Establish a genuine result with null Error Message",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Corresponding details table displays No Error",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Sorting a supported Download or Upload details-table column changes the displayed row order to match the selected sort.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Enumerate supported Download and Upload details-table sortable columns",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Every supported scoped column sorts ascending with readable settled indicator and matching order",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Every supported scoped column sorts descending with readable settled indicator and matching order",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Differing values establish order or all-equal fixtures are explicitly identified",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Filtering a supported Download or Upload details-table column displays rows matching the applied filter.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Inspect table-specific filter controls and supported Download and Upload columns",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Apply supported Download details-table filter and reconcile displayed rows",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Apply supported Upload details-table filter and reconcile displayed rows",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Requesting details for a zero-duration test does not open a details dialog.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Re-establish Download zero-duration record through normal UI",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Requesting zero-duration Download details does not open a dialog",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Re-establish Upload zero-duration record through normal UI",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Requesting zero-duration Upload details does not open a dialog",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "While result details are loading, the interface shows a loading state without stale or misleading detail data.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Establish distinct valid baseline record and genuine detail request in Automobile",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Selected target result shows a visible loading state",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Loading does not expose previous record details or misleading data",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Genuine request recovery restores chart and sample table",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Remove any owned delayed-request handler and restore UI",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "If result details fail to load, the interface shows an error state without stale or misleading detail data.",
+    "outcome": "Blocked",
+    "evidence": [],
+    "steps_taken": [
+      "Not started: browser state changed unexpectedly during criterion 4 while this handoff held the shared browser lease.",
+      "No independent launcher, transition or final PNG was possible without resuming browser interaction before ownership/state reconciliation.",
+      "No criterion-owned result/fixture was established; prior criteria evidence is not reused."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Not attempted because of the browser ownership/state interruption documented in criterion 4. No PNG was possible for this independent criterion after interactions were stopped; previous criteria evidence cannot establish it. Browser ownership/state could not be reconciled during criterion 4. After the owned launcher/GIS navigation, criterion-4-service-baseline.png still showed the original Automobile Service layer and two pre-existing Service detail tabs. The next Configure Automobile - Service click timed out; criterion-4-configuration-before.png instead showed Automobile - Download, no detail tabs, a taller map and a different catalogue scroll position, changes not requested by this criterion. A fresh snapshot confirmed that changed state while the lease remained owned by this handoff. Stopped interactions and retained the lease for coordinator reconciliation; no product-failure inference. No simulation handlers were installed.",
+    "retryClass": "manual",
+    "blockerCode": "browser_ownership_state_changed",
+    "coverageChecks": [
+      {
+        "assertion": "Establish distinct valid baseline record and genuine detail request in Automobile",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detail-request failure shows a visible error state",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Failure does not expose previous record details or misleading data",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Removing any owned simulated error restores genuine chart and sample table",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Remove only owned handlers and verify cleanup",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "testedModule": "Automobile"
+  }
+]
