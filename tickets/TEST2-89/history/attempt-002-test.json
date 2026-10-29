@@ -1,0 +1,672 @@
+{
+  "handoffId": "handoff-TEST2-89-cycle-002-retry-attempt-002",
+  "handoffVersion": "TEST2-89:cycle-002:test_ticket:2:scope-af7443f54839",
+  "cycleId": "cycle-002",
+  "ticket": "TEST2-89",
+  "testedModule": "Automobile",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-map-before-selection.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher and captured its initial state.",
+        "Opened GIS; inspected the complete three selected-layer entries: Automobile HTTP Browsing, Ping and Video Streaming, all hidden. MS Teams Call was absent. Settled map displayed no MS Teams Call points.",
+        "Captured the settled map and selected-layer list before selecting MS Teams Call. Original details/tabs were preserved."
+      ],
+      "reason": "MS Teams Call was not selected and no MS Teams Call points were displayed.",
+      "coverageChecks": [
+        {
+          "assertion": "MS Teams Call is not selected in the complete map-layer list.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+          ]
+        },
+        {
+          "assertion": "The settled map shows no MS Teams Call result points before selection.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-1-map-before-selection.png",
+            "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+          ]
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-automobile-test-types.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-selected-config.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-after-add.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-wide-scope.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-cluster-members.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
+      ],
+      "steps_taken": [
+        "Started at launcher, opened GIS, opened Automobile and its nested Test type choices; selected MS Teams Call.",
+        "Added the layer with 31 July 2026 16:21 local through 29 October 2026 16:21, all default technologies, no handset/cell restrictions. GET /api/platform/automobile/ms-teams-call/points returned HTTP 200.",
+        "Widened original map centred near -2.77686,54.00703 by seven normal Zoom out activations to about zoom 6.16. Genuine points response supplied aggregates (e.g. 864691669621015843, kpiValue 0.223588596981553); populated points were displayed.",
+        "Clicked centre of Map, opening Automobile MS Teams Call details; POST /api/platform/automobile/ms-teams-call/cluster-details returned HTTP 200 and four rows: 132060307,132057576,132057290,132057444. Selected 132060307, opening its genuine summary/charts/samples.",
+        "Closed only the two created MS Teams tabs, removed the created MS Teams layer, restored seven zoom steps and original Video Streaming detail selection."
+      ],
+      "reason": "Required own launcher baseline criterion-2-initial.png was inspected and shows Loading Launcher rather than the settled visible launcher. This evidence defect could not be repaired after the subsequent shared-browser state interruption. A genuine aggregate opens four matching tests and test 132060307 is selectable. Complete reconciliation of every supplied aggregate/member against selectable map presentation was not established; each matching result assertion remains Unverified.",
+      "coverageChecks": [
+        {
+          "assertion": "Automobile exposes the MS Teams Call nested test type and selecting it loads matching data.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-2-automobile-test-types.png",
+            "cycles/cycle-002/screenshots/attempt-002/criterion-2-selected-config.png",
+            "cycles/cycle-002/screenshots/attempt-002/criterion-2-wide-scope.png"
+          ]
+        },
+        {
+          "assertion": "Displayed aggregate can open matching test rows and a genuine individual MS Teams result.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-2-cluster-members.png",
+            "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Every matching authorised result in the bounded applied date/map scope has a selectable presentation, including all aggregate members.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-2-wide-scope.png",
+            "cycles/cycle-002/screenshots/attempt-002/criterion-2-cluster-members.png"
+          ]
+        },
+        {
+          "assertion": "Criterion-owned initial PNG shows the settled launcher before interaction.",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-2-initial.png"
+          ]
+        }
+      ],
+      "blockerCode": "initial_capture_unsettled",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
+      "outcome": "Unverified",
+      "retryClass": "manual",
+      "reason": "Green configuration #31aa4f below threshold 1 was inspected and a green aggregate opened tests with 0.89% and 0.00%; independent visible pairing of a specific map point's Poor Quality to its rendered exact colour was not established. No configuration changed.",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-before-add.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-map.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-green-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-3-final.png"
+      ],
+      "steps_taken": [
+        "Started at launcher; opened GIS > Automobile > Test type > MS Teams Call.",
+        "Added default all-technology, unrestricted-handset layer for 31 July–29 October 2026, widened by seven Zoom out controls; points displayed.",
+        "Opened Edit Legend, inspected 4G green colour #31aa4f and threshold 1; cancelled without editing.",
+        "Clicked map centre aggregate, opened four genuine tests with Poor Quality 0.89%,0%,0%,0%; captured own final state and URL.",
+        "Closed own cluster tab, removed own MS Teams layer, restored zoom and original Video Streaming tab."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Green band is configured with observable green colour-code for Poor Quality below 1.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-3-green-configuration.png"
+          ]
+        },
+        {
+          "assertion": "A specific displayed MS Teams point with Poor Quality in 0–0.99 renders Green.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-3-map.png",
+            "cycles/cycle-002/screenshots/attempt-002/criterion-3-final.png"
+          ]
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-config.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-selected-config.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-map-before-selection.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-selected-members.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-yellow-configuration.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-final.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-4-final-values.png"
+      ],
+      "reason": "Required own launcher baseline criterion-4-initial.png was inspected and shows Initializing / Preparing modules rather than the settled visible launcher. This evidence defect could not be repaired after the subsequent shared-browser state interruption. Yellow configuration #fcbf1a with band endpoints 1 and 10 was inspected; genuine aggregate 864691668815709477 had Poor Quality 1.720269259536275. Its projected normal map click opened matching tests, but direct visible point/value/colour pairing remains inconclusive.",
+      "steps_taken": [
+        "Started at launcher and opened GIS. Automobile (3) was no longer present; inspected live state, found Automobile with no selected layers or pre-existing detail tabs. Recorded unexpected persistence/cleanup limitation.",
+        "Opened Automobile > Test type > MS Teams Call; added unrestricted default technologies, 31 July–29 October 2026; zoomed out seven times.",
+        "Fresh GET /api/platform/automobile/ms-teams-call/points HTTP 200 supplied 114 aggregates; inspected actual aggregate 864691668815709477 at longitude -3.076171875 latitude 53.90433815627469, Poor Quality 1.720269259536275.",
+        "Clicked geographic position using observed map centre/zoom and normal Map pointer action; three tests opened.",
+        "Inspected Edit Legend 4G Yellow swatch/input #fcbf1a and configured thresholds; cancelled unchanged. Captured table, horizontally scrolled to its rightmost values and captured final.",
+        "Closed own cluster tab, removed own layer and restored seven zoom steps."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Yellow band configuration uses Yellow #fcbf1a between thresholds 1 and 10.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-4-yellow-configuration.png"
+          ]
+        },
+        {
+          "assertion": "A specific displayed MS Teams point with Poor Quality 1–9.99 is Yellow.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-4-map-before-selection.png",
+            "cycles/cycle-002/screenshots/attempt-002/criterion-4-final-values.png"
+          ]
+        },
+        {
+          "assertion": "Criterion-owned initial PNG shows the settled launcher before interaction.",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-4-initial.png"
+          ]
+        }
+      ],
+      "blockerCode": "initial_capture_unsettled",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-initial.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-selected-config.png",
+        "cycles/cycle-002/screenshots/attempt-002/criterion-5-map.png"
+      ],
+      "steps_taken": [
+        "Navigated to the exact launcher and captured its settled initial state.",
+        "Opened GIS. Expected Automobile setup locator timed out. Inspected current UI: Automobile (1), Automobile - Service selected, map near Lancaster; no action by this run selected Service.",
+        "Inspected the two saved state captures; despite setup-oriented filenames both show Service, not a successfully selected MS Teams configuration. No MS Teams request was returned by this criterion's network listing.",
+        "Read lease status: still owned by this handoff. Stopped browser work without changing the unrelated Service layer or attempting uncertain cleanup. Retained lease for reconciliation."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. Own captures show the unexpected layer state.",
+      "coverageChecks": [
+        {
+          "assertion": "The selected point has a genuine Poor Quality value in 10–24.99.",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-5-selected-config.png",
+            "cycles/cycle-002/screenshots/attempt-002/criterion-5-map.png"
+          ]
+        },
+        {
+          "assertion": "That same point renders Amber with an observable configured colour-code and independent saved baseline.",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-002/criterion-5-selected-config.png",
+            "cycles/cycle-002/screenshots/attempt-002/criterion-5-map.png"
+          ]
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [],
+      "steps_taken": [
+        "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+        "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
+      ],
+      "browserUrl": null,
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "The selected point has a genuine Poor Quality value of at least 25.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "That same point renders Red with an observable configured colour-code and independent saved baseline.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [],
+      "steps_taken": [
+        "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+        "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
+      ],
+      "browserUrl": null,
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "Test ID is readable for the selected genuine MS Teams result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Test Result is readable for that result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Connection Time is readable for that result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Call Duration is readable for that result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Poor Quality is readable for that result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "MSISDN is readable for that result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Test Technologies is readable for that result.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [],
+      "steps_taken": [
+        "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+        "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
+      ],
+      "browserUrl": null,
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "The genuine selected result displays a signal chart with readable series and relevant tooltips.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The genuine selected result displays a download chart with readable series and relevant tooltips.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Handover markers are displayed when the genuine selected result supplies them.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [],
+      "steps_taken": [
+        "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+        "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
+      ],
+      "browserUrl": null,
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "The selected genuine result displays its own detailed-sample table, distinct from the cluster-member test list.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed samples omit label columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed samples omit latitude columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed samples omit longitude columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed samples omit handover-only columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [],
+      "steps_taken": [
+        "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+        "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
+      ],
+      "browserUrl": null,
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "Detailed-sample Time sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Time sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Technology sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Technology sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Site ID sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Site ID sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Cell ID sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Cell ID sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Download Rate (Kbps) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Download Rate (Kbps) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Upload Rate (Kbps) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Upload Rate (Kbps) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Signal Strength (dBm) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Signal Strength (dBm) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample RSRQ (dB) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample RSRQ (dB) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample SNR (dB) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample SNR (dB) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Download Size (kB) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Download Size (kB) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Upload Size (kB) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Detailed-sample Upload Size (kB) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [],
+      "steps_taken": [
+        "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+        "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
+      ],
+      "browserUrl": null,
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "Supported filtering controls are inspected in the detailed-sample table and its header menus.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "A supported detailed-sample column filter limits displayed sample identities/values to the matching subset.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Clearing that filter restores the genuine unfiltered sample scope.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [],
+      "steps_taken": [
+        "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+        "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
+      ],
+      "browserUrl": null,
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "The application's CSV export completes for the selected genuine MS Teams test.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Exported CSV contains data matching that selected test and its genuine samples.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [],
+      "steps_taken": [
+        "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+        "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
+      ],
+      "browserUrl": null,
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "A genuine zero-duration MS Teams result is positively identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Normal pointer activation is attempted with settled before and after states; keyboard activation is checked if exposed.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The requested dialog prevents stale details from a distinct previously loaded valid result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Zero-duration handling presents no misleading current result data.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "retryClass": "manual",
+      "blockerCode": "browser_state_ownership_unreconciled",
+      "evidence": [],
+      "steps_taken": [
+        "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+        "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
+      ],
+      "browserUrl": null,
+      "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "The genuine selected MS Teams detail request and its record identity are established in the correct module.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "A genuine failure or permitted exact scoped browser simulation exercises failed detail loading.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The requested dialog excludes stale details of a distinct valid prior result and avoids misleading data.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Genuine response recovery is verified after removal of any owned handler; no handlers or pending requests remain.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    }
+  ],
+  "conciseReport": "TEST2-89 / cycle-002: Blocked. One criterion Passed, one Unverified and twelve Blocked. Automobile's nested MS Teams Call was confirmed and genuine points, cluster rows and a selected result were reachable. Complete per-record reconciliation and exact point/colour pairing remain unproven. Criteria 2 and 4 also lack settled launcher initial captures. During criterion 5 the workspace unexpectedly showed Automobile Service without a corresponding action from this run; browser work stopped. Cause is unknown. Lease retained for coordinator ownership/state reconciliation; do not dispatch another browser tester until reconciled. After criterion 3 cleanup (own MS Teams layer/tab removed, seven zoom steps restored and original Video Streaming tab reselected), a fresh launcher-to-GIS navigation displayed no previous unrelated layers or detail tabs. This unexpected workspace persistence loss was observed; original filter values for those unrelated layers were not fully retained and exact restoration could not be verified. No unrelated tabs were intentionally closed or layers intentionally removed. Subsequent criteria began with the observed empty layer list. No source Jira, account, backend or business data was changed; no simulation handler was installed.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-89-cycle-002-retry-attempt-002/screenshots",
+  "noOp": false,
+  "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. After criterion 3 cleanup (own MS Teams layer/tab removed, seven zoom steps restored and original Video Streaming tab reselected), a fresh launcher-to-GIS navigation displayed no previous unrelated layers or detail tabs. This unexpected workspace persistence loss was observed; original filter values for those unrelated layers were not fully retained and exact restoration could not be verified. No unrelated tabs were intentionally closed or layers intentionally removed. Subsequent criteria began with the observed empty layer list.",
+  "browserLeaseRetained": true,
+  "browserLeaseRetentionReason": "Unknown shared-browser state change; coordinator must reconcile browser ownership/state before reuse.",
+  "historyAttempt": 2,
+  "recordedAt": "2026-10-29T16:33:57.761Z"
+}

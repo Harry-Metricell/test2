@@ -3,678 +3,653 @@
     "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
     "outcome": "Passed",
     "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-1-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-1-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-1-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+      "cycles/cycle-002/screenshots/attempt-002/criterion-1-initial.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-1-map-before-selection.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
     ],
+    "steps_taken": [
+      "Navigated to the exact launcher and captured its initial state.",
+      "Opened GIS; inspected the complete three selected-layer entries: Automobile HTTP Browsing, Ping and Video Streaming, all hidden. MS Teams Call was absent. Settled map displayed no MS Teams Call points.",
+      "Captured the settled map and selected-layer list before selecting MS Teams Call. Original details/tabs were preserved."
+    ],
+    "reason": "MS Teams Call was not selected and no MS Teams Call points were displayed.",
     "coverageChecks": [
       {
-        "assertion": "Before selection, Automobile MS Teams Call points are absent.",
+        "assertion": "MS Teams Call is not selected in the complete map-layer list.",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+          "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+        ]
+      },
+      {
+        "assertion": "The settled map shows no MS Teams Call result points before selection.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-002/criterion-1-map-before-selection.png",
+          "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
         ]
       }
     ],
-    "steps_taken": [
-      "Navigated to exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher, and saved an independent initial PNG.",
-      "Opened GIS. Original state was one visible Automobile - Ping layer with a pre-existing Ping test tab dated 10/08/2026 12:51:03 (test 131926379). Map points corresponded to Ping; no MS Teams Call layer or points were shown.",
-      "Opened Configure Automobile - Ping and inspected the nested Test type list: Call, Download, HTTP Browsing, Ping, Upload, Video Streaming, Service, MS Teams Call. Captured choices without applying a type change.",
-      "Retained Ping, closed configuration, saved and visually reopened final PNG at /gis. Network list showed Automobile ping/points HTTP 200 and filter-options HTTP 200, with no MS Teams point request.",
-      "Original layer, map and pre-existing detail remained unchanged."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Before selecting MS Teams Call, only the original Automobile - Ping layer and its map points were present. The nested choice confirms MS Teams Call is separately selectable.",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "testedModule": "Automobile"
   },
   {
     "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
     "outcome": "Blocked",
+    "retryClass": "manual",
     "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-2-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-2-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-2-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-2-after-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-2-cleanup.png"
+      "cycles/cycle-002/screenshots/attempt-002/criterion-2-initial.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-2-automobile-test-types.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-2-selected-config.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-2-after-add.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-2-wide-scope.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-2-cluster-members.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
     ],
+    "steps_taken": [
+      "Started at launcher, opened GIS, opened Automobile and its nested Test type choices; selected MS Teams Call.",
+      "Added the layer with 31 July 2026 16:21 local through 29 October 2026 16:21, all default technologies, no handset/cell restrictions. GET /api/platform/automobile/ms-teams-call/points returned HTTP 200.",
+      "Widened original map centred near -2.77686,54.00703 by seven normal Zoom out activations to about zoom 6.16. Genuine points response supplied aggregates (e.g. 864691669621015843, kpiValue 0.223588596981553); populated points were displayed.",
+      "Clicked centre of Map, opening Automobile MS Teams Call details; POST /api/platform/automobile/ms-teams-call/cluster-details returned HTTP 200 and four rows: 132060307,132057576,132057290,132057444. Selected 132060307, opening its genuine summary/charts/samples.",
+      "Closed only the two created MS Teams tabs, removed the created MS Teams layer, restored seven zoom steps and original Video Streaming detail selection."
+    ],
+    "reason": "Required own launcher baseline criterion-2-initial.png was inspected and shows Loading Launcher rather than the settled visible launcher. This evidence defect could not be repaired after the subsequent shared-browser state interruption. A genuine aggregate opens four matching tests and test 132060307 is selectable. Complete reconciliation of every supplied aggregate/member against selectable map presentation was not established; each matching result assertion remains Unverified.",
     "coverageChecks": [
       {
-        "assertion": "The selected layer requests Automobile MS Teams Call results.",
+        "assertion": "Automobile exposes the MS Teams Call nested test type and selecting it loads matching data.",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-apply.png",
-          "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+          "cycles/cycle-002/screenshots/attempt-002/criterion-2-automobile-test-types.png",
+          "cycles/cycle-002/screenshots/attempt-002/criterion-2-selected-config.png",
+          "cycles/cycle-002/screenshots/attempt-002/criterion-2-wide-scope.png"
         ]
       },
       {
-        "assertion": "Every matching authorised result in the bounded filter/time/map scope is a selectable point.",
+        "assertion": "Displayed aggregate can open matching test rows and a genuine individual MS Teams result.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-002/criterion-2-cluster-members.png",
+          "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
+        ]
+      },
+      {
+        "assertion": "Every matching authorised result in the bounded applied date/map scope has a selectable presentation, including all aggregate members.",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-002/criterion-2-wide-scope.png",
+          "cycles/cycle-002/screenshots/attempt-002/criterion-2-cluster-members.png"
+        ]
+      },
+      {
+        "assertion": "Criterion-owned initial PNG shows the settled launcher before interaction.",
         "outcome": "Blocked",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+          "cycles/cycle-002/screenshots/attempt-002/criterion-2-initial.png"
         ]
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "blockerCode": "initial_capture_unsettled",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "testedModule": "Automobile"
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
-    "outcome": "Blocked",
+    "outcome": "Unverified",
+    "retryClass": "manual",
+    "reason": "Green configuration #31aa4f below threshold 1 was inspected and a green aggregate opened tests with 0.89% and 0.00%; independent visible pairing of a specific map point's Poor Quality to its rendered exact colour was not established. No configuration changed.",
     "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-cleanup.png"
+      "cycles/cycle-002/screenshots/attempt-002/criterion-3-initial.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-3-before-add.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-3-map.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-3-green-configuration.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Started at launcher; opened GIS > Automobile > Test type > MS Teams Call.",
+      "Added default all-technology, unrestricted-handset layer for 31 July–29 October 2026, widened by seven Zoom out controls; points displayed.",
+      "Opened Edit Legend, inspected 4G green colour #31aa4f and threshold 1; cancelled without editing.",
+      "Clicked map centre aggregate, opened four genuine tests with Poor Quality 0.89%,0%,0%,0%; captured own final state and URL.",
+      "Closed own cluster tab, removed own MS Teams layer, restored zoom and original Video Streaming tab."
     ],
     "coverageChecks": [
       {
-        "assertion": "A known Poor Quality 0–0.99 sample has the specified map colour Green with observable colour code.",
-        "outcome": "Blocked",
+        "assertion": "Green band is configured with observable green colour-code for Poor Quality below 1.",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png"
+          "cycles/cycle-002/screenshots/attempt-002/criterion-3-green-configuration.png"
+        ]
+      },
+      {
+        "assertion": "A specific displayed MS Teams point with Poor Quality in 0–0.99 renders Green.",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-002/criterion-3-map.png",
+          "cycles/cycle-002/screenshots/attempt-002/criterion-3-final.png"
         ]
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No known Poor Quality sample in the required interval was available; no runtime colour/boundary comparison was performed. The legend alone was not treated as proof.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "testedModule": "Automobile"
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
     "outcome": "Blocked",
+    "retryClass": "manual",
     "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-4-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-4-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-4-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-4-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-4-cleanup.png"
+      "cycles/cycle-002/screenshots/attempt-002/criterion-4-initial.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-4-config.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-4-selected-config.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-4-map-before-selection.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-4-selected-members.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-4-yellow-configuration.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-4-final.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-4-final-values.png"
+    ],
+    "reason": "Required own launcher baseline criterion-4-initial.png was inspected and shows Initializing / Preparing modules rather than the settled visible launcher. This evidence defect could not be repaired after the subsequent shared-browser state interruption. Yellow configuration #fcbf1a with band endpoints 1 and 10 was inspected; genuine aggregate 864691668815709477 had Poor Quality 1.720269259536275. Its projected normal map click opened matching tests, but direct visible point/value/colour pairing remains inconclusive.",
+    "steps_taken": [
+      "Started at launcher and opened GIS. Automobile (3) was no longer present; inspected live state, found Automobile with no selected layers or pre-existing detail tabs. Recorded unexpected persistence/cleanup limitation.",
+      "Opened Automobile > Test type > MS Teams Call; added unrestricted default technologies, 31 July–29 October 2026; zoomed out seven times.",
+      "Fresh GET /api/platform/automobile/ms-teams-call/points HTTP 200 supplied 114 aggregates; inspected actual aggregate 864691668815709477 at longitude -3.076171875 latitude 53.90433815627469, Poor Quality 1.720269259536275.",
+      "Clicked geographic position using observed map centre/zoom and normal Map pointer action; three tests opened.",
+      "Inspected Edit Legend 4G Yellow swatch/input #fcbf1a and configured thresholds; cancelled unchanged. Captured table, horizontally scrolled to its rightmost values and captured final.",
+      "Closed own cluster tab, removed own layer and restored seven zoom steps."
     ],
     "coverageChecks": [
       {
-        "assertion": "A known Poor Quality 1–9.99 sample has the specified map colour Yellow with observable colour code.",
+        "assertion": "Yellow band configuration uses Yellow #fcbf1a between thresholds 1 and 10.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-002/criterion-4-yellow-configuration.png"
+        ]
+      },
+      {
+        "assertion": "A specific displayed MS Teams point with Poor Quality 1–9.99 is Yellow.",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-002/criterion-4-map-before-selection.png",
+          "cycles/cycle-002/screenshots/attempt-002/criterion-4-final-values.png"
+        ]
+      },
+      {
+        "assertion": "Criterion-owned initial PNG shows the settled launcher before interaction.",
         "outcome": "Blocked",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png"
+          "cycles/cycle-002/screenshots/attempt-002/criterion-4-initial.png"
         ]
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No known Poor Quality sample in the required interval was available; no runtime colour/boundary comparison was performed. The legend alone was not treated as proof.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "blockerCode": "initial_capture_unsettled",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "testedModule": "Automobile"
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
     "outcome": "Blocked",
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
     "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-5-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-5-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-5-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-5-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-5-cleanup.png"
+      "cycles/cycle-002/screenshots/attempt-002/criterion-5-initial.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-5-selected-config.png",
+      "cycles/cycle-002/screenshots/attempt-002/criterion-5-map.png"
     ],
+    "steps_taken": [
+      "Navigated to the exact launcher and captured its settled initial state.",
+      "Opened GIS. Expected Automobile setup locator timed out. Inspected current UI: Automobile (1), Automobile - Service selected, map near Lancaster; no action by this run selected Service.",
+      "Inspected the two saved state captures; despite setup-oriented filenames both show Service, not a successfully selected MS Teams configuration. No MS Teams request was returned by this criterion's network listing.",
+      "Read lease status: still owned by this handoff. Stopped browser work without changing the unrelated Service layer or attempting uncertain cleanup. Retained lease for reconciliation."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. Own captures show the unexpected layer state.",
     "coverageChecks": [
       {
-        "assertion": "A known Poor Quality 10–24.99 sample has the specified map colour Amber with observable colour code.",
+        "assertion": "The selected point has a genuine Poor Quality value in 10–24.99.",
         "outcome": "Blocked",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+          "cycles/cycle-002/screenshots/attempt-002/criterion-5-selected-config.png",
+          "cycles/cycle-002/screenshots/attempt-002/criterion-5-map.png"
+        ]
+      },
+      {
+        "assertion": "That same point renders Amber with an observable configured colour-code and independent saved baseline.",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-002/criterion-5-selected-config.png",
+          "cycles/cycle-002/screenshots/attempt-002/criterion-5-map.png"
         ]
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No known Poor Quality sample in the required interval was available; no runtime colour/boundary comparison was performed. The legend alone was not treated as proof.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
     "outcome": "Blocked",
-    "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-cleanup.png"
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+      "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
     ],
+    "browserUrl": null,
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
     "coverageChecks": [
       {
-        "assertion": "A known Poor Quality 25+ sample has the specified map colour Red with observable colour code.",
+        "assertion": "The selected point has a genuine Poor Quality value of at least 25.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
-        ]
+        "evidence": []
+      },
+      {
+        "assertion": "That same point renders Red with an observable configured colour-code and independent saved baseline.",
+        "outcome": "Blocked",
+        "evidence": []
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No known Poor Quality sample in the required interval was available; no runtime colour/boundary comparison was performed. The legend alone was not treated as proof.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   },
   {
     "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
     "outcome": "Blocked",
-    "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-cleanup.png"
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+      "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
     ],
+    "browserUrl": null,
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
     "coverageChecks": [
       {
-        "assertion": "Test ID is readable in the selected test details.",
+        "assertion": "Test ID is readable for the selected genuine MS Teams result.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Test Result is readable in the selected test details.",
+        "assertion": "Test Result is readable for that result.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Connection Time is readable in the selected test details.",
+        "assertion": "Connection Time is readable for that result.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Call Duration is readable in the selected test details.",
+        "assertion": "Call Duration is readable for that result.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Poor Quality is readable in the selected test details.",
+        "assertion": "Poor Quality is readable for that result.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "MSISDN is readable in the selected test details.",
+        "assertion": "MSISDN is readable for that result.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Test Technologies is readable in the selected test details.",
+        "assertion": "Test Technologies is readable for that result.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
-        ]
+        "evidence": []
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No MS Teams detail dialog could be requested; each named summary field remains blocked.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   },
   {
     "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
     "outcome": "Blocked",
-    "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-8-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-8-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-8-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-8-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-8-cleanup.png"
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+      "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
     ],
+    "browserUrl": null,
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
     "coverageChecks": [
       {
-        "assertion": "Signal chart is shown.",
+        "assertion": "The genuine selected result displays a signal chart with readable series and relevant tooltips.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Download chart is shown.",
+        "assertion": "The genuine selected result displays a download chart with readable series and relevant tooltips.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Available handover markers are shown.",
+        "assertion": "Handover markers are displayed when the genuine selected result supplies them.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
-        ]
+        "evidence": []
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No MS Teams detail dialog could be requested; signal, download and available handover-marker assertions remain blocked.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   },
   {
     "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
     "outcome": "Blocked",
-    "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-9-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-9-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-9-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-9-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-9-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-9-cleanup.png"
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+      "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
     ],
+    "browserUrl": null,
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
     "coverageChecks": [
       {
-        "assertion": "Detailed sample table is shown.",
+        "assertion": "The selected genuine result displays its own detailed-sample table, distinct from the cluster-member test list.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Label is omitted.",
+        "assertion": "Detailed samples omit label columns.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Latitude is omitted.",
+        "assertion": "Detailed samples omit latitude columns.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Longitude is omitted.",
+        "assertion": "Detailed samples omit longitude columns.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Handover-only columns are omitted.",
+        "assertion": "Detailed samples omit handover-only columns.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
-        ]
+        "evidence": []
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No MS Teams detailed-sample table could be opened; table existence and each excluded-field assertion remain blocked.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   },
   {
     "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
     "outcome": "Blocked",
-    "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-10-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-10-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-10-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-10-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-10-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-10-cleanup.png"
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+      "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
     ],
+    "browserUrl": null,
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
     "coverageChecks": [
       {
-        "assertion": "Sorting a supported sample column produces the selected order with differing values and visible indicator.",
+        "assertion": "Detailed-sample Time sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-10-final.png"
-        ]
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Time sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Technology sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Technology sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Site ID sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Site ID sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Cell ID sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Cell ID sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Download Rate (Kbps) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Download Rate (Kbps) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Upload Rate (Kbps) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Upload Rate (Kbps) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Signal Strength (dBm) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Signal Strength (dBm) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample RSRQ (dB) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample RSRQ (dB) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample SNR (dB) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample SNR (dB) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Download Size (kB) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Download Size (kB) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Upload Size (kB) sort ascending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Detailed-sample Upload Size (kB) sort descending shows settled header/indicator and correct complete visible-page order, with all-equal fixtures identified.",
+        "outcome": "Blocked",
+        "evidence": []
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No MS Teams samples could be opened; no sorting or filtering operation was claimed.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   },
   {
     "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
     "outcome": "Blocked",
-    "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-cleanup.png"
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+      "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
     ],
+    "browserUrl": null,
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
     "coverageChecks": [
       {
-        "assertion": "Filtering a supported sample column retains only matching samples.",
+        "assertion": "Supported filtering controls are inspected in the detailed-sample table and its header menus.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png"
-        ]
+        "evidence": []
+      },
+      {
+        "assertion": "A supported detailed-sample column filter limits displayed sample identities/values to the matching subset.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Clearing that filter restores the genuine unfiltered sample scope.",
+        "outcome": "Blocked",
+        "evidence": []
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No MS Teams samples could be opened; no sorting or filtering operation was claimed.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   },
   {
     "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
     "outcome": "Blocked",
-    "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-12-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-12-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-12-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-12-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-12-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-12-cleanup.png"
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+      "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
     ],
+    "browserUrl": null,
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
     "coverageChecks": [
       {
-        "assertion": "Exported CSV contains data for the selected test identity.",
+        "assertion": "The application's CSV export completes for the selected genuine MS Teams test.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
-        ]
+        "evidence": []
+      },
+      {
+        "assertion": "Exported CSV contains data matching that selected test and its genuine samples.",
+        "outcome": "Blocked",
+        "evidence": []
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No selected MS Teams test was available; no CSV export was attempted.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   },
   {
     "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
     "outcome": "Blocked",
-    "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-13-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-13-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-13-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-13-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-13-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-13-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-13-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-13-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-13-cleanup.png"
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+      "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
     ],
+    "browserUrl": null,
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
     "coverageChecks": [
       {
-        "assertion": "A zero-duration test can be selected.",
+        "assertion": "A genuine zero-duration MS Teams result is positively identified.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-13-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Zero-duration details contain no stale data from a distinct valid record.",
+        "assertion": "Normal pointer activation is attempted with settled before and after states; keyboard activation is checked if exposed.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-13-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Zero-duration details contain no misleading data.",
+        "assertion": "The requested dialog prevents stale details from a distinct previously loaded valid result.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-13-final.png"
-        ]
+        "evidence": []
+      },
+      {
+        "assertion": "Zero-duration handling presents no misleading current result data.",
+        "outcome": "Blocked",
+        "evidence": []
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No zero-duration MS Teams result or distinct valid MS Teams baseline was available; no exception-state assertion was exercised.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   },
   {
     "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
     "outcome": "Blocked",
-    "evidence": [
-      "cycles/cycle-002/screenshots/attempt-001/criterion-14-initial.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-14-before-configure.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-14-configuration.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-14-choices.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-14-before-apply.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-14-final.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-14-before-restore.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-14-restore-pending.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-14-cleanup.png"
+    "retryClass": "manual",
+    "blockerCode": "browser_state_ownership_unreconciled",
+    "evidence": [],
+    "steps_taken": [
+      "Independent criterion was not started because browser ownership/state became unreconciled during criterion 5.",
+      "No independent fixture, launcher baseline, assertion or PNG was obtained. Earlier criterion/setup observations are not reused as evidence."
     ],
+    "browserUrl": null,
+    "reason": "Shared-browser state could not be reconciled: on the criterion 5 launcher-to-GIS start, Automobile - Service and a zoomed Lancaster map appeared, although this run had not selected Service or navigated to that view. The attempted Automobile setup locator timed out; current UI was re-inspected instead of assuming success. No request for MS Teams points was observed in this criterion. The browser lease still belongs to this handoff. Browser work stopped and the lease is retained for coordinator ownership/state reconciliation. Cause is unknown; this is not classified as a product failure or transient retry. No criterion-owned PNG was possible after the browser interruption; no URL was observed for this unstarted criterion.",
     "coverageChecks": [
       {
-        "assertion": "The selected test's real detail read request is identified.",
+        "assertion": "The genuine selected MS Teams detail request and its record identity are established in the correct module.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-14-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "A failed detail load shows no stale data from a distinct valid record.",
+        "assertion": "A genuine failure or permitted exact scoped browser simulation exercises failed detail loading.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-14-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "A failed detail load shows no misleading data.",
+        "assertion": "The requested dialog excludes stale details of a distinct valid prior result and avoids misleading data.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-14-final.png"
-        ]
+        "evidence": []
       },
       {
-        "assertion": "Genuine recovery and any simulated handler cleanup are verified.",
+        "assertion": "Genuine response recovery is verified after removal of any owned handler; no handlers or pending requests remain.",
         "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-002/screenshots/attempt-001/criterion-14-final.png"
-        ]
+        "evidence": []
       }
     ],
-    "steps_taken": [
-      "Started this criterion independently at exactly https://o2intelligence-v4-dev.metricell.com/launcher, waited for the visible launcher and saved its own initial PNG.",
-      "Opened GIS, captured the original Automobile - Ping configuration and pre-existing Ping detail tab. Opened Test type, captured nested choices and selected MS Teams Call, then captured before Apply.",
-      "Applied MS Teams Call and waited for the visible Automobile - MS Teams Call label and settled point request. Actual request was GET /api/platform/automobile/ms-teams-call/points, status 200, response body []. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false.",
-      "Expected supplied record identities/count in this scope: [] / 0; observed selectable MS Teams Call points: 0. No matching test identity or cluster member was supplied to reconcile. This cannot exercise the required populated-record assertion.",
-      "No real selected MS Teams record/detail endpoint could be established. No route simulation was installed because its required real-record prerequisite was missing.",
-      "Captured this criterion's own settled final state and actual browser URL https://o2intelligence-v4-dev.metricell.com/gis; reopened its final saved PNG for visual inspection. The existing Ping tab is unrelated original state, not an MS Teams result.",
-      "Cleanup after final capture: reopened this layer configuration, selected original Ping, applied, verified Automobile - Ping reappeared, and saved separate cleanup PNG. Original filters, map viewpoint and Ping detail identity were retained."
-    ],
-    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "GET /api/platform/automobile/ms-teams-call/points completed with HTTP 200 and body [] in the inspected scope. This is a settled empty dataset, not an HTTP error or missing module. No matching MS Teams Call test identity was available to select. Existing Cambridge/St Neots/Bedford/Sandy map viewport (centre approximately 0.1355,52.2242; zoom 9.04), ten requested tiles; From 2026-07-24T10:44:00.000Z to 2026-10-22T10:44:00.000Z (UI 11:44 BST). Existing handset/network filters retained, MSISDN/SIM MCC/SIM MNC/MCC/MNC/LAC/CI/site/cell blank, all existing technology/band selections retained; deviceGroupAll=false. Records outside this scope were not established. The pre-existing tab is explicitly Ping test 131926379 and was preserved, not treated as MS Teams evidence.",
-    "retryClass": "prerequisite",
-    "blockerCode": "matching_test_data_unavailable",
     "testedModule": "Automobile"
   }
 ]
