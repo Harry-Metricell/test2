@@ -1,5 +1,7 @@
 # TEST2 Evidence Review Brief
 
+For alleged missing configuration controls, check the supplied evidence for relevant neighbouring editors before accepting absence. Require only the control type and location demanded by the source. Legend-band colour editing does not by itself prove selection of a configured colouring metric. Compare actual saved legend colours with settled map points and disclose any additional refresh needed; a working editor alone cannot pass unrelated preservation checks.
+
 For a shared-component story, verify the tested consumer against the complete ticket's scope refinement and exclusions. Being in the correct module is insufficient when the source names particular supported layers. Do not carry a verdict from an excluded or unsupported consumer into an in-scope result. A current deployed implementation can explain behaviour but does not, by itself, establish a backend response contract or an independent pre-change regression baseline.
 
 ## Select one live handoff

@@ -1,0 +1,22 @@
+[
+  {
+    "file": "recheck-green-baseline.png",
+    "sha256": "b6fecab621f5fa23517a80052f915a76b1ff2c9d9a3fd6422ab5e33c55ead678",
+    "bytes": 929438
+  },
+  {
+    "file": "recheck-magenta-later.png",
+    "sha256": "ab37774383b478a25d714d0de88f26c87451c1ca6374cbcaa50d91258fa2b86e",
+    "bytes": 932257
+  },
+  {
+    "file": "recheck-magenta-after-refresh.png",
+    "sha256": "e37d04c660c0f8da30fbcfd116942e6c9a6b33c635c98d2fff8e00197075f33a",
+    "bytes": 932088
+  },
+  {
+    "file": "recheck-green-restored-refreshed.png",
+    "sha256": "8bed52b2740eea19020419625f6ca495a373affcd6389f17f02c6149bf816544",
+    "bytes": 932280
+  }
+]

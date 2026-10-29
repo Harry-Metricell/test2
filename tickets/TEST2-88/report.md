@@ -1,5 +1,7 @@
 # TEST2-88 Evidence Review
 
+**Colour reassessment, 29 October:** Edit Legend provides working colour controls. Saving a changed 4G band updates the legend immediately; map points picked up the colour after a normal zoom refresh. The earlier missing-control explanation is too broad. This does not establish a separate configured metric selector or complete criterion 12's preservation checks. All 12 criteria are retained. The PDF and Word downloads remain the original attempt-002 review pending a complete replacement review. [Reassessment record](reassessment-history/2026-10-29/colour/reassessment.json) · [Saved colour before map refresh](reassessment-history/2026-10-29/colour/recheck-magenta-later.png) · [Matching map colour after refresh](reassessment-history/2026-10-29/colour/recheck-magenta-after-refresh.png).
+
 - **Ticket:** TEST2-88 — Configure MS Teams Call map display settings
 - **QA status:** Blocked
 - **Overall outcome:** Blocked

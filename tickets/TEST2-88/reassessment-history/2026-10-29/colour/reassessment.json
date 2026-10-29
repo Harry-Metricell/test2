@@ -1,0 +1,39 @@
+{
+  "ticket": "TEST2-88",
+  "cycleId": "cycle-002",
+  "date": "2026-10-29",
+  "kind": "focused-manual-reassessment",
+  "source": "VM2ST-117 (read-only)",
+  "applicationUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+  "testedModule": "Automobile",
+  "testedLayer": "MS Teams Call",
+  "canonicalCriteriaChanged": false,
+  "cycleReset": false,
+  "automatedAttemptCreated": false,
+  "findings": [
+    "Edit Legend exposes 22 enabled colour inputs, including the 4G Poor Quality % zero band. The earlier claim that no colour control exists is too broad.",
+    "Using the normal UI, the 4G zero-band colour was changed from #31aa4f to #ff00ff and saved. Reopening the editor confirmed the saved value.",
+    "The legend swatch changed immediately, but map points retained their previous green colour after network idle and a later capture. This was observed in both focused checks.",
+    "After a normal zoom-in/zoom-out refresh, the matching diamond map points became magenta while the legend remained magenta. Colour editing therefore works, with an additional map-refresh step.",
+    "Editing one configured band's colour does not independently establish selection of a different configured colouring metric or its corresponding legend section. Do not silently reinterpret that source requirement.",
+    "This focused check does not resolve criterion 12's existing filter, legend-filter, Route Replay and underlying-data preservation coverage gaps. No whole-ticket Passed claim is made."
+  ],
+  "evidence": {
+    "baseline": "recheck-green-baseline.png",
+    "savedAndSettled": "recheck-magenta-later.png",
+    "afterNormalMapRefresh": "recheck-magenta-after-refresh.png",
+    "restoredAndRefreshed": "recheck-green-restored-refreshed.png"
+  },
+  "cleanup": {
+    "all22SavedColoursRestored": true,
+    "restoredColour": "#31aa4f",
+    "temporaryMsTeamsCallLayerRemoved": true,
+    "originalThreeLayersRetained": true,
+    "originalFiveDetailTabsRetained": true,
+    "originalActiveTabRetained": true,
+    "layerFilterRestored": true,
+    "originalViewportRestored": "/-2.77686/54.00703/13.16",
+    "browserLeaseReleased": true
+  },
+  "nextAction": "Keep all canonical checks. Use the Edit Legend evidence when reassessing criteria 1 and 2, distinguish colour-band editing from configured metric selection, and complete the missing preservation comparisons before issuing a replacement final review/report."
+}

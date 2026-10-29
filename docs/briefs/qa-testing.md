@@ -14,6 +14,8 @@ Read verified testing-context notes outside the checklist as setup/provenance, n
 
 For shared-component stories, respect the complete ticket's scope refinement, named consuming layers and exclusions. Module membership alone does not make every layer a valid test target. Keep reusable-component checks separate from the currently supplied end-to-end consumers; do not substitute a different consumer just because it has data. Fixture hints locate earlier observations only: re-establish current values through normal UI use and capture fresh criterion-owned proof.
 
+Before reporting a missing configuration control, inspect relevant neighbouring controls such as Edit Legend. Do not invent a mandatory dropdown or location absent a source requirement. Distinguish editing a legend band's colour from selecting a configured colouring metric: one does not automatically prove the other. For colour changes, capture the saved legend and settled map points; if points change only after a normal map refresh, disclose that extra action and restore both the saved settings and rendered map.
+
 ## Browser and authentication
 
 Before browser work, read `inputs.testingContext` when supplied by the live handoff. Its human-confirmed targetModule/targetLayer and source parent resolution override older setup comments and conflicting linked-story titles. Unresolved source hierarchy/module conflicts are Blocked, not permission to substitute another module. If the required feature is unavailable under the resolved module, capture that module's actual nested choices and report the blocker; never switch to Surveyor to obtain a result. Historical cycles listed as supersededEvidence are not acceptance evidence for this target.
