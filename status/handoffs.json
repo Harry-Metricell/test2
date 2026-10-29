@@ -27,30 +27,6 @@
       "cycleId": "cycle-005"
     },
     {
-      "handoffId": "handoff-TEST2-81-cycle-003-guide-update",
-      "handoffVersion": "TEST2-81:cycle-003:guide_update_authoring:1:scope-df32a2f05829",
-      "action": "guide_update_authoring",
-      "brief": "docs/briefs/user-guide-authoring.md",
-      "owner": "guide-update-author",
-      "ticket": "TEST2-81",
-      "inputs": {
-        "ticketJson": "tickets/TEST2-81/ticket.json",
-        "generated": "status/generated/TEST2-81.json",
-        "review": "tickets/TEST2-81/review.json",
-        "report": "tickets/TEST2-81/report.md",
-        "results": "tickets/TEST2-81/results.json",
-        "impact": "tickets/TEST2-81/guide-impact.json",
-        "policy": "config/user-guide-update-policy.json",
-        "cycle": "tickets/TEST2-81/qa-cycle.json",
-        "testingContext": "config/testing-context/TEST2-81.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-81/guide-update.json",
-        "schema": "v4-user-guide-update.v1"
-      },
-      "cycleId": "cycle-003"
-    },
-    {
       "handoffId": "handoff-TEST2-88-cycle-002-retry-attempt-002",
       "handoffVersion": "TEST2-88:cycle-002:test_ticket:2:scope-733c837d2b49",
       "attempt": 2,

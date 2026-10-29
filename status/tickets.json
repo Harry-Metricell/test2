@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-29T09:42:52.979Z",
   "counts": {
     "tickets": 12,
-    "handoffs": 3,
+    "handoffs": 2,
     "byWorkflowState": {
       "Blocked": 9,
       "Ready": 1,
@@ -31,9 +31,9 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Map and inspect Automobile HTTP Browsing, Ping and Video Streaming results",
       "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide update authoring handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-10-28T15:23:57.099+0000",
       "retries": 0,
       "retryLimit": 1,
