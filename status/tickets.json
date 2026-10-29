@@ -3,15 +3,16 @@
   "generatedAt": "2026-10-29T15:47:40.908Z",
   "counts": {
     "tickets": 11,
-    "handoffs": 1,
+    "handoffs": 2,
     "byWorkflowState": {
-      "Blocked": 9,
+      "Blocked": 8,
+      "Ready": 1,
       "Retry Queued": 1,
       "TESTING IN PROGRESS": 1
     },
     "byQaOutcome": {
-      "Blocked": 10,
-      "Passed": 1
+      "Blocked": 9,
+      "Passed": 2
     }
   },
   "policy": {
@@ -62,13 +63,13 @@
       "cycleId": "cycle-002",
       "summary": "Configure MS Teams Call map display settings",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Passed",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
+      "nextAction": "Create user-guide impact assessment handoff",
       "updatedAt": "2026-10-29T09:42:52.979Z",
       "retries": 1,
       "retryLimit": 1,

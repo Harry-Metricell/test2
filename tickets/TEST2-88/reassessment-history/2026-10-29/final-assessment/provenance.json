@@ -1,0 +1,183 @@
+{
+  "ticket": "TEST2-88",
+  "cycleId": "cycle-002",
+  "historyAttempt": 2,
+  "date": "2026-10-29",
+  "kind": "manual-follow-up-within-existing-cycle",
+  "changedCriteria": [
+    1,
+    2,
+    12
+  ],
+  "canonicalCriteriaChanged": false,
+  "newAttempt": false,
+  "previousFileSha256": {
+    "criteria.md": "665f02743c359b732e29dd0eea86c8387adb465842f9f673f774dc25de6900d0",
+    "results.json": "26a3ef857fd4f783c9089cf01cfbb519fa720eca055d4b89b1783b47630f04c0",
+    "review.json": "434b9162df8ee496038886fb125773c3f55aea46b543b089334ddd2e045d6716",
+    "report.pdf": "62dbcd278d3912c1dbba5da21f4cdcde956153086ca92fac1acf7372861c4c03",
+    "report.docx": "1dd5c54181ab6c9f85a30cf1b529bfb6252c242afcd68d8561134d05ca221891"
+  },
+  "originalReportCommit": "19cfbb7e",
+  "keptPassedCriteria": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "interpretation": "The source does not require a separate metric dropdown. Assess the existing configured band-colour controls and the requested state when the map updates; disclose the extra refresh. No additional metric or backend configuration contract is asserted.",
+  "preservation": {
+    "standardFilterValuesIdentical": true,
+    "dateFromLocal": "31/07/2026 15:48",
+    "dateToLocal": "29/10/2026 15:48",
+    "allTechnologyCheckboxesRetained": true,
+    "allSelectedBandValuesRetained": true,
+    "handsetNetworkFieldsRetainedBlank": true,
+    "legendVisibilityEntriesCompared": 22,
+    "legendVisibilityEntriesRetained": 22,
+    "nonDefaultLegendBaseline": "No Service hidden; Out of Threshold already hidden",
+    "otherLayers": "Ping visible; HTTP Browsing and Video Streaming hidden throughout",
+    "existingDetailTabsRetained": 5,
+    "routeReplay": "inactive before and after; populated session not exercised",
+    "pointsRequestIdentical": true,
+    "pointsResponseIdentical": true,
+    "pointAggregatesBefore": 2,
+    "pointAggregatesAfter": 2,
+    "httpStatus": 200,
+    "standardFilterValues": {
+      "from": "31/07/2026 15:48",
+      "to": "29/10/2026 15:48",
+      "testType": "MS Teams Call",
+      "handset": {
+        "MSISDN": "",
+        "SIM MCC": "",
+        "SIM MNC": ""
+      },
+      "network": {
+        "MCC": "",
+        "MNC": "",
+        "LAC": "",
+        "CI": "",
+        "Site": "",
+        "Cell": ""
+      },
+      "technologies": [
+        "no-service",
+        "2G",
+        "3G",
+        "4G",
+        "5G NSA",
+        "5G SA"
+      ],
+      "bands": {
+        "2G": "-2,3,5",
+        "3G": "-3,12,15,8,13,9,6",
+        "4G": "-4,51,43,33,28,26,71,172,32",
+        "5G NSA": "73,74",
+        "5G SA": "-5,75,72"
+      }
+    },
+    "legendVisibilityBeforeAndAfter": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false
+    ],
+    "source": "Values read from the visible application controls before and after normal display-setting interactions; read after the configuration panel settled. Genuine UI-triggered point responses compared in memory, with no API replay or fabricated response."
+  },
+  "cleanup": {
+    "originalThreeLayersRestored": true,
+    "originalFiveTabsRestored": true,
+    "originalActiveTabRestored": true,
+    "originalViewportRestored": "/-2.77686/54.00703/13.16",
+    "legendVisibilityRestored": true,
+    "displaySettingsRestored": true,
+    "browserLeaseReleased": true
+  },
+  "evidence": [
+    {
+      "file": "colour-baseline-editor.png",
+      "sha256": "1568550c2c563dd0ecb76299f965e48e3f6db998227e312ef651c77d52e641c3"
+    },
+    {
+      "file": "recheck-green-baseline.png",
+      "sha256": "b6fecab621f5fa23517a80052f915a76b1ff2c9d9a3fd6422ab5e33c55ead678"
+    },
+    {
+      "file": "recheck-magenta-later.png",
+      "sha256": "ab37774383b478a25d714d0de88f26c87451c1ca6374cbcaa50d91258fa2b86e"
+    },
+    {
+      "file": "recheck-magenta-after-refresh.png",
+      "sha256": "e37d04c660c0f8da30fbcfd116942e6c9a6b33c635c98d2fff8e00197075f33a"
+    },
+    {
+      "file": "recheck-green-restored-refreshed.png",
+      "sha256": "8bed52b2740eea19020419625f6ca495a373affcd6389f17f02c6149bf816544"
+    },
+    {
+      "file": "preservation-before-filters.png",
+      "sha256": "c52585b430af63d4ad0c460ed796d6918714950fc358e5c93ffb8df660d56124"
+    },
+    {
+      "file": "preservation-supported-controls-baseline.png",
+      "sha256": "698fc6885dba4b29f38b9d73a4ed9073920f7fae1c94dfb11243bdcce12daf07"
+    },
+    {
+      "file": "preservation-after-route.png",
+      "sha256": "f6741c9804f03af4679d447c39960c8990e2ac58a7df16286134395d256ade3e"
+    },
+    {
+      "file": "preservation-sites-off-settled.png",
+      "sha256": "9b21176bbec18181c48f0ac58a95f68909d81823d5c1a67f587e2883f83499fc"
+    },
+    {
+      "file": "preservation-cells-on-settled.png",
+      "sha256": "72adbcfa9f3a8cc023ef32581e708f41b80c5bcf788454457fab7bf1a2fcf674"
+    },
+    {
+      "file": "preservation-after-legend-bottom.png",
+      "sha256": "722c1e5d4d25214c5cd783989a79dd982589ac18d7e570ddbdeb7a42951d78e8"
+    },
+    {
+      "file": "preservation-after-filters.png",
+      "sha256": "f20146e044d24571f26b76220ffa0f6df38bd933ec16960b685d39f43d644359"
+    },
+    {
+      "file": "preservation-final-map.png",
+      "sha256": "355786e197bc7179816e8827eaca2cc982f6d40fad1305a3c7c9c2a87509d53f"
+    }
+  ],
+  "reportVerification": {
+    "pages": 33,
+    "expectedImages": 48,
+    "verifiedImages": 48,
+    "missingImages": 0,
+    "contentVerified": true,
+    "pdfSha256": "45983c93a3e15c9b93f4a741a0dc676fba39681679b657b3968dd611c8aee3d9",
+    "docxSha256": "78432c038bfddd4f4a735e2d2e5ada4235d94a403ec681b0aeeb43bdc7f9b20a"
+  }
+}

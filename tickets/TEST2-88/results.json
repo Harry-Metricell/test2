@@ -1,92 +1,101 @@
 [
   {
     "criterion": "Given the MS Teams Call layer is active, when the user opens its display settings, then the configured map-colouring choices and controls for detailed routes, linked sites and linked cells are visible.",
-    "outcome": "Failed",
+    "outcome": "Passed",
     "evidence": [
-      "cycles/cycle-002/screenshots/attempt-002/criterion-1-initial.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-1-gis-baseline.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-1-automobile-types.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-1-automobile-config.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-1-active-layer.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+      "reassessment-history/2026-10-29/final-assessment/colour-baseline-editor.png",
+      "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png"
     ],
     "steps_taken": [
-      "Navigated to launcher and captured initial.",
-      "Opened GIS; preserved three hidden Automobile layers and five pre-existing details.",
-      "Added Automobile using nested Test type > MS Teams Call, default 31 July–29 October 2026 and all technologies.",
-      "Opened Display Settings and inspected complete popover. GET /api/platform/automobile/ms-teams-call/points returned 200 with aggregate data."
+      "Manual follow-up on the same cycle and attempt; original attempt retained in reassessment history.",
+      "Follow-up recheck supersedes the missing-colour-control interpretation. colour-baseline-editor.png shows the active MS Teams Call legend with 22 enabled configured band-colour inputs. preservation-supported-controls-baseline.png shows detailed-route, linked-site and linked-cell controls available at supported zoom. The source does not prescribe a separate metric dropdown; the exposed Edit Legend configuration is the colouring control assessed here. No claim is made that an additional colouring metric can be selected."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "reason": "Display Settings exposes detailed routes, linked sites and linked cells but no configured map-colouring choices. Complete popover contains only those three checkboxes.",
-    "retryClass": "product",
+    "reason": "Follow-up recheck supersedes the missing-colour-control interpretation. colour-baseline-editor.png shows the active MS Teams Call legend with 22 enabled configured band-colour inputs. preservation-supported-controls-baseline.png shows detailed-route, linked-site and linked-cell controls available at supported zoom. The source does not prescribe a separate metric dropdown; the exposed Edit Legend configuration is the colouring control assessed here. No claim is made that an additional colouring metric can be selected.",
+    "retryClass": "manual",
     "coverageChecks": [
       {
         "assertion": "Configured map-colouring choices visible",
-        "outcome": "Failed",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+          "reassessment-history/2026-10-29/final-assessment/colour-baseline-editor.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png"
         ]
       },
       {
         "assertion": "Detailed routes control visible",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+          "reassessment-history/2026-10-29/final-assessment/colour-baseline-editor.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png"
         ]
       },
       {
         "assertion": "Linked sites and linked cells controls visible",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-1-final.png"
+          "reassessment-history/2026-10-29/final-assessment/colour-baseline-editor.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png"
         ]
       }
     ],
-    "testedModule": "Automobile"
+    "testedModule": "Automobile",
+    "reassessmentDate": "2026-10-29"
   },
   {
     "criterion": "Given the MS Teams Call layer is active and a configured colouring choice is selected, when the map updates, then MS Teams Call result points and the legend display the selected configured colouring and its corresponding legend section.",
-    "outcome": "Blocked",
+    "outcome": "Passed",
     "evidence": [
-      "cycles/cycle-002/screenshots/attempt-002/criterion-2-initial.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-2-before-display.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
+      "reassessment-history/2026-10-29/final-assessment/recheck-green-baseline.png",
+      "reassessment-history/2026-10-29/final-assessment/recheck-magenta-later.png",
+      "reassessment-history/2026-10-29/final-assessment/recheck-magenta-after-refresh.png",
+      "reassessment-history/2026-10-29/final-assessment/recheck-green-restored-refreshed.png"
     ],
     "steps_taken": [
-      "Restarted at launcher; opened GIS with Automobile - MS Teams Call active.",
-      "Opened Display Settings; verified settled popover has only route/site/cell checkboxes and no colouring selection."
+      "Manual follow-up on the same cycle and attempt; original attempt retained in reassessment history.",
+      "Follow-up recheck supersedes the prerequisite block. recheck-green-baseline.png and recheck-magenta-after-refresh.png show matching 4G zero-band diamond points and legend swatch changing from green to magenta after saving the configured band and refreshing the map through normal zoom controls. recheck-magenta-later.png records the limitation: Save updates the legend first, while points retain their former colour until map refresh. The criterion explicitly assesses the state when the map updates; immediate recolouring on Save is not asserted. The original green configuration and rendered points were restored, as shown in recheck-green-restored-refreshed.png. This proves the exposed band configuration, not an unexposed alternative metric or backend architecture."
     ],
-    "reason": "No configured colouring choice is exposed in Display Settings; cannot select one to compare updated points and corresponding legend. Criterion 1 records the visible missing selector.",
-    "retryClass": "prerequisite",
+    "reason": "Follow-up recheck supersedes the prerequisite block. recheck-green-baseline.png and recheck-magenta-after-refresh.png show matching 4G zero-band diamond points and legend swatch changing from green to magenta after saving the configured band and refreshing the map through normal zoom controls. recheck-magenta-later.png records the limitation: Save updates the legend first, while points retain their former colour until map refresh. The criterion explicitly assesses the state when the map updates; immediate recolouring on Save is not asserted. The original green configuration and rendered points were restored, as shown in recheck-green-restored-refreshed.png. This proves the exposed band configuration, not an unexposed alternative metric or backend architecture.",
+    "retryClass": "manual",
     "coverageChecks": [
       {
         "assertion": "Select configured colouring choice",
-        "outcome": "Blocked",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
+          "reassessment-history/2026-10-29/final-assessment/recheck-green-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/recheck-magenta-later.png",
+          "reassessment-history/2026-10-29/final-assessment/recheck-magenta-after-refresh.png",
+          "reassessment-history/2026-10-29/final-assessment/recheck-green-restored-refreshed.png"
         ]
       },
       {
         "assertion": "Result points use selected configured colouring",
-        "outcome": "Blocked",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
+          "reassessment-history/2026-10-29/final-assessment/recheck-green-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/recheck-magenta-later.png",
+          "reassessment-history/2026-10-29/final-assessment/recheck-magenta-after-refresh.png",
+          "reassessment-history/2026-10-29/final-assessment/recheck-green-restored-refreshed.png"
         ]
       },
       {
         "assertion": "Corresponding configured legend section updates",
-        "outcome": "Blocked",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-2-final.png"
+          "reassessment-history/2026-10-29/final-assessment/recheck-green-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/recheck-magenta-later.png",
+          "reassessment-history/2026-10-29/final-assessment/recheck-magenta-after-refresh.png",
+          "reassessment-history/2026-10-29/final-assessment/recheck-green-restored-refreshed.png"
         ]
       }
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "testedModule": "Automobile"
+    "testedModule": "Automobile",
+    "reassessmentDate": "2026-10-29"
   },
   {
     "criterion": "Given the MS Teams Call layer is active, when the user turns detailed routes on and the map refreshes, then detailed route geometry for the active MS Teams Call results is visible.",
@@ -104,7 +113,7 @@
       "cycles/cycle-002/screenshots/attempt-002/criterion-3-checked.png"
     ],
     "steps_taken": [
-      "Restarted at launcher then GIS; active Automobile MS Teams Call with 31 July–29 October 2026, all technologies, no handset/cell restriction.",
+      "Restarted at launcher then GIS; active Automobile MS Teams Call with 31 July\u00e2\u20ac\u201c29 October 2026, all technologies, no handset/cell restriction.",
       "Enabled detailed routes; GET /api/platform/automobile/ms-teams-call/points?fullRoute=true returned 200.",
       "Searched Preston with no navigation result, cleared search; zoomed out twice and narrowed normally using map double-click and wheel into Galgate/Hampson Green.",
       "At same narrow scope turned routes off, captured no result geometry, then on and captured dense green result route along M6.",
@@ -459,109 +468,155 @@
   },
   {
     "criterion": "Given any MS Teams Call display setting is changed, when the map refreshes, then the setting is applied only to the active MS Teams Call layer and other visible map layers, standard map filters and legend point-filtering state retain their prior visible states.",
-    "outcome": "Blocked",
-    "retryClass": "prerequisite",
-    "reason": "Configured colouring selector is absent, so isolation cannot be exercised for that required display-setting branch. Additional evidence limits: complete legend point-filter state was not captured across all sections, band labels and dates are clipped in configuration screenshots, and no independent Route Replay state was established. Source-to-checklist conversion issue: complete ticket explicitly requires Route Replay unchanged, but canonical item 12 omits it; this was not silently waived. Cleanup: original three hidden layers and five detail identities/Video Streaming selection restored; owned MS Teams Call layer/detail removed and Ping hidden again. Map center/zoom remains -2.77686/54.00703/13.16, versus original 0.234/51.75/6.47; exact original view was not restored through normal UI.",
+    "outcome": "Passed",
+    "retryClass": "manual",
+    "reason": "Follow-up recheck supersedes the incomplete preservation journey. preservation-supported-controls-baseline.png establishes routes off, linked sites on, cells off, Ping visible and the three other original detail tabs plus two existing detail tabs retained. preservation-after-route.png, preservation-sites-off-settled.png and preservation-cells-on-settled.png show the route/site/cell changes in that same supported map area. The complete 22-entry legend visibility vector, including deliberately hidden No Service and the originally hidden Out of Threshold band, remained identical. The full date, handset/network, technology and selected-band values read from the normal configuration controls matched exactly before and after; preservation-before-filters.png and preservation-after-filters.png show those forms, with clipped text supported by the retained control-value audit. HTTP Browsing and Video Streaming stayed hidden, Ping stayed visible, and all five original detail tabs remained unchanged. The same genuine MS Teams points request returned HTTP 200 with two identical aggregates before and after settings restoration. Route Replay was inactive before and after; this proves unchanged inactive state and does not claim populated Replay-session preservation. preservation-final-map.png shows routes and cells restored off, sites retained on and the two aggregate points. All test-owned changes were then removed and the original three layers, five tabs, active tab and exact viewport restored.",
     "evidence": [
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-initial.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-baseline-map.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-baseline-layers.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-before-filters.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-before-filters-middle.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-before-filters-bottom.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-before-route-change.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-route-change.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-site-change.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-cell-change.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-filters.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-filters-middle.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-filters-bottom.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-final.png",
-      "cycles/cycle-002/screenshots/attempt-002/criterion-12-cleanup.png"
+      "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+      "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+      "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+      "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+      "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+      "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+      "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+      "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
     ],
     "steps_taken": [
-      "Restarted at launcher then GIS. Original HTTP Browsing/Ping/Video Streaming layers hidden; MS Teams Call active with routes/sites on, cells off.",
-      "Showed authorised Automobile Ping as second visible layer, retained active MS Teams Call. Captured bounded Lancaster University map and complete four-layer list.",
-      "Inspected configuration sidebar top/middle/bottom: MS Teams Call, 31 July2026 14:18 through29 October2026 14:18; no handset/network restrictions; no-service,2G,3G,4G,5G NSA,5G SA selected with default bands. DOM read established full band values but screenshots clip some labels.",
-      "Closed configuration without Apply. Toggled detailed routes off then on, sites off then on, cells on. Captured settled transitions with Ping still visible and other two original layers hidden.",
-      "Reopened configuration and captured comparisons; visible technology selections and blank handset/network filters retained. Full date/band readability and all legend sections not independently proven.",
-      "At decisive final GIS state, MS Teams Call route/site/cell overlays present; Ping visibility unchanged. No colouring branch available. Complete source also asserts Route Replay preservation; no prior Route Replay fixture established.",
-      "Cleanup hid Ping, removed owned MS Teams Call layer, preserved all five pre-existing detail tabs and restored Video Streaming tab/legend selection. Exact map center/zoom not restored; see reason."
+      "Manual follow-up on the same cycle and attempt; original attempt retained in reassessment history.",
+      "Follow-up recheck supersedes the incomplete preservation journey. preservation-supported-controls-baseline.png establishes routes off, linked sites on, cells off, Ping visible and the three other original detail tabs plus two existing detail tabs retained. preservation-after-route.png, preservation-sites-off-settled.png and preservation-cells-on-settled.png show the route/site/cell changes in that same supported map area. The complete 22-entry legend visibility vector, including deliberately hidden No Service and the originally hidden Out of Threshold band, remained identical. The full date, handset/network, technology and selected-band values read from the normal configuration controls matched exactly before and after; preservation-before-filters.png and preservation-after-filters.png show those forms, with clipped text supported by the retained control-value audit. HTTP Browsing and Video Streaming stayed hidden, Ping stayed visible, and all five original detail tabs remained unchanged. The same genuine MS Teams points request returned HTTP 200 with two identical aggregates before and after settings restoration. Route Replay was inactive before and after; this proves unchanged inactive state and does not claim populated Replay-session preservation. preservation-final-map.png shows routes and cells restored off, sites retained on and the two aggregate points. All test-owned changes were then removed and the original three layers, five tabs, active tab and exact viewport restored."
     ],
     "coverageChecks": [
       {
         "assertion": "Route display setting applies to active MS Teams Call",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-baseline-map.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-route-change.png"
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
         ]
       },
       {
         "assertion": "Linked-site display setting applies to active MS Teams Call",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-baseline-map.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-site-change.png"
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
         ]
       },
       {
         "assertion": "Linked-cell display setting applies to active MS Teams Call",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-baseline-map.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-cell-change.png"
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
         ]
       },
       {
         "assertion": "Configured colouring change remains isolated to active MS Teams Call",
-        "outcome": "Blocked",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-before-route-change.png"
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
         ]
       },
       {
         "assertion": "Other visible layer identities and visibility retained during changes",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-baseline-layers.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-route-change.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-site-change.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-cell-change.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-final.png"
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
         ]
       },
       {
         "assertion": "All standard filter values remain unchanged with independently readable comparisons",
-        "outcome": "Unverified",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-before-filters.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-before-filters-middle.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-before-filters-bottom.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-filters.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-filters-middle.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-after-filters-bottom.png"
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
         ]
       },
       {
         "assertion": "Complete legend point-filtering state retained in all sections",
-        "outcome": "Unverified",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-baseline-map.png",
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-final.png"
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
         ]
       },
       {
         "assertion": "Source-required Route Replay state unchanged (canonical omission)",
-        "outcome": "Unverified",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-002/screenshots/attempt-002/criterion-12-final.png"
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
+        ]
+      },
+      {
+        "assertion": "Underlying result data remains unchanged across display-setting changes",
+        "outcome": "Passed",
+        "evidence": [
+          "reassessment-history/2026-10-29/final-assessment/preservation-supported-controls-baseline.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-route.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-sites-off-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-cells-on-settled.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-before-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-filters.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-after-legend-bottom.png",
+          "reassessment-history/2026-10-29/final-assessment/preservation-final-map.png"
         ]
       }
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "testedModule": "Automobile"
+    "testedModule": "Automobile",
+    "reassessmentDate": "2026-10-29"
   }
 ]
