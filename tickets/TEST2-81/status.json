@@ -23,5 +23,39 @@
     "noOp": false,
     "cycleId": "cycle-003",
     "assessedAt": "2026-10-28T16:43:46.964Z"
+  },
+  "guideUpdate": {
+    "schema": "v4-user-guide-update.v1",
+    "handoffId": "handoff-TEST2-81-cycle-003-guide-update",
+    "handoffVersion": "TEST2-81:cycle-003:guide_update_authoring:1:scope-df32a2f05829",
+    "ticket": "TEST2-81",
+    "title": "Map and inspect Automobile HTTP Browsing, Ping and Video Streaming results",
+    "affectedSection": "Automobile HTTP Browsing, Ping and Video Streaming results",
+    "changeType": "add",
+    "steps": [
+      "In GIS, open the Automobile layer configuration and choose HTTP Browsing, Ping or Video Streaming under Test type.",
+      "Add the selected test type to the map to display its results as selectable points.",
+      "Select a point to open its detail dialog and review the test type, result time, location and available network context.",
+      "Read Page Load Time for HTTP Browsing, Ping Time for Ping, or Rebuffer Count for Video Streaming.",
+      "For HTTP Browsing, use the Error marker and legend to identify failed results; a zero Page Load Time can still be a failure."
+    ],
+    "screenshots": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-chelmsford-settled.png"
+    ],
+    "screenshotCaptions": [
+      "The selected HTTP Browsing result opens a detail view with its point identity and context.",
+      "The HTTP Browsing detail displays Page Load Time for the selected result.",
+      "The Ping detail displays Ping Time for the selected result.",
+      "The Video Streaming detail displays Rebuffer Count for the selected result.",
+      "The failed HTTP Browsing result appears with the Error marker and Error legend."
+    ],
+    "reason": "Adds instructions for displaying the three Automobile result types as map points, opening their details and reading their test-specific KPIs and HTTP error styling.",
+    "noOp": false,
+    "cycleId": "cycle-003",
+    "authoredAt": "2026-10-29T09:44:47.289Z"
   }
 }
