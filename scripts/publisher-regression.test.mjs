@@ -6,7 +6,7 @@ import os from 'node:os';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { formatReviewReport } from './format-review-report.mjs';
-import { reportPushArgs } from './git-report-push-policy.mjs';
+import { reportPushArgs, fetchedPublicationSha } from './git-report-push-policy.mjs';
 import { reportVerificationTimeout } from './report-process-policy.mjs';
 
 test('large evidence sets get a bounded verification budget and invalid counts fail', () => {
@@ -77,6 +77,29 @@ test('review report always has a useful summary', () => {
   }, 'attempt-001', false);
   assert.doesNotMatch(oversized, /\]\(report\.docx\)/);
   assert.match(oversized, /retained locally; exceeds GitHub file-size limit/);
+});
+
+test('publication uses downloaded commits when remote main advances after fetch', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'publisher-fetch-race-'));
+  const remote = path.join(root, 'remote.git'), seed = path.join(root, 'seed'), reader = path.join(root, 'reader');
+  const g = (cwd, ...args) => execFileSync(git, ['-C', cwd, ...args], { encoding: 'utf8', windowsHide: true }).trim();
+  try {
+    fs.mkdirSync(remote); g(remote, 'init', '--bare'); fs.mkdirSync(seed); g(seed, 'init', '-b', 'main');
+    g(seed, 'config', 'user.name', 'Publisher Test'); g(seed, 'config', 'user.email', 'test@example.invalid');
+    fs.writeFileSync(path.join(seed, 'README.md'), 'first\n'); g(seed, 'add', '.'); g(seed, 'commit', '-m', 'First');
+    g(seed, 'remote', 'add', 'origin', remote); g(seed, 'push', '-u', 'origin', 'main');
+    g(root, 'clone', '-b', 'main', '--no-local', remote, reader);
+    const original = g(reader, 'rev-parse', 'origin/main');
+    fs.writeFileSync(path.join(seed, 'README.md'), 'remote advanced\n'); g(seed, 'commit', '-am', 'Advance'); g(seed, 'push');
+    const unfetched = g(reader, 'ls-remote', 'origin', 'refs/heads/main').split(/\s+/)[0];
+    assert.notEqual(original, unfetched);
+    assert.notEqual(spawnSync(git, ['-C', reader, 'cat-file', '-e', `${unfetched}^{commit}`], { windowsHide: true }).status, 0);
+    const base = fetchedPublicationSha(args => g(reader, ...args));
+    assert.equal(base, original);
+    g(reader, 'worktree', 'add', '--detach', path.join(root, 'publication'), base);
+    g(reader, 'fetch', 'origin', 'main');
+    assert.equal(fetchedPublicationSha(args => g(reader, ...args)), unfetched);
+  } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });
 
 test('publishes new remote tickets from stale dirty Desktop; rejects incomplete evidence', async () => {

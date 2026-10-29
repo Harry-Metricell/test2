@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { formatReviewReport } from './format-review-report.mjs';
-import { reportPushArgs } from './git-report-push-policy.mjs';
+import { reportPushArgs, fetchedPublicationSha } from './git-report-push-policy.mjs';
 import { reportVerificationTimeout } from './report-process-policy.mjs';
 import { validateEvidenceCoverage } from './evidence-coverage.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
@@ -756,8 +756,7 @@ function publishFromCleanWorktree() {
   try {
     for (let attempt = 1; attempt <= 3; attempt += 1) {
       fetchLatest();
-      const remoteSha = runGit(['ls-remote', 'origin', 'refs/heads/main']).split(/\s+/)[0];
-      if (!/^[0-9a-f]{40}$/.test(remoteSha)) fail('GitHub remote read-back returned no usable main SHA');
+      const remoteSha = fetchedPublicationSha(runGit);
       worktree = path.join(base, `worktree-${attempt}`);
       runGit(['worktree', 'add', '--detach', worktree, remoteSha]);
       // Revalidate after rendering and before every push retry: an importer
