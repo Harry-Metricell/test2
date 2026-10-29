@@ -6,7 +6,7 @@
     "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 9,
-      "Retry Queued": 1,
+      "Ready": 1,
       "TESTING IN PROGRESS": 1
     },
     "byQaOutcome": {
@@ -62,17 +62,17 @@
       "cycleId": "cycle-002",
       "summary": "Configure MS Teams Call map display settings",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Retry Queued",
-      "qaStatus": "Ready for Testing",
+      "workflowState": "Ready",
+      "qaStatus": "Awaiting Evidence Review",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-29T09:42:52.979Z",
       "retries": 1,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 2,
       "retryLabel": "Retry 1/1"
     },
     {
