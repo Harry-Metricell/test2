@@ -1,5 +1,29 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-10-29T09:42:52.979Z",
-  "handoffs": []
+  "generatedAt": "2026-10-29T15:47:40.908Z",
+  "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-89-cycle-002-retry-attempt-002",
+      "handoffVersion": "TEST2-89:cycle-002:test_ticket:2:scope-af7443f54839",
+      "attempt": 2,
+      "action": "test_ticket",
+      "brief": "docs/briefs/qa-testing.md",
+      "owner": "ticket-tester",
+      "ticket": "TEST2-89",
+      "inputs": {
+        "criteria": "tickets/TEST2-89/criteria.md",
+        "ticketJson": "tickets/TEST2-89/ticket.json",
+        "status": "tickets/TEST2-89/status.json",
+        "cycle": "tickets/TEST2-89/qa-cycle.json",
+        "evidenceFolder": "TEST2-89/cycles/cycle-002/screenshots/attempt-002",
+        "testingContext": "config/testing-context/TEST2-89.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-89/results.json",
+        "schema": "v4-qa-test-result.v1"
+      },
+      "cycleId": "cycle-002",
+      "evidenceCoverageVersion": 1
+    }
+  ]
 }

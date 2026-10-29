@@ -1,11 +1,12 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-29T09:42:52.979Z",
+  "generatedAt": "2026-10-29T15:47:40.908Z",
   "counts": {
     "tickets": 11,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 10,
+      "Blocked": 9,
+      "Retry Queued": 1,
       "TESTING IN PROGRESS": 1
     },
     "byQaOutcome": {
@@ -79,18 +80,18 @@
       "cycleId": "cycle-002",
       "summary": "Map and inspect MS Teams Call results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
+      "workflowState": "Retry Queued",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
-      "updatedAt": "2026-10-23T12:36:37.712+0100",
-      "retries": 0,
+      "actionOwner": "Coordinator",
+      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "updatedAt": "2026-10-29T15:47:40.908Z",
+      "retries": 1,
       "retryLimit": 1,
       "testAttempts": 1,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/1"
     },
     {
       "key": "TEST2-92",

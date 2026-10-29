@@ -1,0 +1,11 @@
+{
+  "schema": "v4-qa-retry-request.v1",
+  "ticket": "TEST2-89",
+  "cycleId": "cycle-002",
+  "requestId": "human-coordinator-TEST2-89-20261029",
+  "requestedAt": "2026-10-29T15:47:00Z",
+  "authorizedBy": "human",
+  "reason": "Harry requested useful coordinator work alongside the manual TEST2-88 reassessment. Grant the remaining second attempt for TEST2-89 now that genuine Automobile MS Teams Call results have been located through normal UI navigation in north-west England. Use the existing verified fixture hints to find current records; re-establish every required quality-band, details and exceptional-state prerequisite. Do not reset the cycle, weaken criteria, infer record completeness from aggregates or substitute generic Call.",
+  "afterAttempt": 1,
+  "targetAttempt": 2
+}
