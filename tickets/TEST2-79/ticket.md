@@ -5,8 +5,8 @@
 - Jira status: TESTING IN PROGRESS
 - QA outcome: Passed
 - Workflow state: TESTING IN PROGRESS
-- Action owner: Coordinator
-- Next action: Create user-guide update authoring handoff
+- Action owner: Human
+- Next action: Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS
 - Jira: https://metricell.atlassian.net/browse/TEST2-79
 
 ## Acceptance Criteria

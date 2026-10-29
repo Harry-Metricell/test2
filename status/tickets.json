@@ -3,7 +3,7 @@
   "generatedAt": "2026-10-29T09:42:52.979Z",
   "counts": {
     "tickets": 12,
-    "handoffs": 2,
+    "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 9,
       "Ready": 1,
@@ -139,9 +139,9 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
-      "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide update authoring handoff",
+      "guideUpdate": "Map and inspect Automobile Download and Upload results",
+      "actionOwner": "Human",
+      "nextAction": "Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS",
       "updatedAt": "2026-10-28T10:48:56.747Z",
       "retries": 1,
       "retryLimit": 1,
