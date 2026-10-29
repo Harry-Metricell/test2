@@ -1,0 +1,38 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "handoffId": "handoff-TEST2-79-cycle-005-guide-update",
+  "handoffVersion": "TEST2-79:cycle-005:guide_update_authoring:2:scope-ee087994b548",
+  "ticket": "TEST2-79",
+  "title": "Map and inspect Automobile Download and Upload results",
+  "affectedSection": "Automobile Download and Upload results",
+  "changeType": "add",
+  "steps": [
+    "In GIS, open the Automobile layer configuration and choose Download or Upload under Test type.",
+    "Add the selected layer to show matching test results as map points.",
+    "Select a result point to open its details. Use the chart to compare signal strength with the Download Rate or Upload Rate over time, and review the test details table below.",
+    "Sort the table by a supported column heading or filter a supported column to find matching rows.",
+    "If a result has zero duration, its details are unavailable. If analysis is loading or reports an error, wait for it to finish or select Retry when offered."
+  ],
+  "screenshots": [
+    "cycles/cycle-005/screenshots/attempt-002/criterion-4-repair-final.png",
+    "cycles/cycle-005/screenshots/attempt-002/criterion-7-repair-final.png",
+    "cycles/cycle-005/screenshots/attempt-002/criterion-8-recheck-left.png",
+    "cycles/cycle-005/screenshots/attempt-002/criterion-12-recheck-rate-ascending.png",
+    "cycles/cycle-005/screenshots/attempt-002/criterion-13-recheck-final.png",
+    "cycles/cycle-005/screenshots/attempt-002/criterion-14-final.png",
+    "cycles/cycle-005/screenshots/attempt-002/criterion-16-repair-final.png"
+  ],
+  "screenshotCaptions": [
+    "The selected Download result shows its summary details.",
+    "The Upload result chart plots signal strength in dBm and Upload Rate in Mbps over time.",
+    "The Download test-results table shows its columns across the horizontal scroll states.",
+    "The Upload details table is sorted by rate in ascending order.",
+    "The applied table filter leaves matching result rows visible.",
+    "The zero-duration result does not open a details dialog.",
+    "The selected result shows an analysis error without the previous result details."
+  ],
+  "reason": "Adds instructions for choosing Automobile Download or Upload results, viewing their charts and tables, exploring table rows, and understanding unavailable or loading analyses.",
+  "noOp": false,
+  "cycleId": "cycle-005",
+  "authoredAt": "2026-10-29T09:53:45.434Z"
+}
