@@ -1,0 +1,531 @@
+[
+  {
+    "criterion": "Given the MS Teams Call layer is active, when the user opens its display settings, then the configured map-colouring choices and controls for detailed routes, linked sites and linked cells are visible.",
+    "outcome": "Failed",
+    "retryClass": "product",
+    "reason": "The display-settings popover exposes detailed-route, linked-site and linked-cell controls, but no map-colouring choice control. The active MS Teams Call legend shows a static Call Quality heading; inspected legend editing exposes ranges rather than a choice of colouring modes.",
+    "steps_taken": [
+      "Navigated to the exact launcher and waited for its visible GIS tile; captured initial state.",
+      "Opened GIS; preserved the pre-existing Automobile Service layer and two Service detail tabs.",
+      "Added Automobile through its nested Test type selector, choosing MS Teams Call with 30 July–28 October 2026 default date range, all technologies and no handset/cell restriction.",
+      "Opened MS Teams Call Display Settings and inspected available controls; closed it, inspected Edit Legend without editing, then cancelled and reopened Display Settings.",
+      "Observed three overlay controls and a static Call Quality legend heading; no colouring-mode choice in either display settings or the active legend."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-automobile-ms-teams-config.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-display-controls.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Configured map-colouring choice controls are visible",
+        "outcome": "Failed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-1-display-controls.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+        ]
+      },
+      {
+        "assertion": "Detailed routes control is visible",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+        ]
+      },
+      {
+        "assertion": "Linked sites control is visible",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+        ]
+      },
+      {
+        "assertion": "Linked cells control is visible",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the MS Teams Call layer is active and a configured colouring choice is selected, when the map updates, then MS Teams Call result points and the legend display the selected configured colouring and its corresponding legend section.",
+    "outcome": "Blocked",
+    "retryClass": "prerequisite",
+    "reason": "No configured colouring-mode selector is exposed for Automobile MS Teams Call: only a static Call Quality legend heading and three overlay checkboxes. Could not select a colouring choice or compare result-point colouring against an independent selected configuration. This is separate from the visible missing-control failure in criterion 1.",
+    "steps_taken": [
+      "Navigated to the exact launcher, waited for its GIS tile and captured a fresh initial state.",
+      "Opened GIS and added Automobile > Test type > MS Teams Call with the default 30 July–28 October 2026 date scope and no handset/cell restriction.",
+      "Inspected active MS Teams Call legend and opened its Display Settings; no colouring choice control was available.",
+      "Captured the active Call Quality legend before opening settings and the final settings popover; no choice was fabricated."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-choice.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Select a configured colouring choice",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+        ]
+      },
+      {
+        "assertion": "Result points use selected configuration colouring",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-choice.png"
+        ]
+      },
+      {
+        "assertion": "Corresponding selected legend section is displayed",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-choice.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the MS Teams Call layer is active, when the user turns detailed routes on and the map refreshes, then detailed route geometry for the active MS Teams Call results is visible.",
+    "outcome": "Passed",
+    "reason": "At Preston centre (-2.70464, 53.75916), zoom 14, enabling detailed routes changed sparse MS Teams Call result positions into visible dense route traces along Marsh Lane/Friargate and surrounding streets. The genuine GET /api/platform/automobile/ms-teams-call/points request returned HTTP 200 with fullRoute=true. Linked sites were off and the other Download layer was temporarily hidden for the decisive comparison, avoiding attribution of site-link lines to routes.",
+    "steps_taken": [
+      "Started independently at the launcher and captured its settled initial state.",
+      "Added Automobile > MS Teams Call with 30 July–28 October 2026 dates, all technologies, no handset/cell restriction. Removed only an earlier test-created duplicate MS Teams layer after recognizing delayed workspace restoration.",
+      "Expanded normal map view to UK zoom 5.85; genuine MS Teams points response supplied north-west aggregates with site/cell context. Panned to Blackpool/Preston then used normal Search Map > Preston UK to reach centre -2.70464,53.75916 at zoom 14.",
+      "Enabled detailed routes and observed the genuine fullRoute=true points response HTTP 200; then disabled routes to establish a matched Preston baseline.",
+      "Disabled linked sites and temporarily hid the Download layer while preserving its existing detail tab; captured sparse MS Teams points with detailed routes off.",
+      "Enabled detailed routes again, waited for response and popover settlement, and captured the dense MS Teams route traces before cleanup."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-routes.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-routes-enabled-control.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-preston-before-routes.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-route-isolated-off-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Detailed routes can be enabled for active MS Teams Call",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-routes-enabled-control.png"
+        ]
+      },
+      {
+        "assertion": "Refreshed active MS Teams Call route geometry is visibly present",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-route-isolated-off-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the MS Teams Call layer is active and detailed routes are visible, when the user turns detailed routes off and the map refreshes, then that detailed route geometry is hidden.",
+    "outcome": "Passed",
+    "reason": "At the matched Preston zoom-14 view, turning detailed routes off removed the dense route traces while retaining the sparse result positions. Linked sites were off and the other Download layer was temporarily hidden for the comparison; its pre-existing detail stayed open.",
+    "steps_taken": [
+      "Started at the exact launcher and captured a fresh settled initial state.",
+      "Opened GIS and added Automobile > MS Teams Call with the default 30 July–28 October 2026 dates and unrestricted handset/cell filters.",
+      "Used normal coordinate Search Map to reach Preston (-2.70464,53.75916), zoom 14; temporarily hid the Download layer, disabled linked sites and enabled detailed routes.",
+      "Captured the settled dense-route baseline.",
+      "Turned detailed routes off through its normal checkbox; captured the unchecked control and, after map settlement, the sparse map without the detailed route traces."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-routes-off.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-routes-off-control.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "A visible detailed-route baseline is established",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-routes-off.png"
+        ]
+      },
+      {
+        "assertion": "Turning routes off hides the active layer's detailed route geometry",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-routes-off-control.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the MS Teams Call layer is active and the map is below the configured zoom level for linked sites, when display settings are open, then the linked-site control is unavailable and indicates that the user must zoom in.",
+    "outcome": "Passed",
+    "reason": "At observed zoom 12, below the control's stated level-13 prerequisite, linked sites was natively disabled. An ordinary pointer click at the checkbox did not change its retained checked state or map; hovering displayed 'Zoom in to level 13 to show linked sites.' Normal Tab from the enabled routes checkbox skipped the disabled controls.",
+    "steps_taken": [
+      "Started independently at the exact launcher and captured settled initial state.",
+      "Added Automobile > MS Teams Call and used normal coordinate search to Preston, zoom 14; clicked Zoom out twice to observed zoom 12.",
+      "Opened Display Settings and captured the disabled linked-site baseline with routes off.",
+      "Used an ordinary mouse click at the disabled site's checkbox centre, without force or DOM changes; checked state remained true and no navigation occurred.",
+      "Hovered the disabled linked-site label and captured the explicit level-13 explanation.",
+      "From the enabled routes checkbox, used ordinary click then Space to restore its initial false state and Tab to test focus traversal; disabled site/cell controls were skipped."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-disabled-activation.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-after-pointer.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Below the observed configured linked-site zoom threshold, the control is unavailable",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-disabled-activation.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-5-after-pointer.png"
+        ]
+      },
+      {
+        "assertion": "Ordinary activation does not change the disabled site state",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-disabled-activation.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-5-after-pointer.png"
+        ]
+      },
+      {
+        "assertion": "The unavailable control explains that the user must zoom in",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given the MS Teams Call layer is active and the map is at or above the configured zoom level for linked sites, when the user turns linked sites on and the map refreshes, then linked-site overlays for the active MS Teams Call results are visible.",
+    "outcome": "Passed",
+    "reason": "At Preston zoom 14, the linked-site checkbox was enabled. Turning it on added blue labelled site markers and connections from the active MS Teams Call points; visible labels include 500716, 516884 and 509658. The Download layer was temporarily hidden and detailed routes remained off, isolating the linked-site overlay.",
+    "steps_taken": [
+      "Started independently at the launcher and captured settled initial state.",
+      "Added Automobile > MS Teams Call with default 30 July–28 October 2026 dates, all technologies and no handset/cell restriction.",
+      "Used normal coordinate Search Map to Preston centre -2.70464,53.75916 at zoom 14; genuine MS Teams points GET returned HTTP 200 with site coordinates.",
+      "Temporarily hid Download, retained its existing detail tab, and switched linked sites off to capture the no-site baseline.",
+      "Opened settings, observed linked sites available, turned it on and captured its checked control.",
+      "Closed settings, waited for settlement and captured labelled site markers and point-to-site links."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-sites-on.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-sites-on-control.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "At a supported zoom, linked-site control is available",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-sites-on-control.png"
+        ]
+      },
+      {
+        "assertion": "Turning linked sites on displays overlays for active MS Teams results",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-sites-on.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given linked-site overlays are visible at a supported zoom level, when the user turns linked sites off and the map refreshes, then those linked-site overlays are hidden.",
+    "outcome": "Passed",
+    "reason": "At Preston zoom 14, switching linked sites off removed the active MS Teams Call blue labelled site markers and point-to-site links while leaving the sparse result positions. The Download layer was temporarily hidden and detailed routes remained off, avoiding unrelated overlays.",
+    "steps_taken": [
+      "Started independently at the launcher; captured settled initial state.",
+      "Added Automobile > MS Teams Call and navigated normally to Preston coordinates -2.70464,53.75916 at zoom 14 with default 30 July–28 October 2026 dates and unrestricted filters.",
+      "Temporarily hid Download without closing its pre-existing detail; established linked sites on and captured the labelled-site/link baseline.",
+      "Turned linked sites off using its normal enabled checkbox; captured unchecked state.",
+      "Closed settings, waited for the map to settle and captured absence of site markers/links with the result points retained."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-sites-off.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-sites-off-control.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Visible linked-site baseline at a supported zoom is established",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-sites-off.png"
+        ]
+      },
+      {
+        "assertion": "Turning linked sites off hides those overlays",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-sites-off-control.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given linked sites are enabled and the map is at a zoom level that supports linked cells, when display settings are open, then the linked-cell control is available.",
+    "outcome": "Passed",
+    "reason": "At observed zoom 13 with linked sites enabled, the linked-cell checkbox was enabled and accepted ordinary activation, becoming checked. This verifies control availability under the required prerequisites; overlay rendering is assessed separately.",
+    "steps_taken": [
+      "Started independently at the exact launcher and captured its settled initial state.",
+      "Added Automobile > MS Teams Call with default 30 July–28 October 2026 dates and unrestricted filters; used normal coordinate search to Preston at zoom 14.",
+      "Clicked Zoom out once to observed zoom 13, opened Display Settings and confirmed linked sites enabled.",
+      "Captured the enabled unchecked linked-cell control, then activated it normally and captured it checked and enabled at the same map zoom."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-available-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Linked sites is enabled at a zoom supporting linked cells",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-available-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      },
+      {
+        "assertion": "Linked-cell control is available and accepts ordinary activation",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-available-baseline.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given linked sites are disabled or the map is below the zoom level that supports linked cells, when display settings are open, then the linked-cell control is unavailable.",
+    "outcome": "Passed",
+    "reason": "Both prerequisite branches were exercised independently within this criterion: at zoom 14 with linked sites off, cells were disabled and explained 'Enable linked sites to show linked cells'; at zoom 12 with linked sites retained on, cells were disabled and explained 'Zoom in to level 13 to show linked cells.' Ordinary pointer attempts at the disabled checkbox did not change its unchecked state in either branch.",
+    "steps_taken": [
+      "Started independently from the launcher and captured settled initial state.",
+      "Added Automobile > MS Teams Call with the default unrestricted 30 July–28 October 2026 scope; used normal coordinate search to Preston zoom 14.",
+      "Opened settings with sites on and cells available/unchecked; captured supported baseline.",
+      "Turned sites off at zoom 14; captured cells disabled before ordinary pointer activation. Clicked its checkbox centre without force and hovered its label; captured unchanged unchecked state and the enable-sites explanation.",
+      "Re-enabled sites, closed settings and zoomed out twice to observed zoom 12.",
+      "Reopened settings with sites retained on; captured cells disabled before pointer activation. Clicked the disabled cell control normally and hovered it; captured unchanged unchecked state and the level-13 explanation."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-supported-baseline.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-before-activation.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-after-activation.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-low-zoom-before-activation.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Linked cells is unavailable when sites are off at supported zoom",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-before-activation.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-after-activation.png"
+        ]
+      },
+      {
+        "assertion": "Linked cells is unavailable below supported zoom even with sites on",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-low-zoom-before-activation.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+        ]
+      },
+      {
+        "assertion": "Ordinary pointer activation does not alter either disabled state",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-before-activation.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-after-activation.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-low-zoom-before-activation.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given linked sites are enabled and the map is at a zoom level that supports linked cells, when the user turns linked cells on and the map refreshes, then linked-cell overlays are visible.",
+    "outcome": "Passed",
+    "reason": "At Preston zoom 14 with linked sites on, turning linked cells on added visible multi-sector cell overlays around the blue linked-site markers. The baseline had the same site markers/links without sectors; detailed routes were off and Download was temporarily hidden.",
+    "steps_taken": [
+      "Started independently at the launcher and captured settled initial state.",
+      "Added Automobile > MS Teams Call with default 30 July–28 October 2026 dates and unrestricted filters; navigated by normal coordinate search to Preston at zoom 14.",
+      "Temporarily hid Download without closing its existing detail. Established sites on, cells off and routes off; captured the site-only baseline.",
+      "Opened settings and enabled linked cells using its available checkbox; captured checked cells with sites still checked.",
+      "Closed settings, waited for settlement and captured visible sector overlays at the linked sites."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-cells-on.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-cells-on-control.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-10-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Linked sites are enabled at supported zoom before enabling cells",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-cells-on.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-cells-on-control.png"
+        ]
+      },
+      {
+        "assertion": "Enabling linked cells displays cell overlays",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-cells-on.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-10-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given linked-cell overlays are visible, when the user turns linked cells off and the map refreshes, then those linked-cell overlays are hidden.",
+    "outcome": "Passed",
+    "reason": "At Preston zoom 14, turning linked cells off removed the visible sector overlays while retaining the linked-site dots, labels and point-to-site connections. Sites remained enabled; detailed routes were off and Download temporarily hidden.",
+    "steps_taken": [
+      "Started independently at the launcher and captured settled initial state.",
+      "Added Automobile > MS Teams Call with default 30 July–28 October 2026 dates and unrestricted filters; navigated normally to Preston at zoom 14.",
+      "Temporarily hid Download without closing its existing detail, enabled sites and cells, and captured the settled visible-sector baseline.",
+      "Turned linked cells off through its enabled checkbox while leaving sites on; captured unchecked cells and checked sites.",
+      "Closed settings, waited for settlement and captured absence of sectors with site markers/links retained."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cells-off.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-cells-off-control.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Visible linked-cell baseline is established",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cells-off.png"
+        ]
+      },
+      {
+        "assertion": "Disabling linked cells hides cell overlays",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-cells-off-control.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png"
+        ]
+      }
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given any MS Teams Call display setting is changed, when the map refreshes, then the setting is applied only to the active MS Teams Call layer and other visible map layers, standard map filters and legend point-filtering state retain their prior visible states.",
+    "outcome": "Blocked",
+    "retryClass": "transient",
+    "blockerCode": "authentication_required",
+    "reason": "The session redirected from GIS to SmartTools Authenticate and then the external Microsoft identity provider during the final isolation check. The permitted brief wait and single launcher retry did not recover authentication. No sign-in control was operated. Could not establish full other-layer, standard-filter or legend point-filter preservation across the display changes. The last test-created MS Teams layer could not be removed after authentication loss; no request interception or backend mutation was installed.",
+    "steps_taken": [
+      "Navigated independently to the exact launcher and captured settled initial state.",
+      "Opened GIS, added Automobile > MS Teams Call with default unrestricted 30 July–28 October 2026 date scope and navigated normally to Preston zoom 14 while retaining the existing Download layer/detail.",
+      "Attempted to open MS Teams Call configuration to establish a full standard-filter baseline; the page redirected to SmartTools sign-in and then login.microsoftonline.com rather than showing filters.",
+      "Waited briefly and navigated to the exact launcher once, as permitted; authentication remained required and the Microsoft identity-provider page appeared.",
+      "Captured the actual sign-in blocker and stopped browser work. Did not enter credentials, operate sign-in controls, or install interception. The auth-query parameters are omitted from browserUrl."
+    ],
+    "evidence": [
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-initial.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login",
+    "browserUrlRedacted": true,
+    "coverageChecks": [
+      {
+        "assertion": "Changed display setting applies only to active MS Teams Call",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      },
+      {
+        "assertion": "Other visible map layers retain prior state",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      },
+      {
+        "assertion": "Standard map filters retain prior state",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      },
+      {
+        "assertion": "Legend point-filtering state retains prior state",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+        ]
+      }
+    ],
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile"
+  }
+]
