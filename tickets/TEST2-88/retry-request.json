@@ -1,0 +1,11 @@
+{
+  "schema": "v4-qa-retry-request.v1",
+  "ticket": "TEST2-88",
+  "cycleId": "cycle-002",
+  "requestId": "human-restage-TEST2-88-20261029",
+  "requestedAt": "2026-10-29T09:42:00Z",
+  "authorizedBy": "human",
+  "reason": "Harry explicitly requested restaging TEST2-88 after the prior review. Use the remaining second attempt in cycle-002, retain the missing-colouring-selector finding and original report, recheck current behaviour and complete isolation/cleanup if authentication permits. Do not claim the product control has been fixed or reset the testing cycle.",
+  "afterAttempt": 1,
+  "targetAttempt": 2
+}

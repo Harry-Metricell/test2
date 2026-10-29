@@ -1,12 +1,13 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-28T15:23:58.770+0000",
+  "generatedAt": "2026-10-29T09:42:52.979Z",
   "counts": {
     "tickets": 12,
-    "handoffs": 2,
+    "handoffs": 3,
     "byWorkflowState": {
-      "Blocked": 10,
+      "Blocked": 9,
       "Ready": 1,
+      "Retry Queued": 1,
       "TESTING IN PROGRESS": 1
     },
     "byQaOutcome": {
@@ -80,18 +81,18 @@
       "cycleId": "cycle-002",
       "summary": "Configure MS Teams Call map display settings",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
+      "workflowState": "Retry Queued",
+      "qaStatus": "Ready for Testing",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required; final evidence report published",
-      "updatedAt": "2026-10-28T15:23:58.770+0000",
-      "retries": 0,
+      "nextAction": "Retry 1/1 queued; coordinator will start tester",
+      "updatedAt": "2026-10-29T09:42:52.979Z",
+      "retries": 1,
       "retryLimit": 1,
       "testAttempts": 1,
-      "retryLabel": ""
+      "retryLabel": "Retry 1/1"
     },
     {
       "key": "TEST2-89",

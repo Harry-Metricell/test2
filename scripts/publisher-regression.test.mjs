@@ -226,6 +226,26 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     g(seed, 'fetch');
     assert.equal(JSON.parse(g(seed, 'show', 'origin/main:tickets/TEST2-99/guide-impact.json')).decision, 'not_needed');
 
+    // A real guide payload has steps/screenshots, not review criterionOutcomes.
+    // It must validate its owned images and reach the renderer prerequisite.
+    g(seed, 'reset', '--hard', 'origin/main');
+    write(path.join(seed, 'config/user-guide-update-policy.json'), JSON.stringify({ enabled: true, onlyForPassedEvidenceReviews: true, requireVerifiedTicketEvidence: true, allowChangeTypes: ['add'] }));
+    write(path.join(seed, 'tickets/TEST2-99/guide-impact.json'), JSON.stringify({ decision: 'update_required' }));
+    write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-guide-update', handoffVersion: 'TEST2-99:guide_update_authoring:1', ticket: 'TEST2-99', action: 'guide_update_authoring' }] }));
+    g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue guide instructions without review fields'); g(seed, 'push');
+    const updateStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-guide-update');
+    const update = { handoffId: 'handoff-TEST2-99-guide-update', handoffVersion: 'TEST2-99:guide_update_authoring:1', ticket: 'TEST2-99', title: 'Open the launcher', affectedSection: 'Navigation', changeType: 'add', steps: ['Open the launcher.'], screenshots: ['screenshots/attempt-002/foreign.png'], screenshotCaptions: ['The launcher is displayed.'], reason: 'Document the reviewed navigation.', noOp: false };
+    write(path.join(updateStage, 'guide-update-output.json'), JSON.stringify(update));
+    const foreignImage = run(); assert.equal(foreignImage.status, 1); assert.match(foreignImage.stderr, /screenshots must come from the ticket/);
+    update.screenshots = ['screenshots/attempt-002/criterion-1-final.png'];
+    write(path.join(updateStage, 'guide-update-output.json'), JSON.stringify(update));
+    fs.rmSync(path.join(updateStage, 'publisher-error.json'), { force: true });
+    const guideRenderer = spawnSync(process.execPath, [publisher], { env: { ...env, TEST2_SOFFICE: path.join(root, 'missing-renderer') }, encoding: 'utf8', windowsHide: true });
+    assert.equal(guideRenderer.status, 1); assert.match(guideRenderer.stderr, /User-guide renderer is missing/);
+    assert.doesNotMatch(guideRenderer.stderr, /criteria is not defined|criterionOutcomes|entries/);
+    assert.ok(fs.existsSync(path.join(updateStage, 'guide-update-output.json')), 'Failed publication retains its staged output');
+    fs.rmSync(updateStage, { recursive: true, force: true });
+
     // A new cycle rejects old worker identities without overwriting current
     // state; its own first attempt publishes under the new evidence scope.
     g(seed, 'reset', '--hard', 'origin/main');

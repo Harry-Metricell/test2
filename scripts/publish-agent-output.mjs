@@ -652,9 +652,6 @@ if (outputType === 'criteria-output.json') {
   const impact = readJson(path.join(ticketDir, 'guide-impact.json'));
   const review = readJson(path.join(ticketDir, 'review.json'));
   const results = readJson(path.join(ticketDir, 'results.json'));
-  // Normalise legacy numeric criterion IDs before comparing criterion-owned proof.
-  const coverageResults = validateCriterionCoverage(results, criteria, 'Review source results');
-  validateEvidenceCoverage(output.criterionOutcomes, { required: liveHandoff.evidenceCoverageVersion === 1, results: coverageResults });
   const verifiedEvidence = new Set((Array.isArray(results) ? results : []).flatMap(item => Array.isArray(item?.evidence) ? item.evidence : []));
   if (impact?.decision !== 'update_required' || String(review?.overallOutcome || '').toLowerCase() !== 'passed' || !nonEmpty(path.join(ticketDir, 'report.pdf'))) fail('Guide update requires a passed reviewed update_required ticket');
   if (output.screenshots.some(file => !verifiedEvidence.has(file))) fail('guide update screenshots must come from the ticket’s verified results');
@@ -677,6 +674,10 @@ if (outputType === 'criteria-output.json') {
   let generatedDocx = path.join(run, 'report.docx');
   let generatedPdf = path.join(run, 'report.pdf');
   const results = readJson(path.join(ticketDir, 'results.json'));
+  // Reviews compare criterion-owned proof; guide payloads contain instructions,
+  // not criterionOutcomes. Normalise legacy numeric source IDs here only.
+  const coverageResults = validateCriterionCoverage(results, criteria, 'Review source results');
+  validateEvidenceCoverage(output.criterionOutcomes, { required: liveHandoff.evidenceCoverageVersion === 1, results: coverageResults });
   const reviewedAttempt = Number(liveHandoff.attempt || output.handoffVersion.match(/:(\d+)$/)?.[1]);
   if (!Number.isInteger(reviewedAttempt) || reviewedAttempt < 1) fail('Evidence review has no valid selected attempt');
   const expectedAttemptName = `attempt-${String(reviewedAttempt).padStart(3, '0')}`;
