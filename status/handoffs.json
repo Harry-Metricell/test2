@@ -25,28 +25,6 @@
         "schema": "v4-user-guide-update.v1"
       },
       "cycleId": "cycle-002"
-    },
-    {
-      "handoffId": "handoff-TEST2-89-cycle-002-review-attempt-002",
-      "handoffVersion": "TEST2-89:cycle-002:evidence_review:2:scope-af7443f54839",
-      "attempt": 2,
-      "action": "evidence_review",
-      "brief": "docs/briefs/evidence-review.md",
-      "owner": "evidence-reviewer",
-      "ticket": "TEST2-89",
-      "inputs": {
-        "results": "tickets/TEST2-89/results.json",
-        "generated": "status/generated/TEST2-89.json",
-        "cycle": "tickets/TEST2-89/qa-cycle.json",
-        "evidenceFolder": "TEST2-89/cycles/cycle-002/screenshots/attempt-002",
-        "testingContext": "config/testing-context/TEST2-89.json"
-      },
-      "expectedOutput": {
-        "path": "tickets/TEST2-89/review.json",
-        "schema": "v4-qa-review.v1"
-      },
-      "cycleId": "cycle-002",
-      "evidenceCoverageVersion": 1
     }
   ]
 }
