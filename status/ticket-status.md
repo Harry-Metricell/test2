@@ -4,7 +4,6 @@ Updated: 2026-10-29T09:42:52.979Z
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
-| TEST2-81 | READY FOR TESTING | Evidence Reviewed |  | Map HTTP Browsing, Ping and Video Streaming point details |
 | TEST2-84 | READY FOR TESTING | Blocked |  | View Building Details and Floorplans |
 | TEST2-87 | READY FOR TESTING | Blocked |  | Display Call Point Details |
 | TEST2-88 | READY FOR TESTING | Ready for Testing | Retry 1/1 | Configure MS Teams Call map display settings |

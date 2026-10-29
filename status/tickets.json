@@ -2,17 +2,16 @@
   "schema": "v4-qa-status.v1",
   "generatedAt": "2026-10-29T09:42:52.979Z",
   "counts": {
-    "tickets": 12,
+    "tickets": 11,
     "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 9,
-      "Ready": 1,
       "Retry Queued": 1,
       "TESTING IN PROGRESS": 1
     },
     "byQaOutcome": {
       "Blocked": 10,
-      "Passed": 2
+      "Passed": 1
     }
   },
   "policy": {
@@ -22,24 +21,6 @@
     "missingEvidence": "warning_not_pass"
   },
   "tickets": [
-    {
-      "key": "TEST2-81",
-      "cycleId": "cycle-003",
-      "summary": "Map HTTP Browsing, Ping and Video Streaming point details",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
-      "guideImpact": "update_required",
-      "guideUpdate": "Map and inspect Automobile HTTP Browsing, Ping and Video Streaming results",
-      "actionOwner": "Coordinator",
-      "nextAction": "QA review complete",
-      "updatedAt": "2026-10-28T15:23:57.099+0000",
-      "retries": 0,
-      "retryLimit": 1,
-      "testAttempts": 1,
-      "retryLabel": ""
-    },
     {
       "key": "TEST2-84",
       "cycleId": "cycle-003",

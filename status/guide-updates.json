@@ -65,7 +65,7 @@
       "ticket": "TEST2-81",
       "title": "Map and inspect Automobile HTTP Browsing, Ping and Video Streaming results",
       "affectedSection": "Automobile HTTP Browsing, Ping and Video Streaming results",
-      "recordPath": "tickets/TEST2-81/guide-update.json"
+      "recordPath": "archive/tickets/TEST2-81/guide-update.json"
     }
   ]
 }
