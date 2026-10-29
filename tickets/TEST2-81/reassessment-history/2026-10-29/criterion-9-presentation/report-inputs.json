@@ -1,0 +1,572 @@
+[
+  {
+    "criterion": "Given HTTP Browsing results are available, when the HTTP Browsing layer is selected, each supplied result is displayed as a selectable point on the map.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-before-test-type.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-selected-http.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-http-current-scope.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-bounded-date-applied.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-bounded-map.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-search-london.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-london-settled.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to the exact launcher and captured the settled launcher before opening GIS.",
+      "Recorded original Automobile Service layer, 30 July–28 October date filters and two pre-existing Service detail tabs.",
+      "Opened Automobile configuration, selected HTTP Browsing, applied and observed genuine Automobile HTTP points.",
+      "Narrowed dates to 8 October 2026 00:00–23:59 local and selected London UK through normal map search.",
+      "Read GET /api/platform/automobile/http-browsing/points: exactly one aggregate 1441292517047095807 in central London viewport.",
+      "Clicked its visible green diamond; POST cluster-details returned only member 132714574, which opened in a new detail tab; reconciled 1/1 aggregate and 1/1 member.",
+      "Captured final selected member and closed only the owned detail tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Bounded London viewport after London UK search, 8 October 2026 00:00–23:59 local, all default technologies and no handset/cell restriction. GET points returned one aggregate 1441292517047095807; POST cluster-details returned exactly one member 132714574 (10:53:25.257, 51.5089,-0.1293). Its visible green point opened that member. Complete 1/1 aggregate and 1/1 member coverage within this recorded scope. Cleanup: owned detail tabs were closed; original Automobile Service type, original date values, technology/filter settings and two original Service detail tabs were retained/restored. Original exact map viewport was not restored; final view remains near Chelmsford after the bounded searches. No backend, Jira, credentials or authentication changes were made.",
+    "coverageChecks": [
+      {
+        "assertion": "HTTP Browsing layer can be selected",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-before-test-type.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-selected-http.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-http-current-scope.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-bounded-date-applied.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-bounded-map.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-search-london.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-london-settled.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+        ]
+      },
+      {
+        "assertion": "All returned records in bounded London 8 October scope are displayed and selectable",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-before-test-type.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-selected-http.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-http-current-scope.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-bounded-date-applied.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-bounded-map.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-search-london.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-london-settled.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Ping results are available, when the Ping layer is selected, each supplied result is displayed as a selectable point on the map.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-configured-ping.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-bounded-map.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+    ],
+    "steps_taken": [
+      "Restarted from exact launcher after image QA found an initializing initial capture; waited for visible Open GIS and captured the settled launcher.",
+      "Opened GIS, selected Automobile Ping, applied 8 October 00:00–23:59 local with default technologies and no handset/cell restriction.",
+      "Observed central London viewport, GET /api/platform/automobile/ping/points returned exactly one aggregate 1441292517315531264.",
+      "Clicked its visible green point; POST cluster-details returned exactly member 132714573, opened in Ping detail.",
+      "Captured final selected member and reconciled 1/1 aggregate and 1/1 member; closed owned Ping tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Same bounded central London viewport, 8 October 2026 00:00–23:59 local, default technologies, no handset/cell filters. GET points returned exactly one aggregate 1441292517315531264; POST cluster-details returned exactly one member 132714573 (10:53:25.257, 51.50866,-0.12906). Visible point opened this member. Complete 1/1 aggregate and 1/1 member comparison. Cleanup: owned detail tabs were closed; original Automobile Service type, original date values, technology/filter settings and two original Service detail tabs were retained/restored. Original exact map viewport was not restored; final view remains near Chelmsford after the bounded searches. No backend, Jira, credentials or authentication changes were made.",
+    "coverageChecks": [
+      {
+        "assertion": "Ping layer can be selected",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-configured-ping.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-bounded-map.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+        ]
+      },
+      {
+        "assertion": "All returned Ping records in bounded London 8 October scope are displayed and selectable",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-configured-ping.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-bounded-map.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given Video Streaming results are available, when the Video Streaming layer is selected, each supplied result is displayed as a selectable point on the map.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-configured-video.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-bounded-map.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to exact launcher, captured initial state and opened GIS.",
+      "Selected Automobile Video Streaming, applied 8 October 00:00–23:59 local, default technologies, no handset/cell restriction.",
+      "Observed central London map with exactly aggregate 1441292517047095806 in genuine GET response.",
+      "Clicked its visible point; POST cluster-details returned only member 132714575 and opened Video Streaming detail.",
+      "Captured final member, reconciled complete 1/1 aggregate and 1/1 member coverage and closed owned tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Central London viewport, 8 October 2026 00:00–23:59 local, default technologies and no handset/cell restrictions. GET points returned one aggregate 1441292517047095806. Normal click opened one genuine member 132714575 (10:53:25.257; 51.50901,-0.12941), Rebuffer Count 1. Complete 1/1 aggregate and 1/1 member coverage in this bounded scope. Cleanup: owned detail tabs were closed; original Automobile Service type, original date values, technology/filter settings and two original Service detail tabs were retained/restored. Original exact map viewport was not restored; final view remains near Chelmsford after the bounded searches. No backend, Jira, credentials or authentication changes were made.",
+    "coverageChecks": [
+      {
+        "assertion": "Video Streaming layer can be selected",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-configured-video.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-bounded-map.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+        ]
+      },
+      {
+        "assertion": "All returned Video Streaming records in bounded London 8 October scope are displayed and selectable",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-configured-video.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-bounded-map.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given details are available for a result point, when the point is selected, a new detail dialog opens for that same result and displays its test type, result time, location, and available network technology/context.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-before-select.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+    ],
+    "steps_taken": [
+      "Restarted the complete criterion from exact settled launcher after detecting an initializing initial capture.",
+      "Opened GIS and selected Automobile Video Streaming for 8 October central London; captured map before selecting visible point.",
+      "Selected genuine Video member 132714575; captured detail top and overlapping bottom through Latitude, Longitude, Technology and Cell Server.",
+      "Closed owned Video detail, selected HTTP Browsing and captured configuration and map before selection.",
+      "Selected HTTP member 132714574; captured detail top and overlapping bottom, including readable test ID, time, 4G, latitude/longitude and LTE context.",
+      "Closed owned HTTP detail, selected Ping and captured configuration/map before selecting member 132714573.",
+      "Captured Ping detail top and overlapping bottom; compared each record's displayed type, second-precision time, location, band and network context with its genuine response.",
+      "Preserved both original Service tabs and closed owned Ping detail."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Within this criterion, separately selected genuine Video 132714575, HTTP 132714574 and Ping 132714573 in the recorded 8 October London scope. Each opened a new type-specific detail tab. Visible IDs, 08/10/2026 10:53:25 (UI second precision; real responses retain .257 milliseconds), respective lat/lon and LTE/4G, band 1800+, serving cell matched genuine responses. Overlapping top/bottom captures retain every common required field. Prior unrelated Service tabs preserved. Cleanup: owned detail tabs were closed; original Automobile Service type, original date values, technology/filter settings and two original Service detail tabs were retained/restored. Original exact map viewport was not restored; final view remains near Chelmsford after the bounded searches. No backend, Jira, credentials or authentication changes were made.",
+    "coverageChecks": [
+      {
+        "assertion": "Video: Selected point opens a new dialog for the same result identity",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+        ]
+      },
+      {
+        "assertion": "Video: Test type is displayed",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+        ]
+      },
+      {
+        "assertion": "Video: Result time is displayed at the actual UI precision",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+        ]
+      },
+      {
+        "assertion": "Video: Latitude and longitude are readable and match the selected record",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+        ]
+      },
+      {
+        "assertion": "Video: Available network service and technology context is readable and matches the record",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+        ]
+      },
+      {
+        "assertion": "HTTP: Selected point opens a new dialog for the same result identity",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+        ]
+      },
+      {
+        "assertion": "HTTP: Test type is displayed",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+        ]
+      },
+      {
+        "assertion": "HTTP: Result time is displayed at the actual UI precision",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+        ]
+      },
+      {
+        "assertion": "HTTP: Latitude and longitude are readable and match the selected record",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+        ]
+      },
+      {
+        "assertion": "HTTP: Available network service and technology context is readable and matches the record",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+        ]
+      },
+      {
+        "assertion": "Ping: Selected point opens a new dialog for the same result identity",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+        ]
+      },
+      {
+        "assertion": "Ping: Test type is displayed",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+        ]
+      },
+      {
+        "assertion": "Ping: Result time is displayed at the actual UI precision",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+        ]
+      },
+      {
+        "assertion": "Ping: Latitude and longitude are readable and match the selected record",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+        ]
+      },
+      {
+        "assertion": "Ping: Available network service and technology context is readable and matches the record",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given an HTTP Browsing point is selected and its details are available, the dialog displays that result’s Page Load Time.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-configuration.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+    ],
+    "steps_taken": [
+      "Navigated to exact launcher and captured initial state before opening GIS.",
+      "Selected Automobile HTTP Browsing for 8 October central London and captured configuration and settled map before selection.",
+      "Clicked the green HTTP point; observed member 132714574.",
+      "Read Page Load Time (s) 0.845 in its own detail, matching genuine response; captured final before closing owned tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Independently started at launcher. Selected HTTP Browsing in the genuine 8 October London scope and clicked its point. Detail Test ID 132714574 displays Page Load Time (s) 0.845, matching the response for this selected record; 26 ms is a separate HTTP Ping field, not the Page Load Time. Cleanup: owned detail tabs were closed; original Automobile Service type, original date values, technology/filter settings and two original Service detail tabs were retained/restored. Original exact map viewport was not restored; final view remains near Chelmsford after the bounded searches. No backend, Jira, credentials or authentication changes were made.",
+    "coverageChecks": [
+      {
+        "assertion": "Selected HTTP Browsing point opens its own detail",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+        ]
+      },
+      {
+        "assertion": "Page Load Time is readable and equals the selected record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given a Ping point is selected and its details are available, the dialog displays that result’s Ping Time.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-configuration.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-select.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+    ],
+    "steps_taken": [
+      "Restarted criterion from exact settled launcher after image QA found a loading initial image; captured settled launcher.",
+      "Opened GIS and inspected Automobile Ping configuration for 8 October central London.",
+      "Captured settled map before clicking the genuine Ping point.",
+      "Read Test ID 132714573 and Ping Time (ms) 23 in the opened detail; captured final before closing own tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Independently started at launcher and selected the genuine Ping point in the 8 October London scope. Detail Test ID 132714573 displays Ping Time (ms) 23, matching this record's response. Jitter 3 ms is separately labelled. Cleanup: owned detail tabs were closed; original Automobile Service type, original date values, technology/filter settings and two original Service detail tabs were retained/restored. Original exact map viewport was not restored; final view remains near Chelmsford after the bounded searches. No backend, Jira, credentials or authentication changes were made.",
+    "coverageChecks": [
+      {
+        "assertion": "Selected Ping point opens its own detail",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+        ]
+      },
+      {
+        "assertion": "Ping Time is readable and equals the selected record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given a Video Streaming point is selected and its details are available, the dialog displays that result’s Rebuffer Count.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-configuration.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-before-select.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+    ],
+    "steps_taken": [
+      "Restarted criterion from exact settled launcher after image QA found a loading initial image; captured settled launcher.",
+      "Opened GIS and selected Automobile Video Streaming for 8 October central London.",
+      "Captured configuration and settled map before selecting the point.",
+      "Read Test ID 132714575 and Rebuffer Count 1 in the opened detail; captured final before closing own tab."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Independently started at launcher, selected Video Streaming and clicked the genuine 8 October London point. Detail Test ID 132714575 displays Rebuffer Count 1, matching that record's response; Rebuffer Time 350 ms is a separate field. Cleanup: owned detail tabs were closed; original Automobile Service type, original date values, technology/filter settings and two original Service detail tabs were retained/restored. Original exact map viewport was not restored; final view remains near Chelmsford after the bounded searches. No backend, Jira, credentials or authentication changes were made.",
+    "coverageChecks": [
+      {
+        "assertion": "Selected Video Streaming point opens its own detail",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+        ]
+      },
+      {
+        "assertion": "Rebuffer Count is readable and equals the selected record value",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-configuration.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-before-select.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given an HTTP Browsing result ends in error, when its point is displayed, it is visually distinct from a successful result; a zero Page Load Time on the failed result is not coloured as success.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-initial.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-point.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-detail.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-expanded-scope.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-chelmsford-settled.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-8-cleanup.png"
+    ],
+    "steps_taken": [
+      "Restarted entire criterion from settled launcher after image QA detected a loading initial screenshot.",
+      "Selected Automobile HTTP Browsing in 8 October central London and captured its green success point and genuine record 132714574 with load time 0.845 s.",
+      "Closed owned detail and expanded normal UI date range to 30 July 15:02–28 October 15:02, all default technologies and no handset/cell restrictions.",
+      "Searched Chelmsford UK and waited for the settled map; captured the black square and Error legend before selection.",
+      "Clicked the visible northeast black square; opened genuine record 131937714, 11 August 11:21:32.307 response / second-precision visible time, Failed, WebView Error, Page Load Time 0.",
+      "Compared its black square against this criterion's earlier green successful point and captured final before cleanup.",
+      "Closed owned detail and restored original Automobile Service type and original date values; preserved original Service tabs."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Within this criterion established genuine successful London HTTP record 132714574, Page Load Time 0.845 s and green diamond. Expanded normal UI date range to 30 July–28 October, searched Chelmsford and waited for settled map. Clicked black square at the northeast of the map: genuine response and detail identify record 131937714, 11 August 2026 11:21:32.307, Failed/WebView Error, Page Load Time 0, No service. Its black Error square is visibly distinct from the successful green point and matches Error legend, despite zero load time. No synthetic response used. Cleanup: owned detail tabs were closed; original Automobile Service type, original date values, technology/filter settings and two original Service detail tabs were retained/restored. Original exact map viewport was not restored; final view remains near Chelmsford after the bounded searches. No backend, Jira, credentials or authentication changes were made.",
+    "coverageChecks": [
+      {
+        "assertion": "Genuine failed HTTP result is established independently",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-point.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-detail.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-expanded-scope.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-chelmsford-settled.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      },
+      {
+        "assertion": "Failed HTTP point is visually distinct from a successful result",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-point.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-detail.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-expanded-scope.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-chelmsford-settled.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      },
+      {
+        "assertion": "Failed zero Page Load Time is not coloured as successful",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-initial.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-point.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-detail.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-expanded-scope.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-chelmsford-settled.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "Given details cannot be returned for a selected point, the user sees a clear no-data or error message and no stale details are displayed.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-before-simulated-error.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-9-recovered-detail.png"
+    ],
+    "steps_taken": [
+      "Navigated to exact launcher, captured initial state and opened GIS.",
+      "Configured 8 October 00:00–23:59 local and searched London UK; selected genuine Ping baseline 132714573 and captured it within this criterion.",
+      "Changed to HTTP Browsing, selected target point and established genuine POST cluster-details request and HTTP 200 response for record 132714574.",
+      "Closed target HTTP tab, reloaded through the launcher to avoid cached target detail, returned to GIS and selected the distinct Ping baseline tab.",
+      "SIMULATED UI STATE: installed an owned handler only for POST exact development HTTP cluster-details endpoint, mercatorKey 1441292517047095807 and exact 8 October UTC interval; verified handler reference persisted across tool calls.",
+      "Selected HTTP map target; two matching UI read attempts received synthetic standard HTTP 503 with disclosed JSON message. Captured Unable to load point details and Retry; active view excluded Ping and HTTP success content.",
+      "Removed the exact owned handler in finally; no pending requests were held. Confirmed owned handler absent.",
+      "Clicked normal Retry; observed genuine HTTP 200 and one recovered row 132714574; captured row then selected it and captured genuine recovered detail.",
+      "Closed only owned HTTP target/list and Ping tabs, restored Service configuration and original dates, verified original two Service tabs remained; retained original legend settings.",
+      "No empty response was fabricated because an authoritative empty-response contract was not established; this criterion exercised the permitted error-message alternative."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "SIMULATED UI STATE: Returned HTTP 503 only for the selected HTTP Browsing detail request. criterion-9-before-simulated-error.png shows the distinct genuine Ping baseline. criterion-9-final.png visibly shows Unable to load point details and Retry, with no previous Ping or successful HTTP detail fields in the active panel. After removing the owned handler, normal Retry returned genuine data; criterion-9-recovered-detail.png shows the matching HTTP result restored. This proves browser-local error handling, not a naturally occurring backend outage or an empty-response contract. No pending requests were held.",
+    "coverageChecks": [
+      {
+        "assertion": "Unavailable target details display a clear error message",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-9-before-simulated-error.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png"
+        ]
+      },
+      {
+        "assertion": "The failed target view excludes the distinct baseline record's stale details",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-9-before-simulated-error.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png"
+        ]
+      },
+      {
+        "assertion": "Removing the scoped handler permits genuine recovery",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-9-recovered-detail.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  }
+]

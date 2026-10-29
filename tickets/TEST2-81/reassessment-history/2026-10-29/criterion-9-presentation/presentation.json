@@ -1,0 +1,16 @@
+{
+  "ticket": "TEST2-81",
+  "cycleId": "cycle-003",
+  "historyAttempt": 1,
+  "date": "2026-10-29",
+  "changedPresentationCriteria": [
+    9
+  ],
+  "outcomeChanged": false,
+  "newBrowserTest": false,
+  "criterion8Unchanged": true,
+  "sourceResultsSha256": "fd7231d0369f9818e16e1f9de970ef3688a181d9f9f3f679af5f40ff3baa1055",
+  "sourceReviewSha256": "bd49a97016c4e31f3de45559cd9534b9d3f98939914265c6151bf3ec4eba2d21",
+  "sourceReportSha256": "68d66b6e77588f06ef8a95227414a33254b69091d270a2a478522353c53b556f",
+  "method": "Existing criterion-owned screenshots; synthetic HTTP 503, no stale active detail and genuine recovery. Full original results/review retained."
+}

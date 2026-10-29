@@ -1,0 +1,448 @@
+{
+  "embeddedEvidenceImages": 35,
+  "noEvidenceBlock": null,
+  "reportContent": {
+    "overallOutcome": "Passed",
+    "limitations": "Criteria 9 used simulated UI conditions; see their assessments.",
+    "sourceUrls": [
+      "https://o2intelligence-v4-dev.metricell.com/gis"
+    ],
+    "evidenceCaptions": [
+      "E01 - Before test type (criterion-1-before-test-type.png)",
+      "E02 - Selected http (criterion-1-selected-http.png)",
+      "E03 - Http current scope (criterion-1-http-current-scope.png)",
+      "E04 - Bounded date applied (criterion-1-bounded-date-applied.png)",
+      "E05 - Bounded map (criterion-1-bounded-map.png)",
+      "E06 - Search london (criterion-1-search-london.png)",
+      "E07 - London settled (criterion-1-london-settled.png)",
+      "E08 - Final (criterion-1-final.png)",
+      "E09 - Configured ping (criterion-2-configured-ping.png)",
+      "E10 - Bounded map (criterion-2-bounded-map.png)",
+      "E11 - Final (criterion-2-final.png)",
+      "E12 - Configured video (criterion-3-configured-video.png)",
+      "E13 - Bounded map (criterion-3-bounded-map.png)",
+      "E14 - Final (criterion-3-final.png)",
+      "E15 - Before select (criterion-4-before-select.png)",
+      "E14 - Video top (criterion-4-video-top.png)",
+      "E16 - Video bottom (criterion-4-video-bottom.png)",
+      "E17 - Http configuration (criterion-4-http-configuration.png)",
+      "E18 - Http before select (criterion-4-http-before-select.png)",
+      "E19 - Http top (criterion-4-http-top.png)",
+      "E20 - Http bottom (criterion-4-http-bottom.png)",
+      "E21 - Ping configuration (criterion-4-ping-configuration.png)",
+      "E22 - Ping before select (criterion-4-ping-before-select.png)",
+      "E23 - Ping top (criterion-4-ping-top.png)",
+      "E24 - Final (criterion-4-final.png)",
+      "E25 - Configuration (criterion-5-configuration.png)",
+      "E18 - Before select (criterion-5-before-select.png)",
+      "E26 - Final (criterion-5-final.png)",
+      "E27 - Configuration (criterion-6-configuration.png)",
+      "E22 - Before select (criterion-6-before-select.png)",
+      "E28 - Final (criterion-6-final.png)",
+      "E12 - Configuration (criterion-7-configuration.png)",
+      "E15 - Before select (criterion-7-before-select.png)",
+      "E29 - Final (criterion-7-final.png)",
+      "E18 - Success point (criterion-8-success-point.png)",
+      "E26 - Success detail (criterion-8-success-detail.png)",
+      "E30 - Expanded scope (criterion-8-expanded-scope.png)",
+      "E31 - Chelmsford settled (criterion-8-chelmsford-settled.png)",
+      "E32 - Final (criterion-8-final.png)",
+      "E33 - Before error: distinct valid Ping details (criterion-9-before-simulated-error.png)",
+      "E34 - Simulated HTTP 503: error with no stale details (criterion-9-final.png)",
+      "E35 - After Retry: genuine HTTP details recovered (criterion-9-recovered-detail.png)"
+    ],
+    "criterionNotes": [
+      "Criterion 8 assessment: Testing notes: Within this criterion established genuine successful London HTTP record 132714574, Page Load Time 0.845 s and green diamond. Expanded normal UI date range to 30 July\u201328 October, searched Chelmsford and waited for settled map. Clicked black square at the northeast of the map: genuine response and detail identify record 131937714, 11 August 2026 11:21:32.307, Failed/WebView Error, Page Load Time 0, No service. Its black Error square is visibly distinct from the successful green point and matches Error legend, despite zero load time. No synthetic response used. Cleanup: owned detail tabs were closed; original Automobile Service type, original date values, technology/filter settings and two original Service detail tabs were retained/restored. Original exact map viewport was not restored; final view remains near Chelmsford after the bounded searches. No backend, Jira, credentials or authentication changes were made. Searched Chelmsford UK and waited for the settled map; captured the black square and Error legend before selection. Clicked the visible northeast black square; opened genuine record 131937714, 11 August 11:21:32.307 response / second-precision visible time, Failed, WebView Error, Page Load Time 0.",
+      "Criterion 9 assessment: SIMULATED UI STATE: Returned HTTP 503 for the selected detail request to check error handling. The evidence visibly shows Unable to load point details and Retry, with no previous Ping or successful HTTP detail fields in the active panel. The temporary handler was removed before Retry, which recovered genuine HTTP details. This is a controlled UI simulation."
+    ]
+  },
+  "expectedEvidence": [
+    {
+      "file": "criterion-1-before-test-type.png",
+      "sourceSha256": "4471932fee3ec0f3d60eaf76aab344f9fc8e9aa89f45b8d4cb72c57d714796a8",
+      "visualFingerprint": "e1394178524e3849b4e93a323e2a3b3530953248351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-1-selected-http.png",
+      "sourceSha256": "00264408f676619b40f0667d55533c22b35258948097db5dad6e4868223a86e1",
+      "visualFingerprint": "e1394178524e384994e93a323e2a3b3530953248351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-1-http-current-scope.png",
+      "sourceSha256": "258629915912e37f7452d7611318f6ab2162a4278cc8251088e140f7fa118141",
+      "visualFingerprint": "e1397178324cb849bcb9ba3a3b28bb3f908db2a4251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-1-bounded-date-applied.png",
+      "sourceSha256": "4c10623c54dc46c84102d28d54f1154cc495314861e886e983d6b74877bdd3bc",
+      "visualFingerprint": "e139c1b45e4f36dbf79934db3d98313b31793284351a14d214b20041000b101b"
+    },
+    {
+      "file": "criterion-1-bounded-map.png",
+      "sourceSha256": "ab77236685070c5063c4629f6124c51e671891ce4a329dc03983d77a56e47f1a",
+      "visualFingerprint": "e13971b4360fb85bb5b9b4bb3c38b33b9071b284251a34d234b28041000b301b"
+    },
+    {
+      "file": "criterion-1-search-london.png",
+      "sourceSha256": "a1d9059dc25a5047072364d024cc99e34e59dbc304b799f154161e9a0c5aec48",
+      "visualFingerprint": "e13970b4370fb35bb939b33b3338b93b9071b284251a34d234b28041000b301b"
+    },
+    {
+      "file": "criterion-1-london-settled.png",
+      "sourceSha256": "140328854d32487dd1ec4d9ae7f3860667b008efd4570bdf2417e7156c90a5f4",
+      "visualFingerprint": "e0b97134335dba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-1-final.png",
+      "sourceSha256": "0a078b2e7b457d20b03e96b477bfa749bea0afe664d99248f17a0187d01b321e",
+      "visualFingerprint": "e0b97134335dba39b6d9b53139b1b9b19135b04122c522c930c990c912c930c0"
+    },
+    {
+      "file": "criterion-2-configured-ping.png",
+      "sourceSha256": "08be8bbad3af37185ae7d6fd4e501d693bf29c0bd690cfcc1dcfcb8aae3fa1b5",
+      "visualFingerprint": "e0b9413052173a39f6d9355339b139b1313532c8351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-2-bounded-map.png",
+      "sourceSha256": "b0c147f6336f3d5439691c2098dd1ce5e5fb8d2a532343bbbf2375d6e052d590",
+      "visualFingerprint": "e0b97130331fba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-2-final.png",
+      "sourceSha256": "2f4b8a2dfa9903b3bdd59276a75cde305c4b81a1e3012c1587425dbb6f9ac51c",
+      "visualFingerprint": "e0b97130331fba39b6d9b53139b1b9b19135b24122c520c932c990d112c132d0"
+    },
+    {
+      "file": "criterion-3-configured-video.png",
+      "sourceSha256": "05c3f1316ae3ff64c1a7e392366f0ed2cf32a44c0838a419b36dfb6b405c8193",
+      "visualFingerprint": "e0394130535f3a39b6d9353139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-3-bounded-map.png",
+      "sourceSha256": "f3dee26f33c6ec9ef38a3ebbcade4858d570cd99bb77ea460c13563719413622",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-3-final.png",
+      "sourceSha256": "6b26f3a682472b93943aa428fb9aacdf5dfcfc1ec8c64b779220c66e581f43dc",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b04122c522c930c992d012c03280"
+    },
+    {
+      "file": "criterion-4-before-select.png",
+      "sourceSha256": "26c68ab2bec84078c137f0e46f928893aa38a123d632b9230d30e454f663c34c",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-4-video-bottom.png",
+      "sourceSha256": "805388b74519733a0ce5ea6d97d4be0a3afbe938f047785619e4b195a6e6d7a7",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b2c2339238cc30c192d110d530c1"
+    },
+    {
+      "file": "criterion-4-http-configuration.png",
+      "sourceSha256": "e1db07c5cc35fec9fd2a6cbd421979ba386a4ac4c42a8210de0306c65ac3889b",
+      "visualFingerprint": "e039c1305b5d3a39b6d9353339b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-4-http-before-select.png",
+      "sourceSha256": "07065167dc7b5bc80cfde0fdeba0b5b9b71e0b04dcafc8dc77c79af88a3a0485",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-4-http-top.png",
+      "sourceSha256": "31dd2f20bc8784834d8faf07dce52922feabb2b404956fe70b1893380578f72e",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b04121c522c930c990c912c130c0"
+    },
+    {
+      "file": "criterion-4-http-bottom.png",
+      "sourceSha256": "689a19a8de29833102c3ef0452bd88525d655fc5dedfcc98d57039165523ae18",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b2ca25c222c532c990d110c530c9"
+    },
+    {
+      "file": "criterion-4-ping-configuration.png",
+      "sourceSha256": "a16f281b6fc507c141f5abfa68b7b7456afb4df86cf52cdc5a6287c849d88f87",
+      "visualFingerprint": "e039c1305b5d3a39b6d9353139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-4-ping-before-select.png",
+      "sourceSha256": "1fef9c616048ebc26c65a2cba0e0ce15d5e0196598fb8c1be477156bfd6c07a4",
+      "visualFingerprint": "e039f130335fba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-4-ping-top.png",
+      "sourceSha256": "a4cf5894aae743e6ab76377a17bf72a62afaf9d6f0bde800212ef625a49b1630",
+      "visualFingerprint": "e039f130335fba39b6d9b53139b1b9b19135b24122c520c932c990d112c132d0"
+    },
+    {
+      "file": "criterion-4-final.png",
+      "sourceSha256": "3031a1bb7a43fb6c39593c2f68ad58af2306865e42a4298339e94a71a33f30a1",
+      "visualFingerprint": "e039f130335fba39b6d9b53139b1b9b19135b2ca23c222d532d190d110d530c9"
+    },
+    {
+      "file": "criterion-5-configuration.png",
+      "sourceSha256": "a2b20b2d1248ebf39086440fcb393fe856c728776ee1ae3e6f8354d28256906a",
+      "visualFingerprint": "e0394130535f3a39b6d9353139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-5-final.png",
+      "sourceSha256": "bf99cbeeb34dc761ea2004a63553df572d1f17101f6022c85f15a1c8e31d1b92",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b04122c522c930c990c912c930c0"
+    },
+    {
+      "file": "criterion-6-configuration.png",
+      "sourceSha256": "d2a669495347a3d4246c761952f1d36e0235e6b13c1fc4dde752cfe87ffdc8fb",
+      "visualFingerprint": "e0394130535f3a39b6d9353139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-6-final.png",
+      "sourceSha256": "232bd32a6c8106fef24594d8312541d7b9b22a9d51030f840a034fbed25cb2ce",
+      "visualFingerprint": "e039f130335fba39b6d9b53139b1b9b19135b24122c520c932c990d112c132d0"
+    },
+    {
+      "file": "criterion-7-final.png",
+      "sourceSha256": "61189ff4d39a135b7521e119438974490f8ab4bf2d89ee64a2ac4042dd4e931c",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b04122c522c930c992d012c03280"
+    },
+    {
+      "file": "criterion-8-expanded-scope.png",
+      "sourceSha256": "d5aa9ccccbc430fa34687a64e409ac1cbc977d4633dfaf3f01179c07d91187a7",
+      "visualFingerprint": "e039c1305b5d3a39f6d9753139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-8-chelmsford-settled.png",
+      "sourceSha256": "b7011cb939d45a2491089b022fd6849caf201b3157a379076178bd20b589e047",
+      "visualFingerprint": "e139d1fc3c8cb829bc69b6a93ac9b5419471b284251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-8-final.png",
+      "sourceSha256": "da87599b3ed987205f5d883fa1eb71269ed3576bda4ca7ba443b8e03a6bbb647",
+      "visualFingerprint": "e139d1fc3c8cb829bc69b6a93ac9b5419431b90123c522c930c990c9129130c0"
+    },
+    {
+      "file": "criterion-9-before-simulated-error.png",
+      "sourceSha256": "f60714ed468e676e9593b69b923d1a9681b4cccddd2171e162f521411e3fdf65",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b39123c520c932c990d112c132d0"
+    },
+    {
+      "file": "criterion-9-final.png",
+      "sourceSha256": "7f9e76e7e8eac118dd04104dc4737c4bc943b9d2f1177c11af1730c65040fa20",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19125b1cb270324042402900010003000"
+    },
+    {
+      "file": "criterion-9-recovered-detail.png",
+      "sourceSha256": "08e1514c19ec99bcd2728b65ff0d0893d6ad3c56e0d138d7057154adbe4b8614",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19125b14322c522c930c990c912c930c0"
+    }
+  ],
+  "logicalEvidence": [
+    {
+      "file": "criterion-1-before-test-type.png",
+      "sourceSha256": "4471932fee3ec0f3d60eaf76aab344f9fc8e9aa89f45b8d4cb72c57d714796a8",
+      "visualFingerprint": "e1394178524e3849b4e93a323e2a3b3530953248351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-1-selected-http.png",
+      "sourceSha256": "00264408f676619b40f0667d55533c22b35258948097db5dad6e4868223a86e1",
+      "visualFingerprint": "e1394178524e384994e93a323e2a3b3530953248351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-1-http-current-scope.png",
+      "sourceSha256": "258629915912e37f7452d7611318f6ab2162a4278cc8251088e140f7fa118141",
+      "visualFingerprint": "e1397178324cb849bcb9ba3a3b28bb3f908db2a4251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-1-bounded-date-applied.png",
+      "sourceSha256": "4c10623c54dc46c84102d28d54f1154cc495314861e886e983d6b74877bdd3bc",
+      "visualFingerprint": "e139c1b45e4f36dbf79934db3d98313b31793284351a14d214b20041000b101b"
+    },
+    {
+      "file": "criterion-1-bounded-map.png",
+      "sourceSha256": "ab77236685070c5063c4629f6124c51e671891ce4a329dc03983d77a56e47f1a",
+      "visualFingerprint": "e13971b4360fb85bb5b9b4bb3c38b33b9071b284251a34d234b28041000b301b"
+    },
+    {
+      "file": "criterion-1-search-london.png",
+      "sourceSha256": "a1d9059dc25a5047072364d024cc99e34e59dbc304b799f154161e9a0c5aec48",
+      "visualFingerprint": "e13970b4370fb35bb939b33b3338b93b9071b284251a34d234b28041000b301b"
+    },
+    {
+      "file": "criterion-1-london-settled.png",
+      "sourceSha256": "140328854d32487dd1ec4d9ae7f3860667b008efd4570bdf2417e7156c90a5f4",
+      "visualFingerprint": "e0b97134335dba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-1-final.png",
+      "sourceSha256": "0a078b2e7b457d20b03e96b477bfa749bea0afe664d99248f17a0187d01b321e",
+      "visualFingerprint": "e0b97134335dba39b6d9b53139b1b9b19135b04122c522c930c990c912c930c0"
+    },
+    {
+      "file": "criterion-2-configured-ping.png",
+      "sourceSha256": "08be8bbad3af37185ae7d6fd4e501d693bf29c0bd690cfcc1dcfcb8aae3fa1b5",
+      "visualFingerprint": "e0b9413052173a39f6d9355339b139b1313532c8351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-2-bounded-map.png",
+      "sourceSha256": "b0c147f6336f3d5439691c2098dd1ce5e5fb8d2a532343bbbf2375d6e052d590",
+      "visualFingerprint": "e0b97130331fba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-2-final.png",
+      "sourceSha256": "2f4b8a2dfa9903b3bdd59276a75cde305c4b81a1e3012c1587425dbb6f9ac51c",
+      "visualFingerprint": "e0b97130331fba39b6d9b53139b1b9b19135b24122c520c932c990d112c132d0"
+    },
+    {
+      "file": "criterion-3-configured-video.png",
+      "sourceSha256": "05c3f1316ae3ff64c1a7e392366f0ed2cf32a44c0838a419b36dfb6b405c8193",
+      "visualFingerprint": "e0394130535f3a39b6d9353139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-3-bounded-map.png",
+      "sourceSha256": "f3dee26f33c6ec9ef38a3ebbcade4858d570cd99bb77ea460c13563719413622",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-3-final.png",
+      "sourceSha256": "6b26f3a682472b93943aa428fb9aacdf5dfcfc1ec8c64b779220c66e581f43dc",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b04122c522c930c992d012c03280"
+    },
+    {
+      "file": "criterion-4-before-select.png",
+      "sourceSha256": "26c68ab2bec84078c137f0e46f928893aa38a123d632b9230d30e454f663c34c",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-4-video-top.png",
+      "sourceSha256": "6b26f3a682472b93943aa428fb9aacdf5dfcfc1ec8c64b779220c66e581f43dc",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b04122c522c930c992d012c03280"
+    },
+    {
+      "file": "criterion-4-video-bottom.png",
+      "sourceSha256": "805388b74519733a0ce5ea6d97d4be0a3afbe938f047785619e4b195a6e6d7a7",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b2c2339238cc30c192d110d530c1"
+    },
+    {
+      "file": "criterion-4-http-configuration.png",
+      "sourceSha256": "e1db07c5cc35fec9fd2a6cbd421979ba386a4ac4c42a8210de0306c65ac3889b",
+      "visualFingerprint": "e039c1305b5d3a39b6d9353339b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-4-http-before-select.png",
+      "sourceSha256": "07065167dc7b5bc80cfde0fdeba0b5b9b71e0b04dcafc8dc77c79af88a3a0485",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-4-http-top.png",
+      "sourceSha256": "31dd2f20bc8784834d8faf07dce52922feabb2b404956fe70b1893380578f72e",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b04121c522c930c990c912c130c0"
+    },
+    {
+      "file": "criterion-4-http-bottom.png",
+      "sourceSha256": "689a19a8de29833102c3ef0452bd88525d655fc5dedfcc98d57039165523ae18",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b2ca25c222c532c990d110c530c9"
+    },
+    {
+      "file": "criterion-4-ping-configuration.png",
+      "sourceSha256": "a16f281b6fc507c141f5abfa68b7b7456afb4df86cf52cdc5a6287c849d88f87",
+      "visualFingerprint": "e039c1305b5d3a39b6d9353139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-4-ping-before-select.png",
+      "sourceSha256": "1fef9c616048ebc26c65a2cba0e0ce15d5e0196598fb8c1be477156bfd6c07a4",
+      "visualFingerprint": "e039f130335fba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-4-ping-top.png",
+      "sourceSha256": "a4cf5894aae743e6ab76377a17bf72a62afaf9d6f0bde800212ef625a49b1630",
+      "visualFingerprint": "e039f130335fba39b6d9b53139b1b9b19135b24122c520c932c990d112c132d0"
+    },
+    {
+      "file": "criterion-4-final.png",
+      "sourceSha256": "3031a1bb7a43fb6c39593c2f68ad58af2306865e42a4298339e94a71a33f30a1",
+      "visualFingerprint": "e039f130335fba39b6d9b53139b1b9b19135b2ca23c222d532d190d110d530c9"
+    },
+    {
+      "file": "criterion-5-configuration.png",
+      "sourceSha256": "a2b20b2d1248ebf39086440fcb393fe856c728776ee1ae3e6f8354d28256906a",
+      "visualFingerprint": "e0394130535f3a39b6d9353139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-5-before-select.png",
+      "sourceSha256": "07065167dc7b5bc80cfde0fdeba0b5b9b71e0b04dcafc8dc77c79af88a3a0485",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-5-final.png",
+      "sourceSha256": "bf99cbeeb34dc761ea2004a63553df572d1f17101f6022c85f15a1c8e31d1b92",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b04122c522c930c990c912c930c0"
+    },
+    {
+      "file": "criterion-6-configuration.png",
+      "sourceSha256": "d2a669495347a3d4246c761952f1d36e0235e6b13c1fc4dde752cfe87ffdc8fb",
+      "visualFingerprint": "e0394130535f3a39b6d9353139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-6-before-select.png",
+      "sourceSha256": "1fef9c616048ebc26c65a2cba0e0ce15d5e0196598fb8c1be477156bfd6c07a4",
+      "visualFingerprint": "e039f130335fba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-6-final.png",
+      "sourceSha256": "232bd32a6c8106fef24594d8312541d7b9b22a9d51030f840a034fbed25cb2ce",
+      "visualFingerprint": "e039f130335fba39b6d9b53139b1b9b19135b24122c520c932c990d112c132d0"
+    },
+    {
+      "file": "criterion-7-configuration.png",
+      "sourceSha256": "05c3f1316ae3ff64c1a7e392366f0ed2cf32a44c0838a419b36dfb6b405c8193",
+      "visualFingerprint": "e0394130535f3a39b6d9353139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-7-before-select.png",
+      "sourceSha256": "26c68ab2bec84078c137f0e46f928893aa38a123d632b9230d30e454f663c34c",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-7-final.png",
+      "sourceSha256": "61189ff4d39a135b7521e119438974490f8ab4bf2d89ee64a2ac4042dd4e931c",
+      "visualFingerprint": "e039f130335dba39b6d9b53339b1b9b19135b04122c522c930c992d012c03280"
+    },
+    {
+      "file": "criterion-8-success-point.png",
+      "sourceSha256": "07065167dc7b5bc80cfde0fdeba0b5b9b71e0b04dcafc8dc77c79af88a3a0485",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b2ca251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-8-success-detail.png",
+      "sourceSha256": "bf99cbeeb34dc761ea2004a63553df572d1f17101f6022c85f15a1c8e31d1b92",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b04122c522c930c990c912c930c0"
+    },
+    {
+      "file": "criterion-8-expanded-scope.png",
+      "sourceSha256": "d5aa9ccccbc430fa34687a64e409ac1cbc977d4633dfaf3f01179c07d91187a7",
+      "visualFingerprint": "e039c1305b5d3a39f6d9753139b139b1313532ca351214d214b20041000b101b"
+    },
+    {
+      "file": "criterion-8-chelmsford-settled.png",
+      "sourceSha256": "b7011cb939d45a2491089b022fd6849caf201b3157a379076178bd20b589e047",
+      "visualFingerprint": "e139d1fc3c8cb829bc69b6a93ac9b5419471b284251234d234b28041000b301b"
+    },
+    {
+      "file": "criterion-8-final.png",
+      "sourceSha256": "da87599b3ed987205f5d883fa1eb71269ed3576bda4ca7ba443b8e03a6bbb647",
+      "visualFingerprint": "e139d1fc3c8cb829bc69b6a93ac9b5419431b90123c522c930c990c9129130c0"
+    },
+    {
+      "file": "criterion-9-before-simulated-error.png",
+      "sourceSha256": "f60714ed468e676e9593b69b923d1a9681b4cccddd2171e162f521411e3fdf65",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19135b39123c520c932c990d112c132d0"
+    },
+    {
+      "file": "criterion-9-final.png",
+      "sourceSha256": "7f9e76e7e8eac118dd04104dc4737c4bc943b9d2f1177c11af1730c65040fa20",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19125b1cb270324042402900010003000"
+    },
+    {
+      "file": "criterion-9-recovered-detail.png",
+      "sourceSha256": "08e1514c19ec99bcd2728b65ff0d0893d6ad3c56e0d138d7057154adbe4b8614",
+      "visualFingerprint": "e039f130335dba39b6d9b53139b1b9b19125b14322c522c930c990c912c930c0"
+    }
+  ]
+}

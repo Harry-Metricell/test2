@@ -100,6 +100,14 @@ class ResultMatchingTests(unittest.TestCase):
         passed = {'outcome': 'Passed', 'reason': reason}
         self.assertIn('Cleanup unverified', REPORT.concise_simulation_assessment(passed, {}))
 
+    def test_error_method_is_not_reclassified_by_no_pending_requests_held(self):
+        reason = ('SIMULATED UI STATE: Returned HTTP 503 for the selected request. '
+                  'criterion-9-final.png visibly shows Unable to load point details and Retry. '
+                  'Owned handler removed; no pending requests were held.')
+        displayed = REPORT.concise_simulation_assessment({'outcome': 'Passed', 'reason': reason}, {})
+        self.assertIn('Returned HTTP 503', displayed)
+        self.assertNotIn('Delayed', displayed)
+
     def test_image_cells_reserve_height_and_do_not_repeat_simulation_method(self):
         with tempfile.TemporaryDirectory() as temporary:
             image = Path(temporary) / 'criterion-8-final.png'
@@ -152,7 +160,7 @@ class ResultMatchingTests(unittest.TestCase):
             'final', 'recovery', 'cleanup')]
         selected = REPORT.report_exhibits(images, 'When point details fail to load, show an error.',
                                           'SIMULATED UI STATE: one scoped HTTP 500, then genuine recovery.')
-        self.assertEqual(selected, [images[4], images[5], images[2], images[3]])
+        self.assertEqual(selected, [images[2], images[3], images[4], images[5]])
         # No explicit review disclosure means no shortcut or post-final reuse.
         self.assertNotIn(images[5], REPORT.report_exhibits(images, 'When point details fail to load, show an error.'))
 

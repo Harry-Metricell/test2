@@ -282,8 +282,10 @@ def reviewed_report_exhibits(images, criterion, review_reason=""):
         return False
     kept = [image for image in selected if not unrelated_setup(image)]
     if "SIMULATED UI STATE:" in review_reason.upper():
-        # Preserve decisive injected-state/recovery pairing first.
-        return kept + [image for image in cited if image not in kept]
+        # Keep the recorded baseline/action/recovery chronology, including
+        # reviewer-cited proof, rather than moving the injected failure first.
+        wanted = set(kept + cited)
+        return [image for image in images if image in wanted]
     wanted = set(kept + cited)
     return [image for image in images if image in wanted]
 
@@ -307,7 +309,8 @@ def report_exhibits(images, criterion, review_reason=""):
             supporting = [image for image in images if any(term in image.stem.lower()
                           for term in ("genuine-point-baseline", "genuine-target-baseline", "distinct-valid-point",
                                        "first-record-baseline", "target-genuine-details", "genuine-baseline"))]
-            return [finals[0], recovery[0], *supporting]
+            wanted = set([finals[0], recovery[0], *supporting])
+            return [image for image in images if image in wanted]
     # A reviewer may explicitly accept a complete recheck instead of an earlier
     # incomplete journey. Never print the rejected journey as the passed proof.
     # Without that review decision, preserve both journeys for transparency.
@@ -783,13 +786,13 @@ def concise_simulation_assessment(item, result):
     reason = concise_review_reason(item.get("reason")) or text(result.get("reason"))
     if text(item.get("outcome")).lower() != "passed":
         return reason
-    if re.search(r"\b(?:held|delayed|delay)\b", reason, re.I):
+    status = re.search(r"\bHTTP\s+([45]\d\d)\b", reason, re.I)
+    if status:
+        method = f"Returned HTTP {status.group(1)} for the selected detail request to check error handling."
+    elif re.search(r"\b(?:held|delayed|delay)\b", reason, re.I):
         method = "Delayed the selected detail request to check loading."
     else:
-        status = re.search(r"\bHTTP\s+([45]\d\d)\b", reason, re.I)
-        if not status:
-            return reason
-        method = f"Returned HTTP {status.group(1)} for the selected detail request to check error handling."
+        return reason
     sentences = re.split(r"(?<=[.!?;])\s+(?=[A-Z]|criterion-\d)", reason)
     decisive_source = next((sentence for sentence in sentences if "-final.png" in sentence
                      and re.search(r"\bshows?\b|\bdisplays?\b", sentence, re.I)), "")

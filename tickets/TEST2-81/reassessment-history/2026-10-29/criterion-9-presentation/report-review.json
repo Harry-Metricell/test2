@@ -1,0 +1,362 @@
+{
+  "handoffId": "handoff-TEST2-81-cycle-003-review-attempt-001",
+  "handoffVersion": "TEST2-81:cycle-003:evidence_review:1:scope-df32a2f05829",
+  "ticket": "TEST2-81",
+  "cycleId": "cycle-003",
+  "testedModule": "Automobile",
+  "criterionOutcomes": [
+    {
+      "criterion": "Given HTTP Browsing results are available, when the HTTP Browsing layer is selected, each supplied result is displayed as a selectable point on the map.",
+      "outcome": "Passed",
+      "reason": "criterion-1-selected-http.png and criterion-1-http-current-scope.png establish Automobile HTTP Browsing selection. criterion-1-london-settled.png shows its point in the bounded central London viewport; criterion-1-final.png shows the new detail for member 132714574. The recorded genuine GET contains one aggregate 1441292517047095807 and its POST contains one member; the single visible point was selected, reconciling 1/1 aggregates and 1/1 members for 8 October 00:00–23:59 local with default technologies and no handset/cell restriction. This pass applies to that explicitly bounded supplied dataset.",
+      "coverageChecks": [
+        {
+          "assertion": "HTTP Browsing layer can be selected",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-selected-http.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-http-current-scope.png"
+          ]
+        },
+        {
+          "assertion": "All returned records in bounded London 8 October scope are displayed and selectable",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-london-settled.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given Ping results are available, when the Ping layer is selected, each supplied result is displayed as a selectable point on the map.",
+      "outcome": "Passed",
+      "reason": "criterion-2-configured-ping.png records the 8 October date/filter scope and Ping selection; criterion-2-bounded-map.png shows the settled Automobile Ping layer and its point. criterion-2-final.png shows the newly opened Ping member 132714573. The recorded genuine GET/POST reconciliation is one aggregate 1441292517315531264 and one member, with 1/1 selected in the bounded central London viewport; no wider dataset claim is made.",
+      "coverageChecks": [
+        {
+          "assertion": "Ping layer can be selected",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-configured-ping.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-bounded-map.png"
+          ]
+        },
+        {
+          "assertion": "All returned Ping records in bounded London 8 October scope are displayed and selectable",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-bounded-map.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given Video Streaming results are available, when the Video Streaming layer is selected, each supplied result is displayed as a selectable point on the map.",
+      "outcome": "Passed",
+      "reason": "criterion-3-configured-video.png records Video Streaming selection and the 8 October scope; criterion-3-bounded-map.png shows its settled Automobile layer and point. criterion-3-final.png shows newly opened member 132714575. The recorded genuine responses identify exactly one aggregate 1441292517047095806 and one member, reconciled 1/1 with the visible selectable presentation in the bounded central London viewport.",
+      "coverageChecks": [
+        {
+          "assertion": "Video Streaming layer can be selected",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-configured-video.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-bounded-map.png"
+          ]
+        },
+        {
+          "assertion": "All returned Video Streaming records in bounded London 8 October scope are displayed and selectable",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-bounded-map.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given details are available for a result point, when the point is selected, a new detail dialog opens for that same result and displays its test type, result time, location, and available network technology/context.",
+      "outcome": "Passed",
+      "reason": "criterion-4-before-select.png, criterion-4-http-before-select.png and criterion-4-ping-before-select.png show each type's point before its new detail tab opens. The corresponding video-top/bottom, http-top/bottom and ping-top/final captures display Video 132714575, HTTP 132714574 and Ping 132714573, each at 08/10/2026 10:53:25 UI precision. Overlapping captures show respective latitude/longitude (51.50901/-0.12941, 51.5089/-0.1293, 51.50866/-0.12906), 4G service, LTE technology, band 1800+ and serving-cell context. Recorded genuine responses support point/member correlation; readable UI fields and separate new tabs provide the visible proof. No hidden millisecond precision is assumed.",
+      "coverageChecks": [
+        {
+          "assertion": "Video: Selected point opens a new dialog for the same result identity",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+          ]
+        },
+        {
+          "assertion": "Video: Test type is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+          ]
+        },
+        {
+          "assertion": "Video: Result time is displayed at the actual UI precision",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+          ]
+        },
+        {
+          "assertion": "Video: Latitude and longitude are readable and match the selected record",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+          ]
+        },
+        {
+          "assertion": "Video: Available network service and technology context is readable and matches the record",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-video-bottom.png"
+          ]
+        },
+        {
+          "assertion": "HTTP: Selected point opens a new dialog for the same result identity",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+          ]
+        },
+        {
+          "assertion": "HTTP: Test type is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+          ]
+        },
+        {
+          "assertion": "HTTP: Result time is displayed at the actual UI precision",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+          ]
+        },
+        {
+          "assertion": "HTTP: Latitude and longitude are readable and match the selected record",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+          ]
+        },
+        {
+          "assertion": "HTTP: Available network service and technology context is readable and matches the record",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-http-bottom.png"
+          ]
+        },
+        {
+          "assertion": "Ping: Selected point opens a new dialog for the same result identity",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        },
+        {
+          "assertion": "Ping: Test type is displayed",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        },
+        {
+          "assertion": "Ping: Result time is displayed at the actual UI precision",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        },
+        {
+          "assertion": "Ping: Latitude and longitude are readable and match the selected record",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        },
+        {
+          "assertion": "Ping: Available network service and technology context is readable and matches the record",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-configuration.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-ping-top.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given an HTTP Browsing point is selected and its details are available, the dialog displays that result’s Page Load Time.",
+      "outcome": "Passed",
+      "reason": "criterion-5-before-select.png shows the HTTP Browsing point before selection, and criterion-5-final.png shows its new detail with Test ID 132714574 and Page Load Time (s) 0.845. The separate Ping (ms) field is 26; it is not mistaken for Page Load Time. Configuration and final captures retain the Automobile HTTP scope and selected record identity.",
+      "coverageChecks": [
+        {
+          "assertion": "Selected HTTP Browsing point opens its own detail",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        },
+        {
+          "assertion": "Page Load Time is readable and equals the selected record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given a Ping point is selected and its details are available, the dialog displays that result’s Ping Time.",
+      "outcome": "Passed",
+      "reason": "criterion-6-configuration.png and criterion-6-before-select.png establish the Automobile Ping scope and point. criterion-6-final.png shows the new detail for Test ID 132714573 with readable Ping Time (ms) 23; the separately labelled Jitter value is 3. The displayed identity/value agree with the recorded genuine selected member.",
+      "coverageChecks": [
+        {
+          "assertion": "Selected Ping point opens its own detail",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        },
+        {
+          "assertion": "Ping Time is readable and equals the selected record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given a Video Streaming point is selected and its details are available, the dialog displays that result’s Rebuffer Count.",
+      "outcome": "Passed",
+      "reason": "criterion-7-configuration.png and criterion-7-before-select.png establish Automobile Video Streaming selection and its point. criterion-7-final.png shows Test ID 132714575 with readable Rebuffer Count 1; Rebuffer Time (ms) 350 is separately labelled. The selected record and value agree with the recorded genuine response.",
+      "coverageChecks": [
+        {
+          "assertion": "Selected Video Streaming point opens its own detail",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-before-select.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+          ]
+        },
+        {
+          "assertion": "Rebuffer Count is readable and equals the selected record value",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given an HTTP Browsing result ends in error, when its point is displayed, it is visually distinct from a successful result; a zero Page Load Time on the failed result is not coloured as success.",
+      "outcome": "Passed",
+      "reason": "criterion-8-success-point.png and criterion-8-success-detail.png establish a genuine successful green HTTP point, member 132714574 with Page Load Time 0.845 s. After the normal scope expansion, criterion-8-chelmsford-settled.png shows the northeast black Error square and its Error legend. criterion-8-final.png shows the selected genuine failed member 131937714, Page Load Time 0 and WebView Error. The black Error square is visibly distinct from the green successful point despite the failed result's zero value. No synthetic response was used for this criterion.",
+      "coverageChecks": [
+        {
+          "assertion": "Genuine failed HTTP result is established independently",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-detail.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        },
+        {
+          "assertion": "Failed HTTP point is visually distinct from a successful result",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-point.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-8-chelmsford-settled.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        },
+        {
+          "assertion": "Failed zero Page Load Time is not coloured as successful",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-8-success-point.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-8-chelmsford-settled.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given details cannot be returned for a selected point, the user sees a clear no-data or error message and no stale details are displayed.",
+      "outcome": "Passed",
+      "reason": "SIMULATED UI STATE: Returned HTTP 503 only for the selected HTTP Browsing detail request. criterion-9-before-simulated-error.png shows the distinct genuine Ping baseline. criterion-9-final.png visibly shows Unable to load point details and Retry, with no previous Ping or successful HTTP detail fields in the active panel. After removing the owned handler, normal Retry returned genuine data; criterion-9-recovered-detail.png shows the matching HTTP result restored. This proves browser-local error handling, not a naturally occurring backend outage or an empty-response contract. No pending requests were held.",
+      "coverageChecks": [
+        {
+          "assertion": "Unavailable target details display a clear error message",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-9-before-simulated-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png"
+          ]
+        },
+        {
+          "assertion": "The failed target view excludes the distinct baseline record's stale details",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-9-before-simulated-error.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png"
+          ]
+        },
+        {
+          "assertion": "Removing the scoped handler permits genuine recovery",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-9-final.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-9-recovered-detail.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "overallOutcome": "Passed",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-81\\cycles\\cycle-003\\screenshots\\attempt-001",
+  "qaStatus": "Evidence Reviewed",
+  "noOp": false,
+  "reason": "Independently inspected all 60 non-empty criterion-owned PNGs and the complete live source, criteria and testing context. All nine criteria have direct visible proof within their recorded scopes. Map completeness is limited to the explicitly bounded genuine datasets, each containing one aggregate and one member. SIMULATED UI STATE: criterion 9 passes the scoped synthetic HTTP-error UI alternative with distinct genuine baseline, clear error/no stale active detail and genuine recovery after verified owned-handler removal; it does not establish a natural backend outage or empty-response contract. Service configuration, dates and original tabs were restored; the tester disclosed that the exact original map viewport was not restored."
+}
