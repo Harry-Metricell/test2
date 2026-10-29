@@ -1,0 +1,334 @@
+{
+  "handoffId": "handoff-TEST2-88-cycle-002-review-attempt-001",
+  "handoffVersion": "TEST2-88:cycle-002:evidence_review:1:scope-733c837d2b49",
+  "ticket": "TEST2-88",
+  "testedModule": "Automobile",
+  "criterionOutcomes": [
+    {
+      "criterion": "Given the MS Teams Call layer is active, when the user opens its display settings, then the configured map-colouring choices and controls for detailed routes, linked sites and linked cells are visible.",
+      "outcome": "Failed",
+      "reason": "criterion-1-display-controls.png and criterion-1-final.png show the complete Display Settings popover with the three required overlay controls, but no map-colouring choice; the active Automobile MS Teams Call legend has a static Call Quality heading. The source explicitly requires a configured colouring choice, so that missing control is a visible failure.",
+      "coverageChecks": [
+        {
+          "assertion": "Configured map-colouring choice controls are visible",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-1-display-controls.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+          ]
+        },
+        {
+          "assertion": "Detailed routes control is visible",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+          ]
+        },
+        {
+          "assertion": "Linked sites control is visible",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+          ]
+        },
+        {
+          "assertion": "Linked cells control is visible",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active and a configured colouring choice is selected, when the map updates, then MS Teams Call result points and the legend display the selected configured colouring and its corresponding legend section.",
+      "outcome": "Blocked",
+      "reason": "criterion-2-before-choice.png shows the Call Quality legend and criterion-2-final.png shows only the three overlay controls. With no colouring-choice selector available, selecting a configuration and comparing its point colours and corresponding legend section could not be exercised; this prerequisite block is separate from criterion 1's missing-control failure.",
+      "coverageChecks": [
+        {
+          "assertion": "Select a configured colouring choice",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Result points use selected configuration colouring",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-choice.png"
+          ]
+        },
+        {
+          "assertion": "Corresponding selected legend section is displayed",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-before-choice.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active, when the user turns detailed routes on and the map refreshes, then detailed route geometry for the active MS Teams Call results is visible.",
+      "outcome": "Passed",
+      "reason": "criterion-3-route-isolated-off-baseline.png shows sparse MS Teams Call positions with Download hidden and linked-site markers absent; criterion-3-final.png shows dense route geometry along the same Preston streets after enabling detailed routes. The earlier criterion-3-routes-enabled-control.png confirms the route control can be enabled; the matched isolated Preston pair is the decisive rendering proof.",
+      "coverageChecks": [
+        {
+          "assertion": "Detailed routes can be enabled for active MS Teams Call",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-routes-enabled-control.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png"
+          ]
+        },
+        {
+          "assertion": "Refreshed active MS Teams Call route geometry is visibly present",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-route-isolated-off-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active and detailed routes are visible, when the user turns detailed routes off and the map refreshes, then that detailed route geometry is hidden.",
+      "outcome": "Passed",
+      "reason": "criterion-4-before-routes-off.png establishes the dense-route baseline in the Preston view with Download hidden. criterion-4-routes-off-control.png shows routes unchecked and criterion-4-final.png shows those traces removed while sparse MS Teams Call positions remain.",
+      "coverageChecks": [
+        {
+          "assertion": "A visible detailed-route baseline is established",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-before-routes-off.png"
+          ]
+        },
+        {
+          "assertion": "Turning routes off hides the active layer's detailed route geometry",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-routes-off-control.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active and the map is below the configured zoom level for linked sites, when display settings are open, then the linked-site control is unavailable and indicates that the user must zoom in.",
+      "outcome": "Passed",
+      "reason": "criterion-5-before-disabled-activation.png and criterion-5-after-pointer.png show the same unavailable, retained checked linked-site control and unchanged map before and after the recorded ordinary pointer attempt. criterion-5-final.png visibly explains 'Zoom in to level 13 to show linked sites'; the recorded zoom was 12, and ordinary Tab traversal skipped the disabled controls.",
+      "coverageChecks": [
+        {
+          "assertion": "Below the observed configured linked-site zoom threshold, the control is unavailable",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-disabled-activation.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-5-after-pointer.png"
+          ]
+        },
+        {
+          "assertion": "Ordinary activation does not change the disabled site state",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-5-before-disabled-activation.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-5-after-pointer.png"
+          ]
+        },
+        {
+          "assertion": "The unavailable control explains that the user must zoom in",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given the MS Teams Call layer is active and the map is at or above the configured zoom level for linked sites, when the user turns linked sites on and the map refreshes, then linked-site overlays for the active MS Teams Call results are visible.",
+      "outcome": "Passed",
+      "reason": "criterion-6-before-sites-on.png shows MS Teams Call positions without linked-site dots or connections; criterion-6-sites-on-control.png shows the enabled control checked. criterion-6-final.png adds labelled blue site dots and point-to-site links, including 500716, 516884 and 509658, with Download hidden and routes off.",
+      "coverageChecks": [
+        {
+          "assertion": "At a supported zoom, linked-site control is available",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-sites-on-control.png"
+          ]
+        },
+        {
+          "assertion": "Turning linked sites on displays overlays for active MS Teams results",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-sites-on.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given linked-site overlays are visible at a supported zoom level, when the user turns linked sites off and the map refreshes, then those linked-site overlays are hidden.",
+      "outcome": "Passed",
+      "reason": "criterion-7-before-sites-off.png establishes labelled site dots and point-to-site connections in the Preston view. criterion-7-sites-off-control.png shows the site checkbox cleared, and criterion-7-final.png removes those overlays while retaining the MS Teams Call positions.",
+      "coverageChecks": [
+        {
+          "assertion": "Visible linked-site baseline at a supported zoom is established",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-sites-off.png"
+          ]
+        },
+        {
+          "assertion": "Turning linked sites off hides those overlays",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-sites-off-control.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given linked sites are enabled and the map is at a zoom level that supports linked cells, when display settings are open, then the linked-cell control is available.",
+      "outcome": "Passed",
+      "reason": "criterion-8-available-baseline.png shows linked sites checked and the linked-cell checkbox available at the recorded zoom 13. Its ordinary activation is followed by a checked, still available control in criterion-8-final.png; cell rendering is assessed separately.",
+      "coverageChecks": [
+        {
+          "assertion": "Linked sites is enabled at a zoom supporting linked cells",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-available-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        },
+        {
+          "assertion": "Linked-cell control is available and accepts ordinary activation",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-available-baseline.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given linked sites are disabled or the map is below the zoom level that supports linked cells, when display settings are open, then the linked-cell control is unavailable.",
+      "outcome": "Passed",
+      "reason": "Both prerequisite branches have their own recorded ordinary pointer attempts and settled comparisons: criterion-9-sites-off-before-activation.png / criterion-9-sites-off-after-activation.png retain unchecked disabled cells with sites off, while criterion-9-low-zoom-before-activation.png / criterion-9-final.png retain disabled cells below the supported zoom with sites retained on. The after images explain 'Enable linked sites to show linked cells' and 'Zoom in to level 13 to show linked cells', respectively.",
+      "coverageChecks": [
+        {
+          "assertion": "Linked cells is unavailable when sites are off at supported zoom",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-before-activation.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-after-activation.png"
+          ]
+        },
+        {
+          "assertion": "Linked cells is unavailable below supported zoom even with sites on",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-low-zoom-before-activation.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+          ]
+        },
+        {
+          "assertion": "Ordinary pointer activation does not alter either disabled state",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-before-activation.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-sites-off-after-activation.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-low-zoom-before-activation.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-9-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given linked sites are enabled and the map is at a zoom level that supports linked cells, when the user turns linked cells on and the map refreshes, then linked-cell overlays are visible.",
+      "outcome": "Passed",
+      "reason": "criterion-10-before-cells-on.png establishes linked sites and connections without sectors, with Download hidden and routes off. criterion-10-cells-on-control.png shows sites and cells checked; criterion-10-final.png adds visible multi-sector cell overlays at the same linked sites in the Preston view.",
+      "coverageChecks": [
+        {
+          "assertion": "Linked sites are enabled at supported zoom before enabling cells",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-cells-on.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-cells-on-control.png"
+          ]
+        },
+        {
+          "assertion": "Enabling linked cells displays cell overlays",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-before-cells-on.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-10-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given linked-cell overlays are visible, when the user turns linked cells off and the map refreshes, then those linked-cell overlays are hidden.",
+      "outcome": "Passed",
+      "reason": "criterion-11-before-cells-off.png establishes visible sectors around the linked sites. criterion-11-cells-off-control.png shows cells unchecked while sites remain checked, and criterion-11-final.png removes the sectors while retaining site dots, labels and connections.",
+      "coverageChecks": [
+        {
+          "assertion": "Visible linked-cell baseline is established",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cells-off.png"
+          ]
+        },
+        {
+          "assertion": "Disabling linked cells hides cell overlays",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-cells-off-control.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Given any MS Teams Call display setting is changed, when the map refreshes, then the setting is applied only to the active MS Teams Call layer and other visible map layers, standard map filters and legend point-filtering state retain their prior visible states.",
+      "outcome": "Blocked",
+      "reason": "criterion-12-final.png shows the actual SmartTools sign-in blocker after the recorded launcher recovery attempt failed. There is no complete criterion-owned before/change/after comparison of other-layer, standard-filter or legend-filter preservation, so the isolation assertion remains Blocked; the original source also names Route Replay preservation, which the canonical wording does not explicitly retain. The last test-created MS Teams layer/map cleanup was inaccessible after authentication loss; no sign-in control or request interception was used.",
+      "coverageChecks": [
+        {
+          "assertion": "Changed display setting applies only to active MS Teams Call",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        },
+        {
+          "assertion": "Other visible map layers retain prior state",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        },
+        {
+          "assertion": "Standard map filters retain prior state",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        },
+        {
+          "assertion": "Legend point-filtering state retains prior state",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-final.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-88\\cycles\\cycle-002\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "The required map-colouring choice is absent, which blocks its dependent selection comparison. Authentication loss prevented the complete isolation assessment and final test-created layer/map cleanup; no request interception was installed.",
+  "cycleId": "cycle-002"
+}
