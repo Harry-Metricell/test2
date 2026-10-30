@@ -1,0 +1,580 @@
+{
+  "handoffId": "handoff-TEST2-89-cycle-003-test-attempt-001",
+  "handoffVersion": "TEST2-89:cycle-003:test_ticket:1:scope-af7443f54839",
+  "cycleId": "cycle-003",
+  "ticket": "TEST2-89",
+  "testedModule": "Automobile",
+  "evidenceCoverageVersion": 1,
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
+      "outcome": "Passed",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "No MS Teams Call test-result points appear before the layer is selected.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+          ]
+        }
+      ],
+      "steps_taken": [
+        "Acquired the browser lease before browser work.",
+        "Navigated to the exact launcher and saved its settled initial capture.",
+        "Read the browser fullVersionList: Google Chrome 156.0.8078.48.",
+        "Opened GIS; observed an empty selected-layer state and the unobscured Cambridge map at zoom 14.",
+        "Saved and inspected the final map capture; read the actual final URL.",
+        "After the decisive capture, opened Automobile configuration to establish the nested Test type control; cancelled without adding a layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Launcher-to-GIS baseline showed no selected map layers and no MS Teams result symbols. The Automobile catalogue row was available. Final PNG was inspected. This verifies only the initial unselected state.",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
+      "outcome": "Unverified",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-before-add.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-test-type-choices.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-configured.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-local-selected.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-wide-map.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-before-point.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-point-selected.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Automobile offers MS Teams Call as a nested Test type.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-test-type-choices.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-configured.png"
+          ]
+        },
+        {
+          "assertion": "Selecting MS Teams Call plots genuine matching results.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-local-selected.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-wide-map.png"
+          ]
+        },
+        {
+          "assertion": "Every matching result in the bounded scope is reconciled with its selectable presentation, including all aggregate members.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-before-point.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        }
+      ],
+      "steps_taken": [
+        "Started independently at the launcher and captured its initial state; opened GIS.",
+        "Opened Automobile > Test type; captured all eight nested choices and selected MS Teams Call.",
+        "Added the layer with all default technologies and no handset/network restrictions; From 1 August to 30 October 2026. Initial Cambridge zoom-14 points request returned HTTP 200.",
+        "Expanded normally to zoom 6 around Cambridge, covering England/Wales; GET /api/platform/automobile/ms-teams-call/points returned HTTP 200 with populated aggregates. This broader scope differs from the initial local capture.",
+        "Used the genuine response coordinates 53.90433815627469, -3.076171875 to perform a normal pointer click on aggregate 864691668815709477.",
+        "POST /api/platform/automobile/ms-teams-call/cluster-details returned HTTP 200. Settled selection list displayed tests 131982033, 131981760 and 131981704, pagination 1–3 of 3.",
+        "Saved and inspected the final selection-list PNG; read its final URL. Other aggregates and their members were not exhaustively reconciled.",
+        "Closed the owned selection panel and removed the owned layer before the next criterion."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Genuine plotted aggregates and one selectable three-member aggregate were demonstrated. Complete expected count and identity reconciliation for all returned records in the broad map scope was not established, so the each-matching-result assertion remains Unverified. The aggregate list is a test-selection view, not a detailed-sample table.",
+      "retryClass": "manual",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
+      "outcome": "Unverified",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-before-add.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-configured.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-before-wide.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-wide-map.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-colour-configuration.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "The configured green quality band uses the observed exact colour code.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-colour-configuration.png"
+          ]
+        },
+        {
+          "assertion": "A genuine displayed point with Poor Quality 0–0.99 is independently correlated with its rendered green colour.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+          ]
+        }
+      ],
+      "steps_taken": [
+        "Started independently at the exact launcher, captured initial state, opened GIS and configured Automobile > MS Teams Call with default 1 August–30 October date scope.",
+        "Captured the configured dialog, added layer and captured map. Map zoom persisted between visits; an eight-click zoom-out sequence reached zoom 3 rather than the intended zoom 6.",
+        "Opened Edit Legend without editing. Read colour input #31aa4f and numeric value 1 for the green range, and captured the editor.",
+        "Cancelled the unchanged editor; used normal Zoom in controls to return from observed zoom 3 to 6.",
+        "Moved the pointer to a candidate map location and then used normal mouse-wheel zoom; settled map became centre -1.263,52.905 at zoom 6.82.",
+        "Saved and inspected final map PNG and observed the final browser URL. Did not claim an isolated runtime point-colour comparison.",
+        "Removed the owned layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Green configuration was observed as #31aa4f with numeric upper value 1. Genuine map symbols were present, but a criterion-owned response/value-to-individual-symbol correlation was not retained. The legend and broad map alone do not establish the runtime band. No missing-data claim or product failure is made.",
+      "retryClass": "manual",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
+      "outcome": "Unverified",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-before-add.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-configured.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-map.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-colour-configuration.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "The configured yellow band uses the observed exact colour code and threshold values.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-colour-configuration.png"
+          ]
+        },
+        {
+          "assertion": "A genuine displayed point with Poor Quality 1–9.99 is independently correlated with its rendered yellow colour.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        }
+      ],
+      "steps_taken": [
+        "Started independently at launcher and saved initial PNG; opened GIS and Automobile > MS Teams Call; added with default technologies and no handset/network restriction.",
+        "Applied date scope 1 August 2026 11:29 local to 30 October 2026 11:29 local; map centre -1.263,52.905, zoom 6.82.",
+        "GET /api/platform/automobile/ms-teams-call/points returned HTTP 200 with 114 aggregates. One qualifying observation was aggregate 864691668815709477, KPI 1.720269259536275 at 53.90433815627469,-3.076171875; this is an aggregate, not proof of an individual result.",
+        "Opened Edit Legend, read the exact #fcbf1a colour and numeric range values 1/10, captured it and cancelled without changes.",
+        "Saved and inspected final broad map and its actual URL. No direct isolated value/colour comparison was established.",
+        "Removed the owned layer."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Yellow configuration was #fcbf1a, with the range between numeric values 1 and 10. The current genuine points response contained qualifying aggregates, but the final image does not independently identify an individual point and its quality value. Runtime colour remains Unverified; this is an evidence gap rather than unavailable data.",
+      "retryClass": "manual",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
+      "outcome": "Unverified",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-add.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-configured.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-map.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-colour-configuration.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "The configured amber band uses the observed exact colour code and threshold values.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-colour-configuration.png"
+          ]
+        },
+        {
+          "assertion": "A genuine displayed point with Poor Quality 10–24.99 is independently correlated with its rendered amber colour.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-map.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        }
+      ],
+      "steps_taken": [
+        "Started independently at launcher; opened GIS; configured and added Automobile > MS Teams Call with default 1 August–30 October date scope, technologies unrestricted.",
+        "Saved genuine plotted-map capture; opened Edit Legend and read #ff7b00, numeric threshold values 10 and 25; captured editor and cancelled unchanged.",
+        "Performed a normal pointer click at genuine aggregate coordinates 53.956085530987885,-2.28515625, derived using the observed map centre/zoom and canvas bounds.",
+        "POST /api/platform/automobile/ms-teams-call/cluster-details returned HTTP 200. The settled selection table contained four tests: 131998588 (1.80%), 131998523 (1.79%), 131994674 (47.87%) and 131994257 (15.02%). This table contains whole tests, not detailed samples.",
+        "Saved final selection-table capture and observed its URL. Inspected the saved image: Poor Quality and Test ID are horizontally clipped; the screenshot does not establish the corresponding individual map colour.",
+        "Closed the owned selection panel and removed the owned layer. Capture repair could not continue after the subsequent shared-browser ownership interruption."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Amber configuration was #ff7b00 between numeric thresholds 10 and 25. A genuine aggregate selection produced four test rows including a 15.02% result, but its individual map colour was not isolated and the saved table viewport clips Poor Quality/Test ID to the right. These are explicit evidence gaps; no runtime colour pass is claimed.",
+      "retryClass": "manual",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-add.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-browser-interference.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Establish a genuine MS Teams Call point with Poor Quality at least 25.",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-browser-interference.png"
+          ]
+        },
+        {
+          "assertion": "Independently correlate that point with the exact rendered red colour.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Started independently at the exact launcher and captured initial PNG.",
+        "Opened GIS and saved criterion-6-before-add.png.",
+        "The expected exact Automobile catalogue label could not be clicked; locator timed out after 30000ms.",
+        "Reinspected the live UI instead of retrying blindly. Observed generic Call configuration and unrelated Call detail; no red-band test was executed.",
+        "Captured and inspected criterion-6-browser-interference.png and read the live /gis URL.",
+        "Confirmed the browser lease remained owned by this handoff; stopped interaction and retained it for coordinator reconciliation."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Shared browser state changed outside this attempt's actions during criterion 6 setup. After launcher > GIS, the next Automobile catalogue click timed out; a fresh snapshot showed Automobile (2), MS Teams Call plus a generic Automobile - Call layer, Cambridge zoom 14, and an unrelated Call test detail dated 19/08/2026 09:34:39. This attempt never added generic Call or opened that record. The local lease still reported this handoff as owner. Stopped browser work to avoid changing unrelated state; lease retained for explicit coordinator reconciliation. This is a browser capability/ownership blocker, not an MS Teams product failure.",
+      "retryClass": "manual",
+      "blockerCode": "shared_browser_state_changed",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "coverageChecks": [
+        {
+          "assertion": "Successful selected-test details display Test ID.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Test Result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Connection Time.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Call Duration.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Poor Quality.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display MSISDN.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Test Technologies.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Cross-checked the complete remotely supplied ticket and canonical criterion; target remains Automobile > MS Teams Call.",
+        "Browser work stopped after the criterion 6 ownership/state interruption; this criterion was not attempted.",
+        "No backend, authentication, permissions, source Jira, simulation routes or product data were changed."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Not started because the shared-browser ownership/state interruption prevented further independent criteria. No criterion-owned launcher, transition or final PNG was possible without resuming a browser whose state no longer matched this attempt's actions. Earlier criteria's captures and unrelated generic Call details were not reused. No conclusions about MS Teams fields, fixtures, feature availability, sorting/filtering/export or exception handling were drawn.",
+      "retryClass": "manual",
+      "blockerCode": "shared_browser_state_changed",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "coverageChecks": [
+        {
+          "assertion": "Successful selected-test details display a signal chart.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display a download chart.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Returned handover markers are visible on the relevant charts when available.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Cross-checked the complete remotely supplied ticket and canonical criterion; target remains Automobile > MS Teams Call.",
+        "Browser work stopped after the criterion 6 ownership/state interruption; this criterion was not attempted.",
+        "No backend, authentication, permissions, source Jira, simulation routes or product data were changed."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Not started because the shared-browser ownership/state interruption prevented further independent criteria. No criterion-owned launcher, transition or final PNG was possible without resuming a browser whose state no longer matched this attempt's actions. Earlier criteria's captures and unrelated generic Call details were not reused. No conclusions about MS Teams fields, fixtures, feature availability, sorting/filtering/export or exception handling were drawn.",
+      "retryClass": "manual",
+      "blockerCode": "shared_browser_state_changed",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "coverageChecks": [
+        {
+          "assertion": "Successful details show a detailed-sample table.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The sample table omits label columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The sample table omits latitude columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The sample table omits longitude columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The sample table omits handover-only columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Cross-checked the complete remotely supplied ticket and canonical criterion; target remains Automobile > MS Teams Call.",
+        "Browser work stopped after the criterion 6 ownership/state interruption; this criterion was not attempted.",
+        "No backend, authentication, permissions, source Jira, simulation routes or product data were changed."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Not started because the shared-browser ownership/state interruption prevented further independent criteria. No criterion-owned launcher, transition or final PNG was possible without resuming a browser whose state no longer matched this attempt's actions. Earlier criteria's captures and unrelated generic Call details were not reused. No conclusions about MS Teams fields, fixtures, feature availability, sorting/filtering/export or exception handling were drawn.",
+      "retryClass": "manual",
+      "blockerCode": "shared_browser_state_changed",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "coverageChecks": [
+        {
+          "assertion": "Identify supported sortable columns of the selected test's detailed-sample table.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "For every supported sortable column, ascending sort shows matching settled sample order.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "For every supported sortable column, descending sort shows matching settled sample order.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Cross-checked the complete remotely supplied ticket and canonical criterion; target remains Automobile > MS Teams Call.",
+        "Browser work stopped after the criterion 6 ownership/state interruption; this criterion was not attempted.",
+        "No backend, authentication, permissions, source Jira, simulation routes or product data were changed."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Not started because the shared-browser ownership/state interruption prevented further independent criteria. No criterion-owned launcher, transition or final PNG was possible without resuming a browser whose state no longer matched this attempt's actions. Earlier criteria's captures and unrelated generic Call details were not reused. No conclusions about MS Teams fields, fixtures, feature availability, sorting/filtering/export or exception handling were drawn.",
+      "retryClass": "manual",
+      "blockerCode": "shared_browser_state_changed",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "coverageChecks": [
+        {
+          "assertion": "Identify the selected test's supported sample-table column filter controls.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Applying a supported column filter leaves only samples matching that filter.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Cross-checked the complete remotely supplied ticket and canonical criterion; target remains Automobile > MS Teams Call.",
+        "Browser work stopped after the criterion 6 ownership/state interruption; this criterion was not attempted.",
+        "No backend, authentication, permissions, source Jira, simulation routes or product data were changed."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Not started because the shared-browser ownership/state interruption prevented further independent criteria. No criterion-owned launcher, transition or final PNG was possible without resuming a browser whose state no longer matched this attempt's actions. Earlier criteria's captures and unrelated generic Call details were not reused. No conclusions about MS Teams fields, fixtures, feature availability, sorting/filtering/export or exception handling were drawn.",
+      "retryClass": "manual",
+      "blockerCode": "shared_browser_state_changed",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "coverageChecks": [
+        {
+          "assertion": "Export the selected MS Teams Call test as CSV through its normal control.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Inspect the downloaded CSV and reconcile its data with the selected test identity.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Cross-checked the complete remotely supplied ticket and canonical criterion; target remains Automobile > MS Teams Call.",
+        "Browser work stopped after the criterion 6 ownership/state interruption; this criterion was not attempted.",
+        "No backend, authentication, permissions, source Jira, simulation routes or product data were changed."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Not started because the shared-browser ownership/state interruption prevented further independent criteria. No criterion-owned launcher, transition or final PNG was possible without resuming a browser whose state no longer matched this attempt's actions. Earlier criteria's captures and unrelated generic Call details were not reused. No conclusions about MS Teams fields, fixtures, feature availability, sorting/filtering/export or exception handling were drawn.",
+      "retryClass": "manual",
+      "blockerCode": "shared_browser_state_changed",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "coverageChecks": [
+        {
+          "assertion": "Establish an actual zero-duration MS Teams Call result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Attempt normal pointer selection and any exposed keyboard activation.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Verify the requested zero-duration details state contains neither stale prior-record data nor misleading data.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Cross-checked the complete remotely supplied ticket and canonical criterion; target remains Automobile > MS Teams Call.",
+        "Browser work stopped after the criterion 6 ownership/state interruption; this criterion was not attempted.",
+        "No backend, authentication, permissions, source Jira, simulation routes or product data were changed."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Not started because the shared-browser ownership/state interruption prevented further independent criteria. No criterion-owned launcher, transition or final PNG was possible without resuming a browser whose state no longer matched this attempt's actions. Earlier criteria's captures and unrelated generic Call details were not reused. No conclusions about MS Teams fields, fixtures, feature availability, sorting/filtering/export or exception handling were drawn.",
+      "retryClass": "manual",
+      "blockerCode": "shared_browser_state_changed",
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "evidence": [],
+      "coverageChecks": [
+        {
+          "assertion": "Establish the genuine selected MS Teams Call detail request and permitted failure prerequisite.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Request the selected result's details and reproduce a real failure or explicitly disclosed scoped UI simulation.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Verify the failed-load dialog contains neither stale prior-record data nor misleading data.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "If simulation is used, remove only the owned handler and verify genuine recovery and cleanup.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Cross-checked the complete remotely supplied ticket and canonical criterion; target remains Automobile > MS Teams Call.",
+        "Browser work stopped after the criterion 6 ownership/state interruption; this criterion was not attempted.",
+        "No backend, authentication, permissions, source Jira, simulation routes or product data were changed."
+      ],
+      "browserUrl": null,
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "reason": "Not started because the shared-browser ownership/state interruption prevented further independent criteria. No criterion-owned launcher, transition or final PNG was possible without resuming a browser whose state no longer matched this attempt's actions. Earlier criteria's captures and unrelated generic Call details were not reused. No conclusions about MS Teams fields, fixtures, feature availability, sorting/filtering/export or exception handling were drawn.",
+      "retryClass": "manual",
+      "blockerCode": "shared_browser_state_changed",
+      "testedModule": "Automobile"
+    }
+  ],
+  "conciseReport": "# TEST2-89 — cycle-003, attempt 001\n\nBlocked after shared-browser state changed during criterion 6 setup while this handoff's lease was held. Initial unselected-layer criterion passed; mapping completeness and green/yellow/amber runtime checks remain Unverified. Red, summary, charts, detailed samples, sort/filter/export and exception checks are Blocked or unstarted. Genuine Automobile MS Teams Call aggregates and selectable test lists were observed; generic Call evidence was excluded. No product failure, absent fixture, simulated state or successful detail integration is claimed.\n\nThe browser unexpectedly contained an unrelated generic Automobile Call layer/detail. Browser work stopped. Lease retained for coordinator reconciliation; full restoration could not be verified. The saved criterion 6 blocker image records this condition. Earlier owned layers/panels were removed between completed criteria. Evidence was kept criterion-specific and no earlier cycles were reused.",
+  "reportPath": "",
+  "evidenceFolder": "C:/Users/harry.piper/Documents/ChatGPT/Test2-github/.agent-staging/handoff-TEST2-89-cycle-003-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Shared browser state changed outside this attempt's actions during criterion 6 setup. After launcher > GIS, the next Automobile catalogue click timed out; a fresh snapshot showed Automobile (2), MS Teams Call plus a generic Automobile - Call layer, Cambridge zoom 14, and an unrelated Call test detail dated 19/08/2026 09:34:39. This attempt never added generic Call or opened that record. The local lease still reported this handoff as owner. Stopped browser work to avoid changing unrelated state; lease retained for explicit coordinator reconciliation. This is a browser capability/ownership blocker, not an MS Teams product failure.",
+  "browserLease": {
+    "status": "retained_for_coordinator_reconciliation",
+    "handoffId": "handoff-TEST2-89-cycle-003-test-attempt-001",
+    "acquiredAt": "2026-10-30T11:23:30.457Z",
+    "reason": "Shared browser changed to an unrelated generic Call test while lease remained owned; no further cleanup was safe."
+  },
+  "cleanup": {
+    "complete": false,
+    "reason": "Unrelated state was not closed or altered; original Cambridge zoom 14 / empty layer baseline was not fully restored after interference."
+  },
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-30T11:36:45.644Z"
+}
