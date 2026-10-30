@@ -55,12 +55,12 @@
   },
   "status": {
     "jiraStatus": "TESTING IN PROGRESS",
-    "workflowState": "Ready",
-    "qaStatus": "Criteria Check Required",
+    "workflowState": "Blocked",
+    "qaStatus": "Ready for Testing",
     "qaOutcome": "Not Tested",
     "automationSuitability": "Unclassified",
-    "actionOwner": "Coordinator",
-    "nextAction": "Create criteria conversion handoff",
+    "actionOwner": "Human",
+    "nextAction": "Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
@@ -68,6 +68,6 @@
     "testAttempts": 0,
     "blockedStage": null,
     "updatedAt": "2026-10-30T14:37:23.198+0000",
-    "criteriaVerified": false
+    "criteriaVerified": true
   }
 }

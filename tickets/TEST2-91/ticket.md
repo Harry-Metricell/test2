@@ -4,9 +4,9 @@
 
 - Jira status: TESTING IN PROGRESS
 - QA outcome: Not Tested
-- Workflow state: Ready
-- Action owner: Coordinator
-- Next action: Create criteria conversion handoff
+- Workflow state: Blocked
+- Action owner: Human
+- Next action: Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS
 - Jira: https://metricell.atlassian.net/browse/TEST2-91
 
 ## Acceptance Criteria
