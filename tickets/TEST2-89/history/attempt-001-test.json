@@ -1,0 +1,558 @@
+{
+  "handoffId": "handoff-TEST2-89-cycle-004-test-attempt-001",
+  "handoffVersion": "TEST2-89:cycle-004:test_ticket:1:scope-af7443f54839",
+  "cycleId": "cycle-004",
+  "ticket": "TEST2-89",
+  "testedModule": "Automobile",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
+      "outcome": "Passed",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-004/screenshots/attempt-001/criterion-1-initial.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-1-before-configure.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-1-configuration.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-1-nested-test-types.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png"
+      ],
+      "steps_taken": [
+        "Navigated to https://o2intelligence-v4-dev.metricell.com/launcher; waited for the visible authenticated launcher and captured initial state.",
+        "Opened GIS. Initially selected layer was Automobile - Call with a pre-existing Call test - 05/10/2026, 09:18:03 panel. Preserved it.",
+        "Captured the settled map, opened Configure Automobile - Call, and inspected the Test type dropdown. Call was selected; MS Teams Call was present as an unselected nested option.",
+        "Dismissed the dropdown and captured final configuration/map: Automobile - Call remained the only selected layer. The legend was CSR for Call, not MS Teams Call. Read final browser URL through browser evaluation.",
+        "An attempted close using an expired snapshot reference returned 'Ref e1378 not found in the current page snapshot. Try capturing new snapshot.' The saved final showed the configuration still open. Subsequently closed configuration through its observed aria-label before starting criterion 2; no data/filter change was applied."
+      ],
+      "reason": "MS Teams Call was unselected; the settled map showed only the existing Automobile - Call layer and its result symbols. Browser identity observed through navigator.userAgentData.fullVersionList.",
+      "coverageChecks": [
+        {
+          "assertion": "MS Teams Call is not selected in the Automobile nested Test type choices.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-configuration.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-nested-test-types.png"
+          ]
+        },
+        {
+          "assertion": "Before selecting MS Teams Call, no MS Teams Call result layer or plotted points are shown.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-before-configure.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-1-final.png"
+          ]
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
+      "outcome": "Blocked",
+      "blockerCode": "decisive_capture_overwritten",
+      "retryClass": "manual",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "evidence": [
+        "cycles/cycle-004/screenshots/attempt-001/criterion-2-initial.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-2-before-select.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-2-selected-configuration.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-2-after-select.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-2-before-date-narrow.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-2-narrowed-configuration.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-2-bounded-map.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-2-final.png",
+        "cycles/cycle-004/screenshots/attempt-001/criterion-2-cleanup.png"
+      ],
+      "steps_taken": [
+        "Started independently with browser_navigate to the exact launcher and captured the visible initial state. Opened GIS and Configure Automobile - Call.",
+        "After launcher navigation, the app restored pre-existing Automobile Call details and Call test - 12/08/2026, 10:38:28 tabs. Preserved those restored tabs.",
+        "Selected the nested Automobile Test type MS Teams Call, captured the selected configuration, applied it, and captured settled plotted symbols with the selected layer identifiable.",
+        "Genuine GET /api/platform/automobile/ms-teams-call/points returned HTTP 200 with 239 aggregate entries. Scope: UK Midlands/north-west viewport centred approximately longitude -0.913, latitude 53.317, zoom 7.1; From 01/08/2026 12:13 to 30/10/2026 12:13 local; default technologies, no handset/cell restriction.",
+        "Clicked a visible plotted symbol at viewport coordinates 807,262. Genuine POST /api/platform/automobile/ms-teams-call/cluster-details returned HTTP 200; genuine GET /api/platform/automobile/ms-teams-call/tests/132123874 returned HTTP 200 and the app opened MS Teams Call test - 25/08/2026, 12:28:18. A detail screenshot was captured but that final filename was later overwritten with the bounded map; do not treat the saved map as visible detail evidence.",
+        "Closed only this criterion's MS Teams detail tab. Used normal From/To editors to narrow to 25/08/2026 12:28–12:29 local (request 11:28–11:29 UTC). The same points endpoint returned HTTP 200 with 12 aggregates. Captured the applied filter and settled Nottingham/Derby route symbols. Did not reconcile every underlying individual result/cluster member to its selectable presentation.",
+        "Captured final bounded map before cleanup and obtained actual GIS URL from browser evaluation. Restored Automobile - Call and original From/To values through normal configuration. Captured cleanup, preserving unrelated tabs. The original 05/10 panel from the first navigation was not recreated because the application itself restored different tabs on reload."
+      ],
+      "reason": "Decisive selected-detail capture is missing: screenshots/criterion-2-final.png originally showed test 132123874 but was overwritten with the later bounded map. The stale execution host prevented repairing that exact capture gap. Matching plotted aggregates loaded and a genuine test opened, but no saved visible detail identity proof remains. Independently, completeness remains Unverified: 12 bounded aggregates were not reconciled to every underlying member. The broad map precedes the one-minute filter and is not evidence of that later dataset.",
+      "coverageChecks": [
+        {
+          "assertion": "Selecting Automobile MS Teams Call loads genuine matching results and displays plotted result symbols.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-selected-configuration.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-after-select.png"
+          ]
+        },
+        {
+          "assertion": "A plotted matching result is selectable and its opened test identity is visibly reviewable.",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-after-select.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-before-date-narrow.png"
+          ]
+        },
+        {
+          "assertion": "Every matching result within the bounded date/area/filter scope, including all aggregate members, is reconciled to a selectable map presentation.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-narrowed-configuration.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-bounded-map.png",
+            "cycles/cycle-004/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [
+        "cycles/cycle-004/screenshots/attempt-001/criterion-3-initial.png"
+      ],
+      "steps_taken": [
+        "Navigated independently to the exact launcher and saved criterion-3-initial.png after the authenticated launcher was visible.",
+        "Started a configured Playwright browser_run_code_unsafe operation to open GIS, configure Automobile MS Teams Call, apply, and wait for its configuration button. No result was returned before the host interruption; completion and browser state are unknown.",
+        "Waiting returned 'code-mode host timed out waiting for wait response'. A subsequent wait returned 'cell g10:35 belongs to a stale code-mode host generation'. Stopped all browser work as required by the brief. No quality-band action, plotted-map capture, tooltip inspection, final capture, or URL read completed with a confirmed result."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. Only this criterion's initial launcher capture is confirmed; the pending GIS/configuration operation may have changed the UI. Final browser URL is unknown. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "A displayed point's genuine Poor Quality is within 0–0.99.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The same point is plotted Green.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "A displayed point's genuine Poor Quality is within 1–9.99.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The same point is plotted Yellow.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "A displayed point's genuine Poor Quality is within 10–24.99.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The same point is plotted Amber.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "A displayed point's genuine Poor Quality is at least 25.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The same point is plotted Red.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "Selected map result identity matches successfully loaded MS Teams Call details.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Test ID is readable.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Test Result is readable.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Connection Time is readable.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Call Duration is readable.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Poor Quality is readable.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "MSISDN is readable.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Test Technologies is readable.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "Selected map point successfully loads genuine MS Teams Call details.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Signal chart is displayed.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Download chart is displayed.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Handover marker availability is established and available markers are displayed.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "Selected MS Teams Call point opens a detailed-sample table.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Label columns are excluded.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Latitude columns are excluded.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Longitude columns are excluded.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Handover-only columns are excluded.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "Actual detailed-sample table and all supported sortable columns are identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Each supported column has settled ascending row order matching its indicator.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Each supported column has settled descending row order matching its indicator.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "Actual detailed-sample table supported column-filter controls are identified.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "A supported column filter is applied.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Every displayed sample matches the applied column filter.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "The selected MS Teams Call test identity is established.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The CSV export completes.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Exported CSV data belongs to the selected test.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "A genuine zero-duration MS Teams Call target and its identity are established.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "A distinct valid detail baseline is established within this criterion.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Normal pointer activation is attempted and before/after selection/navigation is compared.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Keyboard activation is checked when exposed by the application.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "No stale or misleading details are displayed when the zero-duration target is requested.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    },
+    {
+      "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "retryClass": "transient",
+      "blockerCode": "browser_execution_host_stale",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "browserUrl": null,
+      "evidence": [],
+      "steps_taken": [
+        "Not started: after criterion 3 began, the execution host was lost. Continuing browser interactions or cleanup without reconciled state/ownership is prohibited by the QA brief.",
+        "No criterion-owned launcher, transition, final image, or final browser URL could be collected after this capability interruption. Did not borrow earlier criteria's evidence."
+      ],
+      "reason": "Execution capability interruption, not an observed product failure. Actual errors: 'code-mode host timed out waiting for wait response'; then 'cell g10:35 belongs to a stale code-mode host generation'. Browser work stopped immediately. This independent criterion could not begin and has no PNG because browser work must remain stopped pending reconciliation. Shared browser lease retained for coordinator reconciliation under the brief's interrupted-execution rule. No interception handler was installed. Browser identity is the once-observed Google Chrome 156.0.8078.48 from earlier in this same attempt, not a new read.",
+      "coverageChecks": [
+        {
+          "assertion": "A genuine selected MS Teams Call record and exact detail request/response are established.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "A distinct prior valid record baseline is established within this criterion.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The selected detail load fails naturally or through a permitted precisely scoped read-request simulation.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Failed load displays no stale or misleading details.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Genuine recovery and any exact owned handler cleanup are verified.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "testedModule": "Automobile"
+    }
+  ],
+  "conciseReport": "# TEST2-89 — interrupted QA attempt\n\nAutomobile MS Teams Call scope confirmed through its actual nested Test type and genuine /api/platform/automobile/ms-teams-call requests. Criterion 1 Passed; criterion 2 Blocked (selected-detail capture overwritten; member completeness also remains Unverified); criteria 3–14 Blocked by a stale execution host. No product failure is claimed.\n\nThe broad points load returned HTTP 200 with 239 aggregates. A genuine selected test, 132123874, loaded successfully; its saved detail image was later overwritten, so it is not acceptance proof. A normally applied one-minute scope returned 12 aggregates, but all underlying members were not reconciled. Before criterion 3, restored Automobile Call and original dates and preserved unrelated tabs.\n\nDuring criterion 3, waiting failed with `code-mode host timed out waiting for wait response`, then `cell g10:35 belongs to a stale code-mode host generation`. Browser work stopped. The pending GIS/configuration operation's completion and final UI are unknown. No simulation handlers were installed. Browser lease retained intentionally for coordinator reconciliation; do not start another tester or assume restoration after this interruption.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-89-cycle-004-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Attempt interrupted by stale execution host. Actual completed coverage retained. Browser lease deliberately preserved for coordinator reconciliation as required by the QA brief; no further browser actions or speculative cleanup performed.",
+  "browserLeaseRetained": true,
+  "cleanupRequired": "Coordinator must reconcile the pending criterion-3 GIS/configuration operation, inspect current selections and restore owned changes if needed, then release this handoff's lease using its own recorded token. No request handlers were installed.",
+  "evidenceCoverageVersion": 1,
+  "historyAttempt": 1,
+  "recordedAt": "2026-10-30T12:32:48.516Z"
+}
