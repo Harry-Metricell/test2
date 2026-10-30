@@ -95,7 +95,7 @@
           "content": [
             {
               "type": "text",
-              "text": "Call excludes 5G NSA. Restricted device-segregation options are not available. Applying filters displays only matching authorised map results. Device groups and frequencies remain configuration-driven. Route Replay is out of scope."
+              "text": "Restricted device-segregation options are not available. Applying filters displays only matching authorised map results. Device groups and frequencies remain configuration-driven. Route Replay is out of scope."
             }
           ]
         },
@@ -359,7 +359,7 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-10-30T14:32:55.234+0000",
+    "updated": "2026-10-30T14:37:23.198+0000",
     "status": {
       "self": "https://metricell.atlassian.net/rest/api/3/status/10744",
       "description": "",
@@ -399,6 +399,24 @@
       {
         "id": "1187186:0",
         "at": "2026-10-30T10:55:39.161+0000",
+        "from": "READY FOR TESTING",
+        "to": "TESTING IN PROGRESS"
+      },
+      {
+        "id": "1187253:0",
+        "at": "2026-10-30T14:37:18.631+0000",
+        "from": "TESTING IN PROGRESS",
+        "to": "To Do"
+      },
+      {
+        "id": "1187254:0",
+        "at": "2026-10-30T14:37:20.367+0000",
+        "from": "To Do",
+        "to": "READY FOR TESTING"
+      },
+      {
+        "id": "1187255:0",
+        "at": "2026-10-30T14:37:23.198+0000",
         "from": "READY FOR TESTING",
         "to": "TESTING IN PROGRESS"
       }

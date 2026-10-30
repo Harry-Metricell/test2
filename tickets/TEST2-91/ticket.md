@@ -3,10 +3,10 @@
 ## Current State
 
 - Jira status: TESTING IN PROGRESS
-- QA outcome: Blocked
-- Workflow state: Blocked
-- Action owner: Human
-- Next action: Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS
+- QA outcome: Not Tested
+- Workflow state: Ready
+- Action owner: Coordinator
+- Next action: Create criteria conversion handoff
 - Jira: https://metricell.atlassian.net/browse/TEST2-91
 
 ## Acceptance Criteria
@@ -29,7 +29,7 @@ I want to filter Automobile map results before viewing them
 So that I can focus analysis on the tests, network conditions and devices relevant to my investigation.
 Issue/Change Description:
 Provide shared filters for standard Automobile map layers. Support a rolling 90-day time range; handset filters for MSISDN, SIM MNC and SIM MCC; technology filters for no-Service, 2G, 3G, 4G, 5G NSA and 5G SA; configuration-supplied frequencies; network filters for MCC, MNC, LAC, CI, Site and Cell; and configuration-supplied device groups.
-Call excludes 5G NSA. Restricted device-segregation options are not available. Applying filters displays only matching authorised map results. Device groups and frequencies remain configuration-driven. Route Replay is out of scope.
+Restricted device-segregation options are not available. Applying filters displays only matching authorised map results. Device groups and frequencies remain configuration-driven. Route Replay is out of scope.
 Acceptance Criteria:
 Given an Automobile filter is edited, when SIM MCC, SIM MNC, MCC, MNC or LAC is entered, then the field accepts numeric digits only; MSISDN, CI, Site and Cell remain text inputs.
 Given a standard Automobile map layer is active, when filters are opened, then time, handset, technology/frequency, network and available device-group filters are available.

@@ -1,13 +1,18 @@
 {
   "schema": "v4-qa-cycle.v1",
-  "cycleId": "cycle-001",
-  "sourceHash": "cd46a2f91aab89ee7b5c2f19dbde7ec067e65baa5bf2b2e55c6cb320033885a7",
+  "cycleId": "cycle-002",
+  "sourceHash": "f83fbed7cd81ff66c94289e6e3b54d5d11b017f82f898212171b67af348883b4",
   "processedTransitions": [
     "1186401:0",
     "1186778:0",
     "1187184:0",
-    "1187186:0"
+    "1187186:0",
+    "1187253:0",
+    "1187254:0",
+    "1187255:0"
   ],
   "reworkPending": false,
-  "lastJiraStatus": "TESTING IN PROGRESS"
+  "lastJiraStatus": "TESTING IN PROGRESS",
+  "startedByTransition": "1187254:0",
+  "startedAt": "2026-10-30T14:37:20.367+0000"
 }

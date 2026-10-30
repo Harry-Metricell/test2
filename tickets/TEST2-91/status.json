@@ -1,16 +1,12 @@
 {
   "ticket": "TEST2-91",
-  "jiraStatus": "TESTING IN PROGRESS",
-  "qaStatus": "Blocked",
-  "status": "TESTING IN PROGRESS",
-  "retries": 1,
+  "criteriaVerified": false,
+  "qaStatus": "Not Tested",
+  "workflowState": "Ready",
+  "retries": 0,
+  "testAttempts": 0,
   "retryLimit": 1,
-  "testAttempts": 2,
-  "criteriaVerified": true,
-  "blockedStage": "reviewed",
-  "qaOutcome": "Blocked",
-  "workflowState": "Blocked",
-  "nextAction": "Manual review required; final evidence report published",
-  "updatedAt": "2026-10-19T15:52:17.810Z",
-  "cycleId": "cycle-001"
+  "cycleId": "cycle-002",
+  "jiraStatus": "TESTING IN PROGRESS",
+  "status": "TESTING IN PROGRESS"
 }

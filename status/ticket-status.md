@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-10-30T14:26:24.421+0000
+Updated: 2026-10-30T14:37:23.198+0000
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
@@ -8,7 +8,7 @@ Updated: 2026-10-30T14:26:24.421+0000
 | TEST2-89 | READY FOR TESTING | Ready for Testing |  | Map and inspect MS Teams Call results |
 | TEST2-92 | READY FOR TESTING | Blocked |  | Filter Automobile map points using the legend |
 | TEST2-90 | TESTING IN PROGRESS | Blocked |  | Map and inspect Automobile call results |
-| TEST2-91 | TESTING IN PROGRESS | Blocked | Retry 1/1 | Filter Automobile map results |
+| TEST2-91 | TESTING IN PROGRESS | Criteria Check Required |  | Filter Automobile map results |
 | TEST2-82 | To Do | Blocked |  | Display Ping Point Details |
 | TEST2-85 | To Do | Blocked |  | Display Download Point Details |
 | TEST2-86 | To Do | Blocked |  | Display Upload Point Details |

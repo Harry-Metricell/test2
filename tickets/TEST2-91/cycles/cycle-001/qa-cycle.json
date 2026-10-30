@@ -1,0 +1,15 @@
+{
+  "schema": "v4-qa-cycle.v1",
+  "cycleId": "cycle-001",
+  "sourceHash": "cd46a2f91aab89ee7b5c2f19dbde7ec067e65baa5bf2b2e55c6cb320033885a7",
+  "processedTransitions": [
+    "1186401:0",
+    "1186778:0",
+    "1187184:0",
+    "1187186:0"
+  ],
+  "reworkPending": true,
+  "lastJiraStatus": "To Do",
+  "completedByTransition": "1187254:0",
+  "archivedAt": "2026-10-30T14:37:20.367+0000"
+}
