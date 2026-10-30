@@ -1,0 +1,70 @@
+{
+  "ticket": "TEST2-79",
+  "sourceTicket": "VM2ST-104",
+  "date": "2026-10-30",
+  "kind": "focused-live-map-followup",
+  "sourceCycleId": "cycle-005",
+  "sourceAttempt": 2,
+  "newAutomatedAttempt": false,
+  "criteriaChanged": false,
+  "qaOutcomeChanged": false,
+  "scope": "Map visibility and ordinary point selection only; earlier filtered completeness evidence retained separately. UI date range 1 August through 30 October 2026, Cambridge. No claim of a full rerun.",
+  "selectedRecords": {
+    "Download": "132617095",
+    "Upload": "132610935"
+  },
+  "method": "Normal launcher, GIS Automobile layer controls, map navigation and point clicks. No background response capture, authentication changes, backend writes, simulations or image retouching. Enlargements use native Word cropping and retain the complete original image.",
+  "cleanup": "Both newly added layers and test-created details were closed; linked-site settings restored to checked. Browser lease released. Map viewport remains at follow-up location.",
+  "unchangedSourceSha256": {
+    "criteria.md": "e9f67956f786987bc61970fa37e813f6b6620d474a827f2df584797b5a1779d9",
+    "results.json": "5040a63a90546fe02145f0da6ae67f2ca2f5b3cb98fd6bac45546e50dbc47ef1",
+    "review.json": "eca5e72b144401ee0f606847b2fe3f9d64b94b30ca5bc15a21657ca91c642a20"
+  },
+  "images": [
+    {
+      "file": "criterion-2-live-configuration.png",
+      "sha256": "c15425ce445f91b6cf310ae1d3727bb069ac484087f4028a79f75d77c4fe9c95"
+    },
+    {
+      "file": "criterion-2-live-map-overview.png",
+      "sha256": "94b6df3ec6d8fb7355f3a689844bc65624db54aa54f2536bfd352884cc3c8877"
+    },
+    {
+      "file": "criterion-2-live-map-selected.png",
+      "sha256": "55dba2b5c1aa2c502a198f0d70cf6bb6fcc1a45e76b73164fcfefb2750a87fc9"
+    },
+    {
+      "file": "criterion-3-live-configuration.png",
+      "sha256": "188ba8b08d248c1f2b2a5b6e5c824dd4e62e78aa827aca6688eb6c1d086059f6"
+    },
+    {
+      "file": "criterion-3-live-map-overview.png",
+      "sha256": "31f737da59e1862d95a99175026f1a8414650f15dd71033fa9ebd7bbe7a08686"
+    },
+    {
+      "file": "criterion-3-live-map-selected.png",
+      "sha256": "23cf63939560244f96affd65e9e6e86261bcd31139f9a71302f89ef6bd7f79a3"
+    }
+  ],
+  "other14CriterionSectionsUnchanged": true,
+  "verifiedImages": 53,
+  "missingImages": 0,
+  "reportContentVerified": true,
+  "pdfPages": 36,
+  "newExhibitPages": {
+    "E50": [
+      7
+    ],
+    "E51": [
+      11
+    ],
+    "E52": [
+      8
+    ],
+    "E53": [
+      12
+    ]
+  },
+  "pdfSha256": "c1d892a5f12710386eda6bf65d6e5c389de47f50b0df4861f9dc9473955c67c9",
+  "wordSha256": "f29387d58c670014df283beb2bcb1fccfa0d0495f778e6615dd7a662fafd9159"
+}
