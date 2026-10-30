@@ -5,8 +5,9 @@
   "processedTransitions": [
     "1186401:0",
     "1186778:0",
-    "1187184:0"
+    "1187184:0",
+    "1187186:0"
   ],
   "reworkPending": false,
-  "lastJiraStatus": "READY FOR TESTING"
+  "lastJiraStatus": "TESTING IN PROGRESS"
 }
