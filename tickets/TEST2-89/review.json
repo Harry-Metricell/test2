@@ -1,0 +1,498 @@
+{
+  "handoffId": "handoff-TEST2-89-cycle-005-review-attempt-001",
+  "handoffVersion": "TEST2-89:cycle-005:evidence_review:1:scope-af7443f54839",
+  "ticket": "TEST2-89",
+  "testedModule": "Automobile",
+  "criterionOutcomes": [
+    {
+      "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
+      "outcome": "Passed",
+      "reason": "criterion-1-baseline-map-6555675f-edda-4bb6-ad31-7afd39275e6c.png, criterion-1-test-type-before-selection-8e4124ad-06e3-41a9-9883-38f0f9aaca92.png, criterion-1-final-0cb94910-01d3-4960-ae9b-8a3de40a65f4.png show the only selected layer is Automobile - Call, its Test type is Call and nested MS Teams Call is unselected; no MS Teams result symbols are displayed.",
+      "coverageChecks": [
+        {
+          "assertion": "Before MS Teams Call selection, no MS Teams Call test-result points are shown.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-type-before-selection-8e4124ad-06e3-41a9-9883-38f0f9aaca92.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-1-final-0cb94910-01d3-4960-ae9b-8a3de40a65f4.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
+      "outcome": "Unverified",
+      "reason": "criterion-2-selected-layer-map-3c79e3ab-4fdf-49a8-a107-23636a4fe141.png, criterion-2-selected-cluster-a88db975-38e2-45dd-bef4-f21fe1f62255.png, criterion-2-final-b15b5ff7-d56f-49eb-8003-264d0814c35c.png show Automobile MS Teams Call result symbols, a five-member cluster and one opened MS Teams detail. Complete reconciliation and normal selection of every matching result/cluster member in a defined genuine scope remain unverified; the retained Call detail in selected-layer-map is unrelated. Recorded /api/platform/automobile/ms-teams-call requests corroborate module provenance.",
+      "coverageChecks": [
+        {
+          "assertion": "Selecting Automobile MS Teams Call loads matching authorised results as plotted map symbols.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-2-selected-layer-map-3c79e3ab-4fdf-49a8-a107-23636a4fe141.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-2-wider-map-0b74070b-4e40-4532-861c-00ff9c9b2153.png"
+          ]
+        },
+        {
+          "assertion": "Every matching result in a bounded genuine dataset, including cluster members, has a selectable presentation.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-2-selected-cluster-a88db975-38e2-45dd-bef4-f21fe1f62255.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-2-final-b15b5ff7-d56f-49eb-8003-264d0814c35c.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
+      "outcome": "Unverified",
+      "reason": "criterion-3-configured-bands-a7200ec7-4af8-4e52-93ca-dddd8ac7b6a0.png, criterion-3-northern-plotted-map-a8500d5d-de74-4ae7-b378-17e61e641064.png, criterion-3-final-8b76e2d4-1239-468a-9fb1-62ab9b97ca39.png show configured green bands and actual green result symbols, then a 76-test cluster. No criterion-owned image visibly establishes a green target's Poor Quality value within 0–0.99. The aggregate value 0.049346879535558 and pixel correlation appear only in tester notes; neither the legend nor this cluster list independently proves that value-to-symbol association.",
+      "coverageChecks": [
+        {
+          "assertion": "A displayed MS Teams Call point with known Poor Quality within 0–0.99 is green.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-3-configured-bands-a7200ec7-4af8-4e52-93ca-dddd8ac7b6a0.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-3-northern-plotted-map-a8500d5d-de74-4ae7-b378-17e61e641064.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-3-final-8b76e2d4-1239-468a-9fb1-62ab9b97ca39.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
+      "outcome": "Passed",
+      "reason": "criterion-4-plotted-map-c9c9827a-5b1c-48cb-bbed-49445885138b.png, criterion-4-final-quality-identity-e475d798-375c-4a76-b274-0a3b7e88174f.png show actual yellow result symbols and selected MS Teams test 132124007 with readable Poor Quality 1.75%. The recorded normal selection at (972,163) and genuine Automobile point/detail requests support correlation to the yellow aggregate; only this interior-band sample is established, not exact boundaries.",
+      "coverageChecks": [
+        {
+          "assertion": "A displayed MS Teams Call point with known Poor Quality 1–9.99 is yellow.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-4-plotted-map-c9c9827a-5b1c-48cb-bbed-49445885138b.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-4-final-quality-identity-e475d798-375c-4a76-b274-0a3b7e88174f.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
+      "outcome": "Passed",
+      "reason": "criterion-5-plotted-map-ed31e839-b5d3-47d1-ad06-3d1fc499a951.png, criterion-5-selected-point-0b6ca036-ca37-4aed-98a6-d1a6bee45835.png, criterion-5-final-81eabecb-5f6a-4193-a6b3-50a4f33dd2ac.png show the amber result symbol at the recorded selection near (804,177), its four-member MS Teams cluster and selected member 131994257 with Poor Quality 15.02%. Recorded genuine aggregate quality 16.573348264277715 supports the same band. This establishes an interior-band example; aggregate and member values are distinct and endpoints were not sampled.",
+      "coverageChecks": [
+        {
+          "assertion": "A displayed MS Teams Call point with Poor Quality10–24.99 renders amber.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-5-plotted-map-ed31e839-b5d3-47d1-ad06-3d1fc499a951.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-5-selected-point-0b6ca036-ca37-4aed-98a6-d1a6bee45835.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-5-final-81eabecb-5f6a-4193-a6b3-50a4f33dd2ac.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
+      "outcome": "Passed",
+      "reason": "criterion-6-plotted-map-e6d910e1-6166-461a-b28f-2a485deb1e9a.png, criterion-6-selected-point-3f903d9f-637d-4beb-81ff-48e98c26638b.png, criterion-6-final-661d8147-3306-4529-9d92-644a59e2320d.png show the red result symbol at recorded selection near (804,192), its three-member MS Teams cluster and selected member 131998604 with Poor Quality 85.37%. Recorded genuine aggregate quality 35.04083147735709 supports the same band. Aggregate and member values are distinct; the exact 25 boundary was not sampled.",
+      "coverageChecks": [
+        {
+          "assertion": "A displayed MS Teams Call point with known Poor Quality25 or greater renders red.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-6-plotted-map-e6d910e1-6166-461a-b28f-2a485deb1e9a.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-6-selected-point-3f903d9f-637d-4beb-81ff-48e98c26638b.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-6-final-661d8147-3306-4529-9d92-644a59e2320d.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
+      "outcome": "Passed",
+      "reason": "criterion-7-summary-top-5a0c2163-e8dc-4e4c-8516-2ac73d518569.png, criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png jointly show all seven mandatory fields for test 132124007: MSISDN 447720159298, Test Technologies 5G NSA, Test Result Success, Connection Time 266 ms, Call Duration 120 s and Poor Quality 1.75%, with Test ID readable in final.",
+      "coverageChecks": [
+        {
+          "assertion": "Details display readable Test ID",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png"
+          ]
+        },
+        {
+          "assertion": "Details display readable Test Result",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-7-summary-top-5a0c2163-e8dc-4e4c-8516-2ac73d518569.png"
+          ]
+        },
+        {
+          "assertion": "Details display readable Connection Time",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png"
+          ]
+        },
+        {
+          "assertion": "Details display readable Call Duration",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png"
+          ]
+        },
+        {
+          "assertion": "Details display readable Poor Quality",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png"
+          ]
+        },
+        {
+          "assertion": "Details display readable MSISDN",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-7-summary-top-5a0c2163-e8dc-4e4c-8516-2ac73d518569.png"
+          ]
+        },
+        {
+          "assertion": "Details display readable Test Technologies",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-7-summary-top-5a0c2163-e8dc-4e4c-8516-2ac73d518569.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
+      "outcome": "Passed",
+      "reason": "criterion-8-signal-chart-6c171b67-a609-4a73-bf46-44de204576bc.png, criterion-8-full-download-chart-20d32362-833e-447a-b9a0-6017f34d2beb.png, criterion-8-final-handover-tooltip-9c0a0f74-20f4-4201-87c2-3fa4410ab830.png show populated SNR/RSRQ signal series, populated Signal Strength/Download Rate series and visible site/cell handover lines. The final tooltip reads 11:30:24.143, Site(s) 4128 > 74576 and Cell(s) 4128_137_4 > 74576_117_4; handovers are demonstrated for this supplied record.",
+      "coverageChecks": [
+        {
+          "assertion": "Details display populated signal chart.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-8-signal-chart-6c171b67-a609-4a73-bf46-44de204576bc.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-8-final-handover-tooltip-9c0a0f74-20f4-4201-87c2-3fa4410ab830.png"
+          ]
+        },
+        {
+          "assertion": "Details display populated download chart.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-8-full-download-chart-20d32362-833e-447a-b9a0-6017f34d2beb.png"
+          ]
+        },
+        {
+          "assertion": "Available site/cell handovers have visible chart markers and readable matching tooltip.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-8-final-handover-tooltip-9c0a0f74-20f4-4201-87c2-3fa4410ab830.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
+      "outcome": "Passed",
+      "reason": "criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png, criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png show the individual MS Teams detailed-sample rows and complete horizontally traversed 11-column header scope: Time, Technology, Site ID, Cell ID, Download Rate, Upload Rate, Signal Strength, RSRQ, SNR, Download Size and Upload Size. Label, latitude, longitude and handover-only columns are absent.",
+      "coverageChecks": [
+        {
+          "assertion": "Details contain populated individual-record detailed-sample table.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-selected-detail-91bccdd3-7e21-4986-b3cb-49be37a859cf.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+          ]
+        },
+        {
+          "assertion": "Full detailed-sample header list omits label columns.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+          ]
+        },
+        {
+          "assertion": "Full detailed-sample header list omits latitude columns.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+          ]
+        },
+        {
+          "assertion": "Full detailed-sample header list omits longitude columns.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+          ]
+        },
+        {
+          "assertion": "Full detailed-sample header list omits handover-only columns.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
+      "outcome": "Unverified",
+      "reason": "The criterion-owned Time ascending top/bottom (criterion-10-time-asc-top-ebf50fd8-0f9d-47ef-b6d3-7c378f96be93.png, criterion-10-time-asc-bottom-4c053383-4d3b-4463-9171-50ffbb95b856.png) and descending top/bottom (criterion-10-time-desc-top-09e00999-bfd0-4521-bd45-f5fc42770268.png, criterion-10-time-desc-bottom-a99defce-9dcd-42d5-a79a-34219ec4ab8a.png) show settled full 25-row pages in increasing 11:29:44.337–11:29:50.613 and decreasing 11:31:44.297–11:31:38.027 order, with matching active arrows. All 22 supplied top/bottom pairs were inspected: the target columns visibly follow their indicated order, including a mixed Technology fixture. Canonical supported-column sorting is visibly demonstrated. Retained tester assertions additionally claim exact reconciliation against the complete genuine sample set; the selected inputs contain that reconciliation only as a narrative, without a reviewable 457-sample response/comparison, so that stronger part of each assertion remains Unverified.",
+      "coverageChecks": [
+        {
+          "assertion": "Time ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-asc-top-ebf50fd8-0f9d-47ef-b6d3-7c378f96be93.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-asc-bottom-4c053383-4d3b-4463-9171-50ffbb95b856.png"
+          ]
+        },
+        {
+          "assertion": "Time descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-desc-top-09e00999-bfd0-4521-bd45-f5fc42770268.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-desc-bottom-a99defce-9dcd-42d5-a79a-34219ec4ab8a.png"
+          ]
+        },
+        {
+          "assertion": "Technology ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-technology-asc-top-8b852293-e980-43d2-a696-27d8e80fc497.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-technology-asc-bottom-4a907ae5-1c70-413a-ac4d-3f74e28ef82d.png"
+          ]
+        },
+        {
+          "assertion": "Technology descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-technology-desc-top-6a387758-d383-41d8-bb7b-e470fabaf51f.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-final-technology-desc-bottom-f5e3a691-a994-49fe-89e0-2c088051ec79.png"
+          ]
+        },
+        {
+          "assertion": "Site ID ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-asc-top-18736094-78ef-4e82-9cd9-f49277ead5fc.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-asc-bottom-6f6158c2-46af-4a78-81dd-2d936693fc96.png"
+          ]
+        },
+        {
+          "assertion": "Site ID descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-desc-top-78c55d4f-d8d0-437f-9f96-50658096df86.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-desc-bottom-d076e1ef-e216-48b9-ab6b-76058cbb9ea1.png"
+          ]
+        },
+        {
+          "assertion": "Cell ID ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-asc-top-448c1f7d-4ef7-4e98-934c-9c9f2b7146e8.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-asc-bottom-439b418a-0313-4059-be7e-930dc1f98388.png"
+          ]
+        },
+        {
+          "assertion": "Cell ID descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-desc-top-aa50920e-838e-4d5d-89ab-d6aaab6a02a7.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-desc-bottom-db09adb5-09f8-493e-8a0e-fb8fd11af98a.png"
+          ]
+        },
+        {
+          "assertion": "Download Rate (Kbps) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-asc-top-bfc4f803-972c-40bc-9330-f75610ac4552.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-asc-bottom-e111b6f8-a07d-45b7-88a3-79f2ee7e8195.png"
+          ]
+        },
+        {
+          "assertion": "Download Rate (Kbps) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-desc-top-18109455-ead2-4e53-8e89-332a09e16a01.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-desc-bottom-21829cf1-4146-4776-8cca-52091287390c.png"
+          ]
+        },
+        {
+          "assertion": "Upload Rate (Kbps) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-asc-top-e53fe560-f4ad-459c-a8b6-5c45b1fe2daa.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-asc-bottom-a1ee3256-2898-4d13-a9e6-229b92074b9b.png"
+          ]
+        },
+        {
+          "assertion": "Upload Rate (Kbps) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-desc-top-57af8bcd-d091-4613-8281-388df7657234.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-desc-bottom-4aa22536-21a4-445b-a6ab-8e6105abcf47.png"
+          ]
+        },
+        {
+          "assertion": "Signal Strength (dBm) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-asc-top-9d482a26-7e35-4a4a-9df9-5f23663b321d.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-asc-bottom-3ccffcda-a6ef-42e0-8d12-21b609106eb2.png"
+          ]
+        },
+        {
+          "assertion": "Signal Strength (dBm) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-desc-top-0763b7b5-f4e0-4d1e-8552-a9070199707a.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-desc-bottom-2be586df-46d0-4e09-8436-e2ded71e6fde.png"
+          ]
+        },
+        {
+          "assertion": "RSRQ (dB) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-asc-top-6bdf676f-d927-4812-b75f-e7fb0d6ece18.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-asc-bottom-ea572e74-7b1d-4d39-86d8-37865a2ed8c1.png"
+          ]
+        },
+        {
+          "assertion": "RSRQ (dB) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-desc-top-f264b283-7ca7-4c07-a593-7b6c575e4312.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-desc-bottom-4e778f7f-e4cf-47ad-8379-a8045949990e.png"
+          ]
+        },
+        {
+          "assertion": "SNR (dB) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-asc-top-029276ae-ceac-466f-9381-0dfae78d0b7e.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-asc-bottom-7039388f-6ac0-4aa4-bda7-027f25b73ec9.png"
+          ]
+        },
+        {
+          "assertion": "SNR (dB) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-desc-top-a53e8f81-e3e4-4ccf-8862-8e9140193fa7.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-desc-bottom-63acda11-d6be-49e5-91fa-50caddc1e9af.png"
+          ]
+        },
+        {
+          "assertion": "Download Size (kB) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-asc-top-cdaf2a1b-ce94-4b66-9e63-fa512b5daf2d.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-asc-bottom-80fca0f5-bbc5-4b8d-b46f-d9f86cc8a98f.png"
+          ]
+        },
+        {
+          "assertion": "Download Size (kB) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-desc-top-bf0819e7-a4d0-4d7b-8f06-352f746b8e98.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-desc-bottom-a1dae621-4611-4167-b54e-6da41eeb98e6.png"
+          ]
+        },
+        {
+          "assertion": "Upload Size (kB) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-asc-top-b566dd16-07b2-4231-b99e-009db28d073b.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-asc-bottom-357ae80a-56b0-4de0-97c5-8abdfe979b92.png"
+          ]
+        },
+        {
+          "assertion": "Upload Size (kB) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-desc-top-05e10bb6-a068-49b6-9279-9fe13358bb96.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-desc-bottom-18c7a775-c176-45d0-8777-362577329466.png"
+          ]
+        },
+        {
+          "assertion": "Sorting a supported detailed-sample column changes the displayed sample order to match the selected direction.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-desc-top-09e00999-bfd0-4521-bd45-f5fc42770268.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-desc-bottom-a99defce-9dcd-42d5-a79a-34219ec4ab8a.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-asc-top-ebf50fd8-0f9d-47ef-b6d3-7c378f96be93.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-asc-bottom-4c053383-4d3b-4463-9171-50ffbb95b856.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
+      "outcome": "Unverified",
+      "reason": "criterion-11-supplement-final-a6141306-3a6a-49f9-9767-0f08ad05a0d6.png shows the correct individual MS Teams detailed-sample table with populated rows, sort arrow and export control, but no visible sample filter in the captured left-column view. Tester notes report inspecting all 11 headers; the criterion-owned evidence does not capture the right-side headers or their inspected controls, or a filter action/final matching-row state. The layer catalogue filter and cluster-list search are unrelated. Filtering is not demonstrated, and this partial capture does not conclusively establish global control absence as a product defect.",
+      "coverageChecks": [
+        {
+          "assertion": "The individual detailed-sample table provides a supported-column filter that limits its sample rows.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-11-supplement-final-a6141306-3a6a-49f9-9767-0f08ad05a0d6.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
+      "outcome": "Unverified",
+      "reason": "criterion-12-supplement-final-ada45017-719b-4d93-a74b-f69149744fc3.png shows selected MS Teams samples and the Export CSV tooltip, but no downloaded CSV contents, completed-download state or readable selected-test-to-export comparison. The claimed 457-row reconciliation and SHA-256 fe59b04cf0bf48d9511d07e176ceb4f22a1b54fdde9abfe05668fb2f442fbe26 are notes only; the private CSV is outside the permitted selected inputs. This does not independently prove that the exported CSV contains the selected test's data.",
+      "coverageChecks": [
+        {
+          "assertion": "The normal CSV export contains the selected MS Teams test’s data.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-12-supplement-final-ada45017-719b-4d93-a74b-f69149744fc3.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "reason": "criterion-13-supplement-final-26f79388-68a3-43b0-8e5b-fbe4d29157f0.png shows the complete bounded two-row MS Teams cluster with both Call Duration values 120 s. A genuine zero-duration fixture was not supplied or located in that checked scope, so selection and stale-data protection for zero duration could not be tested. This does not establish dataset-wide absence or a product defect.",
+      "coverageChecks": [
+        {
+          "assertion": "A genuine zero-duration result does not display stale or misleading details.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "reason": "SIMULATED UI STATE: on the configured development /gis host, the tester records an exact-URL GET-only browser handler injecting HTTP 503 for /api/platform/automobile/ms-teams-call/tests/131879769 after genuine test 132124168 loaded. criterion-14-supplement-before-385e41bf-2bbe-484a-abab-93892b5a257e.png shows the distinct 25 August 11:33:08 baseline; criterion-14-supplement-final-3830d827-7d85-499f-9fb8-7df1ed351058.png shows the explicit MS Teams load error and Retry with no previous summary, charts or samples visible; criterion-14-supplement-restored-672b6bc0-3229-473e-831d-a45622987a71.png shows genuine recovery to 4 August 11:41:02. Endpoint/module scope matches Automobile MS Teams Call, and tester steps record one intercepted read, removal of the exact handler, genuine HTTP 200 on Retry and verification that the handler was absent, followed by cleanup of owned tabs/layer and restoration of the pre-existing Surveyor camera/session. However, the supplied selected inputs provide no independent error-response contract provenance for the injected 503 condition; the observed genuine successful endpoint does not establish that failure contract. No visible loading transition is captured before recovery. The required simulation contract prerequisite is therefore Blocked; this demonstrates a visible browser-local error/recovery sequence, not a naturally occurring backend failure or backend integration pass.",
+      "coverageChecks": [
+        {
+          "assertion": "SIMULATED UI STATE: a failed detail read displays an error without stale previous-record details, then recovers after the browser-only failure is removed.",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-before-385e41bf-2bbe-484a-abab-93892b5a257e.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-final-3830d827-7d85-499f-9fb8-7df1ed351058.png",
+            "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-restored-672b6bc0-3229-473e-831d-a45622987a71.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-89\\cycles\\cycle-005\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Independent review of the live cycle-005 attempt against the complete source ticket; genuine zero-duration fixture and simulated-error contract prerequisites remain unavailable, with additional evidence limitations recorded per criterion.",
+  "cycleId": "cycle-005"
+}
