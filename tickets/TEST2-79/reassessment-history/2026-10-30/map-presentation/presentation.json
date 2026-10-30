@@ -1,0 +1,46 @@
+{
+  "ticket": "TEST2-79",
+  "sourceTicket": "VM2ST-104",
+  "date": "2026-10-30",
+  "kind": "report-presentation-correction",
+  "changedPresentationCriteria": [
+    2,
+    3
+  ],
+  "criteriaChanged": false,
+  "qaOutcomeChanged": false,
+  "newLiveTest": false,
+  "siteUnavailable": true,
+  "sourceCycleId": "cycle-005",
+  "sourceAttempt": 2,
+  "method": "Original same-attempt map captures restored as prominent map visibility figures with lossless Word detail enlargements. Full source screenshots are retained. Later filtered scope and broader map illustration are explicitly separated. Blank follow-up views are labelled as not proving plotted points.",
+  "unchangedSourceSha256": {
+    "criteria.md": "e9f67956f786987bc61970fa37e813f6b6620d474a827f2df584797b5a1779d9",
+    "results.json": "5040a63a90546fe02145f0da6ae67f2ca2f5b3cb98fd6bac45546e50dbc47ef1",
+    "review.json": "eca5e72b144401ee0f606847b2fe3f9d64b94b30ca5bc15a21657ca91c642a20"
+  },
+  "previousReportSha256": "66c3d0530b68681fe8dda1a1763bd733e2e259e90871893d58472aa84d90b94f",
+  "previousWordSha256": "85ae12b5eaeb2d338fd05fd672ae65c4e8a560cee0236eefbd1ad9298489e775",
+  "sourceImages": [
+    {
+      "file": "criterion-2-after-add.png",
+      "sha256": "30e213f6b0134456e7f16b3241bdcaa701c9c41798fc392af0c3c9f1a3299af0"
+    },
+    {
+      "file": "criterion-3-after-apply.png",
+      "sha256": "a18eceaf69b45515ad62d00beb1ff193dac01b28d5cadd8fcf9696deb2ada06c"
+    }
+  ],
+  "browserLeaseReconciliation": "Verified prior TEST2-89 tester terminal and its outputs published; no simulation installed. Released exact retained lease, acquired TEST2-79 lease, stopped after launcher failure and user confirmation of outage, then released own lease. No browser configuration or result data changed.",
+  "other14CriterionSectionsUnchanged": true,
+  "verifiedImages": 51,
+  "missingImages": 0,
+  "reportContentVerified": true,
+  "pdfPages": 33,
+  "mapExhibitPages": [
+    6,
+    9
+  ],
+  "pdfSha256": "671c2085f39f282151b7ddcee495f4dbdd404f7f6796120c7d20c7b8cc579724",
+  "wordSha256": "6d23790d39e675b30b508112082f375f0a1f5c1dbde827c29eb59db560ba8b79"
+}

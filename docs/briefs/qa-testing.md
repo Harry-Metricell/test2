@@ -38,6 +38,8 @@ Read browser identity once through Playwright browser evaluation. Prefer `naviga
 
 Before a table operation, identify the exact source-required view and row entities. Distinguish the map's test-selection/cluster-member list from an individual record's detail/sample rows. Record that identity in steps_taken and capture the actual target table. Sorting or filtering another table does not establish the requested behaviour; report an unresolved target-view ambiguity explicitly instead of substituting the easier list.
 
+For a plotted-map-points assertion, capture the settled map with actual result symbols visible and the active layer identifiable before opening details. A legend, linked-site pin, empty viewport, results list or details panel alone does not prove plotted results. Keep the corresponding map selection and opened result identity reviewable. If different filter scopes are illustrated, label them explicitly; never imply that a broader map image shows the later narrowly filtered records.
+
 Test every criterion independently. Identify its required visible states before acting. Record actual steps_taken, observed results and blockers, not intended actions.
 
 Preserve source-qualified "available"/"reported" summary scope: compare supplied values with their visible presentation; do not invent a requirement for an unreturned optional value. Named mandatory fields remain mandatory. A separately asserted conditional branch, such as displaying returned average metrics, still needs its proper fixture before it can pass. If the canonical checklist loses a material source qualifier or conflicts with shared behaviour, report the exact criteria issue rather than silently changing it, forcing a pass or calling it missing data.

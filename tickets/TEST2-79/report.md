@@ -7,6 +7,8 @@
 - **Report:** [Evidence report](report.pdf)
 - **Editable report:** [Download Word (.docx)](report.docx)
 
+**Report presentation corrected 30 October:** criteria 2 and 3 now include the original same-attempt Download and Upload maps with enlarged result markers on PDF pages 6 and 9. These broader map illustrations are explicitly separate from the later filtered-record checks. Existing blank follow-up views are labelled as not proving plotted points. No new live test was performed while V4 was unavailable; criteria, recorded outcomes and the other 14 report sections are unchanged. [Presentation audit](reassessment-history/2026-10-30/map-presentation/presentation.json).
+
 ## Criterion results
 
 1. **Passed:** With neither layer selected, the map shows no Download or Upload test-result points.
