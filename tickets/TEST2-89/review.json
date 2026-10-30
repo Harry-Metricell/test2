@@ -1,0 +1,374 @@
+{
+  "handoffId": "handoff-TEST2-89-cycle-003-review-attempt-001",
+  "handoffVersion": "TEST2-89:cycle-003:evidence_review:1:scope-af7443f54839",
+  "ticket": "TEST2-89",
+  "testedModule": "Automobile",
+  "criterionOutcomes": [
+    {
+      "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
+      "outcome": "Passed",
+      "reason": "criterion-1-initial.png shows the launcher; criterion-1-final.png is the settled, unobscured Cambridge GIS map with no selected layers and no MS Teams Call result symbols. This establishes the required unselected baseline.",
+      "coverageChecks": [
+        {
+          "assertion": "No MS Teams Call test-result points appear before the layer is selected.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-initial.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-1-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
+      "outcome": "Unverified",
+      "reason": "criterion-2-test-type-choices.png and criterion-2-configured.png establish Automobile > MS Teams Call. criterion-2-local-selected.png has the selected layer but no plotted results; criterion-2-wide-map.png / criterion-2-before-point.png show genuine result symbols in the broader England/Wales view. criterion-2-point-selected.png and criterion-2-final.png show a settled three-test selection list (1–3 of 3), supporting the recorded Automobile MS Teams points/cluster-details request paths. No complete bounded response-to-symbol/member reconciliation or selection of every matching record is supplied. The test-selection list is not the detailed-sample table; individual Test IDs are clipped.",
+      "coverageChecks": [
+        {
+          "assertion": "Automobile offers MS Teams Call as a nested Test type.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-test-type-choices.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-configured.png"
+          ]
+        },
+        {
+          "assertion": "Selecting MS Teams Call plots genuine matching results.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-local-selected.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-wide-map.png"
+          ]
+        },
+        {
+          "assertion": "Every matching result in the bounded scope is reconciled with its selectable presentation, including all aggregate members.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-before-point.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Only matching authorised MS Teams Call results are loaded for the selected layer.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-wide-map.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
+      "outcome": "Unverified",
+      "reason": "criterion-3-colour-configuration.png shows a green legend swatch with upper value 1; its exact input colour code is not readable. criterion-3-final.png shows actual result symbols, but no identified individual test with readable Poor Quality 0–0.99 is correlated with a specific green symbol. The editor and broad map do not prove the runtime band.",
+      "coverageChecks": [
+        {
+          "assertion": "The configured green quality band uses the observed exact colour code.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-colour-configuration.png"
+          ]
+        },
+        {
+          "assertion": "A genuine displayed point with Poor Quality 0–0.99 is independently correlated with its rendered green colour.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-final.png"
+          ]
+        },
+        {
+          "assertion": "The legend visibly contains the green swatch and relevant numeric threshold boundary.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-3-colour-configuration.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
+      "outcome": "Unverified",
+      "reason": "criterion-4-colour-configuration.png shows the yellow swatch and numeric boundaries 1/10; its exact input colour code is not readable. criterion-4-map.png and criterion-4-final.png show plotted symbols but do not identify a specific qualifying result and its rendered yellow symbol. The reported 1.720269259536275 KPI is an aggregate observation, not visible individual-result colour proof.",
+      "coverageChecks": [
+        {
+          "assertion": "The configured yellow band uses the observed exact colour code and threshold values.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-colour-configuration.png"
+          ]
+        },
+        {
+          "assertion": "A genuine displayed point with Poor Quality 1–9.99 is independently correlated with its rendered yellow colour.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-final.png"
+          ]
+        },
+        {
+          "assertion": "The legend visibly contains the yellow swatch and relevant numeric threshold boundary.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-4-colour-configuration.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
+      "outcome": "Unverified",
+      "reason": "criterion-5-colour-configuration.png shows the amber swatch and numeric boundaries 10/25; its exact input colour code is not readable. criterion-5-map.png shows plotted symbols. criterion-5-final.png shows four whole-test selection rows (1–4 of 4), with Test ID and Poor Quality clipped beyond the right viewport. The reported 15.02% result cannot be visibly correlated with an individual amber map point. No detailed samples are demonstrated.",
+      "coverageChecks": [
+        {
+          "assertion": "The configured amber band uses the observed exact colour code and threshold values.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-colour-configuration.png"
+          ]
+        },
+        {
+          "assertion": "A genuine displayed point with Poor Quality 10–24.99 is independently correlated with its rendered amber colour.",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-map.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
+          ]
+        },
+        {
+          "assertion": "The legend visibly contains the amber swatch and relevant numeric threshold boundary.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-5-colour-configuration.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
+      "outcome": "Blocked",
+      "reason": "Shared-browser state/ownership interruption prevented the red-band check. criterion-6-initial.png shows the launcher; criterion-6-before-add.png already shows MS Teams Call plus generic Automobile - Call and unrelated Call details (19/08/2026 09:34:39, duration 70 s). criterion-6-browser-interference.png shows the same substituted state, not a new red-band result. The timeout is not product-failure evidence. No qualifying MS Teams red point was established; browser work stopped and restoration/ownership reconciliation remained outstanding.",
+      "coverageChecks": [
+        {
+          "assertion": "Establish a genuine MS Teams Call point with Poor Quality at least 25.",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-browser-interference.png"
+          ]
+        },
+        {
+          "assertion": "Independently correlate that point with the exact rendered red colour.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
+      "outcome": "Blocked",
+      "reason": "Testing could not be completed: the shared-browser state/ownership interruption stopped further independent criteria. No criterion-owned browser evidence was captured for summary fields. The supplied generic Call detail is outside MS Teams Call scope and cannot establish this criterion. No feature absence, missing fixture or product defect is inferred.",
+      "coverageChecks": [
+        {
+          "assertion": "Successful selected-test details display Test ID.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Test Result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Connection Time.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Call Duration.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Poor Quality.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display MSISDN.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display Test Technologies.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
+      "outcome": "Blocked",
+      "reason": "Testing could not be completed: the shared-browser state/ownership interruption stopped further independent criteria. No criterion-owned browser evidence was captured for signal/download charts and available handover markers. The supplied generic Call detail is outside MS Teams Call scope and cannot establish this criterion. No feature absence, missing fixture or product defect is inferred.",
+      "coverageChecks": [
+        {
+          "assertion": "Successful selected-test details display a signal chart.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Successful selected-test details display a download chart.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Returned handover markers are visible on the relevant charts when available.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
+      "outcome": "Blocked",
+      "reason": "Testing could not be completed: the shared-browser state/ownership interruption stopped further independent criteria. No criterion-owned browser evidence was captured for detailed-sample table and excluded columns. The supplied generic Call detail is outside MS Teams Call scope and cannot establish this criterion. No feature absence, missing fixture or product defect is inferred.",
+      "coverageChecks": [
+        {
+          "assertion": "Successful details show a detailed-sample table.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The sample table omits label columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The sample table omits latitude columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The sample table omits longitude columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "The sample table omits handover-only columns.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
+      "outcome": "Blocked",
+      "reason": "Testing could not be completed: the shared-browser state/ownership interruption stopped further independent criteria. No criterion-owned browser evidence was captured for supported-column sample sorting. The supplied generic Call detail is outside MS Teams Call scope and cannot establish this criterion. No feature absence, missing fixture or product defect is inferred. The tester's retained every-column ascending/descending assertions exceed the canonical supported-column operation; no extra all-column requirement is imposed.",
+      "coverageChecks": [
+        {
+          "assertion": "Identify supported sortable columns of the selected test's detailed-sample table.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "For every supported sortable column, ascending sort shows matching settled sample order.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "For every supported sortable column, descending sort shows matching settled sample order.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
+      "outcome": "Blocked",
+      "reason": "Testing could not be completed: the shared-browser state/ownership interruption stopped further independent criteria. No criterion-owned browser evidence was captured for supported-column sample filtering. The supplied generic Call detail is outside MS Teams Call scope and cannot establish this criterion. No feature absence, missing fixture or product defect is inferred.",
+      "coverageChecks": [
+        {
+          "assertion": "Identify the selected test's supported sample-table column filter controls.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Applying a supported column filter leaves only samples matching that filter.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
+      "outcome": "Blocked",
+      "reason": "Testing could not be completed: the shared-browser state/ownership interruption stopped further independent criteria. No criterion-owned browser evidence was captured for selected-test CSV export and identity reconciliation. The supplied generic Call detail is outside MS Teams Call scope and cannot establish this criterion. No feature absence, missing fixture or product defect is inferred.",
+      "coverageChecks": [
+        {
+          "assertion": "Export the selected MS Teams Call test as CSV through its normal control.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Inspect the downloaded CSV and reconcile its data with the selected test identity.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "reason": "Testing could not be completed: the shared-browser state/ownership interruption stopped further independent criteria. No criterion-owned browser evidence was captured for zero-duration behaviour. The supplied generic Call detail is outside MS Teams Call scope and cannot establish this criterion. No feature absence, missing fixture or product defect is inferred. Keyboard activation is not independently required by this criterion; the retained tester assertion does not add such a requirement.",
+      "coverageChecks": [
+        {
+          "assertion": "Establish an actual zero-duration MS Teams Call result.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Attempt normal pointer selection and any exposed keyboard activation.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Verify the requested zero-duration details state contains neither stale prior-record data nor misleading data.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
+      "outcome": "Blocked",
+      "reason": "Testing could not be completed: the shared-browser state/ownership interruption stopped further independent criteria. No criterion-owned browser evidence was captured for failed-detail-load behaviour. The supplied generic Call detail is outside MS Teams Call scope and cannot establish this criterion. No feature absence, missing fixture or product defect is inferred. No simulation was performed; simulation cleanup is conditional and cannot supply a pass for this untested branch.",
+      "coverageChecks": [
+        {
+          "assertion": "Establish the genuine selected MS Teams Call detail request and permitted failure prerequisite.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Request the selected result's details and reproduce a real failure or explicitly disclosed scoped UI simulation.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Verify the failed-load dialog contains neither stale prior-record data nor misleading data.",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "If simulation is used, remove only the owned handler and verify genuine recovery and cleanup.",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ]
+    }
+  ],
+  "overallOutcome": "Blocked",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-89\\cycles\\cycle-003\\screenshots\\attempt-001",
+  "qaStatus": "Blocked",
+  "noOp": false,
+  "reason": "Reviewed the complete live source ticket, canonical checklist, testing context and cycle-003 attempt-001 evidence independently. All 33 referenced PNGs exist and are non-empty. Shared-browser state/ownership interruption prevented completion and restoration verification. Mapping completeness and individual quality-to-colour correlation remain evidence gaps; generic Call details were excluded. No confirmed product defect or simulated state is established.",
+  "cycleId": "cycle-003"
+}
