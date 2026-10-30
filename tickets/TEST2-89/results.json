@@ -656,139 +656,138 @@
   },
   {
     "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
-    "outcome": "Blocked",
-    "blockerCode": "browser_session_interference",
-    "retryClass": "transient",
+    "outcome": "Failed",
     "evidence": [
-      "cycles/cycle-005/screenshots/attempt-001/criterion-11-initial-07d53781-f88e-45a7-abc0-25af6a140442.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-11-plotted-map-323ef556-775c-4e9b-a717-4fbdc8e59acd.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-11-blocker-foreign-surveyor-session-30fdab53-28aa-48bf-b18a-65fc856a6803.png"
+      "cycles/cycle-005/screenshots/attempt-001/criterion-11-supplement-initial-7ccb6363-e849-439b-b2ed-58332c1c021c.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-11-supplement-final-a6141306-3a6a-49f9-9767-0f08ad05a0d6.png"
     ],
     "coverageChecks": [
       {
-        "assertion": "An individual MS Teams Call detailed-sample table exposes a supported column filter.",
-        "outcome": "Blocked",
+        "assertion": "The individual detailed-sample table provides a supported-column filter that limits its sample rows.",
+        "outcome": "Failed",
         "evidence": [
-          "cycles/cycle-005/screenshots/attempt-001/criterion-11-blocker-foreign-surveyor-session-30fdab53-28aa-48bf-b18a-65fc856a6803.png"
-        ]
-      },
-      {
-        "assertion": "Applying the column filter limits the displayed samples to matching values.",
-        "outcome": "Blocked",
-        "evidence": [
-          "cycles/cycle-005/screenshots/attempt-001/criterion-11-blocker-foreign-surveyor-session-30fdab53-28aa-48bf-b18a-65fc856a6803.png"
+          "cycles/cycle-005/screenshots/attempt-001/criterion-11-supplement-final-a6141306-3a6a-49f9-9767-0f08ad05a0d6.png"
         ]
       }
     ],
     "steps_taken": [
-      "Navigated independently to launcher and saved criterion-owned initial PNG.",
-      "Opened GIS and captured its visible state before interaction. Saved PNG subsequently inspected: externally selected Surveyor - Service / Surveyor cluster, rather than the owned Automobile MS Teams baseline.",
-      "Normal non-forced map-point selection timed out; call completed with HTML intercepting pointer events. No blind replay.",
-      "Reinspected current UI: unrelated Surveyor module/layer, Surveyor cluster tab and map centre approximately -0.574734,51.431920 zoom16.17. An unrelated navigation dialog also appeared without a worker action.",
-      "Verified exact live handoff/version, browser tools and unchanged matching lease owner/token; set recoveryUsed before one fresh read-only snapshot. Foreign Surveyor state confirmed.",
-      "Captured and sealed the visible session-interference blocker without interacting with foreign controls. Stopped browser work; no sample filter was tested."
+      "Started from the launcher and opened GIS; added Automobile > MS Teams Call with the default 1 August–30 October 2026 date range, all technologies and no handset/network restriction.",
+      "Opened genuine MS Teams test 132124168 from its plotted aggregate; inspected the individual detailed-sample table, its toolbar and all eleven column-header controls.",
+      "Hovered Technology and checked visible controls. Only the unrelated layer-catalogue filter was available; no detailed-sample filter or header filter menu was exposed.",
+      "Captured and visually inspected the actual detailed-sample view. Did not substitute the cluster-list search for sample filtering."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "156.0.8078.48",
-    "reason": "The sample-filter operation was not reached. Shared browser interference prevented safe continuation. The browser changed externally from Automobile MS Teams Call to Surveyor - Service / Surveyor cluster at a different map scope while owner.json still matched this handoff and retained token. After the completed pointer timeout, one bounded read-only recovery confirmed the foreign state. No operation remains pending and no interception handler was installed. Browser work stopped; lease retained for coordinator reconciliation. Original Automobile configuration/viewport and pre-existing Call panel could not be restored after foreign activity without changing another actor's state.",
-    "testedModule": "Automobile"
+    "browserVersion": "156.0.8078.74",
+    "reason": "The individual MS Teams detailed-sample table has sortable headers, pagination and CSV export, but no sample or column filtering control. Header hover and inspection of all eleven headers exposed sorting only. The layer catalogue filter and cluster-list search are different views and do not satisfy this requirement.",
+    "testedModule": "Automobile",
+    "supplementation": {
+      "date": "2026-10-30",
+      "authority": "User requested direct completion of the unfinished checks; no cycle or retry reset.",
+      "sourceHandoffId": "handoff-TEST2-89-cycle-005-test-attempt-001"
+    },
+    "retryClass": "product"
   },
   {
     "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
-    "outcome": "Blocked",
-    "blockerCode": "browser_session_interference",
-    "retryClass": "transient",
-    "evidence": [],
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-12-supplement-initial-6ce0ed3e-d6a9-493d-8fab-69d279f4e84d.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-12-supplement-final-ada45017-719b-4d93-a74b-f69149744fc3.png"
+    ],
     "coverageChecks": [
       {
-        "assertion": "The selected MS Teams Call test exports a CSV through its export control.",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "The downloaded CSV contains data belonging to that selected test.",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "The normal CSV export contains the selected MS Teams test’s data.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-12-supplement-final-ada45017-719b-4d93-a74b-f69149744fc3.png"
+        ]
       }
     ],
     "steps_taken": [
-      "Not started: browser work stopped during criterion11 after independently confirmed foreign activity in the shared leased session.",
-      "No launcher, criterion-specific PNG or final browser URL could be obtained safely for this criterion; no other criterion's images are reused.",
-      "No export, zero-duration manipulation, simulation, request interception or backend change was performed."
+      "Started independently from the launcher, opened GIS and confirmed the selected Automobile MS Teams record and 457 detailed samples.",
+      "Clicked Export MS Teams Call detailed samples as CSV and saved the successful browser download MSTeams_30.10.2026_16.40.csv.",
+      "Compared all 457 downloaded rows with the genuine selected-record response: timestamps, technology/site/cell, signal/RSRQ/SNR, download/upload rates and sizes matched with explicit unit conversion.",
+      "Captured and inspected the selected record/export control; retained the CSV locally and recorded its verification digest."
     ],
-    "browserUrl": null,
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "156.0.8078.48",
-    "reason": "No criterion-owned browser execution or PNG capture was possible. Shared browser interference prevented safe continuation. The browser changed externally from Automobile MS Teams Call to Surveyor - Service / Surveyor cluster at a different map scope while owner.json still matched this handoff and retained token. After the completed pointer timeout, one bounded read-only recovery confirmed the foreign state. No operation remains pending and no interception handler was installed. Browser work stopped; lease retained for coordinator reconciliation. Original Automobile configuration/viewport and pre-existing Call panel could not be restored after foreign activity without changing another actor's state.",
-    "testedModule": "Automobile"
+    "browserVersion": "156.0.8078.74",
+    "reason": "Exported MS Teams test 132124168 to CSV. All 457 rows match its genuine detail response across timestamps, technology, site/cell identities, signal, RSRQ/SNR, rates and sizes after explicit byte/Kbps and byte/kB conversion. CSV SHA-256: fe59b04cf0bf48d9511d07e176ceb4f22a1b54fdde9abfe05668fb2f442fbe26. The raw download remains private.",
+    "testedModule": "Automobile",
+    "supplementation": {
+      "date": "2026-10-30",
+      "authority": "User requested direct completion of the unfinished checks; no cycle or retry reset.",
+      "sourceHandoffId": "handoff-TEST2-89-cycle-005-test-attempt-001"
+    }
   },
   {
     "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
     "outcome": "Blocked",
-    "blockerCode": "browser_session_interference",
-    "retryClass": "transient",
-    "evidence": [],
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-13-supplement-initial-466867d0-3b3d-4b95-b9fd-2c412d3c3d4b.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-13-supplement-final-26f79388-68a3-43b0-8e5b-fbe4d29157f0.png"
+    ],
     "coverageChecks": [
       {
-        "assertion": "A genuine zero-duration MS Teams Call result is identified and its details requested normally.",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Zero-duration result details exclude stale data from a previously loaded record.",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "Zero-duration result details exclude misleading data.",
+        "assertion": "A genuine zero-duration result does not display stale or misleading details.",
         "outcome": "Blocked",
         "evidence": []
       }
     ],
     "steps_taken": [
-      "Not started: browser work stopped during criterion11 after independently confirmed foreign activity in the shared leased session.",
-      "No launcher, criterion-specific PNG or final browser URL could be obtained safely for this criterion; no other criterion's images are reused.",
-      "No export, zero-duration manipulation, simulation, request interception or backend change was performed."
+      "Started independently at the launcher and opened the Automobile MS Teams cluster.",
+      "Inspected the complete two-row cluster list and both displayed Call Duration values; each was 120 s.",
+      "Captured the bounded fixture search. No qualifying zero-duration identity was supplied or located in this checked scope; did not claim a product failure or a zero-duration pass."
     ],
-    "browserUrl": null,
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "156.0.8078.48",
-    "reason": "No criterion-owned browser execution or PNG capture was possible. Shared browser interference prevented safe continuation. The browser changed externally from Automobile MS Teams Call to Surveyor - Service / Surveyor cluster at a different map scope while owner.json still matched this handoff and retained token. After the completed pointer timeout, one bounded read-only recovery confirmed the foreign state. No operation remains pending and no interception handler was installed. Browser work stopped; lease retained for coordinator reconciliation. Original Automobile configuration/viewport and pre-existing Call panel could not be restored after foreign activity without changing another actor's state.",
-    "testedModule": "Automobile"
+    "browserVersion": "156.0.8078.74",
+    "reason": "A genuine zero-duration MS Teams record is still required. The bounded cluster inspected contained tests 132124168 and 131879769, both with 120-second duration. This does not establish absence throughout the dataset and does not exercise the zero-duration branch. No measurement or successful response was fabricated.",
+    "testedModule": "Automobile",
+    "supplementation": {
+      "date": "2026-10-30",
+      "authority": "User requested direct completion of the unfinished checks; no cycle or retry reset.",
+      "sourceHandoffId": "handoff-TEST2-89-cycle-005-test-attempt-001"
+    },
+    "retryClass": "prerequisite"
   },
   {
     "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
-    "outcome": "Blocked",
-    "blockerCode": "browser_session_interference",
-    "retryClass": "transient",
-    "evidence": [],
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-initial-88942306-1df0-40d7-8879-54b62bed6eb2.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-before-385e41bf-2bbe-484a-abab-93892b5a257e.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-final-3830d827-7d85-499f-9fb8-7df1ed351058.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-restored-672b6bc0-3229-473e-831d-a45622987a71.png"
+    ],
     "coverageChecks": [
       {
-        "assertion": "A failed detail load for the selected MS Teams Call result is established in the correct module.",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "The failed-load dialog excludes stale data from a previously loaded record.",
-        "outcome": "Blocked",
-        "evidence": []
-      },
-      {
-        "assertion": "The failed-load dialog excludes misleading data.",
-        "outcome": "Blocked",
-        "evidence": []
+        "assertion": "SIMULATED UI STATE: a failed detail read displays an error without stale previous-record details, then recovers after the browser-only failure is removed.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-before-385e41bf-2bbe-484a-abab-93892b5a257e.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-final-3830d827-7d85-499f-9fb8-7df1ed351058.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-14-supplement-restored-672b6bc0-3229-473e-831d-a45622987a71.png"
+        ]
       }
     ],
     "steps_taken": [
-      "Not started: browser work stopped during criterion11 after independently confirmed foreign activity in the shared leased session.",
-      "No launcher, criterion-specific PNG or final browser URL could be obtained safely for this criterion; no other criterion's images are reused.",
-      "No export, zero-duration manipulation, simulation, request interception or backend change was performed."
+      "Started independently at the launcher; opened GIS and captured the genuine populated detail baseline for test 132124168.",
+      "Installed one browser-only exact-URL, GET-only handler returning HTTP 503 for the different visible cluster member 131879769. Selected that member through its normal row.",
+      "Verified one intercepted request, the explicit error alert and Retry, and absence of visible detail/sample tables; captured and inspected the error state.",
+      "Removed the exact owned handler, pressed Retry, observed genuine HTTP 200 and the distinct 4 August record with 455 samples, then captured and inspected recovery.",
+      "Verified the handler was absent. Closed only the three test-created MS Teams tabs, removed only the added Automobile layer, and restored the pre-existing Surveyor layer, cluster tab, empty catalogue search and map camera to approximately -0.579309 / 51.432076 at zoom 18 (initial latitude 51.432074). No backend or authentication state was changed."
     ],
-    "browserUrl": null,
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "156.0.8078.48",
-    "reason": "No criterion-owned browser execution or PNG capture was possible. Shared browser interference prevented safe continuation. The browser changed externally from Automobile MS Teams Call to Surveyor - Service / Surveyor cluster at a different map scope while owner.json still matched this handoff and retained token. After the completed pointer timeout, one bounded read-only recovery confirmed the foreign state. No operation remains pending and no interception handler was installed. Browser work stopped; lease retained for coordinator reconciliation. Original Automobile configuration/viewport and pre-existing Call panel could not be restored after foreign activity without changing another actor's state.",
-    "testedModule": "Automobile"
+    "browserVersion": "156.0.8078.74",
+    "reason": "SIMULATED UI STATE: a browser-only HTTP 503 was injected for GET /api/platform/automobile/ms-teams-call/tests/131879769 after genuine test 132124168 had loaded. The target showed “Unable to load this MS Teams Call test” and Retry with no visible summary, charts or sample table from the previous test. Removed the exact handler; Retry returned genuine HTTP 200 and loaded test 131879769 with 455 samples. This proves client error presentation and recovery, not a naturally occurring backend failure.",
+    "testedModule": "Automobile",
+    "supplementation": {
+      "date": "2026-10-30",
+      "authority": "User requested direct completion of the unfinished checks; no cycle or retry reset.",
+      "sourceHandoffId": "handoff-TEST2-89-cycle-005-test-attempt-001"
+    }
   }
 ]

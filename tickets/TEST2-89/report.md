@@ -1,7 +1,11 @@
 # TEST2-89 · cycle-005
 
-9 Passed, 1 Unverified, 4 Blocked. Automobile MS Teams Call was tested; completed evidence covers initial visibility, representative colour-band points, required summary fields, charts and available handovers, excluded sample columns, and all eleven sortable columns in both directions. Complete matching-result selectability remains Unverified.
+Direct completion supplement, 30 October 2026: 11 Passed, 1 Failed, 1 Blocked and 1 Unverified, pending independent review.
 
-Shared-browser interference stopped filtering, CSV export, zero-duration and failed-detail-load testing. Read-only recovery confirmed an externally selected Surveyor - Service layer and Surveyor cluster while this handoff still owned the lease. No Surveyor observation is acceptance evidence for TEST2-89. No simulation was attempted.
+- Failed: the individual MS Teams detailed-sample table exposes sorting and export but no required sample/column filtering.
+- Passed: CSV export; all 457 rows reconcile to genuine selected test 132124168.
+- Passed: browser-only simulated failed-detail loading shows an explicit error without stale data and recovers through genuine Retry after the handler is removed.
+- Blocked: no genuine zero-duration fixture was identified in the bounded two-record scope checked.
+- Unverified: criterion 2 still lacks complete bounded matching-result reconciliation; plotting and representative selection were demonstrated, not exhaustive selectability.
 
-The browser lease is retained for coordinator reconciliation. Completed PNGs are sealed. Final restoration of the original Automobile/Call configuration and viewport remains unverified because changing the foreign session was unsafe.
+Criteria 1–10 and their evidence are unchanged. The original published attempt history remains intact; history/attempt-001-supplement-20261030.json records these four corrections, evidence identities and CSV verification. No new attempt, cycle or retry reset was created. Test-created tabs/layer and the browser-only handler were removed; the pre-existing Surveyor session and camera were restored.
