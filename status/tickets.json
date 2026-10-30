@@ -1,14 +1,16 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-30T12:05:09.636+0000",
+  "generatedAt": "2026-10-30T14:26:24.421+0000",
   "counts": {
     "tickets": 9,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 9
+      "Blocked": 8,
+      "Ready": 1
     },
     "byQaOutcome": {
-      "Blocked": 9
+      "Blocked": 8,
+      "Not Tested": 1
     }
   },
   "policy": {
@@ -38,20 +40,20 @@
     },
     {
       "key": "TEST2-89",
-      "cycleId": "cycle-004",
+      "cycleId": "cycle-005",
       "summary": "Map and inspect MS Teams Call results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required; final evidence report published",
-      "updatedAt": "2026-10-30T12:05:09.636+0000",
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-10-30T14:26:24.421+0000",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 0,
       "retryLabel": ""
     },
     {
