@@ -1,8 +1,8 @@
 {
   "ticket": "TEST2-91",
-  "jiraStatus": "TESTING IN PROGRESS",
+  "jiraStatus": "READY FOR TESTING",
   "qaStatus": "Blocked",
-  "status": "TESTING IN PROGRESS",
+  "status": "READY FOR TESTING",
   "retries": 1,
   "retryLimit": 1,
   "testAttempts": 2,

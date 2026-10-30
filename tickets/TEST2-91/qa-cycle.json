@@ -4,8 +4,9 @@
   "sourceHash": "cd46a2f91aab89ee7b5c2f19dbde7ec067e65baa5bf2b2e55c6cb320033885a7",
   "processedTransitions": [
     "1186401:0",
-    "1186778:0"
+    "1186778:0",
+    "1187184:0"
   ],
   "reworkPending": false,
-  "lastJiraStatus": "TESTING IN PROGRESS"
+  "lastJiraStatus": "READY FOR TESTING"
 }

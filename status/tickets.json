@@ -1,17 +1,16 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-29T15:47:40.908Z",
+  "generatedAt": "2026-10-30T10:47:23.239+0000",
   "counts": {
-    "tickets": 11,
+    "tickets": 10,
     "handoffs": 1,
     "byWorkflowState": {
       "Blocked": 9,
-      "Ready": 1,
-      "TESTING IN PROGRESS": 1
+      "Ready": 1
     },
     "byQaOutcome": {
       "Blocked": 9,
-      "Passed": 2
+      "Passed": 1
     }
   },
   "policy": {
@@ -94,6 +93,42 @@
       "retryLabel": "Retry 1/1"
     },
     {
+      "key": "TEST2-90",
+      "cycleId": "cycle-002",
+      "summary": "Map and inspect Automobile call results",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Blocked",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Human",
+      "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
+      "updatedAt": "2026-10-30T10:47:23.239+0000",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-91",
+      "cycleId": "cycle-001",
+      "summary": "Filter Automobile map results",
+      "jiraStatus": "READY FOR TESTING",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Blocked",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Human",
+      "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
+      "updatedAt": "2026-10-19T15:52:17.810Z",
+      "retries": 1,
+      "retryLimit": 1,
+      "testAttempts": 2,
+      "retryLabel": "Retry 1/1"
+    },
+    {
       "key": "TEST2-92",
       "cycleId": "cycle-002",
       "summary": "Filter Automobile map points using the legend",
@@ -110,60 +145,6 @@
       "retryLimit": 1,
       "testAttempts": 1,
       "retryLabel": ""
-    },
-    {
-      "key": "TEST2-79",
-      "cycleId": "cycle-005",
-      "summary": "Map and inspect Automobile Download and Upload results",
-      "jiraStatus": "TESTING IN PROGRESS",
-      "workflowState": "TESTING IN PROGRESS",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
-      "guideImpact": "update_required",
-      "guideUpdate": "Map and inspect Automobile Download and Upload results",
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS",
-      "updatedAt": "2026-10-28T10:48:56.747Z",
-      "retries": 1,
-      "retryLimit": 1,
-      "testAttempts": 2,
-      "retryLabel": "Retry 1/1"
-    },
-    {
-      "key": "TEST2-90",
-      "cycleId": "cycle-002",
-      "summary": "Map and inspect Automobile call results",
-      "jiraStatus": "TESTING IN PROGRESS",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS",
-      "updatedAt": "2026-10-23T12:19:05.052+0100",
-      "retries": 0,
-      "retryLimit": 1,
-      "testAttempts": 1,
-      "retryLabel": ""
-    },
-    {
-      "key": "TEST2-91",
-      "cycleId": "cycle-001",
-      "summary": "Filter Automobile map results",
-      "jiraStatus": "TESTING IN PROGRESS",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS",
-      "updatedAt": "2026-10-19T15:52:17.810Z",
-      "retries": 1,
-      "retryLimit": 1,
-      "testAttempts": 2,
-      "retryLabel": "Retry 1/1"
     },
     {
       "key": "TEST2-82",

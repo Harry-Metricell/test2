@@ -1,6 +1,6 @@
 # Ticket Status
 
-Updated: 2026-10-29T15:47:40.908Z
+Updated: 2026-10-30T10:47:23.239+0000
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
@@ -8,10 +8,9 @@ Updated: 2026-10-29T15:47:40.908Z
 | TEST2-87 | READY FOR TESTING | Blocked |  | Display Call Point Details |
 | TEST2-88 | READY FOR TESTING | Evidence Reviewed | Retry 1/1 | Configure MS Teams Call map display settings |
 | TEST2-89 | READY FOR TESTING | Blocked | Retry 1/1 | Map and inspect MS Teams Call results |
+| TEST2-90 | READY FOR TESTING | Blocked |  | Map and inspect Automobile call results |
+| TEST2-91 | READY FOR TESTING | Blocked | Retry 1/1 | Filter Automobile map results |
 | TEST2-92 | READY FOR TESTING | Blocked |  | Filter Automobile map points using the legend |
-| TEST2-79 | TESTING IN PROGRESS | Evidence Reviewed | Retry 1/1 | Map and inspect Automobile Download and Upload results |
-| TEST2-90 | TESTING IN PROGRESS | Blocked |  | Map and inspect Automobile call results |
-| TEST2-91 | TESTING IN PROGRESS | Blocked | Retry 1/1 | Filter Automobile map results |
 | TEST2-82 | To Do | Blocked |  | Display Ping Point Details |
 | TEST2-85 | To Do | Blocked |  | Display Download Point Details |
 | TEST2-86 | To Do | Blocked |  | Display Upload Point Details |

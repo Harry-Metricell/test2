@@ -53,7 +53,7 @@
       "ticket": "TEST2-79",
       "title": "Map and inspect Automobile Download and Upload results",
       "affectedSection": "Automobile Download and Upload results",
-      "recordPath": "tickets/TEST2-79/guide-update.json"
+      "recordPath": "archive/tickets/TEST2-79/guide-update.json"
     },
     {
       "ticket": "TEST2-80",
