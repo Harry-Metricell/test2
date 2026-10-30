@@ -1,12 +1,13 @@
 {
   "ticket": "TEST2-91",
-  "criteriaVerified": false,
-  "qaStatus": "Not Tested",
+  "criteriaVerified": true,
+  "qaStatus": "Ready for Testing",
   "workflowState": "Ready",
   "retries": 0,
   "testAttempts": 0,
   "retryLimit": 1,
   "cycleId": "cycle-002",
   "jiraStatus": "TESTING IN PROGRESS",
-  "status": "TESTING IN PROGRESS"
+  "status": "TESTING IN PROGRESS",
+  "blockedStage": null
 }
