@@ -1,16 +1,14 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-30T11:10:06.377+0000",
+  "generatedAt": "2026-10-30T11:54:16.860+0000",
   "counts": {
-    "tickets": 10,
-    "handoffs": 1,
+    "tickets": 9,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 9,
-      "Ready": 1
+      "Blocked": 9
     },
     "byQaOutcome": {
-      "Blocked": 9,
-      "Passed": 1
+      "Blocked": 9
     }
   },
   "policy": {
@@ -37,42 +35,6 @@
       "retryLimit": 1,
       "testAttempts": 1,
       "retryLabel": ""
-    },
-    {
-      "key": "TEST2-87",
-      "cycleId": "cycle-003",
-      "summary": "Display Call Point Details",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
-      "updatedAt": "2026-10-26T16:46:06.418+0000",
-      "retries": 0,
-      "retryLimit": 1,
-      "testAttempts": 1,
-      "retryLabel": ""
-    },
-    {
-      "key": "TEST2-88",
-      "cycleId": "cycle-002",
-      "summary": "Configure MS Teams Call map display settings",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
-      "guideImpact": "update_required",
-      "guideUpdate": null,
-      "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide update authoring handoff",
-      "updatedAt": "2026-10-29T09:42:52.979Z",
-      "retries": 1,
-      "retryLimit": 1,
-      "testAttempts": 2,
-      "retryLabel": "Retry 1/1"
     },
     {
       "key": "TEST2-89",
@@ -195,6 +157,24 @@
       "actionOwner": "Human",
       "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
       "updatedAt": "2026-10-28T10:29:06.593+0000",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-87",
+      "cycleId": "cycle-003",
+      "summary": "Display Call Point Details",
+      "jiraStatus": "To Do",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Blocked",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Human",
+      "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
+      "updatedAt": "2026-10-30T11:54:16.860+0000",
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
