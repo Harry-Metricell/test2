@@ -86,7 +86,7 @@
           "content": [
             {
               "type": "text",
-              "text": "Provide shared filters for standard Automobile map layers. Support a rolling 90-day time range; handset filters for MSISDN, SIM MNC and SIM MCC; technology filters for Unknown, 2G, 3G, 4G, 5G NSA and 5G SA; configuration-supplied frequencies; network filters for MCC, MNC, LAC, CI, Site and Cell; and configuration-supplied device groups."
+              "text": "Provide shared filters for standard Automobile map layers. Support a rolling 90-day time range; handset filters for MSISDN, SIM MNC and SIM MCC; technology filters for no-Service, 2G, 3G, 4G, 5G NSA and 5G SA; configuration-supplied frequencies; network filters for MCC, MNC, LAC, CI, Site and Cell; and configuration-supplied device groups."
             }
           ]
         },
@@ -153,20 +153,6 @@
                     {
                       "type": "text",
                       "text": "Given the user applies one or more filters, when results reload, then only authorised results matching the active criteria are shown."
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "listItem",
-              "content": [
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "type": "text",
-                      "text": "Given a Call layer is active, when technology filters are displayed, then 5G NSA is unavailable."
                     }
                   ]
                 }
@@ -373,7 +359,7 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-10-30T10:55:39.161+0000",
+    "updated": "2026-10-30T14:32:55.234+0000",
     "status": {
       "self": "https://metricell.atlassian.net/rest/api/3/status/10744",
       "description": "",
