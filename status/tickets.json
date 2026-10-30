@@ -9,8 +9,7 @@
       "Ready": 1
     },
     "byQaOutcome": {
-      "Blocked": 8,
-      "Not Tested": 1
+      "Blocked": 9
     }
   },
   "policy": {
@@ -44,16 +43,16 @@
       "summary": "Map and inspect MS Teams Call results",
       "jiraStatus": "READY FOR TESTING",
       "workflowState": "Ready",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
+      "qaStatus": "Awaiting Evidence Review",
+      "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create testing handoff",
+      "nextAction": "Create final evidence review handoff",
       "updatedAt": "2026-10-30T12:05:09.636+0000",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 0,
+      "testAttempts": 1,
       "retryLabel": ""
     },
     {

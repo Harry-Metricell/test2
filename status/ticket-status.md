@@ -5,7 +5,7 @@ Updated: 2026-10-30T12:05:09.636+0000
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
 | TEST2-84 | READY FOR TESTING | Blocked |  | View Building Details and Floorplans |
-| TEST2-89 | READY FOR TESTING | Ready for Testing |  | Map and inspect MS Teams Call results |
+| TEST2-89 | READY FOR TESTING | Awaiting Evidence Review |  | Map and inspect MS Teams Call results |
 | TEST2-92 | READY FOR TESTING | Blocked |  | Filter Automobile map points using the legend |
 | TEST2-90 | TESTING IN PROGRESS | Blocked |  | Map and inspect Automobile call results |
 | TEST2-91 | TESTING IN PROGRESS | Blocked | Retry 1/1 | Filter Automobile map results |
