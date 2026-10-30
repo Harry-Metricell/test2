@@ -53,9 +53,14 @@ def repeat_table_header(table):
             paragraph.paragraph_format.keep_with_next = True
 
 
+def capture_stem(image):
+    """Ignore allocation UUIDs for layout decisions, retaining real file identity."""
+    return re.sub(r"-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", "", image.stem, flags=re.I)
+
+
 def evidence_caption(image):
     """Describe the recorded state; retain the filename for the audit trail."""
-    state = re.sub(r"^criterion-\d+-", "", image.stem).replace("-", " ")
+    state = re.sub(r"^criterion-\d+-", "", capture_stem(image)).replace("-", " ")
     return f"{state.capitalize()} ({image.name})"
 
 
@@ -72,7 +77,7 @@ def localized_change_region(images, *, max_fraction=0.12):
         if "-before-" not in before.name:
             continue
         after = by_name.get(before.name.replace("-before-", "-after-", 1))
-        if after is None and len(images) == 2 and images[-1].stem.lower().endswith("-final"):
+        if after is None and len(images) == 2 and capture_stem(images[-1]).lower().endswith("-final"):
             # Exact-state deduplication may retain `final` instead of `after`.
             # Comparing this row's actual pixels remains the safety gate.
             after = images[-1]
@@ -199,9 +204,9 @@ def criterion_focus_region(images, criterion, outcome):
     """
     lower = criterion.lower()
     preservation = preserves_recorded_state(lower) or "restored" in lower or restores_catalogue_state(lower)
-    original = any("baseline-" in image.stem.lower() or "before-search" in image.stem.lower()
+    original = any("baseline-" in capture_stem(image).lower() or "before-search" in capture_stem(image).lower()
                    for image in images)
-    final = any(re.search(r"-final(?:-recovered)?$", image.stem.lower()) for image in images)
+    final = any(re.search(r"-final(?:-recovered)?$", capture_stem(image).lower()) for image in images)
     if text(outcome).lower() == "passed" and preservation and original and final:
         return None
     table_comparison = bool(re.search(r"\b(table|rows?|columns?)\b", lower)
@@ -216,11 +221,11 @@ def supporting_captures(candidates, displayed, limit=2):
     selected = []
     seen = set(displayed)
     for image, browser_url in candidates:
-        if not (any(term in image.stem.lower() for term in (
+        if not (any(term in capture_stem(image).lower() for term in (
             "after-open-gis", "before-load", "after-open-module",
             "after-open-surveyor-config", "after-open-layer-dialog", "before-confirm-add",
             "before-automobile", "automobile-config", "before-select-point", "before-select-record",
-        )) or re.fullmatch(r"criterion-\d+-(?:surveyor-config|service-config|building-config)", image.stem.lower())):
+        )) or re.fullmatch(r"criterion-\d+-(?:surveyor-config|service-config|building-config)", capture_stem(image).lower())):
             continue
         digest = hashlib.sha256(image.read_bytes()).hexdigest()
         if digest in seen:
@@ -256,7 +261,7 @@ def reviewed_report_exhibits(images, criterion, review_reason=""):
         return selected  # Never re-add the deliberately superseded journey.
     cited = [image for image in images if re.search(
         r"(?<![\w.-])" + re.escape(image.name) + r"(?![\w.-])", review_reason)
-        and not re.search(r"cleanup|after-clean", image.stem, re.I)]
+        and not re.search(r"cleanup|after-clean", capture_stem(image), re.I)]
     if not cited:
         return selected
     lower = criterion.lower()
@@ -266,7 +271,7 @@ def reviewed_report_exhibits(images, criterion, review_reason=""):
     def unrelated_setup(image):
         if protects_setup or image in cited:
             return False
-        name = re.sub(r"^criterion-\d+-", "", image.stem.lower())
+        name = re.sub(r"^criterion-\d+-", "", capture_stem(image).lower())
         if name in {"initial", "before-automobile", "automobile-config", "actual-automobile-config", "after-open-gis"}:
             return True
         # Known layer-creation captures move only when the reviewer names
@@ -303,10 +308,10 @@ def report_exhibits(images, criterion, review_reason=""):
     # not repeated launcher/layer setup. Never infer this from filenames alone.
     simulated = "SIMULATED UI STATE:" in review_reason.upper()
     if simulated:
-        finals = [image for image in images if re.search(r"-final$", image.stem.lower())]
-        recovery = [image for image in images if image.stem.lower().endswith("-recovery")]
+        finals = [image for image in images if re.search(r"-final$", capture_stem(image).lower())]
+        recovery = [image for image in images if capture_stem(image).lower().endswith("-recovery")]
         if len(finals) == 1 and len(recovery) == 1:
-            supporting = [image for image in images if any(term in image.stem.lower()
+            supporting = [image for image in images if any(term in capture_stem(image).lower()
                           for term in ("genuine-point-baseline", "genuine-target-baseline", "distinct-valid-point",
                                        "first-record-baseline", "target-genuine-details", "genuine-baseline"))]
             wanted = set([finals[0], recovery[0], *supporting])
@@ -314,21 +319,21 @@ def report_exhibits(images, criterion, review_reason=""):
     # A reviewer may explicitly accept a complete recheck instead of an earlier
     # incomplete journey. Never print the rejected journey as the passed proof.
     # Without that review decision, preserve both journeys for transparency.
-    recheck = [image for image in images if "-recheck-" in image.stem.lower()]
+    recheck = [image for image in images if "-recheck-" in capture_stem(image).lower()]
     accepted_recheck = ("recheck" in review_reason.lower()
                         and "supersedes" in review_reason.lower()
-                        and any(re.search(r"-final(?:-recovered)?$", image.stem.lower()) for image in recheck))
+                        and any(re.search(r"-final(?:-recovered)?$", capture_stem(image).lower()) for image in recheck))
     if accepted_recheck:
         images = recheck
     # Tester captures after `final` are cleanup evidence, not proof of the
     # criterion's asserted state; keep them in the local attempt, not the PDF.
     # A completed recovery supersedes the unsuccessful interaction. Keep its
     # criterion-owned states, not the old final or post-final cleanup captures.
-    recovered = {image.stem.lower().removesuffix("-recovered") for image in images
-                 if image.stem.lower().endswith("-recovered")}
-    images = [image for image in images if image.stem.lower() not in recovered]
+    recovered = {capture_stem(image).lower().removesuffix("-recovered") for image in images
+                 if capture_stem(image).lower().endswith("-recovered")}
+    images = [image for image in images if capture_stem(image).lower() not in recovered]
     final_index = next((index for index in range(len(images) - 1, -1, -1)
-                        if re.search(r"-final(?:-recovered)?$", images[index].stem.lower())), None)
+                        if re.search(r"-final(?:-recovered)?$", capture_stem(images[index]).lower())), None)
     if final_index is not None:
         images = images[:final_index + 1]
     lower = criterion.lower()
@@ -338,10 +343,10 @@ def report_exhibits(images, criterion, review_reason=""):
     # the existing conservative selection below.
     point_content = (("point" in lower or "detail view" in lower) and "detail" in lower
                      and not re.search(r"\b(close|reopen|cancel|restore|toggle|twice|loading|fail)\b", lower))
-    final = [image for image in images if re.search(r"-final$", image.stem.lower())]
+    final = [image for image in images if re.search(r"-final$", capture_stem(image).lower())]
     if point_content and final:
-        configuration = [image for image in images if "only-before-add" in image.stem.lower()]
-        identity = [image for image in images if "cluster-before-point" in image.stem.lower()]
+        configuration = [image for image in images if "only-before-add" in capture_stem(image).lower()]
+        identity = [image for image in images if "cluster-before-point" in capture_stem(image).lower()]
         if identity and ("only selected technology" not in lower or configuration):
             return [*configuration, final[-1], identity[-1]]
     # A single unsaved-field cancellation is proved by the entered value and
@@ -349,9 +354,9 @@ def report_exhibits(images, criterion, review_reason=""):
     # Multiple edits or unfamiliar capture names keep their complete journey.
     if ("username" in lower and "cancel" in lower and "reopen" in lower and "empty" in lower
             and not re.search(r"\b(second|twice|both)\b|not\s+empty", lower)):
-        edited = [image for image in images if "after-edit" in image.stem.lower()
-                  and "before" in image.stem.lower() and "cancel" in image.stem.lower()]
-        reopened = [image for image in images if "after-reopen" in image.stem.lower()]
+        edited = [image for image in images if "after-edit" in capture_stem(image).lower()
+                  and "before" in capture_stem(image).lower() and "cancel" in capture_stem(image).lower()]
+        reopened = [image for image in images if "after-reopen" in capture_stem(image).lower()]
         if (len(edited) == 1 and len(reopened) == 1 and final_index is not None
                 and images.index(edited[0]) < images.index(reopened[0])):
             return [edited[0], images[-1]]
@@ -365,13 +370,13 @@ def report_exhibits(images, criterion, review_reason=""):
         for role in ("map", "layers"):
             if not re.search(r"\bmap\b" if role == "map" else r"\blayers?\b", lower):
                 continue
-            before = [image for image in images if f"baseline-{role}" in image.stem.lower()]
-            after = [image for image in images if "restored" in image.stem.lower() and role in image.stem.lower()]
+            before = [image for image in images if f"baseline-{role}" in capture_stem(image).lower()]
+            after = [image for image in images if "restored" in capture_stem(image).lower() and role in capture_stem(image).lower()]
             # One full-context layer baseline may be compared with the final
             # full-context viewport. Multiple list scrolls require their own
             # restored captures; do not pretend one final view proves them all.
             if before and not after and (role == "map" or len(before) == 1):
-                after = [image for image in images if re.search(r"-final(?:-recovered)?$", image.stem.lower())]
+                after = [image for image in images if re.search(r"-final(?:-recovered)?$", capture_stem(image).lower())]
             if before and not after:
                 # Keep the full reviewed journey when no role-complete
                 # restoration pair can be established from capture names.
@@ -380,13 +385,13 @@ def report_exhibits(images, criterion, review_reason=""):
             if before and after:
                 baselines.extend(before)
                 pairs.extend([*before, after[-1]])
-        if pairs and re.search(r"-final(?:-recovered)?$", images[-1].stem.lower()):
+        if pairs and re.search(r"-final(?:-recovered)?$", capture_stem(images[-1]).lower()):
             # A preservation claim applies during the search as well as after
             # clearing. Print the original/restored comparison first, then
             # retain the explicitly named intermediate asserted state.
             if "search" in lower and preserves_recorded_state(lower):
-                pairs.extend(image for image in images if "after-search" in image.stem.lower()
-                             or re.search(r"search-(?:map|layers)-before-clear", image.stem.lower()))
+                pairs.extend(image for image in images if "after-search" in capture_stem(image).lower()
+                             or re.search(r"search-(?:map|layers)-before-clear", capture_stem(image).lower()))
             if images[-1] not in pairs:
                 pairs.append(images[-1])
             return distinct_states(pairs, protected=baselines)
@@ -396,17 +401,17 @@ def report_exhibits(images, criterion, review_reason=""):
     # or an unfamiliar multi-action journey.
     restores_catalogue = restores_catalogue_state(lower)
     if restores_catalogue:
-        before = [image for image in images if "before-search" in image.stem.lower()]
-        final = [image for image in images if re.search(r"-final(?:-recovered)?$", image.stem.lower())]
-        multiple_baselines = any(sum(f"baseline-{role}" in image.stem.lower() for image in images) > 1
+        before = [image for image in images if "before-search" in capture_stem(image).lower()]
+        final = [image for image in images if re.search(r"-final(?:-recovered)?$", capture_stem(image).lower())]
+        multiple_baselines = any(sum(f"baseline-{role}" in capture_stem(image).lower() for image in images) > 1
                                  for role in ("map", "layers"))
-        if len(before) == 1 and final and not multiple_baselines and not any("scroll" in image.stem.lower() for image in images):
+        if len(before) == 1 and final and not multiple_baselines and not any("scroll" in capture_stem(image).lower() for image in images):
             return [before[0], final[-1]]
     # A module opened from a returned launcher starts at that returned state;
     # the preceding audit visit only establishes setup for this assertion.
     if "returned" in lower and "launcher" in lower:
         start = next((i for i, image in enumerate(images)
-                      if "after-back-before-open" in image.stem.lower()), None)
+                      if "after-back-before-open" in capture_stem(image).lower()), None)
         if start is None:
             start = next((i for i in range(len(images)-1, -1, -1)
                           if "before-open-" in images[i].stem.lower()), None)
@@ -416,20 +421,20 @@ def report_exhibits(images, criterion, review_reason=""):
     # before-action captures. Earlier creation of the no-match state is setup.
     if "replace" in lower and "search" in lower and "no-match" in lower:
         start = next((i for i, image in enumerate(images)
-                      if "before-replace" in image.stem.lower()), None)
+                      if "before-replace" in capture_stem(image).lower()), None)
         if start is not None:
             images = images[start:]
     if "filtered" in lower and "configuration" in lower and "open" in lower:
         start = next((i for i, image in enumerate(images)
-                      if "after-replace-before-open" in image.stem.lower()), None)
+                      if "after-replace-before-open" in capture_stem(image).lower()), None)
         if start is not None:
             images = images[start:]
     if "cancel" in lower and "clear" in lower and "search" in lower:
         start = next((i for i, image in enumerate(images)
-                      if "after-open-before-cancel" in image.stem.lower()), None)
+                      if "after-open-before-cancel" in capture_stem(image).lower()), None)
         if start is not None:
             baselines = [image for image in images[:start]
-                         if any(term in image.stem.lower() for term in
+                         if any(term in capture_stem(image).lower() for term in
                                 ("baseline-", "before-search", "before-no-match"))]
             if baselines:
                 images = baselines + images[start:]
@@ -438,25 +443,25 @@ def report_exhibits(images, criterion, review_reason=""):
     # never shorten unfamiliar sequences or remove their source evidence.
     if "second" in lower and not re.search(r"\b(first|twice)\b|\bboth\s+(edits|cancellations|sequences)\b", lower):
         start = next((i for i, image in enumerate(images)
-                      if "before-enter-second" in image.stem.lower()), None)
+                      if "before-enter-second" in capture_stem(image).lower()), None)
         if start is not None:
             images = images[start:]
     # A final restoration assertion needs its original unobscured baseline,
     # not all the earlier edits. Retain every baseline/list-scroll capture.
     restores_original = "original" in lower and "unchanged" in lower
     final_cancel = next((i for i, image in enumerate(images)
-                         if "before-final-cancel" in image.stem.lower()), None)
+                         if "before-final-cancel" in capture_stem(image).lower()), None)
     if restores_original and final_cancel is not None:
         baselines = [image for image in images[:final_cancel]
-                     if any(term in image.stem.lower() for term in
+                     if any(term in capture_stem(image).lower() for term in
                             ("before-open-", "baseline-layers", "baseline-map"))
-                     and "gis" not in image.stem.lower()]
+                     and "gis" not in capture_stem(image).lower()]
         if baselines:
             # The assertion compares the original map/list with the restored
             # map/list. Dialog-closing setup stays in the reviewed full attempt.
             final_states = [image for image in images[final_cancel:]
-                            if "after-final-cancel" in image.stem.lower()
-                            or re.search(r"-final(?:-recovered)?$", image.stem.lower())]
+                            if "after-final-cancel" in capture_stem(image).lower()
+                            or re.search(r"-final(?:-recovered)?$", capture_stem(image).lower())]
             if final_states:
                 images = baselines + final_states
     # Begin familiar multi-step assertions at their own relevant baseline.
@@ -469,19 +474,19 @@ def report_exhibits(images, criterion, review_reason=""):
     elif "second" in lower and "configuration" in lower:
         baseline_terms = ("baseline-linked-sites", "before-close-baseline-settings") if checks_settings else ("before-second-configuration",)
     start = next((i for i, image in enumerate(images)
-                  if any(term in image.stem.lower() for term in baseline_terms)), None)
+                  if any(term in capture_stem(image).lower() for term in baseline_terms)), None)
     if start is not None:
         images = images[start:]
     # Search assertions start at their settled search/list baseline, not at
     # unrelated module loading or Surveyor configuration. Keep every scroll
     # capture when an unchanged complete list is part of the claim.
     if "search" in lower and not re.search(r"\bdefaults?\b", lower) and not ("replace" in lower and "no-match" in lower):
-        start = next((i for i, image in enumerate(images) if any(term in image.stem.lower()
+        start = next((i for i, image in enumerate(images) if any(term in capture_stem(image).lower()
                      for term in ("baseline-layers", "before-no-match", "before-search"))), None)
         if start is not None:
             images = images[start:]
     if "returned" in lower and "launcher" in lower and "api request audit" in lower:
-        start = next((i for i, image in enumerate(images) if "before-open-audit" in image.stem.lower()), None)
+        start = next((i for i, image in enumerate(images) if "before-open-audit" in capture_stem(image).lower()), None)
         if start is not None:
             images = images[start:]
     # Omit only known setup, rather than guessing the decisive action from a
@@ -493,13 +498,13 @@ def report_exhibits(images, criterion, review_reason=""):
     # configuration claim needs the configured dialog, not every loading step.
     needs_setup = bool(re.search(r"\bdefaults?\b", lower))
     checks_configuration = needs_setup or bool(re.search(r"\b(configuration|configure|dialog)\b", lower))
-    names = [image.stem.lower() for image in images]
+    names = [capture_stem(image).lower() for image in images]
     checks_baseline = bool(re.search(r"\b(baseline|unchanged|matches|list|empty|initial|original)\b", lower))
     comparison_baseline = bool(re.search(r"\b(map|layers?|catalogue|list)\b", lower)) and (
         checks_baseline or "record" in lower)
     selected = []
     for image in images:
-        name = image.stem.lower()
+        name = capture_stem(image).lower()
         if any(term in name for term in ("cleanup", "after-clean")):
             continue
         # A default claim must retain the untouched configuration, even when
@@ -593,9 +598,9 @@ def report_exhibits(images, criterion, review_reason=""):
     # but cleanup must never become proof through the fallback path.
     if selected:
         protected = [image for image in selected if comparison_baseline and any(
-            term in image.stem.lower() for term in ("before-open", "baseline-layers", "baseline-map"))]
+            term in capture_stem(image).lower() for term in ("before-open", "baseline-layers", "baseline-map"))]
         return distinct_states(selected, protected=protected)
-    available = [image for image in images if not any(term in image.stem.lower()
+    available = [image for image in images if not any(term in capture_stem(image).lower()
                  for term in ("cleanup", "after-clean"))]
     if not available:
         raise SystemExit("criterion has only cleanup screenshots, not test evidence")

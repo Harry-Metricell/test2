@@ -87,8 +87,8 @@ test('tester and reviewer preserve independent evidence and derived outcome fiel
     assert.ok(tester.includes(field), field);
   }
   assert.ok(tester.includes('https://o2intelligence-v4-dev.metricell.com/launcher'));
-  assert.ok(tester.includes('criterion-N-initial.png'));
-  assert.ok(tester.includes('criterion-N-final.png'));
+  assert.ok(tester.includes('criterion-N-initial-<uuid>.png'));
+  assert.ok(tester.includes('criterion-N-final-<uuid>.png'));
   assert.ok(tester.includes('browser_tools_unavailable'));
   assert.ok(tester.includes('wait for the expected visible transition to settle'));
   assert.ok(brief('evidence-review').includes('Inspect actual visible states, not capture filenames'));
@@ -97,6 +97,15 @@ test('tester and reviewer preserve independent evidence and derived outcome fiel
   for (const field of ['criterionOutcomes', 'overallOutcome', 'qaStatus', 'reportPath', 'evidenceFolder']) assert.ok(reviewer.includes(field), field);
   assert.match(reviewer, /Blocked if any criterion is Blocked; otherwise Failed if any Failed; otherwise Unverified if any Unverified; otherwise Passed/);
   assert.ok(reviewer.includes('empty evidence lists'));
+});
+
+test('tester preserves captures and reconciles a stale wrapper without blind replay', () => {
+  const tester = brief('qa-testing');
+  for (const text of ['tester-capture.mjs --reserve', 'tester-capture.mjs --seal', 'tester-capture.mjs --verify',
+    'tester-checkpoint.json', 'one recovery sequence per attempt', 'do not replay the last click/navigation',
+    'cannot be shown completed/terminated', 'one fresh read-only browser_snapshot', 'restart only the interrupted criterion']) assert.ok(tester.includes(text), text);
+  assert.ok(brief('coordinator').includes('a tab is not proof of isolated application state'));
+  assert.ok(read('scripts/publish-agent-output.mjs').includes('verifyCaptures(stagingRoot, output.handoffId, output.results)'));
 });
 
 test('exception-state simulations remain scoped, disclosed and independently reviewed', () => {

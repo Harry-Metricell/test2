@@ -4,6 +4,7 @@ import { formatReviewReport } from './format-review-report.mjs';
 import { reportPushArgs, fetchedPublicationSha } from './git-report-push-policy.mjs';
 import { reportVerificationTimeout } from './report-process-policy.mjs';
 import { validateEvidenceCoverage } from './evidence-coverage.mjs';
+import { verifyCaptures } from './tester-capture.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
 import { guideInstructionIssues } from './guide-instruction-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
@@ -545,6 +546,7 @@ if (outputType === 'criteria-output.json') {
   validateEvidenceCoverage(output.results, { required: liveHandoff.evidenceCoverageVersion === 1 });
   if (testingContext) output.results = output.results.map(item => ({ ...item, testedModule: output.testedModule }));
   validateTesterStatus(output.results, output.qaStatus);
+  verifyCaptures(stagingRoot, output.handoffId, output.results);
   output.results = output.results.map((item, index) => {
     if (item.outcome === 'Passed') return item;
     item = normalizeBrowserToolBlock(item);

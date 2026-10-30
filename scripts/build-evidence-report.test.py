@@ -868,6 +868,17 @@ class ResultMatchingTests(unittest.TestCase):
             self.assertEqual(manifest["embeddedEvidenceImages"], 2)
             self.assertEqual(len(manifest["logicalEvidence"]), 3)
 
+    def test_unique_capture_ids_preserve_final_and_cleanup_layout_roles(self):
+        legacy = [Path('criterion-2-' + phase + '.png') for phase in ('initial', 'before-select', 'final', 'cleanup')]
+        unique = [p.with_name(p.stem + f'-00000000-0000-4000-8000-{i:012d}.png') for i, p in enumerate(legacy)]
+        self.assertEqual([REPORT.capture_stem(p) for p in unique], [p.stem for p in legacy])
+        criterion = 'Matching results are displayed as selectable map points.'
+        selected = REPORT.report_exhibits(legacy, criterion)
+        self.assertEqual(REPORT.report_exhibits(unique, criterion), [unique[legacy.index(p)] for p in selected])
+        caption = REPORT.evidence_caption(unique[2])
+        self.assertTrue(caption.startswith('Final ('))
+        self.assertIn(unique[2].name, caption)
+
     def test_reopen_baseline_uses_settled_before_reopen_capture(self):
         names = [Path(name) for name in ("criterion-3-before-toggle.png", "criterion-3-after-toggle.png", "criterion-3-after-close.png", "criterion-3-before-reopen.png", "criterion-3-after-reopen.png", "criterion-3-final.png")]
         self.assertEqual(REPORT.report_exhibits(names, "Reopening settings retains the changed state."), [names[0], names[1], names[3], names[5]])

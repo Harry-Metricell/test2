@@ -248,6 +248,10 @@ For publisher errors, check `%LOCALAPPDATA%\TEST2\publisher.log` and follow [pub
 
 ### Playwright screenshots for tester tasks
 
+Tester captures use `scripts/tester-capture.mjs`: reserve a unique criterion/phase filename, capture through Playwright MCP, then seal its hash before changing the page. Captures are never overwritten; the publisher checks sealed evidence for changed bytes. See the tester brief for the exact commands. Existing staged legacy outputs remain compatible.
+
+The tester saves a private per-criterion checkpoint. If an execution wrapper becomes stale, it may attempt one recovery only after verifying the same live handoff and browser ownership, no pending action or interception handler, and a fresh read-only page observation. It restarts only the interrupted criterion, retaining completed work. Uncertain execution or cleanup still blocks safely. The shared browser reservation applies to manual Chrome/Computer inspections too; a separate tab is not isolation. This recovery does not fix an unavailable external host.
+
 Tester tasks use Playwright MCP so the browser that performs each action also writes the evidence PNG. The files go directly to the repository-local `.agent-staging\<handoffId>\screenshots`; login state remains local and is never committed.
 
 For MCP installation or configuration changes, follow setup step 4 and restart the app. The page hook handles the approved email-and-Continue redirect; tester chats never operate sign-in controls. External identity-provider or repeated redirects require human sign-in. Missing browser tools use blockerCode browser_tools_unavailable and may receive the one fresh-chat retry; if still missing, verify MCP configuration and restart the app.

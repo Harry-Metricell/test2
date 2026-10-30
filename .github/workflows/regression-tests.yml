@@ -61,6 +61,9 @@ jobs:
       - name: Prevent overlapping testers on the shared browser
         run: node --test scripts/tester-browser-lease.test.mjs
 
+      - name: Preserve uniquely named screenshots and reject overwritten evidence
+        run: node --test scripts/tester-capture.test.mjs
+
       - name: Run Jira rich-text criteria regression tests
         run: node --test scripts/jira-adf.test.mjs
 
