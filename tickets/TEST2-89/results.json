@@ -1,0 +1,794 @@
+[
+  {
+    "criterion": "Before selecting the MS Teams Call layer, the map shows no MS Teams Call test-result points.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-1-initial-c043b2fd-49af-4094-806e-1387d87ed7e1.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-1-baseline-map-6555675f-edda-4bb6-ad31-7afd39275e6c.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-type-before-selection-8e4124ad-06e3-41a9-9883-38f0f9aaca92.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-1-final-0cb94910-01d3-4960-ae9b-8a3de40a65f4.png"
+    ],
+    "steps_taken": [
+      "Navigated to launcher and captured initial state.",
+      "Opened GIS; preserved existing Automobile - Call layer, 1 Aug 2026 14:18 through 30 Oct 2026 14:18, all default technologies and unrestricted handset/network fields.",
+      "Observed settled map with Automobile - Call only. Inspected its configuration: Test type Call; nested MS Teams Call available but unselected.",
+      "Dismissed test-type menu and closed unchanged configuration; settled map still identifies Automobile - Call only, with no MS Teams layer/result points."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "MS Teams Call remains unselected; displayed result symbols belong to the existing Automobile - Call layer.",
+    "coverageChecks": [
+      {
+        "assertion": "Before MS Teams Call selection, no MS Teams Call test-result points are shown.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-1-test-type-before-selection-8e4124ad-06e3-41a9-9883-38f0f9aaca92.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-1-final-0cb94910-01d3-4960-ae9b-8a3de40a65f4.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When the user selects the MS Teams Call layer and authorised matching results are available, each matching result is shown as a selectable map point.",
+    "outcome": "Unverified",
+    "retryClass": "manual",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-2-initial-d2fb2c9a-d94b-4961-b4dd-4a8944d98cd5.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-2-before-layer-selection-78dbbed5-33e9-4255-8cca-059e42448d21.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-2-selected-type-before-apply-a103e1c3-902b-4605-980b-4f0cfac05b8e.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-2-selected-layer-map-3c79e3ab-4fdf-49a8-a107-23636a4fe141.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-2-wider-map-0b74070b-4e40-4532-861c-00ff9c9b2153.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-2-selected-cluster-a88db975-38e2-45dd-bef4-f21fe1f62255.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-2-final-b15b5ff7-d56f-49eb-8003-264d0814c35c.png"
+    ],
+    "steps_taken": [
+      "Started independently from launcher; captured initial state and existing Call configuration.",
+      "Preserved existing Call test - 05/10/2026, 16:26:35 detail panel restored in GIS. Selected nested Automobile Test type MS Teams Call and applied unchanged 1 Aug 2026 14:18 to 30 Oct 2026 14:18 filters.",
+      "Observed GET /api/platform/automobile/ms-teams-call/points HTTP 200 with genuine aggregates. Captured settled plotted MS Teams layer before opening results.",
+      "Zoomed out once; clicked aggregate 864691674184418606 at longitude -1.318359375 latitude 53.435719206694195 using genuine point coordinates and map DOM bounds/current map attribution centre.",
+      "Observed five cluster members: 132124168, 132124007, 132123874, 131879769, 131879707. Selected 132124168 and observed genuine MS Teams Call detail.",
+      "Did not reconcile every aggregate/member in the whole supplied tile scope; complete per-result selectability is unverified.",
+      "Closed only the two MS Teams detail/list tabs opened in this criterion, restored original Call test type and previous zoom. Existing Call detail retained."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Matching Automobile MS Teams points were plotted and one aggregate/member selection loaded details. Complete reconciliation of every matching result, including all cluster members across supplied map tiles, was not established.",
+    "coverageChecks": [
+      {
+        "assertion": "Selecting Automobile MS Teams Call loads matching authorised results as plotted map symbols.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-2-selected-layer-map-3c79e3ab-4fdf-49a8-a107-23636a4fe141.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-2-wider-map-0b74070b-4e40-4532-861c-00ff9c9b2153.png"
+        ]
+      },
+      {
+        "assertion": "Every matching result in a bounded genuine dataset, including cluster members, has a selectable presentation.",
+        "outcome": "Unverified",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-2-selected-cluster-a88db975-38e2-45dd-bef4-f21fe1f62255.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-2-final-b15b5ff7-d56f-49eb-8003-264d0814c35c.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "For a displayed MS Teams Call point with Poor Quality 0–0.99, its map colour is Green.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-3-initial-1692ee67-dabb-41a5-ae09-e9bb7af0bbc2.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-3-before-selection-d02d9dee-d833-4e48-8114-b47aedccef0c.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-3-selected-type-6330e185-242f-4187-a7da-4c4e3afd80f8.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-3-plotted-map-6ec937ca-50ef-446b-a853-ca820fc26b4d.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-3-configured-bands-a7200ec7-4af8-4e52-93ca-dddd8ac7b6a0.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-3-northern-plotted-map-a8500d5d-de74-4ae7-b378-17e61e641064.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-3-final-8b76e2d4-1239-468a-9fb1-62ab9b97ca39.png"
+    ],
+    "steps_taken": [
+      "Started independently at launcher; captured initial state, opened GIS and selected nested Automobile MS Teams Call with existing 1 Aug–30 Oct 2026 scope and all technologies.",
+      "Inspected Edit Legend without modifying it: green #31aa4f upper threshold 1, yellow #fcbf1a upper threshold 10; cancelled.",
+      "Panned map north to expose result symbols. GET /api/platform/automobile/ms-teams-call/points returned HTTP 200. Genuine aggregate 864691670694757674 had Poor Quality 0.049346879535558, latitude 53.644637824856524 longitude -2.4609375, generation 4.",
+      "Captured settled map: target symbol near screen (774,102) rendered green; saved PNG pixel observation matched #31aa4f (23 exact-colour pixels in 16x16 target area).",
+      "Normal pointer selection at projected genuine coordinate produced POST /api/platform/automobile/ms-teams-call/cluster-details HTTP 200 with matching mercatorKey. Captured final map/list state; no legend edits saved.",
+      "MS Teams layer and northern viewport retained as owned test setup pending remaining criteria; original Call detail remains untouched."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "Observed genuine Poor Quality 0.049346879535558 point rendered green #31aa4f, supported by configured upper threshold 1. This tests the supplied sample within the required interval; exact numeric endpoints were not separately sampled.",
+    "coverageChecks": [
+      {
+        "assertion": "A displayed MS Teams Call point with known Poor Quality within 0–0.99 is green.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-3-configured-bands-a7200ec7-4af8-4e52-93ca-dddd8ac7b6a0.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-3-northern-plotted-map-a8500d5d-de74-4ae7-b378-17e61e641064.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-3-final-8b76e2d4-1239-468a-9fb1-62ab9b97ca39.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-4-initial-25198156-33f1-4f81-acf5-ed97d2a468c6.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-4-plotted-map-c9c9827a-5b1c-48cb-bbed-49445885138b.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-4-final-a4e63036-6ed0-466c-8ad9-a9017200f9c4.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-4-final-quality-identity-e475d798-375c-4a76-b274-0a3b7e88174f.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "steps_taken": [
+      "Started independently at launcher and opened GIS. Confirmed Automobile MS Teams Call active; genuine points GET returned HTTP 200 for unchanged August–October scope.",
+      "Captured settled map before selecting genuine point 864691674184418606 at latitude 53.435719206694195 longitude -1.318359375, kpiValue 1.750547045951859.",
+      "Normal pointer selection near screen (972,163) opened test 132124007, GET /api/platform/automobile/ms-teams-call/tests/132124007 HTTP 200.",
+      "Scrolled summary normally to show Poor Quality 1.75% and Test ID 132124007 with corresponding yellow point on map; captured and inspected final evidence.",
+      "Closed only owned selected MS Teams test tab; retained original Call tab."
+    ],
+    "reason": "Genuine displayed point in the 1–9.99 band renders yellow; selected test independently displays Poor Quality 1.75%. Exact interval endpoints were not separately sampled.",
+    "coverageChecks": [
+      {
+        "assertion": "A displayed MS Teams Call point with known Poor Quality 1–9.99 is yellow.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-4-plotted-map-c9c9827a-5b1c-48cb-bbed-49445885138b.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-4-final-quality-identity-e475d798-375c-4a76-b274-0a3b7e88174f.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-initial-4f1947cf-46f4-4820-9527-00172ff9cca3.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-before-pan-89366be5-1c47-4af0-b99e-3c6c656675cf.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-plotted-map-ed31e839-b5d3-47d1-ad06-3d1fc499a951.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-selected-point-0b6ca036-ca37-4aed-98a6-d1a6bee45835.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-selected-detail-aca6ae1a-8e9e-44d6-a26f-81b92568fa89.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-final-81eabecb-5f6a-4193-a6b3-50a4f33dd2ac.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "steps_taken": [
+      "Started independently at launcher, opened GIS, captured baseline and panned north normally to expose matching points.",
+      "Fresh GET /api/platform/automobile/ms-teams-call/points HTTP 200 supplied aggregate 864691671231628580, Poor Quality 16.573348264277715, latitude 53.956085530987885 longitude -2.28515625, generation13.",
+      "Captured settled active MS Teams layer/map before selecting target symbol near screen (804,177). Its rendered colour matches the amber band.",
+      "Selected member test 131994257 from the resulting four-member list; genuine details show Poor Quality 15.02%. Scrolled summary normally to show quality and identity together in final image.",
+      "Inspected saved decisive image. Closed only owned selected test and cluster tabs; original Call panel retained."
+    ],
+    "reason": "A genuine point at16.57% rendered the configured amber band. Its selected member test131994257 displays15.02%, also within10–24.99. Exact interval endpoints were not separately sampled.",
+    "coverageChecks": [
+      {
+        "assertion": "A displayed MS Teams Call point with Poor Quality10–24.99 renders amber.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-5-plotted-map-ed31e839-b5d3-47d1-ad06-3d1fc499a951.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-5-selected-point-0b6ca036-ca37-4aed-98a6-d1a6bee45835.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-5-final-81eabecb-5f6a-4193-a6b3-50a4f33dd2ac.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-initial-ed719ba2-534a-4286-8f14-432364556e8d.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-plotted-map-e6d910e1-6166-461a-b28f-2a485deb1e9a.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-selected-point-3f903d9f-637d-4beb-81ff-48e98c26638b.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-selected-detail-649d8ec5-f558-416f-9a81-fa97aaa80bb0.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-final-661d8147-3306-4529-9d92-644a59e2320d.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "steps_taken": [
+      "Started independently at launcher, opened GIS, captured settled Automobile MS Teams map with genuine symbols.",
+      "Fresh GET /api/platform/automobile/ms-teams-call/points HTTP200 supplied point864691671231628581 at53.90433815627469,-2.28515625, Poor Quality35.04083147735709.",
+      "Normal pointer selection at projected screen(804,192) opened three-member test list. Selected test131998604, which showed85.37% Poor Quality.",
+      "Captured selected detail then scrolled summary normally to show Poor Quality and Test ID. Inspected final image; corresponding red map point retained. Exact #e61733 found in21 target-region pixels of own saved baseline.",
+      "Closed own test and cluster tabs; original Call detail retained."
+    ],
+    "reason": "Genuine displayed point at35.04% is red #e61733. Selected member131998604 shows85.37%, also above25. Exact25 boundary was not separately sampled.",
+    "coverageChecks": [
+      {
+        "assertion": "A displayed MS Teams Call point with known Poor Quality25 or greater renders red.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-6-plotted-map-e6d910e1-6166-461a-b28f-2a485deb1e9a.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-6-selected-point-3f903d9f-637d-4beb-81ff-48e98c26638b.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-6-final-661d8147-3306-4529-9d92-644a59e2320d.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-7-initial-36d19be2-4136-469b-8a34-08abeedad1cf.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-7-plotted-map-2ee413aa-aebd-49d7-ad68-910f13f19596.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-7-summary-top-5a0c2163-e8dc-4e4c-8516-2ac73d518569.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "steps_taken": [
+      "Started independently at launcher and opened GIS; captured settled active MS Teams map.",
+      "Selected point864691674184418606 by normal pointer at its current projected coordinate; loaded MS Teams test132124007.",
+      "Inspected every required summary field. Captured top view then normally scrolled summary to Test ID, retaining overlapping fields.",
+      "Confirmed Test Result Success, Connection Time266ms, Call Duration120s, Poor Quality1.75%, Test Technologies5G NSA, populated MSISDN, Test ID132124007.",
+      "Inspected saved top/final PNGs for readability; final URL /gis. Closed only owned selected test."
+    ],
+    "reason": "All seven required summary fields readable for genuine test132124007.",
+    "coverageChecks": [
+      {
+        "assertion": "Details display readable Test ID",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png"
+        ]
+      },
+      {
+        "assertion": "Details display readable Test Result",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-7-summary-top-5a0c2163-e8dc-4e4c-8516-2ac73d518569.png"
+        ]
+      },
+      {
+        "assertion": "Details display readable Connection Time",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png"
+        ]
+      },
+      {
+        "assertion": "Details display readable Call Duration",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png"
+        ]
+      },
+      {
+        "assertion": "Details display readable Poor Quality",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-7-final-d0cdf4ab-6faf-46fd-9a19-65d78dd02dfd.png"
+        ]
+      },
+      {
+        "assertion": "Details display readable MSISDN",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-7-summary-top-5a0c2163-e8dc-4e4c-8516-2ac73d518569.png"
+        ]
+      },
+      {
+        "assertion": "Details display readable Test Technologies",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-7-summary-top-5a0c2163-e8dc-4e4c-8516-2ac73d518569.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When the user selects a map point and its details load successfully, the details dialog displays signal and download charts and shows handover markers when available.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-8-initial-7341a771-9176-4721-b2a6-cee5a38cf364.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-8-plotted-map-8a5d856c-8c10-47b6-9041-49b21164a039.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-8-signal-chart-6c171b67-a609-4a73-bf46-44de204576bc.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-8-download-chart-9a3efaa8-0b87-4513-9e3d-57c3806e1b83.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-8-full-download-chart-20d32362-833e-447a-b9a0-6017f34d2beb.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-8-final-handover-tooltip-9c0a0f74-20f4-4201-87c2-3fa4410ab830.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "steps_taken": [
+      "Started independently at launcher, opened GIS and captured active MS Teams map before selecting matching point.",
+      "Selected point864691674184418606 and loaded genuine test132124007. GET /api/platform/automobile/ms-teams-call/tests/132124007 HTTP200 returned summary and457samples.",
+      "Captured Signal chart showing SNR/RSRQ series, Cell Handover/Site Handover legend and event lines.",
+      "Normally scrolled full Download section into viewport; captured readable Signal Strength, Download Rate, Poor Voice Quality and Generations legend plus plotted data.",
+      "Genuine samples returned five coincident site/cell handover events. Hovered first event11:30:24.143 normally; tooltip displayed SNR-100dB, RSRQ-13dB, Site(s)4128>74576, Cell(s)4128_137_4>74576_117_4 matching the response.",
+      "Inspected own full-download and final tooltip PNGs. Closed owned detail; existing Call panel retained."
+    ],
+    "reason": "Both required charts render; available handover information is visible in signal-chart event lines and a response-matching tooltip.",
+    "coverageChecks": [
+      {
+        "assertion": "Details display populated signal chart.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-8-signal-chart-6c171b67-a609-4a73-bf46-44de204576bc.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-8-final-handover-tooltip-9c0a0f74-20f4-4201-87c2-3fa4410ab830.png"
+        ]
+      },
+      {
+        "assertion": "Details display populated download chart.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-8-full-download-chart-20d32362-833e-447a-b9a0-6017f34d2beb.png"
+        ]
+      },
+      {
+        "assertion": "Available site/cell handovers have visible chart markers and readable matching tooltip.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-8-final-handover-tooltip-9c0a0f74-20f4-4201-87c2-3fa4410ab830.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When the user selects a map point and its details load successfully, the details dialog displays a detailed-sample table that omits label, latitude, longitude and handover-only columns.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-9-initial-8995ac4d-3afa-4ed0-92f7-d207f40bdd97.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-9-plotted-map-b43d9295-ef0c-49e5-8766-8623c11d3201.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-9-selected-detail-91bccdd3-7e21-4986-b3cb-49be37a859cf.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "steps_taken": [
+      "Started independently at launcher and opened GIS; captured active Automobile MS Teams map.",
+      "Selected map point and loaded test132124007 successfully. Opened individual record's MS Teams Call detailed samples table (not cluster/test-selection list).",
+      "Enumerated all11headers: Time, Technology, Site ID, Cell ID, Download Rate(Kbps), Upload Rate(Kbps), Signal Strength(dBm), RSRQ(dB), SNR(dB), Download Size(kB), Upload Size(kB).",
+      "Captured left headers and rows, then normally horizontally scrolled last header into view and captured remaining right headers.",
+      "Confirmed label, latitude, longitude and handover-only columns absent from full rendered header enumeration; detailed sample rows populated.",
+      "Inspected own saved decisive PNGs. Closed owned selected record."
+    ],
+    "reason": "Individual record's detailed-sample table populated; complete11-column header list excludes all four prohibited column categories.",
+    "coverageChecks": [
+      {
+        "assertion": "Details contain populated individual-record detailed-sample table.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-selected-detail-91bccdd3-7e21-4986-b3cb-49be37a859cf.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+        ]
+      },
+      {
+        "assertion": "Full detailed-sample header list omits label columns.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+        ]
+      },
+      {
+        "assertion": "Full detailed-sample header list omits latitude columns.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+        ]
+      },
+      {
+        "assertion": "Full detailed-sample header list omits longitude columns.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+        ]
+      },
+      {
+        "assertion": "Full detailed-sample header list omits handover-only columns.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-table-left-columns-13dfdb8f-6eb7-4bda-a5a1-ae2b404f2a50.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-9-final-right-columns-e348620e-5bec-467a-b272-510098e4d88e.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When detailed samples are displayed, sorting a supported column changes their displayed order to match the selected sort.",
+    "outcome": "Passed",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-initial-fa268520-b0bf-4e75-8a62-67c188725725.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-plotted-map-57f35cf3-436a-498e-a7cd-a8d2519384c9.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-selected-detail-245644f4-595e-409c-8045-f7515fa4f09e.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-desc-top-09e00999-bfd0-4521-bd45-f5fc42770268.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-desc-middle-b18298b3-b175-4b83-8596-4d08ca06ef2c.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-desc-bottom-a99defce-9dcd-42d5-a79a-34219ec4ab8a.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-asc-top-ebf50fd8-0f9d-47ef-b6d3-7c378f96be93.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-asc-bottom-4c053383-4d3b-4463-9171-50ffbb95b856.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-asc-top-18736094-78ef-4e82-9cd9-f49277ead5fc.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-asc-bottom-6f6158c2-46af-4a78-81dd-2d936693fc96.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-desc-top-78c55d4f-d8d0-437f-9f96-50658096df86.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-desc-bottom-d076e1ef-e216-48b9-ab6b-76058cbb9ea1.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-asc-top-448c1f7d-4ef7-4e98-934c-9c9f2b7146e8.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-asc-bottom-439b418a-0313-4059-be7e-930dc1f98388.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-desc-top-aa50920e-838e-4d5d-89ab-d6aaab6a02a7.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-desc-bottom-db09adb5-09f8-493e-8a0e-fb8fd11af98a.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-asc-top-bfc4f803-972c-40bc-9330-f75610ac4552.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-asc-bottom-e111b6f8-a07d-45b7-88a3-79f2ee7e8195.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-desc-top-18109455-ead2-4e53-8e89-332a09e16a01.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-desc-bottom-21829cf1-4146-4776-8cca-52091287390c.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-asc-top-e53fe560-f4ad-459c-a8b6-5c45b1fe2daa.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-asc-bottom-a1ee3256-2898-4d13-a9e6-229b92074b9b.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-desc-top-57af8bcd-d091-4613-8281-388df7657234.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-desc-bottom-4aa22536-21a4-445b-a6ab-8e6105abcf47.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-asc-top-9d482a26-7e35-4a4a-9df9-5f23663b321d.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-asc-bottom-3ccffcda-a6ef-42e0-8d12-21b609106eb2.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-desc-top-0763b7b5-f4e0-4d1e-8552-a9070199707a.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-desc-bottom-2be586df-46d0-4e09-8436-e2ded71e6fde.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-asc-top-6bdf676f-d927-4812-b75f-e7fb0d6ece18.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-asc-bottom-ea572e74-7b1d-4d39-86d8-37865a2ed8c1.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-desc-top-f264b283-7ca7-4c07-a593-7b6c575e4312.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-desc-bottom-4e778f7f-e4cf-47ad-8379-a8045949990e.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-asc-top-029276ae-ceac-466f-9381-0dfae78d0b7e.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-asc-bottom-7039388f-6ac0-4aa4-bda7-027f25b73ec9.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-desc-top-a53e8f81-e3e4-4ccf-8862-8e9140193fa7.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-desc-bottom-63acda11-d6be-49e5-91fa-50caddc1e9af.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-asc-top-cdaf2a1b-ce94-4b66-9e63-fa512b5daf2d.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-asc-bottom-80fca0f5-bbc5-4b8d-b46f-d9f86cc8a98f.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-desc-top-bf0819e7-a4d0-4d7b-8f06-352f746b8e98.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-desc-bottom-a1dae621-4611-4167-b54e-6da41eeb98e6.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-asc-top-b566dd16-07b2-4231-b99e-009db28d073b.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-asc-bottom-357ae80a-56b0-4de0-97c5-8abdfe979b92.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-desc-top-05e10bb6-a068-49b6-9279-9fe13358bb96.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-desc-bottom-18c7a775-c176-45d0-8777-362577329466.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-mixed-fixture-wider-map-8a28a9d2-ff9d-4492-bc09-ba13dd847af8.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-mixed-fixture-cluster-3f2f7754-7ed2-4877-8ca6-d4e796ba90cb.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-mixed-fixture-selected-detail-5f29c05d-1dab-49b5-9e3a-59b8cf7a6266.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-technology-asc-top-8b852293-e980-43d2-a696-27d8e80fc497.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-technology-asc-bottom-4a907ae5-1c70-413a-ac4d-3f74e28ef82d.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-technology-desc-top-6a387758-d383-41d8-bb7b-e470fabaf51f.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-10-final-technology-desc-bottom-f5e3a691-a994-49fe-89e0-2c088051ec79.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "steps_taken": [
+      "Started independently at launcher; opened GIS, captured settled Automobile MS Teams map, selected genuine test132124007.",
+      "Target table explicitly MS Teams Call detailed samples (individual sample entities), not cluster/test-selection list. Enumerated all11sortable columns: Time, Technology, Site ID, Cell ID, Download Rate (Kbps), Upload Rate (Kbps), Signal Strength (dBm), RSRQ (dB), SNR (dB), Download Size (kB), Upload Size (kB).",
+      "Used normal browser resize to2600x1400 so all11headers/columns fit, preserving application data. Pagination offered25/50/100; retained25. Genuine GET /api/platform/automobile/ms-teams-call/tests/132124007 HTTP200 supplied457samples.",
+      "Exercised Time, Site ID, Cell ID, Download Rate, Upload Rate, Signal Strength, RSRQ, SNR, Download Size, Upload Size in both directions. Each settled page contains25samples; captured overlapping top/bottom through row25 with active sort header and pagination.",
+      "Reconciled every displayed timestamp identity on each of20pages to the genuine457-sample response. Sorted field values match the complete response's corresponding first25values; timestamp fractional precision normalized only by trailing zero padding for the comparison. Repeated values retained and ties not misrepresented as different values.",
+      "132124007 has only5G NSA. Closed that owned detail, zoomed out normally, captured wider map and five-test cluster, selected mixed test132124168. Its genuine response has457samples:994G and3585G NSA.",
+      "Exercised Technology ascending/descending on mixed test; first25all4G ascending and first25all5G NSA descending match full response. Captured both complete pages.",
+      "Inspected saved sort images, including all22pairs via temporary non-evidence review crops of the sealed originals; original PNGs unchanged. All requested orders readable.",
+      "Closed only owned selected detail/list tabs and restored map zoom and1440x900 viewport; original Call detail remains."
+    ],
+    "reason": "All11supported columns tested in both directions, with all25displayed rows per state reconciled to genuine source data. Technology used a second genuine mixed fixture; repeated numeric/identifier values were retained.",
+    "coverageChecks": [
+      {
+        "assertion": "Time ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-asc-top-ebf50fd8-0f9d-47ef-b6d3-7c378f96be93.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-asc-bottom-4c053383-4d3b-4463-9171-50ffbb95b856.png"
+        ]
+      },
+      {
+        "assertion": "Time descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-desc-top-09e00999-bfd0-4521-bd45-f5fc42770268.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-time-desc-bottom-a99defce-9dcd-42d5-a79a-34219ec4ab8a.png"
+        ]
+      },
+      {
+        "assertion": "Technology ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-technology-asc-top-8b852293-e980-43d2-a696-27d8e80fc497.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-technology-asc-bottom-4a907ae5-1c70-413a-ac4d-3f74e28ef82d.png"
+        ]
+      },
+      {
+        "assertion": "Technology descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-technology-desc-top-6a387758-d383-41d8-bb7b-e470fabaf51f.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-final-technology-desc-bottom-f5e3a691-a994-49fe-89e0-2c088051ec79.png"
+        ]
+      },
+      {
+        "assertion": "Site ID ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-asc-top-18736094-78ef-4e82-9cd9-f49277ead5fc.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-asc-bottom-6f6158c2-46af-4a78-81dd-2d936693fc96.png"
+        ]
+      },
+      {
+        "assertion": "Site ID descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-desc-top-78c55d4f-d8d0-437f-9f96-50658096df86.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-site-id-desc-bottom-d076e1ef-e216-48b9-ab6b-76058cbb9ea1.png"
+        ]
+      },
+      {
+        "assertion": "Cell ID ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-asc-top-448c1f7d-4ef7-4e98-934c-9c9f2b7146e8.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-asc-bottom-439b418a-0313-4059-be7e-930dc1f98388.png"
+        ]
+      },
+      {
+        "assertion": "Cell ID descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-desc-top-aa50920e-838e-4d5d-89ab-d6aaab6a02a7.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-cell-id-desc-bottom-db09adb5-09f8-493e-8a0e-fb8fd11af98a.png"
+        ]
+      },
+      {
+        "assertion": "Download Rate (Kbps) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-asc-top-bfc4f803-972c-40bc-9330-f75610ac4552.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-asc-bottom-e111b6f8-a07d-45b7-88a3-79f2ee7e8195.png"
+        ]
+      },
+      {
+        "assertion": "Download Rate (Kbps) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-desc-top-18109455-ead2-4e53-8e89-332a09e16a01.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-rate-desc-bottom-21829cf1-4146-4776-8cca-52091287390c.png"
+        ]
+      },
+      {
+        "assertion": "Upload Rate (Kbps) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-asc-top-e53fe560-f4ad-459c-a8b6-5c45b1fe2daa.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-asc-bottom-a1ee3256-2898-4d13-a9e6-229b92074b9b.png"
+        ]
+      },
+      {
+        "assertion": "Upload Rate (Kbps) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-desc-top-57af8bcd-d091-4613-8281-388df7657234.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-rate-desc-bottom-4aa22536-21a4-445b-a6ab-8e6105abcf47.png"
+        ]
+      },
+      {
+        "assertion": "Signal Strength (dBm) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-asc-top-9d482a26-7e35-4a4a-9df9-5f23663b321d.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-asc-bottom-3ccffcda-a6ef-42e0-8d12-21b609106eb2.png"
+        ]
+      },
+      {
+        "assertion": "Signal Strength (dBm) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-desc-top-0763b7b5-f4e0-4d1e-8552-a9070199707a.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-signal-strength-desc-bottom-2be586df-46d0-4e09-8436-e2ded71e6fde.png"
+        ]
+      },
+      {
+        "assertion": "RSRQ (dB) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-asc-top-6bdf676f-d927-4812-b75f-e7fb0d6ece18.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-asc-bottom-ea572e74-7b1d-4d39-86d8-37865a2ed8c1.png"
+        ]
+      },
+      {
+        "assertion": "RSRQ (dB) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-desc-top-f264b283-7ca7-4c07-a593-7b6c575e4312.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-rsrq-desc-bottom-4e778f7f-e4cf-47ad-8379-a8045949990e.png"
+        ]
+      },
+      {
+        "assertion": "SNR (dB) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-asc-top-029276ae-ceac-466f-9381-0dfae78d0b7e.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-asc-bottom-7039388f-6ac0-4aa4-bda7-027f25b73ec9.png"
+        ]
+      },
+      {
+        "assertion": "SNR (dB) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-desc-top-a53e8f81-e3e4-4ccf-8862-8e9140193fa7.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-snr-desc-bottom-63acda11-d6be-49e5-91fa-50caddc1e9af.png"
+        ]
+      },
+      {
+        "assertion": "Download Size (kB) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-asc-top-cdaf2a1b-ce94-4b66-9e63-fa512b5daf2d.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-asc-bottom-80fca0f5-bbc5-4b8d-b46f-d9f86cc8a98f.png"
+        ]
+      },
+      {
+        "assertion": "Download Size (kB) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-desc-top-bf0819e7-a4d0-4d7b-8f06-352f746b8e98.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-download-size-desc-bottom-a1dae621-4611-4167-b54e-6da41eeb98e6.png"
+        ]
+      },
+      {
+        "assertion": "Upload Size (kB) ascending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-asc-top-b566dd16-07b2-4231-b99e-009db28d073b.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-asc-bottom-357ae80a-56b0-4de0-97c5-8abdfe979b92.png"
+        ]
+      },
+      {
+        "assertion": "Upload Size (kB) descending sorts the full displayed25-row page correctly against the genuine sample set.",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-desc-top-05e10bb6-a068-49b6-9279-9fe13358bb96.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-10-upload-size-desc-bottom-18c7a775-c176-45d0-8777-362577329466.png"
+        ]
+      }
+    ],
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When detailed samples are displayed, filtering a supported column limits the displayed samples to those matching the filter.",
+    "outcome": "Blocked",
+    "blockerCode": "browser_session_interference",
+    "retryClass": "transient",
+    "evidence": [
+      "cycles/cycle-005/screenshots/attempt-001/criterion-11-initial-07d53781-f88e-45a7-abc0-25af6a140442.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-11-plotted-map-323ef556-775c-4e9b-a717-4fbdc8e59acd.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-11-blocker-foreign-surveyor-session-30fdab53-28aa-48bf-b18a-65fc856a6803.png"
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "An individual MS Teams Call detailed-sample table exposes a supported column filter.",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-11-blocker-foreign-surveyor-session-30fdab53-28aa-48bf-b18a-65fc856a6803.png"
+        ]
+      },
+      {
+        "assertion": "Applying the column filter limits the displayed samples to matching values.",
+        "outcome": "Blocked",
+        "evidence": [
+          "cycles/cycle-005/screenshots/attempt-001/criterion-11-blocker-foreign-surveyor-session-30fdab53-28aa-48bf-b18a-65fc856a6803.png"
+        ]
+      }
+    ],
+    "steps_taken": [
+      "Navigated independently to launcher and saved criterion-owned initial PNG.",
+      "Opened GIS and captured its visible state before interaction. Saved PNG subsequently inspected: externally selected Surveyor - Service / Surveyor cluster, rather than the owned Automobile MS Teams baseline.",
+      "Normal non-forced map-point selection timed out; call completed with HTML intercepting pointer events. No blind replay.",
+      "Reinspected current UI: unrelated Surveyor module/layer, Surveyor cluster tab and map centre approximately -0.574734,51.431920 zoom16.17. An unrelated navigation dialog also appeared without a worker action.",
+      "Verified exact live handoff/version, browser tools and unchanged matching lease owner/token; set recoveryUsed before one fresh read-only snapshot. Foreign Surveyor state confirmed.",
+      "Captured and sealed the visible session-interference blocker without interacting with foreign controls. Stopped browser work; no sample filter was tested."
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "The sample-filter operation was not reached. Shared browser interference prevented safe continuation. The browser changed externally from Automobile MS Teams Call to Surveyor - Service / Surveyor cluster at a different map scope while owner.json still matched this handoff and retained token. After the completed pointer timeout, one bounded read-only recovery confirmed the foreign state. No operation remains pending and no interception handler was installed. Browser work stopped; lease retained for coordinator reconciliation. Original Automobile configuration/viewport and pre-existing Call panel could not be restored after foreign activity without changing another actor's state.",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
+    "outcome": "Blocked",
+    "blockerCode": "browser_session_interference",
+    "retryClass": "transient",
+    "evidence": [],
+    "coverageChecks": [
+      {
+        "assertion": "The selected MS Teams Call test exports a CSV through its export control.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "The downloaded CSV contains data belonging to that selected test.",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "steps_taken": [
+      "Not started: browser work stopped during criterion11 after independently confirmed foreign activity in the shared leased session.",
+      "No launcher, criterion-specific PNG or final browser URL could be obtained safely for this criterion; no other criterion's images are reused.",
+      "No export, zero-duration manipulation, simulation, request interception or backend change was performed."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "No criterion-owned browser execution or PNG capture was possible. Shared browser interference prevented safe continuation. The browser changed externally from Automobile MS Teams Call to Surveyor - Service / Surveyor cluster at a different map scope while owner.json still matched this handoff and retained token. After the completed pointer timeout, one bounded read-only recovery confirmed the foreign state. No operation remains pending and no interception handler was installed. Browser work stopped; lease retained for coordinator reconciliation. Original Automobile configuration/viewport and pre-existing Call panel could not be restored after foreign activity without changing another actor's state.",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
+    "outcome": "Blocked",
+    "blockerCode": "browser_session_interference",
+    "retryClass": "transient",
+    "evidence": [],
+    "coverageChecks": [
+      {
+        "assertion": "A genuine zero-duration MS Teams Call result is identified and its details requested normally.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Zero-duration result details exclude stale data from a previously loaded record.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "Zero-duration result details exclude misleading data.",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "steps_taken": [
+      "Not started: browser work stopped during criterion11 after independently confirmed foreign activity in the shared leased session.",
+      "No launcher, criterion-specific PNG or final browser URL could be obtained safely for this criterion; no other criterion's images are reused.",
+      "No export, zero-duration manipulation, simulation, request interception or backend change was performed."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "No criterion-owned browser execution or PNG capture was possible. Shared browser interference prevented safe continuation. The browser changed externally from Automobile MS Teams Call to Surveyor - Service / Surveyor cluster at a different map scope while owner.json still matched this handoff and retained token. After the completed pointer timeout, one bounded read-only recovery confirmed the foreign state. No operation remains pending and no interception handler was installed. Browser work stopped; lease retained for coordinator reconciliation. Original Automobile configuration/viewport and pre-existing Call panel could not be restored after foreign activity without changing another actor's state.",
+    "testedModule": "Automobile"
+  },
+  {
+    "criterion": "When details for a selected result fail to load, the dialog does not display stale or misleading data.",
+    "outcome": "Blocked",
+    "blockerCode": "browser_session_interference",
+    "retryClass": "transient",
+    "evidence": [],
+    "coverageChecks": [
+      {
+        "assertion": "A failed detail load for the selected MS Teams Call result is established in the correct module.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "The failed-load dialog excludes stale data from a previously loaded record.",
+        "outcome": "Blocked",
+        "evidence": []
+      },
+      {
+        "assertion": "The failed-load dialog excludes misleading data.",
+        "outcome": "Blocked",
+        "evidence": []
+      }
+    ],
+    "steps_taken": [
+      "Not started: browser work stopped during criterion11 after independently confirmed foreign activity in the shared leased session.",
+      "No launcher, criterion-specific PNG or final browser URL could be obtained safely for this criterion; no other criterion's images are reused.",
+      "No export, zero-duration manipulation, simulation, request interception or backend change was performed."
+    ],
+    "browserUrl": null,
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "reason": "No criterion-owned browser execution or PNG capture was possible. Shared browser interference prevented safe continuation. The browser changed externally from Automobile MS Teams Call to Surveyor - Service / Surveyor cluster at a different map scope while owner.json still matched this handoff and retained token. After the completed pointer timeout, one bounded read-only recovery confirmed the foreign state. No operation remains pending and no interception handler was installed. Browser work stopped; lease retained for coordinator reconciliation. Original Automobile configuration/viewport and pre-existing Call panel could not be restored after foreign activity without changing another actor's state.",
+    "testedModule": "Automobile"
+  }
+]
