@@ -1,15 +1,12 @@
 {
   "ticket": "TEST2-89",
   "criteriaVerified": true,
-  "qaStatus": "Blocked",
-  "workflowState": "Blocked",
+  "qaStatus": "Not Tested",
+  "workflowState": "Ready",
   "retries": 0,
-  "testAttempts": 1,
+  "testAttempts": 0,
   "retryLimit": 1,
-  "cycleId": "cycle-003",
+  "cycleId": "cycle-004",
   "jiraStatus": "READY FOR TESTING",
-  "status": "READY FOR TESTING",
-  "blockedStage": "reviewed",
-  "qaOutcome": "Blocked",
-  "nextAction": "Manual review required; final evidence report published"
+  "status": "READY FOR TESTING"
 }
