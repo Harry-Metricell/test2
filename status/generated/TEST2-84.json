@@ -44,13 +44,13 @@
   "summary": "View Building Details and Floorplans",
   "jira": {
     "url": "https://metricell.atlassian.net/browse/TEST2-84",
-    "status": "READY FOR TESTING",
+    "status": "To Do",
     "priority": "Low",
     "assignee": null,
     "project": "TEST2",
     "parent": null,
     "created": "2026-10-19T14:11:46.972+0100",
-    "updated": "2026-10-21T12:55:50.549+0100"
+    "updated": "2026-10-30T14:55:24.411+0000"
   },
   "description": "As a SmartTools map user\nI want to open a building dashboard with its details and floorplans\nSo that I can investigate indoor survey results for a selected building.\nIssue/Change Description:\nWhen the user selects a Building point, open a separate building dashboard for that building. The dashboard shows building and floorplan summary information and, where available, floorplan images with the associated survey points overlaid.\nWhen more than one Building point is selected at the same map location, allow the user to choose the building to open. If the selection contains too many Building points, prompt the user to zoom in or apply filters instead.\nThis story covers viewing the building dashboard and floorplans. Customising legend thresholds and exporting Building data are out of scope.\nAcceptance Criteria:\nGiven a single Building point is selected, when its details load, a separate dashboard opens for that building.\nGiven multiple Building points are selected at one map location, the user can choose which building dashboard to open.\nGiven the selection contains too many Building points, the user is asked to zoom in or use available filters rather than opening an ambiguous dashboard.\nGiven Building information is available, the dashboard displays building and floorplan summary data in sortable and filterable tables.\nGiven the building has floorplans, the dashboard displays their images and allows the user to select a floorplan.\nGiven a floorplan is selected, its image displays with its associated survey points overlaid.\nGiven the building has no floorplans, the dashboard still displays available building details without an empty floorplan image area.\nGiven Building data is loading, unavailable, or fails to load, a standard loading, no-data, or error state is shown without displaying incorrect data.\nObject Change List:\nMerge Requests\nDocusaurus Requests\nMerge to Master:\nApplication Merge Requests\nMerge to test:\nMerge to main:\nProject Upgrader Merge Requests\nFeature folder merge:\nVersion folder Merge:\nDatabase Merge Requests\nMerge to staging:\nMerge to main:",
   "acceptanceCriteria": [
@@ -73,23 +73,23 @@
   "subtasks": [],
   "source": {
     "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106640",
-    "importedAt": "2026-10-21T12:55:50.549+0100"
+    "importedAt": "2026-10-30T14:55:24.411+0000"
   },
   "status": {
-    "jiraStatus": "READY FOR TESTING",
+    "jiraStatus": "To Do",
     "workflowState": "Blocked",
     "qaStatus": "Blocked",
     "qaOutcome": "Blocked",
     "automationSuitability": "Unclassified",
     "actionOwner": "Human",
-    "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
+    "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
     "reviewState": "Not Reviewed",
     "guideImpact": null,
     "guideUpdate": null,
     "retries": 0,
     "testAttempts": 1,
     "blockedStage": "reviewed",
-    "updatedAt": "2026-10-21T12:55:50.549+0100",
+    "updatedAt": "2026-10-30T14:55:24.411+0000",
     "criteriaVerified": true
   }
 }

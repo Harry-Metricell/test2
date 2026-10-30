@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-30T14:37:23.198+0000",
+  "generatedAt": "2026-10-30T14:55:24.411+0000",
   "counts": {
     "tickets": 9,
     "handoffs": 1,
@@ -20,24 +20,6 @@
     "missingEvidence": "warning_not_pass"
   },
   "tickets": [
-    {
-      "key": "TEST2-84",
-      "cycleId": "cycle-003",
-      "summary": "View Building Details and Floorplans",
-      "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
-      "updatedAt": "2026-10-21T12:55:50.549+0100",
-      "retries": 0,
-      "retryLimit": 1,
-      "testAttempts": 1,
-      "retryLabel": ""
-    },
     {
       "key": "TEST2-89",
       "cycleId": "cycle-005",
@@ -123,6 +105,24 @@
       "actionOwner": "Human",
       "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
       "updatedAt": "2026-10-23T09:08:46.353+0100",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-84",
+      "cycleId": "cycle-003",
+      "summary": "View Building Details and Floorplans",
+      "jiraStatus": "To Do",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Blocked",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Human",
+      "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
+      "updatedAt": "2026-10-30T14:55:24.411+0000",
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
