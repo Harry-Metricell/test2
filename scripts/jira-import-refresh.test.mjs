@@ -153,7 +153,9 @@ test('coordinator brief and publisher wire the gate without altering the launch 
   const brief=fs.readFileSync(path.join(root,'docs/briefs/coordinator.md'),'utf8');
   const publisher=fs.readFileSync(path.join(root,'scripts/publish-agent-output.mjs'),'utf8');
   const importer=fs.readFileSync(path.join(root,'.github/workflows/import-ready-for-testing.yml'),'utf8');
-  assert.match(brief,/jira-import-refresh\.mjs --request --force/);
+  assert.match(brief,/jira-import-refresh\.mjs --request`/);
+  assert.doesNotMatch(brief,/jira-import-refresh\.mjs --request --force/);
+  assert.match(brief,/five-minute freshness window/);
   assert.match(brief,/never.*complete.*stale.*import/i);
   assert.match(brief,/one replacement request per coordinator invocation/);
   assert.match(brief,/importRecoveryUsed/);

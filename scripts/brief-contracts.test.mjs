@@ -17,6 +17,21 @@ const stages = [
   ['guide_update_authoring', 'user-guide-authoring', 'guide-update-output.json'],
 ];
 
+test('economy rules reduce repeated work while preserving evidence and remote authority', () => {
+  const coordinator = brief('coordinator');
+  assert.ok(!coordinator.includes('jira-import-refresh.mjs --request --force'));
+  for (const rule of ['every 60 seconds', 'afterCursor', 'coordinator-observation.mjs',
+    'never proof of worker liveness, remote publication', 'five-minute freshness window']) {
+    assert.ok(coordinator.includes(rule), rule);
+  }
+  assert.ok(brief('criteria-conversion').includes('do not create a separate criterion for each field'));
+  for (const name of ['qa-testing', 'evidence-review']) {
+    assert.ok(brief(name).includes('does not require every column') || brief(name).includes('does not require all columns'));
+  }
+  assert.ok(brief('qa-testing').includes('preserve all required transitions'));
+  assert.ok(brief('qa-testing').includes('never reuse it across criteria'));
+});
+
 test('tester and reviewer require complete per-assertion coverage without weakening criteria', () => {
   for (const name of ['qa-testing', 'evidence-review']) {
     assert.ok(brief(name).includes('evidenceCoverageVersion 1'));
@@ -135,7 +150,7 @@ test('exception-state simulations remain scoped, disclosed and independently rev
 
 test('coordinator retains import, reconciliation, duplicate and completion gates', () => {
   const coordinator = brief('coordinator');
-  for (const contract of ['jira-import-refresh.mjs --request --force', 'jira_import_refresh_unresolved',
+  for (const contract of ['jira-import-refresh.mjs --request', 'jira_import_refresh_unresolved',
     'v4-qa-coordinator-run-state.v1', 'v4-qa-recovery-snapshot.v1', 'bundlerSucceeded',
     'reconcile-coordinator-tests.mjs --snapshot', 'history/attempt-###-test.json', 'publisher-error.json']) {
     assert.ok(coordinator.includes(contract), contract);

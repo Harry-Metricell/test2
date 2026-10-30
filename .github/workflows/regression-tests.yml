@@ -82,6 +82,9 @@ jobs:
       - name: Check infrastructure retries and blocker report policy
         run: node --test scripts/test-result-policy.test.mjs
 
+      - name: Check compact coordinator progress observations
+        run: node --test scripts/coordinator-observation.test.mjs
+
       - name: Recover published tests despite unavailable child-task lookups
         run: node --test scripts/reconcile-coordinator-tests.test.mjs
 
