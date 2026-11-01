@@ -5,6 +5,7 @@ import { reportPushArgs, fetchedPublicationSha } from './git-report-push-policy.
 import { reportVerificationTimeout } from './report-process-policy.mjs';
 import { validateEvidenceCoverage } from './evidence-coverage.mjs';
 import { verifyCaptures } from './tester-capture.mjs';
+import { copySupportingEvidence } from './supporting-evidence.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
 import { guideInstructionIssues } from './guide-instruction-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
@@ -598,6 +599,9 @@ if (outputType === 'criteria-output.json') {
         evidence: check.evidence.map(file => `${cycleEvidencePrefix}screenshots/${attemptName}/${path.win32.basename(String(file))}`)
       })) } : {})
     })) : output.results;
+  const supportedResults = copySupportingEvidence(results, run,
+    path.join(cycleEvidenceDir, 'supporting', attemptName), `${cycleEvidencePrefix}supporting/${attemptName}/`);
+  results.splice(0, results.length, ...supportedResults);
   writeJson(path.join(ticketDir, 'results.json'), results);
   fs.writeFileSync(path.join(ticketDir, 'report.md'), `${output.conciseReport.trim()}\n`, 'utf8');
   ensurePath(path.join(ticketDir, 'history', 'placeholder'));

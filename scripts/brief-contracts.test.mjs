@@ -32,6 +32,18 @@ test('economy rules reduce repeated work while preserving evidence and remote au
   assert.ok(brief('qa-testing').includes('never reuse it across criteria'));
 });
 
+test('review can verify private exports and standard failed-load UI without fabricated contracts', () => {
+  for (const name of ['qa-testing', 'evidence-review']) {
+    const text = brief(name);
+    assert.ok(text.includes('supportingEvidence'));
+    assert.ok(text.includes('SHA-256'));
+    assert.ok(text.includes('RFC 9110 section 15.6.4'));
+    assert.match(text, /project-specific error[- ]bod/);
+  }
+  assert.ok(brief('evidence-review').includes('No-data still requires the genuine project empty-response contract'));
+  assert.ok(brief('evidence-review').includes('not an error-only criterion'));
+});
+
 test('tester and reviewer require complete per-assertion coverage without weakening criteria', () => {
   for (const name of ['qa-testing', 'evidence-review']) {
     assert.ok(brief(name).includes('evidenceCoverageVersion 1'));

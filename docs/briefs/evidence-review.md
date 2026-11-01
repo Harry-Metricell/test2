@@ -18,7 +18,7 @@ Read PNGs only from TEST2_EVIDENCE, or the current user's `%USERPROFILE%\Documen
 
 Verify each referenced PNG exists and is non-empty. Missing files block the affected criterion with its exact filename in reason. If the folder is missing/empty or has no non-empty PNG, assess every criterion Blocked and still stage output. For wholly untested runs with all tester outcomes Blocked and empty evidence lists, preserve the actual blocker reason and state that no browser evidence was captured/testing could not be completed. Only that case permits a no-image blocker PDF; claimed-but-missing captures remain publication errors.
 
-PNG references point to local evidence, not GitHub file URLs.
+PNG references point to local evidence, not GitHub file URLs. When a result supplies supportingEvidence, also read only its explicitly referenced private files under the same ticket/cycle/attempt in TEST2_EVIDENCE. Require paths shaped cycles/<cycleId>/supporting/attempt-NNN/criterion-N-<description>.csv or .json (omit cycles/<cycleId>/ for cycle-001), verify SHA-256 before using them, reject traversal/symlinks and never read arbitrary exports or credentials. Compare CSV data with its genuine selected-record response, including units; a narrative receipt alone is insufficient. A matching private CSV/response pair is direct export evidence and need not be displayed inside a screenshot. A complete criterion-owned DOM inventory can corroborate control absence; screenshots must still identify the actual view. Do not print private file contents in chat or publish raw data.
 
 ## Assess every criterion
 
@@ -65,6 +65,8 @@ Treat “remains the same” and “clearing restores the original” as preserv
 ## Review controlled exception states
 
 Results labelled `SIMULATED UI STATE:` are browser-local UI checks, not proof of real backend success or a naturally occurring server error. Require the tester's safe endpoint/method, selected record, injected condition, contract provenance, criterion-owned initial/transition/final evidence, recovery and verified cleanup. Preserve `SIMULATED UI STATE:` and the specific limitation in each affected criterionOutcomes reason, even when Passed, so the PDF discloses the method.
+
+For generic failed-load UI handling, standard HTTP 503 semantics in RFC 9110 section 15.6.4 establish the injected failure-status provenance; do not require a project-specific error body unless the criterion asserts its schema or fields. This does not establish a real backend incident. Require loading-transition proof only for a loading criterion, not an error-only criterion. No-data still requires the genuine project empty-response contract.
 
 Accept a simulation only for an explicit loading/no-data/error UI criterion on the configured development host. Normal successful behaviour, backend integration, missing modules and permissions cannot pass through simulation. Confirm the tested module, panel and request match the canonical criterion; a detail-analysis panel does not automatically prove the entire point-detail dialog. A failed measurement is not a failed detail request. For no-data, require an actual empty response or project API documentation/schema establishing the empty-response contract; arrays emptied from a populated response are not sufficient. Missing scope or contract is Blocked, not an assumed pass.
 

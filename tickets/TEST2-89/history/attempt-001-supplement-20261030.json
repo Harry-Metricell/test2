@@ -58,7 +58,15 @@
         "authority": "User requested direct completion of the unfinished checks; no cycle or retry reset.",
         "sourceHandoffId": "handoff-TEST2-89-cycle-005-test-attempt-001"
       },
-      "retryClass": "product"
+      "retryClass": "product",
+      "supportingEvidence": [
+        {
+          "path": "cycles/cycle-005/supporting/attempt-001/criterion-11-controls.json",
+          "sha256": "620593a7b01757082de115ce1b99b4ed1778f7445d141daf75eeec997b72da60",
+          "kind": "dom-observation",
+          "description": "Recorded live DOM inventory of all eleven detailed-sample headers, toolbar and visible filter controls for test 132124168."
+        }
+      ]
     },
     {
       "criterion": "When the user exports a selected test as CSV, the exported CSV contains data for that selected test.",
@@ -91,7 +99,21 @@
         "date": "2026-10-30",
         "authority": "User requested direct completion of the unfinished checks; no cycle or retry reset.",
         "sourceHandoffId": "handoff-TEST2-89-cycle-005-test-attempt-001"
-      }
+      },
+      "supportingEvidence": [
+        {
+          "path": "cycles/cycle-005/supporting/attempt-001/criterion-12-export.csv",
+          "sha256": "fe59b04cf0bf48d9511d07e176ceb4f22a1b54fdde9abfe05668fb2f442fbe26",
+          "kind": "csv",
+          "description": "Genuine normal-UI CSV download for selected MS Teams test 132124168; all 457 rows."
+        },
+        {
+          "path": "cycles/cycle-005/supporting/attempt-001/criterion-12-response.json",
+          "sha256": "6ed63e7bd1c1618a25d67b6a523a10a148e63a31b3152def66fe2e52ee3f58be",
+          "kind": "api-response",
+          "description": "Genuine normal-UI GET /api/platform/automobile/ms-teams-call/tests/132124168 response, including summary identity and 457 samples; no credentials or headers."
+        }
+      ]
     },
     {
       "criterion": "When a zero-duration result is selected, its details dialog does not display stale or misleading data.",
@@ -146,7 +168,7 @@
       ],
       "steps_taken": [
         "Started independently at the launcher; opened GIS and captured the genuine populated detail baseline for test 132124168.",
-        "Installed one browser-only exact-URL, GET-only handler returning HTTP 503 for the different visible cluster member 131879769. Selected that member through its normal row.",
+        "SIMULATED UI STATE: Installed one browser-only exact-URL, GET-only handler returning HTTP 503 for the different visible cluster member 131879769. Selected that member through its normal row.",
         "Verified one intercepted request, the explicit error alert and Retry, and absence of visible detail/sample tables; captured and inspected the error state.",
         "Removed the exact owned handler, pressed Retry, observed genuine HTTP 200 and the distinct 4 August record with 455 samples, then captured and inspected recovery.",
         "Verified the handler was absent. Closed only the three test-created MS Teams tabs, removed only the added Automobile layer, and restored the pre-existing Surveyor layer, cluster tab, empty catalogue search and map camera to approximately -0.579309 / 51.432076 at zoom 18 (initial latitude 51.432074). No backend or authentication state was changed."
@@ -154,7 +176,7 @@
       "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
       "browserName": "Google Chrome",
       "browserVersion": "156.0.8078.74",
-      "reason": "SIMULATED UI STATE: a browser-only HTTP 503 was injected for GET /api/platform/automobile/ms-teams-call/tests/131879769 after genuine test 132124168 had loaded. The target showed “Unable to load this MS Teams Call test” and Retry with no visible summary, charts or sample table from the previous test. Removed the exact handler; Retry returned genuine HTTP 200 and loaded test 131879769 with 455 samples. This proves client error presentation and recovery, not a naturally occurring backend failure.",
+      "reason": "SIMULATED UI STATE: a browser-only HTTP 503 was injected for GET /api/platform/automobile/ms-teams-call/tests/131879769 after genuine test 132124168 had loaded. The target showed “Unable to load this MS Teams Call test” and Retry with no visible summary, charts or sample table from the previous test. Removed the exact handler; Retry returned genuine HTTP 200 and loaded test 131879769 with 455 samples. This proves client error presentation and recovery, not a naturally occurring backend failure. Failure-status provenance: RFC 9110 section 15.6.4, https://www.rfc-editor.org/rfc/rfc9110.html#section-15.6.4. The injected JSON body is a synthetic non-success placeholder, not a claimed production error schema. This criterion asserts failed-load error presentation and stale-data exclusion, not a loading animation or project error-body contract.",
       "testedModule": "Automobile",
       "supplementation": {
         "date": "2026-10-30",
@@ -232,6 +254,27 @@
     "sha256": "fe59b04cf0bf48d9511d07e176ceb4f22a1b54fdde9abfe05668fb2f442fbe26",
     "rawDownloadPublished": false
   },
-  "reviewStatus": "Awaiting independent evidence review",
-  "attemptsReset": false
+  "reviewStatus": "Evidence handoff amended for independent reassessment; no retest requested",
+  "attemptsReset": false,
+  "supportingEvidence": [
+    {
+      "path": "cycles/cycle-005/supporting/attempt-001/criterion-11-controls.json",
+      "sha256": "620593a7b01757082de115ce1b99b4ed1778f7445d141daf75eeec997b72da60",
+      "kind": "dom-observation",
+      "description": "Recorded live DOM inventory of all eleven detailed-sample headers, toolbar and visible filter controls for test 132124168."
+    },
+    {
+      "path": "cycles/cycle-005/supporting/attempt-001/criterion-12-export.csv",
+      "sha256": "fe59b04cf0bf48d9511d07e176ceb4f22a1b54fdde9abfe05668fb2f442fbe26",
+      "kind": "csv",
+      "description": "Genuine normal-UI CSV download for selected MS Teams test 132124168; all 457 rows."
+    },
+    {
+      "path": "cycles/cycle-005/supporting/attempt-001/criterion-12-response.json",
+      "sha256": "6ed63e7bd1c1618a25d67b6a523a10a148e63a31b3152def66fe2e52ee3f58be",
+      "kind": "api-response",
+      "description": "Genuine normal-UI GET /api/platform/automobile/ms-teams-call/tests/132124168 response, including summary identity and 457 samples; no credentials or headers."
+    }
+  ],
+  "supportingEvidenceAddedOn": "2026-10-31"
 }
