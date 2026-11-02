@@ -3,10 +3,9 @@
   "generatedAt": "2026-10-30T14:55:24.411+0000",
   "counts": {
     "tickets": 9,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 8,
-      "Ready": 1
+      "Blocked": 9
     },
     "byQaOutcome": {
       "Blocked": 8,
@@ -25,13 +24,13 @@
       "cycleId": "cycle-005",
       "summary": "Map and inspect MS Teams Call results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required; final evidence report published",
       "updatedAt": "2026-10-30T14:26:24.421+0000",
       "retries": 0,
       "retryLimit": 1,
