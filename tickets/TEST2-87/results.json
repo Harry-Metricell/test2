@@ -84,9 +84,8 @@
   },
   {
     "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
-    "outcome": "Failed",
-    "retryClass": "product",
-    "reason": "The chart plots Signal strength and event annotations such as Call initiated, serving-cell changes and Call ended; it does not display the returned service technology (5G NSA) as a chart series, lane, legend or tooltip. Call-state coverage is inconclusive because event annotations are not a complete idle/off-hook/connected state timeline.",
+    "outcome": "Unverified",
+    "reason": "The user confirmed that Service is the acceptable service-technology presentation. Signal strength and duration coverage were already verified. Complete returned call-state timeline coverage remains unverified in the supplied captures; initiation/end annotations alone do not prove it.",
     "steps_taken": [
       "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
       "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
@@ -104,11 +103,12 @@
       },
       {
         "assertion": "Timeline displays service technology",
-        "outcome": "Failed",
+        "outcome": "Passed",
         "evidence": [
           "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
           "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
-        ]
+        ],
+        "reason": "Accepted by the user: service technology is labelled Service."
       },
       {
         "assertion": "Timeline displays signal strength",
@@ -145,10 +145,9 @@
     "testedModule": "Automobile"
   },
   {
-    "criterion": "When Call samples are returned, the dialog displays them in a table whose columns can be sorted and filtered.",
-    "outcome": "Failed",
-    "retryClass": "product",
-    "reason": "33 returned samples are displayed and Signal Strength sorting works in both directions, but the Call measurements table has no filtering inputs, filter menu or column filter controls. Inspected the full analysis area to its bottom and all header controls; only sort labels were available. Other column sorting was not exhaustively exercised.",
+    "criterion": "When Call samples are returned, the dialog displays them in a table whose columns can be sorted.",
+    "outcome": "Passed",
+    "reason": "Filtering was removed from the current acceptance scope by the user on 2 November. Existing readable evidence proves the displayed samples and Signal Strength sorting in both directions. The 27 October supplemental investigation also verifies differing-value order for Time, Call State, Site and Cell. Constant-value columns permit direction toggling but cannot establish differing-value order; no exhaustive all-column ordering claim is made.",
     "steps_taken": [
       "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
       "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
@@ -171,22 +170,6 @@
         "evidence": [
           "cycles/cycle-003/screenshots/attempt-001/criterion-3-descending-readable.png",
           "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png"
-        ]
-      },
-      {
-        "assertion": "All remaining data columns can be sorted",
-        "outcome": "Unverified",
-        "evidence": [
-          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-baseline.png"
-        ]
-      },
-      {
-        "assertion": "Table columns expose usable sample filtering",
-        "outcome": "Failed",
-        "evidence": [
-          "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png",
-          "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-end-no-filters.png",
-          "cycles/cycle-003/screenshots/attempt-001/criterion-3-final-readable.png"
         ]
       }
     ],
@@ -216,9 +199,8 @@
   },
   {
     "criterion": "For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.",
-    "outcome": "Failed",
-    "retryClass": "product",
-    "reason": "All supplied known-cell and CGI values inspected match their corresponding rows, but the canonical criterion names a Serving Cell column; the actual table exposes separate Site and Cell columns, with no Serving Cell column. CGI fallback itself works in Cell. One sample returns neither cell nor CGI and is N/A; no value was invented for that unreturned optional datum.",
+    "outcome": "Passed",
+    "reason": "Human acceptance: the user confirmed that the separate Site and Cell columns are acceptable. Existing evidence reconciles the two bounded datasets and proves the CGI fallback when a value is supplied. This corrects the column-label interpretation; no new browser test was performed.",
     "steps_taken": [
       "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
       "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
@@ -253,14 +235,6 @@
           "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-4.png",
           "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png",
           "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-2.png"
-        ]
-      },
-      {
-        "assertion": "The table has the specified Serving Cell column",
-        "outcome": "Failed",
-        "evidence": [
-          "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
-          "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png"
         ]
       },
       {
@@ -305,7 +279,7 @@
   {
     "criterion": "Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.",
     "outcome": "Passed",
-    "reason": "Selecting the 09:35:17.33 Call sample opened a new Call detail tab containing its related Service details. The request explicitly carried that sampleTime, and the returned point details match the selected sample's cell and signal.",
+    "reason": "Existing 27 October supplemental navigation evidence shows selected sample 19 August 09:35:17.33 and the expanded destination title 19/08/2026, 09:35:17, with matching cell 105_120_4 and -91 dBm Service fields. The built-in Open in a new window action exposed the full title; no DOM content was altered.",
     "steps_taken": [
       "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
       "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
@@ -321,8 +295,11 @@
         "evidence": [
           "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select-sample.png",
           "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
-          "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
-        ]
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-selected-row.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-expanded-final.png"
+        ],
+        "reason": "Confirmed by the existing expanded destination title and matching sample identity."
       },
       {
         "assertion": "Opened Service details correspond to the selected sample time",
@@ -331,8 +308,11 @@
           "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select-sample.png",
           "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
           "cycles/cycle-003/screenshots/attempt-001/criterion-5-service-fields.png",
-          "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png"
-        ]
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-selected-row.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-expanded-final.png"
+        ],
+        "reason": "Confirmed by the existing expanded destination title and matching sample identity."
       }
     ],
     "evidence": [
@@ -348,7 +328,9 @@
       "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
       "cycles/cycle-003/screenshots/attempt-001/criterion-5-service-fields.png",
       "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-5-cleanup.png"
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-cleanup.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-selected-row.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-expanded-final.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",

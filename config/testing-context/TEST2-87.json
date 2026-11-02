@@ -35,5 +35,21 @@
       "module": "Surveyor",
       "reason": "Not Automobile acceptance evidence; preserve the historical report and images, but do not reuse its verdict."
     }
-  ]
+  ],
+  "acceptanceClarifications": {
+    "confirmedAt": "2026-11-02",
+    "authority": "human",
+    "excludedRequirements": [
+      "Sample-table filtering: user confirms it is no longer on the source ticket."
+    ],
+    "acceptedPresentation": [
+      "Service represents service technology.",
+      "Separate Site and Cell columns are acceptable."
+    ],
+    "remainingEvidenceGaps": [
+      "Complete call-state timeline coverage",
+      "Genuine zero-duration and unavailable-data fixtures"
+    ],
+    "jiraUnmodified": true
+  }
 }
