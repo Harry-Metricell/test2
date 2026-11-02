@@ -7,6 +7,7 @@ import { guideMarkerCounts } from './guide-document-index.mjs';
 import { readCycle, scopeHandoff, firstCycle } from './testing-cycle.mjs';
 import { readTestingContext, contextHandoff } from './testing-context.mjs';
 import { coverageHandoff } from './evidence-coverage.mjs';
+import { reviewInputHandoff } from './review-input-identity.mjs';
 import { validateVerificationBatch, verificationAllows } from './qa-verification-batch.mjs';
 
 const root = process.cwd();
@@ -580,7 +581,15 @@ const ticketDirs = fs.existsSync(ticketsDir)
 
 const tickets = ticketDirs.map(normalizeTicket);
 const verificationPolicy = validateVerificationBatch(readJson(path.join(root, 'config/qa-verification-batch.json'), null));
-const handoffs = tickets.map(ticket => coverageHandoff(contextHandoff(scopeHandoff(handoffFor(ticket), ticket.cycleId), ticket.testingContext)))
+const handoffs = tickets.map(ticket => {
+  let handoff = scopeHandoff(handoffFor(ticket), ticket.cycleId);
+  if (handoff?.action === 'evidence_review') {
+    const dir = path.join(ticketsDir, ticket.key);
+    handoff = reviewInputHandoff(handoff, { results: readJson(path.join(dir, 'results.json')),
+      criteria: fs.readFileSync(path.join(dir, 'criteria.md'), 'utf8'), context: ticket.testingContext });
+  }
+  return coverageHandoff(contextHandoff(handoff, ticket.testingContext));
+})
   .filter(handoff => handoff && verificationAllows(handoff, verificationPolicy));
 // The QA stage may be complete while guide work is still queued. Project the
 // actual guide handoff rather than displaying a misleading terminal action.

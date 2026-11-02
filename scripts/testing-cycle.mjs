@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { readTestingContext, contextRevision } from './testing-context.mjs';
+import { reviewInputHandoff } from './review-input-identity.mjs';
 
 export const firstCycle = 'cycle-001';
 export function cycleId(value = firstCycle) {
@@ -22,6 +23,13 @@ export function publicationStillCurrent(repo, output, selectedCycle, action) {
   const queue = JSON.parse(fs.readFileSync(file, 'utf8'));
   const current = queue.handoffs?.find(h => h.handoffId === output.handoffId);
   const context = readTestingContext(repo, output.ticket);
+  if (current?.action === 'evidence_review' && current.reviewInputHash) {
+    const dir = path.join(repo, 'tickets', output.ticket);
+    const expected = reviewInputHandoff(current, { results: JSON.parse(fs.readFileSync(path.join(dir, 'results.json'), 'utf8')),
+      criteria: fs.readFileSync(path.join(dir, 'criteria.md'), 'utf8'), context });
+    if (expected.reviewInputHash !== current.reviewInputHash || expected.handoffId !== current.handoffId
+        || expected.handoffVersion !== current.handoffVersion) return false;
+  }
   return readCycle(path.join(repo, 'tickets', output.ticket)).cycleId === selectedCycle
     && (!context || output.handoffVersion?.endsWith(`:scope-${contextRevision(context)}`))
     && current?.handoffVersion === output.handoffVersion

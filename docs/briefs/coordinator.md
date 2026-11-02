@@ -98,6 +98,8 @@ After review, wait for publisher confirmation that selected images survived DOCX
 
 Guide stages require a remote Passed review and verified non-empty report. Authoring also requires guide-impact.json decision update_required; not_needed ends guide work. The author writes instructions/references, not a Word document or new captures.
 
+Evidence-review handoffs carry reviewInputHash and an evidence fingerprint in the exact ID/version. After an authorised evidence correction, changed results, criteria or testing context produce fresh review work; do not charge it against an older handoff’s replacement allowance. The one permitted replacement still applies to unchanged inputs under the same exact handoff. Trust only the live generated identity; never invent a nonce, alter evidence to obtain a new identity or reset attempts/replacement counters. The publisher independently rechecks current inputs before processing and before pushing, so an old review cannot overwrite changed evidence while bundling catches up.
+
 ## Child task creation and models
 
 Create children in the saved Test2 project using its synchronised local environment, never projectless or in new worktrees. Use this shape, replacing only the selected brief, handoff and ticket:

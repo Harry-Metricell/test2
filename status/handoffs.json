@@ -3,8 +3,8 @@
   "generatedAt": "2026-10-30T14:55:24.411+0000",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-89-cycle-005-review-attempt-001",
-      "handoffVersion": "TEST2-89:cycle-005:evidence_review:1:scope-af7443f54839",
+      "handoffId": "handoff-TEST2-89-cycle-005-review-attempt-001-evidence-9af65b1eb908",
+      "handoffVersion": "TEST2-89:cycle-005:evidence_review:1:evidence-9af65b1eb908:scope-af7443f54839",
       "attempt": 1,
       "action": "evidence_review",
       "brief": "docs/briefs/evidence-review.md",
@@ -22,6 +22,7 @@
         "schema": "v4-qa-review.v1"
       },
       "cycleId": "cycle-005",
+      "reviewInputHash": "9af65b1eb9081fb108a8ece1a642d9d03dcfcc638bbd0958eb7b47e3debd1a57",
       "evidenceCoverageVersion": 1
     }
   ]

@@ -161,7 +161,8 @@ test('an Unverified evidence review queues one retry and keeps its report', () =
     assert.equal(recovered.testAttempts, 2);
     assert.equal(recovered.retryLimit, 1);
     assert.equal(recovered.qaStatus, 'Awaiting Evidence Review');
-    assert.equal(next.handoffs[0]?.handoffId, 'handoff-TEST2-99-review-attempt-002');
+    assert.match(next.handoffs[0]?.handoffId, /^handoff-TEST2-99-review-attempt-002-evidence-[a-f0-9]{12}$/);
+    assert.match(next.handoffs[0]?.reviewInputHash, /^[a-f0-9]{64}$/);
     run();
     assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'status.json'), 'utf8')).retries, 1);
 

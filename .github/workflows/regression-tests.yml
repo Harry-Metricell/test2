@@ -85,6 +85,9 @@ jobs:
       - name: Preserve private supporting evidence with criterion ownership and hashes
         run: node --test scripts/supporting-evidence.test.mjs
 
+      - name: Scope review identities to their exact evidence inputs
+        run: node --test scripts/review-input-identity.test.mjs
+
       - name: Check compact coordinator progress observations
         run: node --test scripts/coordinator-observation.test.mjs
 
