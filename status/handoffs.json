@@ -1,5 +1,28 @@
 {
   "schema": "v4-qa-handoffs.v1",
   "generatedAt": "2026-10-30T14:55:24.411+0000",
-  "handoffs": []
+  "handoffs": [
+    {
+      "handoffId": "handoff-TEST2-87-cycle-003-guide-impact",
+      "handoffVersion": "TEST2-87:cycle-003:guide_impact_assessment:1:scope-3d909b2dc892",
+      "action": "guide_impact_assessment",
+      "brief": "docs/briefs/user-guide-impact.md",
+      "owner": "guide-impact-assessor",
+      "ticket": "TEST2-87",
+      "inputs": {
+        "ticketJson": "tickets/TEST2-87/ticket.json",
+        "generated": "status/generated/TEST2-87.json",
+        "review": "tickets/TEST2-87/review.json",
+        "report": "tickets/TEST2-87/report.md",
+        "policy": "config/user-guide-impact-policy.json",
+        "cycle": "tickets/TEST2-87/qa-cycle.json",
+        "testingContext": "config/testing-context/TEST2-87.json"
+      },
+      "expectedOutput": {
+        "path": "tickets/TEST2-87/guide-impact.json",
+        "schema": "v4-user-guide-impact.v1"
+      },
+      "cycleId": "cycle-003"
+    }
+  ]
 }

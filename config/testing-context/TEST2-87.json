@@ -46,10 +46,9 @@
       "Service represents service technology.",
       "Separate Site and Cell columns are acceptable."
     ],
-    "remainingEvidenceGaps": [
-      "Complete call-state timeline coverage"
-    ],
-    "jiraUnmodified": true
+    "remainingEvidenceGaps": [],
+    "jiraUnmodified": true,
+    "sourceInterpretation": "Call-state chart event annotations CI, CC and CE satisfy the timeline requirement; source does not prescribe a separate continuous state series."
   },
   "verifiedZeroDurationFixture": {
     "observedOn": "2026-11-02",

@@ -1,15 +1,15 @@
 {
   "ticket": "TEST2-87",
   "criteriaVerified": true,
-  "qaStatus": "Blocked",
-  "workflowState": "Blocked",
+  "qaStatus": "Evidence Reviewed",
+  "workflowState": "To Do",
   "retries": 0,
   "testAttempts": 1,
   "retryLimit": 1,
   "cycleId": "cycle-003",
   "jiraStatus": "To Do",
   "status": "To Do",
-  "blockedStage": "reviewed",
-  "qaOutcome": "Unverified",
-  "nextAction": "Manual review required; final evidence report published"
+  "qaOutcome": "Passed",
+  "nextAction": "QA review complete",
+  "blockedStage": null
 }

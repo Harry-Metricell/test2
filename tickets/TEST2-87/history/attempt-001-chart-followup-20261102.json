@@ -1,0 +1,460 @@
+{
+  "schema": "v4-qa-evidence-correction.v1",
+  "correctedCriteria": [
+    2
+  ],
+  "before": {
+    "result": {
+      "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
+      "outcome": "Unverified",
+      "reason": "The user confirmed that Service is the acceptable service-technology presentation. Signal strength and duration coverage were already verified. Complete returned call-state timeline coverage remains unverified in the supplied captures; initiation/end annotations alone do not prove it.",
+      "steps_taken": [
+        "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
+        "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
+        "Inspected the settled chart and hovered within it. The tooltip showed elapsed time 12.72 and Signal strength -104 only. The x-axis spans approximately 0–120 seconds, including pre/post-call samples; the 70-second test lies within this range. Saved detail-open and final chart PNGs. The chart's only visible series/legend is Signal strength; the table separately contains Call State and Service, which does not prove chart coverage.",
+        "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Timeline displays call state across returned samples",
+          "outcome": "Unverified",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Timeline displays service technology",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ],
+          "reason": "Accepted by the user: service technology is labelled Service."
+        },
+        {
+          "assertion": "Timeline displays signal strength",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        },
+        {
+          "assertion": "Timeline covers the test duration",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+          ]
+        }
+      ],
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-initial.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-before-automobile.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-automobile-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-test-type-choices.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-call-config.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-call-layer.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-search-position.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-cleanup.png"
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "156.0.8078.48",
+      "testedModule": "Automobile"
+    },
+    "review": {
+      "handoffId": "handoff-TEST2-87-cycle-003-review-attempt-001",
+      "handoffVersion": "TEST2-87:cycle-003:evidence_review:1:scope-d53fd6b12ef1",
+      "ticket": "TEST2-87",
+      "testedModule": "Automobile",
+      "criterionOutcomes": [
+        {
+          "criterion": "When a completed Call test is opened in the shared point-detail dialog, its summary shows the available duration, test result, connection time, start time, end time, handset, and disconnection cause.",
+          "outcome": "Passed",
+          "reason": "criterion-1-summary-decisive.png and criterion-1-summary-middle.png show the completed Automobile Call summary: Success, duration 70 s, connection time 1888 ms, start 19/08/2026 09:34:39, end 09:35:49, and handset identifier MSISDN 447925375897. Disconnection Cause Code is N/A, consistent with the reported null value; the source requires available fields, not an invented cause or unreturned handset model.",
+          "coverageChecks": [
+            {
+              "assertion": "Available duration is displayed",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+              ]
+            },
+            {
+              "assertion": "Available test result is displayed",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+              ]
+            },
+            {
+              "assertion": "Available connection time is displayed",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png"
+              ]
+            },
+            {
+              "assertion": "Available start time is displayed",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+              ]
+            },
+            {
+              "assertion": "Available end time is displayed",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+              ]
+            },
+            {
+              "assertion": "Available handset identification is displayed",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png"
+              ]
+            },
+            {
+              "assertion": "Available disconnection cause is displayed, with null not invented",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-middle.png"
+              ]
+            }
+          ]
+        },
+        {
+          "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
+          "outcome": "Unverified",
+          "reason": "The user confirmed that Service is the acceptable service-technology presentation. Signal strength and duration coverage were already verified. Complete returned call-state timeline coverage remains unverified in the supplied captures; initiation/end annotations alone do not prove it.",
+          "coverageChecks": [
+            {
+              "assertion": "Timeline displays call state across returned samples",
+              "outcome": "Unverified",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+              ],
+              "reason": "Initiation/end annotations are visible; complete call-state coverage is inconclusive."
+            },
+            {
+              "assertion": "Timeline displays service technology",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+              ],
+              "reason": "Accepted by the user: service technology is labelled Service."
+            },
+            {
+              "assertion": "Timeline displays signal strength",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+              ]
+            },
+            {
+              "assertion": "Timeline covers the test duration",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-2-detail-open.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-2-final.png"
+              ]
+            }
+          ]
+        },
+        {
+          "criterion": "When Call samples are returned, the dialog displays them in a table whose columns can be sorted.",
+          "outcome": "Passed",
+          "reason": "Filtering was removed from the current acceptance scope by the user on 2 November. Existing readable evidence proves the displayed samples and Signal Strength sorting in both directions. The 27 October supplemental investigation also verifies differing-value order for Time, Call State, Site and Cell. Constant-value columns permit direction toggling but cannot establish differing-value order; no exhaustive all-column ordering claim is made.",
+          "coverageChecks": [
+            {
+              "assertion": "Returned samples appear in the table",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-baseline.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-end-no-filters.png"
+              ]
+            },
+            {
+              "assertion": "Signal Strength sorts differing values ascending and descending",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-3-descending-readable.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-3-ascending-readable.png"
+              ]
+            }
+          ]
+        },
+        {
+          "criterion": "For each displayed Call sample, the Serving Cell column shows the known serving site/cell when available; when it is unavailable, it shows that sample’s CGI.",
+          "outcome": "Passed",
+          "reason": "Human acceptance: the user confirmed that the separate Site and Cell columns are acceptable. Existing evidence reconciles the two bounded datasets and proves the CGI fallback when a value is supplied. This corrects the column-label interpretation; no new browser test was performed.",
+          "coverageChecks": [
+            {
+              "assertion": "Every sample in the bounded displayed datasets is reconciled",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-2.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-3.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-4.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-2.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-3.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-4.png"
+              ]
+            },
+            {
+              "assertion": "Known serving site/cell values are presented for their sample identities",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-1.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-2.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-3.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-samples-4.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-1.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-2.png"
+              ]
+            },
+            {
+              "assertion": "Unknown serving site/cell falls back to that sample CGI when returned",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-3.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-fallback-samples-4.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-4-final-fallback.png"
+              ]
+            }
+          ]
+        },
+        {
+          "criterion": "Selecting a displayed Call sample opens the related Service details for the selected sample’s point in time.",
+          "outcome": "Passed",
+          "reason": "Existing 27 October supplemental navigation evidence shows selected sample 19 August 09:35:17.33 and the expanded destination title 19/08/2026, 09:35:17, with matching cell 105_120_4 and -91 dBm Service fields. The built-in Open in a new window action exposed the full title; no DOM content was altered.",
+          "coverageChecks": [
+            {
+              "assertion": "Selecting a Call sample opens related Service details",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select-sample.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-selected-row.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-expanded-final.png"
+              ],
+              "reason": "Confirmed by the existing expanded destination title and matching sample identity."
+            },
+            {
+              "assertion": "Opened Service details correspond to the selected sample time",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-before-select-sample.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-after-select-sample.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-service-fields.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-final.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-selected-row.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-expanded-final.png"
+              ],
+              "reason": "Confirmed by the existing expanded destination title and matching sample identity."
+            }
+          ]
+        },
+        {
+          "criterion": "When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.",
+          "outcome": "Passed",
+          "reason": "Genuine zero-duration Automobile Call test 132762259 (12 October 2026, 19:42:27; identical start/end and raw testDurationMs 0) opens the standard No data available state. It was selected normally after a populated 70-second Call; the old chart and sample table are absent and the correct zero-duration summary remains visible. No simulation was used.",
+          "coverageChecks": [
+            {
+              "assertion": "A genuine selected Call point has no measurable duration",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+              ],
+              "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
+            },
+            {
+              "assertion": "No measurable duration shows the standard no-data state",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+              ],
+              "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
+            },
+            {
+              "assertion": "No measurable duration avoids an empty detail view",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+              ],
+              "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
+            }
+          ]
+        },
+        {
+          "criterion": "While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.",
+          "outcome": "Passed",
+          "reason": "The existing disclosed delayed-request and HTTP 503 checks establish loading/error handling. A new genuine no-data fixture now completes the unavailable-analysis branch: after displaying a populated Call, normal selection of zero-duration Call 132762259 shows No data available, retains only its correct summary and clears the earlier chart/sample table. This proves the actual no-analysis case, not arbitrary missing-record or backend-error schemas. New fixture check was not simulated; the older loading/error checks remain explicitly simulated.",
+          "coverageChecks": [
+            {
+              "assertion": "Loading Call analysis shows standard loading state (simulated delay)",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-loading.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-loading.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-loading-genuine-recovery.png"
+              ]
+            },
+            {
+              "assertion": "Unavailable Call details shows standard no-data state",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-before-3409ca76-ee3e-4476-a875-f0585f338967.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-final-2b1ec9e2-f61d-4d72-a543-361cc4160ee5.png"
+              ],
+              "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
+            },
+            {
+              "assertion": "Failed analysis loading shows standard error state (synthetic HTTP 503)",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-error.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-error.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+              ]
+            },
+            {
+              "assertion": "Loading state excludes previous record Call analysis",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-loading.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-loading.png"
+              ]
+            },
+            {
+              "assertion": "Error state excludes previous record Call analysis",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-prior-record-before-error.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-error.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png"
+              ]
+            },
+            {
+              "assertion": "Unavailable/no-data state excludes incorrect Call data",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-before-3409ca76-ee3e-4476-a875-f0585f338967.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-final-2b1ec9e2-f61d-4d72-a543-361cc4160ee5.png"
+              ],
+              "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
+            },
+            {
+              "assertion": "Original request recovers and owned handler is removed",
+              "outcome": "Passed",
+              "evidence": [
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-loading-genuine-recovery.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-error-genuine-recovery.png",
+                "cycles/cycle-003/screenshots/attempt-001/criterion-7-cleanup.png"
+              ]
+            }
+          ]
+        }
+      ],
+      "overallOutcome": "Unverified",
+      "reportPath": "",
+      "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-87\\cycles\\cycle-003\\screenshots\\attempt-001",
+      "qaStatus": "Evidence Reviewed",
+      "noOp": false,
+      "reason": "Six criteria Passed; complete call-state chart coverage in criterion 2 remains Unverified. Filtering is out of scope on user authority. The genuine zero-duration Call fixture resolves criteria 6 and 7 without simulation or a full retest.",
+      "cycleId": "cycle-003",
+      "manualReassessment": {
+        "date": "2026-11-02",
+        "authority": "User corrected the requested ticket to TEST2-87 and supplied the fixture location",
+        "focusedCriteria": [
+          6,
+          7
+        ],
+        "noFullRetest": true
+      }
+    }
+  },
+  "after": {
+    "criterion": "When Call samples are returned, the timeline chart shows call state, service technology, and signal strength across the test duration.",
+    "outcome": "Passed",
+    "reason": "Focused live check on 2 November: the built-in expanded Call analysis view for 5 October 2026, 19:35:02 displays Call initiated (CI), Connected (CC) and Call ended (CE) annotations over the signal-strength timeline spanning the 70-second test. The readable returned samples show Idle, Off Hook and Connected transitions; the chart marks initiation, connection and end. The source asks for call state over time, without prescribing a separate continuous state series or lane. The prior Unverified interpretation imposed that extra presentation requirement. Service technology is shown as Service in the same analysis view, accepted by the user. This is a source-aligned reassessment with a fresh chart capture, not a new full attempt.",
+    "steps_taken": [
+      "Started at the launcher and opened GIS. Temporarily changed the existing Automobile MS Teams layer to Call at the same location/date scope.",
+      "Normally selected the nearby populated Call and opened the built-in expanded detail window. Verified the visible 70-second summary, signal-strength timeline, CI/CC/CE annotations and readable call-state/Service sample columns.",
+      "Compared the chart presentation with the actual copied source ticket: it does not require a continuous state lane. Captured the unmodified expanded window with annotations, summary and sample states together.",
+      "Closed the owned detail window/tab, restored the pre-existing MS Teams layer and camera at zoom16. No simulation or product changes."
+    ],
+    "coverageChecks": [
+      {
+        "assertion": "Timeline displays call-state transitions across the returned test",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-chart-events-final-81874360-e84a-4535-b905-0fc0966aecff.png"
+        ],
+        "reason": "Visible CI, CC and CE chart annotations across the duration satisfy the source without inventing a separate state-series requirement."
+      },
+      {
+        "assertion": "Timeline displays service technology",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-chart-events-final-81874360-e84a-4535-b905-0fc0966aecff.png"
+        ],
+        "reason": "Accepted by the user: service technology is labelled Service."
+      },
+      {
+        "assertion": "Timeline displays signal strength",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-chart-events-final-81874360-e84a-4535-b905-0fc0966aecff.png"
+        ]
+      },
+      {
+        "assertion": "Timeline covers the test duration",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-003/screenshots/attempt-001/criterion-2-chart-events-final-81874360-e84a-4535-b905-0fc0966aecff.png"
+        ]
+      }
+    ],
+    "evidence": [
+      "cycles/cycle-003/screenshots/attempt-001/criterion-2-chart-events-final-81874360-e84a-4535-b905-0fc0966aecff.png"
+    ],
+    "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+    "browserName": "Google Chrome",
+    "browserVersion": "156.0.8078.48",
+    "testedModule": "Automobile",
+    "testedAt": "2026-11-02",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-003/supporting/attempt-001/criterion-2-chart-analysis.json",
+        "sha256": "0d6805a96c940d1ab8bb5cc2035ab21f8e910eebce1a45da26143969be77d835",
+        "kind": "api-response",
+        "description": "Genuine populated Call request/response for the same selected fixture, including the 32 returned samples; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-003/supporting/attempt-001/criterion-2-chart-request.json",
+        "sha256": "9e0bfa8491e955eb3f3e173174173c35e044681ac61c7a84cf9f453ef7b57e49",
+        "kind": "api-response",
+        "description": "Genuine populated Call request/response for the same selected fixture, including the 32 returned samples; no headers or credentials."
+      }
+    ]
+  },
+  "evidenceSha256": "f8fc3af1bb310ffdbb4a37025610bd5dbdc43148b3afe5c8e132c7faf8d98f29",
+  "noCycleOrRetryReset": true
+}

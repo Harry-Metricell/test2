@@ -12,4 +12,4 @@ Updated: 2026-10-30T14:55:24.411+0000
 | TEST2-84 | To Do | Blocked |  | View Building Details and Floorplans |
 | TEST2-85 | To Do | Blocked |  | Display Download Point Details |
 | TEST2-86 | To Do | Blocked |  | Display Upload Point Details |
-| TEST2-87 | To Do | Blocked |  | Display Call Point Details |
+| TEST2-87 | To Do | Evidence Reviewed |  | Display Call Point Details |
