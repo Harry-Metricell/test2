@@ -2,7 +2,7 @@
   "enabled": true,
   "maxReleased": 2,
   "released": [
-    "TEST2-89"
+    "TEST2-91"
   ],
   "held": [
     "TEST2-79",
@@ -14,8 +14,8 @@
     "TEST2-86",
     "TEST2-87",
     "TEST2-88",
+    "TEST2-89",
     "TEST2-90",
-    "TEST2-91",
     "TEST2-92"
   ],
   "trackingDocument": "docs/qa-verification-2026-10-23.md"
