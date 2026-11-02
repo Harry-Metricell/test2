@@ -57,6 +57,21 @@ test('tester and reviewer require complete per-assertion coverage without weaken
   assert.match(brief('coordinator'), /do not release the next pair yourself/);
 });
 
+test('map checks plan complete bounded fixtures and retain reviewable numeric marker proof', () => {
+  const tester=brief('qa-testing'), reviewer=brief('evidence-review');
+  assert.ok(tester.includes('Plan a small permitted scope'));
+  assert.ok(tester.includes('fully reconciled single-record scope is valid'));
+  assert.ok(tester.includes('Never silently narrow a mandated scope'));
+  assert.ok(tester.includes('complete point, membership and opened-detail responses'));
+  assert.ok(tester.includes('Record the actual testedAt'));
+  assert.ok(reviewer.includes('must not replace a source-fixed'));
+  for (const text of [tester,reviewer]) {
+    assert.ok(text.includes('aggregate and member values'));
+    assert.ok(text.includes('supportingEvidence'));
+    assert.ok(text.includes('pixel count'));
+  }
+});
+
 test('coordinator suppresses repeated unchanged-status narration', () => {
   const coordinator = brief('coordinator');
   assert.match(coordinator, /Announce each stage transition at most once per batch/);
