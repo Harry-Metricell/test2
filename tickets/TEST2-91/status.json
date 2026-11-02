@@ -7,7 +7,7 @@
   "testAttempts": 0,
   "retryLimit": 1,
   "cycleId": "cycle-002",
-  "jiraStatus": "TESTING IN PROGRESS",
-  "status": "TESTING IN PROGRESS",
+  "jiraStatus": "READY FOR TESTING",
+  "status": "READY FOR TESTING",
   "blockedStage": null
 }

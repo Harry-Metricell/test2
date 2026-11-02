@@ -359,13 +359,13 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-10-30T14:37:23.198+0000",
+    "updated": "2026-11-02T16:52:52.061+0000",
     "status": {
-      "self": "https://metricell.atlassian.net/rest/api/3/status/10744",
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
       "description": "",
       "iconUrl": "https://metricell.atlassian.net/",
-      "name": "TESTING IN PROGRESS",
-      "id": "10744",
+      "name": "READY FOR TESTING",
+      "id": "10735",
       "statusCategory": {
         "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
         "id": 4,
@@ -419,6 +419,12 @@
         "at": "2026-10-30T14:37:23.198+0000",
         "from": "READY FOR TESTING",
         "to": "TESTING IN PROGRESS"
+      },
+      {
+        "id": "1187364:0",
+        "at": "2026-11-02T16:52:52.061+0000",
+        "from": "TESTING IN PROGRESS",
+        "to": "READY FOR TESTING"
       }
     ]
   }

@@ -1,11 +1,12 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-10-30T14:55:24.411+0000",
+  "generatedAt": "2026-11-02T16:52:52.061+0000",
   "counts": {
     "tickets": 9,
-    "handoffs": 1,
+    "handoffs": 2,
     "byWorkflowState": {
-      "Blocked": 8,
+      "Blocked": 7,
+      "Ready": 1,
       "To Do": 1
     },
     "byQaOutcome": {
@@ -22,21 +23,21 @@
   },
   "tickets": [
     {
-      "key": "TEST2-89",
-      "cycleId": "cycle-005",
-      "summary": "Map and inspect MS Teams Call results",
+      "key": "TEST2-91",
+      "cycleId": "cycle-002",
+      "summary": "Filter Automobile map results",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: READY FOR TESTING",
-      "updatedAt": "2026-10-30T14:26:24.421+0000",
+      "actionOwner": "Coordinator",
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-11-02T16:52:52.061+0000",
       "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 1,
+      "testAttempts": 0,
       "retryLabel": ""
     },
     {
@@ -73,24 +74,6 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
-      "retryLabel": ""
-    },
-    {
-      "key": "TEST2-91",
-      "cycleId": "cycle-002",
-      "summary": "Filter Automobile map results",
-      "jiraStatus": "TESTING IN PROGRESS",
-      "workflowState": "Blocked",
-      "qaStatus": "Ready for Testing",
-      "qaOutcome": "Not Tested",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Coordinator",
-      "nextAction": "Waiting for Jira status: READY FOR TESTING",
-      "updatedAt": "2026-10-30T14:37:23.198+0000",
-      "retries": 0,
-      "retryLimit": 1,
-      "testAttempts": 0,
       "retryLabel": ""
     },
     {
@@ -178,6 +161,24 @@
       "actionOwner": "Coordinator",
       "nextAction": "Create user-guide impact assessment handoff",
       "updatedAt": "2026-10-30T11:54:16.860+0000",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-89",
+      "cycleId": "cycle-005",
+      "summary": "Map and inspect MS Teams Call results",
+      "jiraStatus": "To Do",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Blocked",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Human",
+      "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
+      "updatedAt": "2026-11-02T11:36:19.386+0000",
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
