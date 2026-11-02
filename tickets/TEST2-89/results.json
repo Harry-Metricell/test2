@@ -172,102 +172,216 @@
     "criterion": "For a displayed MS Teams Call point with Poor Quality 1–9.99, its map colour is Yellow.",
     "outcome": "Passed",
     "evidence": [
-      "cycles/cycle-005/screenshots/attempt-001/criterion-4-initial-25198156-33f1-4f81-acf5-ed97d2a468c6.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-4-plotted-map-c9c9827a-5b1c-48cb-bbed-49445885138b.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-4-final-a4e63036-6ed0-466c-8ad9-a9017200f9c4.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-4-final-quality-identity-e475d798-375c-4a76-b274-0a3b7e88174f.png"
+      "cycles/cycle-005/screenshots/attempt-001/criterion-4-identity-initial-8b9d7bbb-d35a-42c6-b018-5dada31c4aed.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-4-identity-site-scope-2aab66f7-7b44-4cc8-be98-8066734f237b.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-4-identity-site-plotted-6e66aaa9-8201-4168-8a77-5e3dea82c214.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-4-identity-final-61617b07-764c-4f4b-9b8b-d02f8e586a3b.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "156.0.8078.48",
+    "browserVersion": "156.0.8078.74",
     "steps_taken": [
-      "Started independently at launcher and opened GIS. Confirmed Automobile MS Teams Call active; genuine points GET returned HTTP 200 for unchanged August–October scope.",
-      "Captured settled map before selecting genuine point 864691674184418606 at latitude 53.435719206694195 longitude -1.318359375, kpiValue 1.750547045951859.",
-      "Normal pointer selection near screen (972,163) opened test 132124007, GET /api/platform/automobile/ms-teams-call/tests/132124007 HTTP 200.",
-      "Scrolled summary normally to show Poor Quality 1.75% and Test ID 132124007 with corresponding yellow point on map; captured and inspected final evidence.",
-      "Closed only owned selected MS Teams test tab; retained original Call tab."
+      "Started independently at the launcher and captured the initial state.",
+      "Opened Automobile MS Teams Call and applied the documented ordinary date, technology and, where applicable, site/cell scope; no phone-number filter was used.",
+      "Saved the settled genuine points response and this criterion’s plotted marker before selection. Re-read the actual aggregate KPI after every scope change.",
+      "Normally selected the observed marker; verified the request mercatorKey 864691674184418606 matches the source point, then selected/opened member 132124007.",
+      "Captured the selected Test ID and numerical Poor Quality beside the plotted marker. Saved the genuine request/member/detail bodies and native-PNG colour receipt.",
+      "Closed only owned tabs, removed the added Automobile layer, restored the pre-existing Surveyor layer and camera, and cleared catalogue search."
     ],
-    "reason": "Genuine displayed point in the 1–9.99 band renders yellow; selected test independently displays Poor Quality 1.75%. Exact interval endpoints were not separately sampled.",
+    "reason": "Independent live check on 2 November: the genuine Automobile MS Teams aggregate 864691674184418606 has Poor Quality 1.750547045951859% and its native plotted marker is Yellow. A normal map click sent that exact mercatorKey, returned 1 member(s), and opened genuine test 132124007, with individual Poor Quality 1.7500000000000002% visible beside its Test ID. Aggregate and individual values are distinct; both are interior examples of the required band. Criterion-owned screenshots and five private hash-checked supporting files corroborate the numerical and visual association. Exact endpoints and date-filter exclusion semantics were not tested.",
     "coverageChecks": [
       {
         "assertion": "A displayed MS Teams Call point with known Poor Quality 1–9.99 is yellow.",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-005/screenshots/attempt-001/criterion-4-plotted-map-c9c9827a-5b1c-48cb-bbed-49445885138b.png",
-          "cycles/cycle-005/screenshots/attempt-001/criterion-4-final-quality-identity-e475d798-375c-4a76-b274-0a3b7e88174f.png"
+          "cycles/cycle-005/screenshots/attempt-001/criterion-4-identity-site-scope-2aab66f7-7b44-4cc8-be98-8066734f237b.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-4-identity-site-plotted-6e66aaa9-8201-4168-8a77-5e3dea82c214.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-4-identity-final-61617b07-764c-4f4b-9b8b-d02f8e586a3b.png"
         ]
       }
     ],
-    "testedModule": "Automobile"
+    "testedModule": "Automobile",
+    "testedAt": "2026-11-02",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-4-scoped-points-identity.json",
+        "sha256": "9bd0d1d6a3bcea5bcb2edef62938d47f10bbbc80bebf4f43e204fb349fcedea6",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-4-selection-request-identity.json",
+        "sha256": "96f458514611ce604fa7e0a19424727961f5eed19ac005e280bdc3f50c06b25d",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-4-members-identity.json",
+        "sha256": "b1562964d314b231dadcee5c8726db4930e27d4a33cc98fe7e9b9fff0dba6fc1",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-4-detail-identity.json",
+        "sha256": "b5621cc47633fb9b7295edaae816c1c950bfc2b7514c0646f02a03ed51b540ac",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-4-verified-marker-identity.json",
+        "sha256": "565c98abfc28c3fee41b820d56d564cd32696742ad09bfbea2786f5937f9449b",
+        "kind": "verification",
+        "description": "Normal selection identity receipt and native saved-PNG marker colour observation, backed by genuine raw responses."
+      }
+    ],
+    "supplementation": {
+      "date": "2026-11-02",
+      "authority": "User-authorised repair of tester evidence identity gaps; same attempt and cycle, no acceptance weakening."
+    }
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 10–24.99, its map colour is Amber.",
     "outcome": "Passed",
     "evidence": [
-      "cycles/cycle-005/screenshots/attempt-001/criterion-5-initial-4f1947cf-46f4-4820-9527-00172ff9cca3.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-5-before-pan-89366be5-1c47-4af0-b99e-3c6c656675cf.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-5-plotted-map-ed31e839-b5d3-47d1-ad06-3d1fc499a951.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-5-selected-point-0b6ca036-ca37-4aed-98a6-d1a6bee45835.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-5-selected-detail-aca6ae1a-8e9e-44d6-a26f-81b92568fa89.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-5-final-81eabecb-5f6a-4193-a6b3-50a4f33dd2ac.png"
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-identity-initial-1548f41f-9465-4904-9c04-6139dad88dc3.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-identity-scope-bda6073e-8af9-406a-8346-ef0a2fe20764.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-identity-plotted-7089600b-39fc-4dda-8c83-75c7e9d770e0.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-5-identity-final-21e8c9e5-6f6d-4ad6-819d-1be97c2be6e7.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "156.0.8078.48",
+    "browserVersion": "156.0.8078.74",
     "steps_taken": [
-      "Started independently at launcher, opened GIS, captured baseline and panned north normally to expose matching points.",
-      "Fresh GET /api/platform/automobile/ms-teams-call/points HTTP 200 supplied aggregate 864691671231628580, Poor Quality 16.573348264277715, latitude 53.956085530987885 longitude -2.28515625, generation13.",
-      "Captured settled active MS Teams layer/map before selecting target symbol near screen (804,177). Its rendered colour matches the amber band.",
-      "Selected member test 131994257 from the resulting four-member list; genuine details show Poor Quality 15.02%. Scrolled summary normally to show quality and identity together in final image.",
-      "Inspected saved decisive image. Closed only owned selected test and cluster tabs; original Call panel retained."
+      "Started independently at the launcher and captured the initial state.",
+      "Opened Automobile MS Teams Call and applied the documented ordinary date, technology and, where applicable, site/cell scope; no phone-number filter was used.",
+      "Saved the settled genuine points response and this criterion’s plotted marker before selection. Re-read the actual aggregate KPI after every scope change.",
+      "Normally selected the observed marker; verified the request mercatorKey 864691673110676792 matches the source point, then selected/opened member 132186813.",
+      "Captured the selected Test ID and numerical Poor Quality beside the plotted marker. Saved the genuine request/member/detail bodies and native-PNG colour receipt.",
+      "Closed only owned tabs, removed the added Automobile layer, restored the pre-existing Surveyor layer and camera, and cleared catalogue search."
     ],
-    "reason": "A genuine point at16.57% rendered the configured amber band. Its selected member test131994257 displays15.02%, also within10–24.99. Exact interval endpoints were not separately sampled.",
+    "reason": "Independent live check on 2 November: the genuine Automobile MS Teams aggregate 864691673110676792 has Poor Quality 10.112359550561797% and its native plotted marker is Amber. A normal map click sent that exact mercatorKey, returned 1 member(s), and opened genuine test 132186813, with individual Poor Quality 10.14% visible beside its Test ID. Aggregate and individual values are distinct; both are interior examples of the required band. Criterion-owned screenshots and five private hash-checked supporting files corroborate the numerical and visual association. Exact endpoints and date-filter exclusion semantics were not tested.",
     "coverageChecks": [
       {
         "assertion": "A displayed MS Teams Call point with Poor Quality10–24.99 renders amber.",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-005/screenshots/attempt-001/criterion-5-plotted-map-ed31e839-b5d3-47d1-ad06-3d1fc499a951.png",
-          "cycles/cycle-005/screenshots/attempt-001/criterion-5-selected-point-0b6ca036-ca37-4aed-98a6-d1a6bee45835.png",
-          "cycles/cycle-005/screenshots/attempt-001/criterion-5-final-81eabecb-5f6a-4193-a6b3-50a4f33dd2ac.png"
+          "cycles/cycle-005/screenshots/attempt-001/criterion-5-identity-scope-bda6073e-8af9-406a-8346-ef0a2fe20764.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-5-identity-plotted-7089600b-39fc-4dda-8c83-75c7e9d770e0.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-5-identity-final-21e8c9e5-6f6d-4ad6-819d-1be97c2be6e7.png"
         ]
       }
     ],
-    "testedModule": "Automobile"
+    "testedModule": "Automobile",
+    "testedAt": "2026-11-02",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-5-scoped-points-identity.json",
+        "sha256": "e45cee5d7195b7a7b7fcd002daf2d6b7d69e7a1a1d71dff121a6833dc4828a1f",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-5-selection-request-identity.json",
+        "sha256": "1a53aca495cb00bbf6e28f4d6e01787e7a1052812e72718a6ddd6ab5d33c1af6",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-5-members-identity.json",
+        "sha256": "a8380af474833eadf11659ee1e813a0147199c224ea652140b8b26047ea2abb7",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-5-detail-identity.json",
+        "sha256": "f89f284544c4374d0f36af407f803b39d068880ad47ed2810476d474228537d8",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-5-verified-marker-identity.json",
+        "sha256": "f14cebc18282d0eb5e984c87a4d35c75ea5ceee8ca8ead4022ccc09da1db6e5d",
+        "kind": "verification",
+        "description": "Normal selection identity receipt and native saved-PNG marker colour observation, backed by genuine raw responses."
+      }
+    ],
+    "supplementation": {
+      "date": "2026-11-02",
+      "authority": "User-authorised repair of tester evidence identity gaps; same attempt and cycle, no acceptance weakening."
+    }
   },
   {
     "criterion": "For a displayed MS Teams Call point with Poor Quality 25 or greater, its map colour is Red.",
     "outcome": "Passed",
     "evidence": [
-      "cycles/cycle-005/screenshots/attempt-001/criterion-6-initial-ed719ba2-534a-4286-8f14-432364556e8d.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-6-plotted-map-e6d910e1-6166-461a-b28f-2a485deb1e9a.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-6-selected-point-3f903d9f-637d-4beb-81ff-48e98c26638b.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-6-selected-detail-649d8ec5-f558-416f-9a81-fa97aaa80bb0.png",
-      "cycles/cycle-005/screenshots/attempt-001/criterion-6-final-661d8147-3306-4529-9d92-644a59e2320d.png"
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-identity-initial-9a368ae1-33da-4519-b677-a6dc5701d31a.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-identity-window-scope-a9ec4ff5-8847-471d-9271-5e8178a23dbb.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-identity-window-plotted-22563762-937a-4609-8d25-1de9b7fe5a02.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-identity-window-members-9587a09a-4b67-41e8-9e73-ec7461a0aece.png",
+      "cycles/cycle-005/screenshots/attempt-001/criterion-6-identity-verified-final-899a67db-7b8d-48e6-a364-f12d961fd519.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
-    "browserVersion": "156.0.8078.48",
+    "browserVersion": "156.0.8078.74",
     "steps_taken": [
-      "Started independently at launcher, opened GIS, captured settled Automobile MS Teams map with genuine symbols.",
-      "Fresh GET /api/platform/automobile/ms-teams-call/points HTTP200 supplied point864691671231628581 at53.90433815627469,-2.28515625, Poor Quality35.04083147735709.",
-      "Normal pointer selection at projected screen(804,192) opened three-member test list. Selected test131998604, which showed85.37% Poor Quality.",
-      "Captured selected detail then scrolled summary normally to show Poor Quality and Test ID. Inspected final image; corresponding red map point retained. Exact #e61733 found in21 target-region pixels of own saved baseline.",
-      "Closed own test and cluster tabs; original Call detail retained."
+      "Started independently at the launcher and captured the initial state.",
+      "Opened Automobile MS Teams Call and applied the documented ordinary date, technology and, where applicable, site/cell scope; no phone-number filter was used.",
+      "Saved the settled genuine points response and this criterion’s plotted marker before selection. Re-read the actual aggregate KPI after every scope change.",
+      "Normally selected the observed marker; verified the request mercatorKey 864691671231628581 matches the source point, then selected/opened member 131998604.",
+      "Captured the selected Test ID and numerical Poor Quality beside the plotted marker. Saved the genuine request/member/detail bodies and native-PNG colour receipt.",
+      "Closed only owned tabs, removed the added Automobile layer, restored the pre-existing Surveyor layer and camera, and cleared catalogue search."
     ],
-    "reason": "Genuine displayed point at35.04% is red #e61733. Selected member131998604 shows85.37%, also above25. Exact25 boundary was not separately sampled.",
+    "reason": "Independent live check on 2 November: the genuine Automobile MS Teams aggregate 864691671231628581 has Poor Quality 35.04083147735709% and its native plotted marker is Red. A normal map click sent that exact mercatorKey, returned 3 member(s), and opened genuine test 131998604, with individual Poor Quality 85.37% visible beside its Test ID. Aggregate and individual values are distinct; both are interior examples of the required band. Criterion-owned screenshots and five private hash-checked supporting files corroborate the numerical and visual association. Exact endpoints and date-filter exclusion semantics were not tested.",
     "coverageChecks": [
       {
         "assertion": "A displayed MS Teams Call point with known Poor Quality25 or greater renders red.",
         "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-005/screenshots/attempt-001/criterion-6-plotted-map-e6d910e1-6166-461a-b28f-2a485deb1e9a.png",
-          "cycles/cycle-005/screenshots/attempt-001/criterion-6-selected-point-3f903d9f-637d-4beb-81ff-48e98c26638b.png",
-          "cycles/cycle-005/screenshots/attempt-001/criterion-6-final-661d8147-3306-4529-9d92-644a59e2320d.png"
+          "cycles/cycle-005/screenshots/attempt-001/criterion-6-identity-window-scope-a9ec4ff5-8847-471d-9271-5e8178a23dbb.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-6-identity-window-plotted-22563762-937a-4609-8d25-1de9b7fe5a02.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-6-identity-window-members-9587a09a-4b67-41e8-9e73-ec7461a0aece.png",
+          "cycles/cycle-005/screenshots/attempt-001/criterion-6-identity-verified-final-899a67db-7b8d-48e6-a364-f12d961fd519.png"
         ]
       }
     ],
-    "testedModule": "Automobile"
+    "testedModule": "Automobile",
+    "testedAt": "2026-11-02",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-6-window-points-identity.json",
+        "sha256": "4d1788c327bb93dd4afda3d2c242998bc5b06d68b4f5a977a6e792c0afb0d403",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-6-window-selection-request-identity.json",
+        "sha256": "afaa67204b9c3f011fba587fc3f4cc202743ae090ccbfcc0ddc7e0cf91a57203",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-6-window-members-identity.json",
+        "sha256": "7f2c42df200acf3d4248dfa503621b3bf2cfe501f74eef8ef288cabe82a02993",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-6-window-detail-identity.json",
+        "sha256": "5da8613b9e8e16227508aa6575ee9b268ac5cb586e55e711234804bd3449734d",
+        "kind": "api-response",
+        "description": "Genuine scoped response or normal selection request, corroborating the exact aggregate/member/detail identity; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-005/supporting/attempt-001/criterion-6-verified-marker-identity.json",
+        "sha256": "dee085459419ec542b10e36fb5cb2eb1f3f365701224d6fa905bc5f5897b9cb8",
+        "kind": "verification",
+        "description": "Normal selection identity receipt and native saved-PNG marker colour observation, backed by genuine raw responses."
+      }
+    ],
+    "supplementation": {
+      "date": "2026-11-02",
+      "authority": "User-authorised repair of tester evidence identity gaps; same attempt and cycle, no acceptance weakening."
+    }
   },
   {
     "criterion": "When the user selects a map point and its details load successfully, the details dialog displays Test ID, Test Result, Connection Time, Call Duration, Poor Quality, MSISDN and Test Technologies.",
