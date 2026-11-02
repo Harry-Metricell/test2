@@ -10,6 +10,6 @@
   "jiraStatus": "To Do",
   "status": "To Do",
   "blockedStage": "reviewed",
-  "qaOutcome": "Blocked",
+  "qaOutcome": "Unverified",
   "nextAction": "Manual review required; final evidence report published"
 }

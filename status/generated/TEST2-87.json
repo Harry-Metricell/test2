@@ -50,10 +50,18 @@
         "Separate Site and Cell columns are acceptable."
       ],
       "remainingEvidenceGaps": [
-        "Complete call-state timeline coverage",
-        "Genuine zero-duration and unavailable-data fixtures"
+        "Complete call-state timeline coverage"
       ],
       "jiraUnmodified": true
+    },
+    "verifiedZeroDurationFixture": {
+      "observedOn": "2026-11-02",
+      "testId": "132762259",
+      "testTime": "2026-10-12T19:42:27.533",
+      "durationMs": 0,
+      "module": "Automobile",
+      "testType": "Call",
+      "source": "User supplied location; genuine read-only browser verification"
     }
   },
   "id": "106643",
@@ -94,7 +102,7 @@
     "jiraStatus": "To Do",
     "workflowState": "Blocked",
     "qaStatus": "Blocked",
-    "qaOutcome": "Blocked",
+    "qaOutcome": "Unverified",
     "automationSuitability": "Unclassified",
     "actionOwner": "Human",
     "nextAction": "Awaiting controlled tester verification release; Jira: To Do",

@@ -8,8 +8,9 @@
       "Blocked": 9
     },
     "byQaOutcome": {
-      "Blocked": 8,
-      "Not Tested": 1
+      "Blocked": 7,
+      "Not Tested": 1,
+      "Unverified": 1
     }
   },
   "policy": {
@@ -170,7 +171,7 @@
       "jiraStatus": "To Do",
       "workflowState": "Blocked",
       "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "qaOutcome": "Unverified",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Human",

@@ -202,38 +202,42 @@
     },
     {
       "criterion": "When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.",
-      "outcome": "Blocked",
-      "reason": "Required zero/null-duration Call fixture was not established in the inspected Automobile dataset. criterion-6-dropped-call-positive-duration.png shows 47.968 s and criterion-6-setup-failure-positive-duration.png / criterion-6-final.png show 11.941 s. Both contain populated analysis and neither exercises the no-measurable-duration prerequisite. Testing this branch could not be completed; these captures do not prove fixture absence elsewhere or a no-data product defect.",
+      "outcome": "Passed",
+      "reason": "Genuine zero-duration Automobile Call test 132762259 (12 October 2026, 19:42:27; identical start/end and raw testDurationMs 0) opens the standard No data available state. It was selected normally after a populated 70-second Call; the old chart and sample table are absent and the correct zero-duration summary remains visible. No simulation was used.",
       "coverageChecks": [
         {
           "assertion": "A genuine selected Call point has no measurable duration",
-          "outcome": "Blocked",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-6-dropped-call-positive-duration.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failure-positive-duration.png",
-            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
-          ]
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+          ],
+          "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
         },
         {
           "assertion": "No measurable duration shows the standard no-data state",
-          "outcome": "Blocked",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
-          ]
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+          ],
+          "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
         },
         {
           "assertion": "No measurable duration avoids an empty detail view",
-          "outcome": "Blocked",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
-          ]
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+          ],
+          "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
         }
       ]
     },
     {
       "criterion": "While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.",
-      "outcome": "Blocked",
-      "reason": "SIMULATED UI STATE: This verifies browser-local Automobile Call analysis loading/error UI, not naturally occurring backend failure or the whole dialog becoming unavailable. Supplied request audit scopes the read to POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/call/test-analysis, pointId 132307934, excluding sampleTime requests; unmatched requests fall through. Record A is 132006263 (19/08/2026 09:34:39, 70 s); target B is 132307934 (09/09/2026 10:55:53, 11.941 s). criterion-7-prior-record-before-loading.png and criterion-7-prior-record-before-error.png establish A's distinct analysis before each transition. criterion-7-target-genuine-baseline.png establishes B's real populated response/UI. Holding B's original request produced the visible loading message/progress bar in criterion-7-simulated-loading.png; releasing it recovered genuine HTTP 200/22 samples per audit and the matching B analysis in criterion-7-loading-genuine-recovery.png. A separately injected synthetic HTTP 503 Service Unavailable, application/problem+json {title:'Service Unavailable',status:503}, produced the visible error and Retry in criterion-7-simulated-error.png / criterion-7-final.png. Both transitions retain B's correct summary and exclude A's prior chart/table; a failed call measurement is not being treated as a failed analysis request. The populated response establishes endpoint/record identity only. No actual empty response or authoritative empty-response schema was available, so unavailable/no-data behavior and its incorrect-data exclusion remain Blocked; no empty contract was inferred by removing populated arrays. The supplied cleanup audit states all owned pending requests were resolved, zero remained, and only the exact owned pattern/handler was removed and its absence checked before Retry. criterion-7-error-genuine-recovery.png corroborates recovered B analysis after the reported genuine HTTP 200/22 samples; criterion-7-cleanup.png shows removed UI selections. Handler removal is supported by that explicit audit, not proven by a page screenshot. Map viewport was changed and not restored exactly.",
+      "outcome": "Passed",
+      "reason": "The existing disclosed delayed-request and HTTP 503 checks establish loading/error handling. A new genuine no-data fixture now completes the unavailable-analysis branch: after displaying a populated Call, normal selection of zero-duration Call 132762259 shows No data available, retains only its correct summary and clears the earlier chart/sample table. This proves the actual no-analysis case, not arbitrary missing-record or backend-error schemas. New fixture check was not simulated; the older loading/error checks remain explicitly simulated.",
       "coverageChecks": [
         {
           "assertion": "Loading Call analysis shows standard loading state (simulated delay)",
@@ -246,10 +250,12 @@
         },
         {
           "assertion": "Unavailable Call details shows standard no-data state",
-          "outcome": "Blocked",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-genuine-baseline.png"
-          ]
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-before-3409ca76-ee3e-4476-a875-f0585f338967.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-final-2b1ec9e2-f61d-4d72-a543-361cc4160ee5.png"
+          ],
+          "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
         },
         {
           "assertion": "Failed analysis loading shows standard error state (synthetic HTTP 503)",
@@ -279,10 +285,12 @@
         },
         {
           "assertion": "Unavailable/no-data state excludes incorrect Call data",
-          "outcome": "Blocked",
+          "outcome": "Passed",
           "evidence": [
-            "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-genuine-baseline.png"
-          ]
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-before-3409ca76-ee3e-4476-a875-f0585f338967.png",
+            "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-final-2b1ec9e2-f61d-4d72-a543-361cc4160ee5.png"
+          ],
+          "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
         },
         {
           "assertion": "Original request recovers and owned handler is removed",
@@ -296,16 +304,20 @@
       ]
     }
   ],
-  "overallOutcome": "Blocked",
+  "overallOutcome": "Unverified",
   "reportPath": "",
   "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-87\\cycles\\cycle-003\\screenshots\\attempt-001",
-  "qaStatus": "Blocked",
+  "qaStatus": "Evidence Reviewed",
   "noOp": false,
-  "reason": "Scope correction without retesting: sample filtering excluded on user authority; separate Site/Cell and Service naming accepted; existing navigation follow-up incorporated. Four criteria Passed, one Unverified (complete call-state timeline proof), two Blocked (genuine zero-duration/unavailable-data fixtures). No new captures, cycle reset or Jira edits.",
+  "reason": "Six criteria Passed; complete call-state chart coverage in criterion 2 remains Unverified. Filtering is out of scope on user authority. The genuine zero-duration Call fixture resolves criteria 6 and 7 without simulation or a full retest.",
   "cycleId": "cycle-003",
   "manualReassessment": {
     "date": "2026-11-02",
-    "authority": "User scope correction and earlier manual naming acceptance; existing local navigation evidence",
-    "noRetest": true
+    "authority": "User corrected the requested ticket to TEST2-87 and supplied the fixture location",
+    "focusedCriteria": [
+      6,
+      7
+    ],
+    "noFullRetest": true
   }
 }

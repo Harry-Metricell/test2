@@ -3,7 +3,7 @@
 ## Current State
 
 - Jira status: To Do
-- QA outcome: Blocked
+- QA outcome: Unverified
 - Workflow state: Blocked
 - Action owner: Human
 - Next action: Awaiting controlled tester verification release; Jira: To Do

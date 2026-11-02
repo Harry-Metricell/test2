@@ -339,73 +339,71 @@
   },
   {
     "criterion": "When the selected Call point has no measurable duration, the dialog shows the standard no-data state instead of an empty detail view.",
-    "outcome": "Blocked",
-    "retryClass": "prerequisite",
-    "blockerCode": "no_duration_fixture_unavailable",
-    "reason": "No genuine Call point with zero/null measurable test duration was established in the inspected Automobile dataset. The dropped-call fixture has 47.968 s and the setup-failure fixture has 11.941 s. Neither exercises the criterion. Browser simulation is not authorised to manufacture business measurement data or reinterpret a failed call as a failed detail request.",
+    "outcome": "Passed",
+    "reason": "Genuine zero-duration Automobile Call test 132762259 (12 October 2026, 19:42:27; identical start/end and raw testDurationMs 0) opens the standard No data available state. It was selected normally after a populated 70-second Call; the old chart and sample table are absent and the correct zero-duration summary remains visible. No simulation was used.",
     "steps_taken": [
-      "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
-      "Started at the same Cambridge area, then searched the returned failed aggregate at 52.19666510205681, 0.13492584228515625. Initial projected click was blocked by the legend; reinspected and recentered using Search Map, cleared its marker and opened the aggregate. Its 30 September Drop Call test returned 47.968 s, so it is unsuitable for no-duration coverage.",
-      "Opened the owned layer configuration, scrolled to Test Results and selected only Setup Failures, leaving technologies and other filters unchanged. Applied; Apply closed configuration, so a subsequent Close configuration action timed out; reinspected the settled UI rather than applying again. GET /api/platform/automobile/call/points with testResultFilter=true&testResults=2 returned HTTP 200 and a setup-failure aggregate. Zoomed out three increments to inspect wider coverage, then searched its returned coordinates 52.185720837176895, 0.1490020751953125.",
-      "Opened the genuine setup failure. POST /api/platform/automobile/call/cluster-details returned point 132307934 and testDurationMs 11941, start 2026-09-09T10:55:53.17, end 10:56:05.11. Analysis returned HTTP 200 with samples; final PNG positively shows 11.941 s, so it cannot prove no-data handling. No zero-duration prerequisite fixture is claimed.",
-      "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      "Focused manual follow-up on 2 November: user supplied the location; verified this is Automobile Call, not MS Teams Call.",
+      "Used the genuine Call points/cluster reads for the location with date scope 1 January 2024 to 2 November 2026. Opened a nearby populated 70-second Call and saved the real analysis response and before screenshot.",
+      "Closed the earlier zero-duration tab and normally clicked the zero-duration marker again. The exact cluster request returned test 132762259 with testDurationMs 0. Its selected summary and No data available state replaced the previous populated chart/table. Saved final evidence.",
+      "Closed only owned tabs and restored the pre-existing layer/date configuration; camera restored approximately. No simulation or backend edits."
     ],
     "coverageChecks": [
       {
         "assertion": "A genuine selected Call point has no measurable duration",
-        "outcome": "Blocked",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-003/screenshots/attempt-001/criterion-6-dropped-call-positive-duration.png",
-          "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failure-positive-duration.png",
-          "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
-        ]
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+        ],
+        "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
       },
       {
         "assertion": "No measurable duration shows the standard no-data state",
-        "outcome": "Blocked",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
-        ]
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+        ],
+        "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
       },
       {
         "assertion": "No measurable duration avoids an empty detail view",
-        "outcome": "Blocked",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png"
-        ]
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+        ],
+        "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
       }
     ],
     "evidence": [
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-initial.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-automobile.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-automobile-config.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-test-type-choices.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-call-config.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-call-layer.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-search-position.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-failure-record-position.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-failure-record-before-open.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-dropped-call-positive-duration.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-before-setup-filter.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failures-filter.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failures-map.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failures-wide.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failure-before-open.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-setup-failure-positive-duration.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-final.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-6-cleanup.png"
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-before-ec9dea46-3edc-4ea1-aa57-3e03dbd8357b.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "testedModule": "Automobile"
+    "testedModule": "Automobile",
+    "testedAt": "2026-11-02",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-003/supporting/attempt-001/criterion-6-zero-response.json",
+        "sha256": "61eeb95c2f70c294060a7e4ca88bcd63db79818e8b8fccd2eaeb4ec763359956",
+        "kind": "api-response",
+        "description": "Genuine focused Call fixture check: raw identity/duration or populated baseline; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-003/supporting/attempt-001/criterion-6-zero-request.json",
+        "sha256": "eb4b193757b8bcbbe036783a5ffe1daf834c9d22f2bbc089a6f7747c098266de",
+        "kind": "api-response",
+        "description": "Genuine focused Call fixture check: raw identity/duration or populated baseline; no headers or credentials."
+      }
+    ]
   },
   {
     "criterion": "While Call details are loading, the dialog shows the standard loading state; when details are unavailable, it shows the standard no-data state; when loading fails, it shows the standard error state, with no incorrect Call data displayed.",
-    "outcome": "Blocked",
-    "retryClass": "prerequisite",
-    "blockerCode": "empty_response_contract_unavailable",
-    "reason": "SIMULATED UI STATE: Loading and HTTP-error UI handling passed for the Automobile Call analysis read request, but unavailable/no-data coverage is Blocked because no actual empty analysis response or authoritative empty-response contract was supplied/observed. Exact simulation scope: POST https://o2intelligence-v4-dev.metricell.com/api/platform/automobile/call/test-analysis, pointId 132307934, only requests without sampleTime. Held its original request until the loading PNG was saved, then continued it to genuine HTTP 200/22 samples. Separately injected HTTP 503 Service Unavailable with application/problem+json body {title:'Service Unavailable',status:503}; this is a synthetic HTTP error, not an observed backend outage. The real populated response established endpoint/request identity only; it did not establish an empty contract. Correct target summary remained visible while prior record analysis was absent. Finally resolved owned pending requests, removed only the exact owned handler and verified Retry recovered a genuine HTTP 200/22-sample response. No unavailable/no-data response was invented.",
+    "outcome": "Passed",
+    "reason": "The existing disclosed delayed-request and HTTP 503 checks establish loading/error handling. A new genuine no-data fixture now completes the unavailable-analysis branch: after displaying a populated Call, normal selection of zero-duration Call 132762259 shows No data available, retains only its correct summary and clears the earlier chart/sample table. This proves the actual no-analysis case, not arbitrary missing-record or backend-error schemas. New fixture check was not simulated; the older loading/error checks remain explicitly simulated.",
     "steps_taken": [
       "Navigated independently to the exact launcher URL, waited for the visible launcher and saved this criterion's initial PNG. Opened GIS with no pre-existing selected layers/detail tabs; opened Automobile configuration and its nested Test type choices. Selected generic Call (distinct from MS Teams Call), retaining all default technologies, blank handset/network filters and the rolling 29 July–27 October 2026 date window, unless a later step says otherwise. Added Automobile - Call and captured settled configuration/map transitions. Observed GET /api/platform/automobile/filter-options and GET /api/platform/automobile/call/points succeed with HTTP 200.",
       "Used Search Map for 52.20087, 0.12085 at zoom 14; clicked the returned aggregate at 52.20255705185695, 0.1242828369140625 using its Mercator screen projection. POST /api/platform/automobile/call/cluster-details returned point 132006263, a Success test starting 2026-08-19T09:34:39.647 and ending 09:35:49.647 (70000 ms). POST /api/platform/automobile/call/test-analysis returned HTTP 200 and 33 samples.",
@@ -414,7 +412,11 @@
       "SIMULATED UI STATE: Loaded A again and captured its own prior-record-before-error. Changed the same scoped route to return synthetic HTTP 503 with body {title:'Service Unavailable',status:503}; selected B. UI showed 'Unable to load Automobile test analysis.' and Retry, no previous chart or measurement rows. Correct B summary remained. Captured simulated-error and final at the assertion, and read location.href as /gis.",
       "Unavailable/no-data branch was not simulated: no genuine empty response or supplied API schema established the empty contract. A populated response with arrays removed would not establish it. This branch remains Blocked.",
       "In a finally block set owned handler to pass, resolved all owned pending releases (zero remained), called page.unroute on only its exact pattern+handler and deleted its page-owned state. Confirmed handler absent; clicked visible Retry and observed genuine HTTP 200 and 22 measurement rows. Captured error-genuine-recovery, then removed created UI selections and returned to the launcher.",
-      "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored."
+      "Closed only this criterion's created detail tabs and removed its Automobile layer. Cleared the search field; launcher navigation reset transient page state between criteria. No saved data, favourites or maps were created. Map center/zoom were changed during testing and were not restored to the exact original viewport; original layer and detail selections were empty and restored.",
+      "Focused manual follow-up on 2 November: user supplied the location; verified this is Automobile Call, not MS Teams Call.",
+      "Used the genuine Call points/cluster reads for the location with date scope 1 January 2024 to 2 November 2026. Opened a nearby populated 70-second Call and saved the real analysis response and before screenshot.",
+      "Closed the earlier zero-duration tab and normally clicked the zero-duration marker again. The exact cluster request returned test 132762259 with testDurationMs 0. Its selected summary and No data available state replaced the previous populated chart/table. Saved final evidence.",
+      "Closed only owned tabs and restored the pre-existing layer/date configuration; camera restored approximately. No simulation or backend edits."
     ],
     "coverageChecks": [
       {
@@ -428,10 +430,12 @@
       },
       {
         "assertion": "Unavailable Call details shows standard no-data state",
-        "outcome": "Blocked",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-genuine-baseline.png"
-        ]
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-before-3409ca76-ee3e-4476-a875-f0585f338967.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-final-2b1ec9e2-f61d-4d72-a543-361cc4160ee5.png"
+        ],
+        "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
       },
       {
         "assertion": "Failed analysis loading shows standard error state (synthetic HTTP 503)",
@@ -461,10 +465,12 @@
       },
       {
         "assertion": "Unavailable/no-data state excludes incorrect Call data",
-        "outcome": "Blocked",
+        "outcome": "Passed",
         "evidence": [
-          "cycles/cycle-003/screenshots/attempt-001/criterion-7-target-genuine-baseline.png"
-        ]
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-before-3409ca76-ee3e-4476-a875-f0585f338967.png",
+          "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-final-2b1ec9e2-f61d-4d72-a543-361cc4160ee5.png"
+        ],
+        "reason": "Genuine zero-duration/no-analysis record selected after a populated Call; criterion-owned before/after screenshots and raw response corroborate the state."
       },
       {
         "assertion": "Original request recovers and owned handler is removed",
@@ -498,11 +504,40 @@
       "cycles/cycle-003/screenshots/attempt-001/criterion-7-simulated-error.png",
       "cycles/cycle-003/screenshots/attempt-001/criterion-7-final.png",
       "cycles/cycle-003/screenshots/attempt-001/criterion-7-error-genuine-recovery.png",
-      "cycles/cycle-003/screenshots/attempt-001/criterion-7-cleanup.png"
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-cleanup.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-before-3409ca76-ee3e-4476-a875-f0585f338967.png",
+      "cycles/cycle-003/screenshots/attempt-001/criterion-7-zero-final-2b1ec9e2-f61d-4d72-a543-361cc4160ee5.png"
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
-    "testedModule": "Automobile"
+    "testedModule": "Automobile",
+    "testedAt": "2026-11-02",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-003/supporting/attempt-001/criterion-7-zero-populated-analysis.json",
+        "sha256": "0d6805a96c940d1ab8bb5cc2035ab21f8e910eebce1a45da26143969be77d835",
+        "kind": "api-response",
+        "description": "Genuine focused Call fixture check: raw identity/duration or populated baseline; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-003/supporting/attempt-001/criterion-7-zero-populated-request.json",
+        "sha256": "9e0bfa8491e955eb3f3e173174173c35e044681ac61c7a84cf9f453ef7b57e49",
+        "kind": "api-response",
+        "description": "Genuine focused Call fixture check: raw identity/duration or populated baseline; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-003/supporting/attempt-001/criterion-7-zero-response.json",
+        "sha256": "61eeb95c2f70c294060a7e4ca88bcd63db79818e8b8fccd2eaeb4ec763359956",
+        "kind": "api-response",
+        "description": "Genuine focused Call fixture check: raw identity/duration or populated baseline; no headers or credentials."
+      },
+      {
+        "path": "cycles/cycle-003/supporting/attempt-001/criterion-7-zero-verification.json",
+        "sha256": "5b4753b25dfeb739ba769436cf1d9f006b914a28c7a493f6927fc7928bcdd87b",
+        "kind": "verification",
+        "description": "Genuine focused Call fixture check: raw identity/duration or populated baseline; no headers or credentials."
+      }
+    ]
   }
 ]
