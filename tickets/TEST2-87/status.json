@@ -11,5 +11,17 @@
   "status": "To Do",
   "qaOutcome": "Passed",
   "nextAction": "QA review complete",
-  "blockedStage": null
+  "blockedStage": null,
+  "guideImpact": {
+    "schema": "v4-user-guide-impact.v1",
+    "handoffId": "handoff-TEST2-87-cycle-003-guide-impact",
+    "handoffVersion": "TEST2-87:cycle-003:guide_impact_assessment:1:scope-3d909b2dc892",
+    "ticket": "TEST2-87",
+    "decision": "update_required",
+    "affectedSection": "Automobile Call results",
+    "reason": "The reviewed Call workflow adds a call summary and annotated timeline to the shared point-detail dialog, with sortable samples and navigation from a sample to its related Service details. The current guide covers Automobile Service results, so users need an additional section explaining how to inspect Call results.",
+    "noOp": false,
+    "cycleId": "cycle-003",
+    "assessedAt": "2026-11-03T09:23:16.110Z"
+  }
 }
