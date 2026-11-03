@@ -10,10 +10,11 @@
     "1186589:0",
     "1186922:0",
     "1186923:0",
-    "1187013:0"
+    "1187013:0",
+    "1187382:0"
   ],
   "reworkPending": true,
-  "lastJiraStatus": "To Do",
+  "lastJiraStatus": "Blocked",
   "startedByTransition": "1186923:0",
   "startedAt": "2026-10-26T14:25:46.537+0000"
 }

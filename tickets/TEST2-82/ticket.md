@@ -2,11 +2,11 @@
 
 ## Current State
 
-- Jira status: To Do
+- Jira status: Blocked
 - QA outcome: Blocked
 - Workflow state: Blocked
 - Action owner: Human
-- Next action: Awaiting controlled tester verification release; Jira: To Do
+- Next action: Awaiting controlled tester verification release; Jira: Blocked
 - Jira: https://metricell.atlassian.net/browse/TEST2-82
 
 ## Acceptance Criteria

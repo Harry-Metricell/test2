@@ -331,13 +331,13 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-10-23T09:08:46.353+0100",
+    "updated": "2026-11-03T09:56:58.095+0000",
     "status": {
-      "self": "https://metricell.atlassian.net/rest/api/3/status/10731",
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10737",
       "description": "",
-      "iconUrl": "https://metricell.atlassian.net/images/icons/statuses/generic.png",
-      "name": "To Do",
-      "id": "10731",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "Blocked",
+      "id": "10737",
       "statusCategory": {
         "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/2",
         "id": 2,
@@ -403,6 +403,12 @@
         "at": "2026-10-23T09:08:46.353+0100",
         "from": "READY FOR TESTING",
         "to": "To Do"
+      },
+      {
+        "id": "1187380:0",
+        "at": "2026-11-03T09:56:58.095+0000",
+        "from": "To Do",
+        "to": "Blocked"
       }
     ]
   }
