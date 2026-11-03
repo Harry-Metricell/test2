@@ -1,0 +1,41 @@
+{
+  "schema": "v4-qa-source-clarification.v1",
+  "ticket": "TEST2-90",
+  "source": "VM2ST-100",
+  "sourceReadOnly": true,
+  "authority": {
+    "authority": "human",
+    "confirmedAt": "2026-11-03",
+    "sourceVerifiedAt": "2026-11-03",
+    "sourceUpdated": "2026-10-30T14:53:52.558+0000",
+    "decision": "Include 5G NSA in Call technology legends and filters, following the user/Kelvin agreement of 30 October and the current source inclusion criterion.",
+    "sourceInconsistency": "VM2ST-100 now explicitly includes 5G NSA but retains stale exclusion wording in the QA note and CSR shape criterion. Those exclusions do not govern this copied ticket.",
+    "copiedTicketUpdated": "TEST2-90 description verified updated in Jira on 2026-11-03T10:45:03.449+0000",
+    "scope": "Only NSA inclusion/exclusion wording changed. No new marker shape, filter, test attempt, cycle or pass is inferred.",
+    "reportNote": "The existing PDF and historic review predate this clarification. Their NSA-exclusion failure is obsolete; defer report regeneration until the remaining checks are resolved."
+  },
+  "descriptionChanges": [
+    {
+      "before": "Call technology legends and filters must distinguish 2G, 3G, 4G and 5G SA. 5G NSA must not be presented as a call technology because it does not support call capability.",
+      "after": "Call technology legends and filters must distinguish 2G, 3G, 4G, 5G NSA, and 5G SA."
+    },
+    {
+      "before": "QA: verify all four Colour By modes, legacy metric calculations, colour boundaries, missing MOS data, metric-specific legend edits, restored Colour By selections, representative successful and failed calls across supported technologies, 5G NSA exclusion, sortable fields, detail-tab selection/restoration, service drill-down, and zero-duration results.",
+      "after": "QA: verify all four Colour By modes, legacy metric calculations, colour boundaries, missing MOS data, metric-specific legend edits, restored Colour By selections, representative successful and failed calls across supported technologies, 5G NSA inclusion, sortable fields, detail-tab selection/restoration, service drill-down, and zero-duration results."
+    },
+    {
+      "before": "Given Call technology legends or filters are displayed, then they include 2G, 3G, 4G and 5G SA and exclude 5G NSA.",
+      "after": "Given Call technology legends or filters are displayed, then they include 2G, 3G, 4G, 5G SA, and 5G NSA."
+    },
+    {
+      "before": "Given CSR is selected, then default generation marker shapes are 2G circle, 3G triangle, 4G diamond, and 5G SA pentagon. Generation 0 uses a black square labelled No Service; this category is fixed and is not a CSR percentage band. 5G NSA is absent.",
+      "after": "Given CSR is selected, then default generation marker shapes are 2G circle, 3G triangle, 4G diamond, and 5G SA pentagon. Generation 0 uses a black square labelled No Service; this category is fixed and is not a CSR percentage band."
+    }
+  ],
+  "criteriaChange": {
+    "before": "Call technology legends and filters include 2G, 3G, 4G, and 5G SA and exclude 5G NSA.",
+    "after": "Call technology legends and filters include 2G, 3G, 4G, 5G NSA, and 5G SA."
+  },
+  "historicResultsAndReportsUnchanged": true,
+  "noCycleOrRetryReset": true
+}

@@ -19,6 +19,6 @@
 - [ ] Each available column in the cluster results table can be sorted.
 - [ ] Selecting a cluster row opens a separate Call detail tab for that row's exact PointID and keeps the cluster tab open; reopening or restoring Call and Service tabs retains the relevant time and filter scope.
 - [ ] When a selected result has related service information, its Service Details tab can be opened.
-- [ ] Call technology legends and filters include 2G, 3G, 4G, and 5G SA and exclude 5G NSA.
+- [ ] Call technology legends and filters include 2G, 3G, 4G, 5G NSA, and 5G SA.
 - [ ] Requesting details for a selected result with no duration displays a clear no-data message.
 - [ ] When point or service details cannot be returned, the selected item does not show stale detail data.

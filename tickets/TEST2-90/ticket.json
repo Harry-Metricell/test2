@@ -113,7 +113,7 @@
           "content": [
             {
               "type": "text",
-              "text": "Call technology legends and filters must distinguish 2G, 3G, 4G and 5G SA. 5G NSA must not be presented as a call technology because it does not support call capability."
+              "text": "Call technology legends and filters must distinguish 2G, 3G, 4G, 5G NSA, and 5G SA."
             }
           ]
         },
@@ -131,7 +131,7 @@
           "content": [
             {
               "type": "text",
-              "text": "QA: verify all four Colour By modes, legacy metric calculations, colour boundaries, missing MOS data, metric-specific legend edits, restored Colour By selections, representative successful and failed calls across supported technologies, 5G NSA exclusion, sortable fields, detail-tab selection/restoration, service drill-down, and zero-duration results."
+              "text": "QA: verify all four Colour By modes, legacy metric calculations, colour boundaries, missing MOS data, metric-specific legend edits, restored Colour By selections, representative successful and failed calls across supported technologies, 5G NSA inclusion, sortable fields, detail-tab selection/restoration, service drill-down, and zero-duration results."
             }
           ]
         },
@@ -356,7 +356,7 @@
                   "content": [
                     {
                       "type": "text",
-                      "text": "Given Call technology legends or filters are displayed, then they include 2G, 3G, 4G and 5G SA and exclude 5G NSA."
+                      "text": "Given Call technology legends or filters are displayed, then they include 2G, 3G, 4G, 5G SA, and 5G NSA."
                     }
                   ]
                 }
@@ -398,7 +398,7 @@
                   "content": [
                     {
                       "type": "text",
-                      "text": "Given CSR is selected, then default generation marker shapes are 2G circle, 3G triangle, 4G diamond, and 5G SA pentagon. Generation 0 uses a black square labelled No Service; this category is fixed and is not a CSR percentage band. 5G NSA is absent."
+                      "text": "Given CSR is selected, then default generation marker shapes are 2G circle, 3G triangle, 4G diamond, and 5G SA pentagon. Generation 0 uses a black square labelled No Service; this category is fixed and is not a CSR percentage band."
                     }
                   ]
                 }
@@ -632,7 +632,7 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-10-30T10:55:37.440+0000",
+    "updated": "2026-11-03T10:45:03.449+0000",
     "status": {
       "self": "https://metricell.atlassian.net/rest/api/3/status/10744",
       "description": "",

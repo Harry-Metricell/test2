@@ -25,10 +25,10 @@
 12. Given the Call cluster detail tab is displayed, then its results table contains MSISDN, Test Result, Start Time, End Time, Test Duration, Call Setup Time, Connection Time, Disconnection Cause Code, LTE Return Time, CSFB Time, MOS Downlink, MOS Uplink, Estimated MOS, Band, Test Technologies, Call End Service, and Call End Serving Cell.
 13. Given the Call cluster results table is displayed, then users can sort by each of its available columns.
 14. Given a user selects a result with related service information, when service details are available, then a separate Service Details tab opens for that result.
-15. Given Call technology legends or filters are displayed, then they include 2G, 3G, 4G and 5G SA and exclude 5G NSA.
+15. Given Call technology legends or filters are displayed, then they include 2G, 3G, 4G, 5G SA, and 5G NSA.
 16. Given a selected Call result has no duration, when the user requests details, then a clear no-data message is displayed.
 17. Given point or service details cannot be returned, when a user selects the relevant item, then no stale detail data is shown.
-18. Given CSR is selected, then default generation marker shapes are 2G circle, 3G triangle, 4G diamond, and 5G SA pentagon. Generation 0 uses a black square labelled No Service; this category is fixed and is not a CSR percentage band. 5G NSA is absent.
+18. Given CSR is selected, then default generation marker shapes are 2G circle, 3G triangle, 4G diamond, and 5G SA pentagon. Generation 0 uses a black square labelled No Service; this category is fixed and is not a CSR percentage band.
 19. Given a MOS metric is selected, then the default marker shape is square for Downlink MOS, circle for Uplink MOS, and hexagon for Estimated MOS. These MOS legends group by the selected metric rather than repeating the CSR generation groups.
 20. Given a Colour By metric is selected, then it uses its own source field: CSR uses Data.CallCsr, Downlink MOS uses Data.ActualMoSDownlinkAvg, Uplink MOS uses Data.ActualMoSUplinkAvg, and Estimated MOS uses Data.EstimatedMOSAVG, as specified in the supplied legacy Call configuration.
 21. Given any of the four Call legends is displayed, then it includes a fixed Out of Threshold category using a white square and hidden by default. The default band order is descending. CSR band limits are 0–100 and MOS band limits are 1–5; visible labels must agree with the implemented boundary rules.
@@ -49,9 +49,9 @@ Issue/Change Description:
 Provide the Automobile Call layer with selectable map points and a Colour By selector offering CSR, Downlink MOS, Uplink MOS, and Estimated MOS. CSR is the default. Selecting a marker follows the HTTP and Download GIS detail-tab workflow: a single result opens its Call detail tab directly; multiple results open a cluster results tab, and selecting a row opens that exact result in a separate Call detail tab. Existing group-based data visibility applies throughout.
 The cluster detail tab must contain a sortable results table with: MSISDN, Test Result, Start Time, End Time, Test Duration, Call Setup Time, Connection Time, Disconnection Cause Code, LTE Return Time, CSFB Time, MOS Downlink, MOS Uplink, Estimated MOS, Band, Test Technologies, Call End Service, and Call End Serving Cell.
 Where a selected result has related service information, the user can open the associated Service Details tab.
-Call technology legends and filters must distinguish 2G, 3G, 4G and 5G SA. 5G NSA must not be presented as a call technology because it does not support call capability.
+Call technology legends and filters must distinguish 2G, 3G, 4G, 5G NSA, and 5G SA.
 Dependencies: migrated Automobile Call map, point-detail and Service Details data must provide stable point identifiers, the listed fields, and separate CSR, Downlink MOS, Uplink MOS, and Estimated MOS values. Reuse the shared Colour By selector and legend presentation/editing from feature/automobile-VM2ST-116-legend; selecting a metric must use that metric's data rather than relabelling a single CSR value.
-QA: verify all four Colour By modes, legacy metric calculations, colour boundaries, missing MOS data, metric-specific legend edits, restored Colour By selections, representative successful and failed calls across supported technologies, 5G NSA exclusion, sortable fields, detail-tab selection/restoration, service drill-down, and zero-duration results.
+QA: verify all four Colour By modes, legacy metric calculations, colour boundaries, missing MOS data, metric-specific legend edits, restored Colour By selections, representative successful and failed calls across supported technologies, 5G NSA inclusion, sortable fields, detail-tab selection/restoration, service drill-down, and zero-duration results.
 Acceptance Criteria:
 Given Automobile Call data is available, when the Call layer is selected, then results are displayed as selectable points on the map.
 Given the Call layer is configured, then the shared Colour By selector offers CSR, Downlink MOS, Uplink MOS, and Estimated MOS, with CSR selected by default.
@@ -67,10 +67,10 @@ Given an authorised user clicks a Call marker, when it contains one result, then
 Given the Call cluster detail tab is displayed, then its results table contains MSISDN, Test Result, Start Time, End Time, Test Duration, Call Setup Time, Connection Time, Disconnection Cause Code, LTE Return Time, CSFB Time, MOS Downlink, MOS Uplink, Estimated MOS, Band, Test Technologies, Call End Service, and Call End Serving Cell.
 Given the Call cluster results table is displayed, then users can sort by each of its available columns.
 Given a user selects a result with related service information, when service details are available, then a separate Service Details tab opens for that result.
-Given Call technology legends or filters are displayed, then they include 2G, 3G, 4G and 5G SA and exclude 5G NSA.
+Given Call technology legends or filters are displayed, then they include 2G, 3G, 4G, 5G SA, and 5G NSA.
 Given a selected Call result has no duration, when the user requests details, then a clear no-data message is displayed.
 Given point or service details cannot be returned, when a user selects the relevant item, then no stale detail data is shown.
-Given CSR is selected, then default generation marker shapes are 2G circle, 3G triangle, 4G diamond, and 5G SA pentagon. Generation 0 uses a black square labelled No Service; this category is fixed and is not a CSR percentage band. 5G NSA is absent.
+Given CSR is selected, then default generation marker shapes are 2G circle, 3G triangle, 4G diamond, and 5G SA pentagon. Generation 0 uses a black square labelled No Service; this category is fixed and is not a CSR percentage band.
 Given a MOS metric is selected, then the default marker shape is square for Downlink MOS, circle for Uplink MOS, and hexagon for Estimated MOS. These MOS legends group by the selected metric rather than repeating the CSR generation groups.
 Given a Colour By metric is selected, then it uses its own source field: CSR uses Data.CallCsr, Downlink MOS uses Data.ActualMoSDownlinkAvg, Uplink MOS uses Data.ActualMoSUplinkAvg, and Estimated MOS uses Data.EstimatedMOSAVG, as specified in the supplied legacy Call configuration.
 Given any of the four Call legends is displayed, then it includes a fixed Out of Threshold category using a white square and hidden by default. The default band order is descending. CSR band limits are 0–100 and MOS band limits are 1–5; visible labels must agree with the implemented boundary rules.

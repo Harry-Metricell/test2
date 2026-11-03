@@ -15,5 +15,16 @@
     "authority": "human",
     "confirmedAt": "2026-10-21",
     "reason": "User confirmed this copied batch is for Automobile migration. Source Jira remains read-only; do not substitute Surveyor."
+  },
+  "acceptanceClarifications": {
+    "authority": "human",
+    "confirmedAt": "2026-11-03",
+    "sourceVerifiedAt": "2026-11-03",
+    "sourceUpdated": "2026-10-30T14:53:52.558+0000",
+    "decision": "Include 5G NSA in Call technology legends and filters, following the user/Kelvin agreement of 30 October and the current source inclusion criterion.",
+    "sourceInconsistency": "VM2ST-100 now explicitly includes 5G NSA but retains stale exclusion wording in the QA note and CSR shape criterion. Those exclusions do not govern this copied ticket.",
+    "copiedTicketUpdated": "TEST2-90 description verified updated in Jira on 2026-11-03T10:45:03.449+0000",
+    "scope": "Only NSA inclusion/exclusion wording changed. No new marker shape, filter, test attempt, cycle or pass is inferred.",
+    "reportNote": "The existing PDF and historic review predate this clarification. Their NSA-exclusion failure is obsolete; defer report regeneration until the remaining checks are resolved."
   }
 }
