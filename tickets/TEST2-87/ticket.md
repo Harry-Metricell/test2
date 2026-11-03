@@ -5,8 +5,8 @@
 - Jira status: To Do
 - QA outcome: Passed
 - Workflow state: To Do
-- Action owner: Coordinator
-- Next action: Create user-guide update authoring handoff
+- Action owner: Human
+- Next action: Awaiting controlled tester verification release; Jira: To Do
 - Jira: https://metricell.atlassian.net/browse/TEST2-87
 
 ## Acceptance Criteria

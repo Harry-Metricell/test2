@@ -103,8 +103,8 @@
     "qaStatus": "Evidence Reviewed",
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
-    "actionOwner": "Coordinator",
-    "nextAction": "Create user-guide update authoring handoff",
+    "actionOwner": "Human",
+    "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
     "reviewState": "Not Reviewed",
     "guideImpact": {
       "schema": "v4-user-guide-impact.v1",
@@ -118,7 +118,45 @@
       "cycleId": "cycle-003",
       "assessedAt": "2026-11-03T09:23:16.110Z"
     },
-    "guideUpdate": null,
+    "guideUpdate": {
+      "schema": "v4-user-guide-update.v1",
+      "handoffId": "handoff-TEST2-87-cycle-003-guide-update",
+      "handoffVersion": "TEST2-87:cycle-003:guide_update_authoring:1:scope-3d909b2dc892",
+      "ticket": "TEST2-87",
+      "title": "Map and inspect Automobile Call results",
+      "affectedSection": "Automobile Call results",
+      "changeType": "add",
+      "steps": [
+        "In GIS, open the Automobile layer configuration and select Call under Test type.",
+        "Add the Call layer, then select a map point to open its Call details.",
+        "Read the available call duration, result, connection time, start and end times, handset, and disconnection cause in the summary.",
+        "Inspect the timeline for call-state annotations, signal strength, and Service, which represents service technology.",
+        "Select a sample-table heading to sort the returned Call samples.",
+        "Read the Site and Cell columns for serving-cell information; when it is unavailable, read the sample CGI.",
+        "Select a Call sample to open the related Service details for that point in time.",
+        "Select a Call point with no measurable duration to view its No data available state."
+      ],
+      "screenshots": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-summary-decisive.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-chart-events-final-81874360-e84a-4535-b905-0fc0966aecff.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-table-baseline.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-4-final-fallback.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-5-followup-navigation-expanded-final.png",
+        "cycles/cycle-003/screenshots/attempt-001/criterion-6-zero-final-1872c83b-d368-49eb-a46d-f48076c18fb1.png"
+      ],
+      "screenshotCaptions": [
+        "A completed Automobile Call detail shows the available summary fields.",
+        "The Call timeline shows call-state annotations and signal strength, with Service listed as the service technology.",
+        "Returned Call samples appear in the detail table.",
+        "The sample table shows Site and Cell columns and CGI fallback data.",
+        "The selected Call sample opens Service details for the matching time and cell.",
+        "A zero-duration Call shows No data available with its summary and no sample table."
+      ],
+      "reason": "Adds instructions for mapping Automobile Call results, reading their summary, timeline and samples, and opening related Service details.",
+      "noOp": false,
+      "cycleId": "cycle-003",
+      "authoredAt": "2026-11-03T09:29:15.001Z"
+    },
     "retries": 0,
     "testAttempts": 1,
     "blockedStage": null,

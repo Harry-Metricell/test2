@@ -66,6 +66,12 @@
       "title": "Map and inspect Automobile HTTP Browsing, Ping and Video Streaming results",
       "affectedSection": "Automobile HTTP Browsing, Ping and Video Streaming results",
       "recordPath": "archive/tickets/TEST2-81/guide-update.json"
+    },
+    {
+      "ticket": "TEST2-87",
+      "title": "Map and inspect Automobile Call results",
+      "affectedSection": "Automobile Call results",
+      "recordPath": "tickets/TEST2-87/guide-update.json"
     }
   ]
 }
