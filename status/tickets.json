@@ -1,12 +1,11 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-11-02T16:52:52.061+0000",
+  "generatedAt": "2026-11-03T09:38:32.507+0000",
   "counts": {
     "tickets": 9,
     "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 8,
-      "To Do": 1
+      "Blocked": 9
     },
     "byQaOutcome": {
       "Blocked": 8,
@@ -20,6 +19,42 @@
     "missingEvidence": "warning_not_pass"
   },
   "tickets": [
+    {
+      "key": "TEST2-87",
+      "cycleId": "cycle-003",
+      "summary": "Display Call Point Details",
+      "jiraStatus": "Blocked",
+      "workflowState": "Blocked",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Passed",
+      "guideImpact": "update_required",
+      "guideUpdate": "Map and inspect Automobile Call results",
+      "actionOwner": "Human",
+      "nextAction": "Awaiting controlled tester verification release; Jira: Blocked",
+      "updatedAt": "2026-11-03T09:38:32.507+0000",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 1,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-89",
+      "cycleId": "cycle-005",
+      "summary": "Map and inspect MS Teams Call results",
+      "jiraStatus": "Blocked",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
+      "qaOutcome": "Blocked",
+      "guideImpact": null,
+      "guideUpdate": null,
+      "actionOwner": "Human",
+      "nextAction": "Awaiting controlled tester verification release; Jira: Blocked",
+      "updatedAt": "2026-11-03T09:38:07.185+0000",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 1,
+      "retryLabel": ""
+    },
     {
       "key": "TEST2-91",
       "cycleId": "cycle-002",
@@ -141,42 +176,6 @@
       "actionOwner": "Human",
       "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
       "updatedAt": "2026-10-28T10:29:06.593+0000",
-      "retries": 0,
-      "retryLimit": 1,
-      "testAttempts": 1,
-      "retryLabel": ""
-    },
-    {
-      "key": "TEST2-87",
-      "cycleId": "cycle-003",
-      "summary": "Display Call Point Details",
-      "jiraStatus": "To Do",
-      "workflowState": "To Do",
-      "qaStatus": "Evidence Reviewed",
-      "qaOutcome": "Passed",
-      "guideImpact": "update_required",
-      "guideUpdate": "Map and inspect Automobile Call results",
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
-      "updatedAt": "2026-10-30T11:54:16.860+0000",
-      "retries": 0,
-      "retryLimit": 1,
-      "testAttempts": 1,
-      "retryLabel": ""
-    },
-    {
-      "key": "TEST2-89",
-      "cycleId": "cycle-005",
-      "summary": "Map and inspect MS Teams Call results",
-      "jiraStatus": "To Do",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
-      "guideImpact": null,
-      "guideUpdate": null,
-      "actionOwner": "Human",
-      "nextAction": "Awaiting controlled tester verification release; Jira: To Do",
-      "updatedAt": "2026-11-02T11:36:19.386+0000",
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
