@@ -1,0 +1,21 @@
+{
+  "ticket": "TEST2-90",
+  "cycleId": "cycle-002",
+  "attempt": 1,
+  "verifiedAt": "2026-11-03T15:12:48.933Z",
+  "method": "source_sha256_then_normalized_rgb_pixels",
+  "expectedImages": 129,
+  "matchedImages": 129,
+  "missingImages": [],
+  "reportContentVerified": true,
+  "pdfSha256": "3db107f0853c5e88e010d26c2063eb71d11ad162a4b8143281edaf8d31b2f9b6",
+  "docxSha256": "0bc5af9876fc030b4b23d6c5801242e9ed31e02775b2c51d0308f3f6ae0f2347",
+  "visualInspection": "Summary and updated criteria 4, 12, 18 and 19 inspected; no overlap or clipped text on inspected pages.",
+  "reviewedCounts": {
+    "Passed": 9,
+    "Failed": 1,
+    "Blocked": 1,
+    "Unverified": 10
+  },
+  "originalAttemptUnchanged": true
+}

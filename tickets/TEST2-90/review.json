@@ -21,8 +21,24 @@
     },
     {
       "criterion": "Changing Colour By preserves the current date, filters, group visibility, marker identities, and selected result.",
-      "outcome": "Unverified",
-      "reason": "criterion-4-baseline-map.png and baseline-layers.png establish the original Call selection; after-downlink.png, after-uplink.png and after-estimated.png retain its tab, and after-baseline-scope.png versus after-final-scope.png show the date scope. criterion-4-final.png retains the selection, but complete marker identity, group visibility and all filter preservation are not evidenced."
+      "outcome": "Passed",
+      "reason": "Focused follow-up, 3 November 2026: CSR → Downlink MOS → Uplink MOS → Estimated MOS → CSR retained Call PointID 132668390. Settled before/after comparisons match all 33 controls and both date fields, including site 508424 and all technology choices. The one-aggregate scoped point set and CSR category visibility were unchanged. This checks preservation of the existing authorised set, not a multi-account permissions audit.",
+      "coverageChecks": [
+        {
+          "assertion": "Changing Colour By preserves the current date, filters, group visibility, marker identities, and selected result.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-followup-initial-0927a1c2-a127-4e66-a120-61921a3081b2.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-followup-scope-9a08ddaf-4a8c-456d-9b96-952dc6525f0e.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-followup-baseline-358c2f68-08ad-4a12-a614-1dcc9f1e5467.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-followup-downlink-171721c6-e674-49c0-bf20-3e43a17aa844.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-followup-uplink-cbf51479-4b8e-46ca-af08-7ff806ad31de.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-followup-estimated-0fd9ef0d-10af-4ab6-873e-329ac0d5e5c0.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-followup-final-5829dd54-cf8d-4eca-864d-ef484048c407.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-4-followup-settled-scope-2052b50b-516d-4cf3-8b96-8f9596cb15e4.png"
+          ]
+        }
+      ]
     },
     {
       "criterion": "For a marker representing multiple calls, CSR is 100 × successful calls divided by successful, setup-failed, operator-answered, no-service, and invalid calls; dropped calls are excluded and a zero denominator produces zero. Each MOS value is weighted by that metric's own valid sample count, and Estimated MOS uses its dedicated values rather than an average of Downlink and Uplink MOS.",
@@ -61,8 +77,24 @@
     },
     {
       "criterion": "Editing a metric's customisable bands, labels, marker size, or category visibility updates its Call markers and remains specific to that metric and layer instance when Colour By changes; No Service and Out of Threshold definitions cannot be edited.",
-      "outcome": "Blocked",
-      "reason": "criterion-12-after-change-band-label.png -> save-not-applied.png -> after-close-saved-editor.png shows that Save did apply the label/band despite keeping the editor open. after-hide-category.png -> after-uplink.png -> after-return-estimated.png shows metric-specific persistence and hidden markers. after-display-settings.png shows only linked-site/cell options; a marker-size control was unavailable in inspected controls, and cross-instance isolation remains unverified."
+      "outcome": "Failed",
+      "reason": "The Call Edit Legend exposes colours, labels and band values, while Display Settings exposes only linked-site and linked-cell visibility. Neither contains the required marker-size control. Earlier metric-specific label/band/category persistence evidence remains valid. Cross-instance isolation was not repeated and remains unverified; the missing marker-size UI is a direct criterion failure.",
+      "coverageChecks": [
+        {
+          "assertion": "Editing a metric's customisable bands, labels, marker size, or category visibility updates its Call markers and remains specific to that metric and layer instance when Colour By changes; No Service and Out of Threshold definitions cannot be edited.",
+          "outcome": "Failed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-followup-initial-2a71369e-e604-499d-9eb4-b690051ee955.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-followup-editor-01b5b5aa-e4e8-45b4-8f71-bdb8c9d78048.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-12-followup-settings-59364754-4fc1-446f-862c-63c46cbcf4f4.png"
+          ]
+        },
+        {
+          "assertion": "Cross-instance isolation remains unverified.",
+          "outcome": "Unverified",
+          "evidence": []
+        }
+      ]
     },
     {
       "criterion": "Restoring a Call layer or saved GIS view restores its Colour By choice and associated legend settings; a saved configuration without a choice opens with CSR selected.",
@@ -86,18 +118,41 @@
     },
     {
       "criterion": "Selecting a cluster row opens a separate Call detail tab for that row's exact PointID and keeps the cluster tab open; reopening or restoring Call and Service tabs retains the relevant time and filter scope.",
-      "outcome": "Blocked",
-      "reason": "criterion-17-cluster.png -> selected-row.png -> restored-tabs.png/final.png shows row selection, retained cluster and restored Call identity. The tester reports exact PointID 132006263 in POST /api/platform/automobile/call/cluster-details with original scope. Related Service Details fixtures are unavailable (reported serviceDetails=null), preventing the required Service-tab reopening/restoration assessment; complete time/filter persistence is not directly visible."
+      "outcome": "Unverified",
+      "reason": "Existing evidence retains the cluster and selected Call identity. The focused follow-up now proves sample-linked Service content is reachable, so the earlier serviceDetails=null prerequisite explanation is withdrawn. Full Service-tab reopening/restoration with exact time and filter scope has not been checked; this remains an evidence gap, not a demonstrated product defect."
     },
     {
       "criterion": "When a selected result has related service information, its Service Details tab can be opened.",
-      "outcome": "Blocked",
-      "reason": "Related-service prerequisite is unavailable: tester reports serviceDetails=null for the observed Call records. criterion-18-service-unavailable.png shows no related Service Details action; after-measurement-select.png and final-measurement-checked.png show a Call detail tab from a measurement, which does not demonstrate Service Details."
+      "outcome": "Passed",
+      "reason": "Selecting the genuine Call sample at 5 October 2026, 19:35:03.77 opened a separate tab containing Service state, service/data technology, coordinates and radio/site/cell fields. The genuine test-analysis request ties that content to parent PointID 132668390 and the selected sample time. The tab caption is Call detail, not Service Details; functional related Service content is verified. A null parent serviceDetails field did not mean that the sample-linked route was unavailable.",
+      "coverageChecks": [
+        {
+          "assertion": "When a selected result has related service information, its Service Details tab can be opened.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-18-followup-initial-ad258a78-6590-46d0-8700-172fc72934c1.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-18-followup-before-8e4c4dd0-3d46-450b-9bea-0f2fcf06cfc1.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-18-followup-final-0738f160-dce2-4e32-98f6-60b0fec76010.png"
+          ]
+        }
+      ]
     },
     {
-      "criterion": "Call technology legends and filters include 2G, 3G, 4G, and 5G SA and exclude 5G NSA.",
-      "outcome": "Failed",
-      "reason": "criterion-19-forbidden-nsa-legend.png visibly shows 5G NSA CSR [%] on Automobile Call, directly contradicting exclusion. technology-filter.png and final.png show only the upper filter viewport through 4G; they do not visibly establish the claimed checked NSA filter, but the legend alone proves the failure."
+      "criterion": "Call technology legends and filters include 2G, 3G, 4G, 5G NSA, and 5G SA.",
+      "outcome": "Passed",
+      "reason": "Under the corrected VM2ST-100/TEST2-90 scope, configuration contains checked 2G, 3G, 4G, 5G NSA and 5G SA choices, plus no-service. The CSR legend contains all five corresponding technology groups, including 5G NSA. Upper/lower configuration screenshots and the final legend demonstrate inclusion; the previous NSA-exclusion failure is obsolete.",
+      "coverageChecks": [
+        {
+          "assertion": "Call technology legends and filters include 2G, 3G, 4G, 5G NSA, and 5G SA.",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-19-followup-initial-ecb84b9e-d077-4f8d-8350-f0e94e2cc766.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-19-followup-tech-upper-a6b04fe4-e584-4216-9fd8-ab45a3656841.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-19-followup-tech-lower-5dc42121-122a-41f0-88ab-2044554c5394.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-19-followup-final-86f653c2-a183-4556-aaed-1775994ef521.png"
+          ]
+        }
+      ]
     },
     {
       "criterion": "Requesting details for a selected result with no duration displays a clear no-data message.",
@@ -106,8 +161,8 @@
     },
     {
       "criterion": "When point or service details cannot be returned, the selected item does not show stale detail data.",
-      "outcome": "Blocked",
-      "reason": "SIMULATED UI STATE: criterion-21-genuine-target-loaded.png establishes the target Call; distinct-record-baseline.png shows a different previously loaded Call, synthetic-error.png/final.png shows Unable to load Call details without stale definitions, and genuine-recovery.png restores the target. Tester reports a scoped POST /api/platform/automobile/call/cluster-details HTTP 503 for pointId 132006263 on the configured development host after genuine HTTP 200 contract observation; unmatched requests fell through. Owned-handler removal in finally, one hit, zero pending requests and genuine HTTP 200 recovery are reported. This evidences only the simulated point-detail UI branch, not natural backend failure; the Service branch remains blocked by absent related-service fixtures."
+      "outcome": "Unverified",
+      "reason": "The earlier scoped browser-local HTTP 503 simulation demonstrated no stale Call detail data and genuine recovery. Related Service content is now reachable, so the old unavailable-fixture explanation is withdrawn. The Service error/no-stale-data branch was not exercised in this bounded follow-up; this remains incomplete test coverage, not a demonstrated Service defect."
     }
   ],
   "overallOutcome": "Blocked",
@@ -115,6 +170,21 @@
   "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-90\\cycles\\cycle-002\\screenshots\\attempt-001",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Independent review of the exact cycle-002 attempt: all 371 referenced PNGs exist and are non-empty. Automobile/Call provenance matches the human-confirmed target. Missing calculation, marker-size and related-service prerequisites block full assessment; 5G NSA is directly visible in the Call legend. Remaining evidence limitations are identified per canonical criterion.",
-  "cycleId": "cycle-002"
+  "reason": "Manual focused follow-up on 3 November 2026 supplements the original cycle-002 attempt without resetting it. 9/21 criteria passed; 1 directly failed, 1 blocked and 10 unverified. Missing marker-size editing is confirmed. Aggregate calculation fixtures remain unavailable, and the identified boundary, restoration, sorting and error-branch coverage gaps remain open. Existing valid passes were preserved; this is not a new independent full review.",
+  "cycleId": "cycle-002",
+  "followup": {
+    "date": "2026-11-03",
+    "method": "Manual focused same-attempt evidence reassessment; not a full retest or independent reviewer worker.",
+    "criteria": [
+      4,
+      12,
+      18,
+      19
+    ],
+    "withdrawnPrerequisiteReasons": [
+      17,
+      21
+    ],
+    "originalEvidenceRetained": true
+  }
 }
