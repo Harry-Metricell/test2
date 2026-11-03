@@ -3,24 +3,26 @@
   "generatedAt": "2026-11-02T16:52:52.061+0000",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-87-cycle-003-guide-impact",
-      "handoffVersion": "TEST2-87:cycle-003:guide_impact_assessment:1:scope-3d909b2dc892",
-      "action": "guide_impact_assessment",
-      "brief": "docs/briefs/user-guide-impact.md",
-      "owner": "guide-impact-assessor",
+      "handoffId": "handoff-TEST2-87-cycle-003-guide-update",
+      "handoffVersion": "TEST2-87:cycle-003:guide_update_authoring:1:scope-3d909b2dc892",
+      "action": "guide_update_authoring",
+      "brief": "docs/briefs/user-guide-authoring.md",
+      "owner": "guide-update-author",
       "ticket": "TEST2-87",
       "inputs": {
         "ticketJson": "tickets/TEST2-87/ticket.json",
         "generated": "status/generated/TEST2-87.json",
         "review": "tickets/TEST2-87/review.json",
         "report": "tickets/TEST2-87/report.md",
-        "policy": "config/user-guide-impact-policy.json",
+        "results": "tickets/TEST2-87/results.json",
+        "impact": "tickets/TEST2-87/guide-impact.json",
+        "policy": "config/user-guide-update-policy.json",
         "cycle": "tickets/TEST2-87/qa-cycle.json",
         "testingContext": "config/testing-context/TEST2-87.json"
       },
       "expectedOutput": {
-        "path": "tickets/TEST2-87/guide-impact.json",
-        "schema": "v4-user-guide-impact.v1"
+        "path": "tickets/TEST2-87/guide-update.json",
+        "schema": "v4-user-guide-update.v1"
       },
       "cycleId": "cycle-003"
     },
