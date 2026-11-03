@@ -1,6 +1,6 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-11-03T10:45:03.449+0000",
+  "generatedAt": "2026-11-03T16:07:08.533+0000",
   "counts": {
     "tickets": 9,
     "handoffs": 0,
@@ -103,7 +103,7 @@
       "guideUpdate": null,
       "actionOwner": "Human",
       "nextAction": "Awaiting controlled tester verification release; Jira: TESTING IN PROGRESS",
-      "updatedAt": "2026-11-03T10:45:03.449+0000",
+      "updatedAt": "2026-11-03T16:07:08.533+0000",
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,

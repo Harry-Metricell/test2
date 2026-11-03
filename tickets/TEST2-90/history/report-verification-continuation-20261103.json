@@ -1,0 +1,24 @@
+{
+  "ticket": "TEST2-90",
+  "cycleId": "cycle-002",
+  "attempt": 1,
+  "verifiedAt": "2026-11-03T16:18:16.265Z",
+  "method": "source_sha256_then_normalized_rgb_pixels",
+  "expectedImages": 48,
+  "matchedImages": 48,
+  "missingImages": [],
+  "reportContentVerified": true,
+  "pages": 36,
+  "pdfSha256": "1795fea5d7a7c9ed3517ba3b50515bde9be95184d2f3f25fa561217f2de4eaee",
+  "docxSha256": "ff9730f6679e953bd881ecd354eb7b376159dcd10ed8eeda35b15408437c242d",
+  "visualInspection": "Summary and updated C12, C16, C17 and C21 sections rendered and inspected; source screenshots also checked.",
+  "reviewedCounts": {
+    "Passed": 13,
+    "Failed": 0,
+    "Blocked": 1,
+    "Unverified": 7
+  },
+  "originalAttemptUnchanged": true,
+  "evidenceSelection": "Representative exhibits; complete authoritative result references and private captures preserved.",
+  "remainingBlockerClarification": "Two-row sorting data exists, but mixed-outcome/sample-count/zero-denominator calculation fixtures are still missing."
+}

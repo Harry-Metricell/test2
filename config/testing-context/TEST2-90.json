@@ -26,5 +26,13 @@
     "copiedTicketUpdated": "TEST2-90 description verified updated in Jira on 2026-11-03T10:45:03.449+0000",
     "scope": "Only NSA inclusion/exclusion wording changed. No new marker shape, filter, test attempt, cycle or pass is inferred.",
     "reportNote": "The 3 November focused follow-up verifies NSA inclusion and replaces the obsolete NSA failure. Other unresolved requirements remain explicit in the report."
+  },
+  "markerSizeClarification": {
+    "authority": "source_ticket_owner",
+    "source": "VM2ST-100",
+    "sourceUpdated": "2026-11-03T15:42:11.375+0000",
+    "copiedTicketUpdated": "2026-11-03T16:07:08.533+0000",
+    "decision": "Marker size removed; retain and verify band/label edits, category visibility, metric and layer-instance isolation, and fixed category definitions.",
+    "noCycleOrRetryReset": true
   }
 }

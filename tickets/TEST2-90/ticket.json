@@ -258,7 +258,7 @@
                   "content": [
                     {
                       "type": "text",
-                      "text": "Given users edit the selected metric's customisable legend bands, labels, marker size, or category visibility through the shared legend controls, then the matching Call markers update, and those settings remain specific to that metric and layer instance when switching Colour By. Fixed No Service and Out of Threshold category definitions remain immutable."
+                      "text": "Given users edit the selected metric's customisable legend bands, labels, or category visibility through the shared legend controls, then the matching Call markers update, and those settings remain specific to that metric and layer instance when switching Colour By. Fixed No Service and Out of Threshold category definitions remain immutable."
                     }
                   ]
                 }
@@ -632,7 +632,7 @@
       "name": "Low",
       "id": "4"
     },
-    "updated": "2026-11-03T10:45:03.449+0000",
+    "updated": "2026-11-03T16:07:08.533+0000",
     "status": {
       "self": "https://metricell.atlassian.net/rest/api/3/status/10744",
       "description": "",
