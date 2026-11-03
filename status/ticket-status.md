@@ -4,7 +4,7 @@ Updated: 2026-11-02T16:52:52.061+0000
 
 | Ticket | Jira Status | QA Status | Retry | Summary |
 | --- | --- | --- | --- |
-| TEST2-91 | READY FOR TESTING | Awaiting Evidence Review |  | Filter Automobile map results |
+| TEST2-91 | READY FOR TESTING | Blocked |  | Filter Automobile map results |
 | TEST2-92 | READY FOR TESTING | Blocked |  | Filter Automobile map points using the legend |
 | TEST2-90 | TESTING IN PROGRESS | Blocked |  | Map and inspect Automobile call results |
 | TEST2-82 | To Do | Blocked |  | Display Ping Point Details |
