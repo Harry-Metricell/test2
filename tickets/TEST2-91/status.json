@@ -1,7 +1,7 @@
 {
   "ticket": "TEST2-91",
   "criteriaVerified": true,
-  "qaStatus": "Ready for Testing",
+  "qaStatus": "Blocked",
   "workflowState": "Ready",
   "retries": 0,
   "testAttempts": 0,
@@ -9,5 +9,5 @@
   "cycleId": "cycle-002",
   "jiraStatus": "READY FOR TESTING",
   "status": "READY FOR TESTING",
-  "blockedStage": null
+  "blockedStage": "testing"
 }
