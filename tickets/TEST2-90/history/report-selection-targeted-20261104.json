@@ -1,0 +1,109 @@
+{
+  "ticket": "TEST2-90",
+  "method": "Representative report exhibits; full source results/evidence references and private captures preserved. Criteria, outcomes, actual results and review conclusions are unchanged by the projection.",
+  "sourceResultsSha256": "412229db6c9c3002a0b724043d43401f91107faacfe76fe7ac839e819fdf3b4a",
+  "projectionSha256": "3c58eb335595af8abd803022f79798b4e8fc8a8d549daa0b9271be99471e379a",
+  "selected": {
+    "1": [
+      "criterion-1-final.png",
+      "criterion-1-selected-point-final.png"
+    ],
+    "2": [
+      "criterion-2-before-colour-options.png",
+      "criterion-2-after-colour-options.png"
+    ],
+    "3": [
+      "criterion-3-nov4-csr-source-ebd3325b-6120-4474-a2a0-d0011413771e.png",
+      "criterion-3-nov4-estimated-source-36fae177-0a2b-479e-b220-ce0883dc421d.png"
+    ],
+    "4": [
+      "criterion-4-followup-baseline-358c2f68-08ad-4a12-a614-1dcc9f1e5467.png",
+      "criterion-4-followup-downlink-171721c6-e674-49c0-bf20-3e43a17aa844.png",
+      "criterion-4-followup-uplink-cbf51479-4b8e-46ca-af08-7ff806ad31de.png",
+      "criterion-4-followup-estimated-0fd9ef0d-10af-4ab6-873e-329ac0d5e5c0.png",
+      "criterion-4-followup-settled-scope-2052b50b-516d-4cf3-8b96-8f9596cb15e4.png"
+    ],
+    "5": [
+      "criterion-5-after-aggregate-selection.png"
+    ],
+    "6": [
+      "criterion-6-nov4-csr-editor-c0aa903e-6b2d-4640-a584-47abcf15487a.png",
+      "criterion-6-nov4-boundary80-map-7a9323c5-da89-450a-8617-834acddd0d3b.png",
+      "criterion-6-nov4-boundary90-map-6a8093d4-0e1f-4728-9417-c04011317cc5.png"
+    ],
+    "7": [
+      "criterion-7-nov4-downlink-editor-401260b0-2549-4237-82e0-1f170d774a28.png",
+      "criterion-7-nov4-uplink-editor-df051bd6-8801-4b91-99cf-4dc14da8ba1f.png",
+      "criterion-7-nov4-estimated-editor-cbc35930-925a-4fa0-8f61-daa483d68ff8.png",
+      "criterion-7-nov4-estimated-boundary4-bd0773fa-3f16-46c5-9191-947e9dc1a840.png",
+      "criterion-7-nov4-boundary4-selected-6d985659-d9d1-4b90-8d16-63674df357ba.png"
+    ],
+    "8": [
+      "criterion-8-missing-mos-details.png",
+      "criterion-8-after-show-unavailable.png"
+    ],
+    "9": [
+      "criterion-9-after-shape-editor.png",
+      "criterion-9-final.png"
+    ],
+    "10": [
+      "criterion-10-after-downlink.png",
+      "criterion-10-after-uplink.png",
+      "criterion-10-after-estimated.png"
+    ],
+    "11": [
+      "criterion-11-nov4-csr-fixed-336ff97f-f541-4110-9496-3bb59db4025d.png",
+      "criterion-11-nov4-mos-fixed-b3f2fc9c-01ca-476c-aeae-3ed58833395f.png"
+    ],
+    "12": [
+      "criterion-12-after-close-saved-editor.png",
+      "criterion-12-after-hide-category.png",
+      "criterion-12-continue-edited-fbd67b67-0a6e-4e45-9fe4-790e812bb7b8.png",
+      "criterion-12-continue-returned-6f3781b5-da38-4ddf-872a-b7766e196ce2.png"
+    ],
+    "13": [
+      "criterion-13-after-edit-label.png",
+      "criterion-13-restored-layer.png"
+    ],
+    "14": [
+      "criterion-14-after-single-point.png",
+      "criterion-14-after-nearby-point.png"
+    ],
+    "15": [
+      "criterion-15-after-cluster.png",
+      "criterion-15-last-columns.png"
+    ],
+    "16": [
+      "criterion-16-continue-table-586ba9d4-ba3b-4773-a0c4-dea84235c39b.png",
+      "criterion-16-continue-last-ascending-44b98f3f-3124-4305-b131-e593186829c6.png",
+      "criterion-16-continue-last-descending-677115d1-5afa-46b7-9284-e1e716be0acd.png"
+    ],
+    "17": [
+      "criterion-17-cluster.png",
+      "criterion-17-selected-row.png",
+      "criterion-17-continue-restored-98beb9c1-c775-4740-b28b-12405ddd37ae.png",
+      "criterion-17-continue-scope-a108a27d-217f-45ee-917b-b2c910c04059.png"
+    ],
+    "18": [
+      "criterion-18-followup-before-8e4c4dd0-3d46-450b-9bea-0f2fcf06cfc1.png",
+      "criterion-18-followup-final-0738f160-dce2-4e32-98f6-60b0fec76010.png"
+    ],
+    "19": [
+      "criterion-19-followup-tech-upper-a6b04fe4-e584-4216-9fd8-ab45a3656841.png",
+      "criterion-19-followup-tech-lower-5dc42121-122a-41f0-88ab-2044554c5394.png",
+      "criterion-19-followup-final-86f653c2-a183-4556-aaed-1775994ef521.png"
+    ],
+    "20": [
+      "criterion-20-zero-duration.png"
+    ],
+    "21": [
+      "criterion-21-distinct-record-baseline.png",
+      "criterion-21-synthetic-error.png",
+      "criterion-21-genuine-recovery.png",
+      "criterion-21-continue-baseline-43984079-0c05-4ab1-a848-44d6bf2a4eba.png",
+      "criterion-21-continue-error-390892eb-4a09-4c03-a9da-0ac3aec39a46.png",
+      "criterion-21-continue-recovery-9895e1f8-59a0-4f86-8b84-0248e0eefa5f.png"
+    ]
+  },
+  "totalReferences": 58
+}

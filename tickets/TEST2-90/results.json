@@ -70,20 +70,95 @@
       "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-estimated.png",
       "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-csr.png",
       "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-csr.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png"
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-nov4-estimated-source-36fae177-0a2b-479e-b220-ce0883dc421d.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-3-nov4-csr-source-ebd3325b-6120-4474-a2a0-d0011413771e.png"
     ],
     "steps_taken": [
       "Started at launcher and configured Automobile Call.",
       "Captured CSR, then switched continuously to Downlink MOS, Uplink MOS, Estimated MOS and back to CSR.",
       "Recorded each settled state and the actual Call point request.",
-      "Restored Ping."
+      "Restored Ping.",
+      "Completed a bounded genuine-data and DOM configuration check on 4 November; restored the original filters and closed all owned tabs."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
     "testedModule": "Automobile",
-    "reason": "All four selections changed the legend title and categories; CSR showed [%] and MOS showed dimensionless score ranges. Loaded point responses expose kpiValue and estimatedMos, while selected records have null Downlink/Uplink MOS. Correct independent values for all four marker modes cannot be concluded from matching titles alone.",
-    "retryClass": "prerequisite"
+    "reason": "4 November targeted check: the same genuine aggregate has CSR 80 and dedicated Estimated MOS 1; its marker changes from red #E61733 to dark red #AE1A32 with the selected metric. Matching titles and units remain evidenced. Two bounded map searches and the voice-quality-tested filter found no usable Downlink or Uplink MOS example (the filter returned zero in both scopes). Their source-value association remains inconclusive; this does not establish that no such record exists anywhere in the database.",
+    "retryClass": "prerequisite",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-3-nov4-initial-points.json",
+        "sha256": "6341417d2f1835b35d15feb036ea15b85a8bc8007729b035899cf6aaa6c715ac",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 3 initial points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-3-nov4-broad-points.json",
+        "sha256": "fac539808f4c10767764cf8666f146045af4cbe460f055457bd8ceea1d8fb7d5",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 3 broad points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-3-nov4-current-broad-points.json",
+        "sha256": "557c894824c0a22975d4a7010c8892a7e90f89a2e3ba9cc16a992eca7fb4ad73",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 3 current broad points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-3-nov4-polqa-points.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 3 polqa points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-3-nov4-current-polqa-points.json",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 3 current polqa points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-3-nov4-verification.json",
+        "sha256": "75a011baef6aa88d904058d866757fc6c234adf2680fddc7c25999f6bf1220a8",
+        "kind": "verification",
+        "description": "4 November bounded criterion 3 verification proof; scoped observation, not an exhaustive database audit."
+      }
+    ],
+    "actual_result": "4 November targeted check: the same genuine aggregate has CSR 80 and dedicated Estimated MOS 1; its marker changes from red #E61733 to dark red #AE1A32 with the selected metric. Matching titles and units remain evidenced. Two bounded map searches and the voice-quality-tested filter found no usable Downlink or Uplink MOS example (the filter returned zero in both scopes). Their source-value association remains inconclusive; this does not establish that no such record exists anywhere in the database.",
+    "followupAt": "2026-11-04",
+    "coverageChecks": [
+      {
+        "assertion": "CSR and Estimated MOS source association and matching presentation",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-gis.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-csr.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-csr.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-nov4-estimated-source-36fae177-0a2b-479e-b220-ce0883dc421d.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-3-nov4-csr-source-ebd3325b-6120-4474-a2a0-d0011413771e.png"
+        ]
+      },
+      {
+        "assertion": "Downlink and Uplink marker association with valid source MOS values",
+        "outcome": "Unverified",
+        "evidence": []
+      }
+    ]
   },
   {
     "criterion": "Changing Colour By preserves the current date, filters, group visibility, marker identities, and selected result.",
@@ -192,19 +267,106 @@
       "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-apply-call.png",
       "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-edit-legend.png",
       "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-edit-legend.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png"
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-csr-editor-c0aa903e-6b2d-4640-a584-47abcf15487a.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary80-map-7a9323c5-da89-450a-8617-834acddd0d3b.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary80-selected-35269cf1-d2ff-4c57-b467-f016bae53e76.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary90-map-6a8093d4-0e1f-4728-9417-c04011317cc5.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary90-selected-d3e1bc09-21ef-4af7-9ea1-f79ca9ea7e5d.png"
     ],
     "steps_taken": [
       "Started at launcher and configured Automobile Call with default CSR.",
       "Opened Edit Legend and inspected actual colour, label, value and limit controls.",
-      "Captured editor, cancelled without edits and restored Ping."
+      "Captured editor, cancelled without edits and restored Ping.",
+      "Completed a bounded genuine-data and DOM configuration check on 4 November; restored the original filters and closed all owned tabs."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
     "testedModule": "Automobile",
-    "reason": "Default CSR editor colours match #31AA4F, #86BE42, #FCBF1A, #E61733 and #AE1A32, with labels >=95, >=90, >=85, >=80 and <80 and 0–100 input limits. Loaded points have only CSR 0, 50 and 100; no known 80/85/90/95 boundary points were available to verify runtime boundary assignment.",
-    "retryClass": "prerequisite"
+    "reason": "All five CSR generation sections have the exact required default colour codes and numeric limits 0 to 100. Genuine aggregates at 80% and 90% show red #E61733 and light green #86BE42 respectively, correctly using the higher band. Selected aggregate identities and original screenshot pixels are recorded privately. Exact 85% and 95% examples were absent from the examined map responses, so those runtime boundary branches remain unverified.",
+    "retryClass": "prerequisite",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-6-nov4-boundary80-request.json",
+        "sha256": "4c57b09f9e62ceab61dabb1862b52385b7598b2a5a9af2148b74fc6f0db546f9",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 6 boundary80 request proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-6-nov4-boundary80-response.json",
+        "sha256": "e1a435bd809fbc7e350c207965c9a58794a4e47747ef64bb87b3358c0d639d01",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 6 boundary80 response proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-6-nov4-exact90-request.json",
+        "sha256": "8e8ac0dc31f85addb3bcc0ba9823428e83c84c7ad06c48465829afdea9635383",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 6 exact90 request proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-6-nov4-exact90-response.json",
+        "sha256": "0ea3158d0c552d6b5edd778c6ee3f5f64e13f005be991b41ad91512fdfb29cb5",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 6 exact90 response proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-6-nov4-broad-points.json",
+        "sha256": "fac539808f4c10767764cf8666f146045af4cbe460f055457bd8ceea1d8fb7d5",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 6 broad points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-6-nov4-current-broad-points.json",
+        "sha256": "557c894824c0a22975d4a7010c8892a7e90f89a2e3ba9cc16a992eca7fb4ad73",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 6 current broad points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-6-nov4-controls.json",
+        "sha256": "a94ed0001f1846a118d0a9f21dd14ce6f891bc8102f6d2775eabe3e129c20725",
+        "kind": "dom-observation",
+        "description": "4 November bounded criterion 6 controls proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-6-nov4-verification.json",
+        "sha256": "75a011baef6aa88d904058d866757fc6c234adf2680fddc7c25999f6bf1220a8",
+        "kind": "verification",
+        "description": "4 November bounded criterion 6 verification proof; scoped observation, not an exhaustive database audit."
+      }
+    ],
+    "actual_result": "All five CSR generation sections have the exact required default colour codes and numeric limits 0 to 100. Genuine aggregates at 80% and 90% show red #E61733 and light green #86BE42 respectively, correctly using the higher band. Selected aggregate identities and original screenshot pixels are recorded privately. Exact 85% and 95% examples were absent from the examined map responses, so those runtime boundary branches remain unverified.",
+    "followupAt": "2026-11-04",
+    "coverageChecks": [
+      {
+        "assertion": "Exact CSR default colours/limits and higher-band classification at 80 and 90",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-gis.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-edit-legend.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-edit-legend.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-csr-editor-c0aa903e-6b2d-4640-a584-47abcf15487a.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary80-map-7a9323c5-da89-450a-8617-834acddd0d3b.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary80-selected-35269cf1-d2ff-4c57-b467-f016bae53e76.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary90-map-6a8093d4-0e1f-4728-9417-c04011317cc5.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary90-selected-d3e1bc09-21ef-4af7-9ea1-f79ca9ea7e5d.png"
+        ]
+      },
+      {
+        "assertion": "Exact runtime CSR boundaries at 85 and 95",
+        "outcome": "Unverified",
+        "evidence": []
+      }
+    ]
   },
   {
     "criterion": "Each default MOS legend uses dark red #AE1A32 for 1–<2, yellow #FCBF1A for 2–<3, light green #86BE42 for 3–<4, and green #31AA4F for 4–5 inclusive; exact internal boundaries use the higher band.",
@@ -236,19 +398,110 @@
       "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-estimated-editor.png",
       "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-cancel-estimated.png",
       "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-cancel-estimated.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png"
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-downlink-editor-401260b0-2549-4237-82e0-1f170d774a28.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-uplink-editor-df051bd6-8801-4b91-99cf-4dc14da8ba1f.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-estimated-editor-cbc35930-925a-4fa0-8f61-daa483d68ff8.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-estimated-boundary4-bd0773fa-3f16-46c5-9191-947e9dc1a840.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-boundary4-selected-6d985659-d9d1-4b90-8d16-63674df357ba.png"
     ],
     "steps_taken": [
       "Started at launcher and configured Call.",
       "Switched to Downlink MOS, Uplink MOS and Estimated MOS; independently opened each editor and read colour values, labels and limits.",
-      "Cancelled each editor, captured final Estimated MOS legend and restored Ping."
+      "Cancelled each editor, captured final Estimated MOS legend and restored Ping.",
+      "Completed a bounded genuine-data and DOM configuration check on 4 November; restored the original filters and closed all owned tabs."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
     "testedModule": "Automobile",
-    "reason": "All three MOS editors have expected colours and descending labels 4 ≤ MOS ≤ 5, 3 ≤ MOS < 4, 2 ≤ MOS < 3 and 1 ≤ MOS < 2, with 1–5 input bounds. Valid Downlink/Uplink and exact 2/3/4/5 boundary fixtures were unavailable, so runtime classification and exactly-5 behaviour remain unverified.",
-    "retryClass": "prerequisite"
+    "reason": "Downlink, Uplink and Estimated MOS editors have the required exact colour codes, descending values and limits 1 to 5. A genuine aggregate with Estimated MOS exactly 4 was identified and its cluster identity checked. Nearby green markers overlap, so the attempted pixel selection does not independently isolate that aggregate’s boundary classification. No exact 2, 3 or 5 examples were found in the examined responses. Full runtime boundary behaviour remains inconclusive.",
+    "retryClass": "prerequisite",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-7-nov4-exact4-request.json",
+        "sha256": "9f4adf1f1dc74df373be42bac740371205d1f0d05e421023f467d9e19d079459",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 7 exact4 request proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-7-nov4-exact4-response.json",
+        "sha256": "5cecca65070600dd1d40c9d6c15409e966f66c684653518f17ff20c779423098",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 7 exact4 response proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-7-nov4-broad-points.json",
+        "sha256": "fac539808f4c10767764cf8666f146045af4cbe460f055457bd8ceea1d8fb7d5",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 7 broad points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-7-nov4-current-broad-points.json",
+        "sha256": "557c894824c0a22975d4a7010c8892a7e90f89a2e3ba9cc16a992eca7fb4ad73",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 7 current broad points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-7-nov4-controls.json",
+        "sha256": "a94ed0001f1846a118d0a9f21dd14ce6f891bc8102f6d2775eabe3e129c20725",
+        "kind": "dom-observation",
+        "description": "4 November bounded criterion 7 controls proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-7-nov4-verification.json",
+        "sha256": "75a011baef6aa88d904058d866757fc6c234adf2680fddc7c25999f6bf1220a8",
+        "kind": "verification",
+        "description": "4 November bounded criterion 7 verification proof; scoped observation, not an exhaustive database audit."
+      }
+    ],
+    "actual_result": "Downlink, Uplink and Estimated MOS editors have the required exact colour codes, descending values and limits 1 to 5. A genuine aggregate with Estimated MOS exactly 4 was identified and its cluster identity checked. Nearby green markers overlap, so the attempted pixel selection does not independently isolate that aggregate’s boundary classification. No exact 2, 3 or 5 examples were found in the examined responses. Full runtime boundary behaviour remains inconclusive.",
+    "followupAt": "2026-11-04",
+    "coverageChecks": [
+      {
+        "assertion": "Exact MOS configured colours, order and numeric limits",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-gis.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-downlink-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-downlink-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-cancel-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-cancel-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-uplink-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-uplink-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-cancel-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-cancel-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-estimated-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-estimated-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-cancel-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-cancel-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-downlink-editor-401260b0-2549-4237-82e0-1f170d774a28.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-uplink-editor-df051bd6-8801-4b91-99cf-4dc14da8ba1f.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-estimated-editor-cbc35930-925a-4fa0-8f61-daa483d68ff8.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-estimated-boundary4-bd0773fa-3f16-46c5-9191-947e9dc1a840.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-boundary4-selected-6d985659-d9d1-4b90-8d16-63674df357ba.png"
+        ]
+      },
+      {
+        "assertion": "All exact MOS runtime boundaries including 5",
+        "outcome": "Unverified",
+        "evidence": []
+      }
+    ]
   },
   {
     "criterion": "When the selected MOS metric has no valid samples, it is unavailable rather than shown as zero or replaced by another metric; values outside its bands use the white, initially hidden Out of Threshold category, with no separate Not Tested category.",
@@ -284,14 +537,74 @@
       "Switched to Downlink; a click in its hidden-marker state opened no detail and the wait timed out.",
       "Switched to CSR, selected the record, returned to Downlink and captured N/A details.",
       "Showed then re-hid Out of Threshold within this criterion.",
-      "Closed created tab and restored Ping."
+      "Closed created tab and restored Ping.",
+      "Completed a bounded genuine-data and DOM configuration check on 4 November; restored the original filters and closed all owned tabs."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
     "testedModule": "Automobile",
-    "reason": "Selected Call record shows MOS Downlink and MOS Uplink N/A while Estimated MOS is 4.4. Downlink colouring hides the unavailable markers instead of displaying substituted values. Out of Threshold is white and initially hidden, and no Not Tested category appears. A known valid out-of-range MOS fixture was unavailable to verify that branch.",
-    "retryClass": "prerequisite"
+    "reason": "Earlier evidence establishes that unavailable Downlink/Uplink MOS is not substituted with zero or Estimated MOS, and the white category is initially hidden. The targeted search inspected 608 aggregate observations and then 294 at a broader zoom/current date scope; these overlap. Neither response contained an Estimated MOS value outside 1 to 5, and the voice-quality-tested filter returned no usable sample. The genuine out-of-range classification branch remains unverified.",
+    "retryClass": "prerequisite",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-8-nov4-broad-points.json",
+        "sha256": "fac539808f4c10767764cf8666f146045af4cbe460f055457bd8ceea1d8fb7d5",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 8 broad points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-8-nov4-current-broad-points.json",
+        "sha256": "557c894824c0a22975d4a7010c8892a7e90f89a2e3ba9cc16a992eca7fb4ad73",
+        "kind": "api-response",
+        "description": "4 November bounded criterion 8 current broad points proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-8-nov4-verification.json",
+        "sha256": "75a011baef6aa88d904058d866757fc6c234adf2680fddc7c25999f6bf1220a8",
+        "kind": "verification",
+        "description": "4 November bounded criterion 8 verification proof; scoped observation, not an exhaustive database audit."
+      }
+    ],
+    "actual_result": "Earlier evidence establishes that unavailable Downlink/Uplink MOS is not substituted with zero or Estimated MOS, and the white category is initially hidden. The targeted search inspected 608 aggregate observations and then 294 at a broader zoom/current date scope; these overlap. Neither response contained an Estimated MOS value outside 1 to 5, and the voice-quality-tested filter returned no usable sample. The genuine out-of-range classification branch remains unverified.",
+    "followupAt": "2026-11-04",
+    "coverageChecks": [
+      {
+        "assertion": "Unavailable MOS is not replaced by another metric or zero",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-initial.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-gis.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-open-result.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-unavailable-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-csr-for-record.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-csr-for-record.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-select-record.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-select-record.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-record-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-record-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-show-unavailable.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-show-unavailable.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-missing-mos-details.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-restore-hidden.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-restore-hidden.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+        ]
+      },
+      {
+        "assertion": "Genuine out-of-range MOS classification",
+        "outcome": "Unverified",
+        "evidence": []
+      }
+    ]
   },
   {
     "criterion": "The CSR legend shows 2G circles, 3G triangles, 4G diamonds, 5G SA pentagons, and a fixed black-square No Service category for generation 0; No Service is separate from CSR percentage bands.",
@@ -390,20 +703,86 @@
       "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-estimated-fixed.png",
       "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cancel-estimated.png",
       "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-cancel-estimated.png",
-      "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png"
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-nov4-csr-fixed-336ff97f-f541-4110-9496-3bb59db4025d.png",
+      "cycles/cycle-002/screenshots/attempt-001/criterion-11-nov4-mos-fixed-b3f2fc9c-01ca-476c-aeae-3ed58833395f.png"
     ],
     "steps_taken": [
       "Started at launcher and configured Call.",
       "Inspected CSR editor including the fixed category, then each MOS legend/editor.",
       "Read disabled fields and numeric limits; cancelled all editor visits.",
-      "Captured final Estimated MOS state and restored Ping."
+      "Captured final Estimated MOS state and restored Ping.",
+      "Completed a bounded genuine-data and DOM configuration check on 4 November; restored the original filters and closed all owned tabs."
     ],
     "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
     "browserName": "Google Chrome",
     "browserVersion": "156.0.8078.48",
     "testedModule": "Automobile",
-    "reason": "Each legend has a white-square Out of Threshold category initially hidden, with disabled category label/value controls. CSR limits are 0 to 100 and MOS 1 to 5, with descending bands and expected labels. Exact runtime boundary agreement remains unverified because the required boundary fixtures are unavailable.",
-    "retryClass": "prerequisite"
+    "reason": "The CSR editor confirms descending bands and limits 0 to 100; all three MOS editors confirm descending bands and limits 1 to 5. Out of Threshold is white, its label/value fields are disabled, and its existing hidden-default evidence is retained. CSR 80/90 classification is now evidenced. Agreement at the remaining exact CSR/MOS boundaries is still incomplete, so the full criterion remains inconclusive.",
+    "retryClass": "prerequisite",
+    "supportingEvidence": [
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-11-nov4-controls.json",
+        "sha256": "a94ed0001f1846a118d0a9f21dd14ce6f891bc8102f6d2775eabe3e129c20725",
+        "kind": "dom-observation",
+        "description": "4 November bounded criterion 11 controls proof; scoped observation, not an exhaustive database audit."
+      },
+      {
+        "path": "cycles/cycle-002/supporting/attempt-001/criterion-11-nov4-verification.json",
+        "sha256": "75a011baef6aa88d904058d866757fc6c234adf2680fddc7c25999f6bf1220a8",
+        "kind": "verification",
+        "description": "4 November bounded criterion 11 verification proof; scoped observation, not an exhaustive database audit."
+      }
+    ],
+    "actual_result": "The CSR editor confirms descending bands and limits 0 to 100; all three MOS editors confirm descending bands and limits 1 to 5. Out of Threshold is white, its label/value fields are disabled, and its existing hidden-default evidence is retained. CSR 80/90 classification is now evidenced. Agreement at the remaining exact CSR/MOS boundaries is still incomplete, so the full criterion remains inconclusive.",
+    "followupAt": "2026-11-04",
+    "coverageChecks": [
+      {
+        "assertion": "Fixed category presentation, descending bands and configured numeric limits",
+        "outcome": "Passed",
+        "evidence": [
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-initial.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-gis.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-configuration.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-call-choice.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-apply-call.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-csr-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-csr-editor.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-csr-fixed-category.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cancel-csr.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-cancel-csr.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-downlink-fixed.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-downlink-fixed.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cancel-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-cancel-downlink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-uplink-fixed.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-uplink-fixed.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cancel-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-cancel-uplink.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-estimated-fixed.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-estimated-fixed.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cancel-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-cancel-estimated.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-nov4-csr-fixed-336ff97f-f541-4110-9496-3bb59db4025d.png",
+          "cycles/cycle-002/screenshots/attempt-001/criterion-11-nov4-mos-fixed-b3f2fc9c-01ca-476c-aeae-3ed58833395f.png"
+        ]
+      },
+      {
+        "assertion": "Full displayed-label agreement at the remaining exact runtime boundaries",
+        "outcome": "Unverified",
+        "evidence": []
+      }
+    ]
   },
   {
     "criterion": "Editing a metric's customisable bands, labels, or category visibility updates its Call markers and remains specific to that metric and layer instance when Colour By changes; No Service and Out of Threshold definitions cannot be edited.",

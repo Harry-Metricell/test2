@@ -1,0 +1,23 @@
+{
+  "ticket": "TEST2-90",
+  "cycleId": "cycle-002",
+  "attempt": 1,
+  "verifiedAt": "2026-11-04T10:14:08.921Z",
+  "method": "source_sha256_then_normalized_rgb_pixels",
+  "expectedImages": 55,
+  "matchedImages": 55,
+  "missingImages": [],
+  "reportContentVerified": true,
+  "pages": 38,
+  "pdfSha256": "9146a830aff10c8f52d73f022f35c6116444c5de6585734f946b2dc7248ebeda",
+  "docxSha256": "f466ce5203b3b58f51bedd189e1c4fd6ec9d8f1462d0931216591c1ca6653405",
+  "visualInspection": "Updated C3/C6/C7/C8/C11 sections rendered; changed pages inspected for readable layout and absence of overlap.",
+  "reviewedCounts": {
+    "Passed": 13,
+    "Blocked": 1,
+    "Unverified": 7,
+    "Failed": 0
+  },
+  "scope": "Bounded same-attempt supplement; all full-criterion outcomes unchanged.",
+  "originalAttemptUnchanged": true
+}

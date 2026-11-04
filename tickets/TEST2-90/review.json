@@ -17,7 +17,39 @@
     {
       "criterion": "For each Colour By choice, visible Call markers use that metric's values and the legend shows its matching title, units, categories, and colours; CSR is shown as a percentage and MOS as dimensionless scores.",
       "outcome": "Unverified",
-      "reason": "criterion-3-after-downlink.png, after-uplink.png, after-estimated.png and after-csr.png show matching metric titles, symbols and percentage/score labels. They do not independently establish that each marker uses its own source values; the observed Downlink/Uplink samples are unavailable."
+      "reason": "4 November targeted check: the same genuine aggregate has CSR 80 and dedicated Estimated MOS 1; its marker changes from red #E61733 to dark red #AE1A32 with the selected metric. Matching titles and units remain evidenced. Two bounded map searches and the voice-quality-tested filter found no usable Downlink or Uplink MOS example (the filter returned zero in both scopes). Their source-value association remains inconclusive; this does not establish that no such record exists anywhere in the database.",
+      "coverageChecks": [
+        {
+          "assertion": "CSR and Estimated MOS source association and matching presentation",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-initial.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-gis.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-before-csr.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-after-csr.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-final.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-nov4-estimated-source-36fae177-0a2b-479e-b220-ce0883dc421d.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-nov4-csr-source-ebd3325b-6120-4474-a2a0-d0011413771e.png"
+          ]
+        },
+        {
+          "assertion": "Downlink and Uplink marker association with valid source MOS values",
+          "outcome": "Unverified",
+          "evidence": []
+        }
+      ]
     },
     {
       "criterion": "Changing Colour By preserves the current date, filters, group visibility, marker identities, and selected result.",
@@ -48,17 +80,128 @@
     {
       "criterion": "The default CSR legend uses green #31AA4F for 95–100%, light green #86BE42 for 90–<95%, yellow #FCBF1A for 85–<90%, red #E61733 for 80–<85%, and dark red #AE1A32 for 0–<80%; exact boundaries use the higher band.",
       "outcome": "Unverified",
-      "reason": "criterion-6-after-edit-legend.png and final.png show descending CSR bands and expected visible colours/labels. Screenshots do not establish exact hexadecimal values or runtime classification at 80/85/90/95; those boundary fixtures are missing."
+      "reason": "All five CSR generation sections have the exact required default colour codes and numeric limits 0 to 100. Genuine aggregates at 80% and 90% show red #E61733 and light green #86BE42 respectively, correctly using the higher band. Selected aggregate identities and original screenshot pixels are recorded privately. Exact 85% and 95% examples were absent from the examined map responses, so those runtime boundary branches remain unverified.",
+      "coverageChecks": [
+        {
+          "assertion": "Exact CSR default colours/limits and higher-band classification at 80 and 90",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-initial.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-gis.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-before-edit-legend.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-after-edit-legend.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-final.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-csr-editor-c0aa903e-6b2d-4640-a584-47abcf15487a.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary80-map-7a9323c5-da89-450a-8617-834acddd0d3b.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary80-selected-35269cf1-d2ff-4c57-b467-f016bae53e76.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary90-map-6a8093d4-0e1f-4728-9417-c04011317cc5.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-6-nov4-boundary90-selected-d3e1bc09-21ef-4af7-9ea1-f79ca9ea7e5d.png"
+          ]
+        },
+        {
+          "assertion": "Exact runtime CSR boundaries at 85 and 95",
+          "outcome": "Unverified",
+          "evidence": []
+        }
+      ]
     },
     {
       "criterion": "Each default MOS legend uses dark red #AE1A32 for 1–<2, yellow #FCBF1A for 2–<3, light green #86BE42 for 3–<4, and green #31AA4F for 4–5 inclusive; exact internal boundaries use the higher band.",
       "outcome": "Unverified",
-      "reason": "criterion-7-after-downlink-editor.png, after-uplink-editor.png and after-estimated-editor.png show four expected score bands including the inclusive top label. Exact colour codes and runtime assignment at 2/3/4/5 are not independently demonstrated."
+      "reason": "Downlink, Uplink and Estimated MOS editors have the required exact colour codes, descending values and limits 1 to 5. A genuine aggregate with Estimated MOS exactly 4 was identified and its cluster identity checked. Nearby green markers overlap, so the attempted pixel selection does not independently isolate that aggregate’s boundary classification. No exact 2, 3 or 5 examples were found in the examined responses. Full runtime boundary behaviour remains inconclusive.",
+      "coverageChecks": [
+        {
+          "assertion": "Exact MOS configured colours, order and numeric limits",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-initial.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-gis.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-downlink-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-downlink-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-cancel-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-cancel-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-uplink-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-uplink-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-cancel-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-cancel-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-estimated-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-estimated-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-before-cancel-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-after-cancel-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-final.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-downlink-editor-401260b0-2549-4237-82e0-1f170d774a28.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-uplink-editor-df051bd6-8801-4b91-99cf-4dc14da8ba1f.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-estimated-editor-cbc35930-925a-4fa0-8f61-daa483d68ff8.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-estimated-boundary4-bd0773fa-3f16-46c5-9191-947e9dc1a840.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-7-nov4-boundary4-selected-6d985659-d9d1-4b90-8d16-63674df357ba.png"
+          ]
+        },
+        {
+          "assertion": "All exact MOS runtime boundaries including 5",
+          "outcome": "Unverified",
+          "evidence": []
+        }
+      ]
     },
     {
       "criterion": "When the selected MOS metric has no valid samples, it is unavailable rather than shown as zero or replaced by another metric; values outside its bands use the white, initially hidden Out of Threshold category, with no separate Not Tested category.",
       "outcome": "Unverified",
-      "reason": "criterion-8-missing-mos-details.png shows Downlink/Uplink N/A and Estimated MOS 4.4. The owned after-record-downlink.png, after-show-unavailable.png and after-restore-hidden.png sequence shows hidden/unhidden white markers without a Not Tested category; a known valid out-of-band MOS sample is absent, so that branch remains unverified."
+      "reason": "Earlier evidence establishes that unavailable Downlink/Uplink MOS is not substituted with zero or Estimated MOS, and the white category is initially hidden. The targeted search inspected 608 aggregate observations and then 294 at a broader zoom/current date scope; these overlap. Neither response contained an Estimated MOS value outside 1 to 5, and the voice-quality-tested filter returned no usable sample. The genuine out-of-range classification branch remains unverified.",
+      "coverageChecks": [
+        {
+          "assertion": "Unavailable MOS is not replaced by another metric or zero",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-initial.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-gis.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-open-result.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-unavailable-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-csr-for-record.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-csr-for-record.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-select-record.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-select-record.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-record-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-record-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-show-unavailable.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-show-unavailable.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-missing-mos-details.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-before-restore-hidden.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-after-restore-hidden.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-8-final.png"
+          ]
+        },
+        {
+          "assertion": "Genuine out-of-range MOS classification",
+          "outcome": "Unverified",
+          "evidence": []
+        }
+      ]
     },
     {
       "criterion": "The CSR legend shows 2G circles, 3G triangles, 4G diamonds, 5G SA pentagons, and a fixed black-square No Service category for generation 0; No Service is separate from CSR percentage bands.",
@@ -73,7 +216,54 @@
     {
       "criterion": "Each Call legend includes a fixed white-square Out of Threshold category hidden by default; bands are ordered descending, with CSR limits 0–100 and MOS limits 1–5, and displayed labels match the boundary behaviour.",
       "outcome": "Unverified",
-      "reason": "criterion-11-csr-fixed-category.png and after-downlink-fixed.png, after-uplink-fixed.png and after-estimated-fixed.png show white-square Out of Threshold and greyed definition fields, with descending labelled bands. Default hidden state is visible in the owned legend captures, but exact runtime agreement with labels and numeric limits are not fully proven by screenshots."
+      "reason": "The CSR editor confirms descending bands and limits 0 to 100; all three MOS editors confirm descending bands and limits 1 to 5. Out of Threshold is white, its label/value fields are disabled, and its existing hidden-default evidence is retained. CSR 80/90 classification is now evidenced. Agreement at the remaining exact CSR/MOS boundaries is still incomplete, so the full criterion remains inconclusive.",
+      "coverageChecks": [
+        {
+          "assertion": "Fixed category presentation, descending bands and configured numeric limits",
+          "outcome": "Passed",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-initial.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-gis.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-configuration.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-call-choice.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-apply-call.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-csr-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-csr-editor.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-csr-fixed-category.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cancel-csr.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-cancel-csr.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-downlink-fixed.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-downlink-fixed.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cancel-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-cancel-downlink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-uplink-fixed.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-uplink-fixed.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cancel-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-cancel-uplink.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-estimated-fixed.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-estimated-fixed.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-before-cancel-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-after-cancel-estimated.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-final.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-nov4-csr-fixed-336ff97f-f541-4110-9496-3bb59db4025d.png",
+            "cycles/cycle-002/screenshots/attempt-001/criterion-11-nov4-mos-fixed-b3f2fc9c-01ca-476c-aeae-3ed58833395f.png"
+          ]
+        },
+        {
+          "assertion": "Full displayed-label agreement at the remaining exact runtime boundaries",
+          "outcome": "Unverified",
+          "evidence": []
+        }
+      ]
     },
     {
       "criterion": "Editing a metric's customisable bands, labels, or category visibility updates its Call markers and remains specific to that metric and layer instance when Colour By changes; No Service and Out of Threshold definitions cannot be edited.",
@@ -308,7 +498,7 @@
   "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\V4-QA-evidence\\TEST2-90\\cycles\\cycle-002\\screenshots\\attempt-001",
   "qaStatus": "Blocked",
   "noOp": false,
-  "reason": "Focused manual continuation of cycle-002 attempt-001, 3 November 2026: 13/21 criteria passed, no confirmed failures, 1 blocked and 7 inconclusive. C12 follows the current source without marker size. Remaining gaps concern calculations and metric/boundary fixtures, a legacy saved configuration and group-access evidence. No attempt or retry reset; unchanged valid evidence preserved. This is a manual reassessment, not an independent new reviewer run.",
+  "reason": "Focused same-attempt follow-up through 4 November 2026: 13/21 criteria passed, no confirmed product failures, one blocked calculation check and seven inconclusive criteria. CSR 80/90 and the exact configured colours/limits are now evidenced; the remaining metric and boundary examples were not established by the bounded search. Legacy-view and group-access evidence is still required. Original attempt, retries and valid passes are preserved; this is a manual reassessment.",
   "cycleId": "cycle-002",
   "followup": {
     "date": "2026-11-03",
@@ -332,6 +522,15 @@
       21
     ],
     "sourceClarification": "VM2ST-100 updated 2026-11-03T15:42:11.375Z removes marker size only.",
-    "simulation": "C21 uses disclosed browser-local HTTP 503 error states; genuine recovery and cleanup verified."
+    "simulation": "C21 uses disclosed browser-local HTTP 503 error states; genuine recovery and cleanup verified.",
+    "targetedSearchAt": "2026-11-04T10:09:13.998Z",
+    "targetedCriteria": [
+      3,
+      6,
+      7,
+      8,
+      11
+    ],
+    "remainingDataGaps": "Valid Downlink/Uplink MOS; exact CSR 85/95; exact MOS 2/3/5 and isolated proof at 4; genuine out-of-range MOS. Earlier C5 calculation, C13 legacy-view and C14 group-access gaps remain."
   }
 }
