@@ -309,5 +309,29 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     assert.equal(publishedCycle.results[0].evidence[0], 'cycles/cycle-002/screenshots/attempt-001/criterion-1-initial.png');
     assert.equal(publishedCycle.results[0].coverageChecks[0].evidence[0], 'cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png');
     assert.ok(fs.existsSync(path.join(root, 'evidence/TEST2-99/cycles/cycle-002/screenshots/attempt-001/criterion-1-final.png')));
+
+    // An idle publisher can update only the sanitised usage projection, while
+    // preserving the dirty Desktop and avoiding repeated unchanged commits.
+    const privateHome = path.join(root, 'private-codex');
+    const day = new Date().toISOString().slice(0, 10).split('-');
+    const session = path.join(privateHome, 'sessions', ...day, 'rollout-fixture.jsonl');
+    const threadId = '01a1a720-5560-7652-8a33-ab6a0ab97c45';
+    const events = [
+      { type: 'session_meta', payload: { id: threadId, cwd: desktop } },
+      { type: 'response_item', payload: { role: 'user', content: [{ text: 'read and follow: docs/briefs/criteria-conversion.md for handoff handoff-TEST2-99-criteria (TEST2-99)' }] } },
+      { type: 'event_msg', timestamp: new Date().toISOString(), payload: { type: 'token_count', info: { total_token_usage: { input_tokens: 100, cached_input_tokens: 80, output_tokens: 10, reasoning_output_tokens: 2, total_tokens: 110 } } } },
+    ];
+    write(session, events.map(e => JSON.stringify(e)).join('\n') + '\n');
+    env.CODEX_HOME = privateHome;
+    const idle = run(); assert.equal(idle.status, 0, idle.stderr);
+    g(seed, 'fetch');
+    const usage = g(seed, 'show', 'origin/main:status/token-usage.json');
+    assert.equal(JSON.parse(usage).tickets['TEST2-99'].roles['criteria-conversion'].total_tokens, 110);
+    assert.doesNotMatch(usage, new RegExp(threadId));
+    assert.equal(fs.readFileSync(path.join(desktop, 'README.md'), 'utf8'), 'user edit must survive\n');
+    const publishedSha = g(seed, 'rev-parse', 'origin/main');
+    fs.rmSync(path.join(desktop, '.agent-staging/usage/site-published.json'));
+    assert.equal(run().status, 0);
+    g(seed, 'fetch'); assert.equal(g(seed, 'rev-parse', 'origin/main'), publishedSha);
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });

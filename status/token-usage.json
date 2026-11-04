@@ -1,0 +1,39 @@
+{
+  "schema": "test2-site-token-usage.v1",
+  "coverage": "partial",
+  "includesCoordinator": false,
+  "measurementWindowDays": 14,
+  "observedThrough": "2026-10-29T16:58:40.552Z",
+  "tickets": {
+    "TEST2-79": {
+      "measuredChats": 0,
+      "unavailableChats": 2,
+      "roles": {
+        "qa-testing": {
+          "measuredChats": 0,
+          "unavailableChats": 2,
+          "input_tokens": 0,
+          "cached_input_tokens": 0,
+          "output_tokens": 0,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 0
+        }
+      }
+    },
+    "TEST2-88": {
+      "measuredChats": 1,
+      "unavailableChats": 0,
+      "roles": {
+        "user-guide-authoring": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 1065732,
+          "cached_input_tokens": 992768,
+          "output_tokens": 3299,
+          "reasoning_output_tokens": 1031,
+          "total_tokens": 1069031
+        }
+      }
+    }
+  }
+}

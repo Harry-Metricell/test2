@@ -12,6 +12,7 @@ import { guideMarkerCounts } from './guide-document-index.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { serviceImportRefresh } from './jira-import-refresh.mjs';
 import { serviceUsage } from './qa-token-usage.mjs';
+import { siteTokenUsage } from './site-token-usage.mjs';
 import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
 import { readCycle, evidenceBase, firstCycle, latestGuideRecord, publicationStillCurrent } from './testing-cycle.mjs';
 import { readTestingContext, contextualCriteria, requireTestedModule } from './testing-context.mjs';
@@ -412,6 +413,37 @@ function buildVerifiedUserGuide(key, run) {
   return true;
 }
 
+function publishUsageSnapshot() {
+  if (process.env.TEST2_USAGE_SITE_DISABLED === '1') return;
+  const usageDir = path.join(sourceRepo, '.agent-staging', 'usage');
+  const stamp = path.join(usageDir, 'site-published.json');
+  try { if (Date.now() - JSON.parse(fs.readFileSync(stamp, 'utf8')).checkedAt < 15 * 60 * 1000) return; } catch {}
+  const summary = JSON.parse(fs.readFileSync(path.join(usageDir, 'summary.json'), 'utf8'));
+  const data = siteTokenUsage(summary);
+  if (!Object.keys(data.tickets).length) return;
+  const relative = 'status/token-usage.json';
+  const body = JSON.stringify(data, null, 2) + '\n';
+  const base = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-usage-publish-'));
+  const worktree = path.join(base, 'checkout');
+  try {
+    runGit(['worktree', 'add', '--detach', worktree, 'origin/main']);
+    const target = path.join(worktree, relative);
+    if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== body) {
+      fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, body);
+      runGitAt(worktree, ['add', '--', relative]);
+      runGitAt(worktree, ['commit', '-m', 'Update measured QA ticket token usage']);
+      runGitAt(worktree, reportPushArgs()); // No force push; a race retries next tick.
+      const published = runGitAt(worktree, ['rev-parse', 'HEAD']);
+      fetchLatest(); runGit(['merge-base', '--is-ancestor', published, 'origin/main']);
+      log('usage_site_published', { tickets: Object.keys(data.tickets).length });
+    }
+    fs.writeFileSync(stamp, JSON.stringify({ checkedAt: Date.now() }));
+  } finally {
+    try { runGitAt(sourceRepo, ['worktree', 'remove', '--force', worktree]); } catch {}
+    try { fs.rmSync(base, { recursive: true, force: true }); } catch {}
+  }
+}
+
 if (!fs.existsSync(stagingRoot)) process.exit(0);
 // Refresh requests are serviced by the trusted hidden task, not a sandboxed chat.
 // Refresh failures must not prevent unrelated staged ticket output publication.
@@ -434,7 +466,12 @@ const run = runs.find(candidate => {
   return ['criteria-output.json', 'test-output.json', 'review-output.json', 'guide-impact-output.json', 'guide-update-output.json']
     .some(name => fs.existsSync(path.join(candidate, name)));
 });
-if (!run) { log('idle'); process.exit(0); }
+if (!run) {
+  // Usage is optional display data: publish only while idle, at most every 15
+  // minutes, through its own clean worktree. Never stage the user's checkout.
+  try { publishUsageSnapshot(); } catch { log('usage_site_publication_unavailable'); }
+  log('idle'); process.exit(0);
+}
 activeRun = run;
 
 // Fetch does not update Desktop files. Read and generate everything in a fresh
