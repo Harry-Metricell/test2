@@ -11,6 +11,7 @@ import { guideInstructionIssues } from './guide-instruction-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { serviceImportRefresh } from './jira-import-refresh.mjs';
+import { serviceUsage } from './qa-token-usage.mjs';
 import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
 import { readCycle, evidenceBase, firstCycle, latestGuideRecord, publicationStillCurrent } from './testing-cycle.mjs';
 import { readTestingContext, contextualCriteria, requireTestedModule } from './testing-context.mjs';
@@ -68,6 +69,9 @@ function acquirePublisherLock() {
 
 if (!acquirePublisherLock()) process.exit(0);
 process.on('exit', () => { try { fs.rmSync(publisherLock, { recursive: true, force: true }); } catch {} });
+
+// Best-effort local counters only. Measurement must never block QA publication.
+try { serviceUsage(sourceRepo); } catch { log('usage_collection_unavailable'); }
 
 function readJson(file) {
   const raw = fs.readFileSync(file, 'utf8');
