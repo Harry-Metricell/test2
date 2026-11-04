@@ -8,7 +8,12 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = relative => fs.readFileSync(path.join(root, relative), 'utf8');
-const brief = name => read(`docs/briefs/${name}.md`);
+const brief = name => {
+  const primary = read(`docs/briefs/${name}.md`);
+  const references = [...primary.matchAll(/\]\((references\/[a-z-]+\.md)\)/g)]
+    .map(([, relative]) => read(`docs/briefs/${relative}`));
+  return [primary, ...references].join('\n\n');
+};
 const stages = [
   ['criteria_conversion', 'criteria-conversion', 'criteria-output.json'],
   ['test_ticket', 'qa-testing', 'test-output.json'],

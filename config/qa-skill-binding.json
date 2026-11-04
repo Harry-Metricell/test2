@@ -1,0 +1,50 @@
+{
+  "schema": "metricell-qa-skill-binding.v1",
+  "mode": "descriptive-not-runtime-configuration",
+  "repository": {
+    "provider": "github",
+    "owner": "Harry-Metricell",
+    "name": "test2",
+    "branch": "main"
+  },
+  "target": {
+    "launcherUrl": "https://o2intelligence-v4-dev.metricell.com/launcher",
+    "jiraProject": "TEST2",
+    "readOnlySourceProjects": [
+      "VM2ST"
+    ]
+  },
+  "stages": {
+    "coordinator": {
+      "brief": "docs/briefs/coordinator.md"
+    },
+    "criteria_conversion": {
+      "skill": "metricell-criteria-check",
+      "brief": "docs/briefs/criteria-conversion.md",
+      "output": "criteria-output.json"
+    },
+    "test_ticket": {
+      "brief": "docs/briefs/qa-testing.md",
+      "output": "test-output.json"
+    },
+    "evidence_review": {
+      "skill": "metricell-evidence-review",
+      "brief": "docs/briefs/evidence-review.md",
+      "output": "review-output.json"
+    },
+    "guide_impact_assessment": {
+      "brief": "docs/briefs/user-guide-impact.md",
+      "output": "guide-impact-output.json"
+    },
+    "guide_update_authoring": {
+      "brief": "docs/briefs/user-guide-authoring.md",
+      "output": "guide-update-output.json"
+    }
+  },
+  "migrationRequires": [
+    "Jira importer and ticket-key adapters",
+    "Git provider, publisher and CI adapters",
+    "Windows task and private evidence paths",
+    "Local Codex project binding and browser authentication"
+  ]
+}

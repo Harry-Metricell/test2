@@ -1,0 +1,4 @@
+interface:
+  display_name: "Metricell Evidence Review"
+  short_description: "Review one exact QA attempt independently"
+  default_prompt: "Use $metricell-evidence-review for the selected live handoff in this QA checkout."

@@ -49,7 +49,7 @@ The displayed retry limit is one: `Retry 1/1` means the second total test attemp
 | Publisher | Validation, private evidence copies, verified documents and ticket-scoped Git commits | Include unrelated Desktop changes in a push |
 | Desktop sync | Safe fast-forward of the working checkout | Resolve conflicting human source edits automatically |
 
-Worker chat completion is a receipt, not proof of publication. Dependent stages require the exact remote output and successful bundler propagation. The five active handoff actions and their gates are defined in the coordinator brief; each worker brief is self-contained.
+Worker chat completion is a receipt, not proof of publication. Dependent stages require the exact remote output and successful bundler propagation. The five active handoff actions and their gates are defined in the coordinator brief; each worker brief links any conditional proof rules it requires.
 
 Criteria, testing and review preserve the ticket's evidence scope. A settled empty list is valid for unchanged-state/no-new-item assertions unless the ticket or action requires populated entries. Results must say it remained empty, not claim populated ordering coverage. Reordering/removal still requires data; absent panels or loading errors do not prove emptiness. Visible catalogue restoration does not imply off-screen catalogue coverage. These brief contracts have regression checks, but only a fresh model/browser run validates interpretation.
 
@@ -428,3 +428,29 @@ CSV/API/DOM verification can travel with a result as `supportingEvidence` refere
 For map completeness checks, first choose a small genuine scope permitted by the ticket, then reconcile every returned aggregate/member with normal selection and save the raw private proof. One fully reconciled record is valid; a representative click from a larger unchecked set is not. Never narrow a scope fixed by the source. Numeric colour checks need the real plotted marker, identity and KPI association, not a legend or notes alone. These plans avoid expensive country-wide sampling followed by an avoidable Unverified result.
 
 Evidence-review identities now include a deterministic fingerprint of the selected results, criteria and testing context. An authorised evidence correction receives fresh review work without resetting the testing cycle or consuming a tester attempt; unchanged inputs keep the same identity and the normal one-replacement limit. The publisher rejects a review if its source evidence changed, including before Status Bundler has updated the queue. This avoids both stale reports and repeated-review replacement blockers.
+
+## Repository-backed QA skills
+
+The package contains `metricell-criteria-check`, `metricell-evidence-review` and `metricell-qa-suite` under [skills](skills). The first two operate existing live handoffs; the suite skill routes work to existing components. Canonical instructions remain in [docs/briefs](docs/briefs). Existing coordinator messages continue to work unchanged; installing skills does not require rerunning completed work.
+
+To install on a PC, open PowerShell **in this repository checkout** and run:
+
+```powershell
+$qaSkillsHome = Join-Path $env:USERPROFILE '.codex/skills'
+New-Item -ItemType Directory -Force -Path $qaSkillsHome | Out-Null
+Copy-Item -Path './skills/metricell-*' -Destination $qaSkillsHome -Recurse -Force
+```
+
+If you use a custom `CODEX_HOME`, use its `skills` directory instead. Start a new chat if needed to reload skills. Run from the QA project checkout, for example `$metricell-criteria-check` or `$metricell-evidence-review` with the exact handoff ID and ticket. The installed skill needs the checkout path and live repository connector; it is not a standalone test runner. Recopy these three folders after pulling skill updates; Desktop Git sync updates the checkout, not installed skill copies.
+
+[config/qa-skill-binding.json](config/qa-skill-binding.json) records the repository, target, source-project restrictions and role mappings. **It is descriptive, not runtime configuration:** changing its target does not migrate the engine. Existing TEST2 ticket-key assumptions, Windows tasks/evidence paths, GitHub publishing/CI and the coordinator's local project ID still need adapters and verification before another deployment. See the [component map](skills/metricell-qa-suite/references/component-map.md). No credentials or private evidence belong in the package.
+
+The reviewer loads map/data, interaction and simulated-state proof rules only when source or evidence requires them; the tester similarly loads simulation instructions for exception-state criteria. Complete source coverage, exact-attempt identity, independent outcomes and publication gates remain mandatory. The reviewer no longer reads an older report as a default input. This reduces default instruction context; live credit savings have not been measured. Models and retry policy are unchanged.
+
+Validate routing and existing contracts with:
+
+```powershell
+node --test scripts/qa-skills.test.mjs scripts/brief-contracts.test.mjs
+```
+
+GitHub regression CI runs these checks too. GitLab runner integration and automatic AC-to-Playwright generation are separate work.

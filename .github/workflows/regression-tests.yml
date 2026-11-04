@@ -6,6 +6,8 @@ on:
     paths:
       - 'scripts/**'
       - 'docs/briefs/**'
+      - 'skills/**'
+      - 'config/qa-skill-binding.json'
       - 'docs/publisher-operations.md'
       - 'README.md'
       - 'config/user-guide-*.json'
@@ -18,6 +20,8 @@ on:
     paths:
       - 'scripts/**'
       - 'docs/briefs/**'
+      - 'skills/**'
+      - 'config/qa-skill-binding.json'
       - 'docs/publisher-operations.md'
       - 'README.md'
       - 'config/user-guide-*.json'
@@ -53,7 +57,7 @@ jobs:
         run: node --test scripts/publisher-regression.test.mjs
 
       - name: Validate canonical worker and coordinator brief contracts
-        run: node --test scripts/brief-contracts.test.mjs
+        run: node --test scripts/brief-contracts.test.mjs scripts/qa-skills.test.mjs
 
       - name: Validate evidence coverage and controlled two-ticket verification
         run: node --test scripts/evidence-coverage.test.mjs
