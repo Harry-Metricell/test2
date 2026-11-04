@@ -454,3 +454,5 @@ node --test scripts/qa-skills.test.mjs scripts/brief-contracts.test.mjs
 ```
 
 GitHub regression CI runs these checks too. GitLab runner integration and automatic AC-to-Playwright generation are separate work.
+
+Further context savings: coordinator import/publication recovery and tester execution-host recovery are linked procedures loaded on the corresponding interruption. Normal ownership, freshness, checkpoint and publication gates stay in the main briefs. Reviewers keep a compact assessment while inspecting all required evidence and reopen unchanged images only to resolve a specific proof question. These changes reduce instruction and repeated-read overhead; they do not reduce acceptance coverage or demonstrate a measured credit saving.

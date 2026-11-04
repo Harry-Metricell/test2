@@ -1,0 +1,5 @@
+# Coordinator import recovery
+
+If Node is denied, use permitted file tools to create `.agent-staging/jira-import-refresh.json` with schema "v4-qa-import-refresh.v1", fresh UUID requestId, current UTC requestedAt and status "requested". Do not overwrite a pending request.
+
+After a host interruption, resume polling the same request ID: the publisher checks its exact remote run before applying the timeout. Do not discard a pending request just because its requestedAt is old. A recovered ready run still needs the normal connector verification and freshness check. If its proof is stale, request a fresh import without --force. If the publisher marks a timeout retryable, allow one replacement request per coordinator invocation, recording importRecoveryUsed in ignored run state before requesting it. Give that replacement its own fifteen-minute wait measured from requestedAt. Never automatically retry an explicit importer failure, identity mismatch, authentication or permission denial. Do not start duplicate publishers or reset tester attempts.

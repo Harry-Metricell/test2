@@ -72,3 +72,23 @@ test('installable entrypoints resolve a checkout and live authority before stagi
     assert.ok(!ui.includes('allow_implicit_invocation: false'));
   }
 });
+
+test('failure-only recovery is linked while normal ownership and completion gates remain primary', () => {
+  const coordinator = read(binding.stages.coordinator.brief);
+  for (const ref of ['coordinator-import-recovery', 'coordinator-publication-recovery']) {
+    assert.ok(coordinator.includes(`(references/${ref}.md)`));
+  }
+  for (const rule of ['exclusive directory', 'Lock age triggers investigation',
+    'Never return complete with a stale or unverified import',
+    'Before dispatch, check', 'Never run concurrent children']) assert.ok(coordinator.includes(rule), rule);
+  const tester = read(binding.stages.test_ticket.brief);
+  assert.ok(tester.includes('(references/test-execution-recovery.md)'));
+  assert.ok(tester.includes('after each completed criterion'));
+  assert.ok(tester.includes('For sample-to-detail navigation,'));
+  const recovery = read('docs/briefs/references/test-execution-recovery.md');
+  for (const rule of ['one recovery sequence per attempt', 'cannot be shown completed/terminated',
+    'do not replay the last click/navigation', 'preserve the lease and completed checkpoint']) assert.ok(recovery.includes(rule), rule);
+  const reviewer = read(binding.stages.evidence_review.brief);
+  assert.ok(reviewer.includes('Inspect every criterion and all evidence needed'));
+  assert.ok(reviewer.includes('A cached assessment never substitutes another criterion'));
+});

@@ -28,6 +28,8 @@ Select references from the complete source criteria and supplied evidence, not t
 
 ## Assess every criterion
 
+Read each unchanged source/input once for the selected commit and handoffVersion. Inspect every criterion and all evidence needed for its source obligations, recording a compact private assessment as you go. Reopen an already assessed image only for an unresolved identity, readability, comparison or coverage question, changed bytes or a correction; do not repeatedly read whole folders or results just to compose the final receipt. A cached assessment never substitutes another criterion's evidence or an earlier attempt. Refetch the live handoff before staging as required.
+
 Use Passed only with direct screenshot evidence, Failed with direct contradiction, Unverified when evidence is inconclusive, and Blocked when required evidence/environment is unavailable. Never infer Passed from notes alone.
 
 Apply these same proof requirements to corrections and reassessments. A human clarification defines the expected behaviour; it does not prove the application performed it. Never upgrade an earlier uncertain/blocked behaviour to Passed solely from an old narrative, an ARIA flag, the revised interpretation or successful publication. Require the actual qualifying evidence sequence and retain any unresolved gap. Review every criterion independently rather than copying the tester's verdict or a previous review.
