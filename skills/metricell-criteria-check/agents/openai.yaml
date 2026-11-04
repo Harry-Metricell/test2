@@ -1,4 +1,0 @@
-interface:
-  display_name: "Metricell Criteria Check"
-  short_description: "Check complete source before writing QA criteria"
-  default_prompt: "Use $metricell-criteria-check for the selected live handoff in this QA checkout."

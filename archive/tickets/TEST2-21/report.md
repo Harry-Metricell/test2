@@ -1,1 +1,0 @@
-TEST2-21: Beacon group/profile filter controls were found and a group filter transition was exercised. Available group labels were distinct. Retail Store Trial returned no Beacons, proving the empty-result state but not matching-result behavior. Profile-only and combined filtering, and result replacement, remain unverified.

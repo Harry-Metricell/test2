@@ -1,2 +1,0 @@
-- Passed: V4 launcher was visible from the required starting URL and initial evidence was captured.
-- Passed: Final evidence shows the launcher remained loaded.

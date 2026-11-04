@@ -1,4 +1,0 @@
-interface:
-  display_name: "Metricell QA Suite"
-  short_description: "Route QA work to the correct canonical contract"
-  default_prompt: "Use $metricell-qa-suite to route the requested work in this QA checkout."

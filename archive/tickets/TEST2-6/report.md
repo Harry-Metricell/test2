@@ -1,1 +1,0 @@
-GIS opened from the launcher and map search successfully moved to London UK with a visible marker. Selecting the visible marker did not open the required details panel, so marker details and panel-close behavior remain blocked.

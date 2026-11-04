@@ -1,1 +1,0 @@
-Blocked: GIS loaded and map navigation retained its changed position, and the default view restored successfully, but Coverage Gap Candidate Areas failed to load so coverage persistence could not be verified.
