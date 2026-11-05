@@ -425,15 +425,23 @@ function publishUsageSnapshot() {
   const body = JSON.stringify(data, null, 2) + '\n';
   const base = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-usage-publish-'));
   const worktree = path.join(base, 'checkout');
+  const cleanIndex = path.join(base, 'index');
   try {
     runGit(['worktree', 'add', '--detach', worktree, 'origin/main']);
     const target = path.join(worktree, relative);
     if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== body) {
       fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, body);
-      runGitAt(worktree, ['add', '--', relative]);
-      runGitAt(worktree, ['commit', '-m', 'Update measured QA ticket token usage']);
-      runGitAt(worktree, reportPushArgs()); // No force push; a race retries next tick.
-      const published = runGitAt(worktree, ['rev-parse', 'HEAD']);
+      // worktree add inherits runGit's private index. Never assume the new
+      // worktree's default index contains HEAD: initialise our own explicitly.
+      runGitAt(worktree, ['read-tree', 'HEAD'], cleanIndex);
+      runGitAt(worktree, ['add', '--', relative], cleanIndex);
+      const staged = runGitAt(worktree, ['diff', '--cached', '--name-only'], cleanIndex);
+      if (staged !== relative) fail('Usage publication must change only its allowlisted snapshot');
+      runGitAt(worktree, ['commit', '-m', 'Update measured QA ticket token usage'], cleanIndex);
+      const committed = runGitAt(worktree, ['diff-tree', '--no-commit-id', '--name-only', '-r', 'HEAD'], cleanIndex);
+      if (committed !== relative) fail('Usage publication changed unrelated paths; refusing push');
+      runGitAt(worktree, reportPushArgs(), cleanIndex); // No force push; a race retries next tick.
+      const published = runGitAt(worktree, ['rev-parse', 'HEAD'], cleanIndex);
       fetchLatest(); runGit(['merge-base', '--is-ancestor', published, 'origin/main']);
       log('usage_site_published', { tickets: Object.keys(data.tickets).length });
     }

@@ -326,6 +326,9 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     const idle = run(); assert.equal(idle.status, 0, idle.stderr);
     g(seed, 'fetch');
     const usage = g(seed, 'show', 'origin/main:status/token-usage.json');
+    assert.equal(g(seed, 'show', 'origin/main:README.md'), 'original');
+    assert.ok(g(seed, 'show', 'origin/main:tickets/TEST2-99/ticket.json'));
+    assert.equal(g(seed, 'diff-tree', '--no-commit-id', '--name-only', '-r', 'origin/main'), 'status/token-usage.json', 'usage publication must preserve the complete remote tree');
     assert.equal(JSON.parse(usage).tickets['TEST2-99'].roles['criteria-conversion'].total_tokens, 110);
     assert.doesNotMatch(usage, new RegExp(threadId));
     assert.equal(fs.readFileSync(path.join(desktop, 'README.md'), 'utf8'), 'user edit must survive\n');
