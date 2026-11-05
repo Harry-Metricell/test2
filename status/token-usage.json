@@ -5,30 +5,6 @@
   "measurementWindowDays": 14,
   "observedThrough": "2026-11-03T09:40:24.074Z",
   "tickets": {
-    "TEST2-79": {
-      "measuredChats": 3,
-      "unavailableChats": 0,
-      "roles": {
-        "evidence-review": {
-          "measuredChats": 1,
-          "unavailableChats": 0,
-          "input_tokens": 1239545,
-          "cached_input_tokens": 1138176,
-          "output_tokens": 5338,
-          "reasoning_output_tokens": 911,
-          "total_tokens": 1244883
-        },
-        "qa-testing": {
-          "measuredChats": 2,
-          "unavailableChats": 0,
-          "input_tokens": 24179054,
-          "cached_input_tokens": 23730944,
-          "output_tokens": 47083,
-          "reasoning_output_tokens": 8422,
-          "total_tokens": 24226137
-        }
-      }
-    },
     "TEST2-87": {
       "measuredChats": 2,
       "unavailableChats": 0,
@@ -149,21 +125,6 @@
           "output_tokens": 11188,
           "reasoning_output_tokens": 1265,
           "total_tokens": 8892218
-        }
-      }
-    },
-    "TEST2-92": {
-      "measuredChats": 1,
-      "unavailableChats": 0,
-      "roles": {
-        "evidence-review": {
-          "measuredChats": 1,
-          "unavailableChats": 0,
-          "input_tokens": 2200469,
-          "cached_input_tokens": 2062464,
-          "output_tokens": 8209,
-          "reasoning_output_tokens": 2080,
-          "total_tokens": 2208678
         }
       }
     }
