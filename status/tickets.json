@@ -35,6 +35,8 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": ""
     },
     {
@@ -53,6 +55,8 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": ""
     },
     {
@@ -71,6 +75,8 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": ""
     },
     {
@@ -89,6 +95,8 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": ""
     },
     {
@@ -107,6 +115,8 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": ""
     },
     {
@@ -125,6 +135,8 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": ""
     },
     {
@@ -143,6 +155,8 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": ""
     },
     {
@@ -161,6 +175,8 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": ""
     },
     {
@@ -179,6 +195,8 @@
       "retries": 0,
       "retryLimit": 1,
       "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": ""
     }
   ]

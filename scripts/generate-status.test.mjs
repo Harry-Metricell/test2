@@ -8,6 +8,22 @@ import { fileURLToPath } from 'node:url';
 
 const generator = fileURLToPath(new URL('./generate-status.mjs', import.meta.url));
 
+test('compact dashboard summary advertises only non-empty report files and paired Word downloads', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-report-index-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const dir = path.join(root, 'tickets/TEST2-99'); fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'ticket.json'), JSON.stringify({ key: 'TEST2-99', fields: { summary: 'Visible layer', status: { name: 'To Do' }, project: { key: 'TEST2' }, description: 'Layer is visible.' } }));
+  const read = () => { execFileSync(process.execPath, [generator], { cwd: root }); return JSON.parse(fs.readFileSync(path.join(root, 'status/tickets.json'))).tickets[0]; };
+  assert.equal(read().reportAvailable, false);
+  fs.writeFileSync(path.join(dir, 'report.docx'), 'word');
+  assert.equal(read().editableReportAvailable, false);
+  fs.writeFileSync(path.join(dir, 'report.pdf'), '');
+  assert.equal(read().reportAvailable, false);
+  fs.writeFileSync(path.join(dir, 'report.pdf'), 'pdf');
+  assert.equal(read().reportAvailable, true); assert.equal(read().editableReportAvailable, true);
+  assert.notEqual(read().qaStatus, 'Evidence Reviewed', 'an orphan PDF is not a completed evidence review');
+});
+
 test('controlled verification holds both tests and reviews and projects the release gate', t => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-verification-hold-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));

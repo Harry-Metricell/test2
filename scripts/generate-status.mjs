@@ -302,7 +302,7 @@ function normalizeTicket(dirName) {
   const reviewNumber = Number(review?.historyAttempt || review?.evidenceFolder?.match(/attempt-(\d+)/i)?.[1] || 0);
   const disposition = attemptDisposition(latestAttempt);
   const wasQueuedRetry = localStatus.workflowState === 'Retry Queued' && localStatus.qaStatus === 'Ready for Testing';
-  const reviewHasReport = review?.noOp !== true
+  const reviewHasReport = Boolean(review) && review.noOp !== true
     && reviewNumber >= latestNumber
     && fs.existsSync(path.join(dir, 'report.pdf'))
     && fs.statSync(path.join(dir, 'report.pdf')).size > 0;
@@ -645,6 +645,11 @@ if (!checkOnly && fs.existsSync(generatedDir)) {
 }
 const generatedAt = tickets.map((t) => t.status.updatedAt || t.jira.updated || t.jira.created).filter(Boolean).sort().at(-1) || null;
 const displayTickets = [...tickets].sort((a, b) => String(a.jira.status || 'Unknown').localeCompare(String(b.jira.status || 'Unknown')) || a.key.localeCompare(b.key, undefined, { numeric: true }));
+// Dashboard links need file availability, not a fetch of every ticket's report.
+const hasReportFile = (key, name) => {
+  const file = path.join(ticketsDir, key, name);
+  return fs.existsSync(file) && fs.statSync(file).isFile() && fs.statSync(file).size > 0;
+};
 const summary = {
   schema: 'v4-qa-status.v1',
   generatedAt,
@@ -676,6 +681,8 @@ const summary = {
     retries: t.status.retries,
     retryLimit: MAX_RETRIES,
     testAttempts: t.status.testAttempts,
+    reportAvailable: hasReportFile(t.key, 'report.pdf'),
+    editableReportAvailable: hasReportFile(t.key, 'report.pdf') && hasReportFile(t.key, 'report.docx'),
     retryLabel: t.status.retries > 0 ? `Retry ${t.status.retries}/${MAX_RETRIES}` : ''
   }))
 };
