@@ -3,27 +3,78 @@
   "coverage": "partial",
   "includesCoordinator": false,
   "measurementWindowDays": 14,
-  "observedThrough": "2026-10-29T16:58:40.552Z",
+  "observedThrough": "2026-11-03T09:40:24.074Z",
   "tickets": {
     "TEST2-79": {
-      "measuredChats": 0,
-      "unavailableChats": 2,
+      "measuredChats": 3,
+      "unavailableChats": 0,
       "roles": {
+        "evidence-review": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 1239545,
+          "cached_input_tokens": 1138176,
+          "output_tokens": 5338,
+          "reasoning_output_tokens": 911,
+          "total_tokens": 1244883
+        },
         "qa-testing": {
-          "measuredChats": 0,
-          "unavailableChats": 2,
-          "input_tokens": 0,
-          "cached_input_tokens": 0,
-          "output_tokens": 0,
+          "measuredChats": 2,
+          "unavailableChats": 0,
+          "input_tokens": 24179054,
+          "cached_input_tokens": 23730944,
+          "output_tokens": 47083,
+          "reasoning_output_tokens": 8422,
+          "total_tokens": 24226137
+        }
+      }
+    },
+    "TEST2-87": {
+      "measuredChats": 2,
+      "unavailableChats": 0,
+      "roles": {
+        "user-guide-authoring": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 698427,
+          "cached_input_tokens": 612864,
+          "output_tokens": 3563,
+          "reasoning_output_tokens": 1478,
+          "total_tokens": 701990
+        },
+        "user-guide-impact": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 439811,
+          "cached_input_tokens": 401664,
+          "output_tokens": 1082,
           "reasoning_output_tokens": 0,
-          "total_tokens": 0
+          "total_tokens": 440893
         }
       }
     },
     "TEST2-88": {
-      "measuredChats": 1,
+      "measuredChats": 4,
       "unavailableChats": 0,
       "roles": {
+        "evidence-review": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 889454,
+          "cached_input_tokens": 824576,
+          "output_tokens": 3580,
+          "reasoning_output_tokens": 268,
+          "total_tokens": 893034
+        },
+        "qa-testing": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 8028883,
+          "cached_input_tokens": 7872000,
+          "output_tokens": 21711,
+          "reasoning_output_tokens": 3199,
+          "total_tokens": 8050594
+        },
         "user-guide-authoring": {
           "measuredChats": 1,
           "unavailableChats": 0,
@@ -32,6 +83,87 @@
           "output_tokens": 3299,
           "reasoning_output_tokens": 1031,
           "total_tokens": 1069031
+        },
+        "user-guide-impact": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 720053,
+          "cached_input_tokens": 679680,
+          "output_tokens": 2096,
+          "reasoning_output_tokens": 764,
+          "total_tokens": 722149
+        }
+      }
+    },
+    "TEST2-89": {
+      "measuredChats": 11,
+      "unavailableChats": 0,
+      "roles": {
+        "evidence-review": {
+          "measuredChats": 7,
+          "unavailableChats": 0,
+          "input_tokens": 7745072,
+          "cached_input_tokens": 6974976,
+          "output_tokens": 31899,
+          "reasoning_output_tokens": 2975,
+          "total_tokens": 7776971
+        },
+        "qa-testing": {
+          "measuredChats": 4,
+          "unavailableChats": 0,
+          "input_tokens": 70408571,
+          "cached_input_tokens": 69629696,
+          "output_tokens": 93502,
+          "reasoning_output_tokens": 27092,
+          "total_tokens": 70502073
+        }
+      }
+    },
+    "TEST2-91": {
+      "measuredChats": 3,
+      "unavailableChats": 0,
+      "roles": {
+        "criteria-conversion": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 321142,
+          "cached_input_tokens": 267648,
+          "output_tokens": 1651,
+          "reasoning_output_tokens": 0,
+          "total_tokens": 322793
+        },
+        "evidence-review": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 1037455,
+          "cached_input_tokens": 958848,
+          "output_tokens": 3935,
+          "reasoning_output_tokens": 313,
+          "total_tokens": 1041390
+        },
+        "qa-testing": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 8881030,
+          "cached_input_tokens": 8753152,
+          "output_tokens": 11188,
+          "reasoning_output_tokens": 1265,
+          "total_tokens": 8892218
+        }
+      }
+    },
+    "TEST2-92": {
+      "measuredChats": 1,
+      "unavailableChats": 0,
+      "roles": {
+        "evidence-review": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 2200469,
+          "cached_input_tokens": 2062464,
+          "output_tokens": 8209,
+          "reasoning_output_tokens": 2080,
+          "total_tokens": 2208678
         }
       }
     }

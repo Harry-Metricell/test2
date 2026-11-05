@@ -43,6 +43,29 @@ test('exact coordinator child identity can attribute a worker without a visible 
   assert.equal(usageRecord([meta('/other'), count(20)], ['/qa'], bindings), null);
 });
 
+test('desktop incoming delegation identifies the exact worker, not quoted tool output', () => {
+  const m = meta('\\\\?\\C:\\qa'); m.payload.thread_source = 'agent_created_thread';
+  const incoming = { type: 'response_item', payload: { type: 'function_call_output', namespace: 'codex_app', name: 'create_thread',
+    output: `<codex_delegation><source_thread_id>parent</source_thread_id><input>[@GitHub](plugin://github)read and follow: docs/briefs/evidence-review.md for handoff ${handoff} (TEST2-90)</input></codex_delegation>` } };
+  assert.equal(usageRecord([m, incoming, count(20)], ['C:/qa']).ticket, 'TEST2-90');
+  assert.equal(usageRecord([m, { ...incoming, payload: { ...incoming.payload, namespace: 'github' } }, count(20)], ['C:/qa']), null);
+  assert.equal(usageRecord([m, incoming, count(20)], ['C:/qa'], { [thread]: { role: 'qa-testing', handoffId: handoff } }), null);
+  const guardian = structuredClone(m); guardian.payload.thread_source = 'guardian_review';
+  assert.equal(usageRecord([guardian, launch(), count(20)], ['C:/qa']), null);
+});
+
+test('exact-thread cumulative records permit child measurement without inheriting parent tokens', () => {
+  const m = meta('/qa'); m.payload.parent_thread_id = 'parent';
+  const own = (id, n) => ({ type: 'token_usage_record', timestamp: '2026-11-04T12:00:00Z', payload: { thread_id: id, thread_token_usage: totals(n), usage: totals(1) } });
+  const events = [m, launch(), own('parent', 10000), count(10000), own(thread, 20), own(thread, 20), own(thread, 50)];
+  const record = usageRecord(events, ['/qa']);
+  assert.equal(record.status, 'measured');
+  assert.equal(record.counterSource, 'exact_thread_usage_record');
+  assert.deepEqual(record.usage, totals(50));
+  assert.equal(usageRecord([m, launch(), own('parent', 10000), count(10000)], ['/qa']).usage, null);
+  assert.equal(usageRecord([m, launch(), own(thread, 50), own(thread, 20)], ['/qa']).status, 'counter_reset');
+});
+
 test('collector is repeatable, deduplicates session files and stores counters without private text', () => {
   const base = fs.mkdtempSync(path.join(os.tmpdir(), 'qa-usage-'));
   try {
