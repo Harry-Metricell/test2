@@ -29,69 +29,27 @@
         }
       }
     },
-    "TEST2-88": {
-      "measuredChats": 4,
-      "unavailableChats": 0,
-      "roles": {
-        "evidence-review": {
-          "measuredChats": 1,
-          "unavailableChats": 0,
-          "input_tokens": 889454,
-          "cached_input_tokens": 824576,
-          "output_tokens": 3580,
-          "reasoning_output_tokens": 268,
-          "total_tokens": 893034
-        },
-        "qa-testing": {
-          "measuredChats": 1,
-          "unavailableChats": 0,
-          "input_tokens": 8028883,
-          "cached_input_tokens": 7872000,
-          "output_tokens": 21711,
-          "reasoning_output_tokens": 3199,
-          "total_tokens": 8050594
-        },
-        "user-guide-authoring": {
-          "measuredChats": 1,
-          "unavailableChats": 0,
-          "input_tokens": 1065732,
-          "cached_input_tokens": 992768,
-          "output_tokens": 3299,
-          "reasoning_output_tokens": 1031,
-          "total_tokens": 1069031
-        },
-        "user-guide-impact": {
-          "measuredChats": 1,
-          "unavailableChats": 0,
-          "input_tokens": 720053,
-          "cached_input_tokens": 679680,
-          "output_tokens": 2096,
-          "reasoning_output_tokens": 764,
-          "total_tokens": 722149
-        }
-      }
-    },
     "TEST2-89": {
-      "measuredChats": 11,
+      "measuredChats": 9,
       "unavailableChats": 0,
       "roles": {
         "evidence-review": {
-          "measuredChats": 7,
+          "measuredChats": 6,
           "unavailableChats": 0,
-          "input_tokens": 7745072,
-          "cached_input_tokens": 6974976,
-          "output_tokens": 31899,
-          "reasoning_output_tokens": 2975,
-          "total_tokens": 7776971
+          "input_tokens": 6767026,
+          "cached_input_tokens": 6065152,
+          "output_tokens": 28360,
+          "reasoning_output_tokens": 2646,
+          "total_tokens": 6795386
         },
         "qa-testing": {
-          "measuredChats": 4,
+          "measuredChats": 3,
           "unavailableChats": 0,
-          "input_tokens": 70408571,
-          "cached_input_tokens": 69629696,
-          "output_tokens": 93502,
-          "reasoning_output_tokens": 27092,
-          "total_tokens": 70502073
+          "input_tokens": 64205461,
+          "cached_input_tokens": 63556992,
+          "output_tokens": 77880,
+          "reasoning_output_tokens": 22909,
+          "total_tokens": 64283341
         }
       }
     },
