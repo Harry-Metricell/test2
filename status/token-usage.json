@@ -30,42 +30,24 @@
       }
     },
     "TEST2-89": {
-      "measuredChats": 9,
+      "measuredChats": 3,
       "unavailableChats": 0,
       "roles": {
         "evidence-review": {
-          "measuredChats": 6,
-          "unavailableChats": 0,
-          "input_tokens": 6767026,
-          "cached_input_tokens": 6065152,
-          "output_tokens": 28360,
-          "reasoning_output_tokens": 2646,
-          "total_tokens": 6795386
-        },
-        "qa-testing": {
           "measuredChats": 3,
           "unavailableChats": 0,
-          "input_tokens": 64205461,
-          "cached_input_tokens": 63556992,
-          "output_tokens": 77880,
-          "reasoning_output_tokens": 22909,
-          "total_tokens": 64283341
+          "input_tokens": 3937706,
+          "cached_input_tokens": 3541888,
+          "output_tokens": 17275,
+          "reasoning_output_tokens": 1002,
+          "total_tokens": 3954981
         }
       }
     },
     "TEST2-91": {
-      "measuredChats": 3,
+      "measuredChats": 2,
       "unavailableChats": 0,
       "roles": {
-        "criteria-conversion": {
-          "measuredChats": 1,
-          "unavailableChats": 0,
-          "input_tokens": 321142,
-          "cached_input_tokens": 267648,
-          "output_tokens": 1651,
-          "reasoning_output_tokens": 0,
-          "total_tokens": 322793
-        },
         "evidence-review": {
           "measuredChats": 1,
           "unavailableChats": 0,
