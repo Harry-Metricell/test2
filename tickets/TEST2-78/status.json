@@ -1,15 +1,15 @@
 {
   "ticket": "TEST2-78",
-  "jiraStatus": "READY FOR TESTING",
+  "jiraStatus": "To Do",
   "qaStatus": "Evidence Reviewed",
-  "status": "READY FOR TESTING",
+  "status": "To Do",
   "retries": 0,
   "retryLimit": 1,
   "testAttempts": 1,
   "criteriaVerified": true,
   "blockedStage": null,
   "qaOutcome": "Passed",
-  "workflowState": "READY FOR TESTING",
+  "workflowState": "To Do",
   "nextAction": "QA review complete",
   "guideImpact": {
     "schema": "v4-user-guide-impact.v1",
@@ -21,5 +21,6 @@
     "reason": "The existing GIS layer catalogue search and filtering guidance already explains searching for Surveyor, clearing the search to restore the catalogue, and keeping loaded Map layers unchanged. The passed evidence confirms this documented behavior without a material user-facing instruction gap.",
     "noOp": false,
     "assessedAt": "2026-10-13T10:23:13.854Z"
-  }
+  },
+  "cycleId": "cycle-001"
 }

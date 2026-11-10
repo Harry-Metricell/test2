@@ -1,15 +1,16 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-11-03T16:07:08.533+0000",
+  "generatedAt": "2026-11-10T10:22:41.471+0000",
   "counts": {
-    "tickets": 9,
+    "tickets": 10,
     "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 9
+      "Blocked": 9,
+      "To Do": 1
     },
     "byQaOutcome": {
       "Blocked": 8,
-      "Passed": 1
+      "Passed": 2
     }
   },
   "policy": {
@@ -137,6 +138,26 @@
       "testAttempts": 1,
       "reportAvailable": true,
       "editableReportAvailable": true,
+      "retryLabel": ""
+    },
+    {
+      "key": "TEST2-78",
+      "cycleId": "cycle-001",
+      "summary": "V4 GIS: search Surveyor and preserve the actual initial map and layer state",
+      "jiraStatus": "To Do",
+      "workflowState": "To Do",
+      "qaStatus": "Evidence Reviewed",
+      "qaOutcome": "Passed",
+      "guideImpact": "not_needed",
+      "guideUpdate": null,
+      "actionOwner": "Coordinator",
+      "nextAction": "QA review complete",
+      "updatedAt": "2026-11-10T10:22:41.471+0000",
+      "retries": 0,
+      "retryLimit": 1,
+      "testAttempts": 1,
+      "reportAvailable": true,
+      "editableReportAvailable": false,
       "retryLabel": ""
     },
     {
