@@ -2,9 +2,13 @@
   "schema": "test2-site-token-usage.v1",
   "coverage": "partial",
   "includesCoordinator": false,
+  "aggregation": "retained_measured_history",
+  "collectionCheckedHour": "2026-11-11T09:00:00.000Z",
+  "collectionStatus": "no_attributable_workers",
   "measurementWindowDays": 14,
-  "observedThrough": "2026-11-03T09:40:24.074Z",
-  "tickets": {
+  "observedThrough": null,
+  "tickets": {},
+  "historicalTickets": {
     "TEST2-87": {
       "measuredChats": 2,
       "unavailableChats": 0,
@@ -68,5 +72,6 @@
         }
       }
     }
-  }
+  },
+  "historicalObservedThrough": "2026-11-03T09:40:24.074Z"
 }
