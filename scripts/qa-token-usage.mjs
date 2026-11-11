@@ -9,6 +9,26 @@ const fields = ['input_tokens', 'cached_input_tokens', 'output_tokens', 'reasoni
 const normalize = value => String(value).replaceAll('\\', '/').replace(/^\/\/\?\//, '').replace(/\/+/g, '/').replace(/\/$/, '').toLowerCase();
 const validUsage = u => u && fields.every(k => Number.isSafeInteger(u[k]) && u[k] >= 0)
   && u.cached_input_tokens <= u.input_tokens && u.reasoning_output_tokens <= u.output_tokens;
+const validRecord = r => r && /^[a-f0-9-]{36}$/.test(r.threadId || '') && roles.has(r.role)
+  && (r.handoffId === null || /^handoff-TEST2-\d+(?:-[a-z0-9]+)+$/.test(r.handoffId || ''))
+  && (r.ticket === null || r.ticket === r.handoffId?.match(/TEST2-\d+/)?.[0])
+  && (r.status !== 'measured' || validUsage(r.usage));
+const sourceName = value => /^\d{4}[\\/]\d\d[\\/]\d\d[\\/]rollout-[^\\/]+\.jsonl$/.test(value || '');
+
+// Keep one last-known cumulative record per exact worker, never sums of polls.
+// An unavailable source or a reset cannot erase a previously measured history.
+export function retainRecord(previous, current) {
+  if (!validRecord(current)) return previous;
+  if (!validRecord(previous)) return current;
+  if (previous.role !== current.role || previous.handoffId !== current.handoffId) return previous;
+  if (String(current.observedAt || '') < String(previous.observedAt || '')) return previous;
+  const decreases = previous.status === 'measured' && current.status === 'measured'
+    && fields.some(k => current.usage[k] < previous.usage[k]);
+  if (previous.status === 'measured' && (current.status !== 'measured' || decreases)) {
+    return { ...previous, latestCollectionStatus: decreases ? 'counter_reset' : current.status };
+  }
+  return current;
+}
 
 export function usageRecord(events, roots, bindings = {}) {
   const meta = events.find(e => e?.type === 'session_meta')?.payload;
@@ -89,6 +109,12 @@ export function collectUsage({ repo, sessionsRoot = path.join(process.env.CODEX_
   const outputDir = path.join(repo, '.agent-staging', 'usage');
   fs.mkdirSync(outputDir, { recursive: true });
   const cachePath = path.join(outputDir, 'cache.json');
+  const ledgerPath = path.join(outputDir, 'ledger.json');
+  const scopeKey = [normalize(sessionsRoot), ...roots.map(normalize).sort()].join('|');
+  let ledger;
+  try { const value = JSON.parse(fs.readFileSync(ledgerPath, 'utf8'));
+    if (value.schema === 'test2-token-ledger.v1' && value.scopeKey === scopeKey && Array.isArray(value.entries)) ledger = value;
+  } catch {}
   const bindingsPath = path.join(outputDir, 'threads.json');
   let bindings = {};
   try { bindings = JSON.parse(fs.readFileSync(bindingsPath, 'utf8')); } catch {}
@@ -105,24 +131,37 @@ export function collectUsage({ repo, sessionsRoot = path.join(process.env.CODEX_
   } catch {} // Missing private bookkeeping does not imply a worker or publication failure.
   let previous = {};
   try { previous = JSON.parse(fs.readFileSync(cachePath, 'utf8')); } catch {}
-  const cache = {}, records = new Map(); let unreadable = 0, scanned = 0;
-  for (let d = 0; d < days; d++) {
+  const cache = {}, records = new Map(), sources = new Map(), files = new Set();
+  let unreadable = 0, scanned = 0;
+  for (const entry of ledger?.entries || []) {
+    if (!validRecord(entry.record) || !sourceName(entry.source)) continue;
+    records.set(entry.record.threadId, entry.record); sources.set(entry.record.threadId, entry.source); files.add(entry.source);
+  }
+  // One bounded history discovery on installation, followed by cheap recent
+  // discovery plus refreshes of known workers even when their chats are old.
+  const discoveryDays = ledger ? days : Math.max(days, 90);
+  for (let d = 0; d < discoveryDays; d++) {
     const date = new Date(now.getTime() - d * 86400000).toISOString().slice(0, 10).replaceAll('-', path.sep);
     const folder = path.join(sessionsRoot, date);
-    let files;
-    try { files = fs.readdirSync(folder).filter(f => /^rollout-.*\.jsonl$/.test(f)).sort(); }
+    let names;
+    try { names = fs.readdirSync(folder).filter(f => /^rollout-.*\.jsonl$/.test(f)).sort(); }
     catch (e) { if (e.code !== 'ENOENT') unreadable++; continue; }
-    for (const name of files) {
-      const key = path.join(date, name); scanned++;
+    for (const name of names) files.add(path.join(date, name));
+  }
+  for (const key of [...files].sort()) {
+      if (!sourceName(key)) continue;
+      scanned++;
       try {
-        const file = path.join(folder, name), stat = fs.lstatSync(file);
+        const file = path.join(sessionsRoot, key), stat = fs.lstatSync(file);
         if (!stat.isFile() || stat.isSymbolicLink()) { unreadable++; continue; }
-        const signature = `v2:${stat.size}:${stat.mtimeMs}:${roots.map(normalize).join('|')}:${JSON.stringify(bindings)}`;
+        const signature = `v3:${stat.size}:${stat.mtimeMs}:${scopeKey}:${JSON.stringify(bindings)}`;
         const record = previous[key]?.signature === signature ? previous[key].record : usageRecord(readEvents(file), roots, bindings);
         cache[key] = { signature, record };
-        if (record && (!records.has(record.threadId) || String(record.observedAt) > String(records.get(record.threadId).observedAt))) records.set(record.threadId, record);
+        if (validRecord(record)) {
+          records.set(record.threadId, retainRecord(records.get(record.threadId), record));
+          sources.set(record.threadId, key);
+        }
       } catch { unreadable++; }
-    }
   }
   const sessions = [...records.values()].sort((a, b) => a.threadId.localeCompare(b.threadId));
   const totalsByRole = {};
@@ -134,18 +173,23 @@ export function collectUsage({ repo, sessionsRoot = path.join(process.env.CODEX_
   const report = { schema: 'test2-local-token-usage.v1', generatedAt: now.toISOString(), days,
     source: 'local_session_cumulative_counters', scope: 'recognised_QA_launches_only',
     complete: false, scannedFiles: scanned, unreadableFiles: unreadable,
+    aggregation: 'retained_measured_history', discoveryDays: days,
+    sourceAvailable: fs.existsSync(sessionsRoot),
     limitations: ['Not subscription credits or money', 'Cached input is included in input; reasoning is included in output',
-      'Local recent JSONL sessions only; remote/archived/unrecognised/multi-handoff chats excluded',
+      'Retained last-known worker history; recent discovery plus known older workers, initial discovery bounded to 90 days',
+      'Remote/archived/unrecognised/multi-handoff chats remain excluded; missing files do not erase retained measurements',
       'Bounded log windows may miss launch identity or usage; unproven fork baselines and approval-helper chats excluded', 'Model is last observed, not per-model billing'],
     totalsByRole, sessions };
-  for (const [file, value] of [['threads.json', bindings], ['cache.json', cache], ['summary.json', report]]) {
+  const nextLedger = { schema: 'test2-token-ledger.v1', scopeKey,
+    entries: sessions.map(record => ({ source: sources.get(record.threadId), record })) };
+  for (const [file, value] of [['ledger.json', nextLedger], ['threads.json', bindings], ['cache.json', cache], ['summary.json', report]]) {
     const target = path.join(outputDir, file), pending = `${target}.${process.pid}.tmp`;
     fs.writeFileSync(pending, JSON.stringify(value, null, 2) + '\n'); fs.renameSync(pending, target);
   }
   const rows = Object.entries(totalsByRole).map(([role, u]) =>
     `| ${role} | ${u.sessions} | ${u.input_tokens - u.cached_input_tokens} | ${u.cached_input_tokens} | ${u.output_tokens} | ${u.total_tokens} |`);
   fs.writeFileSync(path.join(outputDir, 'summary.md'), [
-    '# Local QA token usage', '', `Updated: ${report.generatedAt}. Recent session-start window: ${days} days.`, '',
+    '# Local QA token usage', '', `Updated: ${report.generatedAt}. Retained measured history; new-session discovery: ${days} days.`, '',
     '**Partial coverage; token counters are not subscription credits or monetary charges.**', '',
     '| Role | Measured chats | Uncached input | Cached input | Output | Total |',
     '| --- | --- | --- | --- | --- | --- |', ...rows, '',

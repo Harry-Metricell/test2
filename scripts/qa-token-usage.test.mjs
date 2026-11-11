@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { usageRecord, collectUsage } from './qa-token-usage.mjs';
+import { usageRecord, collectUsage, retainRecord } from './qa-token-usage.mjs';
 
 const thread = '01a1a720-5560-7652-8a33-ab6a0ab97c45';
 const handoff = 'handoff-TEST2-90-cycle-005-review-attempt-001';
@@ -117,4 +117,41 @@ test('worker identity survives retirement from active run state without copying 
     assert.doesNotMatch(registry, /DO_NOT_COPY/);
     assert.equal(JSON.parse(registry)[thread].handoffId, handoff);
   } finally { fs.rmSync(repo, { recursive: true, force: true }); }
+});
+
+test('known older workers refresh outside discovery and measurements survive removed source logs', () => {
+  const repo = fs.mkdtempSync(path.join(os.tmpdir(), 'qa-usage-ledger-'));
+  assert.equal(path.dirname(repo), os.tmpdir());
+  try {
+    const logs = path.join(repo, 'sessions'), folder = path.join(logs, '2026', '11', '04');
+    fs.mkdirSync(folder, { recursive: true });
+    const file = path.join(folder, 'rollout-known.jsonl');
+    fs.writeFileSync(file, [meta(repo), launch(), count(20)].map(e=>JSON.stringify(e)).join('\n')+'\n');
+    const read = () => JSON.parse(fs.readFileSync(path.join(repo, '.agent-staging/usage/summary.json')));
+    // Initial bounded backfill finds this chat despite its old creation date.
+    collectUsage({ repo, sessionsRoot: logs, days: 2, now: new Date('2026-11-20T12:00:00Z') });
+    assert.equal(read().sessions.length, 1);
+    assert.equal(read().totalsByRole['evidence-review'].total_tokens, 28);
+    fs.appendFileSync(file, JSON.stringify(count(50, '2026-11-21T12:00:00Z'))+'\n');
+    collectUsage({ repo, sessionsRoot: logs, days: 2, now: new Date('2026-11-22T12:00:00Z') });
+    assert.equal(read().totalsByRole['evidence-review'].total_tokens, 58);
+    fs.unlinkSync(file);
+    collectUsage({ repo, sessionsRoot: logs, days: 2, now: new Date('2026-11-24T12:00:00Z') });
+    assert.equal(read().totalsByRole['evidence-review'].total_tokens, 58);
+    assert.ok(read().unreadableFiles > 0);
+    assert.equal(read().aggregation, 'retained_measured_history');
+    // A different scope must not inherit the previous project's ledger.
+    collectUsage({ repo, sessionsRoot: logs, roots: ['/different-project'], days: 2, now: new Date('2026-11-24T12:00:00Z') });
+    assert.equal(read().sessions.length, 0);
+  } finally { fs.rmSync(repo, { recursive: true, force: true }); }
+});
+
+test('unavailable or regressed counters retain last-known history without adding observations', () => {
+  const prior = usageRecord([meta('/qa'), launch(), count(50)], ['/qa']);
+  const missing = { ...prior, status: 'usage_unavailable', usage: null };
+  assert.deepEqual(retainRecord(prior, missing).usage, prior.usage);
+  assert.equal(retainRecord(prior, missing).latestCollectionStatus, 'usage_unavailable');
+  const lower = { ...prior, usage: totals(20) };
+  assert.deepEqual(retainRecord(prior, lower).usage, prior.usage);
+  assert.equal(retainRecord(prior, lower).latestCollectionStatus, 'counter_reset');
 });

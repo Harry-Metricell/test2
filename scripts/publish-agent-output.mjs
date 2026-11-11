@@ -12,7 +12,7 @@ import { guideMarkerCounts } from './guide-document-index.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { serviceImportRefresh } from './jira-import-refresh.mjs';
 import { serviceUsage } from './qa-token-usage.mjs';
-import { siteTokenUsage } from './site-token-usage.mjs';
+import { siteTokenUsage, retainPublishedUsage } from './site-token-usage.mjs';
 import { normalizeBrowserToolBlock, isNoEvidenceBlock } from './test-result-policy.mjs';
 import { readCycle, evidenceBase, firstCycle, latestGuideRecord, publicationStillCurrent } from './testing-cycle.mjs';
 import { readTestingContext, contextualCriteria, requireTestedModule } from './testing-context.mjs';
@@ -419,16 +419,18 @@ function publishUsageSnapshot() {
   const stamp = path.join(usageDir, 'site-published.json');
   try { if (Date.now() - JSON.parse(fs.readFileSync(stamp, 'utf8')).checkedAt < 15 * 60 * 1000) return; } catch {}
   const summary = JSON.parse(fs.readFileSync(path.join(usageDir, 'summary.json'), 'utf8'));
-  const data = siteTokenUsage(summary);
-  if (!Object.keys(data.tickets).length) return;
+  const collected = siteTokenUsage(summary);
   const relative = 'status/token-usage.json';
-  const body = JSON.stringify(data, null, 2) + '\n';
   const base = fs.mkdtempSync(path.join(os.tmpdir(), 'test2-usage-publish-'));
   const worktree = path.join(base, 'checkout');
   const cleanIndex = path.join(base, 'index');
   try {
     runGit(['worktree', 'add', '--detach', worktree, 'origin/main']);
     const target = path.join(worktree, relative);
+    let previous;
+    try { previous = JSON.parse(fs.readFileSync(target, 'utf8')); } catch {}
+    const data = retainPublishedUsage(collected, previous);
+    const body = JSON.stringify(data, null, 2) + '\n';
     if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== body) {
       fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, body);
       // worktree add inherits runGit's private index. Never assume the new

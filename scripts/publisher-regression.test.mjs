@@ -336,5 +336,19 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     fs.rmSync(path.join(desktop, '.agent-staging/usage/site-published.json'));
     assert.equal(run().status, 0);
     g(seed, 'fetch'); assert.equal(g(seed, 'rev-parse', 'origin/main'), publishedSha);
+
+    // A new/missing source scope must publish its collection health without
+    // deleting earlier measurements or presenting the old snapshot as current.
+    env.CODEX_HOME = path.join(root, 'empty-codex');
+    fs.mkdirSync(path.join(env.CODEX_HOME, 'sessions'), { recursive: true });
+    fs.rmSync(path.join(desktop, '.agent-staging/usage/site-published.json'), { force: true });
+    const emptyCollection = run(); assert.equal(emptyCollection.status, 0, emptyCollection.stderr);
+    g(seed, 'fetch');
+    const retained = JSON.parse(g(seed, 'show', 'origin/main:status/token-usage.json'));
+    assert.deepEqual(retained.tickets, {});
+    assert.equal(retained.collectionStatus, 'no_attributable_workers');
+    assert.equal(retained.historicalTickets['TEST2-99'].roles['criteria-conversion'].total_tokens, 110);
+    assert.equal(g(seed, 'show', 'origin/main:README.md'), 'original');
+    assert.equal(g(seed, 'diff-tree', '--no-commit-id', '--name-only', '-r', 'origin/main'), 'status/token-usage.json');
   } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });
