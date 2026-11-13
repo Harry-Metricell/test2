@@ -69,6 +69,25 @@ class GuideVerificationTests(unittest.TestCase):
                            "visualFingerprint": VERIFY.REPORT_VERIFIER.image_fingerprint(pixels), "image": pixels})
         return result
 
+    def test_missing_supporting_note_is_rejected(self):
+        update = json.loads(self.update.read_text())
+        update['notes'] = ['Available modules depend on permissions.']
+        self.update.write_text(json.dumps(update))
+        self.save_docx(self.sources)
+        with self.assertRaisesRegex(ValueError, 'supporting note'):
+            VERIFY.verify(self.docx, self.pdf, self.update, self.evidence)
+
+    def test_supporting_note_must_survive_pdf_conversion(self):
+        update = json.loads(self.update.read_text())
+        update['notes'] = ['Available modules depend on permissions.']
+        self.update.write_text(json.dumps(update))
+        self.save_docx(self.sources)
+        document = Document(self.docx)
+        document.add_paragraph(update['notes'][0]); document.save(self.docx)
+        with patch.object(VERIFY, 'PdfReader', return_value=FakeReader()):
+            with self.assertRaisesRegex(ValueError, 'PDF omitted an approved supporting note'):
+                VERIFY.verify(self.docx, self.pdf, self.update, self.evidence)
+
     def check(self, observed):
         with patch.object(VERIFY, "PdfReader", return_value=FakeReader()), patch.object(VERIFY.REPORT_VERIFIER, "pdf_images", return_value=observed):
             return VERIFY.verify(self.docx, self.pdf, self.update, self.evidence)

@@ -7,7 +7,7 @@ import { validateEvidenceCoverage } from './evidence-coverage.mjs';
 import { verifyCaptures } from './tester-capture.mjs';
 import { copySupportingEvidence } from './supporting-evidence.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
-import { guideInstructionIssues } from './guide-instruction-policy.mjs';
+import { guideInstructionIssues, guideNoteIssues } from './guide-instruction-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { serviceImportRefresh } from './jira-import-refresh.mjs';
@@ -700,7 +700,7 @@ if (outputType === 'criteria-output.json') {
     if (markerCount !== 1) fail(`guide amendment target ${oldKey} is not present exactly once in the living guide (found ${markerCount}); select a current indexed section`);
   } else if (output.supersedesTicket != null) fail('new guide section must not supersede another ticket');
   if (!Array.isArray(output.steps) || output.steps.length === 0 || output.steps.some(step => typeof step !== 'string' || !step.trim())) fail('guide update steps are missing');
-  const instructionIssues = guideInstructionIssues(output.steps);
+  const instructionIssues = [...guideInstructionIssues(output.steps), ...guideNoteIssues(output.notes)];
   if (instructionIssues.length) fail(instructionIssues.join('; '));
   if (!Array.isArray(output.screenshots) || output.screenshots.length === 0 || output.screenshots.some(file => typeof file !== 'string' || !/^(?:cycles[\\/]cycle-\d{3,}[\\/])?screenshots[\\/].+\.png$/i.test(file) || file.includes('..'))) fail('guide update screenshots must be safe PNG evidence paths');
   if (new Set(output.screenshots).size !== output.screenshots.length) fail('guide update screenshots must be distinct');

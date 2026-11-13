@@ -8,6 +8,8 @@ Read live GitHub `status/handoffs.json` first. Confirm the supplied handoff ID, 
 
 ## Write useful instructions
 
+Apply `docs/user-guide-editorial-standard.md`. Use general task-based titles rather than a ticket-specific navigation journey. Keep ordered actions in `steps`; put parallel options, fields and supported qualifications in optional `notes` bullets. Select only the distinct reviewed screenshots needed to explain the task. Do not broaden a layer-specific observation into an unsupported platform-wide claim. The builder owns template styling and pagination; the local full-platform draft is not yet the live baseline.
+
 Use the selected handoff's exact cycle-scoped ID/version. Indexed sections may originate in archived testing cycles: read their `recordPath` when supplied instead of guessing a current-root file. If a later cycle updates this same ticket's existing generated section, choose `amend` with `supersedesTicket` equal to this ticket, only when its exact indexed section needs changing. The publisher records cycleId and replaces that section once; never append a duplicate or reuse an earlier cycle's evidence. Refetch the exact live handoff before staging.
 
 Write clear end-user instructions for the delivered, passed behaviour. Do not invent screens, controls, or outcomes. Reuse one or more verified PNG paths from the ticket's `results.json`; the builder will only accept evidence from the reviewed ticket. Choose `add` for a genuinely new guide section. Choose `amend` only when replacing one exact prior generated section from `status/guide-updates.json`; set `supersedesTicket` to that section's ticket key. If the correct prior section is unclear, stop with a concise failure instead of appending duplicate instructions. Every step must be a short imperative sentence suitable for the guide.
@@ -25,6 +27,7 @@ Write exactly one file: `.agent-staging/<handoffId>/guide-update-output.json`. I
 - `changeType` is `add` or `amend`.
 - For `amend`, `supersedesTicket` must identify the exact generated guide block to replace. For `add`, omit it.
 - `steps` is a non-empty ordered array of plain strings.
+- `notes`, when useful, is an array of non-empty plain strings rendered as supporting bullet points after the steps. Omit it when unnecessary. Notes must use the same passed-ticket evidence and end-user boundaries as steps.
 - `screenshots` is a non-empty array of distinct PNG paths taken verbatim from the selected ticket's `results.json` evidence.
 - `screenshotCaptions` has one non-empty caption per screenshot, in the same order. Describe the actual visible state using the verified result and its capture name; never assume screenshot N corresponds to instruction N. Distinguish changed and restored/reopened states. Use end-user instructions, not mandatory QA cleanup or verification rituals.
 - `reason` briefly describes the user-facing change.

@@ -6,3 +6,12 @@ export function guideInstructionIssues(steps) {
   return steps.flatMap((step, index) => typeof step === 'string' && qaRitual.test(step)
     ? [`Guide step ${index + 1} describes QA bookkeeping or cleanup rather than a user goal`] : []);
 }
+
+// Optional supporting information is a bullet list, never extra test actions.
+export function guideNoteIssues(notes) {
+  if (notes === undefined) return [];
+  if (!Array.isArray(notes) || notes.some(note => typeof note !== 'string' || !note.trim())) {
+    return ['Guide notes must be an array of non-empty strings'];
+  }
+  return guideInstructionIssues(notes).map(issue => issue.replace('Guide step', 'Guide note'));
+}

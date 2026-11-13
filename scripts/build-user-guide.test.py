@@ -44,7 +44,7 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     image_path = evidence / "TEST2-99/screenshots/attempt-001/criterion-1-final.png"
     image_path.parent.mkdir(parents=True)
     Image.new("RGB", (64, 32), "navy").save(image_path)
-    write_json(repo / "tickets/TEST2-99/guide-update.json", {"schema": "v4-user-guide-update.v1", "ticket": "TEST2-99", "title": "Open the launcher", "affectedSection": "Getting started", "changeType": "add", "steps": ["Open the launcher."], "screenshots": ["screenshots/attempt-001/criterion-1-final.png"], "reason": "The launcher is a new user-facing entry point."})
+    write_json(repo / "tickets/TEST2-99/guide-update.json", {"schema": "v4-user-guide-update.v1", "ticket": "TEST2-99", "title": "Open the launcher", "affectedSection": "Getting started", "changeType": "add", "steps": ["Open the launcher."], "notes": ["Available modules depend on your permissions.", "Choose a workspace for your task."], "screenshots": ["screenshots/attempt-001/criterion-1-final.png"], "reason": "The launcher is a new user-facing entry point."})
     command = [sys.executable, str(BUILDER), "--repo", str(repo), "--evidence-root", str(evidence), "--ticket", "TEST2-99"]
     first = subprocess.run(command, capture_output=True, text=True)
     assert first.returncode == 0, first.stderr or first.stdout
@@ -52,6 +52,14 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     result = Document(output)
     text = "\n".join(paragraph.text for paragraph in result.paragraphs)
     assert "Existing guidance must stay unchanged." in text
+    notes = [p for p in result.paragraphs if p.text in ['Available modules depend on your permissions.', 'Choose a workspace for your task.']]
+    assert len(notes) == 2 and all(p._p.xpath('./w:pPr/w:numPr') for p in notes)
+    assert all(p.runs[0].font.highlight_color == 7 for p in notes), 'supporting bullets must remain yellow'
+    portrait = image_path.parent / 'portrait.png'
+    Image.new('RGB', (400, 1600), 'navy').save(portrait)
+    bounded = Document()
+    guide.yellow_screenshot(bounded, portrait, 'A tall settings dialog.')
+    assert bounded.inline_shapes[0].height <= 4.2 * 914400 + 1
     assert "New feature: Open the launcher" in text
     assert "[[AUTO_GUIDE_UPDATE:TEST2-99]]" in text
     assert text.count("[[AUTO_GUIDE_CONTENT]]") == 1

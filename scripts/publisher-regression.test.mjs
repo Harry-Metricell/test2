@@ -27,7 +27,15 @@ test('report publication buffers HTTPS and bounds stalled transfers without forc
   assert.ok(!args.some(value => /force/.test(value)));
 });
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
-import { guideInstructionIssues } from './guide-instruction-policy.mjs';
+import { guideInstructionIssues, guideNoteIssues } from './guide-instruction-policy.mjs';
+
+test('supporting guide notes are optional bullet text with the same user-facing boundaries', () => {
+  assert.deepEqual(guideNoteIssues(undefined), []);
+  assert.deepEqual(guideNoteIssues(['GIS — map layers and measurements.', 'Available workspaces depend on permissions.']), []);
+  for (const notes of [null, 'A note', [''], [3], ['Record the recorded initial state for the test.']]) {
+    assert.ok(guideNoteIssues(notes).length);
+  }
+});
 
 test('guide instructions exclude QA restoration rituals but permit useful end-user undo and reset actions', () => {
   assert.deepEqual(guideInstructionIssues(['Open Display Settings for your Surveyor layer.', 'Select Show linked sites to check or uncheck it.', 'To undo your change, select the checkbox again.', 'Use Reset to restore default preferences.']), []);

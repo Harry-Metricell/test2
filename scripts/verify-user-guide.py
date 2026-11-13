@@ -43,6 +43,11 @@ def verify(docx_path: Path, pdf_path: Path, update_path: Path, evidence_root: Pa
         raise ValueError("guide insertion marker is missing or duplicated")
     if update["title"] not in text or any(step not in text for step in update["steps"]):
         raise ValueError("guide omitted the approved title or a step")
+    notes = update.get('notes', [])
+    if not isinstance(notes, list) or any(not isinstance(note, str) or not note.strip() for note in notes):
+        raise ValueError('guide notes must be an array of non-empty strings')
+    if any(note not in text for note in notes):
+        raise ValueError('guide omitted an approved supporting note')
     if len(document.inline_shapes) < expected_images:
         raise ValueError("guide omitted one or more embedded screenshots")
 
@@ -69,6 +74,8 @@ def verify(docx_path: Path, pdf_path: Path, update_path: Path, evidence_root: Pa
     pdf_text = " ".join(" ".join((page.extract_text() or "").split()) for page in pdf.pages)
     if update["title"] not in pdf_text:
         raise ValueError("rendered guide PDF omitted the approved title")
+    if any(' '.join(note.split()) not in pdf_text for note in notes):
+        raise ValueError('rendered guide PDF omitted an approved supporting note')
     observed = REPORT_VERIFIER.pdf_images(pdf_path)
     matched, missing_pdf = REPORT_VERIFIER.match_expected_images(expected, observed)
     if missing_pdf:

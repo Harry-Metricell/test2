@@ -24,6 +24,7 @@ from docx.oxml.ns import qn
 from docx.shared import Inches, RGBColor
 from docx.table import Table
 from docx.text.paragraph import Paragraph
+from PIL import Image
 
 MARKER = "[[AUTO_GUIDE_CONTENT]]"
 UPDATE_MARKER = "[[AUTO_GUIDE_UPDATE:{ticket}]]"
@@ -113,6 +114,31 @@ def yellow_steps(steps: list[str]):
     return elements
 
 
+def yellow_notes(document: Document, notes: list[str]):
+    """Create real Word bullets without inheriting a previous numbered sequence."""
+    if not notes:
+        return []
+    numbering = document.part.numbering_part.element
+    abstract_id = max((int(n.get(qn('w:abstractNumId'))) for n in numbering.findall(qn('w:abstractNum'))), default=-1) + 1
+    num_id = max((int(n.get(qn('w:numId'))) for n in numbering.findall(qn('w:num'))), default=0) + 1
+    abstract = OxmlElement('w:abstractNum'); abstract.set(qn('w:abstractNumId'), str(abstract_id))
+    level = OxmlElement('w:lvl'); level.set(qn('w:ilvl'), '0')
+    for name, value in [('start', '1'), ('numFmt', 'bullet'), ('lvlText', '\u2022')]:
+        item = OxmlElement('w:' + name); item.set(qn('w:val'), value); level.append(item)
+    properties = OxmlElement('w:pPr'); indent = OxmlElement('w:ind')
+    indent.set(qn('w:left'), '360'); indent.set(qn('w:hanging'), '180'); properties.append(indent); level.append(properties)
+    abstract.append(level); numbering.append(abstract)
+    number = OxmlElement('w:num'); number.set(qn('w:numId'), str(num_id))
+    ref = OxmlElement('w:abstractNumId'); ref.set(qn('w:val'), str(abstract_id)); number.append(ref); numbering.append(number)
+    elements = []
+    for note in notes:
+        paragraph = yellow_paragraph(note.strip())
+        num = paragraph._p.get_or_add_pPr().get_or_add_numPr()
+        num.get_or_add_ilvl().val = 0; num.get_or_add_numId().val = num_id
+        elements.append(paragraph._p)
+    return elements
+
+
 def yellow_screenshot(document: Document, image: Path, caption: str):
     # Add the image to the destination package, not a temporary document.
     # Copying its XML from another package leaves a dangling relationship ID.
@@ -128,7 +154,11 @@ def yellow_screenshot(document: Document, image: Path, caption: str):
     image_paragraph.alignment = 1
     # Test evidence can be captured at monitor resolution; cap it to a normal
     # portrait-page content width so a guide update cannot run off the page.
-    image_paragraph.add_run().add_picture(str(image), width=Inches(6.1))
+    section = document.sections[-1]
+    available_width = (section.page_width - section.left_margin - section.right_margin) / 914400
+    with Image.open(image) as pixels:
+        width = min(6.1, available_width, 4.2 * pixels.width / pixels.height)
+    image_paragraph.add_run().add_picture(str(image), width=Inches(width))
     caption_paragraph = cell.add_paragraph()
     caption_run = caption_paragraph.add_run(caption)
     caption_run.font.highlight_color = WD_COLOR_INDEX.YELLOW
@@ -170,6 +200,9 @@ def validate_update(update: dict, ticket: str) -> None:
             fail(f"{ticket} {field} is missing")
     if not isinstance(update.get("steps"), list) or not update["steps"] or any(not isinstance(step, str) or not step.strip() for step in update["steps"]):
         fail(f"{ticket} needs non-empty guide steps")
+    notes = update.get('notes', [])
+    if not isinstance(notes, list) or any(not isinstance(note, str) or not note.strip() for note in notes):
+        fail(f"{ticket} notes must be an array of non-empty strings")
     screenshots = update.get("screenshots")
     if not isinstance(screenshots, list) or not screenshots or len(set(screenshots)) != len(screenshots):
         fail(f"{ticket} needs distinct screenshots")
@@ -428,6 +461,8 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
         add_before(anchor_proxy, yellow_paragraph(f"{label}: {update['title'].strip()}", "Heading 1")._p)
         add_before(anchor_proxy, yellow_paragraph(f"Section: {update['affectedSection'].strip()}")._p)
         for paragraph in yellow_steps([step.strip() for step in update["steps"]]):
+            add_before(anchor_proxy, paragraph)
+        for paragraph in yellow_notes(document, update.get('notes', [])):
             add_before(anchor_proxy, paragraph)
         for index, relative in enumerate(update["screenshots"], start=1):
             image = screenshot_path(evidence_root, ticket, relative)
