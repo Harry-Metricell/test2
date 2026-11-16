@@ -15,3 +15,11 @@ export function guideNoteIssues(notes) {
   }
   return guideInstructionIssues(notes).map(issue => issue.replace('Guide step', 'Guide note'));
 }
+
+// Reader text must not accumulate editorial coverage reports. Provenance belongs
+// in record metadata; genuine usage limitations remain valid guide content.
+export function guideEditorialIssues(texts) {
+  const caveat = /\b(?:coverage|documentation) gap\s*[:—-]|\b(?:this|the) (?:guide|walkthrough|document) (?:does not|doesn't|doesn’t|cannot|has not|hasn't|hasn’t)\b|\bno complete (?:verified )?(?:procedure|instructions)\b|\b(?:supplied walkthrough|retained source|this walkthrough)\b/i;
+  return texts.flatMap(text => typeof text === 'string' && caveat.test(text)
+    ? ['Guide reader text describes documentation coverage or test history; keep it in supporting metadata'] : []);
+}

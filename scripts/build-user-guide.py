@@ -25,6 +25,7 @@ from docx.shared import Inches, RGBColor
 from docx.table import Table
 from docx.text.paragraph import Paragraph
 from PIL import Image
+from guide_consistency import scan as scan_guide, validate as validate_guide
 
 MARKER = "[[AUTO_GUIDE_CONTENT]]"
 UPDATE_MARKER = "[[AUTO_GUIDE_UPDATE:{ticket}]]"
@@ -431,6 +432,7 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
     if source.resolve() != output.resolve():
         shutil.copy2(source, output)
     document = Document(output)
+    original_consistency = scan_guide(document)
     marker = marker_paragraph(document)
     # The example baseline's closing note precedes the hidden marker. Keep
     # generated guidance before that note so the document still ends properly.
@@ -477,8 +479,12 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
     set_hidden(marker)
     layout = editorial_layout(document, plan)
     prune_unused_images(document)
+    try:
+        consistency = validate_guide(document, original_consistency)
+    except ValueError as error:
+        fail(str(error))
     document.save(output)
-    return {"source": str(source.relative_to(repo)), "output": str(output.relative_to(repo)), "applied": applied, "skipped": skipped, "editorial": layout}
+    return {"source": str(source.relative_to(repo)), "output": str(output.relative_to(repo)), "applied": applied, "skipped": skipped, "editorial": layout, "consistency": consistency}
 
 
 def main() -> None:

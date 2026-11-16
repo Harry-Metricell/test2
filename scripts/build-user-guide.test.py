@@ -47,6 +47,7 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     write_json(repo / "tickets/TEST2-99/guide-update.json", {"schema": "v4-user-guide-update.v1", "ticket": "TEST2-99", "title": "Open the launcher", "affectedSection": "Getting started", "changeType": "add", "steps": ["Open the launcher."], "notes": ["Available modules depend on your permissions.", "Choose a workspace for your task."], "screenshots": ["screenshots/attempt-001/criterion-1-final.png"], "reason": "The launcher is a new user-facing entry point."})
     command = [sys.executable, str(BUILDER), "--repo", str(repo), "--evidence-root", str(evidence), "--ticket", "TEST2-99"]
     first = subprocess.run(command, capture_output=True, text=True)
+    assert json.loads(first.stdout)['consistency']['scope'] == 'whole_document', first.stderr
     assert first.returncode == 0, first.stderr or first.stdout
     output = repo / "assets/user-guide/V4 User Guide.docx"
     result = Document(output)
@@ -190,5 +191,20 @@ with tempfile.TemporaryDirectory(dir=TEST_ROOT) as temporary:
     assert guide.editorial_layout(amended, retirement)["retired"] == ["TEST2-100"]
     assert len(amended.inline_shapes) == 0
     assert "Existing guidance must stay unchanged." in "\n".join(p.text for p in amended.paragraphs)
+
+    # A direct builder call also rejects reader-facing coverage caveats without
+    # overwriting the current guide; the publisher's early check is not the only gate.
+    bad_image = evidence / 'TEST2-102/screenshots/attempt-001/example.png'
+    bad_image.parent.mkdir(parents=True)
+    Image.new('RGB', (64, 32), 'navy').save(bad_image)
+    write_json(repo / 'tickets/TEST2-102/guide-update.json', {
+        'schema':'v4-user-guide-update.v1', 'ticket':'TEST2-102', 'title':'Library navigation',
+        'affectedSection':'Knowledge Library', 'changeType':'add',
+        'steps':['This guide does not cover document search.'],
+        'screenshots':['screenshots/attempt-001/example.png'], 'reason':'Example update.'})
+    before_rejected_build = output.read_bytes()
+    rejected = subprocess.run([sys.executable, str(BUILDER), '--repo', str(repo), '--evidence-root', str(evidence), '--ticket', 'TEST2-102'], capture_output=True, text=True)
+    assert rejected.returncode != 0 and 'Whole-guide consistency check' in (rejected.stderr + rejected.stdout)
+    assert output.read_bytes() == before_rejected_build, 'rejected wording must not replace the guide'
 
 print("build-user-guide regression test passed")

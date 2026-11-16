@@ -120,7 +120,9 @@ jobs:
         run: python scripts/prepare-editable-report.test.py
 
       - name: Run user-guide builder regression tests
-        run: python scripts/build-user-guide.test.py
+        run: |
+          python scripts/build-user-guide.test.py
+          python scripts/guide-consistency.test.py
 
       - name: Run user-guide evidence verifier regression tests
         run: python scripts/verify-user-guide.test.py

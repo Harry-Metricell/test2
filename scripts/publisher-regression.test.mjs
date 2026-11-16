@@ -27,7 +27,14 @@ test('report publication buffers HTTPS and bounds stalled transfers without forc
   assert.ok(!args.some(value => /force/.test(value)));
 });
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
-import { guideInstructionIssues, guideNoteIssues } from './guide-instruction-policy.mjs';
+import { guideInstructionIssues, guideNoteIssues, guideEditorialIssues } from './guide-instruction-policy.mjs';
+
+test('guide reader copy omits editorial caveats but retains useful product qualifications', () => {
+  for (const text of ['This guide does not cover Customer Care.', 'Coverage gap: no complete instructions.', 'The retained source shows the view.', 'No complete verified procedure is available.']) {
+    assert.ok(guideEditorialIssues([text]).length, text);
+  }
+  assert.deepEqual(guideEditorialIssues(['Available workspaces depend on permissions.', 'No samples does not mean no service.', 'Add Coverage Gap Candidate Areas.', 'Predicted coverage is modelled rather than measured.', 'Figure 1. Map controls in an earlier layout.']), []);
+});
 
 test('supporting guide notes are optional bullet text with the same user-facing boundaries', () => {
   assert.deepEqual(guideNoteIssues(undefined), []);

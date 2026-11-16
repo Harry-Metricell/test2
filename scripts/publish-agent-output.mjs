@@ -7,7 +7,7 @@ import { validateEvidenceCoverage } from './evidence-coverage.mjs';
 import { verifyCaptures } from './tester-capture.mjs';
 import { copySupportingEvidence } from './supporting-evidence.mjs';
 import { hasCompleteScreenshotCaptions } from './guide-screenshot-captions.mjs';
-import { guideInstructionIssues, guideNoteIssues } from './guide-instruction-policy.mjs';
+import { guideInstructionIssues, guideNoteIssues, guideEditorialIssues } from './guide-instruction-policy.mjs';
 import { guideMarkerCounts } from './guide-document-index.mjs';
 import { criteriaQualityErrors } from './criteria-quality.mjs';
 import { serviceImportRefresh } from './jira-import-refresh.mjs';
@@ -397,6 +397,7 @@ function buildVerifiedUserGuide(key, run) {
     windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000
   }));
   if (!result.applied.includes(key)) return false;
+  log('user_guide_consistency_scanned', result.consistency);
   try {
     execFileSync(soffice, [`-env:UserInstallation=${pathToFileURL(profile).href}`, '--headless', '--norestore', '--convert-to', 'pdf', '--outdir', renderDir, docx], {
       windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000
@@ -705,6 +706,8 @@ if (outputType === 'criteria-output.json') {
   if (!Array.isArray(output.screenshots) || output.screenshots.length === 0 || output.screenshots.some(file => typeof file !== 'string' || !/^(?:cycles[\\/]cycle-\d{3,}[\\/])?screenshots[\\/].+\.png$/i.test(file) || file.includes('..'))) fail('guide update screenshots must be safe PNG evidence paths');
   if (new Set(output.screenshots).size !== output.screenshots.length) fail('guide update screenshots must be distinct');
   if (!hasCompleteScreenshotCaptions(output)) fail('guide update screenshotCaptions must describe every screenshot in order');
+  const editorialIssues = guideEditorialIssues([output.title, ...output.steps, ...(output.notes || []), ...output.screenshotCaptions]);
+  if (editorialIssues.length) fail(editorialIssues.join('; '));
   if (typeof output.reason !== 'string' || !output.reason.trim()) fail('guide update reason is missing');
   const impact = readJson(path.join(ticketDir, 'guide-impact.json'));
   const review = readJson(path.join(ticketDir, 'review.json'));

@@ -238,6 +238,14 @@ test('guide workers retain passed-only policy, replacement identity and captions
   assert.ok(brief('user-guide-capture').includes('not an active coordinator stage'));
 });
 
+test('guide changes require a whole-document sweep without reader-facing coverage caveats', () => {
+  const author = brief('user-guide-authoring');
+  assert.match(author, /whole-document consistency sweep/);
+  assert.match(author, /self-contained and task-focused/);
+  assert.match(author, /supporting metadata/);
+  assert.match(author, /Do not launch another tester or reviewer/);
+});
+
 test('guide impact never substitutes a stale Desktop queue for live input', () => {
   const impact = brief('user-guide-impact');
   for (const rule of ['Resolve the current main commit', 'at the same commit',

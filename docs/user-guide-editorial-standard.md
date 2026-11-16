@@ -9,6 +9,7 @@ Write a platform user guide that explains a useful task, not a record of a QA jo
 - A launcher directory must include every card visible in the reviewed account, or explicitly identify itself as selected examples. Record the observation date and account/deployment scope. Card descriptions establish advertised purpose and availability, not successful execution of the module workflow. Do not invent missing module procedures or present a historical screenshot as current evidence.
 - Put parallel options, available fields, explanations and limitations in optional `notes` bullets. Avoid long comma-separated catalogues inside a step. Notes must be supported by the reviewed ticket and evidence.
 - Keep essential qualifications beside the instruction they affect. Distinguish an example from a requirement. Do not infer universal availability from one account or deployment.
+- Keep sections self-contained. Describe the task and relevant controls, without documentation-gap notes, test-history commentary or lists of what this guide does not cover. Keep coverage, source dates and verification history in supporting metadata. Keep brief operational qualifications only when they affect correct use or interpretation.
 - Exclude test setup rituals, initial-state recording, evidence collection and mandatory cleanup. Describe useful undo or persistence behaviour only where supported.
 - Amend the exact existing generated section when it needs changing. Do not append another walkthrough of the same controls. Baseline-section updates require a separate supported identity contract; this standard does not activate the local indexed draft.
 
@@ -23,6 +24,8 @@ Write a platform user guide that explains a useful task, not a record of a QA jo
 - Preserve aspect ratio and fit images within page width and height. Keep each image and caption together. Never stretch an image or leave a caption detached on the next page.
 
 ## Publication check
+
+Every amendment requires a whole-document consistency sweep, not only a check of the changed block. Search the complete guide for related names, navigation, instructions, captions and cross-references; inspect matches for contradictions and stale wording. Deterministic code scans all paragraphs on every build, including tables, links, text boxes and header/footer stories. It rejects newly introduced editorial caveats, broken internal links and missing numbered-section references; pre-existing findings are reported in the publisher log rather than silently deleting manual material. Semantic agreement still needs evidence-based author judgement. The scan itself uses no model tokens. Do not reread all screenshots or start extra QA workers when a compact text search resolves the check.
 
 Confirm the exact live handoff and passed review, validate the text and optional notes, retain reviewed screenshot provenance, render the document, and verify all expected evidence images. Check changed pages for overlap, clipping and excessive whitespace. Update indexes only through their supported contract. A successful JSON or PDF check alone does not establish editorial quality or current product availability.
 
