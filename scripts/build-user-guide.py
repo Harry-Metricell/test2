@@ -14,7 +14,6 @@ import copy
 import json
 import os
 import re
-import shutil
 from pathlib import Path
 
 from docx import Document
@@ -26,6 +25,7 @@ from docx.table import Table
 from docx.text.paragraph import Paragraph
 from PIL import Image
 from guide_consistency import scan as scan_guide, validate as validate_guide
+from guide_figures import GuideFigures, LOCAL, captions as figure_captions_in, figure_key
 
 MARKER = "[[AUTO_GUIDE_CONTENT]]"
 UPDATE_MARKER = "[[AUTO_GUIDE_UPDATE:{ticket}]]"
@@ -213,6 +213,16 @@ def validate_update(update: dict, ticket: str) -> None:
     if captions is not None and (not isinstance(captions, list) or len(captions) != len(screenshots)
                                 or any(not isinstance(value, str) or not value.strip() for value in captions)):
         fail(f"{ticket} screenshotCaptions must describe every screenshot in order")
+    slots = update.get("preserveFigureSlots")
+    if slots is not None:
+        if update["changeType"] != "amend" or not isinstance(slots, list) or len(slots) != len(screenshots):
+            fail(f"{ticket} preserveFigureSlots needs one entry per amendment screenshot")
+        previous = [slot for slot in slots if slot is not None]
+        if any(type(slot) is not int or slot < 1 for slot in previous) or len(set(previous)) != len(previous):
+            fail(f"{ticket} preserveFigureSlots must use distinct positive old positions or null")
+    for wording in [*update["steps"], *notes]:
+        if "[[FIGURE" in LOCAL.sub("", wording):
+            fail(f"{ticket} malformed figure reference. Use [[FIGURE:1]] for the first screenshot.")
 
 
 def screenshot_caption(update: dict, index: int) -> str:
@@ -318,9 +328,17 @@ def editorial_layout(document: Document, plan: dict) -> dict:
             for index, (paragraph, caption) in enumerate(zip(figure_captions, captions[ticket]), 1):
                 if not isinstance(caption, str) or not caption.strip():
                     fail(f"empty editorial caption for {ticket}")
+                bookmarks = [node for node in paragraph._p
+                             if node.tag in {qn("w:bookmarkStart"), qn("w:bookmarkEnd")}]
                 paragraph.clear()
+                for node in bookmarks:
+                    if node.tag == qn("w:bookmarkStart"):
+                        paragraph._p.append(node)
                 run = paragraph.add_run(f"Figure {index}: {caption}")
                 run.font.highlight_color = WD_COLOR_INDEX.YELLOW
+                for node in bookmarks:
+                    if node.tag == qn("w:bookmarkEnd"):
+                        paragraph._p.append(node)
         # Keep short instructions together, but do not chain them into the
         # figure row: Word can otherwise insert a blank page when both move.
         intro = []
@@ -426,12 +444,9 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
     if not source.is_file():
         fail(f"guide source is missing: {source.relative_to(repo)}")
     output.parent.mkdir(parents=True, exist_ok=True)
-    # Subsequent runs intentionally use the living guide as their source and
-    # destination.  Copying a file over itself is both unnecessary and can be
-    # locked by Windows, so only create the first living-guide copy.
-    if source.resolve() != output.resolve():
-        shutil.copy2(source, output)
-    document = Document(output)
+    document = Document(source)
+    figures = GuideFigures(document)
+    figures.bind_existing()
     original_consistency = scan_guide(document)
     marker = marker_paragraph(document)
     # The example baseline's closing note precedes the hidden marker. Keep
@@ -449,8 +464,11 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
             skipped.append(ticket)
             continue
         old_elements = []
+        previous_keys = []
         if update["changeType"] == "amend":
             anchor_element, old_elements = superseded_block(document, update["supersedesTicket"])
+            previous_keys = [figure_key(caption) for element in reversed(old_elements)
+                             for caption in figure_captions_in(element)]
         else:
             anchor_element = anchor._p
         label = "New feature" if update["changeType"] == "add" else "Updated guidance"
@@ -462,14 +480,18 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
             add_before(anchor_proxy, cycle_paragraph._p)
         add_before(anchor_proxy, yellow_paragraph(f"{label}: {update['title'].strip()}", "Heading 1")._p)
         add_before(anchor_proxy, yellow_paragraph(f"Section: {update['affectedSection'].strip()}")._p)
-        for paragraph in yellow_steps([step.strip() for step in update["steps"]]):
-            add_before(anchor_proxy, paragraph)
-        for paragraph in yellow_notes(document, update.get('notes', [])):
+        keys = figures.new_keys(ticket, len(update["screenshots"]), previous_keys,
+                                update.get("preserveFigureSlots"))
+        paragraphs = yellow_steps([step.strip() for step in update["steps"]])
+        paragraphs.extend(yellow_notes(document, update.get("notes", [])))
+        for paragraph in paragraphs:
+            figures.bind_local(paragraph, keys)
             add_before(anchor_proxy, paragraph)
         for index, relative in enumerate(update["screenshots"], start=1):
             image = screenshot_path(evidence_root, ticket, relative)
             caption = screenshot_caption(update, index - 1)
             table = yellow_screenshot(document, image, f"Figure {index}: {caption}")
+            figures.bookmark(table.cell(0, 0).paragraphs[-1]._p, keys[index - 1])
             anchor_element.addprevious(table._tbl)
         identity = yellow_paragraph(UPDATE_MARKER.format(ticket=ticket), hidden=True)
         add_before(anchor_proxy, identity._p)
@@ -478,6 +500,15 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
         applied.append(ticket)
     set_hidden(marker)
     layout = editorial_layout(document, plan)
+    layout["figures"] = figures.refresh()
+    if any("PAGEREF" in field.get(qn("w:instr"), "")
+           for field in document._element.iter(qn("w:fldSimple"))):
+        settings = document.settings.element
+        update_fields = settings.find(qn("w:updateFields"))
+        if update_fields is None:
+            update_fields = OxmlElement("w:updateFields")
+            settings.append(update_fields)
+        update_fields.set(qn("w:val"), "true")
     prune_unused_images(document)
     try:
         consistency = validate_guide(document, original_consistency)
@@ -497,7 +528,11 @@ def main() -> None:
     repo = Path(args.repo).resolve()
     plan = read_json(repo / "config" / "user-guide-plan.json")
     output = Path(args.output).resolve() if args.output else (repo / plan["publishedGuide"]).resolve()
-    print(json.dumps(build(repo, output, Path(args.evidence_root), args.ticket), indent=2))
+    try:
+        result = build(repo, output, Path(args.evidence_root), args.ticket)
+    except ValueError as error:
+        fail(str(error))
+    print(json.dumps(result, indent=2))
 
 
 if __name__ == "__main__":

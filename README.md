@@ -344,6 +344,8 @@ The builder rejects missing PNGs, preserves unchanged content, places each new s
 
 ### Editorial integration
 
+The [guide builder contract](docs/user-guide-builder-contract.md) defines section placement, caption numbering and figure links. Workers supply caption text and local screenshot references. The builder assigns the final figure numbers across the document.
+
 The living document keeps the example baseline and places verified generated instructions beside the relevant module chapter. New and changed content stays yellow. `config/user-guide-plan.json` contains optional `editorial.sectionRoutes`: match an `affectedSection` prefix and insert the intact block before an exact chapter heading. Unknown sections stay at their existing insertion location; a configured missing/ambiguous heading fails safely. Retained hidden markers remain amendable after relocation.
 
 `editorial.retiredUpdates` records explicitly consolidated duplicate sections, their replacement ticket and the editorial reason. This is not an automatic similarity-based deletion: historical ticket records, reports and original screenshots remain stored. Retired sections cannot be recreated by rebuilding old ticket records. Removed screenshot relationships are pruned from the Word package, while cover/header artwork and remaining images are preserved. Screenshots and captions stay together; pictures are not shrunk to reduce page count.

@@ -8,6 +8,7 @@ from pathlib import Path
 from zipfile import ZipFile
 
 from docx import Document
+from docx.oxml.ns import qn
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,6 +22,63 @@ legacy = {"title": "Change linked sites", "steps": ["Open GIS."], "screenshots":
 assert "Open GIS" not in guide.screenshot_caption(legacy, 0)
 assert "criterion-3-final.png" in guide.screenshot_caption(legacy, 0)
 TEST_ROOT = ROOT / ".guide-staging" / "test-tmp"
+
+
+def check_figure_references():
+    document = Document()
+    prose = document.add_paragraph("See ")
+    prose.add_run("Figure ")
+    prose.add_run("1").bold = True
+    prose.add_run(" for the current settings.")
+    old_caption = document.add_paragraph("Figure 1. Current settings.")
+    figures = guide.GuideFigures(document)
+    figures.bind_existing()
+    old_key = guide.figure_key(old_caption._p)
+
+    update_step = document.add_paragraph("Select the new option in [[FIGURE:1]].")
+    new_key, retained = figures.new_keys("TEST2-101", 2, [old_key], [None, 1])
+    figures.bind_local(update_step._p, [new_key, retained])
+    new_caption = document.add_table(rows=1, cols=1).cell(0, 0).paragraphs[0]
+    new_caption.add_run("Figure 1: New option.")
+    figures.bookmark(new_caption._p, new_key)
+    old_caption._p.addprevious(new_caption._p.getparent().getparent().getparent())
+    replacement = document.add_paragraph("Figure 1: Current settings after the update.")
+    old_caption._p.addprevious(replacement._p)
+    old_caption._p.getparent().remove(old_caption._p)
+    figures.bookmark(replacement._p, retained)
+
+    assert figures.refresh() == 2
+    links = list(document._element.iter(qn("w:hyperlink")))
+    assert [link.get(qn("w:anchor")) for link in links] == [old_key, new_key]
+    assert ["".join(node.text for node in link.iter(qn("w:t"))) for link in links] == ["Figure 2", "Figure 1"]
+    assert replacement.text == "Figure 2: Current settings after the update."
+    assert figures.refresh() == 2
+    replacement._p.getparent().remove(replacement._p)
+    try:
+        figures.refresh()
+    except ValueError as error:
+        assert "was removed" in str(error)
+    else:
+        raise AssertionError("An amendment removed a figure that still has a reference")
+
+
+check_figure_references()
+
+
+def check_legacy_placeholder():
+    document = Document()
+    placeholder = document.add_paragraph("[Screenshot placeholder — Figure 1]")
+    document.add_paragraph("Figure 1: A generated illustration.")
+    manual = document.add_paragraph("Figure 1 — Login example.")
+    figures = guide.GuideFigures(document)
+    figures.bind_existing()
+    assert figures.refresh() == 2
+    link = placeholder._p.find(qn("w:hyperlink"))
+    assert link.get(qn("w:anchor")) == guide.figure_key(manual._p)
+    assert link.find(".//" + qn("w:t")).text == "Figure 2"
+
+
+check_legacy_placeholder()
 
 
 def write_json(path, value):
