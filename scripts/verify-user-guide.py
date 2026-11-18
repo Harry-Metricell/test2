@@ -33,12 +33,20 @@ def private_figure_pages(document, marker, update, pages):
     current = receipt.getprevious()
     labels = []
     for expected_caption in reversed(update["screenshotCaptions"]):
-        if current is None or current.tag != qn("w:tbl"):
-            raise ValueError("Private update receipt is missing its screenshot table")
+        if current is None:
+            raise ValueError("Private update receipt is missing its screenshot")
         label, = (visible(p) for p in captions(current))
         if label.split(". ", 1)[-1] != expected_caption.strip():
             raise ValueError("Private update has an unexpected figure caption")
         labels.append(" ".join(label.split()))
+        if current.tag == qn("w:p"):
+            current = current.getprevious()
+            if current is None or len(list(current.iter(qn("w:drawing")))) != 1:
+                raise ValueError("Private guide caption must follow one intact screenshot")
+        elif current.tag != qn("w:tbl"):
+            raise ValueError("Private guide figure has an unsupported layout")
+        if next(current.iter(qn("a:srcRect")), None) is not None:
+            raise ValueError("Private guide screenshots must be shown in full")
         current = current.getprevious()
     for sibling in receipt.itersiblings(preceding=True):
         wording = visible(sibling)

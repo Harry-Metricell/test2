@@ -53,6 +53,12 @@ def exercise(root, baseline):
     target_view = guide.section_view(actual, target, actual_index[target], True)
     other_view = guide.section_view(actual, other, actual_index[other], True)
     assert "Synthetic scale example." in target_view["figures"][-1]
+    new_caption = next(p for p in guide.captions(actual._element.body)
+                       if guide._text(p).endswith("Synthetic scale example."))
+    picture = new_caption.getprevious()
+    assert len(list(picture.iter(qn("w:drawing")))) == 1
+    assert next(picture.iter(qn("a:srcRect")), None) is None
+    assert picture.find(".//" + qn("w:keepNext")) is not None
     assert not any("Synthetic" in paragraph for paragraph in other_view["paragraphs"])
     def without_renumbering(values):
         return [re.sub(r"\bFigure \d+\b", "Figure #", value) for value in values]
