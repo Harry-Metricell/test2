@@ -111,7 +111,15 @@ Create children in the saved Test2 project using its synchronised local environm
 
 The projectId belongs inside target. Add no summaries or other instructions. Each child rereads its live brief and verifies handoff ID, ticket, action and handoffVersion through the GitHub connector, not the local checkout. Local queue absence never proves live handoff absence. An absent/changed handoff confirmed by a current connector read produces a chat-only no-op, not staged output.
 
-Preserve cost allocation: set model "gpt-6-luna" and thinking "low" for criteria, guide-impact and guide-authoring children. Tester/reviewer children retain their configured stronger browser/review-capable model; omit overrides for those stages. Keep the coordinator's own model unchanged. Apply this allocation to new children only; do not restart or repeat existing work to change its model. Model choices never relax evidence, safety or publication gates. Importer, publisher and bundler are deterministic, not model tasks.
+For new children, set the top-level `model` and `thinking` fields on the task creation call:
+
+| Action | Model | Thinking |
+| --- | --- | --- |
+| `criteria_conversion`, `guide_impact_assessment`, `guide_update_authoring` | `gpt-6-luna` | `low` |
+| `test_ticket` | `gpt-6.1-terra` | `medium` |
+| `evidence_review` | `gpt-6.2-sol` | `medium` |
+
+If task creation explicitly rejects a model as unavailable and confirms that no child was created, retry creation once with `gpt-6.1-sol` and the same effort. For queued or uncertain responses, follow the existing child lookup rules before any retry. Keep the coordinator's own model unchanged. Do not restart or repeat existing work to change its model. Preserve the normal evidence, safety and publication gates. Importer, publisher and bundler run as scripts.
 
 Store ready threadId and returned hostId verbatim; do not infer local from the requested environment or use clientThreadId where threadId is required. Setup-in-progress is not failure. If no ready ID is exposed, check list_threads for the newly created Test2 task for up to 2 minutes, then at 2-minute intervals until ready or a definite error, processing independent work between checks. Do not finish because setup is slow.
 

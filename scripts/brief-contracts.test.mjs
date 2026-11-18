@@ -90,10 +90,12 @@ test('coordinator suppresses repeated unchanged-status narration', () => {
 
 test('coordinator preserves economical worker allocation without restarting work', () => {
   const coordinator = brief('coordinator');
-  assert.match(coordinator, /set model "gpt-6-luna" and thinking "low" for criteria, guide-impact and guide-authoring children/);
-  assert.match(coordinator, /Tester\/reviewer children retain their configured stronger browser\/review-capable model; omit overrides/);
+  assert.ok(coordinator.includes('| `criteria_conversion`, `guide_impact_assessment`, `guide_update_authoring` | `gpt-6-luna` | `low` |'));
+  assert.ok(coordinator.includes('| `test_ticket` | `gpt-6.1-terra` | `medium` |'));
+  assert.ok(coordinator.includes('| `evidence_review` | `gpt-6.2-sol` | `medium` |'));
+  assert.match(coordinator, /confirms that no child was created, retry creation once/);
   assert.match(coordinator, /Keep the coordinator's own model unchanged/);
-  assert.match(coordinator, /do not restart or repeat existing work to change its model/);
+  assert.match(coordinator, /Do not restart or repeat existing work to change its model/);
   assert.doesNotMatch(coordinator, /gpt-5\.6-luna/);
 });
 

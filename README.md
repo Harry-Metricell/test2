@@ -119,7 +119,7 @@ Start each manual coordinator cycle as a fresh Codex task in the saved Test2 pro
 
 Do not add instructions to that launch message. The brief requires a fresh live read and contains the worker-selection, lock, retry, and publication rules. A completed chat is not itself proof that output was published; check the live handoff queue and ticket files.
 
-New criteria, guide-impact and guide-authoring chats use `gpt-6-luna` with `low` reasoning. Tester and evidence-review chats retain their configured stronger model without overrides; the current showcase setup uses `gpt-6.1-sol` with `medium` reasoning for those jobs and the coordinator. The coordinator does not change its own model or restart existing work for a model change. Import, publishing and status bundling are scripts, not model jobs. Validate the new model on the next fresh ticket; contract tests verify the allocation instructions, not model output quality.
+New criteria, guide-impact and guide-authoring chats use `gpt-6-luna` with `low` reasoning. Browser testing uses `gpt-6.1-terra` with `medium` reasoning, and independent evidence review uses `gpt-6.2-sol` with `medium` reasoning. The coordinator uses its existing model. Import, publishing and status bundling run as scripts. Use the next fresh ticket to check evidence completeness, retries and measured tokens per completed ticket. See the [coordinator brief](docs/briefs/coordinator.md#child-task-creation-and-models) for allocation and fallback rules.
 
 ## Publishing safety
 
@@ -415,7 +415,7 @@ Static Playwright baseline integration is not part of the active pipeline yet. G
 
 New workers reduce orchestration overhead while preserving source requirements and evidence checks:
 
-- Criteria, guide-impact and guide-authoring use `gpt-6-luna` with low reasoning. Browser testing and independent evidence review keep their configured stronger model. Existing workers are not restarted to change models.
+- The [coordinator brief](docs/briefs/coordinator.md#child-task-creation-and-models) defines the model and reasoning effort for each new worker.
 - The coordinator uses cursor-based, batched waits and caches immutable inputs within a stage. Import requests reuse pending work or verified success no older than five minutes; they do not force another Actions run on every resume. Exact remote run verification and completion freshness still apply.
 - `node scripts/coordinator-observation.mjs --previous <lastDigest>` returns only changed local progress counts. Omit `--previous` on first use and retain its digest in ignored run state. It reads local bookkeeping without changing files or contacting services. Missing/unreadable state fails explicitly. These hints never establish liveness, publication, queue completion or lease expiry.
 - Criteria keep coherent field lists together, with every field checked explicitly. Testing follows the source scope rather than expanding a one-column assertion into every-column regression. Required branches and independent starting conditions remain separate.
