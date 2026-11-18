@@ -184,7 +184,7 @@ def keep_figure_together(table: Table) -> None:
                 paragraph.paragraph_format.keep_with_next = index < len(cell.paragraphs) - 1
 
 
-def validate_update(update: dict, ticket: str) -> None:
+def validate_update(update: dict, ticket: str, *, private=False) -> None:
     if update.get("schema") != "v4-user-guide-update.v1":
         fail(f"{ticket} has an unsupported guide update schema")
     if update.get("ticket") != ticket:
@@ -192,7 +192,7 @@ def validate_update(update: dict, ticket: str) -> None:
     if update.get("changeType") not in {"add", "amend"}:
         fail(f"{ticket} has an invalid changeType")
     target = update.get("supersedesTicket")
-    if update["changeType"] == "amend" and (not isinstance(target, str) or not KEY.fullmatch(target) or (target == ticket and not re.fullmatch(r"cycle-(?:00[2-9]|0[1-9]\d|[1-9]\d{2,})", str(update.get("cycleId", ""))))):
+    if not private and update["changeType"] == "amend" and (not isinstance(target, str) or not KEY.fullmatch(target) or (target == ticket and not re.fullmatch(r"cycle-(?:00[2-9]|0[1-9]\d|[1-9]\d{2,})", str(update.get("cycleId", ""))))):
         fail(f"{ticket} amend requires a distinct supersedesTicket")
     if update["changeType"] == "add" and target not in (None, ""):
         fail(f"{ticket} add must not supersede another ticket")
@@ -432,8 +432,21 @@ def prune_unused_images(document: Document) -> None:
             document.part.drop_rel(relationship_id)
 
 
+def enable_page_reference_refresh(document):
+    if any("PAGEREF" in field.get(qn("w:instr"), "")
+           for field in document._element.iter(qn("w:fldSimple"))):
+        settings = document.settings.element
+        fields = settings.find(qn("w:updateFields"))
+        if fields is None:
+            fields = OxmlElement("w:updateFields")
+            settings.append(fields)
+        fields.set(qn("w:val"), "true")
+
+
 def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -> dict:
     plan = read_json(repo / "config" / "user-guide-plan.json")
+    if plan.get("publicationMode") == "private":
+        fail("This checkout uses the private guide. Run private-user-guide.py for local builds.")
     policy = read_json(repo / "config" / "user-guide-update-policy.json")
     if plan.get("updatePolicy", {}).get("highlightColour") != "yellow" or policy.get("highlightColour") != "yellow":
         fail("both guide policies must require yellow highlighting")
@@ -501,14 +514,7 @@ def build(repo: Path, output: Path, evidence_root: Path, requested: list[str]) -
     set_hidden(marker)
     layout = editorial_layout(document, plan)
     layout["figures"] = figures.refresh()
-    if any("PAGEREF" in field.get(qn("w:instr"), "")
-           for field in document._element.iter(qn("w:fldSimple"))):
-        settings = document.settings.element
-        update_fields = settings.find(qn("w:updateFields"))
-        if update_fields is None:
-            update_fields = OxmlElement("w:updateFields")
-            settings.append(update_fields)
-        update_fields.set(qn("w:val"), "true")
+    enable_page_reference_refresh(document)
     prune_unused_images(document)
     try:
         consistency = validate_guide(document, original_consistency)

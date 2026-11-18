@@ -1,5 +1,6 @@
 {
   "schema": "v4-user-guide-plan.v1",
+  "publicationMode": "private",
   "baselineTemplate": "assets/user-guide/V4 User Guide Template.docx",
   "publishedGuide": "assets/user-guide/V4 User Guide.docx",
   "captureRoot": ".guide-staging",

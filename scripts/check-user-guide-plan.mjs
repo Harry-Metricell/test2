@@ -12,6 +12,7 @@ try {
 }
 
 if (plan?.schema !== 'v4-user-guide-plan.v1') fail('schema must be v4-user-guide-plan.v1');
+if (plan.publicationMode !== undefined && plan.publicationMode !== 'private') fail('publicationMode must be private when set');
 for (const field of ['baselineTemplate', 'publishedGuide', 'captureRoot']) {
   if (typeof plan[field] !== 'string' || !plan[field].trim()) fail(`${field} must be a non-empty path`);
   if (path.isAbsolute(plan[field]) || plan[field].split(/[\\/]/).includes('..')) fail(`${field} must remain inside the repository`);

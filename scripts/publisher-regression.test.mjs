@@ -256,17 +256,21 @@ test('publishes new remote tickets from stale dirty Desktop; rejects incomplete 
     g(seed, 'fetch'); g(seed, 'reset', '--hard', 'origin/main');
     write(path.join(seed, 'tickets/TEST2-99/review.json'), JSON.stringify({ overallOutcome: 'Passed', qaStatus: 'Evidence Reviewed' }));
     write(path.join(seed, 'tickets/TEST2-99/report.pdf'), 'verified evidence report');
+    write(path.join(seed, 'config/user-guide-plan.json'), JSON.stringify({ publicationMode: 'private' }));
     write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-guide-impact', handoffVersion: 'TEST2-99:guide_impact_assessment:1', ticket: 'TEST2-99', action: 'guide_impact_assessment' }] }));
     g(seed, 'add', '.'); g(seed, 'commit', '-m', 'Queue guide impact assessment'); g(seed, 'push');
     const guideStage = path.join(desktop, '.agent-staging/handoff-TEST2-99-guide-impact');
     write(path.join(guideStage, 'guide-impact-output.json'), JSON.stringify({ handoffId: 'handoff-TEST2-99-guide-impact', handoffVersion: 'TEST2-99:guide_impact_assessment:1', ticket: 'TEST2-99', decision: 'not_needed', affectedSection: '', reason: 'The verified change has no end-user instructions.', noOp: false }));
     const guideImpact = run(); assert.equal(guideImpact.status, 0, `${guideImpact.stderr}\n${guideImpact.stdout}`);
     g(seed, 'fetch');
-    assert.equal(JSON.parse(g(seed, 'show', 'origin/main:tickets/TEST2-99/guide-impact.json')).decision, 'not_needed');
+    const guideImpactReceipt = JSON.parse(g(seed, 'show', 'origin/main:tickets/TEST2-99/guide-impact.json'));
+    assert.equal(guideImpactReceipt.decision, 'not_needed');
+    assert.equal(guideImpactReceipt.reason, 'Private guide impact assessed');
 
     // A real guide payload has steps/screenshots, not review criterionOutcomes.
     // It must validate its owned images and reach the renderer prerequisite.
     g(seed, 'reset', '--hard', 'origin/main');
+    write(path.join(seed, 'config/user-guide-plan.json'), JSON.stringify({}));
     write(path.join(seed, 'config/user-guide-update-policy.json'), JSON.stringify({ enabled: true, onlyForPassedEvidenceReviews: true, requireVerifiedTicketEvidence: true, allowChangeTypes: ['add'] }));
     write(path.join(seed, 'tickets/TEST2-99/guide-impact.json'), JSON.stringify({ decision: 'update_required' }));
     write(path.join(seed, 'status/handoffs.json'), JSON.stringify({ handoffs: [{ handoffId: 'handoff-TEST2-99-guide-update', handoffVersion: 'TEST2-99:guide_update_authoring:1', ticket: 'TEST2-99', action: 'guide_update_authoring' }] }));

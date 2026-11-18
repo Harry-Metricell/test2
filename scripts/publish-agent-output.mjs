@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { formatReviewReport } from './format-review-report.mjs';
 import { reportPushArgs, fetchedPublicationSha } from './git-report-push-policy.mjs';
 import { reportVerificationTimeout } from './report-process-policy.mjs';
@@ -414,6 +415,47 @@ function buildVerifiedUserGuide(key, run) {
   return true;
 }
 
+function preparePrivateGuide(update) {
+  if (!process.env.LOCALAPPDATA) fail('Private guide requires LOCALAPPDATA on the publisher PC');
+  const folder = fs.realpathSync(path.join(process.env.LOCALAPPDATA, 'TEST2', 'private-guide'));
+  for (const checkout of [sourceRepo, repo]) {
+    const relative = path.relative(fs.realpathSync(checkout), folder);
+    if (!relative || (!relative.startsWith('..' + path.sep) && relative !== '..' && !path.isAbsolute(relative))) {
+      fail('Private guide storage must be outside both publication checkouts');
+    }
+  }
+  const live = path.join(folder, 'Metricell Platform User Guide.docx');
+  if (!nonEmpty(live) || fs.lstatSync(live).isSymbolicLink()) fail('Install the private V1 guide on the publisher PC');
+  const sourceHash = fileSha256(live);
+  const python = process.env.TEST2_PYTHON || path.join(os.homedir(), '.cache', 'codex-runtimes', 'codex-primary-runtime', 'dependencies', 'python', 'python.exe');
+  const soffice = process.env.TEST2_SOFFICE || path.join(process.env.LOCALAPPDATA, 'TEST2', 'libreoffice', 'program', 'soffice.exe');
+  if (!nonEmpty(soffice)) fail('Private guide PDF renderer is missing');
+  const directory = fs.mkdtempSync(path.join(folder, 'verify-'));
+  process.on('exit', () => { try { fs.rmSync(directory, { recursive: true, force: true }); } catch {} });
+  const candidate = path.join(directory, 'candidate.docx');
+  const record = path.join(directory, 'update.json');
+  writeJson(record, update);
+  const opts = { windowsHide: true, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 240000 };
+  const runPrivate = (program, args) => {
+    try { return execFileSync(program, args, opts); }
+    catch (error) { fail(`Private guide validation failed: ${String(error.stderr || error.message).trim()}`); }
+  };
+  const result = JSON.parse(runPrivate(python, [path.join(repo, 'scripts', 'private-user-guide.py'),
+    '--guide', live, 'apply', '--update', record, '--output', candidate, '--evidence-root', evidenceRoot]));
+  const profile = pathToFileURL(path.join(directory, 'lo-profile')).href;
+  const consoleRenderer = soffice.replace(/\.exe$/i, '.com');
+  runPrivate(nonEmpty(consoleRenderer) ? consoleRenderer : soffice, [`-env:UserInstallation=${profile}`, '--headless', '--norestore', '--convert-to', 'pdf', '--outdir', directory, candidate]);
+  const verification = JSON.parse(runPrivate(python, [path.join(repo, 'scripts', 'verify-user-guide.py'),
+    '--docx', candidate, '--pdf', path.join(directory, 'candidate.pdf'), '--update', record,
+    '--evidence-root', evidenceRoot, '--private-marker', result.marker]));
+  log('private_guide_verified', { ticket: update.ticket, pages: verification.pages, figures: result.figures });
+  return { candidate, live, sourceHash, applied: result.applied, installed: false };
+}
+
+function fileSha256(file) {
+  return createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+}
+
 function publishUsageSnapshot() {
   if (process.env.TEST2_USAGE_SITE_DISABLED === '1') return;
   const usageDir = path.join(sourceRepo, '.agent-staging', 'usage');
@@ -550,6 +592,7 @@ const status = readJson(statusFile);
 if (output.handoffId && !String(output.handoffId).startsWith(`handoff-${key}-`)) fail('Handoff does not match ticket');
 
 const changed = [];
+let privateGuide;
 const testingContext = readTestingContext(repo, key);
 if (testingContext && (outputType === 'test-output.json' || outputType === 'review-output.json')) {
   requireTestedModule(testingContext, output, outputType === 'review-output.json'
@@ -680,23 +723,34 @@ if (outputType === 'criteria-output.json') {
   const review = readJson(path.join(ticketDir, 'review.json'));
   if (String(review.overallOutcome || review.qaStatus || '').trim().toLowerCase() !== 'passed') fail('Guide impact can only be published after a passed evidence review');
   if (!nonEmpty(path.join(ticketDir, 'report.pdf'))) fail('Guide impact requires the passed evidence report');
-  const guideImpact = { schema: 'v4-user-guide-impact.v1', ...output, assessedAt: new Date().toISOString() };
+  const privateImpact = readJson(path.join(repo, 'config', 'user-guide-plan.json'))?.publicationMode === 'private';
+  const guideImpact = privateImpact
+    ? { schema: 'v4-user-guide-impact.v1', ticket: key, cycleId: selectedCycle, handoffId: output.handoffId,
+        handoffVersion: output.handoffVersion, decision: output.decision,
+        affectedSection: output.decision === 'update_required' ? 'Private guide' : '',
+        reason: 'Private guide impact assessed', assessedAt: new Date().toISOString() }
+    : { schema: 'v4-user-guide-impact.v1', ...output, assessedAt: new Date().toISOString() };
   writeJson(path.join(ticketDir, 'guide-impact.json'), guideImpact);
   status.guideImpact = guideImpact;
   writeJson(statusFile, status);
   changed.push(`tickets/${key}/guide-impact.json`, `tickets/${key}/status.json`);
 } else if (outputType === 'guide-update-output.json') {
   const policy = readJson(path.join(repo, 'config', 'user-guide-update-policy.json'));
+  const guidePlan = readJson(path.join(repo, 'config', 'user-guide-plan.json'));
+  const privateMode = guidePlan.publicationMode === 'private';
   if (policy.enabled !== true || policy.onlyForPassedEvidenceReviews !== true || policy.requireVerifiedTicketEvidence !== true) fail('User-guide update authoring is disabled by policy');
   if (typeof output.title !== 'string' || !output.title.trim()) fail('guide update title is missing');
   if (typeof output.affectedSection !== 'string' || !output.affectedSection.trim()) fail('guide update affectedSection is missing');
   if (!Array.isArray(policy.allowChangeTypes) || !policy.allowChangeTypes.includes(output.changeType)) fail('guide update changeType is invalid');
-  if (output.changeType === 'amend') {
+  if (privateMode) {
+    if (typeof output.sectionId !== 'string' || !/^[a-z0-9][a-z0-9.-]+$/.test(output.sectionId)
+        || typeof output.sectionSha256 !== 'string' || !/^[a-f0-9]{64}$/.test(output.sectionSha256)
+        || output.supersedesTicket != null) fail('Private guide update requires an exact sectionId and sectionSha256');
+  } else if (output.changeType === 'amend') {
     if (typeof output.supersedesTicket !== 'string' || !/^TEST2-\d+$/.test(output.supersedesTicket) || (output.supersedesTicket === key && selectedCycle === firstCycle)) fail('guide amendment needs a distinct supersedesTicket or a later testing cycle');
     const oldKey = output.supersedesTicket;
     const oldRecord = latestGuideRecord(repo, oldKey);
     if (!oldRecord) fail(`guide amendment target ${oldKey} has no published update`);
-    const guidePlan = readJson(path.join(repo, 'config', 'user-guide-plan.json'));
     const markerCount = guideMarkerCounts(path.join(repo, guidePlan.publishedGuide)).get(oldKey) || 0;
     if (markerCount !== 1) fail(`guide amendment target ${oldKey} is not present exactly once in the living guide (found ${markerCount}); select a current indexed section`);
   } else if (output.supersedesTicket != null) fail('new guide section must not supersede another ticket');
@@ -715,12 +769,16 @@ if (outputType === 'criteria-output.json') {
   const verifiedEvidence = new Set((Array.isArray(results) ? results : []).flatMap(item => Array.isArray(item?.evidence) ? item.evidence : []));
   if (impact?.decision !== 'update_required' || String(review?.overallOutcome || '').toLowerCase() !== 'passed' || !nonEmpty(path.join(ticketDir, 'report.pdf'))) fail('Guide update requires a passed reviewed update_required ticket');
   if (output.screenshots.some(file => !verifiedEvidence.has(file))) fail('guide update screenshots must come from the ticket’s verified results');
-  const guideUpdate = { schema: 'v4-user-guide-update.v1', ...output, authoredAt: new Date().toISOString() };
+  if (privateMode) privateGuide = preparePrivateGuide({ ...output, schema: 'v4-user-guide-update.v1' });
+  const guideUpdate = privateMode
+    ? { schema: 'v4-user-guide-update.v1', ticket: key, cycleId: selectedCycle, handoffId: output.handoffId,
+        handoffVersion: output.handoffVersion, title: 'Private guide updated', private: true }
+    : { schema: 'v4-user-guide-update.v1', ...output, authoredAt: new Date().toISOString() };
   writeJson(path.join(ticketDir, 'guide-update.json'), guideUpdate);
   status.guideUpdate = guideUpdate;
   writeJson(statusFile, status);
   changed.push(`tickets/${key}/guide-update.json`, `tickets/${key}/status.json`);
-  if (buildVerifiedUserGuide(key, run)) changed.push('assets/user-guide/V4 User Guide.docx');
+  if (!privateMode && buildVerifiedUserGuide(key, run)) changed.push('assets/user-guide/V4 User Guide.docx');
 } else {
   if (!Array.isArray(output.criterionOutcomes) || output.criterionOutcomes.length === 0) fail('criterionOutcomes is missing');
   if (output.criterionOutcomes.some((item) => !item || !['string', 'number'].includes(typeof item.criterion) || typeof item.outcome !== 'string' || typeof item.reason !== 'string')) {
@@ -824,6 +882,12 @@ function publishFromCleanWorktree() {
       if (!publicationStillCurrent(worktree, output, selectedCycle, expectedAction)) {
         return { staleArchived: true, archivePath: archiveStaleRun(run, output.handoffId) };
       }
+      if (privateGuide) {
+        const allowed = new Set([`tickets/${key}/guide-update.json`, `tickets/${key}/status.json`]);
+        if (changed.length !== allowed.size || changed.some(relative => !allowed.has(relative))) {
+          fail('Private guide publication can only stage ticket receipt files');
+        }
+      }
       if (changed.includes('assets/user-guide/V4 User Guide.docx')) {
         const guideRef = 'HEAD:assets/user-guide/V4 User Guide.docx';
         if (runGitAt(worktree, ['rev-parse', guideRef]) !== runGitAt(repo, ['rev-parse', guideRef])) {
@@ -848,6 +912,13 @@ function publishFromCleanWorktree() {
         return { noOp: true };
       }
       runGitAt(worktree, ['commit', '-m', `Publish TEST2 ${key} agent output`], cleanIndex);
+      if (privateGuide?.applied && !privateGuide.installed) {
+        if (fileSha256(privateGuide.live) !== privateGuide.sourceHash) fail('Private guide changed during verification; retry against its latest version');
+        const backup = path.join(path.dirname(privateGuide.live), 'Previous private guide.docx');
+        fs.copyFileSync(privateGuide.live, backup);
+        fs.renameSync(privateGuide.candidate, privateGuide.live);
+        privateGuide.installed = true;
+      }
       try {
         runGitAt(worktree, reportPushArgs(), cleanIndex);
         const publishedCommit = runGitAt(worktree, ['rev-parse', 'HEAD'], cleanIndex);

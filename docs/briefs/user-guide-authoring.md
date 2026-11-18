@@ -4,23 +4,33 @@ Create exactly one concise, evidence-backed guide update for the selected `guide
 
 ## Select and verify
 
-Read live GitHub `status/handoffs.json` first. Confirm the supplied handoff ID, ticket, action, and `handoffVersion` are still live. Read the listed `ticket.json`, generated ticket projection, passed `review.json`, `report.md`, `results.json`, `guide-impact.json`, `status/guide-updates.json`, `config/user-guide-plan.json`, and both user-guide policy files. For an amendment, read the selected indexed section and its `guide-update.json` from the same verified repository revision. If the handoff is absent or changed, return a no-op only in chat.
+Read live GitHub `status/handoffs.json` first. Confirm the supplied handoff ID, ticket, action, and `handoffVersion` are still live. Read the listed `ticket.json`, generated ticket projection, passed `review.json`, `report.md`, `results.json`, `guide-impact.json`, `status/guide-updates.json`, `config/user-guide-plan.json`, and both user-guide policy files. In legacy mode, read the selected indexed amendment section and its `guide-update.json` from the same verified repository revision. If the handoff is absent or changed, return a no-op only in chat.
 
 ## Write useful instructions
+
+For `publicationMode: private`, use the local indexed guide. Run these commands from the TEST2 checkout using the publisher's Python:
+
+```powershell
+$guidePython = if ($env:TEST2_PYTHON) { $env:TEST2_PYTHON } else { "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" }
+& $guidePython scripts/private-user-guide.py list
+& $guidePython scripts/private-user-guide.py section <section-id>
+```
+
+Select one editable section ID and read only that section. Include its exact `sectionId` and `sectionSha256` in the staged output. Use `add` for a distinct instruction within that section and `amend` for a complete replacement of its body. For an amendment, supply all instructions and figures the section should retain and map any retained illustration identities with `preserveFigureSlots`. Keep the section heading in place. Omit `supersedesTicket`. The older public guide index and ticket-based amendment rules below apply only to the legacy publication mode. The private publisher releases a completion receipt to GitHub. The guide, section text, caption text and figure references stay on the publisher PC.
 
 Keep each section self-contained and task-focused. Do not add commentary about what the guide lacks, which features were not tested, coverage gaps, missing documentation, or what still needs to be written. Keep source dates, verification scope and authoring limitations in the update record and supporting metadata. Retain only brief qualifications necessary to use or interpret the feature correctly; do not turn them into a prerequisite checklist.
 
 Read the target section and its reviewed evidence. Use the compact guide index to locate the target. The builder performs the whole-document consistency sweep and handles figure numbering and links after placement. If the target or evidence identifies a conflict outside the supported amendment, report the exact conflict. Do not launch another tester or reviewer for this check. See [User guide builder contract](../user-guide-builder-contract.md) for the handoff format.
 
-Apply `docs/user-guide-editorial-standard.md`. Use general task-based titles rather than a ticket-specific navigation journey. Keep ordered actions in `steps`; put parallel options, fields and supported qualifications in optional `notes` bullets. Select only the distinct reviewed screenshots needed to explain the task. Do not broaden a layer-specific observation into an unsupported platform-wide claim. The builder owns template styling and pagination; the local full-platform draft is not yet the live baseline.
+Apply `docs/user-guide-editorial-standard.md`. Use task-based titles. Keep ordered actions in `steps` and supported qualifications in optional `notes` bullets. Select only the distinct reviewed screenshots needed to explain the task. The builder owns styling and pagination.
 
 Do not present a selected list of modules or controls as a complete inventory. Retain the source date and verified scope for every added factual claim; seeing a launcher card does not establish that its workflow works. Yellow markings cover all added or rewritten guide text, including titles, captions and notes.
 
-Use the selected handoff's exact cycle-scoped ID/version. Indexed sections may originate in archived testing cycles: read their `recordPath` when supplied instead of guessing a current-root file. If a later cycle updates this same ticket's existing generated section, choose `amend` with `supersedesTicket` equal to this ticket, only when its exact indexed section needs changing. The publisher records cycleId and replaces that section once; never append a duplicate or reuse an earlier cycle's evidence. Refetch the exact live handoff before staging.
+Use the selected handoff's exact cycle-scoped ID/version and evidence. In legacy mode, indexed sections may originate in archived cycles, so read the supplied `recordPath`. A later cycle can amend its own indexed generated block by setting `supersedesTicket` to the same ticket. Refetch the exact live handoff before staging.
 
-Write clear end-user instructions for the delivered, passed behaviour. Do not invent screens, controls, or outcomes. Reuse one or more verified PNG paths from the ticket's `results.json`; the builder will only accept evidence from the reviewed ticket. Choose `add` for a genuinely new guide section. Choose `amend` only when replacing one exact prior generated section from `status/guide-updates.json`; set `supersedesTicket` to that section's ticket key. If the correct prior section is unclear, stop with a concise failure instead of appending duplicate instructions. Every step must be a short imperative sentence suitable for the guide.
+Write clear instructions for the delivered, passed behaviour. Reuse one or more verified PNG paths from the current ticket's `results.json`. In legacy mode, `add` creates a generated section and `amend` replaces an exact indexed generated section using `supersedesTicket`. In private mode, use the local section contract above. If the correct target is unclear, report the issue. Write each step as a short instruction.
 
-The index includes only sections whose unique marker exists in the current living guide, not every historical update record. Never name an unindexed historical ticket as an amendment target. If the index has no exact corresponding generated section, add only a distinct useful section; do not pretend a manually authored baseline is a replaceable generated block.
+In legacy mode, the public index lists active generated markers. In private mode, the local index lists baseline section IDs and whether each section is editable.
 
 Compare the whole user task with existing indexed instructions, not just the ticket title. Another QA journey through the same controls is not a new guide feature. Prefer amending the existing section when its instructions need a genuine change. If the impact decision identifies no actual gap, stop with a concise reason instead of inventing duplicate instructions. Use a descriptive module-first `affectedSection` (for example `GIS layer catalogue`, `GIS Display Settings`, `V4 launcher module navigation`, `Agentic AI`, `Dashboards`, or `API Request Audit`) so the builder can place it beside the relevant chapter. Editorial retirement in `config/user-guide-plan.json` is deliberate consolidation; do not recreate retired sections or use their markers as amendment targets.
 
@@ -31,7 +41,7 @@ Translate tested behaviour into the user's goal; do not copy the test script. Ex
 Write exactly one file: `.agent-staging/<handoffId>/guide-update-output.json`. It must contain `handoffId`, `handoffVersion`, `ticket`, `title`, `affectedSection`, `changeType`, `steps`, `screenshots`, `screenshotCaptions`, `reason`, and `noOp`; include `supersedesTicket` only for an amendment.
 
 - `changeType` is `add` or `amend`.
-- For `amend`, `supersedesTicket` must identify the exact generated guide block to replace. For `add`, omit it.
+- In private mode supply `sectionId` and `sectionSha256`, and omit `supersedesTicket`. In legacy mode supply `supersedesTicket` only for an amendment.
 - `steps` is a non-empty ordered array of plain strings.
 - `notes`, when useful, is an array of non-empty plain strings rendered as supporting bullet points after the steps. Omit it when unnecessary. Notes must use the same passed-ticket evidence and end-user boundaries as steps.
 - `screenshots` is a non-empty array of distinct PNG paths taken verbatim from the selected ticket's `results.json` evidence.

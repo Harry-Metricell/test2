@@ -4,7 +4,9 @@ The authoring worker uses the compact index to find one section. It reads that s
 
 ## Section identity
 
-Use the existing guide update handoff fields. An amendment selects the exact indexed generated block via `supersedesTicket`. The builder uses its unique hidden marker to replace that block. An addition uses `affectedSection` for chapter routing under the guide plan. Replacement of a manually authored baseline section requires the separate baseline integration. The private V1 file is not the production source.
+The production guide uses the private indexed V1 file. Read the local heading list and one editable section with `scripts/private-user-guide.py`. The update names the exact `sectionId` and `sectionSha256`. An addition goes before that section's end marker. An amendment replaces the leaf section body and preserves its heading and contents bookmark. The builder rejects unknown, non-editable or changed sections. The publisher renders and verifies a separate candidate before installing it in private storage. It pushes a completion receipt containing the ticket, cycle and handoff identity. It does not push the guide or its authored content.
+
+The legacy builder used `supersedesTicket` to amend a generated block and `affectedSection` for chapter placement. Those rules are available for legacy fixtures and configurations.
 
 ## Figures and references
 
@@ -13,6 +15,6 @@ Use the existing guide update handoff fields. An amendment selects the exact ind
 - Each caption gets an internal Word bookmark. Once layout and retirement rules have run, the builder numbers captions in document order, including captions in tables. It then updates the displayed text of every managed figure link from its bookmark.
 - In an amendment, `preserveFigureSlots` optionally maps each new screenshot to the old position of the same illustration. For example, `[null, 1]` adds a new image before the first old illustration while keeping links to that old illustration working. Use `null` for a new subject. Omitting the mapping gives the replacement images fresh identities.
 - Before moving or replacing blocks, the builder converts legacy plain-text `Figure N` references with a unique target into bookmark links. If a reference has multiple possible targets or its figure is removed, the build stops with the reference that needs repair.
-- Preview and publication checks use the final numbering. The builder preserves existing contents fields and section bookmarks. Word updates existing page references when the document opens. Adding new contents entries for manually authored V1 sections belongs to baseline integration.
+- Preview and publication checks use the final numbering. The builder preserves existing contents fields and section bookmarks. Word updates existing page references when the document opens.
 
 These operations are deterministic. The authoring worker does not need to read or count figures outside its target section.

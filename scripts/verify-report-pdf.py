@@ -7,6 +7,7 @@ import re
 
 from PIL import Image, ImageChops, ImageStat
 from pypdf import PdfReader
+from pypdf.generic import ContentStream
 
 
 FINGERPRINT_BITS = 256
@@ -38,11 +39,41 @@ def fingerprint_distance(left, right):
     return (int(left, 16) ^ int(right, 16)).bit_count()
 
 
-def pdf_images(pdf_path):
+def painted_images(page):
+    """Select painted XObjects. Writer can share image resources across pages."""
+    def walk(stream, resources, prefix=(), active=()):
+        xobjects = resources.get("/XObject", {}).get_object() if "/XObject" in resources else {}
+        for args, operator in stream.operations:
+            if operator == b"INLINE IMAGE":
+                yield None
+            if operator != b"Do" or args[0] not in xobjects:
+                continue
+            name = args[0]
+            target = xobjects[name].get_object()
+            key = (*prefix, name)
+            if target.get("/Subtype") == "/Image":
+                yield key[0] if len(key) == 1 else key
+            elif target.get("/Subtype") == "/Form" and id(target) not in active:
+                yield from walk(ContentStream(target, page.pdf), target.get("/Resources", resources),
+                                key, (*active, id(target)))
+    stream = page.get_contents()
+    if stream is None:
+        return []
+    keys = list(dict.fromkeys(walk(stream, page.get("/Resources", {}))))
+    explicit = [page.images[key] for key in keys if key is not None]
+    if None in keys:
+        explicit.extend(page.images[key] for key in page.images.keys()
+                        if isinstance(key, str) and key.startswith("~"))
+    return explicit
+
+
+def pdf_images(pdf_path, page_numbers=None):
     images = []
     decoded = {}
     for page_number, page in enumerate(PdfReader(pdf_path).pages, 1):
-        for image in page.images:
+        if page_numbers is not None and page_number not in page_numbers:
+            continue
+        for image in painted_images(page) if page_numbers is not None else page.images:
             digest = hashlib.sha256(image.data).hexdigest()
             if digest not in decoded:
                 pixels = image.image.convert("RGB")
@@ -118,6 +149,8 @@ def match_expected_images(expected, observed):
     for item in expected:
         ranked = []
         for index, image in enumerate(observed):
+            if item.get("captionPage") is not None and image["page"] != item["captionPage"]:
+                continue
             if image["sourceSha256"] == item["sourceSha256"]:
                 method, metrics, rank = "source_sha256", (0, 0), 0
             else:

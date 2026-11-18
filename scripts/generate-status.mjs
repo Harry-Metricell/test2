@@ -627,9 +627,12 @@ for (const base of [ticketsDir, path.join(root, 'archive', 'tickets')]) {
 }
 const guidePlanFile = path.join(root, 'config', 'user-guide-plan.json');
 const guidePlan = fs.existsSync(guidePlanFile) ? readJson(guidePlanFile) : {};
-const guideMarkers = guideMarkerCounts(path.join(root, guidePlan.publishedGuide || 'assets/user-guide/V4 User Guide.docx'));
+const guideMarkers = guidePlan.publicationMode === 'private'
+  ? new Map()
+  : guideMarkerCounts(path.join(root, guidePlan.publishedGuide || 'assets/user-guide/V4 User Guide.docx'));
 const superseded = new Set(guideRecords.filter(record => guideMarkers.get(record.ticket) === 1 && record.supersedesTicket !== record.ticket).map(record => record.supersedesTicket).filter(Boolean));
 writeJson(path.join(outDir, 'guide-updates.json'), { schema: 'v4-guide-updates-index.v1',
+  ...(guidePlan.publicationMode === 'private' ? { publicationMode: 'private' } : {}),
   sections: guideRecords.filter(record => guideMarkers.get(record.ticket) === 1 && !superseded.has(record.ticket))
     .map(({ ticket, title, affectedSection, recordPath }) => ({ ticket, title, affectedSection, recordPath }))
     .sort((a, b) => a.ticket.localeCompare(b.ticket, undefined, { numeric: true })) });

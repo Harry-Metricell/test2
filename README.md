@@ -320,11 +320,11 @@ Guide authoring must supply `screenshotCaptions`, one caption per verified scree
 
 New guide instructions describe user goals, not mandatory QA cleanup. The authoring brief explains how to turn test evidence into useful instructions; the publisher rejects explicit test bookkeeping, evidence capture, and recorded-initial-state restoration rituals. Legitimate undo and reset-to-default actions remain permitted. Existing published guide sections are not automatically rewritten by this policy change.
 
-The user guide is integrated into the ticket pipeline after a **Passed** evidence review and verified PDF. The guide-impact worker decides `not_needed` or `update_required`. Only `update_required` creates an authoring handoff; that worker selects instructions and screenshots from the ticket's verified evidence. It does not run a separate browser capture. The publisher adds the approved ticket-specific guidance to `assets/user-guide/V4 User Guide.docx`, renders and verifies a temporary PDF, then publishes the Word file and ticket update together. New headings, steps, captions, and screenshot panels are highlighted yellow; unchanged content remains intact. An `amend` update must name the exact prior generated section with `supersedesTicket`; the builder replaces that block and its old screenshots in place. It rejects ambiguous or missing targets instead of appending duplicates. Existing historical duplicates are not automatically removed.
+The guide updater runs after a **Passed** evidence review and verified PDF. The impact worker compares the ticket with the relevant guide section. Only `update_required` creates an authoring handoff. The author supplies instructions and screenshot paths from the ticket's reviewed evidence, together with the exact private section ID and revision hash. The publisher builds and verifies a private candidate before installing it. GitHub receives completion and impact receipts with operational metadata only. The public repository's older guide assets are historical.
 
 The generated next-action field follows queued guide work: it names the impact-assessment or authoring handoff instead of saying only `QA review complete`. The successful QA outcome remains Passed while those downstream guide stages are pending.
 
-The tracked baseline is `assets/user-guide/V4 User Guide Template.docx`; both it and the living guide contain a hidden `[[AUTO_GUIDE_CONTENT]]` marker. `config/user-guide-plan.json` currently has an empty `sections` list and defines the document paths and yellow-highlight rules. Its optional section plan is not a prerequisite for the ticket-driven guide-impact handoff. Validate guide configuration with:
+On the publisher PC, copy the approved indexed V1 Word guide to `%LOCALAPPDATA%\TEST2\private-guide\Metricell Platform User Guide.docx`. On a replacement PC, transfer the current private living guide to that location with the same account that runs the publisher. Keep the file outside the Git checkout. The current guide carries its section markers, figure bookmarks and completed update identities. Validate the plan with:
 
 ```powershell
 & "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-plan.mjs
@@ -332,21 +332,21 @@ The tracked baseline is `assets/user-guide/V4 User Guide Template.docx`; both it
 
 If guide build or verification fails, the staged worker output remains for retry and no partial guide update is pushed. The PDF is a temporary verification artifact, not the published guide. Keep the local LibreOffice renderer described above installed on the publisher PC, or set `TEST2_SOFFICE` to its `soffice.exe` path.
 
-To build a specific already-published guide update locally:
+To list the headings and read a single section locally:
 
 ```powershell
-& "$env:LOCALAPPDATA\TEST2\node\node.exe" .\scripts\check-user-guide-update-policy.mjs
 $reportPython = if ($env:TEST2_PYTHON) { $env:TEST2_PYTHON } else { "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" }
-& $reportPython .\scripts\build-user-guide.py --ticket TEST2-123
+& $reportPython .\scripts\private-user-guide.py list
+& $reportPython .\scripts\private-user-guide.py section gis.workspace.zoom
 ```
 
-The builder rejects missing PNGs, preserves unchanged content, places each new screenshot in a yellow panel, and retains the hidden marker for the next update. It is idempotent: building the same ticket twice does not add a duplicate section. `status/guide-updates.json` is the compact index of currently active generated sections, including those sourced from archived tickets; the authoring worker uses it to select an amendment target. The index verifies each section has exactly one marker in the actual living DOCX, and the publisher rechecks that condition before an amendment. Historical records whose markers are absent or duplicated are not offered as targets; a missing future amendment marker fails safely, without silently appending duplicate guidance. The local command above writes the tracked living guide; review the resulting Git diff before committing a manual rebuild.
+The builder adds yellow instructions and image panels in the chosen section, then refreshes numbers and links across the guide. The installed guide also records the exact update identity so retries cannot duplicate the content. The publisher keeps the previous verified private Word file next to the active copy for recovery.
 
 ### Editorial integration
 
 The [guide builder contract](docs/user-guide-builder-contract.md) defines section placement, caption numbering and figure links. Workers supply caption text and local screenshot references. The builder assigns the final figure numbers across the document.
 
-The living document keeps the example baseline and places verified generated instructions beside the relevant module chapter. New and changed content stays yellow. `config/user-guide-plan.json` contains optional `editorial.sectionRoutes`: match an `affectedSection` prefix and insert the intact block before an exact chapter heading. Unknown sections stay at their existing insertion location; a configured missing/ambiguous heading fails safely. Retained hidden markers remain amendable after relocation.
+Private mode uses exact section markers. The `editorial.sectionRoutes` and retirement settings describe the legacy public builder.
 
 `editorial.retiredUpdates` records explicitly consolidated duplicate sections, their replacement ticket and the editorial reason. This is not an automatic similarity-based deletion: historical ticket records, reports and original screenshots remain stored. Retired sections cannot be recreated by rebuilding old ticket records. Removed screenshot relationships are pruned from the Word package, while cover/header artwork and remaining images are preserved. Screenshots and captions stay together; pictures are not shrunk to reduce page count.
 

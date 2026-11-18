@@ -25,7 +25,7 @@ def _paragraphs(root):
 
 def captions(root):
     for paragraph in _paragraphs(root):
-        if CAPTION.match(_text(paragraph)) and not any(paragraph.iter(qn("w:drawing"))):
+        if CAPTION.match(_text(paragraph)) and next(paragraph.iter(qn("w:drawing")), None) is None:
             yield paragraph
 
 
@@ -168,7 +168,7 @@ def _replace_visible_range(paragraph, start, end, replacement):
 
 
 def _bind_links(paragraph, pattern, resolve, *, skip_fields=False):
-    if skip_fields and (any(paragraph.iter(qn("w:fldChar"))) or any(paragraph.iter(qn("w:instrText")))):
+    if skip_fields and any(node.tag in {qn("w:fldChar"), qn("w:instrText")} for node in paragraph.iter()):
         return
     # Join adjacent text-only runs so Word's arbitrary run splits don't hide a
     # reference. Keep existing links, fields, drawings and control characters.

@@ -64,7 +64,7 @@ Select by this priority, then deterministic handoffId order. Do not dispatch a l
 | test_ticket | docs/briefs/qa-testing.md | Exact handoff-specific attempt history and successful Status Bundler |
 | evidence_review | docs/briefs/evidence-review.md | review.json, report.md, status.json and non-empty verified report.pdf published together; successful Status Bundler |
 | guide_impact_assessment | docs/briefs/user-guide-impact.md | guide-impact.json and successful Status Bundler |
-| guide_update_authoring | docs/briefs/user-guide-authoring.md | guide-update.json and verified guide update; successful Status Bundler |
+| guide_update_authoring | docs/briefs/user-guide-authoring.md | Exact-cycle guide-update.json completion receipt and successful Status Bundler. In private mode the receipt confirms local guide verification and installation. |
 
 Testers and reviewers require imported Jira status exactly READY FOR TESTING. Other statuses wait for importer/bundler updates. A live test_ticket handoff is the retry/eligibility gate: do not add approvals or a separate attempt limit. Status Bundler permits two total attempts, with one retry for transient problems, including eligible inconclusive evidence. A directly human-authorised retry-request.json may grant the remaining second attempt after a completed review; never create or amend that request yourself. Product failures, missing prerequisites, flawed criteria and exhausted retries otherwise go to review/report. Never invent blocked_recovery or count attempts from history.
 
