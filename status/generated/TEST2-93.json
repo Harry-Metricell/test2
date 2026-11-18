@@ -1,0 +1,48 @@
+{
+  "key": "TEST2-93",
+  "cycleId": "cycle-001",
+  "testingContext": null,
+  "id": "106833",
+  "summary": "GIS: switch between base map styles",
+  "jira": {
+    "url": "https://metricell.atlassian.net/browse/TEST2-93",
+    "status": "READY FOR TESTING",
+    "priority": "Low",
+    "assignee": null,
+    "project": "TEST2",
+    "parent": null,
+    "created": "2026-11-18T16:17:10.751+0000",
+    "updated": "2026-11-18T16:17:30.060+0000"
+  },
+  "description": "On O2 V4 development, users need to choose a base map that makes the area they are inspecting easy to read. Verify the Map style control in GIS using an ordinary map view. No data edits, extra layers or special fixtures are required.\nAcceptance criteria\nThe Map style control opens a chooser with the current style and at least one alternative.\nSelecting an alternative changes the visible base map while keeping the same location and zoom level. Use recognisable map features or the scale bar to compare before and after.\nSelecting the original style restores the original base map.\nCapture the style chooser and the changed map as separate screenshots so the control and the resulting map are both visible.",
+  "acceptanceCriteria": [],
+  "files": {
+    "ticket": "tickets/TEST2-93/ticket.json",
+    "criteria": "tickets/TEST2-93/criteria.md",
+    "status": "tickets/TEST2-93/status.json",
+    "screenshots": "tickets/TEST2-93/screenshots/",
+    "reports": "tickets/TEST2-93/reports/"
+  },
+  "subtasks": [],
+  "source": {
+    "importedFrom": "https://metricell.atlassian.net/rest/api/3/issue/106833",
+    "importedAt": "2026-11-18T16:17:30.060+0000"
+  },
+  "status": {
+    "jiraStatus": "READY FOR TESTING",
+    "workflowState": "Ready",
+    "qaStatus": "Criteria Check Required",
+    "qaOutcome": "Not Tested",
+    "automationSuitability": "Unclassified",
+    "actionOwner": "Coordinator",
+    "nextAction": "Create criteria conversion handoff",
+    "reviewState": "Not Reviewed",
+    "guideImpact": null,
+    "guideUpdate": null,
+    "retries": 0,
+    "testAttempts": 0,
+    "blockedStage": null,
+    "updatedAt": "2026-11-18T16:17:30.060+0000",
+    "criteriaVerified": false
+  }
+}
