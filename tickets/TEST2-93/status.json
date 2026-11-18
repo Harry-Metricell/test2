@@ -2,9 +2,11 @@
   "cycleId": "cycle-001",
   "ticket": "TEST2-93",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Not Tested",
+  "qaStatus": "Ready for Testing",
   "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 1,
-  "testAttempts": 0
+  "testAttempts": 0,
+  "criteriaVerified": true,
+  "blockedStage": null
 }
