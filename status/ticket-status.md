@@ -9,7 +9,7 @@ Updated: 2026-11-18T16:17:30.060+0000
 | TEST2-86 | Blocked | Blocked |  | Display Upload Point Details |
 | TEST2-87 | Blocked | Evidence Reviewed |  | Display Call Point Details |
 | TEST2-89 | Blocked | Blocked |  | Map and inspect MS Teams Call results |
-| TEST2-93 | READY FOR TESTING | Awaiting Evidence Review |  | GIS: switch between base map styles |
+| TEST2-93 | READY FOR TESTING | Evidence Reviewed |  | GIS: switch between base map styles |
 | TEST2-90 | TESTING IN PROGRESS | Blocked |  | Map and inspect Automobile call results |
 | TEST2-78 | To Do | Evidence Reviewed |  | V4 GIS: search Surveyor and preserve the actual initial map and layer state |
 | TEST2-84 | To Do | Blocked |  | View Building Details and Floorplans |
