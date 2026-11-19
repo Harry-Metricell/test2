@@ -1,0 +1,115 @@
+{
+  "handoffId": "handoff-TEST2-93-cycle-002-test-attempt-001",
+  "handoffVersion": "TEST2-93:cycle-002:test_ticket:1",
+  "cycleId": "cycle-002",
+  "ticket": "TEST2-93",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "In an ordinary map view in GIS, open the Map style control and verify that its chooser shows the current base map style and at least one alternative.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-1-blocker-f83e9a3e-d373-4387-bc9b-5424955d813b.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Chooser shows current style",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-1-blocker-f83e9a3e-d373-4387-bc9b-5424955d813b.png"
+          ]
+        },
+        {
+          "assertion": "Chooser shows at least one alternative",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-1-blocker-f83e9a3e-d373-4387-bc9b-5424955d813b.png"
+          ]
+        }
+      ],
+      "steps_taken": [
+        "Navigated to the launcher twice; authentication redirected to a request-failed page with HTTP 500.",
+        "No sign-in controls were operated; GIS and the map style control could not be reached."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login",
+      "browserName": "Google Chrome",
+      "browserVersion": "157.0.8103.79",
+      "testedAt": "2026-11-19T12:14:23.402Z",
+      "reason": "Launcher unavailable because saved authentication did not recover; GIS was not reached. The screenshot shows the visible authentication blocker, not a launcher initial state.",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "Select an alternative style and verify that the visible base map changes while the location and zoom level remain the same, comparing recognisable map features or the scale bar before and after.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-2-blocker-a2f5f092-fbe7-4c96-9b08-3dc7f65c7166.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Alternative changes visible base map",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-blocker-a2f5f092-fbe7-4c96-9b08-3dc7f65c7166.png"
+          ]
+        },
+        {
+          "assertion": "Location remains the same",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-blocker-a2f5f092-fbe7-4c96-9b08-3dc7f65c7166.png"
+          ]
+        },
+        {
+          "assertion": "Zoom level remains the same",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-2-blocker-a2f5f092-fbe7-4c96-9b08-3dc7f65c7166.png"
+          ]
+        }
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and retried after sign-in appeared; authentication remained at the sign-in page.",
+        "No sign-in controls were operated; GIS and the map style control could not be reached."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login",
+      "browserName": "Google Chrome",
+      "browserVersion": "157.0.8103.79",
+      "testedAt": "2026-11-19T12:14:23.404Z",
+      "reason": "Launcher unavailable because saved authentication did not recover; GIS was not reached. The screenshot shows the visible authentication blocker, not a launcher initial state.",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "Select the original style and verify that the original base map is restored.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-002/screenshots/attempt-001/criterion-3-blocker-e8d07823-cbc4-430e-8df5-12d8b845a921.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Selecting original style restores original base map",
+          "outcome": "Blocked",
+          "evidence": [
+            "cycles/cycle-002/screenshots/attempt-001/criterion-3-blocker-e8d07823-cbc4-430e-8df5-12d8b845a921.png"
+          ]
+        }
+      ],
+      "steps_taken": [
+        "Navigated to the launcher and retried after sign-in appeared; authentication remained at the sign-in page.",
+        "No sign-in controls were operated; GIS and the map style control could not be reached."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login",
+      "browserName": "Google Chrome",
+      "browserVersion": "157.0.8103.79",
+      "testedAt": "2026-11-19T12:14:23.404Z",
+      "reason": "Launcher unavailable because saved authentication did not recover; GIS was not reached. The screenshot shows the visible authentication blocker, not a launcher initial state.",
+      "retryClass": "transient"
+    }
+  ],
+  "conciseReport": "All three criteria blocked because the launcher redirected to authentication and did not recover.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-93-cycle-002-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Authentication prevented access to the launcher and GIS.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-11-19T12:14:41.092Z"
+}
