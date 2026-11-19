@@ -1,35 +1,12 @@
 {
-  "cycleId": "cycle-001",
   "ticket": "TEST2-93",
-  "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Evidence Reviewed",
-  "status": "READY FOR TESTING",
-  "retries": 0,
-  "retryLimit": 1,
-  "testAttempts": 1,
   "criteriaVerified": true,
-  "blockedStage": null,
-  "qaOutcome": "Passed",
-  "workflowState": "READY FOR TESTING",
-  "nextAction": "QA review complete",
-  "guideImpact": {
-    "schema": "v4-user-guide-impact.v1",
-    "ticket": "TEST2-93",
-    "cycleId": "cycle-001",
-    "handoffId": "handoff-TEST2-93-guide-impact",
-    "handoffVersion": "TEST2-93:guide_impact_assessment:1",
-    "decision": "update_required",
-    "affectedSection": "Private guide",
-    "reason": "Private guide impact assessed",
-    "assessedAt": "2026-11-19T09:27:38.286Z"
-  },
-  "guideUpdate": {
-    "schema": "v4-user-guide-update.v1",
-    "ticket": "TEST2-93",
-    "cycleId": "cycle-001",
-    "handoffId": "handoff-TEST2-93-guide-update",
-    "handoffVersion": "TEST2-93:guide_update_authoring:1",
-    "title": "Private guide updated",
-    "private": true
-  }
+  "qaStatus": "Not Tested",
+  "workflowState": "Ready",
+  "retries": 0,
+  "testAttempts": 0,
+  "retryLimit": 1,
+  "cycleId": "cycle-002",
+  "jiraStatus": "READY FOR TESTING",
+  "status": "READY FOR TESTING"
 }
