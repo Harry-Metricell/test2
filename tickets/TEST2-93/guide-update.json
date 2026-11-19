@@ -1,0 +1,9 @@
+{
+  "schema": "v4-user-guide-update.v1",
+  "ticket": "TEST2-93",
+  "cycleId": "cycle-001",
+  "handoffId": "handoff-TEST2-93-guide-update",
+  "handoffVersion": "TEST2-93:guide_update_authoring:1",
+  "title": "Private guide updated",
+  "private": true
+}
