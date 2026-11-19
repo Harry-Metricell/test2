@@ -1,0 +1,124 @@
+{
+  "handoffId": "handoff-TEST2-93-test-attempt-001",
+  "handoffVersion": "TEST2-93:test_ticket:1",
+  "cycleId": "cycle-001",
+  "ticket": "TEST2-93",
+  "qaStatus": "Awaiting Evidence Review",
+  "results": [
+    {
+      "criterion": "In an ordinary map view in GIS, open the Map style control and verify that its chooser shows the current base map style and at least one alternative.",
+      "outcome": "Passed",
+      "testedAt": "2026-11-19T09:11:20Z",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "157.0.8103.79",
+      "steps_taken": [
+        "Opened the launcher and GIS; observed the existing Surveyor - Call layer and two existing detail tabs.",
+        "Opened Map style; the selected Street icon and alternatives Dark, Topology and Satellite were present. Accessible button labels identified the icon choices."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-1-initial-559ca4bd-3c60-4d25-ae4c-f5be27429a5a.png",
+        "screenshots/attempt-001/criterion-1-final-0742697a-2f87-498a-aab9-fce39ca52ea9.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Map style opens a chooser showing the current Street style",
+          "outcome": "Passed",
+          "evidence": [
+            "screenshots/attempt-001/criterion-1-final-0742697a-2f87-498a-aab9-fce39ca52ea9.png"
+          ]
+        },
+        {
+          "assertion": "The chooser offers at least one alternative",
+          "outcome": "Passed",
+          "evidence": [
+            "screenshots/attempt-001/criterion-1-final-0742697a-2f87-498a-aab9-fce39ca52ea9.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Select an alternative style and verify that the visible base map changes while the location and zoom level remain the same, comparing recognisable map features or the scale bar before and after.",
+      "outcome": "Passed",
+      "testedAt": "2026-11-19T09:12:52Z",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "157.0.8103.79",
+      "steps_taken": [
+        "Restarted at the launcher and opened GIS. Captured the original Street map with Birmingham, London, Milton Keynes and 50 km scale.",
+        "Opened Map style and selected Dark, captured the chooser and settled dark map separately. Birmingham, London and Milton Keynes remained in the same positions and the scale remained 50 km.",
+        "Restored Street after the final capture; existing layer and details were left in place."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-2-initial-e1e26621-7169-4b68-aa1b-3102c76aea05.png",
+        "screenshots/attempt-001/criterion-2-baseline-map-25190bab-8734-4cc2-8010-0b8901d548d9.png",
+        "screenshots/attempt-001/criterion-2-chooser-cc6db78d-8586-4751-a1f2-fa11d9dc5110.png",
+        "screenshots/attempt-001/criterion-2-final-f6f4523e-1f91-415f-9d6c-ab38a1060f89.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Selecting an alternative visibly changes the base map",
+          "outcome": "Passed",
+          "evidence": [
+            "screenshots/attempt-001/criterion-2-baseline-map-25190bab-8734-4cc2-8010-0b8901d548d9.png",
+            "screenshots/attempt-001/criterion-2-chooser-cc6db78d-8586-4751-a1f2-fa11d9dc5110.png",
+            "screenshots/attempt-001/criterion-2-final-f6f4523e-1f91-415f-9d6c-ab38a1060f89.png"
+          ]
+        },
+        {
+          "assertion": "Location remains the same",
+          "outcome": "Passed",
+          "evidence": [
+            "screenshots/attempt-001/criterion-2-baseline-map-25190bab-8734-4cc2-8010-0b8901d548d9.png",
+            "screenshots/attempt-001/criterion-2-final-f6f4523e-1f91-415f-9d6c-ab38a1060f89.png"
+          ]
+        },
+        {
+          "assertion": "Zoom remains the same",
+          "outcome": "Passed",
+          "evidence": [
+            "screenshots/attempt-001/criterion-2-baseline-map-25190bab-8734-4cc2-8010-0b8901d548d9.png",
+            "screenshots/attempt-001/criterion-2-final-f6f4523e-1f91-415f-9d6c-ab38a1060f89.png"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion": "Select the original style and verify that the original base map is restored.",
+      "outcome": "Passed",
+      "testedAt": "2026-11-19T09:15:10Z",
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/gis",
+      "browserName": "Google Chrome",
+      "browserVersion": "157.0.8103.79",
+      "steps_taken": [
+        "Restarted at the launcher and opened GIS; captured the original Street map.",
+        "Selected Dark and captured the changed map, then reopened Map style, selected Street and captured the restored map.",
+        "The original light map, recognisable locations, 50 km scale, pre-existing layer and detail tabs were visible again."
+      ],
+      "evidence": [
+        "screenshots/attempt-001/criterion-3-initial-8d63bca5-27ea-48fb-ba38-c7872d223bf1.png",
+        "screenshots/attempt-001/criterion-3-baseline-map-16e32fe5-2a84-4cad-9cb2-50a5a70bf5bb.png",
+        "screenshots/attempt-001/criterion-3-alternative-map-299b2b76-7763-4005-8c38-7069271ef3db.png",
+        "screenshots/attempt-001/criterion-3-final-4e93b6fa-8af5-496f-b921-1fda3ff13c99.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Selecting the original style restores the original base map",
+          "outcome": "Passed",
+          "evidence": [
+            "screenshots/attempt-001/criterion-3-baseline-map-16e32fe5-2a84-4cad-9cb2-50a5a70bf5bb.png",
+            "screenshots/attempt-001/criterion-3-alternative-map-299b2b76-7763-4005-8c38-7069271ef3db.png",
+            "screenshots/attempt-001/criterion-3-final-4e93b6fa-8af5-496f-b921-1fda3ff13c99.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "conciseReport": "# TEST2-93\n\nThree criteria tested; the chooser, style change and restoration were observed. Awaiting independent evidence review.",
+  "reportPath": "",
+  "evidenceFolder": "C:\\Users\\harry.piper\\Documents\\ChatGPT\\Test2-github\\.agent-staging\\handoff-TEST2-93-test-attempt-001\\screenshots",
+  "noOp": false,
+  "reason": "",
+  "historyAttempt": 1,
+  "recordedAt": "2026-11-19T09:16:38.526Z"
+}
