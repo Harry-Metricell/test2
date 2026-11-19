@@ -6,7 +6,7 @@
   "collectionCheckedHour": "2026-11-19T13:00:00.000Z",
   "collectionStatus": "partial_measurements",
   "measurementWindowDays": 14,
-  "observedThrough": "2026-11-19T13:23:24.196Z",
+  "observedThrough": "2026-11-19T13:24:25.797Z",
   "tickets": {
     "TEST2-93": {
       "measuredChats": 1,
@@ -15,11 +15,11 @@
         "qa-testing": {
           "measuredChats": 1,
           "unavailableChats": 0,
-          "input_tokens": 743017,
-          "cached_input_tokens": 701568,
-          "output_tokens": 1240,
-          "reasoning_output_tokens": 102,
-          "total_tokens": 744257
+          "input_tokens": 1432402,
+          "cached_input_tokens": 1382528,
+          "output_tokens": 2648,
+          "reasoning_output_tokens": 209,
+          "total_tokens": 1435050
         }
       }
     }
