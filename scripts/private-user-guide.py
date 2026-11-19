@@ -157,6 +157,15 @@ def apply(source, output, update, evidence):
                    for start in node.iter(qn("w:bookmarkStart"))):
                 raise ValueError(f"Section {key} has a non-figure bookmark in its body")
             node.getparent().remove(node)
+    title = update["title"].strip()
+    heading = re.sub(r"^\d+(?:\.\d+)*\.?\s+", "", view["heading"]).strip()
+    if not amending and title.casefold() != heading.casefold():
+        task = builder.yellow_paragraph(title)
+        task.runs[0].bold = True
+        task.paragraph_format.space_before = Pt(8)
+        task.paragraph_format.space_after = Pt(4)
+        task.paragraph_format.keep_with_next = True
+        anchor.addprevious(task._p)
     paragraphs = builder.yellow_steps(update["steps"]) + builder.yellow_notes(document, update.get("notes", []))
     if paragraphs and "[[FIGURE:1]]" in _text(paragraphs[-1]):
         # Keep a short callout immediately before the corresponding picture.

@@ -4,7 +4,7 @@ The authoring worker uses the compact index to find one section. It reads that s
 
 ## Section identity
 
-The production guide uses the private indexed V1 file. Read the local heading list and one editable section with `scripts/private-user-guide.py`. The update names the exact `sectionId` and `sectionSha256`. An addition goes before that section's end marker. An amendment replaces the leaf section body and preserves its heading and contents bookmark. The builder rejects unknown, non-editable or changed sections. The publisher renders and verifies a separate candidate before installing it in private storage. It pushes a completion receipt containing the ticket, cycle and handoff identity. It does not push the guide or its authored content.
+The production guide uses the private indexed V1 file. Read the local heading list and one editable section with `scripts/private-user-guide.py`. The update names the exact `sectionId` and `sectionSha256`. An addition goes before that section's end marker. The builder sets the update's task title in highlighted bold text and keeps it with the first instruction. It omits the title if it repeats the section heading. An amendment replaces the leaf section body and preserves its heading and contents bookmark. The builder rejects unknown, non-editable or changed sections. The publisher renders and verifies a separate candidate before installing it in private storage. It pushes a completion receipt containing the ticket, cycle and handoff identity. The guide and its authored content remain in private storage.
 
 The legacy builder used `supersedesTicket` to amend a generated block and `affectedSection` for chapter placement. Those rules are available for legacy fixtures and configurations.
 

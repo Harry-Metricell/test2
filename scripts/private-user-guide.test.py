@@ -53,6 +53,10 @@ def exercise(root, baseline):
     target_view = guide.section_view(actual, target, actual_index[target], True)
     other_view = guide.section_view(actual, other, actual_index[other], True)
     assert "Synthetic scale example." in target_view["figures"][-1]
+    task = next(p for p in actual.paragraphs if p.text == update["title"])
+    assert task.runs[0].bold and task.runs[0].font.highlight_color is not None
+    assert task.paragraph_format.keep_with_next
+    assert guide._text(task._p.getnext()).startswith("1. Check the scale example")
     new_caption = next(p for p in guide.captions(actual._element.body)
                        if guide._text(p).endswith("Synthetic scale example."))
     picture = new_caption.getprevious()
@@ -91,6 +95,7 @@ def exercise(root, baseline):
     amended_document = Document(amended)
     amended_view = guide.section_view(amended_document, target, guide.sections(amended_document)[target], True)
     assert amended_view["heading"] == view["heading"]
+    assert update["title"] not in amended_view["paragraphs"]
     assert len(amended_view["figures"]) == 1
     assert any("Read the amended example in Figure" in p for p in amended_view["paragraphs"])
     print(f"{target}: {target_view['figures'][-1]}; Surveyor reference: {guide._text(reference)}")

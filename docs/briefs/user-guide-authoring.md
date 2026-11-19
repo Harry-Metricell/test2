@@ -22,7 +22,9 @@ Keep each section self-contained and task-focused. Do not add commentary about w
 
 Read the target section and its reviewed evidence. Use the compact guide index to locate the target. The builder performs the whole-document consistency sweep and handles figure numbering and links after placement. If the target or evidence identifies a conflict outside the supported amendment, report the exact conflict. Do not launch another tester or reviewer for this check. See [User guide builder contract](../user-guide-builder-contract.md) for the handoff format.
 
-Apply `docs/user-guide-editorial-standard.md`. Use task-based titles. Keep ordered actions in `steps` and supported qualifications in optional `notes` bullets. Select only the distinct reviewed screenshots needed to explain the task. The builder owns styling and pagination.
+Apply `docs/user-guide-editorial-standard.md`. Give each addition a short action title such as “Change the base map style”. The title is printed above the procedure. Keep ordered actions in `steps`, and place an essential result or qualification in the step it belongs to. Use `notes` only for supplementary details. Read each step as it will appear with any figure reference rendered. Use natural wording such as “Open Map style (see [[FIGURE:1]]).”
+
+Inspect each selected screenshot at the size a reader will see it. Prefer reviewed views where the control or result is easy to find, with no unrelated panels, overlays or records competing for attention. Refer to icons by their verified name and visible shape when the interface displays no text label. If the cleanest available image still has distractions, describe exactly where to look without guessing what the image shows. Use only the distinct reviewed images the instructions need. The builder owns styling and pagination.
 
 Do not present a selected list of modules or controls as a complete inventory. Retain the source date and verified scope for every added factual claim; seeing a launcher card does not establish that its workflow works. Yellow markings cover all added or rewritten guide text, including titles, captions and notes.
 

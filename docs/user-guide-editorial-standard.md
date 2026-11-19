@@ -11,7 +11,7 @@ Write a platform user guide that explains a useful task, not a record of a QA jo
 - Keep essential qualifications beside the instruction they affect. Distinguish an example from a requirement. Do not infer universal availability from one account or deployment.
 - Keep sections self-contained. Describe the task and relevant controls, without documentation-gap notes, test-history commentary or lists of what this guide does not cover. Keep coverage, source dates and verification history in supporting metadata. Keep brief operational qualifications only when they affect correct use or interpretation.
 - Exclude test setup rituals, initial-state recording, evidence collection and mandatory cleanup. Describe useful undo or persistence behaviour only where supported.
-- Amend the exact existing generated section when it needs changing. Do not append another walkthrough of the same controls. Baseline-section updates require a separate supported identity contract; this standard does not activate the local indexed draft.
+- Amend the exact existing section when its instructions need changing. Add a titled procedure only when the current section covers a distinct task that should remain. Follow the private builder's section identity contract for baseline updates.
 
 ## Presentation
 
@@ -29,4 +29,4 @@ Every amendment requires a whole-document consistency sweep, not only a check of
 
 Confirm the exact live handoff and passed review, validate the text and optional notes, retain reviewed screenshot provenance, render the document, and verify all expected evidence images. Check changed pages for overlap, clipping and excessive whitespace. Update indexes only through their supported contract. A successful JSON or PDF check alone does not establish editorial quality or current product availability.
 
-The new full-platform document remains a local review draft until its section identity, publication and index integration are implemented and tested.
+The full-platform production guide is stored locally. Publish only the private update receipt through the TEST2 workflow.
