@@ -4,10 +4,26 @@
   "includesCoordinator": false,
   "aggregation": "retained_measured_history",
   "collectionCheckedHour": "2026-11-19T13:00:00.000Z",
-  "collectionStatus": "no_attributable_workers",
+  "collectionStatus": "partial_measurements",
   "measurementWindowDays": 14,
-  "observedThrough": null,
-  "tickets": {},
+  "observedThrough": "2026-11-19T13:23:24.196Z",
+  "tickets": {
+    "TEST2-93": {
+      "measuredChats": 1,
+      "unavailableChats": 0,
+      "roles": {
+        "qa-testing": {
+          "measuredChats": 1,
+          "unavailableChats": 0,
+          "input_tokens": 743017,
+          "cached_input_tokens": 701568,
+          "output_tokens": 1240,
+          "reasoning_output_tokens": 102,
+          "total_tokens": 744257
+        }
+      }
+    }
+  },
   "historicalTickets": {
     "TEST2-87": {
       "measuredChats": 2,
