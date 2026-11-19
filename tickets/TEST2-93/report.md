@@ -1,1 +1,1 @@
-All three criteria blocked because the launcher redirected to authentication and did not recover.
+Authentication prevented access to the launcher and GIS. All three criteria are blocked.
