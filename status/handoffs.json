@@ -1,11 +1,11 @@
 {
   "schema": "v4-qa-handoffs.v1",
-  "generatedAt": "2026-11-19T12:30:24.925+0000",
+  "generatedAt": "2026-11-19T13:27:41.252Z",
   "handoffs": [
     {
-      "handoffId": "handoff-TEST2-93-cycle-003-test-attempt-001",
-      "handoffVersion": "TEST2-93:cycle-003:test_ticket:1",
-      "attempt": 1,
+      "handoffId": "handoff-TEST2-93-cycle-003-retry-attempt-002",
+      "handoffVersion": "TEST2-93:cycle-003:test_ticket:2",
+      "attempt": 2,
       "action": "test_ticket",
       "brief": "docs/briefs/qa-testing.md",
       "owner": "ticket-tester",
@@ -15,7 +15,7 @@
         "ticketJson": "tickets/TEST2-93/ticket.json",
         "status": "tickets/TEST2-93/status.json",
         "cycle": "tickets/TEST2-93/qa-cycle.json",
-        "evidenceFolder": "TEST2-93/cycles/cycle-003/screenshots/attempt-001"
+        "evidenceFolder": "TEST2-93/cycles/cycle-003/screenshots/attempt-002"
       },
       "expectedOutput": {
         "path": "tickets/TEST2-93/results.json",
