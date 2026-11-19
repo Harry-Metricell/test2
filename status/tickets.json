@@ -3,10 +3,9 @@
   "generatedAt": "2026-11-19T12:17:02.396Z",
   "counts": {
     "tickets": 11,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
-      "Blocked": 9,
-      "Ready": 1,
+      "Blocked": 10,
       "To Do": 1
     },
     "byQaOutcome": {
@@ -126,19 +125,19 @@
       "cycleId": "cycle-002",
       "summary": "GIS: switch between base map styles",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Ready",
-      "qaStatus": "Awaiting Evidence Review",
+      "workflowState": "Blocked",
+      "qaStatus": "Blocked",
       "qaOutcome": "Blocked",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Create final evidence review handoff",
+      "nextAction": "Manual review required after retry limit",
       "updatedAt": "2026-11-19T12:17:02.396Z",
       "retries": 1,
       "retryLimit": 1,
       "testAttempts": 2,
-      "reportAvailable": false,
-      "editableReportAvailable": false,
+      "reportAvailable": true,
+      "editableReportAvailable": true,
       "retryLabel": "Retry 1/1"
     },
     {
