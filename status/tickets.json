@@ -1,15 +1,17 @@
 {
   "schema": "v4-qa-status.v1",
-  "generatedAt": "2026-11-19T12:17:02.396Z",
+  "generatedAt": "2026-11-19T12:30:24.925+0000",
   "counts": {
     "tickets": 11,
-    "handoffs": 0,
+    "handoffs": 1,
     "byWorkflowState": {
-      "Blocked": 10,
+      "Blocked": 9,
+      "Ready": 1,
       "To Do": 1
     },
     "byQaOutcome": {
-      "Blocked": 9,
+      "Blocked": 8,
+      "Not Tested": 1,
       "Passed": 2
     }
   },
@@ -122,23 +124,23 @@
     },
     {
       "key": "TEST2-93",
-      "cycleId": "cycle-002",
+      "cycleId": "cycle-003",
       "summary": "GIS: switch between base map styles",
       "jiraStatus": "READY FOR TESTING",
-      "workflowState": "Blocked",
-      "qaStatus": "Blocked",
-      "qaOutcome": "Blocked",
+      "workflowState": "Ready",
+      "qaStatus": "Ready for Testing",
+      "qaOutcome": "Not Tested",
       "guideImpact": null,
       "guideUpdate": null,
       "actionOwner": "Coordinator",
-      "nextAction": "Manual review required after retry limit",
-      "updatedAt": "2026-11-19T12:17:02.396Z",
-      "retries": 1,
+      "nextAction": "Create testing handoff",
+      "updatedAt": "2026-11-19T12:30:24.925+0000",
+      "retries": 0,
       "retryLimit": 1,
-      "testAttempts": 2,
-      "reportAvailable": true,
-      "editableReportAvailable": true,
-      "retryLabel": "Retry 1/1"
+      "testAttempts": 0,
+      "reportAvailable": false,
+      "editableReportAvailable": false,
+      "retryLabel": ""
     },
     {
       "key": "TEST2-90",

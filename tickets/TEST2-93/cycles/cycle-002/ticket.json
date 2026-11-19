@@ -1,0 +1,156 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "106833",
+  "self": "https://metricell.atlassian.net/rest/api/3/issue/106833",
+  "key": "TEST2-93",
+  "fields": {
+    "summary": "GIS: switch between base map styles",
+    "subtasks": [],
+    "created": "2026-11-18T16:17:10.751+0000",
+    "project": {
+      "self": "https://metricell.atlassian.net/rest/api/3/project/10551",
+      "id": "10551",
+      "key": "TEST2",
+      "name": "testing board",
+      "projectTypeKey": "business",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400",
+        "24x24": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small",
+        "16x16": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall",
+        "32x32": "https://metricell.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium"
+      }
+    },
+    "description": {
+      "type": "doc",
+      "version": 1,
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "On O2 V4 development, users need to choose a base map that makes the area they are inspecting easy to read. Verify the Map style control in GIS using an ordinary map view. No data edits, extra layers or special fixtures are required."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Acceptance criteria"
+            }
+          ]
+        },
+        {
+          "type": "orderedList",
+          "attrs": {
+            "order": 1
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "The Map style control opens a chooser with the current style and at least one alternative."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Selecting an alternative changes the visible base map while keeping the same location and zoom level. Use recognisable map features or the scale bar to compare before and after."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "Selecting the original style restores the original base map."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "Capture the style chooser and the changed map as separate screenshots so the control and the resulting map are both visible."
+            }
+          ]
+        }
+      ]
+    },
+    "assignee": null,
+    "priority": {
+      "self": "https://metricell.atlassian.net/rest/api/3/priority/4",
+      "iconUrl": "https://metricell.atlassian.net/images/icons/priorities/low.svg",
+      "name": "Low",
+      "id": "4"
+    },
+    "updated": "2026-11-19T12:07:27.483+0000",
+    "status": {
+      "self": "https://metricell.atlassian.net/rest/api/3/status/10735",
+      "description": "",
+      "iconUrl": "https://metricell.atlassian.net/",
+      "name": "READY FOR TESTING",
+      "id": "10735",
+      "statusCategory": {
+        "self": "https://metricell.atlassian.net/rest/api/3/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "In Progress"
+      }
+    }
+  },
+  "qaStatusHistory": {
+    "complete": true,
+    "transitions": [
+      {
+        "id": "1188150:0",
+        "at": "2026-11-18T16:17:30.060+0000",
+        "from": "To Do",
+        "to": "READY FOR TESTING"
+      },
+      {
+        "id": "1188184:0",
+        "at": "2026-11-19T12:07:05.337+0000",
+        "from": "READY FOR TESTING",
+        "to": "To Do"
+      },
+      {
+        "id": "1188185:0",
+        "at": "2026-11-19T12:07:27.483+0000",
+        "from": "To Do",
+        "to": "READY FOR TESTING"
+      }
+    ]
+  }
+}
