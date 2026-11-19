@@ -3,7 +3,7 @@
   "generatedAt": "2026-11-18T16:17:30.060+0000",
   "counts": {
     "tickets": 11,
-    "handoffs": 1,
+    "handoffs": 0,
     "byWorkflowState": {
       "Blocked": 9,
       "Ready": 1,
@@ -130,9 +130,9 @@
       "qaStatus": "Evidence Reviewed",
       "qaOutcome": "Passed",
       "guideImpact": "update_required",
-      "guideUpdate": null,
+      "guideUpdate": "Private guide updated",
       "actionOwner": "Coordinator",
-      "nextAction": "Create user-guide update authoring handoff",
+      "nextAction": "QA review complete",
       "updatedAt": "2026-11-18T16:17:30.060+0000",
       "retries": 0,
       "retryLimit": 1,

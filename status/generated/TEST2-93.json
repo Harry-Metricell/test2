@@ -35,7 +35,7 @@
     "qaOutcome": "Passed",
     "automationSuitability": "Unclassified",
     "actionOwner": "Coordinator",
-    "nextAction": "Create user-guide update authoring handoff",
+    "nextAction": "QA review complete",
     "reviewState": "Not Reviewed",
     "guideImpact": {
       "schema": "v4-user-guide-impact.v1",
@@ -48,7 +48,15 @@
       "reason": "Private guide impact assessed",
       "assessedAt": "2026-11-19T09:27:38.286Z"
     },
-    "guideUpdate": null,
+    "guideUpdate": {
+      "schema": "v4-user-guide-update.v1",
+      "ticket": "TEST2-93",
+      "cycleId": "cycle-001",
+      "handoffId": "handoff-TEST2-93-guide-update",
+      "handoffVersion": "TEST2-93:guide_update_authoring:1",
+      "title": "Private guide updated",
+      "private": true
+    },
     "retries": 0,
     "testAttempts": 1,
     "blockedStage": null,
