@@ -2,7 +2,7 @@
   "cycleId": "cycle-001",
   "ticket": "TEST2-93",
   "jiraStatus": "READY FOR TESTING",
-  "qaStatus": "Awaiting Evidence Review",
+  "qaStatus": "Evidence Reviewed",
   "status": "READY FOR TESTING",
   "retries": 0,
   "retryLimit": 1,
