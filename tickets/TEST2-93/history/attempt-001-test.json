@@ -1,0 +1,100 @@
+{
+  "handoffId": "handoff-TEST2-93-cycle-003-test-attempt-001",
+  "handoffVersion": "TEST2-93:cycle-003:test_ticket:1",
+  "cycleId": "cycle-003",
+  "ticket": "TEST2-93",
+  "qaStatus": "Blocked",
+  "results": [
+    {
+      "criterion": "In an ordinary map view in GIS, open the Map style control and verify that its chooser shows the current base map style and at least one alternative.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-1-blocker-c64a9ef0-57e4-4443-a947-55f8ebac3e34.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Chooser opens and identifies current style",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Chooser offers at least one alternative",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Navigated to the launcher; authentication returned an HTTP 500, then a retry reached the sign-in page.",
+        "Captured the visible blocker; did not operate sign-in controls."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login",
+      "browserName": "Google Chrome",
+      "browserVersion": "157.0.8103.79",
+      "reason": "The launcher was unavailable because authentication did not recover; GIS and its map style control could not be reached. Authentication URL query omitted to avoid retaining transient sign-in parameters.",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "Select an alternative style and verify that the visible base map changes while the location and zoom level remain the same, comparing recognisable map features or the scale bar before and after.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-2-blocker-a2e03133-c32b-4b58-a953-c684bd322f7e.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Alternative changes visible base map",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Location remains the same",
+          "outcome": "Blocked",
+          "evidence": []
+        },
+        {
+          "assertion": "Zoom remains the same",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Navigated independently to the launcher; authentication returned an HTTP 500 request-failed page.",
+        "Captured the visible blocker; did not operate sign-in controls."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login",
+      "browserName": "Google Chrome",
+      "browserVersion": "157.0.8103.79",
+      "reason": "The launcher was unavailable because authentication did not recover; GIS and its map style control could not be reached. Authentication URL query omitted to avoid retaining transient sign-in parameters.",
+      "retryClass": "transient"
+    },
+    {
+      "criterion": "Select the original style and verify that the original base map is restored.",
+      "outcome": "Blocked",
+      "evidence": [
+        "cycles/cycle-003/screenshots/attempt-001/criterion-3-blocker-570c66dd-ad94-4100-85c3-67e1ed4e9fb5.png"
+      ],
+      "coverageChecks": [
+        {
+          "assertion": "Selecting original style restores original base map",
+          "outcome": "Blocked",
+          "evidence": []
+        }
+      ],
+      "steps_taken": [
+        "Navigated independently to the launcher; authentication returned the sign-in page.",
+        "Captured the visible blocker; did not operate sign-in controls."
+      ],
+      "browserUrl": "https://o2intelligence-v4-dev.metricell.com/authenticate/Account/Login",
+      "browserName": "Google Chrome",
+      "browserVersion": "157.0.8103.79",
+      "reason": "The launcher was unavailable because authentication did not recover; GIS and its map style control could not be reached. Authentication URL query omitted to avoid retaining transient sign-in parameters.",
+      "retryClass": "transient"
+    }
+  ],
+  "conciseReport": "All three criteria blocked by launcher authentication; an initial authentication request returned HTTP 500 and the retry reached sign-in.",
+  "reportPath": "",
+  "evidenceFolder": ".agent-staging/handoff-TEST2-93-cycle-003-test-attempt-001/screenshots",
+  "noOp": false,
+  "reason": "Launcher authentication did not recover; no GIS testing was possible.",
+  "historyAttempt": 1,
+  "recordedAt": "2026-11-19T13:24:51.512Z"
+}
